@@ -428,8 +428,8 @@ const file_api_open_v1_map_place_proto_rawDesc = "" +
 	"\x19GetMapPlacesByIdsResponse\x12-\n" +
 	"\x06places\x18\x01 \x03(\v2\x15.api.open.v1.MapPlaceR\x06places2l\n" +
 	"\x0fMapPlaceService\x12Y\n" +
-	"\bGetByIds\x12%.api.open.v1.GetMapPlacesByIdsRequest\x1a&.api.open.v1.GetMapPlacesByIdsResponseB\xa9\x01\n" +
-	"\x0fcom.api.open.v1B\rMapPlaceProtoP\x01Z9github.com/echovisionlab/geul-event-contracts/gen/api/open/v1;openv1\xa2\x02\x03AOX\xaa\x02\vApi.Open.V1\xca\x02\vApi\\Open\\V1\xe2\x02\x17Api\\Open\\V1\\GPBMetadata\xea\x02\rApi::Open::V1b\x06proto3"
+	"\bGetByIds\x12%.api.open.v1.GetMapPlacesByIdsRequest\x1a&.api.open.v1.GetMapPlacesByIdsResponseB\xb4\x01\n" +
+	"\x0fcom.api.open.v1B\rMapPlaceProtoP\x01ZDgithub.com/echovisionlab/geul-event-contracts/gen/api/open/v1;openv1\xa2\x02\x03AOX\xaa\x02\vApi.Open.V1\xca\x02\vApi\\Open\\V1\xe2\x02\x17Api\\Open\\V1\\GPBMetadata\xea\x02\rApi::Open::V1b\x06proto3"
 
 var (
 	file_api_open_v1_map_place_proto_rawDescOnce sync.Once

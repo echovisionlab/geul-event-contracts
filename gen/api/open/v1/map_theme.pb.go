@@ -740,8 +740,8 @@ const file_api_open_v1_map_theme_proto_rawDesc = "" +
 	"\t_theme_id2\xc7\x01\n" +
 	"\x0fMapThemeService\x12e\n" +
 	"\fResolveByIds\x12).api.open.v1.ResolveMapThemesByIdsRequest\x1a*.api.open.v1.ResolveMapThemesByIdsResponse\x12M\n" +
-	"\aResolve\x12#.api.open.v1.ResolveMapThemeRequest\x1a\x1d.api.open.v1.ResolvedMapThemeB\xa9\x01\n" +
-	"\x0fcom.api.open.v1B\rMapThemeProtoP\x01Z9github.com/echovisionlab/geul-event-contracts/gen/api/open/v1;openv1\xa2\x02\x03AOX\xaa\x02\vApi.Open.V1\xca\x02\vApi\\Open\\V1\xe2\x02\x17Api\\Open\\V1\\GPBMetadata\xea\x02\rApi::Open::V1b\x06proto3"
+	"\aResolve\x12#.api.open.v1.ResolveMapThemeRequest\x1a\x1d.api.open.v1.ResolvedMapThemeB\xb4\x01\n" +
+	"\x0fcom.api.open.v1B\rMapThemeProtoP\x01ZDgithub.com/echovisionlab/geul-event-contracts/gen/api/open/v1;openv1\xa2\x02\x03AOX\xaa\x02\vApi.Open.V1\xca\x02\vApi\\Open\\V1\xe2\x02\x17Api\\Open\\V1\\GPBMetadata\xea\x02\rApi::Open::V1b\x06proto3"
 
 var (
 	file_api_open_v1_map_theme_proto_rawDescOnce sync.Once

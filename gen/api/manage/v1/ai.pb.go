@@ -5197,8 +5197,8 @@ const file_api_manage_v1_ai_proto_rawDesc = "" +
 	"\tAIService\x12\x80\x01\n" +
 	"\x17StartMetadataGeneration\x12-.api.manage.v1.StartMetadataGenerationRequest\x1a..api.manage.v1.StartMetadataGenerationResponse\"\x06\xca\xf3\x18\x02\b\x02\x12\x83\x01\n" +
 	"\x18GetMetadataGenerationJob\x12..api.manage.v1.GetMetadataGenerationJobRequest\x1a/.api.manage.v1.GetMetadataGenerationJobResponse\"\x06\xca\xf3\x18\x02\b\x02\x12\x8f\x01\n" +
-	"\x1cResolveMetadataGenerationJob\x122.api.manage.v1.ResolveMetadataGenerationJobRequest\x1a3.api.manage.v1.ResolveMetadataGenerationJobResponse\"\x06\xca\xf3\x18\x02\b\x02B\xb1\x01\n" +
-	"\x11com.api.manage.v1B\aAiProtoP\x01Z=github.com/echovisionlab/geul-event-contracts/gen/api/manage/v1;managev1\xa2\x02\x03AMX\xaa\x02\rApi.Manage.V1\xca\x02\rApi\\Manage\\V1\xe2\x02\x19Api\\Manage\\V1\\GPBMetadata\xea\x02\x0fApi::Manage::V1b\x06proto3"
+	"\x1cResolveMetadataGenerationJob\x122.api.manage.v1.ResolveMetadataGenerationJobRequest\x1a3.api.manage.v1.ResolveMetadataGenerationJobResponse\"\x06\xca\xf3\x18\x02\b\x02B\xbc\x01\n" +
+	"\x11com.api.manage.v1B\aAiProtoP\x01ZHgithub.com/echovisionlab/geul-event-contracts/gen/api/manage/v1;managev1\xa2\x02\x03AMX\xaa\x02\rApi.Manage.V1\xca\x02\rApi\\Manage\\V1\xe2\x02\x19Api\\Manage\\V1\\GPBMetadata\xea\x02\x0fApi::Manage::V1b\x06proto3"
 
 var (
 	file_api_manage_v1_ai_proto_rawDescOnce sync.Once

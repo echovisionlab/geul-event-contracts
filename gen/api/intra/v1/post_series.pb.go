@@ -399,8 +399,8 @@ const file_api_intra_v1_post_series_proto_rawDesc = "" +
 	"\x10_target_revision2\xf1\x01\n" +
 	"\x19InternalPostSeriesService\x12i\n" +
 	"\fLoadDocument\x12+.api.intra.v1.LoadPostSeriesDocumentRequest\x1a,.api.intra.v1.LoadPostSeriesDocumentResponse\x12i\n" +
-	"\fSaveDocument\x12+.api.intra.v1.SavePostSeriesDocumentRequest\x1a,.api.intra.v1.SavePostSeriesDocumentResponseB\xb2\x01\n" +
-	"\x10com.api.intra.v1B\x0fPostSeriesProtoP\x01Z;github.com/echovisionlab/geul-event-contracts/gen/api/intra/v1;intrav1\xa2\x02\x03AIX\xaa\x02\fApi.Intra.V1\xca\x02\fApi\\Intra\\V1\xe2\x02\x18Api\\Intra\\V1\\GPBMetadata\xea\x02\x0eApi::Intra::V1b\x06proto3"
+	"\fSaveDocument\x12+.api.intra.v1.SavePostSeriesDocumentRequest\x1a,.api.intra.v1.SavePostSeriesDocumentResponseB\xbd\x01\n" +
+	"\x10com.api.intra.v1B\x0fPostSeriesProtoP\x01ZFgithub.com/echovisionlab/geul-event-contracts/gen/api/intra/v1;intrav1\xa2\x02\x03AIX\xaa\x02\fApi.Intra.V1\xca\x02\fApi\\Intra\\V1\xe2\x02\x18Api\\Intra\\V1\\GPBMetadata\xea\x02\x0eApi::Intra::V1b\x06proto3"
 
 var (
 	file_api_intra_v1_post_series_proto_rawDescOnce sync.Once

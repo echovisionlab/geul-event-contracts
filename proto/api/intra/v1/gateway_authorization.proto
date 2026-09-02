@@ -6,6 +6,27 @@ import "api/policy/v1/access.proto";
 
 option go_package = "github.com/echovisionlab/geul-event-contracts/gen/api/intra/v1;intrav1";
 
+// MCPDelegationMethod identifies the trusted mechanism that delegated an MCP
+// request. It is deliberately closed: the API must reject unknown methods
+// instead of treating arbitrary gateway metadata as an authenticated actor.
+enum MCPDelegationMethod {
+  MCP_DELEGATION_METHOD_UNSPECIFIED = 0;
+  MCP_DELEGATION_METHOD_OAUTH = 1;
+}
+
+// MCPAuthenticatedContext is the single typed principal assertion forwarded
+// by Oathkeeper after OAuth token introspection. The serialized protobuf is
+// carried as unpadded base64url in the header configured by AUTH_HEADER_NAME
+// and is accepted only alongside the internal-service credential.
+// geul-contract-root: mcp-authenticated-context
+message MCPAuthenticatedContext {
+  string identity_id = 1;
+  string member_id = 2;
+  string delegation_id = 3;
+  string delegation_name = 4;
+  MCPDelegationMethod delegation_method = 5;
+}
+
 // AuthorizeGatewayAccessRequest is the private Oathkeeper remote_json /
 // Connect JSON request. account_identity_id is the UUID of the Kratos
 // identity and the canonical SpiceDB subject; session_id is the UUID of the

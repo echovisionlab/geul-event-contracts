@@ -174,8 +174,8 @@ const file_api_policy_v1_access_proto_rawDesc = "" +
 	"\n" +
 	"\x06AUTHOR\x10\x03\x12\t\n" +
 	"\x05ADMIN\x10\x04:U\n" +
-	"\x06access\x12\x1e.google.protobuf.MethodOptions\x18\xb9\x8e\x03 \x01(\v2\x1b.api.policy.v1.AccessPolicyR\x06accessB\xb5\x01\n" +
-	"\x11com.api.policy.v1B\vAccessProtoP\x01Z=github.com/echovisionlab/geul-event-contracts/gen/api/policy/v1;policyv1\xa2\x02\x03APX\xaa\x02\rApi.Policy.V1\xca\x02\rApi\\Policy\\V1\xe2\x02\x19Api\\Policy\\V1\\GPBMetadata\xea\x02\x0fApi::Policy::V1b\x06proto3"
+	"\x06access\x12\x1e.google.protobuf.MethodOptions\x18\xb9\x8e\x03 \x01(\v2\x1b.api.policy.v1.AccessPolicyR\x06accessB\xc0\x01\n" +
+	"\x11com.api.policy.v1B\vAccessProtoP\x01ZHgithub.com/echovisionlab/geul-event-contracts/gen/api/policy/v1;policyv1\xa2\x02\x03APX\xaa\x02\rApi.Policy.V1\xca\x02\rApi\\Policy\\V1\xe2\x02\x19Api\\Policy\\V1\\GPBMetadata\xea\x02\x0fApi::Policy::V1b\x06proto3"
 
 var (
 	file_api_policy_v1_access_proto_rawDescOnce sync.Once

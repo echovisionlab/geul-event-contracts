@@ -1981,8 +1981,8 @@ const file_api_open_v1_program_event_proto_rawDesc = "" +
 	"\x03Get\x12).api.open.v1.GetProgramEventSeriesRequest\x1a*.api.open.v1.GetProgramEventSeriesResponse\x12_\n" +
 	"\x04List\x12*.api.open.v1.ListProgramEventSeriesRequest\x1a+.api.open.v1.ListProgramEventSeriesResponse2x\n" +
 	"\x17ProgramEventTypeService\x12]\n" +
-	"\x04List\x12).api.open.v1.ListProgramEventTypesRequest\x1a*.api.open.v1.ListProgramEventTypesResponseB\xad\x01\n" +
-	"\x0fcom.api.open.v1B\x11ProgramEventProtoP\x01Z9github.com/echovisionlab/geul-event-contracts/gen/api/open/v1;openv1\xa2\x02\x03AOX\xaa\x02\vApi.Open.V1\xca\x02\vApi\\Open\\V1\xe2\x02\x17Api\\Open\\V1\\GPBMetadata\xea\x02\rApi::Open::V1b\x06proto3"
+	"\x04List\x12).api.open.v1.ListProgramEventTypesRequest\x1a*.api.open.v1.ListProgramEventTypesResponseB\xb8\x01\n" +
+	"\x0fcom.api.open.v1B\x11ProgramEventProtoP\x01ZDgithub.com/echovisionlab/geul-event-contracts/gen/api/open/v1;openv1\xa2\x02\x03AOX\xaa\x02\vApi.Open.V1\xca\x02\vApi\\Open\\V1\xe2\x02\x17Api\\Open\\V1\\GPBMetadata\xea\x02\rApi::Open::V1b\x06proto3"
 
 var (
 	file_api_open_v1_program_event_proto_rawDescOnce sync.Once

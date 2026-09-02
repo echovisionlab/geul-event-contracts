@@ -229,14 +229,22 @@ jobs:
         if: steps.scope.outputs.run_full == 'true'
         run: pnpm asyncapi:normalize
 
+      - name: Synchronize RPC inventory
+        if: steps.scope.outputs.run_full == 'true'
+        run: pnpm inventory:sync
+
+      - name: Format synchronized RPC inventory
+        if: steps.scope.outputs.run_full == 'true'
+        run: pnpm exec prettier --write docs/rpc-inventory.json
+
       - name: Check tracked generated files
         if: steps.scope.outputs.run_full == 'true'
-        run: git diff --exit-code -- proto gen packages/proto/gen packages/event/src/generated.ts go/event/constants.go go/event/pgmq.go go/event/routing_keys.go go/event/translation_source.go go/collaboration/interactive_mutation.go config/spicedb/schema.generated.zed
+        run: git diff --exit-code -- proto gen packages/proto/gen packages/event/src/generated.ts go/event/constants.go go/event/pgmq.go go/event/routing_keys.go go/event/translation_source.go go/collaboration/interactive_mutation.go config/spicedb/schema.generated.zed contracttest/spicedb_typed_surface_generated_test.go docs/rpc-inventory.json
 
       - name: Check untracked generated files
         if: steps.scope.outputs.run_full == 'true'
         run: |
-          untracked="$(git ls-files --others --exclude-standard -- gen packages/proto/gen packages/event/src/generated.ts go/event go/collaboration config/spicedb/schema.generated.zed)"
+          untracked="$(git ls-files --others --exclude-standard -- gen packages/proto/gen packages/event/src/generated.ts go/event go/collaboration config/spicedb/schema.generated.zed contracttest/spicedb_typed_surface_generated_test.go docs/rpc-inventory.json)"
           if [ -n "${untracked}" ]; then
             printf '%s\n' "${untracked}"
             exit 1

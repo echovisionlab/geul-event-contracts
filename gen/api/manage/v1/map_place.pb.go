@@ -1043,8 +1043,8 @@ const file_api_manage_v1_map_place_proto_rawDesc = "" +
 	"\x12ListMapPlacesAdmin\x12(.api.manage.v1.ListMapPlacesAdminRequest\x1a).api.manage.v1.ListMapPlacesAdminResponse\"\x06\xca\xf3\x18\x02\b\x04\x12W\n" +
 	"\x0eCreateMapPlace\x12$.api.manage.v1.CreateMapPlaceRequest\x1a\x17.api.manage.v1.MapPlace\"\x06\xca\xf3\x18\x02\b\x03\x12W\n" +
 	"\x0eUpdateMapPlace\x12$.api.manage.v1.UpdateMapPlaceRequest\x1a\x17.api.manage.v1.MapPlace\"\x06\xca\xf3\x18\x02\b\x03\x12]\n" +
-	"\x0eDeleteMapPlace\x12$.api.manage.v1.DeleteMapPlaceRequest\x1a\x1d.api.manage.v1.DeleteResponse\"\x06\xca\xf3\x18\x02\b\x04B\xb7\x01\n" +
-	"\x11com.api.manage.v1B\rMapPlaceProtoP\x01Z=github.com/echovisionlab/geul-event-contracts/gen/api/manage/v1;managev1\xa2\x02\x03AMX\xaa\x02\rApi.Manage.V1\xca\x02\rApi\\Manage\\V1\xe2\x02\x19Api\\Manage\\V1\\GPBMetadata\xea\x02\x0fApi::Manage::V1b\x06proto3"
+	"\x0eDeleteMapPlace\x12$.api.manage.v1.DeleteMapPlaceRequest\x1a\x1d.api.manage.v1.DeleteResponse\"\x06\xca\xf3\x18\x02\b\x04B\xc2\x01\n" +
+	"\x11com.api.manage.v1B\rMapPlaceProtoP\x01ZHgithub.com/echovisionlab/geul-event-contracts/gen/api/manage/v1;managev1\xa2\x02\x03AMX\xaa\x02\rApi.Manage.V1\xca\x02\rApi\\Manage\\V1\xe2\x02\x19Api\\Manage\\V1\\GPBMetadata\xea\x02\x0fApi::Manage::V1b\x06proto3"
 
 var (
 	file_api_manage_v1_map_place_proto_rawDescOnce sync.Once

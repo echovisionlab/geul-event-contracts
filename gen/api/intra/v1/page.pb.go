@@ -1032,8 +1032,8 @@ const file_api_intra_v1_page_proto_rawDesc = "" +
 	"\x13ApplyPageBlockBatch\x12(.api.intra.v1.ApplyPageBlockBatchRequest\x1a).api.intra.v1.ApplyPageBlockBatchResponse\x12y\n" +
 	"\x18UpdatePageLocaleMetadata\x12-.api.intra.v1.UpdatePageLocaleMetadataRequest\x1a..api.intra.v1.UpdatePageLocaleMetadataResponse\x12\x7f\n" +
 	"\x1aUpdatePageDocumentMetadata\x12/.api.intra.v1.UpdatePageDocumentMetadataRequest\x1a0.api.intra.v1.UpdatePageDocumentMetadataResponse\x12\x82\x01\n" +
-	"\x1bCreatePageVersionCheckpoint\x120.api.intra.v1.CreatePageVersionCheckpointRequest\x1a1.api.intra.v1.CreatePageVersionCheckpointResponseB\xac\x01\n" +
-	"\x10com.api.intra.v1B\tPageProtoP\x01Z;github.com/echovisionlab/geul-event-contracts/gen/api/intra/v1;intrav1\xa2\x02\x03AIX\xaa\x02\fApi.Intra.V1\xca\x02\fApi\\Intra\\V1\xe2\x02\x18Api\\Intra\\V1\\GPBMetadata\xea\x02\x0eApi::Intra::V1b\x06proto3"
+	"\x1bCreatePageVersionCheckpoint\x120.api.intra.v1.CreatePageVersionCheckpointRequest\x1a1.api.intra.v1.CreatePageVersionCheckpointResponseB\xb7\x01\n" +
+	"\x10com.api.intra.v1B\tPageProtoP\x01ZFgithub.com/echovisionlab/geul-event-contracts/gen/api/intra/v1;intrav1\xa2\x02\x03AIX\xaa\x02\fApi.Intra.V1\xca\x02\fApi\\Intra\\V1\xe2\x02\x18Api\\Intra\\V1\\GPBMetadata\xea\x02\x0eApi::Intra::V1b\x06proto3"
 
 var (
 	file_api_intra_v1_page_proto_rawDescOnce sync.Once

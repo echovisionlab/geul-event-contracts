@@ -1198,9 +1198,9 @@ const file_api_common_v1_media_proto_rawDesc = "" +
 	"#MEDIA_PROCESSING_STATUS_UNSPECIFIED\x10\x00\x12&\n" +
 	"\"MEDIA_PROCESSING_STATUS_PROCESSING\x10\x01\x12!\n" +
 	"\x1dMEDIA_PROCESSING_STATUS_READY\x10\x02\x12\"\n" +
-	"\x1eMEDIA_PROCESSING_STATUS_FAILED\x10\x03B\xb4\x01\n" +
+	"\x1eMEDIA_PROCESSING_STATUS_FAILED\x10\x03B\xbf\x01\n" +
 	"\x11com.api.common.v1B\n" +
-	"MediaProtoP\x01Z=github.com/echovisionlab/geul-event-contracts/gen/api/common/v1;commonv1\xa2\x02\x03ACX\xaa\x02\rApi.Common.V1\xca\x02\rApi\\Common\\V1\xe2\x02\x19Api\\Common\\V1\\GPBMetadata\xea\x02\x0fApi::Common::V1b\x06proto3"
+	"MediaProtoP\x01ZHgithub.com/echovisionlab/geul-event-contracts/gen/api/common/v1;commonv1\xa2\x02\x03ACX\xaa\x02\rApi.Common.V1\xca\x02\rApi\\Common\\V1\xe2\x02\x19Api\\Common\\V1\\GPBMetadata\xea\x02\x0fApi::Common::V1b\x06proto3"
 
 var (
 	file_api_common_v1_media_proto_rawDescOnce sync.Once

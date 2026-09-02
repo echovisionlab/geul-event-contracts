@@ -532,8 +532,8 @@ const file_api_intra_v1_menu_proto_rawDesc = "" +
 	"\x10_target_revision2\xd3\x01\n" +
 	"\x13InternalMenuService\x12]\n" +
 	"\fLoadDocument\x12%.api.intra.v1.LoadMenuDocumentRequest\x1a&.api.intra.v1.LoadMenuDocumentResponse\x12]\n" +
-	"\fSaveDocument\x12%.api.intra.v1.SaveMenuDocumentRequest\x1a&.api.intra.v1.SaveMenuDocumentResponseB\xac\x01\n" +
-	"\x10com.api.intra.v1B\tMenuProtoP\x01Z;github.com/echovisionlab/geul-event-contracts/gen/api/intra/v1;intrav1\xa2\x02\x03AIX\xaa\x02\fApi.Intra.V1\xca\x02\fApi\\Intra\\V1\xe2\x02\x18Api\\Intra\\V1\\GPBMetadata\xea\x02\x0eApi::Intra::V1b\x06proto3"
+	"\fSaveDocument\x12%.api.intra.v1.SaveMenuDocumentRequest\x1a&.api.intra.v1.SaveMenuDocumentResponseB\xb7\x01\n" +
+	"\x10com.api.intra.v1B\tMenuProtoP\x01ZFgithub.com/echovisionlab/geul-event-contracts/gen/api/intra/v1;intrav1\xa2\x02\x03AIX\xaa\x02\fApi.Intra.V1\xca\x02\fApi\\Intra\\V1\xe2\x02\x18Api\\Intra\\V1\\GPBMetadata\xea\x02\x0eApi::Intra::V1b\x06proto3"
 
 var (
 	file_api_intra_v1_menu_proto_rawDescOnce sync.Once

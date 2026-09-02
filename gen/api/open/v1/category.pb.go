@@ -237,8 +237,8 @@ const file_api_open_v1_category_proto_rawDesc = "" +
 	"post_count\x18\x05 \x01(\x05R\tpostCountB\x0e\n" +
 	"\f_description2b\n" +
 	"\x0fCategoryService\x12O\n" +
-	"\x04List\x12\".api.open.v1.ListCategoriesRequest\x1a#.api.open.v1.ListCategoriesResponseB\xa9\x01\n" +
-	"\x0fcom.api.open.v1B\rCategoryProtoP\x01Z9github.com/echovisionlab/geul-event-contracts/gen/api/open/v1;openv1\xa2\x02\x03AOX\xaa\x02\vApi.Open.V1\xca\x02\vApi\\Open\\V1\xe2\x02\x17Api\\Open\\V1\\GPBMetadata\xea\x02\rApi::Open::V1b\x06proto3"
+	"\x04List\x12\".api.open.v1.ListCategoriesRequest\x1a#.api.open.v1.ListCategoriesResponseB\xb4\x01\n" +
+	"\x0fcom.api.open.v1B\rCategoryProtoP\x01ZDgithub.com/echovisionlab/geul-event-contracts/gen/api/open/v1;openv1\xa2\x02\x03AOX\xaa\x02\vApi.Open.V1\xca\x02\vApi\\Open\\V1\xe2\x02\x17Api\\Open\\V1\\GPBMetadata\xea\x02\rApi::Open::V1b\x06proto3"
 
 var (
 	file_api_open_v1_category_proto_rawDescOnce sync.Once

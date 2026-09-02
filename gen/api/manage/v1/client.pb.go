@@ -930,8 +930,8 @@ const file_api_manage_v1_client_proto_rawDesc = "" +
 	"\fUpdateClient\x12\".api.manage.v1.UpdateClientRequest\x1a\x15.api.manage.v1.Client\"\x06\xca\xf3\x18\x02\b\x04\x12Y\n" +
 	"\fDeleteClient\x12\".api.manage.v1.DeleteClientRequest\x1a\x1d.api.manage.v1.DeleteResponse\"\x06\xca\xf3\x18\x02\b\x04\x12b\n" +
 	"\rSetClientLogo\x12#.api.manage.v1.SetClientLogoRequest\x1a$.api.manage.v1.SetClientLogoResponse\"\x06\xca\xf3\x18\x02\b\x04\x12a\n" +
-	"\x10DeleteClientLogo\x12&.api.manage.v1.DeleteClientLogoRequest\x1a\x1d.api.manage.v1.DeleteResponse\"\x06\xca\xf3\x18\x02\b\x04B\xb5\x01\n" +
-	"\x11com.api.manage.v1B\vClientProtoP\x01Z=github.com/echovisionlab/geul-event-contracts/gen/api/manage/v1;managev1\xa2\x02\x03AMX\xaa\x02\rApi.Manage.V1\xca\x02\rApi\\Manage\\V1\xe2\x02\x19Api\\Manage\\V1\\GPBMetadata\xea\x02\x0fApi::Manage::V1b\x06proto3"
+	"\x10DeleteClientLogo\x12&.api.manage.v1.DeleteClientLogoRequest\x1a\x1d.api.manage.v1.DeleteResponse\"\x06\xca\xf3\x18\x02\b\x04B\xc0\x01\n" +
+	"\x11com.api.manage.v1B\vClientProtoP\x01ZHgithub.com/echovisionlab/geul-event-contracts/gen/api/manage/v1;managev1\xa2\x02\x03AMX\xaa\x02\rApi.Manage.V1\xca\x02\rApi\\Manage\\V1\xe2\x02\x19Api\\Manage\\V1\\GPBMetadata\xea\x02\x0fApi::Manage::V1b\x06proto3"
 
 var (
 	file_api_manage_v1_client_proto_rawDescOnce sync.Once

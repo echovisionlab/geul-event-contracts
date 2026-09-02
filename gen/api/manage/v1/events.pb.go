@@ -6168,8 +6168,8 @@ const file_api_manage_v1_events_proto_rawDesc = "" +
 	"\x1aTranslationLifecycleStatus\x12,\n" +
 	"(TRANSLATION_LIFECYCLE_STATUS_UNSPECIFIED\x10\x00\x12(\n" +
 	"$TRANSLATION_LIFECYCLE_STATUS_APPLIED\x10\x01\x12'\n" +
-	"#TRANSLATION_LIFECYCLE_STATUS_FAILED\x10\x02B\xb5\x01\n" +
-	"\x11com.api.manage.v1B\vEventsProtoP\x01Z=github.com/echovisionlab/geul-event-contracts/gen/api/manage/v1;managev1\xa2\x02\x03AMX\xaa\x02\rApi.Manage.V1\xca\x02\rApi\\Manage\\V1\xe2\x02\x19Api\\Manage\\V1\\GPBMetadata\xea\x02\x0fApi::Manage::V1b\x06proto3"
+	"#TRANSLATION_LIFECYCLE_STATUS_FAILED\x10\x02B\xc0\x01\n" +
+	"\x11com.api.manage.v1B\vEventsProtoP\x01ZHgithub.com/echovisionlab/geul-event-contracts/gen/api/manage/v1;managev1\xa2\x02\x03AMX\xaa\x02\rApi.Manage.V1\xca\x02\rApi\\Manage\\V1\xe2\x02\x19Api\\Manage\\V1\\GPBMetadata\xea\x02\x0fApi::Manage::V1b\x06proto3"
 
 var (
 	file_api_manage_v1_events_proto_rawDescOnce sync.Once

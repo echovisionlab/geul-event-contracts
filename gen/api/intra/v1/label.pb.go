@@ -1027,9 +1027,9 @@ const file_api_intra_v1_label_proto_rawDesc = "" +
 	"\x16LoadLabelBlockDocument\x12+.api.intra.v1.LoadLabelBlockDocumentRequest\x1a,.api.intra.v1.LoadLabelBlockDocumentResponse\x12m\n" +
 	"\x14ApplyLabelBlockBatch\x12).api.intra.v1.ApplyLabelBlockBatchRequest\x1a*.api.intra.v1.ApplyLabelBlockBatchResponse\x12|\n" +
 	"\x19UpdateLabelLocaleMetadata\x12..api.intra.v1.UpdateLabelLocaleMetadataRequest\x1a/.api.intra.v1.UpdateLabelLocaleMetadataResponse\x12\x82\x01\n" +
-	"\x1bUpdateLabelDocumentMetadata\x120.api.intra.v1.UpdateLabelDocumentMetadataRequest\x1a1.api.intra.v1.UpdateLabelDocumentMetadataResponseB\xad\x01\n" +
+	"\x1bUpdateLabelDocumentMetadata\x120.api.intra.v1.UpdateLabelDocumentMetadataRequest\x1a1.api.intra.v1.UpdateLabelDocumentMetadataResponseB\xb8\x01\n" +
 	"\x10com.api.intra.v1B\n" +
-	"LabelProtoP\x01Z;github.com/echovisionlab/geul-event-contracts/gen/api/intra/v1;intrav1\xa2\x02\x03AIX\xaa\x02\fApi.Intra.V1\xca\x02\fApi\\Intra\\V1\xe2\x02\x18Api\\Intra\\V1\\GPBMetadata\xea\x02\x0eApi::Intra::V1b\x06proto3"
+	"LabelProtoP\x01ZFgithub.com/echovisionlab/geul-event-contracts/gen/api/intra/v1;intrav1\xa2\x02\x03AIX\xaa\x02\fApi.Intra.V1\xca\x02\fApi\\Intra\\V1\xe2\x02\x18Api\\Intra\\V1\\GPBMetadata\xea\x02\x0eApi::Intra::V1b\x06proto3"
 
 var (
 	file_api_intra_v1_label_proto_rawDescOnce sync.Once

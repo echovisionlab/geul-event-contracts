@@ -652,8 +652,8 @@ const file_api_intra_v1_campaign_proto_rawDesc = "" +
 	"\x17InternalCampaignService\x12n\n" +
 	"\x0fApplyBlockBatch\x12,.api.intra.v1.ApplyCampaignBlockBatchRequest\x1a-.api.intra.v1.ApplyCampaignBlockBatchResponse\x12\x85\x01\n" +
 	"\x1cUpdateCampaignLocaleMetadata\x121.api.intra.v1.UpdateCampaignLocaleMetadataRequest\x1a2.api.intra.v1.UpdateCampaignLocaleMetadataResponse\x12e\n" +
-	"\fLoadDocument\x12).api.intra.v1.LoadCampaignDocumentRequest\x1a*.api.intra.v1.LoadCampaignDocumentResponseB\xb0\x01\n" +
-	"\x10com.api.intra.v1B\rCampaignProtoP\x01Z;github.com/echovisionlab/geul-event-contracts/gen/api/intra/v1;intrav1\xa2\x02\x03AIX\xaa\x02\fApi.Intra.V1\xca\x02\fApi\\Intra\\V1\xe2\x02\x18Api\\Intra\\V1\\GPBMetadata\xea\x02\x0eApi::Intra::V1b\x06proto3"
+	"\fLoadDocument\x12).api.intra.v1.LoadCampaignDocumentRequest\x1a*.api.intra.v1.LoadCampaignDocumentResponseB\xbb\x01\n" +
+	"\x10com.api.intra.v1B\rCampaignProtoP\x01ZFgithub.com/echovisionlab/geul-event-contracts/gen/api/intra/v1;intrav1\xa2\x02\x03AIX\xaa\x02\fApi.Intra.V1\xca\x02\fApi\\Intra\\V1\xe2\x02\x18Api\\Intra\\V1\\GPBMetadata\xea\x02\x0eApi::Intra::V1b\x06proto3"
 
 var (
 	file_api_intra_v1_campaign_proto_rawDescOnce sync.Once

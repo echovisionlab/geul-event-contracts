@@ -139,8 +139,8 @@ const file_api_intra_v1_email_courier_proto_rawDesc = "" +
 	"\x11SendEmailResponse\x12\x16\n" +
 	"\x06queued\x18\x01 \x01(\bR\x06queued2c\n" +
 	"\x13EmailCourierService\x12L\n" +
-	"\tSendEmail\x12\x1e.api.intra.v1.SendEmailRequest\x1a\x1f.api.intra.v1.SendEmailResponseB\xb4\x01\n" +
-	"\x10com.api.intra.v1B\x11EmailCourierProtoP\x01Z;github.com/echovisionlab/geul-event-contracts/gen/api/intra/v1;intrav1\xa2\x02\x03AIX\xaa\x02\fApi.Intra.V1\xca\x02\fApi\\Intra\\V1\xe2\x02\x18Api\\Intra\\V1\\GPBMetadata\xea\x02\x0eApi::Intra::V1b\x06proto3"
+	"\tSendEmail\x12\x1e.api.intra.v1.SendEmailRequest\x1a\x1f.api.intra.v1.SendEmailResponseB\xbf\x01\n" +
+	"\x10com.api.intra.v1B\x11EmailCourierProtoP\x01ZFgithub.com/echovisionlab/geul-event-contracts/gen/api/intra/v1;intrav1\xa2\x02\x03AIX\xaa\x02\fApi.Intra.V1\xca\x02\fApi\\Intra\\V1\xe2\x02\x18Api\\Intra\\V1\\GPBMetadata\xea\x02\x0eApi::Intra::V1b\x06proto3"
 
 var (
 	file_api_intra_v1_email_courier_proto_rawDescOnce sync.Once

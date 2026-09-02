@@ -2620,8 +2620,8 @@ const file_api_manage_v1_post_proto_rawDesc = "" +
 	"\x10ListPostVersions\x12&.api.manage.v1.ListPostVersionsRequest\x1a'.api.manage.v1.ListPostVersionsResponse\"\x06\xca\xf3\x18\x02\b\x02\x12[\n" +
 	"\x12RestorePostVersion\x12(.api.manage.v1.RestorePostVersionRequest\x1a\x13.api.manage.v1.Post\"\x06\xca\xf3\x18\x02\b\x03\x12q\n" +
 	"\x12CheckSlugAvailable\x12(.api.manage.v1.CheckSlugAvailableRequest\x1a).api.manage.v1.CheckSlugAvailableResponse\"\x06\xca\xf3\x18\x02\b\x03\x12\\\n" +
-	"\vListMyPosts\x12!.api.manage.v1.ListMyPostsRequest\x1a\".api.manage.v1.ListMyPostsResponse\"\x06\xca\xf3\x18\x02\b\x03B\xb3\x01\n" +
-	"\x11com.api.manage.v1B\tPostProtoP\x01Z=github.com/echovisionlab/geul-event-contracts/gen/api/manage/v1;managev1\xa2\x02\x03AMX\xaa\x02\rApi.Manage.V1\xca\x02\rApi\\Manage\\V1\xe2\x02\x19Api\\Manage\\V1\\GPBMetadata\xea\x02\x0fApi::Manage::V1b\x06proto3"
+	"\vListMyPosts\x12!.api.manage.v1.ListMyPostsRequest\x1a\".api.manage.v1.ListMyPostsResponse\"\x06\xca\xf3\x18\x02\b\x03B\xbe\x01\n" +
+	"\x11com.api.manage.v1B\tPostProtoP\x01ZHgithub.com/echovisionlab/geul-event-contracts/gen/api/manage/v1;managev1\xa2\x02\x03AMX\xaa\x02\rApi.Manage.V1\xca\x02\rApi\\Manage\\V1\xe2\x02\x19Api\\Manage\\V1\\GPBMetadata\xea\x02\x0fApi::Manage::V1b\x06proto3"
 
 var (
 	file_api_manage_v1_post_proto_rawDescOnce sync.Once

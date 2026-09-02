@@ -1111,8 +1111,8 @@ const file_api_intra_v1_artist_proto_rawDesc = "" +
 	"\x17LoadArtistBlockDocument\x12,.api.intra.v1.LoadArtistBlockDocumentRequest\x1a-.api.intra.v1.LoadArtistBlockDocumentResponse\x12p\n" +
 	"\x15ApplyArtistBlockBatch\x12*.api.intra.v1.ApplyArtistBlockBatchRequest\x1a+.api.intra.v1.ApplyArtistBlockBatchResponse\x12\x7f\n" +
 	"\x1aUpdateArtistLocaleMetadata\x12/.api.intra.v1.UpdateArtistLocaleMetadataRequest\x1a0.api.intra.v1.UpdateArtistLocaleMetadataResponse\x12\x85\x01\n" +
-	"\x1cUpdateArtistDocumentMetadata\x121.api.intra.v1.UpdateArtistDocumentMetadataRequest\x1a2.api.intra.v1.UpdateArtistDocumentMetadataResponseB\xae\x01\n" +
-	"\x10com.api.intra.v1B\vArtistProtoP\x01Z;github.com/echovisionlab/geul-event-contracts/gen/api/intra/v1;intrav1\xa2\x02\x03AIX\xaa\x02\fApi.Intra.V1\xca\x02\fApi\\Intra\\V1\xe2\x02\x18Api\\Intra\\V1\\GPBMetadata\xea\x02\x0eApi::Intra::V1b\x06proto3"
+	"\x1cUpdateArtistDocumentMetadata\x121.api.intra.v1.UpdateArtistDocumentMetadataRequest\x1a2.api.intra.v1.UpdateArtistDocumentMetadataResponseB\xb9\x01\n" +
+	"\x10com.api.intra.v1B\vArtistProtoP\x01ZFgithub.com/echovisionlab/geul-event-contracts/gen/api/intra/v1;intrav1\xa2\x02\x03AIX\xaa\x02\fApi.Intra.V1\xca\x02\fApi\\Intra\\V1\xe2\x02\x18Api\\Intra\\V1\\GPBMetadata\xea\x02\x0eApi::Intra::V1b\x06proto3"
 
 var (
 	file_api_intra_v1_artist_proto_rawDescOnce sync.Once

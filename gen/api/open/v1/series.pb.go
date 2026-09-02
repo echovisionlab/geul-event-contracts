@@ -359,8 +359,8 @@ const file_api_open_v1_series_proto_rawDesc = "" +
 	"\x12_localization_info2\x9e\x01\n" +
 	"\rSeriesService\x12G\n" +
 	"\x04List\x12\x1e.api.open.v1.ListSeriesRequest\x1a\x1f.api.open.v1.ListSeriesResponse\x12D\n" +
-	"\x03Get\x12\x1d.api.open.v1.GetSeriesRequest\x1a\x1e.api.open.v1.GetSeriesResponseB\xa7\x01\n" +
-	"\x0fcom.api.open.v1B\vSeriesProtoP\x01Z9github.com/echovisionlab/geul-event-contracts/gen/api/open/v1;openv1\xa2\x02\x03AOX\xaa\x02\vApi.Open.V1\xca\x02\vApi\\Open\\V1\xe2\x02\x17Api\\Open\\V1\\GPBMetadata\xea\x02\rApi::Open::V1b\x06proto3"
+	"\x03Get\x12\x1d.api.open.v1.GetSeriesRequest\x1a\x1e.api.open.v1.GetSeriesResponseB\xb2\x01\n" +
+	"\x0fcom.api.open.v1B\vSeriesProtoP\x01ZDgithub.com/echovisionlab/geul-event-contracts/gen/api/open/v1;openv1\xa2\x02\x03AOX\xaa\x02\vApi.Open.V1\xca\x02\vApi\\Open\\V1\xe2\x02\x17Api\\Open\\V1\\GPBMetadata\xea\x02\rApi::Open::V1b\x06proto3"
 
 var (
 	file_api_open_v1_series_proto_rawDescOnce sync.Once

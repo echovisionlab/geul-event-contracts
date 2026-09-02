@@ -984,9 +984,9 @@ const file_api_manage_v1_track_proto_rawDesc = "" +
 	"\vUpdateTrack\x12!.api.manage.v1.UpdateTrackRequest\x1a\x14.api.manage.v1.Track\"\x06\xca\xf3\x18\x02\b\x04\x12W\n" +
 	"\vDeleteTrack\x12!.api.manage.v1.DeleteTrackRequest\x1a\x1d.api.manage.v1.DeleteResponse\"\x06\xca\xf3\x18\x02\b\x04\x12a\n" +
 	"\x0fSetTrackCredits\x12%.api.manage.v1.SetTrackCreditsRequest\x1a\x1f.api.manage.v1.TrackWithCredits\"\x06\xca\xf3\x18\x02\b\x04\x12h\n" +
-	"\rReorderTracks\x12#.api.manage.v1.ReorderTracksRequest\x1a*.api.manage.v1.ListTracksByReleaseResponse\"\x06\xca\xf3\x18\x02\b\x04B\xb4\x01\n" +
+	"\rReorderTracks\x12#.api.manage.v1.ReorderTracksRequest\x1a*.api.manage.v1.ListTracksByReleaseResponse\"\x06\xca\xf3\x18\x02\b\x04B\xbf\x01\n" +
 	"\x11com.api.manage.v1B\n" +
-	"TrackProtoP\x01Z=github.com/echovisionlab/geul-event-contracts/gen/api/manage/v1;managev1\xa2\x02\x03AMX\xaa\x02\rApi.Manage.V1\xca\x02\rApi\\Manage\\V1\xe2\x02\x19Api\\Manage\\V1\\GPBMetadata\xea\x02\x0fApi::Manage::V1b\x06proto3"
+	"TrackProtoP\x01ZHgithub.com/echovisionlab/geul-event-contracts/gen/api/manage/v1;managev1\xa2\x02\x03AMX\xaa\x02\rApi.Manage.V1\xca\x02\rApi\\Manage\\V1\xe2\x02\x19Api\\Manage\\V1\\GPBMetadata\xea\x02\x0fApi::Manage::V1b\x06proto3"
 
 var (
 	file_api_manage_v1_track_proto_rawDescOnce sync.Once

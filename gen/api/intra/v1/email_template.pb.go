@@ -649,8 +649,8 @@ const file_api_intra_v1_email_template_proto_rawDesc = "" +
 	"\x1cInternalEmailTemplateService\x12x\n" +
 	"\x0fApplyBlockBatch\x121.api.intra.v1.ApplyEmailTemplateBlockBatchRequest\x1a2.api.intra.v1.ApplyEmailTemplateBlockBatchResponse\x12\x94\x01\n" +
 	"!UpdateEmailTemplateLocaleMetadata\x126.api.intra.v1.UpdateEmailTemplateLocaleMetadataRequest\x1a7.api.intra.v1.UpdateEmailTemplateLocaleMetadataResponse\x12o\n" +
-	"\fLoadDocument\x12..api.intra.v1.LoadEmailTemplateDocumentRequest\x1a/.api.intra.v1.LoadEmailTemplateDocumentResponseB\xb5\x01\n" +
-	"\x10com.api.intra.v1B\x12EmailTemplateProtoP\x01Z;github.com/echovisionlab/geul-event-contracts/gen/api/intra/v1;intrav1\xa2\x02\x03AIX\xaa\x02\fApi.Intra.V1\xca\x02\fApi\\Intra\\V1\xe2\x02\x18Api\\Intra\\V1\\GPBMetadata\xea\x02\x0eApi::Intra::V1b\x06proto3"
+	"\fLoadDocument\x12..api.intra.v1.LoadEmailTemplateDocumentRequest\x1a/.api.intra.v1.LoadEmailTemplateDocumentResponseB\xc0\x01\n" +
+	"\x10com.api.intra.v1B\x12EmailTemplateProtoP\x01ZFgithub.com/echovisionlab/geul-event-contracts/gen/api/intra/v1;intrav1\xa2\x02\x03AIX\xaa\x02\fApi.Intra.V1\xca\x02\fApi\\Intra\\V1\xe2\x02\x18Api\\Intra\\V1\\GPBMetadata\xea\x02\x0eApi::Intra::V1b\x06proto3"
 
 var (
 	file_api_intra_v1_email_template_proto_rawDescOnce sync.Once

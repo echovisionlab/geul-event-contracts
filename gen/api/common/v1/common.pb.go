@@ -694,8 +694,8 @@ const file_api_common_v1_common_proto_rawDesc = "" +
 	"\x0fFILTER_OP_ILIKE\x10\n" +
 	"\x12\x15\n" +
 	"\x11FILTER_OP_IS_NULL\x10\v\x12\x19\n" +
-	"\x15FILTER_OP_IS_NOT_NULL\x10\fB\xb5\x01\n" +
-	"\x11com.api.common.v1B\vCommonProtoP\x01Z=github.com/echovisionlab/geul-event-contracts/gen/api/common/v1;commonv1\xa2\x02\x03ACX\xaa\x02\rApi.Common.V1\xca\x02\rApi\\Common\\V1\xe2\x02\x19Api\\Common\\V1\\GPBMetadata\xea\x02\x0fApi::Common::V1b\x06proto3"
+	"\x15FILTER_OP_IS_NOT_NULL\x10\fB\xc0\x01\n" +
+	"\x11com.api.common.v1B\vCommonProtoP\x01ZHgithub.com/echovisionlab/geul-event-contracts/gen/api/common/v1;commonv1\xa2\x02\x03ACX\xaa\x02\rApi.Common.V1\xca\x02\rApi\\Common\\V1\xe2\x02\x19Api\\Common\\V1\\GPBMetadata\xea\x02\x0fApi::Common::V1b\x06proto3"
 
 var (
 	file_api_common_v1_common_proto_rawDescOnce sync.Once

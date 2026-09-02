@@ -171,8 +171,8 @@ const file_api_open_v1_share_link_proto_rawDesc = "" +
 	"_entity_idB\a\n" +
 	"\x05_slug2m\n" +
 	"\x10ShareLinkService\x12Y\n" +
-	"\bValidate\x12%.api.open.v1.ValidateShareLinkRequest\x1a&.api.open.v1.ValidateShareLinkResponseB\xaa\x01\n" +
-	"\x0fcom.api.open.v1B\x0eShareLinkProtoP\x01Z9github.com/echovisionlab/geul-event-contracts/gen/api/open/v1;openv1\xa2\x02\x03AOX\xaa\x02\vApi.Open.V1\xca\x02\vApi\\Open\\V1\xe2\x02\x17Api\\Open\\V1\\GPBMetadata\xea\x02\rApi::Open::V1b\x06proto3"
+	"\bValidate\x12%.api.open.v1.ValidateShareLinkRequest\x1a&.api.open.v1.ValidateShareLinkResponseB\xb5\x01\n" +
+	"\x0fcom.api.open.v1B\x0eShareLinkProtoP\x01ZDgithub.com/echovisionlab/geul-event-contracts/gen/api/open/v1;openv1\xa2\x02\x03AOX\xaa\x02\vApi.Open.V1\xca\x02\vApi\\Open\\V1\xe2\x02\x17Api\\Open\\V1\\GPBMetadata\xea\x02\rApi::Open::V1b\x06proto3"
 
 var (
 	file_api_open_v1_share_link_proto_rawDescOnce sync.Once

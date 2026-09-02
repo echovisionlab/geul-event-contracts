@@ -226,8 +226,8 @@ const file_api_open_v1_tag_proto_rawDesc = "" +
 	"post_count\x18\x04 \x01(\x05R\tpostCount2Q\n" +
 	"\n" +
 	"TagService\x12C\n" +
-	"\x04List\x12\x1c.api.open.v1.ListTagsRequest\x1a\x1d.api.open.v1.ListTagsResponseB\xa4\x01\n" +
-	"\x0fcom.api.open.v1B\bTagProtoP\x01Z9github.com/echovisionlab/geul-event-contracts/gen/api/open/v1;openv1\xa2\x02\x03AOX\xaa\x02\vApi.Open.V1\xca\x02\vApi\\Open\\V1\xe2\x02\x17Api\\Open\\V1\\GPBMetadata\xea\x02\rApi::Open::V1b\x06proto3"
+	"\x04List\x12\x1c.api.open.v1.ListTagsRequest\x1a\x1d.api.open.v1.ListTagsResponseB\xaf\x01\n" +
+	"\x0fcom.api.open.v1B\bTagProtoP\x01ZDgithub.com/echovisionlab/geul-event-contracts/gen/api/open/v1;openv1\xa2\x02\x03AOX\xaa\x02\vApi.Open.V1\xca\x02\vApi\\Open\\V1\xe2\x02\x17Api\\Open\\V1\\GPBMetadata\xea\x02\rApi::Open::V1b\x06proto3"
 
 var (
 	file_api_open_v1_tag_proto_rawDescOnce sync.Once

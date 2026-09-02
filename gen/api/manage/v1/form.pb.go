@@ -1974,8 +1974,8 @@ const file_api_manage_v1_form_proto_rawDesc = "" +
 	"\x13ListFormSubmissions\x12).api.manage.v1.ListFormSubmissionsRequest\x1a*.api.manage.v1.ListFormSubmissionsResponse\"\x06\xca\xf3\x18\x02\b\x04\x12}\n" +
 	"\x16GetFormSubmissionStats\x12,.api.manage.v1.GetFormSubmissionStatsRequest\x1a-.api.manage.v1.GetFormSubmissionStatsResponse\"\x06\xca\xf3\x18\x02\b\x04\x12w\n" +
 	"\x1bGetFormSubmissionWithSchema\x12'.api.manage.v1.GetFormSubmissionRequest\x1a'.api.manage.v1.FormSubmissionWithSchema\"\x06\xca\xf3\x18\x02\b\x04\x12i\n" +
-	"\x14DeleteFormSubmission\x12*.api.manage.v1.DeleteFormSubmissionRequest\x1a\x1d.api.manage.v1.DeleteResponse\"\x06\xca\xf3\x18\x02\b\x04B\xb3\x01\n" +
-	"\x11com.api.manage.v1B\tFormProtoP\x01Z=github.com/echovisionlab/geul-event-contracts/gen/api/manage/v1;managev1\xa2\x02\x03AMX\xaa\x02\rApi.Manage.V1\xca\x02\rApi\\Manage\\V1\xe2\x02\x19Api\\Manage\\V1\\GPBMetadata\xea\x02\x0fApi::Manage::V1b\x06proto3"
+	"\x14DeleteFormSubmission\x12*.api.manage.v1.DeleteFormSubmissionRequest\x1a\x1d.api.manage.v1.DeleteResponse\"\x06\xca\xf3\x18\x02\b\x04B\xbe\x01\n" +
+	"\x11com.api.manage.v1B\tFormProtoP\x01ZHgithub.com/echovisionlab/geul-event-contracts/gen/api/manage/v1;managev1\xa2\x02\x03AMX\xaa\x02\rApi.Manage.V1\xca\x02\rApi\\Manage\\V1\xe2\x02\x19Api\\Manage\\V1\\GPBMetadata\xea\x02\x0fApi::Manage::V1b\x06proto3"
 
 var (
 	file_api_manage_v1_form_proto_rawDescOnce sync.Once

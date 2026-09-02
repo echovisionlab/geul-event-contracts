@@ -1706,8 +1706,8 @@ const file_api_open_v1_work_proto_rawDesc = "" +
 	"\vWorkService\x12@\n" +
 	"\x03Get\x12\x1b.api.open.v1.GetWorkRequest\x1a\x1c.api.open.v1.GetWorkResponse\x12E\n" +
 	"\x04List\x12\x1d.api.open.v1.ListWorksRequest\x1a\x1e.api.open.v1.ListWorksResponse\x12d\n" +
-	"\x0fListMapFeatures\x12'.api.open.v1.ListWorkMapFeaturesRequest\x1a(.api.open.v1.ListWorkMapFeaturesResponseB\xa5\x01\n" +
-	"\x0fcom.api.open.v1B\tWorkProtoP\x01Z9github.com/echovisionlab/geul-event-contracts/gen/api/open/v1;openv1\xa2\x02\x03AOX\xaa\x02\vApi.Open.V1\xca\x02\vApi\\Open\\V1\xe2\x02\x17Api\\Open\\V1\\GPBMetadata\xea\x02\rApi::Open::V1b\x06proto3"
+	"\x0fListMapFeatures\x12'.api.open.v1.ListWorkMapFeaturesRequest\x1a(.api.open.v1.ListWorkMapFeaturesResponseB\xb0\x01\n" +
+	"\x0fcom.api.open.v1B\tWorkProtoP\x01ZDgithub.com/echovisionlab/geul-event-contracts/gen/api/open/v1;openv1\xa2\x02\x03AOX\xaa\x02\vApi.Open.V1\xca\x02\vApi\\Open\\V1\xe2\x02\x17Api\\Open\\V1\\GPBMetadata\xea\x02\rApi::Open::V1b\x06proto3"
 
 var (
 	file_api_open_v1_work_proto_rawDescOnce sync.Once

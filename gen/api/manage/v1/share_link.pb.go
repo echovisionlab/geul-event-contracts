@@ -579,8 +579,8 @@ const file_api_manage_v1_share_link_proto_rawDesc = "" +
 	"\x10ShareLinkService\x12e\n" +
 	"\x0eListShareLinks\x12$.api.manage.v1.ListShareLinksRequest\x1a%.api.manage.v1.ListShareLinksResponse\"\x06\xca\xf3\x18\x02\b\x02\x12h\n" +
 	"\x0fCreateShareLink\x12%.api.manage.v1.CreateShareLinkRequest\x1a&.api.manage.v1.CreateShareLinkResponse\"\x06\xca\xf3\x18\x02\b\x02\x12h\n" +
-	"\x0fDeleteShareLink\x12%.api.manage.v1.DeleteShareLinkRequest\x1a&.api.manage.v1.DeleteShareLinkResponse\"\x06\xca\xf3\x18\x02\b\x02B\xb8\x01\n" +
-	"\x11com.api.manage.v1B\x0eShareLinkProtoP\x01Z=github.com/echovisionlab/geul-event-contracts/gen/api/manage/v1;managev1\xa2\x02\x03AMX\xaa\x02\rApi.Manage.V1\xca\x02\rApi\\Manage\\V1\xe2\x02\x19Api\\Manage\\V1\\GPBMetadata\xea\x02\x0fApi::Manage::V1b\x06proto3"
+	"\x0fDeleteShareLink\x12%.api.manage.v1.DeleteShareLinkRequest\x1a&.api.manage.v1.DeleteShareLinkResponse\"\x06\xca\xf3\x18\x02\b\x02B\xc3\x01\n" +
+	"\x11com.api.manage.v1B\x0eShareLinkProtoP\x01ZHgithub.com/echovisionlab/geul-event-contracts/gen/api/manage/v1;managev1\xa2\x02\x03AMX\xaa\x02\rApi.Manage.V1\xca\x02\rApi\\Manage\\V1\xe2\x02\x19Api\\Manage\\V1\\GPBMetadata\xea\x02\x0fApi::Manage::V1b\x06proto3"
 
 var (
 	file_api_manage_v1_share_link_proto_rawDescOnce sync.Once

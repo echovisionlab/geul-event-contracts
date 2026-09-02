@@ -385,8 +385,8 @@ const file_api_open_v1_member_proto_rawDesc = "" +
 	"\x04_bio2\xbf\x01\n" +
 	"\rMemberService\x12\\\n" +
 	"\x0fGetPublicMember\x12#.api.open.v1.GetPublicMemberRequest\x1a$.api.open.v1.GetPublicMemberResponse\x12P\n" +
-	"\vListAuthors\x12\x1f.api.open.v1.ListAuthorsRequest\x1a .api.open.v1.ListAuthorsResponseB\xa7\x01\n" +
-	"\x0fcom.api.open.v1B\vMemberProtoP\x01Z9github.com/echovisionlab/geul-event-contracts/gen/api/open/v1;openv1\xa2\x02\x03AOX\xaa\x02\vApi.Open.V1\xca\x02\vApi\\Open\\V1\xe2\x02\x17Api\\Open\\V1\\GPBMetadata\xea\x02\rApi::Open::V1b\x06proto3"
+	"\vListAuthors\x12\x1f.api.open.v1.ListAuthorsRequest\x1a .api.open.v1.ListAuthorsResponseB\xb2\x01\n" +
+	"\x0fcom.api.open.v1B\vMemberProtoP\x01ZDgithub.com/echovisionlab/geul-event-contracts/gen/api/open/v1;openv1\xa2\x02\x03AOX\xaa\x02\vApi.Open.V1\xca\x02\vApi\\Open\\V1\xe2\x02\x17Api\\Open\\V1\\GPBMetadata\xea\x02\rApi::Open::V1b\x06proto3"
 
 var (
 	file_api_open_v1_member_proto_rawDescOnce sync.Once

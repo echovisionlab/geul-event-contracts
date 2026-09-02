@@ -2165,8 +2165,8 @@ const file_api_manage_v1_release_proto_rawDesc = "" +
 	"\x10SetReleaseGenres\x12&.api.manage.v1.SetReleaseGenresRequest\x1a\x1e.api.manage.v1.SuccessResponse\"\x06\xca\xf3\x18\x02\b\x04\x12b\n" +
 	"\x10SetReleaseStyles\x12&.api.manage.v1.SetReleaseStylesRequest\x1a\x1e.api.manage.v1.SuccessResponse\"\x06\xca\xf3\x18\x02\b\x04\x12d\n" +
 	"\x11SetReleaseFormats\x12'.api.manage.v1.SetReleaseFormatsRequest\x1a\x1e.api.manage.v1.SuccessResponse\"\x06\xca\xf3\x18\x02\b\x04\x12d\n" +
-	"\x11SetReleaseCredits\x12'.api.manage.v1.SetReleaseCreditsRequest\x1a\x1e.api.manage.v1.SuccessResponse\"\x06\xca\xf3\x18\x02\b\x04B\xb6\x01\n" +
-	"\x11com.api.manage.v1B\fReleaseProtoP\x01Z=github.com/echovisionlab/geul-event-contracts/gen/api/manage/v1;managev1\xa2\x02\x03AMX\xaa\x02\rApi.Manage.V1\xca\x02\rApi\\Manage\\V1\xe2\x02\x19Api\\Manage\\V1\\GPBMetadata\xea\x02\x0fApi::Manage::V1b\x06proto3"
+	"\x11SetReleaseCredits\x12'.api.manage.v1.SetReleaseCreditsRequest\x1a\x1e.api.manage.v1.SuccessResponse\"\x06\xca\xf3\x18\x02\b\x04B\xc1\x01\n" +
+	"\x11com.api.manage.v1B\fReleaseProtoP\x01ZHgithub.com/echovisionlab/geul-event-contracts/gen/api/manage/v1;managev1\xa2\x02\x03AMX\xaa\x02\rApi.Manage.V1\xca\x02\rApi\\Manage\\V1\xe2\x02\x19Api\\Manage\\V1\\GPBMetadata\xea\x02\x0fApi::Manage::V1b\x06proto3"
 
 var (
 	file_api_manage_v1_release_proto_rawDescOnce sync.Once

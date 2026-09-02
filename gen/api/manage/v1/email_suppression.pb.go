@@ -361,8 +361,8 @@ const file_api_manage_v1_email_suppression_proto_rawDesc = "" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess2\x92\x02\n" +
 	"\x17EmailSuppressionService\x12t\n" +
 	"\x13GetEmailSuppression\x12).api.manage.v1.GetEmailSuppressionRequest\x1a*.api.manage.v1.GetEmailSuppressionResponse\"\x06\xca\xf3\x18\x02\b\x04\x12\x80\x01\n" +
-	"\x17ReleaseEmailSuppression\x12-.api.manage.v1.ReleaseEmailSuppressionRequest\x1a..api.manage.v1.ReleaseEmailSuppressionResponse\"\x06\xca\xf3\x18\x02\b\x04B\xbf\x01\n" +
-	"\x11com.api.manage.v1B\x15EmailSuppressionProtoP\x01Z=github.com/echovisionlab/geul-event-contracts/gen/api/manage/v1;managev1\xa2\x02\x03AMX\xaa\x02\rApi.Manage.V1\xca\x02\rApi\\Manage\\V1\xe2\x02\x19Api\\Manage\\V1\\GPBMetadata\xea\x02\x0fApi::Manage::V1b\x06proto3"
+	"\x17ReleaseEmailSuppression\x12-.api.manage.v1.ReleaseEmailSuppressionRequest\x1a..api.manage.v1.ReleaseEmailSuppressionResponse\"\x06\xca\xf3\x18\x02\b\x04B\xca\x01\n" +
+	"\x11com.api.manage.v1B\x15EmailSuppressionProtoP\x01ZHgithub.com/echovisionlab/geul-event-contracts/gen/api/manage/v1;managev1\xa2\x02\x03AMX\xaa\x02\rApi.Manage.V1\xca\x02\rApi\\Manage\\V1\xe2\x02\x19Api\\Manage\\V1\\GPBMetadata\xea\x02\x0fApi::Manage::V1b\x06proto3"
 
 var (
 	file_api_manage_v1_email_suppression_proto_rawDescOnce sync.Once

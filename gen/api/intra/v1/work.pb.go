@@ -860,8 +860,8 @@ const file_api_intra_v1_work_proto_rawDesc = "" +
 	"\x15LoadWorkBlockDocument\x12*.api.intra.v1.LoadWorkBlockDocumentRequest\x1a+.api.intra.v1.LoadWorkBlockDocumentResponse\x12j\n" +
 	"\x13ApplyWorkBlockBatch\x12(.api.intra.v1.ApplyWorkBlockBatchRequest\x1a).api.intra.v1.ApplyWorkBlockBatchResponse\x12y\n" +
 	"\x18UpdateWorkLocaleMetadata\x12-.api.intra.v1.UpdateWorkLocaleMetadataRequest\x1a..api.intra.v1.UpdateWorkLocaleMetadataResponse\x12\x82\x01\n" +
-	"\x1bCreateWorkVersionCheckpoint\x120.api.intra.v1.CreateWorkVersionCheckpointRequest\x1a1.api.intra.v1.CreateWorkVersionCheckpointResponseB\xac\x01\n" +
-	"\x10com.api.intra.v1B\tWorkProtoP\x01Z;github.com/echovisionlab/geul-event-contracts/gen/api/intra/v1;intrav1\xa2\x02\x03AIX\xaa\x02\fApi.Intra.V1\xca\x02\fApi\\Intra\\V1\xe2\x02\x18Api\\Intra\\V1\\GPBMetadata\xea\x02\x0eApi::Intra::V1b\x06proto3"
+	"\x1bCreateWorkVersionCheckpoint\x120.api.intra.v1.CreateWorkVersionCheckpointRequest\x1a1.api.intra.v1.CreateWorkVersionCheckpointResponseB\xb7\x01\n" +
+	"\x10com.api.intra.v1B\tWorkProtoP\x01ZFgithub.com/echovisionlab/geul-event-contracts/gen/api/intra/v1;intrav1\xa2\x02\x03AIX\xaa\x02\fApi.Intra.V1\xca\x02\fApi\\Intra\\V1\xe2\x02\x18Api\\Intra\\V1\\GPBMetadata\xea\x02\x0eApi::Intra::V1b\x06proto3"
 
 var (
 	file_api_intra_v1_work_proto_rawDescOnce sync.Once

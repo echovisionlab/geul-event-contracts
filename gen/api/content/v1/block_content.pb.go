@@ -24098,8 +24098,8 @@ const file_api_content_v1_block_content_proto_rawDesc = "" +
 	")CONTENT_BLOCK_DOWNLOAD_ACTION_UNSPECIFIED\x10\x00\x12*\n" +
 	"&CONTENT_BLOCK_DOWNLOAD_ACTION_DOWNLOAD\x10\x01\x12)\n" +
 	"%CONTENT_BLOCK_DOWNLOAD_ACTION_SIGN_IN\x10\x02\x12&\n" +
-	"\"CONTENT_BLOCK_DOWNLOAD_ACTION_NONE\x10\x03B\xc2\x01\n" +
-	"\x12com.api.content.v1B\x11BlockContentProtoP\x01Z?github.com/echovisionlab/geul-event-contracts/gen/api/content/v1;contentv1\xa2\x02\x03ACX\xaa\x02\x0eApi.Content.V1\xca\x02\x0eApi\\Content\\V1\xe2\x02\x1aApi\\Content\\V1\\GPBMetadata\xea\x02\x10Api::Content::V1b\x06proto3"
+	"\"CONTENT_BLOCK_DOWNLOAD_ACTION_NONE\x10\x03B\xcd\x01\n" +
+	"\x12com.api.content.v1B\x11BlockContentProtoP\x01ZJgithub.com/echovisionlab/geul-event-contracts/gen/api/content/v1;contentv1\xa2\x02\x03ACX\xaa\x02\x0eApi.Content.V1\xca\x02\x0eApi\\Content\\V1\xe2\x02\x1aApi\\Content\\V1\\GPBMetadata\xea\x02\x10Api::Content::V1b\x06proto3"
 
 var (
 	file_api_content_v1_block_content_proto_rawDescOnce sync.Once

@@ -394,8 +394,8 @@ const file_api_open_v1_page_proto_rawDesc = "" +
 	"\x11PAGE_STATUS_DRAFT\x10\x01\x12\x19\n" +
 	"\x15PAGE_STATUS_PUBLISHED\x10\x022O\n" +
 	"\vPageService\x12@\n" +
-	"\x03Get\x12\x1b.api.open.v1.GetPageRequest\x1a\x1c.api.open.v1.GetPageResponseB\xa5\x01\n" +
-	"\x0fcom.api.open.v1B\tPageProtoP\x01Z9github.com/echovisionlab/geul-event-contracts/gen/api/open/v1;openv1\xa2\x02\x03AOX\xaa\x02\vApi.Open.V1\xca\x02\vApi\\Open\\V1\xe2\x02\x17Api\\Open\\V1\\GPBMetadata\xea\x02\rApi::Open::V1b\x06proto3"
+	"\x03Get\x12\x1b.api.open.v1.GetPageRequest\x1a\x1c.api.open.v1.GetPageResponseB\xb0\x01\n" +
+	"\x0fcom.api.open.v1B\tPageProtoP\x01ZDgithub.com/echovisionlab/geul-event-contracts/gen/api/open/v1;openv1\xa2\x02\x03AOX\xaa\x02\vApi.Open.V1\xca\x02\vApi\\Open\\V1\xe2\x02\x17Api\\Open\\V1\\GPBMetadata\xea\x02\rApi::Open::V1b\x06proto3"
 
 var (
 	file_api_open_v1_page_proto_rawDescOnce sync.Once

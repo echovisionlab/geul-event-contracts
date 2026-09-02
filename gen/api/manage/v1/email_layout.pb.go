@@ -839,8 +839,8 @@ const file_api_manage_v1_email_layout_proto_rawDesc = "" +
 	"\x11UpdateEmailLayout\x12'.api.manage.v1.UpdateEmailLayoutRequest\x1a\x1a.api.manage.v1.EmailLayout\"\x06\xca\xf3\x18\x02\b\x04\x12c\n" +
 	"\x11DeleteEmailLayout\x12'.api.manage.v1.DeleteEmailLayoutRequest\x1a\x1d.api.manage.v1.DeleteResponse\"\x06\xca\xf3\x18\x02\b\x04\x12q\n" +
 	"\x12PreviewEmailLayout\x12(.api.manage.v1.PreviewEmailLayoutRequest\x1a).api.manage.v1.PreviewEmailLayoutResponse\"\x06\xca\xf3\x18\x02\b\x04\x12\x86\x01\n" +
-	"\x19PreviewEmailLayoutContent\x12/.api.manage.v1.PreviewEmailLayoutContentRequest\x1a0.api.manage.v1.PreviewEmailLayoutContentResponse\"\x06\xca\xf3\x18\x02\b\x04B\xba\x01\n" +
-	"\x11com.api.manage.v1B\x10EmailLayoutProtoP\x01Z=github.com/echovisionlab/geul-event-contracts/gen/api/manage/v1;managev1\xa2\x02\x03AMX\xaa\x02\rApi.Manage.V1\xca\x02\rApi\\Manage\\V1\xe2\x02\x19Api\\Manage\\V1\\GPBMetadata\xea\x02\x0fApi::Manage::V1b\x06proto3"
+	"\x19PreviewEmailLayoutContent\x12/.api.manage.v1.PreviewEmailLayoutContentRequest\x1a0.api.manage.v1.PreviewEmailLayoutContentResponse\"\x06\xca\xf3\x18\x02\b\x04B\xc5\x01\n" +
+	"\x11com.api.manage.v1B\x10EmailLayoutProtoP\x01ZHgithub.com/echovisionlab/geul-event-contracts/gen/api/manage/v1;managev1\xa2\x02\x03AMX\xaa\x02\rApi.Manage.V1\xca\x02\rApi\\Manage\\V1\xe2\x02\x19Api\\Manage\\V1\\GPBMetadata\xea\x02\x0fApi::Manage::V1b\x06proto3"
 
 var (
 	file_api_manage_v1_email_layout_proto_rawDescOnce sync.Once

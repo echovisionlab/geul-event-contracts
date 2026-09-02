@@ -700,8 +700,8 @@ const file_api_intra_v1_map_proto_rawDesc = "" +
 	"\x06locale\x18\x03 \x01(\tR\x06locale2\xf2\x01\n" +
 	"\x12InternalMapService\x12m\n" +
 	"\x14SaveMapThemeSnapshot\x12).api.intra.v1.SaveMapThemeSnapshotRequest\x1a*.api.intra.v1.SaveMapThemeSnapshotResponse\x12m\n" +
-	"\x14LoadMapThemeSnapshot\x12).api.intra.v1.LoadMapThemeSnapshotRequest\x1a*.api.intra.v1.LoadMapThemeSnapshotResponseB\xab\x01\n" +
-	"\x10com.api.intra.v1B\bMapProtoP\x01Z;github.com/echovisionlab/geul-event-contracts/gen/api/intra/v1;intrav1\xa2\x02\x03AIX\xaa\x02\fApi.Intra.V1\xca\x02\fApi\\Intra\\V1\xe2\x02\x18Api\\Intra\\V1\\GPBMetadata\xea\x02\x0eApi::Intra::V1b\x06proto3"
+	"\x14LoadMapThemeSnapshot\x12).api.intra.v1.LoadMapThemeSnapshotRequest\x1a*.api.intra.v1.LoadMapThemeSnapshotResponseB\xb6\x01\n" +
+	"\x10com.api.intra.v1B\bMapProtoP\x01ZFgithub.com/echovisionlab/geul-event-contracts/gen/api/intra/v1;intrav1\xa2\x02\x03AIX\xaa\x02\fApi.Intra.V1\xca\x02\fApi\\Intra\\V1\xe2\x02\x18Api\\Intra\\V1\\GPBMetadata\xea\x02\x0eApi::Intra::V1b\x06proto3"
 
 var (
 	file_api_intra_v1_map_proto_rawDescOnce sync.Once

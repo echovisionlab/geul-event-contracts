@@ -292,8 +292,8 @@ const file_api_open_v1_sitemap_proto_rawDesc = "" +
 	"\x1dSITEMAP_DOCUMENT_STATUS_STALE\x10\x02\x12'\n" +
 	"#SITEMAP_DOCUMENT_STATUS_UNAVAILABLE\x10\x032p\n" +
 	"\x0eSitemapService\x12^\n" +
-	"\vGetDocument\x12&.api.open.v1.GetSitemapDocumentRequest\x1a'.api.open.v1.GetSitemapDocumentResponseB\xa8\x01\n" +
-	"\x0fcom.api.open.v1B\fSitemapProtoP\x01Z9github.com/echovisionlab/geul-event-contracts/gen/api/open/v1;openv1\xa2\x02\x03AOX\xaa\x02\vApi.Open.V1\xca\x02\vApi\\Open\\V1\xe2\x02\x17Api\\Open\\V1\\GPBMetadata\xea\x02\rApi::Open::V1b\x06proto3"
+	"\vGetDocument\x12&.api.open.v1.GetSitemapDocumentRequest\x1a'.api.open.v1.GetSitemapDocumentResponseB\xb3\x01\n" +
+	"\x0fcom.api.open.v1B\fSitemapProtoP\x01ZDgithub.com/echovisionlab/geul-event-contracts/gen/api/open/v1;openv1\xa2\x02\x03AOX\xaa\x02\vApi.Open.V1\xca\x02\vApi\\Open\\V1\xe2\x02\x17Api\\Open\\V1\\GPBMetadata\xea\x02\rApi::Open::V1b\x06proto3"
 
 var (
 	file_api_open_v1_sitemap_proto_rawDescOnce sync.Once

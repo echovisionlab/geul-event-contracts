@@ -905,9 +905,9 @@ const file_api_manage_v1_terms_proto_rawDesc = "" +
 	"\x13CancelTermsSchedule\x12).api.manage.v1.CancelTermsScheduleRequest\x1a-.api.manage.v1.TermsLifecycleMutationResponse\"\x06\xca\xf3\x18\x02\b\x04\x12q\n" +
 	"\x10ActivateTermsNow\x12&.api.manage.v1.ActivateTermsNowRequest\x1a-.api.manage.v1.TermsLifecycleMutationResponse\"\x06\xca\xf3\x18\x02\b\x04\x12W\n" +
 	"\vDeleteTerms\x12!.api.manage.v1.DeleteTermsRequest\x1a\x1d.api.manage.v1.DeleteResponse\"\x06\xca\xf3\x18\x02\b\x04\x12\x92\x01\n" +
-	"\x1dRegenerateTermsDerivedContent\x123.api.manage.v1.RegenerateTermsDerivedContentRequest\x1a4.api.manage.v1.RegenerateTermsDerivedContentResponse\"\x06\xca\xf3\x18\x02\b\x04B\xb4\x01\n" +
+	"\x1dRegenerateTermsDerivedContent\x123.api.manage.v1.RegenerateTermsDerivedContentRequest\x1a4.api.manage.v1.RegenerateTermsDerivedContentResponse\"\x06\xca\xf3\x18\x02\b\x04B\xbf\x01\n" +
 	"\x11com.api.manage.v1B\n" +
-	"TermsProtoP\x01Z=github.com/echovisionlab/geul-event-contracts/gen/api/manage/v1;managev1\xa2\x02\x03AMX\xaa\x02\rApi.Manage.V1\xca\x02\rApi\\Manage\\V1\xe2\x02\x19Api\\Manage\\V1\\GPBMetadata\xea\x02\x0fApi::Manage::V1b\x06proto3"
+	"TermsProtoP\x01ZHgithub.com/echovisionlab/geul-event-contracts/gen/api/manage/v1;managev1\xa2\x02\x03AMX\xaa\x02\rApi.Manage.V1\xca\x02\rApi\\Manage\\V1\xe2\x02\x19Api\\Manage\\V1\\GPBMetadata\xea\x02\x0fApi::Manage::V1b\x06proto3"
 
 var (
 	file_api_manage_v1_terms_proto_rawDescOnce sync.Once

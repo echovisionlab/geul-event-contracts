@@ -193,8 +193,8 @@ const file_api_open_v1_translation_proto_rawDesc = "" +
 	"(LOCALIZATION_FALLBACK_REASON_UNSPECIFIED\x10\x00\x12%\n" +
 	"!LOCALIZATION_FALLBACK_REASON_NONE\x10\x01\x12'\n" +
 	"#LOCALIZATION_FALLBACK_REASON_SOURCE\x10\x02\x12.\n" +
-	"*LOCALIZATION_FALLBACK_REASON_ORIGINAL_VIEW\x10\x03B\xac\x01\n" +
-	"\x0fcom.api.open.v1B\x10TranslationProtoP\x01Z9github.com/echovisionlab/geul-event-contracts/gen/api/open/v1;openv1\xa2\x02\x03AOX\xaa\x02\vApi.Open.V1\xca\x02\vApi\\Open\\V1\xe2\x02\x17Api\\Open\\V1\\GPBMetadata\xea\x02\rApi::Open::V1b\x06proto3"
+	"*LOCALIZATION_FALLBACK_REASON_ORIGINAL_VIEW\x10\x03B\xb7\x01\n" +
+	"\x0fcom.api.open.v1B\x10TranslationProtoP\x01ZDgithub.com/echovisionlab/geul-event-contracts/gen/api/open/v1;openv1\xa2\x02\x03AOX\xaa\x02\vApi.Open.V1\xca\x02\vApi\\Open\\V1\xe2\x02\x17Api\\Open\\V1\\GPBMetadata\xea\x02\rApi::Open::V1b\x06proto3"
 
 var (
 	file_api_open_v1_translation_proto_rawDescOnce sync.Once

@@ -529,8 +529,8 @@ const file_api_intra_v1_email_layout_proto_rawDesc = "" +
 	"\x05value\x18\x02 \x01(\tR\x05value2\xf6\x01\n" +
 	"\x1aInternalEmailLayoutService\x12k\n" +
 	"\fSaveDocument\x12,.api.intra.v1.SaveEmailLayoutDocumentRequest\x1a-.api.intra.v1.SaveEmailLayoutDocumentResponse\x12k\n" +
-	"\fLoadDocument\x12,.api.intra.v1.LoadEmailLayoutDocumentRequest\x1a-.api.intra.v1.LoadEmailLayoutDocumentResponseB\xb3\x01\n" +
-	"\x10com.api.intra.v1B\x10EmailLayoutProtoP\x01Z;github.com/echovisionlab/geul-event-contracts/gen/api/intra/v1;intrav1\xa2\x02\x03AIX\xaa\x02\fApi.Intra.V1\xca\x02\fApi\\Intra\\V1\xe2\x02\x18Api\\Intra\\V1\\GPBMetadata\xea\x02\x0eApi::Intra::V1b\x06proto3"
+	"\fLoadDocument\x12,.api.intra.v1.LoadEmailLayoutDocumentRequest\x1a-.api.intra.v1.LoadEmailLayoutDocumentResponseB\xbe\x01\n" +
+	"\x10com.api.intra.v1B\x10EmailLayoutProtoP\x01ZFgithub.com/echovisionlab/geul-event-contracts/gen/api/intra/v1;intrav1\xa2\x02\x03AIX\xaa\x02\fApi.Intra.V1\xca\x02\fApi\\Intra\\V1\xe2\x02\x18Api\\Intra\\V1\\GPBMetadata\xea\x02\x0eApi::Intra::V1b\x06proto3"
 
 var (
 	file_api_intra_v1_email_layout_proto_rawDescOnce sync.Once

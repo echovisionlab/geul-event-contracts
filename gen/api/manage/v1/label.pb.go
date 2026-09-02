@@ -2029,9 +2029,9 @@ const file_api_manage_v1_label_proto_rawDesc = "" +
 	"\x15ListLabelParticipants\x12+.api.manage.v1.ListLabelParticipantsRequest\x1a,.api.manage.v1.ListLabelParticipantsResponse\"\x06\xca\xf3\x18\x02\b\x02\x12i\n" +
 	"\x13SetLabelParticipant\x12).api.manage.v1.SetLabelParticipantRequest\x1a\x1f.api.manage.v1.LabelParticipant\"\x06\xca\xf3\x18\x02\b\x02\x12m\n" +
 	"\x16RemoveLabelParticipant\x12,.api.manage.v1.RemoveLabelParticipantRequest\x1a\x1d.api.manage.v1.DeleteResponse\"\x06\xca\xf3\x18\x02\b\x02\x12\x80\x01\n" +
-	"\x17CheckLabelSlugAvailable\x12-.api.manage.v1.CheckLabelSlugAvailableRequest\x1a..api.manage.v1.CheckLabelSlugAvailableResponse\"\x06\xca\xf3\x18\x02\b\x02B\xb4\x01\n" +
+	"\x17CheckLabelSlugAvailable\x12-.api.manage.v1.CheckLabelSlugAvailableRequest\x1a..api.manage.v1.CheckLabelSlugAvailableResponse\"\x06\xca\xf3\x18\x02\b\x02B\xbf\x01\n" +
 	"\x11com.api.manage.v1B\n" +
-	"LabelProtoP\x01Z=github.com/echovisionlab/geul-event-contracts/gen/api/manage/v1;managev1\xa2\x02\x03AMX\xaa\x02\rApi.Manage.V1\xca\x02\rApi\\Manage\\V1\xe2\x02\x19Api\\Manage\\V1\\GPBMetadata\xea\x02\x0fApi::Manage::V1b\x06proto3"
+	"LabelProtoP\x01ZHgithub.com/echovisionlab/geul-event-contracts/gen/api/manage/v1;managev1\xa2\x02\x03AMX\xaa\x02\rApi.Manage.V1\xca\x02\rApi\\Manage\\V1\xe2\x02\x19Api\\Manage\\V1\\GPBMetadata\xea\x02\x0fApi::Manage::V1b\x06proto3"
 
 var (
 	file_api_manage_v1_label_proto_rawDescOnce sync.Once

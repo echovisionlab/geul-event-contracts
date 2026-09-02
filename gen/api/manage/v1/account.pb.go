@@ -2490,8 +2490,8 @@ const file_api_manage_v1_account_proto_rawDesc = "" +
 	" CreateAccountPersonalAccessToken\x126.api.manage.v1.CreateAccountPersonalAccessTokenRequest\x1a2.api.manage.v1.CreateMyPersonalAccessTokenResponse\"\x06\xca\xf3\x18\x02\b\x04\x12\x93\x01\n" +
 	"\x1fListAccountPersonalAccessTokens\x125.api.manage.v1.ListAccountPersonalAccessTokensRequest\x1a1.api.manage.v1.ListMyPersonalAccessTokensResponse\"\x06\xca\xf3\x18\x02\b\x04\x12\xa2\x01\n" +
 	"$RegenerateAccountPersonalAccessToken\x12:.api.manage.v1.RegenerateAccountPersonalAccessTokenRequest\x1a6.api.manage.v1.RegenerateMyPersonalAccessTokenResponse\"\x06\xca\xf3\x18\x02\b\x04\x12\x96\x01\n" +
-	" DeleteAccountPersonalAccessToken\x126.api.manage.v1.DeleteAccountPersonalAccessTokenRequest\x1a2.api.manage.v1.DeleteMyPersonalAccessTokenResponse\"\x06\xca\xf3\x18\x02\b\x04B\xb6\x01\n" +
-	"\x11com.api.manage.v1B\fAccountProtoP\x01Z=github.com/echovisionlab/geul-event-contracts/gen/api/manage/v1;managev1\xa2\x02\x03AMX\xaa\x02\rApi.Manage.V1\xca\x02\rApi\\Manage\\V1\xe2\x02\x19Api\\Manage\\V1\\GPBMetadata\xea\x02\x0fApi::Manage::V1b\x06proto3"
+	" DeleteAccountPersonalAccessToken\x126.api.manage.v1.DeleteAccountPersonalAccessTokenRequest\x1a2.api.manage.v1.DeleteMyPersonalAccessTokenResponse\"\x06\xca\xf3\x18\x02\b\x04B\xc1\x01\n" +
+	"\x11com.api.manage.v1B\fAccountProtoP\x01ZHgithub.com/echovisionlab/geul-event-contracts/gen/api/manage/v1;managev1\xa2\x02\x03AMX\xaa\x02\rApi.Manage.V1\xca\x02\rApi\\Manage\\V1\xe2\x02\x19Api\\Manage\\V1\\GPBMetadata\xea\x02\x0fApi::Manage::V1b\x06proto3"
 
 var (
 	file_api_manage_v1_account_proto_rawDescOnce sync.Once
