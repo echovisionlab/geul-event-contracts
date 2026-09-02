@@ -119,8 +119,8 @@ const file_api_open_v1_newsletter_proto_rawDesc = "" +
 	"\x1dUnsubscribeNewsletterResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess2y\n" +
 	"\x11NewsletterService\x12d\n" +
-	"\vUnsubscribe\x12).api.open.v1.UnsubscribeNewsletterRequest\x1a*.api.open.v1.UnsubscribeNewsletterResponseB\xab\x01\n" +
-	"\x0fcom.api.open.v1B\x0fNewsletterProtoP\x01Z9github.com/echovisionlab/geul-event-contracts/gen/api/open/v1;openv1\xa2\x02\x03AOX\xaa\x02\vApi.Open.V1\xca\x02\vApi\\Open\\V1\xe2\x02\x17Api\\Open\\V1\\GPBMetadata\xea\x02\rApi::Open::V1b\x06proto3"
+	"\vUnsubscribe\x12).api.open.v1.UnsubscribeNewsletterRequest\x1a*.api.open.v1.UnsubscribeNewsletterResponseB\xb6\x01\n" +
+	"\x0fcom.api.open.v1B\x0fNewsletterProtoP\x01ZDgithub.com/echovisionlab/geul-event-contracts/gen/api/open/v1;openv1\xa2\x02\x03AOX\xaa\x02\vApi.Open.V1\xca\x02\vApi\\Open\\V1\xe2\x02\x17Api\\Open\\V1\\GPBMetadata\xea\x02\rApi::Open::V1b\x06proto3"
 
 var (
 	file_api_open_v1_newsletter_proto_rawDescOnce sync.Once

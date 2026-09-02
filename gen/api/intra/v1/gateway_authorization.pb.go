@@ -22,6 +22,136 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+// MCPDelegationMethod identifies the trusted mechanism that delegated an MCP
+// request. It is deliberately closed: the API must reject unknown methods
+// instead of treating arbitrary gateway metadata as an authenticated actor.
+type MCPDelegationMethod int32
+
+const (
+	MCPDelegationMethod_MCP_DELEGATION_METHOD_UNSPECIFIED MCPDelegationMethod = 0
+	MCPDelegationMethod_MCP_DELEGATION_METHOD_OAUTH       MCPDelegationMethod = 1
+)
+
+// Enum value maps for MCPDelegationMethod.
+var (
+	MCPDelegationMethod_name = map[int32]string{
+		0: "MCP_DELEGATION_METHOD_UNSPECIFIED",
+		1: "MCP_DELEGATION_METHOD_OAUTH",
+	}
+	MCPDelegationMethod_value = map[string]int32{
+		"MCP_DELEGATION_METHOD_UNSPECIFIED": 0,
+		"MCP_DELEGATION_METHOD_OAUTH":       1,
+	}
+)
+
+func (x MCPDelegationMethod) Enum() *MCPDelegationMethod {
+	p := new(MCPDelegationMethod)
+	*p = x
+	return p
+}
+
+func (x MCPDelegationMethod) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (MCPDelegationMethod) Descriptor() protoreflect.EnumDescriptor {
+	return file_api_intra_v1_gateway_authorization_proto_enumTypes[0].Descriptor()
+}
+
+func (MCPDelegationMethod) Type() protoreflect.EnumType {
+	return &file_api_intra_v1_gateway_authorization_proto_enumTypes[0]
+}
+
+func (x MCPDelegationMethod) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use MCPDelegationMethod.Descriptor instead.
+func (MCPDelegationMethod) EnumDescriptor() ([]byte, []int) {
+	return file_api_intra_v1_gateway_authorization_proto_rawDescGZIP(), []int{0}
+}
+
+// MCPAuthenticatedContext is the single typed principal assertion forwarded
+// by Oathkeeper after OAuth token introspection. The serialized protobuf is
+// carried as unpadded base64url in the header configured by AUTH_HEADER_NAME
+// and is accepted only alongside the internal-service credential.
+// geul-contract-root: mcp-authenticated-context
+type MCPAuthenticatedContext struct {
+	state            protoimpl.MessageState `protogen:"open.v1"`
+	IdentityId       string                 `protobuf:"bytes,1,opt,name=identity_id,json=identityId,proto3" json:"identity_id,omitempty"`
+	MemberId         string                 `protobuf:"bytes,2,opt,name=member_id,json=memberId,proto3" json:"member_id,omitempty"`
+	DelegationId     string                 `protobuf:"bytes,3,opt,name=delegation_id,json=delegationId,proto3" json:"delegation_id,omitempty"`
+	DelegationName   string                 `protobuf:"bytes,4,opt,name=delegation_name,json=delegationName,proto3" json:"delegation_name,omitempty"`
+	DelegationMethod MCPDelegationMethod    `protobuf:"varint,5,opt,name=delegation_method,json=delegationMethod,proto3,enum=api.intra.v1.MCPDelegationMethod" json:"delegation_method,omitempty"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
+}
+
+func (x *MCPAuthenticatedContext) Reset() {
+	*x = MCPAuthenticatedContext{}
+	mi := &file_api_intra_v1_gateway_authorization_proto_msgTypes[0]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *MCPAuthenticatedContext) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MCPAuthenticatedContext) ProtoMessage() {}
+
+func (x *MCPAuthenticatedContext) ProtoReflect() protoreflect.Message {
+	mi := &file_api_intra_v1_gateway_authorization_proto_msgTypes[0]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use MCPAuthenticatedContext.ProtoReflect.Descriptor instead.
+func (*MCPAuthenticatedContext) Descriptor() ([]byte, []int) {
+	return file_api_intra_v1_gateway_authorization_proto_rawDescGZIP(), []int{0}
+}
+
+func (x *MCPAuthenticatedContext) GetIdentityId() string {
+	if x != nil {
+		return x.IdentityId
+	}
+	return ""
+}
+
+func (x *MCPAuthenticatedContext) GetMemberId() string {
+	if x != nil {
+		return x.MemberId
+	}
+	return ""
+}
+
+func (x *MCPAuthenticatedContext) GetDelegationId() string {
+	if x != nil {
+		return x.DelegationId
+	}
+	return ""
+}
+
+func (x *MCPAuthenticatedContext) GetDelegationName() string {
+	if x != nil {
+		return x.DelegationName
+	}
+	return ""
+}
+
+func (x *MCPAuthenticatedContext) GetDelegationMethod() MCPDelegationMethod {
+	if x != nil {
+		return x.DelegationMethod
+	}
+	return MCPDelegationMethod_MCP_DELEGATION_METHOD_UNSPECIFIED
+}
+
 // AuthorizeGatewayAccessRequest is the private Oathkeeper remote_json /
 // Connect JSON request. account_identity_id is the UUID of the Kratos
 // identity and the canonical SpiceDB subject; session_id is the UUID of the
@@ -37,7 +167,7 @@ type AuthorizeGatewayAccessRequest struct {
 
 func (x *AuthorizeGatewayAccessRequest) Reset() {
 	*x = AuthorizeGatewayAccessRequest{}
-	mi := &file_api_intra_v1_gateway_authorization_proto_msgTypes[0]
+	mi := &file_api_intra_v1_gateway_authorization_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -49,7 +179,7 @@ func (x *AuthorizeGatewayAccessRequest) String() string {
 func (*AuthorizeGatewayAccessRequest) ProtoMessage() {}
 
 func (x *AuthorizeGatewayAccessRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_intra_v1_gateway_authorization_proto_msgTypes[0]
+	mi := &file_api_intra_v1_gateway_authorization_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -62,7 +192,7 @@ func (x *AuthorizeGatewayAccessRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AuthorizeGatewayAccessRequest.ProtoReflect.Descriptor instead.
 func (*AuthorizeGatewayAccessRequest) Descriptor() ([]byte, []int) {
-	return file_api_intra_v1_gateway_authorization_proto_rawDescGZIP(), []int{0}
+	return file_api_intra_v1_gateway_authorization_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *AuthorizeGatewayAccessRequest) GetAccountIdentityId() string {
@@ -98,7 +228,7 @@ type AuthorizeGatewayAccessResponse struct {
 
 func (x *AuthorizeGatewayAccessResponse) Reset() {
 	*x = AuthorizeGatewayAccessResponse{}
-	mi := &file_api_intra_v1_gateway_authorization_proto_msgTypes[1]
+	mi := &file_api_intra_v1_gateway_authorization_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -110,7 +240,7 @@ func (x *AuthorizeGatewayAccessResponse) String() string {
 func (*AuthorizeGatewayAccessResponse) ProtoMessage() {}
 
 func (x *AuthorizeGatewayAccessResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_intra_v1_gateway_authorization_proto_msgTypes[1]
+	mi := &file_api_intra_v1_gateway_authorization_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -123,23 +253,33 @@ func (x *AuthorizeGatewayAccessResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AuthorizeGatewayAccessResponse.ProtoReflect.Descriptor instead.
 func (*AuthorizeGatewayAccessResponse) Descriptor() ([]byte, []int) {
-	return file_api_intra_v1_gateway_authorization_proto_rawDescGZIP(), []int{1}
+	return file_api_intra_v1_gateway_authorization_proto_rawDescGZIP(), []int{2}
 }
 
 var File_api_intra_v1_gateway_authorization_proto protoreflect.FileDescriptor
 
 const file_api_intra_v1_gateway_authorization_proto_rawDesc = "" +
 	"\n" +
-	"(api/intra/v1/gateway_authorization.proto\x12\fapi.intra.v1\x1a\x1aapi/policy/v1/access.proto\"\xa4\x01\n" +
+	"(api/intra/v1/gateway_authorization.proto\x12\fapi.intra.v1\x1a\x1aapi/policy/v1/access.proto\"\xf5\x01\n" +
+	"\x17MCPAuthenticatedContext\x12\x1f\n" +
+	"\videntity_id\x18\x01 \x01(\tR\n" +
+	"identityId\x12\x1b\n" +
+	"\tmember_id\x18\x02 \x01(\tR\bmemberId\x12#\n" +
+	"\rdelegation_id\x18\x03 \x01(\tR\fdelegationId\x12'\n" +
+	"\x0fdelegation_name\x18\x04 \x01(\tR\x0edelegationName\x12N\n" +
+	"\x11delegation_method\x18\x05 \x01(\x0e2!.api.intra.v1.MCPDelegationMethodR\x10delegationMethod\"\xa4\x01\n" +
 	"\x1dAuthorizeGatewayAccessRequest\x12.\n" +
 	"\x13account_identity_id\x18\x01 \x01(\tR\x11accountIdentityId\x12\x1d\n" +
 	"\n" +
 	"session_id\x18\x02 \x01(\tR\tsessionId\x124\n" +
 	"\x04role\x18\x03 \x01(\x0e2 .api.policy.v1.AuthorizationRoleR\x04role\" \n" +
-	"\x1eAuthorizeGatewayAccessResponse2\x9a\x01\n" +
+	"\x1eAuthorizeGatewayAccessResponse*]\n" +
+	"\x13MCPDelegationMethod\x12%\n" +
+	"!MCP_DELEGATION_METHOD_UNSPECIFIED\x10\x00\x12\x1f\n" +
+	"\x1bMCP_DELEGATION_METHOD_OAUTH\x10\x012\x9a\x01\n" +
 	"#InternalGatewayAuthorizationService\x12s\n" +
-	"\x16AuthorizeGatewayAccess\x12+.api.intra.v1.AuthorizeGatewayAccessRequest\x1a,.api.intra.v1.AuthorizeGatewayAccessResponseB\xbc\x01\n" +
-	"\x10com.api.intra.v1B\x19GatewayAuthorizationProtoP\x01Z;github.com/echovisionlab/geul-event-contracts/gen/api/intra/v1;intrav1\xa2\x02\x03AIX\xaa\x02\fApi.Intra.V1\xca\x02\fApi\\Intra\\V1\xe2\x02\x18Api\\Intra\\V1\\GPBMetadata\xea\x02\x0eApi::Intra::V1b\x06proto3"
+	"\x16AuthorizeGatewayAccess\x12+.api.intra.v1.AuthorizeGatewayAccessRequest\x1a,.api.intra.v1.AuthorizeGatewayAccessResponseB\xc7\x01\n" +
+	"\x10com.api.intra.v1B\x19GatewayAuthorizationProtoP\x01ZFgithub.com/echovisionlab/geul-event-contracts/gen/api/intra/v1;intrav1\xa2\x02\x03AIX\xaa\x02\fApi.Intra.V1\xca\x02\fApi\\Intra\\V1\xe2\x02\x18Api\\Intra\\V1\\GPBMetadata\xea\x02\x0eApi::Intra::V1b\x06proto3"
 
 var (
 	file_api_intra_v1_gateway_authorization_proto_rawDescOnce sync.Once
@@ -153,21 +293,25 @@ func file_api_intra_v1_gateway_authorization_proto_rawDescGZIP() []byte {
 	return file_api_intra_v1_gateway_authorization_proto_rawDescData
 }
 
-var file_api_intra_v1_gateway_authorization_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_api_intra_v1_gateway_authorization_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
+var file_api_intra_v1_gateway_authorization_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_api_intra_v1_gateway_authorization_proto_goTypes = []any{
-	(*AuthorizeGatewayAccessRequest)(nil),  // 0: api.intra.v1.AuthorizeGatewayAccessRequest
-	(*AuthorizeGatewayAccessResponse)(nil), // 1: api.intra.v1.AuthorizeGatewayAccessResponse
-	(v1.AuthorizationRole)(0),              // 2: api.policy.v1.AuthorizationRole
+	(MCPDelegationMethod)(0),               // 0: api.intra.v1.MCPDelegationMethod
+	(*MCPAuthenticatedContext)(nil),        // 1: api.intra.v1.MCPAuthenticatedContext
+	(*AuthorizeGatewayAccessRequest)(nil),  // 2: api.intra.v1.AuthorizeGatewayAccessRequest
+	(*AuthorizeGatewayAccessResponse)(nil), // 3: api.intra.v1.AuthorizeGatewayAccessResponse
+	(v1.AuthorizationRole)(0),              // 4: api.policy.v1.AuthorizationRole
 }
 var file_api_intra_v1_gateway_authorization_proto_depIdxs = []int32{
-	2, // 0: api.intra.v1.AuthorizeGatewayAccessRequest.role:type_name -> api.policy.v1.AuthorizationRole
-	0, // 1: api.intra.v1.InternalGatewayAuthorizationService.AuthorizeGatewayAccess:input_type -> api.intra.v1.AuthorizeGatewayAccessRequest
-	1, // 2: api.intra.v1.InternalGatewayAuthorizationService.AuthorizeGatewayAccess:output_type -> api.intra.v1.AuthorizeGatewayAccessResponse
-	2, // [2:3] is the sub-list for method output_type
-	1, // [1:2] is the sub-list for method input_type
-	1, // [1:1] is the sub-list for extension type_name
-	1, // [1:1] is the sub-list for extension extendee
-	0, // [0:1] is the sub-list for field type_name
+	0, // 0: api.intra.v1.MCPAuthenticatedContext.delegation_method:type_name -> api.intra.v1.MCPDelegationMethod
+	4, // 1: api.intra.v1.AuthorizeGatewayAccessRequest.role:type_name -> api.policy.v1.AuthorizationRole
+	2, // 2: api.intra.v1.InternalGatewayAuthorizationService.AuthorizeGatewayAccess:input_type -> api.intra.v1.AuthorizeGatewayAccessRequest
+	3, // 3: api.intra.v1.InternalGatewayAuthorizationService.AuthorizeGatewayAccess:output_type -> api.intra.v1.AuthorizeGatewayAccessResponse
+	3, // [3:4] is the sub-list for method output_type
+	2, // [2:3] is the sub-list for method input_type
+	2, // [2:2] is the sub-list for extension type_name
+	2, // [2:2] is the sub-list for extension extendee
+	0, // [0:2] is the sub-list for field type_name
 }
 
 func init() { file_api_intra_v1_gateway_authorization_proto_init() }
@@ -180,13 +324,14 @@ func file_api_intra_v1_gateway_authorization_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_api_intra_v1_gateway_authorization_proto_rawDesc), len(file_api_intra_v1_gateway_authorization_proto_rawDesc)),
-			NumEnums:      0,
-			NumMessages:   2,
+			NumEnums:      1,
+			NumMessages:   3,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
 		GoTypes:           file_api_intra_v1_gateway_authorization_proto_goTypes,
 		DependencyIndexes: file_api_intra_v1_gateway_authorization_proto_depIdxs,
+		EnumInfos:         file_api_intra_v1_gateway_authorization_proto_enumTypes,
 		MessageInfos:      file_api_intra_v1_gateway_authorization_proto_msgTypes,
 	}.Build()
 	File_api_intra_v1_gateway_authorization_proto = out.File

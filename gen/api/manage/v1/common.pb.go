@@ -399,8 +399,8 @@ const file_api_manage_v1_common_proto_rawDesc = "" +
 	"\x11ThemeAssetVariant\x12#\n" +
 	"\x1fTHEME_ASSET_VARIANT_UNSPECIFIED\x10\x00\x12\x1d\n" +
 	"\x19THEME_ASSET_VARIANT_LIGHT\x10\x01\x12\x1c\n" +
-	"\x18THEME_ASSET_VARIANT_DARK\x10\x02B\xb5\x01\n" +
-	"\x11com.api.manage.v1B\vCommonProtoP\x01Z=github.com/echovisionlab/geul-event-contracts/gen/api/manage/v1;managev1\xa2\x02\x03AMX\xaa\x02\rApi.Manage.V1\xca\x02\rApi\\Manage\\V1\xe2\x02\x19Api\\Manage\\V1\\GPBMetadata\xea\x02\x0fApi::Manage::V1b\x06proto3"
+	"\x18THEME_ASSET_VARIANT_DARK\x10\x02B\xc0\x01\n" +
+	"\x11com.api.manage.v1B\vCommonProtoP\x01ZHgithub.com/echovisionlab/geul-event-contracts/gen/api/manage/v1;managev1\xa2\x02\x03AMX\xaa\x02\rApi.Manage.V1\xca\x02\rApi\\Manage\\V1\xe2\x02\x19Api\\Manage\\V1\\GPBMetadata\xea\x02\x0fApi::Manage::V1b\x06proto3"
 
 var (
 	file_api_manage_v1_common_proto_rawDescOnce sync.Once

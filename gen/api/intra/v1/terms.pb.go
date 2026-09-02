@@ -647,9 +647,9 @@ const file_api_intra_v1_terms_proto_rawDesc = "" +
 	"\x14InternalTermsService\x12s\n" +
 	"\x16LoadTermsBlockDocument\x12+.api.intra.v1.LoadTermsBlockDocumentRequest\x1a,.api.intra.v1.LoadTermsBlockDocumentResponse\x12m\n" +
 	"\x14ApplyTermsBlockBatch\x12).api.intra.v1.ApplyTermsBlockBatchRequest\x1a*.api.intra.v1.ApplyTermsBlockBatchResponse\x12|\n" +
-	"\x19UpdateTermsLocaleMetadata\x12..api.intra.v1.UpdateTermsLocaleMetadataRequest\x1a/.api.intra.v1.UpdateTermsLocaleMetadataResponseB\xad\x01\n" +
+	"\x19UpdateTermsLocaleMetadata\x12..api.intra.v1.UpdateTermsLocaleMetadataRequest\x1a/.api.intra.v1.UpdateTermsLocaleMetadataResponseB\xb8\x01\n" +
 	"\x10com.api.intra.v1B\n" +
-	"TermsProtoP\x01Z;github.com/echovisionlab/geul-event-contracts/gen/api/intra/v1;intrav1\xa2\x02\x03AIX\xaa\x02\fApi.Intra.V1\xca\x02\fApi\\Intra\\V1\xe2\x02\x18Api\\Intra\\V1\\GPBMetadata\xea\x02\x0eApi::Intra::V1b\x06proto3"
+	"TermsProtoP\x01ZFgithub.com/echovisionlab/geul-event-contracts/gen/api/intra/v1;intrav1\xa2\x02\x03AIX\xaa\x02\fApi.Intra.V1\xca\x02\fApi\\Intra\\V1\xe2\x02\x18Api\\Intra\\V1\\GPBMetadata\xea\x02\x0eApi::Intra::V1b\x06proto3"
 
 var (
 	file_api_intra_v1_terms_proto_rawDescOnce sync.Once

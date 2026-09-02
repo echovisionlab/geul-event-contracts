@@ -1160,8 +1160,8 @@ const file_api_manage_v1_site_setting_proto_rawDesc = "" +
 	"SetSetting\x12 .api.manage.v1.SetSettingRequest\x1a!.api.manage.v1.SetSettingResponse\"\x06\xca\xf3\x18\x02\b\x04\x12h\n" +
 	"\x0fSetManySettings\x12%.api.manage.v1.SetManySettingsRequest\x1a&.api.manage.v1.SetManySettingsResponse\"\x06\xca\xf3\x18\x02\b\x04\x12q\n" +
 	"\x12AddSiteLoaderAsset\x12(.api.manage.v1.AddSiteLoaderAssetRequest\x1a).api.manage.v1.AddSiteLoaderAssetResponse\"\x06\xca\xf3\x18\x02\b\x04\x12z\n" +
-	"\x15RemoveSiteLoaderAsset\x12+.api.manage.v1.RemoveSiteLoaderAssetRequest\x1a,.api.manage.v1.RemoveSiteLoaderAssetResponse\"\x06\xca\xf3\x18\x02\b\x04B\xba\x01\n" +
-	"\x11com.api.manage.v1B\x10SiteSettingProtoP\x01Z=github.com/echovisionlab/geul-event-contracts/gen/api/manage/v1;managev1\xa2\x02\x03AMX\xaa\x02\rApi.Manage.V1\xca\x02\rApi\\Manage\\V1\xe2\x02\x19Api\\Manage\\V1\\GPBMetadata\xea\x02\x0fApi::Manage::V1b\x06proto3"
+	"\x15RemoveSiteLoaderAsset\x12+.api.manage.v1.RemoveSiteLoaderAssetRequest\x1a,.api.manage.v1.RemoveSiteLoaderAssetResponse\"\x06\xca\xf3\x18\x02\b\x04B\xc5\x01\n" +
+	"\x11com.api.manage.v1B\x10SiteSettingProtoP\x01ZHgithub.com/echovisionlab/geul-event-contracts/gen/api/manage/v1;managev1\xa2\x02\x03AMX\xaa\x02\rApi.Manage.V1\xca\x02\rApi\\Manage\\V1\xe2\x02\x19Api\\Manage\\V1\\GPBMetadata\xea\x02\x0fApi::Manage::V1b\x06proto3"
 
 var (
 	file_api_manage_v1_site_setting_proto_rawDescOnce sync.Once

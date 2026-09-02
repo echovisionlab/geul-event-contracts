@@ -1241,8 +1241,8 @@ const file_api_open_v1_form_proto_rawDesc = "" +
 	"\vCheckAccess\x12#.api.open.v1.CheckFormAccessRequest\x1a$.api.open.v1.CheckFormAccessResponse\x12I\n" +
 	"\x06Submit\x12\x1e.api.open.v1.SubmitFormRequest\x1a\x1f.api.open.v1.SubmitFormResponse\x12a\n" +
 	"\x0eVerifyPassword\x12&.api.open.v1.VerifyFormPasswordRequest\x1a'.api.open.v1.VerifyFormPasswordResponse\x12[\n" +
-	"\fGetDashboard\x12$.api.open.v1.GetFormDashboardRequest\x1a%.api.open.v1.GetFormDashboardResponseB\xa5\x01\n" +
-	"\x0fcom.api.open.v1B\tFormProtoP\x01Z9github.com/echovisionlab/geul-event-contracts/gen/api/open/v1;openv1\xa2\x02\x03AOX\xaa\x02\vApi.Open.V1\xca\x02\vApi\\Open\\V1\xe2\x02\x17Api\\Open\\V1\\GPBMetadata\xea\x02\rApi::Open::V1b\x06proto3"
+	"\fGetDashboard\x12$.api.open.v1.GetFormDashboardRequest\x1a%.api.open.v1.GetFormDashboardResponseB\xb0\x01\n" +
+	"\x0fcom.api.open.v1B\tFormProtoP\x01ZDgithub.com/echovisionlab/geul-event-contracts/gen/api/open/v1;openv1\xa2\x02\x03AOX\xaa\x02\vApi.Open.V1\xca\x02\vApi\\Open\\V1\xe2\x02\x17Api\\Open\\V1\\GPBMetadata\xea\x02\rApi::Open::V1b\x06proto3"
 
 var (
 	file_api_open_v1_form_proto_rawDescOnce sync.Once

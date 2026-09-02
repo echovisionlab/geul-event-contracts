@@ -1210,8 +1210,8 @@ const file_api_manage_v1_email_template_proto_rawDesc = "" +
 	"\x10GetEventMappings\x12&.api.manage.v1.GetEventMappingsRequest\x1a'.api.manage.v1.GetEventMappingsResponse\"\x06\xca\xf3\x18\x02\b\x04\x12f\n" +
 	"\x12UpdateEventMapping\x12(.api.manage.v1.UpdateEventMappingRequest\x1a\x1e.api.manage.v1.SuccessResponse\"\x06\xca\xf3\x18\x02\b\x04\x12\\\n" +
 	"\rSendTestEmail\x12#.api.manage.v1.SendTestEmailRequest\x1a\x1e.api.manage.v1.SuccessResponse\"\x06\xca\xf3\x18\x02\b\x04\x12w\n" +
-	"\x14PreviewEmailTemplate\x12*.api.manage.v1.PreviewEmailTemplateRequest\x1a+.api.manage.v1.PreviewEmailTemplateResponse\"\x06\xca\xf3\x18\x02\b\x04B\xbc\x01\n" +
-	"\x11com.api.manage.v1B\x12EmailTemplateProtoP\x01Z=github.com/echovisionlab/geul-event-contracts/gen/api/manage/v1;managev1\xa2\x02\x03AMX\xaa\x02\rApi.Manage.V1\xca\x02\rApi\\Manage\\V1\xe2\x02\x19Api\\Manage\\V1\\GPBMetadata\xea\x02\x0fApi::Manage::V1b\x06proto3"
+	"\x14PreviewEmailTemplate\x12*.api.manage.v1.PreviewEmailTemplateRequest\x1a+.api.manage.v1.PreviewEmailTemplateResponse\"\x06\xca\xf3\x18\x02\b\x04B\xc7\x01\n" +
+	"\x11com.api.manage.v1B\x12EmailTemplateProtoP\x01ZHgithub.com/echovisionlab/geul-event-contracts/gen/api/manage/v1;managev1\xa2\x02\x03AMX\xaa\x02\rApi.Manage.V1\xca\x02\rApi\\Manage\\V1\xe2\x02\x19Api\\Manage\\V1\\GPBMetadata\xea\x02\x0fApi::Manage::V1b\x06proto3"
 
 var (
 	file_api_manage_v1_email_template_proto_rawDescOnce sync.Once

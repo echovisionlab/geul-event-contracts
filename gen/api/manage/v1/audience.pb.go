@@ -1064,8 +1064,8 @@ const file_api_manage_v1_audience_proto_rawDesc = "" +
 	"\rUpdateSegment\x12#.api.manage.v1.UpdateSegmentRequest\x1a\x16.api.manage.v1.Segment\"\x06\xca\xf3\x18\x02\b\x04\x12V\n" +
 	"\x0eArchiveSegment\x12$.api.manage.v1.ArchiveSegmentRequest\x1a\x16.api.manage.v1.Segment\"\x06\xca\xf3\x18\x02\b\x04\x12V\n" +
 	"\x0eRestoreSegment\x12$.api.manage.v1.RestoreSegmentRequest\x1a\x16.api.manage.v1.Segment\"\x06\xca\xf3\x18\x02\b\x04\x12w\n" +
-	"\x14EstimateSegmentCount\x12*.api.manage.v1.EstimateSegmentCountRequest\x1a+.api.manage.v1.EstimateSegmentCountResponse\"\x06\xca\xf3\x18\x02\b\x04B\xb7\x01\n" +
-	"\x11com.api.manage.v1B\rAudienceProtoP\x01Z=github.com/echovisionlab/geul-event-contracts/gen/api/manage/v1;managev1\xa2\x02\x03AMX\xaa\x02\rApi.Manage.V1\xca\x02\rApi\\Manage\\V1\xe2\x02\x19Api\\Manage\\V1\\GPBMetadata\xea\x02\x0fApi::Manage::V1b\x06proto3"
+	"\x14EstimateSegmentCount\x12*.api.manage.v1.EstimateSegmentCountRequest\x1a+.api.manage.v1.EstimateSegmentCountResponse\"\x06\xca\xf3\x18\x02\b\x04B\xc2\x01\n" +
+	"\x11com.api.manage.v1B\rAudienceProtoP\x01ZHgithub.com/echovisionlab/geul-event-contracts/gen/api/manage/v1;managev1\xa2\x02\x03AMX\xaa\x02\rApi.Manage.V1\xca\x02\rApi\\Manage\\V1\xe2\x02\x19Api\\Manage\\V1\\GPBMetadata\xea\x02\x0fApi::Manage::V1b\x06proto3"
 
 var (
 	file_api_manage_v1_audience_proto_rawDescOnce sync.Once

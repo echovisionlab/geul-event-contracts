@@ -1241,8 +1241,8 @@ const file_api_manage_v1_mail_adapter_proto_rawDesc = "" +
 	"\x15ListMailAdaptersAdmin\x12+.api.manage.v1.ListMailAdaptersAdminRequest\x1a,.api.manage.v1.ListMailAdaptersAdminResponse\"\x06\xca\xf3\x18\x02\b\x04\x12i\n" +
 	"\n" +
 	"TestConfig\x12+.api.manage.v1.TestMailAdapterConfigRequest\x1a&.api.manage.v1.TestMailAdapterResponse\"\x06\xca\xf3\x18\x02\b\x04\x12]\n" +
-	"\x04Test\x12%.api.manage.v1.TestMailAdapterRequest\x1a&.api.manage.v1.TestMailAdapterResponse\"\x06\xca\xf3\x18\x02\b\x04B\xba\x01\n" +
-	"\x11com.api.manage.v1B\x10MailAdapterProtoP\x01Z=github.com/echovisionlab/geul-event-contracts/gen/api/manage/v1;managev1\xa2\x02\x03AMX\xaa\x02\rApi.Manage.V1\xca\x02\rApi\\Manage\\V1\xe2\x02\x19Api\\Manage\\V1\\GPBMetadata\xea\x02\x0fApi::Manage::V1b\x06proto3"
+	"\x04Test\x12%.api.manage.v1.TestMailAdapterRequest\x1a&.api.manage.v1.TestMailAdapterResponse\"\x06\xca\xf3\x18\x02\b\x04B\xc5\x01\n" +
+	"\x11com.api.manage.v1B\x10MailAdapterProtoP\x01ZHgithub.com/echovisionlab/geul-event-contracts/gen/api/manage/v1;managev1\xa2\x02\x03AMX\xaa\x02\rApi.Manage.V1\xca\x02\rApi\\Manage\\V1\xe2\x02\x19Api\\Manage\\V1\\GPBMetadata\xea\x02\x0fApi::Manage::V1b\x06proto3"
 
 var (
 	file_api_manage_v1_mail_adapter_proto_rawDescOnce sync.Once

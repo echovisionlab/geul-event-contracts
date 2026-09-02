@@ -473,8 +473,8 @@ const file_api_open_v1_privacy_proto_rawDesc = "" +
 	"\x0feffective_until\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\x0eeffectiveUntil2\xa3\x01\n" +
 	"\x0ePrivacyService\x12F\n" +
 	"\x03Get\x12\x1e.api.open.v1.GetPrivacyRequest\x1a\x1f.api.open.v1.GetPrivacyResponse\x12I\n" +
-	"\x04List\x12\x1f.api.open.v1.ListPrivacyRequest\x1a .api.open.v1.ListPrivacyResponseB\xa8\x01\n" +
-	"\x0fcom.api.open.v1B\fPrivacyProtoP\x01Z9github.com/echovisionlab/geul-event-contracts/gen/api/open/v1;openv1\xa2\x02\x03AOX\xaa\x02\vApi.Open.V1\xca\x02\vApi\\Open\\V1\xe2\x02\x17Api\\Open\\V1\\GPBMetadata\xea\x02\rApi::Open::V1b\x06proto3"
+	"\x04List\x12\x1f.api.open.v1.ListPrivacyRequest\x1a .api.open.v1.ListPrivacyResponseB\xb3\x01\n" +
+	"\x0fcom.api.open.v1B\fPrivacyProtoP\x01ZDgithub.com/echovisionlab/geul-event-contracts/gen/api/open/v1;openv1\xa2\x02\x03AOX\xaa\x02\vApi.Open.V1\xca\x02\vApi\\Open\\V1\xe2\x02\x17Api\\Open\\V1\\GPBMetadata\xea\x02\rApi::Open::V1b\x06proto3"
 
 var (
 	file_api_open_v1_privacy_proto_rawDescOnce sync.Once

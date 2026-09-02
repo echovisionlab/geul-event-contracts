@@ -424,8 +424,8 @@ const file_api_open_v1_file_proto_rawDesc = "" +
 	"\x1cFILE_DOWNLOAD_ACTION_SIGN_IN\x10\x02\x12\x1d\n" +
 	"\x19FILE_DOWNLOAD_ACTION_NONE\x10\x032q\n" +
 	"\vFileService\x12b\n" +
-	"\x11AuthorizeDownload\x12%.api.open.v1.AuthorizeDownloadRequest\x1a&.api.open.v1.AuthorizeDownloadResponseB\xa5\x01\n" +
-	"\x0fcom.api.open.v1B\tFileProtoP\x01Z9github.com/echovisionlab/geul-event-contracts/gen/api/open/v1;openv1\xa2\x02\x03AOX\xaa\x02\vApi.Open.V1\xca\x02\vApi\\Open\\V1\xe2\x02\x17Api\\Open\\V1\\GPBMetadata\xea\x02\rApi::Open::V1b\x06proto3"
+	"\x11AuthorizeDownload\x12%.api.open.v1.AuthorizeDownloadRequest\x1a&.api.open.v1.AuthorizeDownloadResponseB\xb0\x01\n" +
+	"\x0fcom.api.open.v1B\tFileProtoP\x01ZDgithub.com/echovisionlab/geul-event-contracts/gen/api/open/v1;openv1\xa2\x02\x03AOX\xaa\x02\vApi.Open.V1\xca\x02\vApi\\Open\\V1\xe2\x02\x17Api\\Open\\V1\\GPBMetadata\xea\x02\rApi::Open::V1b\x06proto3"
 
 var (
 	file_api_open_v1_file_proto_rawDescOnce sync.Once

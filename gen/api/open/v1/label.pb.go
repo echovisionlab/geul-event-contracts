@@ -948,9 +948,9 @@ const file_api_open_v1_label_proto_rawDesc = "" +
 	"\x16LABEL_STATUS_PUBLISHED\x10\x022\x9b\x01\n" +
 	"\fLabelService\x12G\n" +
 	"\x04List\x12\x1e.api.open.v1.ListLabelsRequest\x1a\x1f.api.open.v1.ListLabelsResponse\x12B\n" +
-	"\x03Get\x12\x1c.api.open.v1.GetLabelRequest\x1a\x1d.api.open.v1.GetLabelResponseB\xa6\x01\n" +
+	"\x03Get\x12\x1c.api.open.v1.GetLabelRequest\x1a\x1d.api.open.v1.GetLabelResponseB\xb1\x01\n" +
 	"\x0fcom.api.open.v1B\n" +
-	"LabelProtoP\x01Z9github.com/echovisionlab/geul-event-contracts/gen/api/open/v1;openv1\xa2\x02\x03AOX\xaa\x02\vApi.Open.V1\xca\x02\vApi\\Open\\V1\xe2\x02\x17Api\\Open\\V1\\GPBMetadata\xea\x02\rApi::Open::V1b\x06proto3"
+	"LabelProtoP\x01ZDgithub.com/echovisionlab/geul-event-contracts/gen/api/open/v1;openv1\xa2\x02\x03AOX\xaa\x02\vApi.Open.V1\xca\x02\vApi\\Open\\V1\xe2\x02\x17Api\\Open\\V1\\GPBMetadata\xea\x02\rApi::Open::V1b\x06proto3"
 
 var (
 	file_api_open_v1_label_proto_rawDescOnce sync.Once

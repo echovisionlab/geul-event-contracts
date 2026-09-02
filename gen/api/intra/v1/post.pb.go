@@ -1167,8 +1167,8 @@ const file_api_intra_v1_post_proto_rawDesc = "" +
 	"\x13ApplyPostBlockBatch\x12(.api.intra.v1.ApplyPostBlockBatchRequest\x1a).api.intra.v1.ApplyPostBlockBatchResponse\x12y\n" +
 	"\x18UpdatePostLocaleMetadata\x12-.api.intra.v1.UpdatePostLocaleMetadataRequest\x1a..api.intra.v1.UpdatePostLocaleMetadataResponse\x12\x7f\n" +
 	"\x1aUpdatePostDocumentMetadata\x12/.api.intra.v1.UpdatePostDocumentMetadataRequest\x1a0.api.intra.v1.UpdatePostDocumentMetadataResponse\x12\x82\x01\n" +
-	"\x1bCreatePostVersionCheckpoint\x120.api.intra.v1.CreatePostVersionCheckpointRequest\x1a1.api.intra.v1.CreatePostVersionCheckpointResponseB\xac\x01\n" +
-	"\x10com.api.intra.v1B\tPostProtoP\x01Z;github.com/echovisionlab/geul-event-contracts/gen/api/intra/v1;intrav1\xa2\x02\x03AIX\xaa\x02\fApi.Intra.V1\xca\x02\fApi\\Intra\\V1\xe2\x02\x18Api\\Intra\\V1\\GPBMetadata\xea\x02\x0eApi::Intra::V1b\x06proto3"
+	"\x1bCreatePostVersionCheckpoint\x120.api.intra.v1.CreatePostVersionCheckpointRequest\x1a1.api.intra.v1.CreatePostVersionCheckpointResponseB\xb7\x01\n" +
+	"\x10com.api.intra.v1B\tPostProtoP\x01ZFgithub.com/echovisionlab/geul-event-contracts/gen/api/intra/v1;intrav1\xa2\x02\x03AIX\xaa\x02\fApi.Intra.V1\xca\x02\fApi\\Intra\\V1\xe2\x02\x18Api\\Intra\\V1\\GPBMetadata\xea\x02\x0eApi::Intra::V1b\x06proto3"
 
 var (
 	file_api_intra_v1_post_proto_rawDescOnce sync.Once

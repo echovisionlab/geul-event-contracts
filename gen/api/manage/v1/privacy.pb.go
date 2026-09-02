@@ -905,8 +905,8 @@ const file_api_manage_v1_privacy_proto_rawDesc = "" +
 	"\x15CancelPrivacySchedule\x12+.api.manage.v1.CancelPrivacyScheduleRequest\x1a/.api.manage.v1.PrivacyLifecycleMutationResponse\"\x06\xca\xf3\x18\x02\b\x04\x12w\n" +
 	"\x12ActivatePrivacyNow\x12(.api.manage.v1.ActivatePrivacyNowRequest\x1a/.api.manage.v1.PrivacyLifecycleMutationResponse\"\x06\xca\xf3\x18\x02\b\x04\x12[\n" +
 	"\rDeletePrivacy\x12#.api.manage.v1.DeletePrivacyRequest\x1a\x1d.api.manage.v1.DeleteResponse\"\x06\xca\xf3\x18\x02\b\x04\x12\x98\x01\n" +
-	"\x1fRegeneratePrivacyDerivedContent\x125.api.manage.v1.RegeneratePrivacyDerivedContentRequest\x1a6.api.manage.v1.RegeneratePrivacyDerivedContentResponse\"\x06\xca\xf3\x18\x02\b\x04B\xb6\x01\n" +
-	"\x11com.api.manage.v1B\fPrivacyProtoP\x01Z=github.com/echovisionlab/geul-event-contracts/gen/api/manage/v1;managev1\xa2\x02\x03AMX\xaa\x02\rApi.Manage.V1\xca\x02\rApi\\Manage\\V1\xe2\x02\x19Api\\Manage\\V1\\GPBMetadata\xea\x02\x0fApi::Manage::V1b\x06proto3"
+	"\x1fRegeneratePrivacyDerivedContent\x125.api.manage.v1.RegeneratePrivacyDerivedContentRequest\x1a6.api.manage.v1.RegeneratePrivacyDerivedContentResponse\"\x06\xca\xf3\x18\x02\b\x04B\xc1\x01\n" +
+	"\x11com.api.manage.v1B\fPrivacyProtoP\x01ZHgithub.com/echovisionlab/geul-event-contracts/gen/api/manage/v1;managev1\xa2\x02\x03AMX\xaa\x02\rApi.Manage.V1\xca\x02\rApi\\Manage\\V1\xe2\x02\x19Api\\Manage\\V1\\GPBMetadata\xea\x02\x0fApi::Manage::V1b\x06proto3"
 
 var (
 	file_api_manage_v1_privacy_proto_rawDescOnce sync.Once

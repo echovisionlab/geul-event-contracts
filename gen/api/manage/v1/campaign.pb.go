@@ -2349,8 +2349,8 @@ const file_api_manage_v1_campaign_proto_rawDesc = "" +
 	"\x0fPreviewCampaign\x12%.api.manage.v1.PreviewCampaignRequest\x1a&.api.manage.v1.PreviewCampaignResponse\"\x06\xca\xf3\x18\x02\b\x04\x12k\n" +
 	"\x10SendTestCampaign\x12&.api.manage.v1.SendTestCampaignRequest\x1a'.api.manage.v1.SendTestCampaignResponse\"\x06\xca\xf3\x18\x02\b\x04\x12k\n" +
 	"\x10GetCampaignStats\x12&.api.manage.v1.GetCampaignStatsRequest\x1a'.api.manage.v1.GetCampaignStatsResponse\"\x06\xca\xf3\x18\x02\b\x04\x12z\n" +
-	"\x15GetCampaignRecipients\x12+.api.manage.v1.GetCampaignRecipientsRequest\x1a,.api.manage.v1.GetCampaignRecipientsResponse\"\x06\xca\xf3\x18\x02\b\x04B\xb7\x01\n" +
-	"\x11com.api.manage.v1B\rCampaignProtoP\x01Z=github.com/echovisionlab/geul-event-contracts/gen/api/manage/v1;managev1\xa2\x02\x03AMX\xaa\x02\rApi.Manage.V1\xca\x02\rApi\\Manage\\V1\xe2\x02\x19Api\\Manage\\V1\\GPBMetadata\xea\x02\x0fApi::Manage::V1b\x06proto3"
+	"\x15GetCampaignRecipients\x12+.api.manage.v1.GetCampaignRecipientsRequest\x1a,.api.manage.v1.GetCampaignRecipientsResponse\"\x06\xca\xf3\x18\x02\b\x04B\xc2\x01\n" +
+	"\x11com.api.manage.v1B\rCampaignProtoP\x01ZHgithub.com/echovisionlab/geul-event-contracts/gen/api/manage/v1;managev1\xa2\x02\x03AMX\xaa\x02\rApi.Manage.V1\xca\x02\rApi\\Manage\\V1\xe2\x02\x19Api\\Manage\\V1\\GPBMetadata\xea\x02\x0fApi::Manage::V1b\x06proto3"
 
 var (
 	file_api_manage_v1_campaign_proto_rawDescOnce sync.Once

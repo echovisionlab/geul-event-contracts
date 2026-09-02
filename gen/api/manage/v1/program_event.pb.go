@@ -4332,8 +4332,8 @@ const file_api_manage_v1_program_event_proto_rawDesc = "" +
 	"\x1aListProgramEventTypesAdmin\x120.api.manage.v1.ListProgramEventTypesAdminRequest\x1a1.api.manage.v1.ListProgramEventTypesAdminResponse\"\x06\xca\xf3\x18\x02\b\x04\x12o\n" +
 	"\x16CreateProgramEventType\x12,.api.manage.v1.CreateProgramEventTypeRequest\x1a\x1f.api.manage.v1.ProgramEventType\"\x06\xca\xf3\x18\x02\b\x04\x12o\n" +
 	"\x16UpdateProgramEventType\x12,.api.manage.v1.UpdateProgramEventTypeRequest\x1a\x1f.api.manage.v1.ProgramEventType\"\x06\xca\xf3\x18\x02\b\x04\x12m\n" +
-	"\x16DeleteProgramEventType\x12,.api.manage.v1.DeleteProgramEventTypeRequest\x1a\x1d.api.manage.v1.DeleteResponse\"\x06\xca\xf3\x18\x02\b\x04B\xbb\x01\n" +
-	"\x11com.api.manage.v1B\x11ProgramEventProtoP\x01Z=github.com/echovisionlab/geul-event-contracts/gen/api/manage/v1;managev1\xa2\x02\x03AMX\xaa\x02\rApi.Manage.V1\xca\x02\rApi\\Manage\\V1\xe2\x02\x19Api\\Manage\\V1\\GPBMetadata\xea\x02\x0fApi::Manage::V1b\x06proto3"
+	"\x16DeleteProgramEventType\x12,.api.manage.v1.DeleteProgramEventTypeRequest\x1a\x1d.api.manage.v1.DeleteResponse\"\x06\xca\xf3\x18\x02\b\x04B\xc6\x01\n" +
+	"\x11com.api.manage.v1B\x11ProgramEventProtoP\x01ZHgithub.com/echovisionlab/geul-event-contracts/gen/api/manage/v1;managev1\xa2\x02\x03AMX\xaa\x02\rApi.Manage.V1\xca\x02\rApi\\Manage\\V1\xe2\x02\x19Api\\Manage\\V1\\GPBMetadata\xea\x02\x0fApi::Manage::V1b\x06proto3"
 
 var (
 	file_api_manage_v1_program_event_proto_rawDescOnce sync.Once

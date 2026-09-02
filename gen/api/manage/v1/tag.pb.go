@@ -581,8 +581,8 @@ const file_api_manage_v1_tag_proto_rawDesc = "" +
 	"\rListTagsAdmin\x12#.api.manage.v1.ListTagsAdminRequest\x1a$.api.manage.v1.ListTagsAdminResponse\"\x06\xca\xf3\x18\x02\b\x04\x12H\n" +
 	"\tCreateTag\x12\x1f.api.manage.v1.CreateTagRequest\x1a\x12.api.manage.v1.Tag\"\x06\xca\xf3\x18\x02\b\x04\x12H\n" +
 	"\tUpdateTag\x12\x1f.api.manage.v1.UpdateTagRequest\x1a\x12.api.manage.v1.Tag\"\x06\xca\xf3\x18\x02\b\x04\x12S\n" +
-	"\tDeleteTag\x12\x1f.api.manage.v1.DeleteTagRequest\x1a\x1d.api.manage.v1.DeleteResponse\"\x06\xca\xf3\x18\x02\b\x04B\xb2\x01\n" +
-	"\x11com.api.manage.v1B\bTagProtoP\x01Z=github.com/echovisionlab/geul-event-contracts/gen/api/manage/v1;managev1\xa2\x02\x03AMX\xaa\x02\rApi.Manage.V1\xca\x02\rApi\\Manage\\V1\xe2\x02\x19Api\\Manage\\V1\\GPBMetadata\xea\x02\x0fApi::Manage::V1b\x06proto3"
+	"\tDeleteTag\x12\x1f.api.manage.v1.DeleteTagRequest\x1a\x1d.api.manage.v1.DeleteResponse\"\x06\xca\xf3\x18\x02\b\x04B\xbd\x01\n" +
+	"\x11com.api.manage.v1B\bTagProtoP\x01ZHgithub.com/echovisionlab/geul-event-contracts/gen/api/manage/v1;managev1\xa2\x02\x03AMX\xaa\x02\rApi.Manage.V1\xca\x02\rApi\\Manage\\V1\xe2\x02\x19Api\\Manage\\V1\\GPBMetadata\xea\x02\x0fApi::Manage::V1b\x06proto3"
 
 var (
 	file_api_manage_v1_tag_proto_rawDescOnce sync.Once

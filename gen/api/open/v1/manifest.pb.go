@@ -600,8 +600,8 @@ const file_api_open_v1_manifest_proto_rawDesc = "" +
 	"\rLINK_TYPE_TAG\x10\x04\x12\x14\n" +
 	"\x10LINK_TYPE_SERIES\x10\x052K\n" +
 	"\x0fManifestService\x128\n" +
-	"\x03Get\x12\x17.api.open.v1.GetRequest\x1a\x18.api.open.v1.GetResponseB\xa9\x01\n" +
-	"\x0fcom.api.open.v1B\rManifestProtoP\x01Z9github.com/echovisionlab/geul-event-contracts/gen/api/open/v1;openv1\xa2\x02\x03AOX\xaa\x02\vApi.Open.V1\xca\x02\vApi\\Open\\V1\xe2\x02\x17Api\\Open\\V1\\GPBMetadata\xea\x02\rApi::Open::V1b\x06proto3"
+	"\x03Get\x12\x17.api.open.v1.GetRequest\x1a\x18.api.open.v1.GetResponseB\xb4\x01\n" +
+	"\x0fcom.api.open.v1B\rManifestProtoP\x01ZDgithub.com/echovisionlab/geul-event-contracts/gen/api/open/v1;openv1\xa2\x02\x03AOX\xaa\x02\vApi.Open.V1\xca\x02\vApi\\Open\\V1\xe2\x02\x17Api\\Open\\V1\\GPBMetadata\xea\x02\rApi::Open::V1b\x06proto3"
 
 var (
 	file_api_open_v1_manifest_proto_rawDescOnce sync.Once

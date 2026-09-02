@@ -342,8 +342,8 @@ const file_api_open_v1_client_proto_rawDesc = "" +
 	"\x10_logo_dark_asset2\xa0\x01\n" +
 	"\rClientService\x12D\n" +
 	"\x03Get\x12\x1d.api.open.v1.GetClientRequest\x1a\x1e.api.open.v1.GetClientResponse\x12I\n" +
-	"\x04List\x12\x1f.api.open.v1.ListClientsRequest\x1a .api.open.v1.ListClientsResponseB\xa7\x01\n" +
-	"\x0fcom.api.open.v1B\vClientProtoP\x01Z9github.com/echovisionlab/geul-event-contracts/gen/api/open/v1;openv1\xa2\x02\x03AOX\xaa\x02\vApi.Open.V1\xca\x02\vApi\\Open\\V1\xe2\x02\x17Api\\Open\\V1\\GPBMetadata\xea\x02\rApi::Open::V1b\x06proto3"
+	"\x04List\x12\x1f.api.open.v1.ListClientsRequest\x1a .api.open.v1.ListClientsResponseB\xb2\x01\n" +
+	"\x0fcom.api.open.v1B\vClientProtoP\x01ZDgithub.com/echovisionlab/geul-event-contracts/gen/api/open/v1;openv1\xa2\x02\x03AOX\xaa\x02\vApi.Open.V1\xca\x02\vApi\\Open\\V1\xe2\x02\x17Api\\Open\\V1\\GPBMetadata\xea\x02\rApi::Open::V1b\x06proto3"
 
 var (
 	file_api_open_v1_client_proto_rawDescOnce sync.Once

@@ -1895,8 +1895,8 @@ const file_api_manage_v1_series_proto_rawDesc = "" +
 	"\x12AssignPostToSeries\x12(.api.manage.v1.AssignPostToSeriesRequest\x1a\x1d.api.manage.v1.DeleteResponse\"\x06\xca\xf3\x18\x02\b\x02\x12m\n" +
 	"\x16UnassignPostFromSeries\x12,.api.manage.v1.UnassignPostFromSeriesRequest\x1a\x1d.api.manage.v1.DeleteResponse\"\x06\xca\xf3\x18\x02\b\x02\x12e\n" +
 	"\x12ReorderSeriesPosts\x12(.api.manage.v1.ReorderSeriesPostsRequest\x1a\x1d.api.manage.v1.DeleteResponse\"\x06\xca\xf3\x18\x02\b\x02\x12\x83\x01\n" +
-	"\x18CheckSeriesSlugAvailable\x12..api.manage.v1.CheckSeriesSlugAvailableRequest\x1a/.api.manage.v1.CheckSeriesSlugAvailableResponse\"\x06\xca\xf3\x18\x02\b\x02B\xb5\x01\n" +
-	"\x11com.api.manage.v1B\vSeriesProtoP\x01Z=github.com/echovisionlab/geul-event-contracts/gen/api/manage/v1;managev1\xa2\x02\x03AMX\xaa\x02\rApi.Manage.V1\xca\x02\rApi\\Manage\\V1\xe2\x02\x19Api\\Manage\\V1\\GPBMetadata\xea\x02\x0fApi::Manage::V1b\x06proto3"
+	"\x18CheckSeriesSlugAvailable\x12..api.manage.v1.CheckSeriesSlugAvailableRequest\x1a/.api.manage.v1.CheckSeriesSlugAvailableResponse\"\x06\xca\xf3\x18\x02\b\x02B\xc0\x01\n" +
+	"\x11com.api.manage.v1B\vSeriesProtoP\x01ZHgithub.com/echovisionlab/geul-event-contracts/gen/api/manage/v1;managev1\xa2\x02\x03AMX\xaa\x02\rApi.Manage.V1\xca\x02\rApi\\Manage\\V1\xe2\x02\x19Api\\Manage\\V1\\GPBMetadata\xea\x02\x0fApi::Manage::V1b\x06proto3"
 
 var (
 	file_api_manage_v1_series_proto_rawDescOnce sync.Once

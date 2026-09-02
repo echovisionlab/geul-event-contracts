@@ -1372,8 +1372,8 @@ const file_api_open_v1_artist_proto_rawDesc = "" +
 	"\x04List\x12\x1f.api.open.v1.ListArtistsRequest\x1a .api.open.v1.ListArtistsResponse\x12D\n" +
 	"\x03Get\x12\x1d.api.open.v1.GetArtistRequest\x1a\x1e.api.open.v1.GetArtistResponse\x12\\\n" +
 	"\vGetReleases\x12%.api.open.v1.GetArtistReleasesRequest\x1a&.api.open.v1.GetArtistReleasesResponse\x12S\n" +
-	"\bGetWorks\x12\".api.open.v1.GetArtistWorksRequest\x1a#.api.open.v1.GetArtistWorksResponseB\xa7\x01\n" +
-	"\x0fcom.api.open.v1B\vArtistProtoP\x01Z9github.com/echovisionlab/geul-event-contracts/gen/api/open/v1;openv1\xa2\x02\x03AOX\xaa\x02\vApi.Open.V1\xca\x02\vApi\\Open\\V1\xe2\x02\x17Api\\Open\\V1\\GPBMetadata\xea\x02\rApi::Open::V1b\x06proto3"
+	"\bGetWorks\x12\".api.open.v1.GetArtistWorksRequest\x1a#.api.open.v1.GetArtistWorksResponseB\xb2\x01\n" +
+	"\x0fcom.api.open.v1B\vArtistProtoP\x01ZDgithub.com/echovisionlab/geul-event-contracts/gen/api/open/v1;openv1\xa2\x02\x03AOX\xaa\x02\vApi.Open.V1\xca\x02\vApi\\Open\\V1\xe2\x02\x17Api\\Open\\V1\\GPBMetadata\xea\x02\rApi::Open::V1b\x06proto3"
 
 var (
 	file_api_open_v1_artist_proto_rawDescOnce sync.Once

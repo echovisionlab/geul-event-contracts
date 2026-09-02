@@ -1082,8 +1082,8 @@ const file_api_intra_v1_collaboration_proto_rawDesc = "" +
 	")InternalCollaborationAuthorizationService\x12s\n" +
 	"\x16AuthorizeCollaboration\x12+.api.intra.v1.AuthorizeCollaborationRequest\x1a,.api.intra.v1.AuthorizeCollaborationResponse2\xbd\x01\n" +
 	"!InternalCollaborationRelayService\x12\x97\x01\n" +
-	"\"RelayInteractiveAIDocumentMutation\x127.api.intra.v1.RelayInteractiveAIDocumentMutationRequest\x1a8.api.intra.v1.RelayInteractiveAIDocumentMutationResponseB\xb5\x01\n" +
-	"\x10com.api.intra.v1B\x12CollaborationProtoP\x01Z;github.com/echovisionlab/geul-event-contracts/gen/api/intra/v1;intrav1\xa2\x02\x03AIX\xaa\x02\fApi.Intra.V1\xca\x02\fApi\\Intra\\V1\xe2\x02\x18Api\\Intra\\V1\\GPBMetadata\xea\x02\x0eApi::Intra::V1b\x06proto3"
+	"\"RelayInteractiveAIDocumentMutation\x127.api.intra.v1.RelayInteractiveAIDocumentMutationRequest\x1a8.api.intra.v1.RelayInteractiveAIDocumentMutationResponseB\xc0\x01\n" +
+	"\x10com.api.intra.v1B\x12CollaborationProtoP\x01ZFgithub.com/echovisionlab/geul-event-contracts/gen/api/intra/v1;intrav1\xa2\x02\x03AIX\xaa\x02\fApi.Intra.V1\xca\x02\fApi\\Intra\\V1\xe2\x02\x18Api\\Intra\\V1\\GPBMetadata\xea\x02\x0eApi::Intra::V1b\x06proto3"
 
 var (
 	file_api_intra_v1_collaboration_proto_rawDescOnce sync.Once

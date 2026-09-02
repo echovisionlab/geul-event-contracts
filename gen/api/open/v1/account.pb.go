@@ -445,8 +445,8 @@ const file_api_open_v1_account_proto_rawDesc = "" +
 	"\x16ConfirmAccountDeletion\x12*.api.open.v1.ConfirmAccountDeletionRequest\x1a+.api.open.v1.ConfirmAccountDeletionResponse\x12n\n" +
 	"\x15CancelAccountDeletion\x12).api.open.v1.CancelAccountDeletionRequest\x1a*.api.open.v1.CancelAccountDeletionResponse\x12q\n" +
 	"\x16RequestAccountRecovery\x12*.api.open.v1.RequestAccountRecoveryRequest\x1a+.api.open.v1.RequestAccountRecoveryResponse\x12q\n" +
-	"\x16ConfirmAccountRecovery\x12*.api.open.v1.ConfirmAccountRecoveryRequest\x1a+.api.open.v1.ConfirmAccountRecoveryResponseB\xa8\x01\n" +
-	"\x0fcom.api.open.v1B\fAccountProtoP\x01Z9github.com/echovisionlab/geul-event-contracts/gen/api/open/v1;openv1\xa2\x02\x03AOX\xaa\x02\vApi.Open.V1\xca\x02\vApi\\Open\\V1\xe2\x02\x17Api\\Open\\V1\\GPBMetadata\xea\x02\rApi::Open::V1b\x06proto3"
+	"\x16ConfirmAccountRecovery\x12*.api.open.v1.ConfirmAccountRecoveryRequest\x1a+.api.open.v1.ConfirmAccountRecoveryResponseB\xb3\x01\n" +
+	"\x0fcom.api.open.v1B\fAccountProtoP\x01ZDgithub.com/echovisionlab/geul-event-contracts/gen/api/open/v1;openv1\xa2\x02\x03AOX\xaa\x02\vApi.Open.V1\xca\x02\vApi\\Open\\V1\xe2\x02\x17Api\\Open\\V1\\GPBMetadata\xea\x02\rApi::Open::V1b\x06proto3"
 
 var (
 	file_api_open_v1_account_proto_rawDescOnce sync.Once

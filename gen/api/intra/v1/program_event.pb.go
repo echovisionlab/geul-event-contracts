@@ -670,8 +670,8 @@ const file_api_intra_v1_program_event_proto_rawDesc = "" +
 	"\x1bInternalProgramEventService\x12\x88\x01\n" +
 	"\x1dLoadProgramEventBlockDocument\x122.api.intra.v1.LoadProgramEventBlockDocumentRequest\x1a3.api.intra.v1.LoadProgramEventBlockDocumentResponse\x12\x82\x01\n" +
 	"\x1bApplyProgramEventBlockBatch\x120.api.intra.v1.ApplyProgramEventBlockBatchRequest\x1a1.api.intra.v1.ApplyProgramEventBlockBatchResponse\x12\x91\x01\n" +
-	" UpdateProgramEventLocaleMetadata\x125.api.intra.v1.UpdateProgramEventLocaleMetadataRequest\x1a6.api.intra.v1.UpdateProgramEventLocaleMetadataResponseB\xb4\x01\n" +
-	"\x10com.api.intra.v1B\x11ProgramEventProtoP\x01Z;github.com/echovisionlab/geul-event-contracts/gen/api/intra/v1;intrav1\xa2\x02\x03AIX\xaa\x02\fApi.Intra.V1\xca\x02\fApi\\Intra\\V1\xe2\x02\x18Api\\Intra\\V1\\GPBMetadata\xea\x02\x0eApi::Intra::V1b\x06proto3"
+	" UpdateProgramEventLocaleMetadata\x125.api.intra.v1.UpdateProgramEventLocaleMetadataRequest\x1a6.api.intra.v1.UpdateProgramEventLocaleMetadataResponseB\xbf\x01\n" +
+	"\x10com.api.intra.v1B\x11ProgramEventProtoP\x01ZFgithub.com/echovisionlab/geul-event-contracts/gen/api/intra/v1;intrav1\xa2\x02\x03AIX\xaa\x02\fApi.Intra.V1\xca\x02\fApi\\Intra\\V1\xe2\x02\x18Api\\Intra\\V1\\GPBMetadata\xea\x02\x0eApi::Intra::V1b\x06proto3"
 
 var (
 	file_api_intra_v1_program_event_proto_rawDescOnce sync.Once

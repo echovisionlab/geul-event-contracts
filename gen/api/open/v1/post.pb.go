@@ -1571,8 +1571,8 @@ const file_api_open_v1_post_proto_rawDesc = "" +
 	"\x03Get\x12\x1b.api.open.v1.GetPostRequest\x1a\x1c.api.open.v1.GetPostResponse\x12E\n" +
 	"\x04List\x12\x1d.api.open.v1.ListPostsRequest\x1a\x1e.api.open.v1.ListPostsResponse\x12d\n" +
 	"\x0fListMapFeatures\x12'.api.open.v1.ListPostMapFeaturesRequest\x1a(.api.open.v1.ListPostMapFeaturesResponse\x12K\n" +
-	"\x06Search\x12\x1f.api.open.v1.SearchPostsRequest\x1a .api.open.v1.SearchPostsResponseB\xa5\x01\n" +
-	"\x0fcom.api.open.v1B\tPostProtoP\x01Z9github.com/echovisionlab/geul-event-contracts/gen/api/open/v1;openv1\xa2\x02\x03AOX\xaa\x02\vApi.Open.V1\xca\x02\vApi\\Open\\V1\xe2\x02\x17Api\\Open\\V1\\GPBMetadata\xea\x02\rApi::Open::V1b\x06proto3"
+	"\x06Search\x12\x1f.api.open.v1.SearchPostsRequest\x1a .api.open.v1.SearchPostsResponseB\xb0\x01\n" +
+	"\x0fcom.api.open.v1B\tPostProtoP\x01ZDgithub.com/echovisionlab/geul-event-contracts/gen/api/open/v1;openv1\xa2\x02\x03AOX\xaa\x02\vApi.Open.V1\xca\x02\vApi\\Open\\V1\xe2\x02\x17Api\\Open\\V1\\GPBMetadata\xea\x02\rApi::Open::V1b\x06proto3"
 
 var (
 	file_api_open_v1_post_proto_rawDescOnce sync.Once

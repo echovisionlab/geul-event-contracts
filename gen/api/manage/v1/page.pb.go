@@ -1642,8 +1642,8 @@ const file_api_manage_v1_page_proto_rawDesc = "" +
 	"\x17DeletePageFeaturedImage\x12-.api.manage.v1.DeletePageFeaturedImageRequest\x1a$.api.manage.v1.OgAssetDeleteResponse\"\x06\xca\xf3\x18\x02\b\x04\x12}\n" +
 	"\x16CheckPageSlugAvailable\x12,.api.manage.v1.CheckPageSlugAvailableRequest\x1a-.api.manage.v1.CheckPageSlugAvailableResponse\"\x06\xca\xf3\x18\x02\b\x04\x12k\n" +
 	"\x10ListPageVersions\x12&.api.manage.v1.ListPageVersionsRequest\x1a'.api.manage.v1.ListPageVersionsResponse\"\x06\xca\xf3\x18\x02\b\x04\x12[\n" +
-	"\x12RestorePageVersion\x12(.api.manage.v1.RestorePageVersionRequest\x1a\x13.api.manage.v1.Page\"\x06\xca\xf3\x18\x02\b\x04B\xb3\x01\n" +
-	"\x11com.api.manage.v1B\tPageProtoP\x01Z=github.com/echovisionlab/geul-event-contracts/gen/api/manage/v1;managev1\xa2\x02\x03AMX\xaa\x02\rApi.Manage.V1\xca\x02\rApi\\Manage\\V1\xe2\x02\x19Api\\Manage\\V1\\GPBMetadata\xea\x02\x0fApi::Manage::V1b\x06proto3"
+	"\x12RestorePageVersion\x12(.api.manage.v1.RestorePageVersionRequest\x1a\x13.api.manage.v1.Page\"\x06\xca\xf3\x18\x02\b\x04B\xbe\x01\n" +
+	"\x11com.api.manage.v1B\tPageProtoP\x01ZHgithub.com/echovisionlab/geul-event-contracts/gen/api/manage/v1;managev1\xa2\x02\x03AMX\xaa\x02\rApi.Manage.V1\xca\x02\rApi\\Manage\\V1\xe2\x02\x19Api\\Manage\\V1\\GPBMetadata\xea\x02\x0fApi::Manage::V1b\x06proto3"
 
 var (
 	file_api_manage_v1_page_proto_rawDescOnce sync.Once

@@ -5255,8 +5255,8 @@ const file_api_manage_v1_file_proto_rawDesc = "" +
 	"\x1eListMeshOptimizationCandidates\x124.api.manage.v1.ListMeshOptimizationCandidatesRequest\x1a5.api.manage.v1.ListMeshOptimizationCandidatesResponse\"\x06\xca\xf3\x18\x02\b\x03\x12\x9e\x01\n" +
 	"!GenerateMeshOptimizationCandidate\x127.api.manage.v1.GenerateMeshOptimizationCandidateRequest\x1a8.api.manage.v1.GenerateMeshOptimizationCandidateResponse\"\x06\xca\xf3\x18\x02\b\x03\x12\x8f\x01\n" +
 	"\x1cUseMeshOptimizationCandidate\x122.api.manage.v1.UseMeshOptimizationCandidateRequest\x1a3.api.manage.v1.UseMeshOptimizationCandidateResponse\"\x06\xca\xf3\x18\x02\b\x03\x12\x98\x01\n" +
-	"\x1fClearMeshOptimizationCandidates\x125.api.manage.v1.ClearMeshOptimizationCandidatesRequest\x1a6.api.manage.v1.ClearMeshOptimizationCandidatesResponse\"\x06\xca\xf3\x18\x02\b\x03B\xb3\x01\n" +
-	"\x11com.api.manage.v1B\tFileProtoP\x01Z=github.com/echovisionlab/geul-event-contracts/gen/api/manage/v1;managev1\xa2\x02\x03AMX\xaa\x02\rApi.Manage.V1\xca\x02\rApi\\Manage\\V1\xe2\x02\x19Api\\Manage\\V1\\GPBMetadata\xea\x02\x0fApi::Manage::V1b\x06proto3"
+	"\x1fClearMeshOptimizationCandidates\x125.api.manage.v1.ClearMeshOptimizationCandidatesRequest\x1a6.api.manage.v1.ClearMeshOptimizationCandidatesResponse\"\x06\xca\xf3\x18\x02\b\x03B\xbe\x01\n" +
+	"\x11com.api.manage.v1B\tFileProtoP\x01ZHgithub.com/echovisionlab/geul-event-contracts/gen/api/manage/v1;managev1\xa2\x02\x03AMX\xaa\x02\rApi.Manage.V1\xca\x02\rApi\\Manage\\V1\xe2\x02\x19Api\\Manage\\V1\\GPBMetadata\xea\x02\x0fApi::Manage::V1b\x06proto3"
 
 var (
 	file_api_manage_v1_file_proto_rawDescOnce sync.Once

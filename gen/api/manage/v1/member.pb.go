@@ -2414,8 +2414,8 @@ const file_api_manage_v1_member_proto_rawDesc = "" +
 	"\x13ListMemberTagsAdmin\x12).api.manage.v1.ListMemberTagsAdminRequest\x1a*.api.manage.v1.ListMemberTagsAdminResponse\"\x06\xca\xf3\x18\x02\b\x04\x12Z\n" +
 	"\x0fCreateMemberTag\x12%.api.manage.v1.CreateMemberTagRequest\x1a\x18.api.manage.v1.MemberTag\"\x06\xca\xf3\x18\x02\b\x04\x12_\n" +
 	"\x0fDeleteMemberTag\x12%.api.manage.v1.DeleteMemberTagRequest\x1a\x1d.api.manage.v1.DeleteResponse\"\x06\xca\xf3\x18\x02\b\x04\x12X\n" +
-	"\rSetMemberTags\x12#.api.manage.v1.SetMemberTagsRequest\x1a\x1a.api.manage.v1.AdminMember\"\x06\xca\xf3\x18\x02\b\x04B\xb5\x01\n" +
-	"\x11com.api.manage.v1B\vMemberProtoP\x01Z=github.com/echovisionlab/geul-event-contracts/gen/api/manage/v1;managev1\xa2\x02\x03AMX\xaa\x02\rApi.Manage.V1\xca\x02\rApi\\Manage\\V1\xe2\x02\x19Api\\Manage\\V1\\GPBMetadata\xea\x02\x0fApi::Manage::V1b\x06proto3"
+	"\rSetMemberTags\x12#.api.manage.v1.SetMemberTagsRequest\x1a\x1a.api.manage.v1.AdminMember\"\x06\xca\xf3\x18\x02\b\x04B\xc0\x01\n" +
+	"\x11com.api.manage.v1B\vMemberProtoP\x01ZHgithub.com/echovisionlab/geul-event-contracts/gen/api/manage/v1;managev1\xa2\x02\x03AMX\xaa\x02\rApi.Manage.V1\xca\x02\rApi\\Manage\\V1\xe2\x02\x19Api\\Manage\\V1\\GPBMetadata\xea\x02\x0fApi::Manage::V1b\x06proto3"
 
 var (
 	file_api_manage_v1_member_proto_rawDescOnce sync.Once
