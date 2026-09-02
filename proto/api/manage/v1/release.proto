@@ -1,0 +1,286 @@
+syntax = "proto3";
+
+package api.manage.v1;
+
+import "api/common/v1/common.proto";
+import "api/common/v1/media.proto";
+import "api/content/v1/block_content.proto";
+import "api/manage/v1/common.proto";
+// Release entity
+import "api/policy/v1/access.proto";
+import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+
+// Release type enum
+enum ReleaseType {
+  RELEASE_TYPE_UNSPECIFIED = 0;
+  RELEASE_TYPE_ALBUM = 1;
+  RELEASE_TYPE_EP = 2;
+  RELEASE_TYPE_SINGLE = 3;
+  RELEASE_TYPE_COMPILATION = 4;
+}
+
+// Release status enum
+enum ReleaseStatus {
+  RELEASE_STATUS_UNSPECIFIED = 0;
+  RELEASE_STATUS_DRAFT = 1;
+  RELEASE_STATUS_PUBLISHED = 2;
+}
+
+message Release {
+  string id = 1;
+  string title = 2;
+  optional string slug = 3;
+  ReleaseType type = 4;
+  api.content.v1.RichTextDocument document = 5;
+  optional string catalog_number = 6;
+  optional google.protobuf.Timestamp release_date = 7;
+  string status = 8; // draft, published
+  google.protobuf.Timestamp published_at = 9;
+  google.protobuf.Timestamp created_at = 10;
+  google.protobuf.Timestamp updated_at = 11;
+  // Streaming URLs
+  optional string spotify_url = 12;
+  optional string apple_music_url = 13;
+  optional string bandcamp_url = 14;
+  optional string youtube_music_url = 15;
+  optional api.common.v1.AssetRef og_asset = 16;
+  optional api.common.v1.AssetRef artwork_asset = 17;
+  string revision = 18;
+  string source_locale = 19;
+}
+
+// Release with stats (for admin list)
+message ReleaseWithStats {
+  Release release = 1;
+  int32 track_count = 2;
+  int32 credit_count = 3;
+}
+
+// Request/Response messages
+
+message GetReleaseRequest {
+  string id = 1;
+}
+
+message ListReleasesAdminRequest {
+  api.common.v1.PaginationRequest pagination = 1;
+  repeated api.common.v1.FilterSpec filters = 2;
+  repeated api.common.v1.SortSpec sorts = 3;
+}
+
+message ListReleasesAdminResponse {
+  repeated ReleaseWithStats releases = 1;
+  api.common.v1.PaginationResponse pagination = 2;
+}
+
+message CreateReleaseRequest {
+  string title = 1;
+  optional string slug = 2;
+  ReleaseType type = 3;
+  // Optional initial source document. When omitted, the Release service creates an empty compact document atomically.
+  api.content.v1.RichTextDocument document = 4;
+  optional string catalog_number = 5;
+  optional google.protobuf.Timestamp release_date = 6;
+  optional string spotify_url = 7;
+  optional string apple_music_url = 8;
+  optional string bandcamp_url = 9;
+  optional string youtube_music_url = 10;
+  // Required initial source locale for the new Release.
+  string source_locale = 11;
+}
+
+message UpdateReleaseRequest {
+  string id = 1;
+  optional string slug = 2;
+  optional ReleaseType type = 3;
+  optional string catalog_number = 4;
+  oneof release_date_change {
+    google.protobuf.Timestamp set_release_date = 5;
+    google.protobuf.Empty clear_release_date = 6;
+  }
+  optional string spotify_url = 7;
+  optional string apple_music_url = 8;
+  optional string bandcamp_url = 9;
+  optional string youtube_music_url = 10;
+}
+
+message DeleteReleaseRequest {
+  string id = 1;
+}
+
+message PublishReleaseRequest {
+  string id = 1;
+}
+
+message UnpublishReleaseRequest {
+  string id = 1;
+}
+
+message UpdateReleaseResponse {
+  string id = 1;
+  bool changed = 2;
+  optional google.protobuf.Timestamp release_date = 3;
+  google.protobuf.Timestamp updated_at = 4;
+}
+
+message ReleaseLifecycleMutationResponse {
+  string id = 1;
+  bool changed = 2;
+  ReleaseStatus status = 3;
+  optional google.protobuf.Timestamp published_at = 4;
+  google.protobuf.Timestamp updated_at = 5;
+}
+
+// Artwork
+message SetReleaseArtworkRequest {
+  string release_id = 1;
+  string file_id = 2;
+}
+
+message SetReleaseArtworkResponse {
+  api.common.v1.AssetRef artwork_asset = 1;
+  optional string og_generation_run_id = 2;
+}
+
+message DeleteReleaseArtworkRequest {
+  string release_id = 1;
+}
+
+// Slug check
+
+message CheckReleaseSlugAvailableRequest {
+  string slug = 1;
+  optional string exclude_release_id = 2;
+}
+
+message CheckReleaseSlugAvailableResponse {
+  bool available = 1;
+}
+
+// Metadata Management (Admin or Editor)
+// These allow updating release relationships (labels, genres, styles, formats, credits)
+
+message ReleaseLabelInput {
+  string label_id = 1;
+  optional string catalog_number = 2;
+  int32 sort_order = 3;
+}
+
+message SetReleaseLabelsRequest {
+  string release_id = 1;
+  repeated ReleaseLabelInput labels = 2;
+}
+
+message SetReleaseCategoriesRequest {
+  string release_id = 1;
+  repeated string category_ids = 2;
+}
+
+message SetReleaseGenresRequest {
+  string release_id = 1;
+  repeated string genre_ids = 2;
+}
+
+message SetReleaseStylesRequest {
+  string release_id = 1;
+  repeated string style_ids = 2;
+}
+
+message ReleaseArtistInput {
+  string artist_id = 1;
+  int32 sort_order = 2;
+}
+
+message SetReleaseArtistsRequest {
+  string release_id = 1;
+  repeated ReleaseArtistInput artists = 2;
+}
+
+message ReleaseFormatInput {
+  string format_id = 1;
+  optional string format_description = 2;
+}
+
+message SetReleaseFormatsRequest {
+  string release_id = 1;
+  repeated ReleaseFormatInput formats = 2;
+}
+
+message ReleaseCreditInput {
+  optional string id = 1; // If not provided, a new ID will be generated
+  optional string artist_id = 2;
+  optional string member_id = 3;
+  optional string credited_name = 4;
+  optional string credit_role = 5;
+  int32 sort_order = 6;
+}
+
+message SetReleaseCreditsRequest {
+  string release_id = 1;
+  repeated ReleaseCreditInput credits = 2;
+}
+
+// Release Service (Admin/Editor operations only)
+// Public read access via api.open.v1.ReleaseService
+service ReleaseService {
+  // Read (authenticated - draft releases require editor permission)
+  rpc GetRelease(GetReleaseRequest) returns (Release) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  // Admin list (all statuses, with stats)
+  rpc ListReleasesAdmin(ListReleasesAdminRequest) returns (ListReleasesAdminResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc CreateRelease(CreateReleaseRequest) returns (Release) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc UpdateRelease(UpdateReleaseRequest) returns (UpdateReleaseResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc DeleteRelease(DeleteReleaseRequest) returns (DeleteResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc PublishRelease(PublishReleaseRequest) returns (ReleaseLifecycleMutationResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc UnpublishRelease(UnpublishReleaseRequest) returns (ReleaseLifecycleMutationResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+
+  // Artwork (Admin or Editor)
+  rpc SetReleaseArtwork(SetReleaseArtworkRequest) returns (SetReleaseArtworkResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc DeleteReleaseArtwork(DeleteReleaseArtworkRequest) returns (OgAssetDeleteResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+
+  // Utility
+  rpc CheckReleaseSlugAvailable(CheckReleaseSlugAvailableRequest) returns (CheckReleaseSlugAvailableResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+
+  // Metadata Management (Admin or Editor - requires edit permission)
+  rpc SetReleaseLabels(SetReleaseLabelsRequest) returns (SuccessResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc SetReleaseArtists(SetReleaseArtistsRequest) returns (SuccessResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc SetReleaseCategories(SetReleaseCategoriesRequest) returns (SuccessResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc SetReleaseGenres(SetReleaseGenresRequest) returns (SuccessResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc SetReleaseStyles(SetReleaseStylesRequest) returns (SuccessResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc SetReleaseFormats(SetReleaseFormatsRequest) returns (SuccessResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc SetReleaseCredits(SetReleaseCreditsRequest) returns (SuccessResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+}

@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package api.intra.v1;
+
+import "google/protobuf/struct.proto";
+
+option go_package = "github.com/echovisionlab/geul-event-contracts/gen/api/intra/v1;intrav1";
+
+// SendEmailRequest mirrors the pinned identity courier HTTP data model.
+message SendEmailRequest {
+  string recipient = 1;
+  string template_type = 2; // Provider selector normalized at the API boundary.
+  google.protobuf.Struct template_data = 3; // Contains variables like code, urls, identity info
+}
+
+message SendEmailResponse {
+  bool queued = 1; // Whether the email was successfully queued
+}
+
+// EmailCourierService - Internal service for receiving identity-provider courier requests
+// This endpoint is called by the identity provider's HTTP courier, not by external clients.
+// Protected by X-Internal-Service header authentication.
+service EmailCourierService {
+  // SendEmail receives email requests from the identity provider and queues them for processing
+  rpc SendEmail(SendEmailRequest) returns (SendEmailResponse);
+}

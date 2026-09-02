@@ -1,0 +1,188 @@
+syntax = "proto3";
+
+package api.intra.v1;
+
+import "api/common/v1/common.proto";
+import "api/manage/v1/ai.proto";
+
+option go_package = "github.com/echovisionlab/geul-event-contracts/gen/api/intra/v1;intrav1";
+
+enum CollaborationResourceType {
+  COLLABORATION_RESOURCE_TYPE_UNSPECIFIED = 0;
+  COLLABORATION_RESOURCE_TYPE_POST = 1;
+  COLLABORATION_RESOURCE_TYPE_WORK = 2;
+  COLLABORATION_RESOURCE_TYPE_RELEASE = 3;
+  COLLABORATION_RESOURCE_TYPE_LABEL = 4;
+  COLLABORATION_RESOURCE_TYPE_ARTIST = 5;
+  COLLABORATION_RESOURCE_TYPE_FORM = 6;
+  COLLABORATION_RESOURCE_TYPE_PAGE = 7;
+  COLLABORATION_RESOURCE_TYPE_CAMPAIGN = 8;
+  COLLABORATION_RESOURCE_TYPE_EMAIL_TEMPLATE = 9;
+  COLLABORATION_RESOURCE_TYPE_EMAIL_LAYOUT = 10;
+  COLLABORATION_RESOURCE_TYPE_TERMS_HISTORY = 11;
+  COLLABORATION_RESOURCE_TYPE_PRIVACY_HISTORY = 12;
+  COLLABORATION_RESOURCE_TYPE_MAP_THEME = 13;
+  COLLABORATION_RESOURCE_TYPE_PROGRAM_EVENT = 14;
+  COLLABORATION_RESOURCE_TYPE_MENU = 15;
+  COLLABORATION_RESOURCE_TYPE_POST_SERIES = 16;
+}
+
+// Closed collaboration permissions distinguish room admission from durable
+// mutation. VIEW admits a canonical read-only room; EDIT is rechecked before
+// value mutations, while MANAGE is used only by owning APIs for reviewed
+// structural mutations. The owning API remains the final lifecycle fence.
+// Callers cannot submit arbitrary authorization relation names.
+enum CollaborationPermission {
+  COLLABORATION_PERMISSION_UNSPECIFIED = 0;
+  COLLABORATION_PERMISSION_EDIT = 1;
+  COLLABORATION_PERMISSION_VIEW = 2;
+  COLLABORATION_PERMISSION_MANAGE = 3;
+}
+
+// Distinguishes an invalid authentication principal from a valid principal
+// that no longer has access to the requested collaborative resource.
+enum CollaborationAuthorizationDenialReason {
+  COLLABORATION_AUTHORIZATION_DENIAL_REASON_UNSPECIFIED = 0;
+  COLLABORATION_AUTHORIZATION_DENIAL_REASON_SESSION_INVALID = 1;
+  COLLABORATION_AUTHORIZATION_DENIAL_REASON_PERMISSION_DENIED = 2;
+}
+
+// Stable machine classification for a collaboration CAS rejection. The
+// accompanying Connect error message is diagnostic only; consumers branch on
+// this enum and never on hashes, locale values, or human-readable text.
+enum CollaborationConflictReason {
+  COLLABORATION_CONFLICT_REASON_UNSPECIFIED = 0;
+  COLLABORATION_CONFLICT_REASON_LOCALE_OWNERSHIP_CHANGED = 1;
+  reserved 2, 3, 4;
+  reserved "COLLABORATION_CONFLICT_REASON_SOURCE_REVISION_CHANGED", "COLLABORATION_CONFLICT_REASON_SHARED_STRUCTURE_CHANGED", "COLLABORATION_CONFLICT_REASON_SHARED_MATERIALIZATION_CHANGED";
+  COLLABORATION_CONFLICT_REASON_DOCUMENT_REVISION_CHANGED = 5;
+  COLLABORATION_CONFLICT_REASON_TARGET_REVISION_CHANGED = 6;
+}
+
+// Attached as a Connect error detail to a FAILED_PRECONDITION response from a
+// collaboration persistence boundary.
+// geul-contract-root: connect-error-detail
+message CollaborationConflictDetail {
+  CollaborationConflictReason reason = 1;
+}
+
+// Stable machine classification for an INVALID_ARGUMENT rejection before a
+// collaboration mutation reaches persistence. Consumers branch on this enum,
+// never on human-readable error text.
+enum CollaborationMutationRejectionReason {
+  COLLABORATION_MUTATION_REJECTION_REASON_UNSPECIFIED = 0;
+  COLLABORATION_MUTATION_REJECTION_REASON_NON_SOURCE_STRUCTURE_FORBIDDEN = 1;
+  COLLABORATION_MUTATION_REJECTION_REASON_ROOM_LOCALE_MISMATCH = 2;
+  COLLABORATION_MUTATION_REJECTION_REASON_NON_SOURCE_SHARED_FIELD_FORBIDDEN = 3;
+  COLLABORATION_MUTATION_REJECTION_REASON_NON_SOURCE_FILE_RELATION_FORBIDDEN = 4;
+  COLLABORATION_MUTATION_REJECTION_REASON_NON_SOURCE_DOCUMENT_METADATA_FORBIDDEN = 5;
+}
+
+// Attached as a Connect error detail to an INVALID_ARGUMENT response from a
+// collaboration mutation boundary.
+// geul-contract-root: connect-error-detail
+message CollaborationMutationRejectionDetail {
+  CollaborationMutationRejectionReason reason = 1;
+}
+
+// Canonical collaboration ingress. Oathkeeper supplies only the authenticated
+// session ID; the API resolves that session to its account_identity and uses
+// that resolved UUID as the SpiceDB subject. Derived identity and Member IDs
+// are not caller-authored request fields.
+message CollaborationPrincipal {
+  string session_id = 1;
+}
+
+// Closed nullable-string mutation used by document metadata RPCs. Absence
+// means no change; set and clear are explicit and cannot be confused with an
+// empty string or a stringly-typed patch path.
+message NullableStringMutation {
+  oneof operation {
+    string set = 1;
+    bool clear = 2;
+  }
+}
+
+// Exact domain resource and canonical locale requested by the editor. The ID
+// is the canonical UUID of the selected resource, not a serialized
+// authorization object or tuple. Locale is required application data: callers
+// must send the canonical locale and the API never derives or falls back to a
+// source/default locale.
+message CollaborationResource {
+  CollaborationResourceType type = 1;
+  string id = 2;
+  string locale = 3;
+}
+
+message AuthorizeCollaborationRequest {
+  CollaborationPrincipal principal = 1;
+  CollaborationResource resource = 2;
+  CollaborationPermission permission = 3;
+}
+
+message AuthorizeCollaborationResponse {
+  bool authorized = 1;
+  optional api.common.v1.MemberSummary member = 2;
+  CollaborationAuthorizationDenialReason denial_reason = 3;
+  // The canonical locale actually authorized by the owning API. Collab must
+  // reject admission when it differs from CollaborationResource.locale.
+  string locale = 4;
+}
+
+// Closed interactive origins for the shared provider-neutral AIDocument facade.
+// Generic human collaboration applies and delayed TranslationJob delivery do
+// not use this relay.
+enum InteractiveAIDocumentMutationOrigin {
+  INTERACTIVE_AI_DOCUMENT_MUTATION_ORIGIN_UNSPECIFIED = 0;
+  INTERACTIVE_AI_DOCUMENT_MUTATION_ORIGIN_IN_EDITOR_AI = 1;
+  INTERACTIVE_AI_DOCUMENT_MUTATION_ORIGIN_MCP = 2;
+}
+
+// Relays one exact accepted interactive mutation into an already resident
+// locale room. The API calls this only after an owning-domain database mutation
+// returns changed=true and its transaction commits. Relay failure never rolls
+// that mutation back; Collab converges by reloading the authoritative canonical
+// document.
+//
+// AIDocument is the shared provider-neutral facade, not an AI-provider
+// classification. The request contains neither durable history nor an inverse,
+// session, prompt, PAT, or TranslationJob identity.
+message RelayInteractiveAIDocumentMutationRequest {
+  // Server-generated one-shot identity for this accepted changed transaction.
+  string mutation_id = 1;
+  InteractiveAIDocumentMutationOrigin origin = 2;
+  api.manage.v1.AIDocumentReference document = 3;
+  api.manage.v1.AIDocumentLocale locale = 4;
+  string expected_document_revision = 5;
+  // Target-only relays preserve expected_document_revision; source/shared
+  // relays may advance it.
+  string accepted_document_revision = 6;
+  // Exact normalized operations actually committed by the owning domain, not
+  // the unvalidated request payload.
+  repeated api.manage.v1.AIDocumentOperation operations = 7;
+  // Authenticated Member attributed to the accepted interactive mutation.
+  string actor_member_id = 8;
+  // Present before an existing non-source target value write or delete. Absent
+  // for source mutations and missing-target create/first-write.
+  optional string expected_target_revision = 9;
+  // Present after an accepted non-source create or value write. Absent for
+  // source mutations and after accepted target deletion.
+  optional string accepted_target_revision = 10;
+}
+
+message RelayInteractiveAIDocumentMutationResponse {}
+
+// InternalCollaborationAuthorizationService is the only boundary through
+// which editor-collab converts a gateway-verified Kratos principal into a
+// document context. The API resolves the account_identity/Member link and
+// validates the exact domain resource permission.
+service InternalCollaborationAuthorizationService {
+  rpc AuthorizeCollaboration(AuthorizeCollaborationRequest) returns (AuthorizeCollaborationResponse);
+}
+
+// InternalCollaborationRelayService is hosted by editor-collab. It receives
+// best-effort post-commit deltas from API for resident rooms and owns no durable
+// mutation history, retry ledger, or document authority.
+service InternalCollaborationRelayService {
+  rpc RelayInteractiveAIDocumentMutation(RelayInteractiveAIDocumentMutationRequest) returns (RelayInteractiveAIDocumentMutationResponse);
+}

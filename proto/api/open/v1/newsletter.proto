@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package api.open.v1;
+
+option go_package = "github.com/echovisionlab/geul-event-contracts/gen/api/open/v1;openv1";
+
+// NewsletterService exposes only the signed, token-authorized unsubscribe
+// boundary. Newsletter opt-in requires an authenticated identity.
+service NewsletterService {
+  rpc Unsubscribe(UnsubscribeNewsletterRequest) returns (UnsubscribeNewsletterResponse);
+}
+
+message UnsubscribeNewsletterRequest {
+  string token = 1;
+}
+
+message UnsubscribeNewsletterResponse {
+  bool success = 1;
+}

@@ -1,0 +1,308 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions: {}
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    name: Validate
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          clean: true
+          fetch-depth: 0
+          persist-credentials: false
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+
+      - name: Classify release metadata
+        id: scope
+        shell: bash
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          HEAD_REF: ${{ github.head_ref }}
+        run: |
+          set -euo pipefail
+
+          run_full=true
+          reason="full validation is required"
+
+          if [ "${GITHUB_EVENT_NAME}" = "pull_request" ] \
+            && [[ "${HEAD_REF}" = release-please--* ]] \
+            && [ -n "${BASE_SHA}" ] \
+            && [ -n "${HEAD_SHA}" ]; then
+            changed_files="$(git diff --name-only "${BASE_SHA}...${HEAD_SHA}")"
+            metadata_only=true
+
+            if [ -z "${changed_files}" ]; then
+              metadata_only=false
+            fi
+
+            while IFS= read -r path; do
+              case "${path}" in
+                .release-please-manifest.json|CHANGELOG.md|package.json|packages/event/package.json|packages/proto/package.json) ;;
+                *) metadata_only=false ;;
+              esac
+            done <<< "${changed_files}"
+
+            if [ "${metadata_only}" = "true" ] && ! python3 - "${BASE_SHA}" "${HEAD_SHA}" <<'PY'
+          import json
+          import subprocess
+          import sys
+
+          base_sha, head_sha = sys.argv[1:]
+          package_paths = (
+              "package.json",
+              "packages/event/package.json",
+              "packages/proto/package.json",
+          )
+
+          def read_json(revision, path):
+              return json.loads(subprocess.check_output(["git", "show", f"{revision}:{path}"], text=True))
+
+          base_versions = []
+          head_versions = []
+          for path in package_paths:
+              base_package = read_json(base_sha, path)
+              head_package = read_json(head_sha, path)
+              base_versions.append(base_package.pop("version", None))
+              head_versions.append(head_package.pop("version", None))
+              if not isinstance(base_versions[-1], str) or not isinstance(head_versions[-1], str):
+                  raise SystemExit(1)
+              if base_package != head_package:
+                  raise SystemExit(1)
+
+          if len(set(base_versions)) != 1 or len(set(head_versions)) != 1 or base_versions == head_versions:
+              raise SystemExit(1)
+
+          base_manifest = read_json(base_sha, ".release-please-manifest.json")
+          head_manifest = read_json(head_sha, ".release-please-manifest.json")
+          if set(base_manifest) != set(head_manifest) or set(head_manifest) != {"."}:
+              raise SystemExit(1)
+          PY
+            then
+              metadata_only=false
+            fi
+
+            if [ "${metadata_only}" = "true" ]; then
+              run_full=false
+              reason="Release Please metadata-only pull request"
+            fi
+          fi
+
+          echo "run_full=${run_full}" >> "${GITHUB_OUTPUT}"
+          echo "reason=${reason}" >> "${GITHUB_OUTPUT}"
+          {
+            echo "### CI scope"
+            echo
+            echo "${reason}."
+          } >> "${GITHUB_STEP_SUMMARY}"
+
+      - name: Set up pnpm
+        if: steps.scope.outputs.run_full == 'true'
+        uses: pnpm/action-setup@0977fd99725f1db4007ccb2928dbb4e90d06cc86 # v6.0.10
+        with:
+          version: 11.22.0
+          run_install: false
+
+      - name: Set up Node.js
+        if: steps.scope.outputs.run_full == 'true'
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 24.19.0
+          package-manager-cache: false
+
+      - name: Install dependencies
+        if: steps.scope.outputs.run_full == 'true'
+        run: pnpm install --frozen-lockfile
+
+      - name: Check Prettier formatting
+        if: steps.scope.outputs.run_full == 'true'
+        run: pnpm format:check:prettier
+
+      - name: Set up Buf
+        if: steps.scope.outputs.run_full == 'true'
+        env:
+          BUF_VERSION: v1.71.0
+          BUF_SHA256: d3de2838c68a5759ca276884254bc70df4e4ad185d6ed5f65f327b6ce6363eab
+        run: |
+          set -euo pipefail
+          buf_dir="${RUNNER_TOOL_CACHE}/buf/${BUF_VERSION}/x64"
+          buf_path="${buf_dir}/buf"
+          if [ -x "${buf_path}" ] && echo "${BUF_SHA256}  ${buf_path}" | sha256sum -c - >/dev/null 2>&1; then
+            echo "Using cached Buf ${BUF_VERSION}."
+          else
+            download_path="$(mktemp "${RUNNER_TEMP}/buf.XXXXXX")"
+            trap 'rm -f "${download_path}"' EXIT
+            curl -sSfL "https://github.com/bufbuild/buf/releases/download/${BUF_VERSION}/buf-Linux-x86_64" -o "${download_path}"
+            echo "${BUF_SHA256}  ${download_path}" | sha256sum -c -
+            install -d "${buf_dir}"
+            install -m 0755 "${download_path}" "${buf_path}"
+          fi
+          echo "${buf_dir}" >> "${GITHUB_PATH}"
+          "${buf_path}" --version
+
+      - name: Set up Go
+        if: steps.scope.outputs.run_full == 'true'
+        uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
+        with:
+          go-version-file: go.mod
+          cache: false
+
+      - name: Check Go formatting
+        if: steps.scope.outputs.run_full == 'true'
+        run: pnpm format:check:go
+
+      - name: Lint Protobuf definitions
+        if: steps.scope.outputs.run_full == 'true'
+        run: pnpm proto:lint
+
+      - name: Clean generated Protobuf output
+        if: steps.scope.outputs.run_full == 'true'
+        run: pnpm proto:clean
+
+      - name: Generate block catalog Protobuf input
+        if: steps.scope.outputs.run_full == 'true'
+        run: pnpm block-catalog:proto
+
+      - name: Generate Protobuf bindings
+        if: steps.scope.outputs.run_full == 'true'
+        run: pnpm proto:generate
+
+      - name: Format generated TypeScript bindings
+        if: steps.scope.outputs.run_full == 'true'
+        run: pnpm proto:format
+
+      - name: Normalize generated TypeScript bindings
+        if: steps.scope.outputs.run_full == 'true'
+        run: pnpm proto:normalize
+
+      - name: Generate SpiceDB catalog
+        if: steps.scope.outputs.run_full == 'true'
+        run: pnpm spicedb:generate
+
+      - name: Format generated SpiceDB Go catalog
+        if: steps.scope.outputs.run_full == 'true'
+        run: pnpm spicedb:format
+
+      - name: Generate catalog bindings
+        if: steps.scope.outputs.run_full == 'true'
+        run: pnpm catalogs:generate
+
+      - name: Generate Collaboration relay validation
+        if: steps.scope.outputs.run_full == 'true'
+        run: pnpm collaboration-relay:generate
+
+      - name: Generate AsyncAPI Go bindings
+        if: steps.scope.outputs.run_full == 'true'
+        run: pnpm asyncapi:generate:go
+
+      - name: Generate AsyncAPI TypeScript bindings
+        if: steps.scope.outputs.run_full == 'true'
+        run: pnpm asyncapi:generate:ts
+
+      - name: Remove AsyncAPI generator cache
+        if: steps.scope.outputs.run_full == 'true'
+        run: pnpm asyncapi:clean
+
+      - name: Format generated AsyncAPI Go bindings
+        if: steps.scope.outputs.run_full == 'true'
+        run: pnpm asyncapi:format:go
+
+      - name: Format generated AsyncAPI TypeScript bindings
+        if: steps.scope.outputs.run_full == 'true'
+        run: pnpm asyncapi:format:ts
+
+      - name: Normalize generated AsyncAPI TypeScript bindings
+        if: steps.scope.outputs.run_full == 'true'
+        run: pnpm asyncapi:normalize
+
+      - name: Check tracked generated files
+        if: steps.scope.outputs.run_full == 'true'
+        run: git diff --exit-code -- proto gen packages/proto/gen packages/event/src/generated.ts go/event/constants.go go/event/pgmq.go go/event/routing_keys.go go/event/translation_source.go go/collaboration/interactive_mutation.go config/spicedb/schema.generated.zed
+
+      - name: Check untracked generated files
+        if: steps.scope.outputs.run_full == 'true'
+        run: |
+          untracked="$(git ls-files --others --exclude-standard -- gen packages/proto/gen packages/event/src/generated.ts go/event go/collaboration config/spicedb/schema.generated.zed)"
+          if [ -n "${untracked}" ]; then
+            printf '%s\n' "${untracked}"
+            exit 1
+          fi
+
+      - name: Audit contract consumers
+        if: steps.scope.outputs.run_full == 'true'
+        run: pnpm check:contracts
+
+      - name: Typecheck Protobuf package
+        if: steps.scope.outputs.run_full == 'true'
+        run: pnpm typecheck:proto
+
+      - name: Typecheck event package
+        if: steps.scope.outputs.run_full == 'true'
+        run: pnpm typecheck:event
+
+      - name: Lint Protobuf package
+        if: steps.scope.outputs.run_full == 'true'
+        run: pnpm lint:proto
+
+      - name: Lint event package
+        if: steps.scope.outputs.run_full == 'true'
+        run: pnpm lint:event
+
+      - name: Run TypeScript tests with coverage
+        if: steps.scope.outputs.run_full == 'true'
+        run: pnpm test:coverage
+
+      - name: Detect unused TypeScript code
+        if: steps.scope.outputs.run_full == 'true'
+        run: pnpm deadcode
+
+      - name: Verify generated-only Go ownership
+        if: steps.scope.outputs.run_full == 'true'
+        run: |
+          handwritten="$(find . -type f -name '*.go' -not -name '*_test.go' -not -path './gen/*' -not -path './node_modules/*' -not -path './vendor/*' -exec sh -c 'for file do head -n 2 "$file" | grep -q "^// Code generated .* DO NOT EDIT\\.$" || printf "%s\\n" "$file"; done' sh {} +)"
+          if [ -n "${handwritten}" ]; then
+            printf '%s\n' "${handwritten}" >&2
+            exit 1
+          fi
+
+      - name: Run Go tests
+        if: steps.scope.outputs.run_full == 'true'
+        run: go test -count=1 ./...
+
+      - name: Run Go vet
+        if: steps.scope.outputs.run_full == 'true'
+        run: go vet ./...
+
+      - name: Run staticcheck
+        if: steps.scope.outputs.run_full == 'true'
+        run: go run honnef.co/go/tools/cmd/staticcheck@v0.7.0 ./...
+
+      - name: Detect dead Go code
+        if: steps.scope.outputs.run_full == 'true'
+        run: |
+          set +e
+          output="$(go run golang.org/x/tools/cmd/deadcode@v0.48.0 -test ./... 2>&1)"
+          status=$?
+          set -e
+          analysis="$(printf '%s\n' "${output}" | sed '/^go: downloading /d')"
+          if [ "${status}" -ne 0 ] && [[ "${analysis}" == *"deadcode: no main packages"* ]]; then
+            exit 0
+          fi
+          if [ "${status}" -ne 0 ] || [ -n "${analysis}" ]; then
+            printf '%s\n' "${analysis}" >&2
+            exit 1
+          fi

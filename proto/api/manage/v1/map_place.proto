@@ -1,0 +1,137 @@
+syntax = "proto3";
+
+package api.manage.v1;
+
+import "api/common/v1/common.proto";
+import "api/common/v1/media.proto";
+import "api/manage/v1/common.proto";
+// Address components parsed from geocoding service
+import "api/policy/v1/access.proto";
+import "google/protobuf/timestamp.proto";
+
+message AddressComponents {
+  optional string street = 1;
+  optional string city = 2;
+  optional string region = 3;
+  optional string country = 4;
+  optional string postal_code = 5;
+}
+
+// Full MapPlace entity
+message MapPlace {
+  string id = 1;
+  string name = 2;
+  string address = 3;
+  double lat = 4;
+  double lng = 5;
+  optional AddressComponents address_components = 6;
+  optional string image_file_id = 7;
+  google.protobuf.Timestamp created_at = 8;
+  google.protobuf.Timestamp updated_at = 9;
+  optional string google_place_id = 10;
+  optional api.common.v1.AssetRef image_asset = 11;
+  optional string created_by_member_id = 12;
+  optional string updated_by_member_id = 13;
+  optional api.common.v1.MemberSummary created_by_member = 14;
+  optional api.common.v1.MemberSummary updated_by_member = 15;
+}
+
+// Basic MapPlace info for dropdowns
+message MapPlaceBasic {
+  string id = 1;
+  string name = 2;
+  string address = 3;
+  double lat = 4;
+  double lng = 5;
+  optional string google_place_id = 6;
+}
+
+// Request/Response messages
+
+// Public endpoints
+message GetMapPlaceRequest {
+  string id = 1;
+}
+
+message GetMapPlacesByIdsRequest {
+  repeated string ids = 1;
+}
+
+message GetMapPlacesByIdsResponse {
+  repeated MapPlace places = 1;
+}
+
+message SearchMapPlacesRequest {
+  string query = 1;
+  int32 limit = 2;
+}
+
+message SearchMapPlacesResponse {
+  repeated MapPlaceBasic places = 1;
+}
+
+// Admin endpoints
+message ListMapPlacesAdminRequest {
+  api.common.v1.PaginationRequest pagination = 1;
+  repeated api.common.v1.FilterSpec filters = 2;
+  repeated api.common.v1.SortSpec sorts = 3;
+}
+
+message ListMapPlacesAdminResponse {
+  repeated MapPlace places = 1;
+  api.common.v1.PaginationResponse pagination = 2;
+}
+
+message CreateMapPlaceRequest {
+  string name = 1;
+  string address = 2;
+  double lat = 3;
+  double lng = 4;
+  optional AddressComponents address_components = 5;
+  optional string image_file_id = 6;
+  optional string google_place_id = 7;
+}
+
+message UpdateMapPlaceRequest {
+  string id = 1;
+  optional string name = 2;
+  optional string address = 3;
+  optional double lat = 4;
+  optional double lng = 5;
+  optional AddressComponents address_components = 6;
+  optional string image_file_id = 7;
+  bool clear_image = 8; // Set to true to remove the image
+  optional string google_place_id = 9; // Empty string clears the Google Places link.
+}
+
+message DeleteMapPlaceRequest {
+  string id = 1;
+}
+
+// MapPlace Service
+service MapPlaceService {
+  // Public
+  rpc GetMapPlace(GetMapPlaceRequest) returns (MapPlace) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+  rpc GetMapPlacesByIds(GetMapPlacesByIdsRequest) returns (GetMapPlacesByIdsResponse) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+  rpc SearchMapPlaces(SearchMapPlacesRequest) returns (SearchMapPlacesResponse) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+
+  // Admin
+  rpc ListMapPlacesAdmin(ListMapPlacesAdminRequest) returns (ListMapPlacesAdminResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc CreateMapPlace(CreateMapPlaceRequest) returns (MapPlace) {
+    option (api.policy.v1.access) = {role: AUTHOR};
+  }
+  rpc UpdateMapPlace(UpdateMapPlaceRequest) returns (MapPlace) {
+    option (api.policy.v1.access) = {role: AUTHOR};
+  }
+  rpc DeleteMapPlace(DeleteMapPlaceRequest) returns (DeleteResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+}

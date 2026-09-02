@@ -1,0 +1,368 @@
+syntax = "proto3";
+
+package api.manage.v1;
+
+import "api/common/v1/common.proto";
+import "api/common/v1/media.proto";
+import "api/content/v1/block_content.proto";
+import "api/manage/v1/category.proto";
+import "api/manage/v1/common.proto";
+import "api/manage/v1/series.proto";
+import "api/manage/v1/tag.proto";
+// Minimal author info for post listing
+import "api/policy/v1/access.proto";
+import "google/protobuf/timestamp.proto";
+
+// Post status enum
+enum PostStatus {
+  POST_STATUS_UNSPECIFIED = 0;
+  POST_STATUS_DRAFT = 1;
+  POST_STATUS_PUBLISHED = 2;
+  POST_STATUS_ARCHIVED = 3;
+  POST_STATUS_SCHEDULED = 4;
+}
+
+enum PostParticipantRole {
+  POST_PARTICIPANT_ROLE_UNSPECIFIED = 0;
+  POST_PARTICIPANT_ROLE_AUTHOR = 1;
+  POST_PARTICIPANT_ROLE_COLLABORATOR = 2;
+}
+
+// Effective actions are computed by the API for the current authenticated
+// actor. Web must not reconstruct them from the actor's site role.
+enum PostAction {
+  POST_ACTION_UNSPECIFIED = 0;
+  POST_ACTION_EDIT = 1;
+  POST_ACTION_PUBLISH_NOW = 2;
+  POST_ACTION_SCHEDULE = 3;
+  POST_ACTION_CANCEL_SCHEDULE = 4;
+  POST_ACTION_UNPUBLISH = 5;
+  POST_ACTION_ARCHIVE = 6;
+  POST_ACTION_REPUBLISH = 7;
+  POST_ACTION_DELETE = 8;
+  POST_ACTION_ADD_AUTHOR = 9;
+  POST_ACTION_REMOVE_AUTHOR = 10;
+  POST_ACTION_MANAGE_COLLABORATORS = 11;
+  POST_ACTION_VIEW_VERSIONS = 12;
+  POST_ACTION_RESTORE_VERSION = 13;
+  POST_ACTION_MANAGE_SHARE_LINKS = 14;
+  POST_ACTION_MODERATE_COMMENTS = 15;
+}
+
+// Post entity (DTO - external representation)
+message Post {
+  string id = 1;
+  string title = 2;
+  optional string slug = 3;
+  optional string summary = 4;
+  api.content.v1.RichTextDocument document = 5;
+  string revision = 6;
+  PostStatus status = 7;
+  bool comments_enabled = 8;
+  optional google.protobuf.Timestamp published_at = 9;
+  google.protobuf.Timestamp created_at = 10;
+  google.protobuf.Timestamp updated_at = 11;
+
+  // Embedded durable authorship. Members remain present after Identity deletion.
+  repeated api.common.v1.MemberSummary author_members = 12;
+  repeated Category categories = 13;
+  repeated Tag tags = 14;
+  optional Series series = 15;
+  optional int32 series_order = 16;
+  // OG image key (S3 path with timestamp, e.g., og/post/{id}/{timestamp}.webp)
+  optional api.common.v1.AssetRef og_asset = 17;
+  optional string map_place_id = 18;
+  api.common.v1.DocumentLayout document_layout = 19;
+  optional google.protobuf.Timestamp scheduled_at = 20;
+  optional string scheduled_time_zone = 21;
+  repeated PostAction allowed_actions = 22;
+  optional api.common.v1.MediaDelivery featured_image_delivery = 23;
+  repeated api.content.v1.ContentBlockMediaItem block_media = 24;
+  string source_locale = 25;
+}
+
+// Post with stats (for admin list)
+message PostWithStats {
+  Post post = 1;
+  int32 view_count = 2;
+  int32 comment_count = 3;
+}
+
+// Request/Response messages
+
+message GetPostRequest {
+  string id = 1;
+}
+
+message ListPostsAdminRequest {
+  api.common.v1.PaginationRequest pagination = 1;
+  repeated api.common.v1.FilterSpec filters = 2;
+  repeated api.common.v1.SortSpec sorts = 3;
+}
+
+message ListPostsAdminResponse {
+  repeated PostWithStats posts = 1;
+  api.common.v1.PaginationResponse pagination = 2;
+}
+
+message CreatePostRequest {
+  string title = 1;
+  optional string slug = 2;
+  optional string summary = 3;
+  // Optional initial source document. When omitted, the Post service creates an empty Post document atomically.
+  api.content.v1.RichTextDocument document = 4;
+  bool comments_enabled = 5;
+  repeated string category_ids = 6;
+  repeated string tag_ids = 7;
+  optional string map_place_id = 8;
+  // Required initial source locale for the new Post.
+  string source_locale = 9;
+}
+
+message UpdatePostRequest {
+  string id = 1;
+  optional string slug = 2;
+  optional bool comments_enabled = 3;
+  optional string map_place_id = 4;
+  api.common.v1.DocumentLayout document_layout = 5;
+}
+
+message DeletePostRequest {
+  string id = 1;
+}
+
+message PublishPostRequest {
+  string id = 1;
+}
+
+message UnpublishPostRequest {
+  string id = 1;
+}
+
+message ArchivePostRequest {
+  string id = 1;
+}
+
+message SchedulePostRequest {
+  string id = 1;
+  google.protobuf.Timestamp scheduled_at = 2;
+  string scheduled_time_zone = 3;
+}
+
+message CancelPostScheduleRequest {
+  string id = 1;
+}
+
+message RepublishPostRequest {
+  string id = 1;
+}
+
+message UpdatePostResponse {
+  string id = 1;
+  bool changed = 2;
+  optional string slug = 3;
+  bool comments_enabled = 4;
+  optional string map_place_id = 5;
+  api.common.v1.DocumentLayout document_layout = 6;
+  google.protobuf.Timestamp updated_at = 7;
+}
+
+message PostLifecycleMutationResponse {
+  string id = 1;
+  bool changed = 2;
+  PostStatus status = 3;
+  optional google.protobuf.Timestamp published_at = 4;
+  optional google.protobuf.Timestamp scheduled_at = 5;
+  optional string scheduled_time_zone = 6;
+  google.protobuf.Timestamp updated_at = 7;
+  repeated PostAction allowed_actions = 8;
+}
+
+// Featured image management
+
+message SetPostFeaturedImageRequest {
+  string post_id = 1;
+  string file_id = 2;
+}
+
+message SetPostFeaturedImageResponse {
+  optional string og_generation_run_id = 1;
+  api.common.v1.MediaDelivery image_delivery = 2;
+}
+
+message DeletePostFeaturedImageRequest {
+  string post_id = 1;
+}
+
+// Author and Collaborator are mutually exclusive peer roles for one Member and
+// Post. has_effective_authority is false for a preserved Author whose Identity
+// is absent or no longer eligible.
+message PostParticipant {
+  api.common.v1.MemberSummary member = 1;
+  PostParticipantRole role = 2;
+  google.protobuf.Timestamp created_at = 3;
+  bool has_effective_authority = 4;
+}
+
+message ListPostParticipantsRequest {
+  string post_id = 1;
+}
+
+message ListPostParticipantsResponse {
+  repeated PostParticipant participants = 1;
+}
+
+message AddPostAuthorRequest {
+  string post_id = 1;
+  string member_id = 2;
+}
+
+message RemovePostAuthorRequest {
+  string post_id = 1;
+  string member_id = 2;
+}
+
+message AddPostCollaboratorRequest {
+  string post_id = 1;
+  string member_id = 2;
+}
+
+message RemovePostCollaboratorRequest {
+  string post_id = 1;
+  string member_id = 2;
+}
+
+// Slug check
+
+message CheckSlugAvailableRequest {
+  string slug = 1;
+  optional string exclude_post_id = 2;
+}
+
+message CheckSlugAvailableResponse {
+  bool available = 1;
+}
+
+// My posts (current Member's own posts)
+
+message ListMyPostsRequest {
+  api.common.v1.PaginationRequest pagination = 1;
+  repeated api.common.v1.FilterSpec filters = 2;
+  repeated api.common.v1.SortSpec sorts = 3;
+}
+
+message ListMyPostsResponse {
+  repeated Post posts = 1;
+  api.common.v1.PaginationResponse pagination = 2;
+}
+
+// Version history
+message PostVersion {
+  string id = 1;
+  int32 version = 2;
+  string title = 3;
+  optional string summary = 4;
+  string canonical_hash = 5;
+  google.protobuf.Timestamp created_at = 6;
+  repeated VersionContributor contributors = 7;
+  string source_locale = 8;
+}
+
+message ListPostVersionsRequest {
+  string post_id = 1;
+  api.common.v1.PaginationRequest pagination = 2;
+}
+
+message ListPostVersionsResponse {
+  repeated PostVersion versions = 1;
+  api.common.v1.PaginationResponse pagination = 2;
+}
+
+message RestorePostVersionRequest {
+  string version_id = 1;
+  string post_id = 2;
+}
+
+// Post Service
+service PostService {
+  // Authenticated manage read; the API requires exact current view or
+  // view_archived authorization. Public and ShareLink reads use open.v1.
+  rpc GetPost(GetPostRequest) returns (Post) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+  // Authenticated (author or admin)
+  rpc CreatePost(CreatePostRequest) returns (Post) {
+    option (api.policy.v1.access) = {role: AUTHOR};
+  }
+  rpc UpdatePost(UpdatePostRequest) returns (UpdatePostResponse) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+  rpc DeletePost(DeletePostRequest) returns (DeleteResponse) {
+    option (api.policy.v1.access) = {role: AUTHOR};
+  }
+
+  // Publishing workflow
+  rpc PublishPost(PublishPostRequest) returns (PostLifecycleMutationResponse) {
+    option (api.policy.v1.access) = {role: AUTHOR};
+  }
+  rpc UnpublishPost(UnpublishPostRequest) returns (PostLifecycleMutationResponse) {
+    option (api.policy.v1.access) = {role: AUTHOR};
+  }
+  rpc ArchivePost(ArchivePostRequest) returns (PostLifecycleMutationResponse) {
+    option (api.policy.v1.access) = {role: AUTHOR};
+  }
+  rpc SchedulePost(SchedulePostRequest) returns (PostLifecycleMutationResponse) {
+    option (api.policy.v1.access) = {role: AUTHOR};
+  }
+  rpc CancelPostSchedule(CancelPostScheduleRequest) returns (PostLifecycleMutationResponse) {
+    option (api.policy.v1.access) = {role: AUTHOR};
+  }
+  rpc RepublishPost(RepublishPostRequest) returns (PostLifecycleMutationResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+
+  // Admin
+  rpc ListPostsAdmin(ListPostsAdminRequest) returns (ListPostsAdminResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+
+  // Featured image management
+  rpc SetPostFeaturedImage(SetPostFeaturedImageRequest) returns (SetPostFeaturedImageResponse) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+  rpc DeletePostFeaturedImage(DeletePostFeaturedImageRequest) returns (OgAssetDeleteResponse) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+
+  // Author and collaborator management. API enforces the exact per-Post action.
+  rpc ListPostParticipants(ListPostParticipantsRequest) returns (ListPostParticipantsResponse) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+  rpc AddPostAuthor(AddPostAuthorRequest) returns (PostParticipant) {
+    option (api.policy.v1.access) = {role: AUTHOR};
+  }
+  rpc RemovePostAuthor(RemovePostAuthorRequest) returns (DeleteResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc AddPostCollaborator(AddPostCollaboratorRequest) returns (PostParticipant) {
+    option (api.policy.v1.access) = {role: AUTHOR};
+  }
+  rpc RemovePostCollaborator(RemovePostCollaboratorRequest) returns (DeleteResponse) {
+    option (api.policy.v1.access) = {role: AUTHOR};
+  }
+
+  // Version history
+  rpc ListPostVersions(ListPostVersionsRequest) returns (ListPostVersionsResponse) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+  rpc RestorePostVersion(RestorePostVersionRequest) returns (Post) {
+    option (api.policy.v1.access) = {role: AUTHOR};
+  }
+  // Utility
+  rpc CheckSlugAvailable(CheckSlugAvailableRequest) returns (CheckSlugAvailableResponse) {
+    option (api.policy.v1.access) = {role: AUTHOR};
+  }
+  rpc ListMyPosts(ListMyPostsRequest) returns (ListMyPostsResponse) {
+    option (api.policy.v1.access) = {role: AUTHOR};
+  }
+}

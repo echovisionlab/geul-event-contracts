@@ -1,0 +1,113 @@
+syntax = "proto3";
+
+package api.manage.v1;
+
+import "api/common/v1/common.proto";
+// EmailLayout entity - wraps email content with header/footer
+import "api/manage/v1/common.proto";
+import "api/policy/v1/access.proto";
+import "google/protobuf/timestamp.proto";
+
+message EmailLayout {
+  string id = 1;
+  string name = 2;
+  string key = 3;
+  string html_content = 4;
+  google.protobuf.Timestamp created_at = 5;
+  google.protobuf.Timestamp updated_at = 6;
+  int32 campaign_count = 7; // Number of campaigns that reference this layout
+  int32 template_count = 8; // Number of email templates that reference this layout
+  int32 delivery_run_count = 9; // Number of durable delivery runs that reference this layout
+  string source_locale = 10;
+}
+
+// Request/Response messages
+
+message GetEmailLayoutRequest {
+  string id = 1;
+}
+
+message ListEmailLayoutsAdminRequest {
+  api.common.v1.PaginationRequest pagination = 1;
+  repeated api.common.v1.FilterSpec filters = 2;
+  repeated api.common.v1.SortSpec sorts = 3;
+}
+
+message ListEmailLayoutsAdminResponse {
+  repeated EmailLayout layouts = 1;
+  api.common.v1.PaginationResponse pagination = 2;
+}
+
+message CreateEmailLayoutRequest {
+  string name = 1;
+  string key = 2;
+  string html_content = 3;
+  // Required initial source locale for the new Email Layout.
+  string source_locale = 4;
+}
+
+message UpdateEmailLayoutRequest {
+  string id = 1;
+  optional string name = 2;
+  optional string key = 3;
+}
+
+message DeleteEmailLayoutRequest {
+  string id = 1;
+}
+
+message PreviewEmailLayoutRequest {
+  string id = 1;
+  optional string sample_content = 2; // Sample content for {{content}} placeholder
+  optional string locale = 3; // Optional: preview in a specific locale
+}
+
+message PreviewEmailLayoutResponse {
+  string html = 1;
+}
+
+// Preview raw HTML content (for editor preview before saving)
+message PreviewEmailLayoutContentRequest {
+  string html_content = 1;
+  optional string sample_content = 2;
+  optional string locale = 3;
+}
+
+message PreviewEmailLayoutContentResponse {
+  bool valid = 1;
+  string html = 2; // Rendered HTML (empty if invalid)
+  repeated EmailLayoutValidationError errors = 3;
+}
+
+message EmailLayoutValidationError {
+  string code = 1; // e.g., "MISSING_CONTENT_PLACEHOLDER", "INVALID_HTML"
+  string message = 2; // Human-readable error message
+  optional int32 line = 3; // Line number if applicable
+  optional int32 column = 4; // Column number if applicable
+}
+
+// EmailLayout Service
+service EmailLayoutService {
+  // Admin only - email layouts are internal configuration
+  rpc GetEmailLayout(GetEmailLayoutRequest) returns (EmailLayout) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc ListEmailLayoutsAdmin(ListEmailLayoutsAdminRequest) returns (ListEmailLayoutsAdminResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc CreateEmailLayout(CreateEmailLayoutRequest) returns (EmailLayout) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc UpdateEmailLayout(UpdateEmailLayoutRequest) returns (EmailLayout) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc DeleteEmailLayout(DeleteEmailLayoutRequest) returns (DeleteResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc PreviewEmailLayout(PreviewEmailLayoutRequest) returns (PreviewEmailLayoutResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc PreviewEmailLayoutContent(PreviewEmailLayoutContentRequest) returns (PreviewEmailLayoutContentResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+}

@@ -1,0 +1,65 @@
+# Canonical assembly order for the domain-owned SpiceDB catalog. The module
+# list owns file discovery; definition_order owns deterministic Zed and
+# fingerprint ordering independently from domain grouping.
+modules:
+  - post
+  - artist
+  - label
+  - post_series
+  - page
+  - work
+  - release
+  - program_event
+  - program_event_series
+  - file
+  - campaign
+  - audience
+  - reference_data
+  - site_settings
+  - menu
+  - member
+  - form
+  - email_authoring
+  - email_delivery
+  - translation
+  - legal_policy
+  - map_theme
+
+definition_order:
+  - account_identity
+  - role
+  - platform
+  - post
+  - artist
+  - label
+  - series
+  - page
+  - work
+  - release
+  - track
+  - program_event
+  - program_event_series
+  - file
+  - campaign
+  - audience_segment
+  - map_place
+  - site_setting
+  - menu
+  - category
+  - tag
+  - genre
+  - style
+  - format
+  - client
+  - member
+  - form
+  - email_template
+  - email_layout
+  - email_event_mapping
+  - mail_adapter
+  - email_suppression
+  - translation_settings
+  - translation_provider
+  - terms_history
+  - privacy_history
+  - map_theme

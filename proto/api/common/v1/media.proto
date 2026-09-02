@@ -1,0 +1,127 @@
+syntax = "proto3";
+
+package api.common.v1;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/echovisionlab/geul-event-contracts/gen/api/common/v1;commonv1";
+
+enum MediaDeliveryPurpose {
+  MEDIA_DELIVERY_PURPOSE_UNSPECIFIED = 0;
+  MEDIA_DELIVERY_PURPOSE_INLINE = 1;
+  MEDIA_DELIVERY_PURPOSE_DOWNLOAD = 2;
+}
+
+enum AssetDisposition {
+  ASSET_DISPOSITION_UNSPECIFIED = 0;
+  ASSET_DISPOSITION_INLINE = 1;
+  ASSET_DISPOSITION_ATTACHMENT = 2;
+}
+
+enum MediaProcessingStatus {
+  MEDIA_PROCESSING_STATUS_UNSPECIFIED = 0;
+  MEDIA_PROCESSING_STATUS_PROCESSING = 1;
+  MEDIA_PROCESSING_STATUS_READY = 2;
+  MEDIA_PROCESSING_STATUS_FAILED = 3;
+}
+
+message AssetRef {
+  string asset_id = 1;
+  string url = 2;
+  string extension = 3;
+  string mime_type = 4;
+  int64 file_size = 5;
+  bytes sha256 = 6;
+  AssetDisposition disposition = 7;
+  optional string download_filename = 8;
+}
+
+message ExpiringMediaRef {
+  string file_id = 1;
+  string url = 2;
+  MediaDeliveryPurpose purpose = 3;
+  google.protobuf.Timestamp expires_at = 4;
+  string extension = 5;
+  string mime_type = 6;
+  optional string file_name = 7;
+}
+
+message HlsMediaRef {
+  string file_id = 1;
+  string generation_id = 2;
+  string url = 3;
+}
+
+message MediaDelivery {
+  string file_id = 1;
+  string extension = 2;
+  string mime_type = 3;
+  int64 file_size = 4;
+  optional string file_name = 5;
+  optional int32 duration_seconds = 6;
+  optional AssetRef asset = 7;
+  optional ExpiringMediaRef inline = 8;
+  optional ExpiringMediaRef download = 9;
+  optional HlsMediaRef playback = 10;
+  optional AssetRef thumbnail = 11;
+  optional AssetRef spectrogram = 12;
+  optional AssetRef waveform = 13;
+  MediaProcessingStatus processing_status = 14;
+  optional int32 processing_percentage = 15;
+}
+
+message MediaObjectTarget {
+  string file_id = 1;
+  string object_key = 2;
+  string extension = 3;
+  string mime_type = 4;
+}
+
+message MediaObjectWriteResult {
+  string file_id = 1;
+  int64 file_size = 2;
+  bytes sha256 = 3;
+}
+
+message AssetWriteTarget {
+  string asset_id = 1;
+  string object_key = 2;
+  string extension = 3;
+  string mime_type = 4;
+  AssetDisposition disposition = 5;
+  optional string download_filename = 6;
+}
+
+message AssetWriteResult {
+  string asset_id = 1;
+  int64 file_size = 2;
+  bytes sha256 = 3;
+}
+
+message MediaGenerationWriteTarget {
+  string generation_id = 1;
+  string file_id = 2;
+  string object_prefix = 3;
+}
+
+message MediaGenerationWriteResult {
+  string generation_id = 1;
+  bytes manifest_sha256 = 2;
+  int32 object_count = 3;
+  int64 total_size = 4;
+}
+
+// Canonical browser favicon outputs generated from one verified source upload.
+// Proto message fields are not wire-required. The API MUST omit the entire set
+// unless all seven canonical ICO/PNG outputs are ready from the same source.
+// icon_svg is present only when that verified source upload is SVG.
+message FaviconAssetSet {
+  AssetRef icon_ico = 1;
+  AssetRef icon_png_16 = 2;
+  AssetRef icon_png_32 = 3;
+  AssetRef icon_png_48 = 4;
+  AssetRef apple_touch_icon_180 = 5;
+  AssetRef manifest_icon_192 = 6;
+  AssetRef manifest_icon_512 = 7;
+  optional AssetRef icon_svg = 8;
+}

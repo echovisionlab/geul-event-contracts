@@ -1,0 +1,398 @@
+syntax = "proto3";
+
+package api.manage.v1;
+
+import "api/common/v1/common.proto";
+import "api/common/v1/media.proto";
+import "api/content/v1/block_content.proto";
+import "api/manage/v1/common.proto";
+// Work type enum
+import "api/policy/v1/access.proto";
+import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
+
+enum WorkType {
+  WORK_TYPE_UNSPECIFIED = 0;
+  WORK_TYPE_MUSIC_PROJECT = 1;
+  WORK_TYPE_PORTFOLIO = 2;
+  WORK_TYPE_ARTICLE = 3;
+  WORK_TYPE_CONTRIBUTION = 4;
+}
+
+// Work status enum
+enum WorkStatus {
+  WORK_STATUS_UNSPECIFIED = 0;
+  WORK_STATUS_DRAFT = 1;
+  WORK_STATUS_PUBLISHED = 2;
+  // Publicly visible legacy state. Archived Works are read-only until
+  // PublishWork moves them back to PUBLISHED.
+  WORK_STATUS_ARCHIVED = 3;
+}
+
+// Work entity
+message Work {
+  string id = 1;
+  string title = 2;
+  optional string slug = 3;
+  WorkType type = 4;
+  optional string summary = 5;
+  google.protobuf.Struct metadata = 6;
+  bool featured = 7;
+  WorkStatus status = 8;
+  api.content.v1.RichTextDocument document = 9;
+  google.protobuf.Timestamp created_at = 10;
+  google.protobuf.Timestamp updated_at = 11;
+  optional google.protobuf.Timestamp published_at = 12;
+  string revision = 13;
+
+  // OG image key (S3 path with timestamp, e.g., og/work/{id}/{timestamp}.webp)
+  optional api.common.v1.AssetRef og_asset = 14;
+
+  // Clients associated with this work (for edit UI)
+  repeated WorkClient clients = 15;
+  int32 year = 16;
+  int32 month = 17;
+  optional string map_place_id = 18;
+  optional int32 until_year = 19;
+  optional int32 until_month = 20;
+  bool is_present = 21;
+  optional api.common.v1.AssetRef featured_image_asset = 22;
+  repeated api.content.v1.ContentBlockMediaItem block_media = 23;
+  string source_locale = 24;
+}
+
+// Client associated with a work
+message WorkClient {
+  string id = 1;
+  string name = 2;
+  optional string website = 3;
+  optional api.common.v1.AssetRef logo_light_asset = 4;
+  optional api.common.v1.AssetRef logo_dark_asset = 5;
+}
+
+// Credit for a work
+message WorkCredit {
+  string id = 1;
+  optional string group_id = 2;
+  optional string name = 3;
+  optional string credit_role = 4;
+  optional CreditArtist artist = 5;
+  optional api.common.v1.MemberSummary member = 6;
+}
+
+message CreditArtist {
+  string id = 1;
+  string name = 2;
+  optional string slug = 3;
+  optional api.common.v1.AssetRef image_asset = 4;
+}
+
+// Credit group
+message WorkCreditGroup {
+  string id = 1;
+  string work_id = 2;
+  string name = 3;
+}
+
+// Request/Response messages
+
+message GetWorkRequest {
+  string id = 1;
+}
+
+message CreateWorkRequest {
+  string title = 1;
+  optional string slug = 2;
+  WorkType type = 3;
+  optional string summary = 4;
+  google.protobuf.Struct metadata = 5;
+  optional bool featured = 6;
+  int32 year = 7;
+  int32 month = 8;
+  optional int32 until_year = 9;
+  optional int32 until_month = 10;
+  optional bool is_present = 11;
+  // Optional initial source document. When omitted, the Work service creates an empty Work document atomically.
+  api.content.v1.RichTextDocument document = 12;
+  // Required initial source locale for the new Work.
+  string source_locale = 13;
+}
+
+message UpdateWorkRequest {
+  string id = 1;
+  optional string slug = 2;
+  optional WorkType type = 3;
+  google.protobuf.Struct metadata = 4;
+  optional bool featured = 5;
+  // Clients management - ordered list of client IDs
+  // If present (even empty), replaces all clients; if absent, no change
+  optional WorkClientsUpdate clients = 6;
+  optional int32 year = 7;
+  optional int32 month = 8;
+  optional string map_place_id = 9;
+  optional int32 until_year = 10;
+  optional int32 until_month = 11;
+  optional bool is_present = 12;
+}
+
+// Wrapper for clients update to distinguish "not provided" from "empty list"
+message WorkClientsUpdate {
+  repeated string client_ids = 1; // Ordered list of client IDs
+}
+
+message DeleteWorkRequest {
+  string id = 1;
+}
+
+message PublishWorkRequest {
+  string id = 1;
+}
+
+message UnpublishWorkRequest {
+  string id = 1;
+}
+
+message UpdateWorkResponse {
+  string id = 1;
+  bool changed = 2;
+  optional string slug = 3;
+  WorkType type = 4;
+  google.protobuf.Struct metadata = 5;
+  bool featured = 6;
+  repeated WorkClient clients = 7;
+  int32 year = 8;
+  int32 month = 9;
+  optional int32 until_year = 10;
+  optional int32 until_month = 11;
+  bool is_present = 12;
+  optional string map_place_id = 13;
+  google.protobuf.Timestamp updated_at = 14;
+}
+
+message WorkLifecycleMutationResponse {
+  string id = 1;
+  bool changed = 2;
+  WorkStatus status = 3;
+  optional google.protobuf.Timestamp published_at = 4;
+  google.protobuf.Timestamp updated_at = 5;
+}
+
+// Featured image
+message SetWorkFeaturedImageRequest {
+  string work_id = 1;
+  string file_id = 2;
+}
+
+message SetWorkFeaturedImageResponse {
+  api.common.v1.AssetRef image_asset = 1;
+  optional string og_generation_run_id = 2;
+}
+
+message DeleteWorkFeaturedImageRequest {
+  string work_id = 1;
+}
+
+// Credits management
+message GetWorkCreditsRequest {
+  string work_id = 1;
+}
+
+message GetWorkCreditsResponse {
+  repeated WorkCreditGroup groups = 1;
+  repeated WorkCredit credits = 2;
+}
+
+message AddWorkCreditRequest {
+  string work_id = 1;
+  optional string group_id = 2;
+  optional string artist_id = 3;
+  optional string member_id = 4;
+  optional string name = 5;
+  optional string credit_role = 6;
+}
+
+message UpdateWorkCreditRequest {
+  string credit_id = 1;
+  optional string group_id = 2;
+  optional string credit_role = 3;
+}
+
+message DeleteWorkCreditRequest {
+  string credit_id = 1;
+}
+
+message CreateWorkCreditGroupRequest {
+  string work_id = 1;
+  string name = 2;
+}
+
+message UpdateWorkCreditGroupRequest {
+  string group_id = 1;
+  optional string name = 2;
+}
+
+message DeleteWorkCreditGroupRequest {
+  string group_id = 1;
+}
+
+// Admin list with stats
+message ListWorksAdminRequest {
+  api.common.v1.PaginationRequest pagination = 1;
+  repeated api.common.v1.FilterSpec filters = 2;
+  repeated api.common.v1.SortSpec sorts = 3;
+}
+
+message WorkWithStats {
+  Work work = 1;
+  int32 credit_count = 2;
+  int32 client_count = 3;
+}
+
+message ListWorksAdminResponse {
+  repeated WorkWithStats works = 1;
+  api.common.v1.PaginationResponse pagination = 2;
+}
+
+enum MyCreditedWorkCreditType {
+  MY_CREDITED_WORK_CREDIT_TYPE_UNSPECIFIED = 0;
+  MY_CREDITED_WORK_CREDIT_TYPE_ARTIST = 1;
+  MY_CREDITED_WORK_CREDIT_TYPE_MEMBER = 2;
+  MY_CREDITED_WORK_CREDIT_TYPE_NAME = 3;
+}
+
+message MyCreditedWork {
+  string work_id = 1;
+  string title = 2;
+  optional string slug = 3;
+  WorkType type = 4;
+  WorkStatus status = 5;
+  string credit_id = 6;
+  optional string credit_role = 7;
+  MyCreditedWorkCreditType credit_type = 8;
+  string credited_as = 9;
+  google.protobuf.Timestamp created_at = 10;
+  optional api.common.v1.AssetRef credited_as_image_asset = 11;
+  string source_locale = 12;
+}
+
+message ListMyCreditedWorksRequest {
+  api.common.v1.PaginationRequest pagination = 1;
+  repeated api.common.v1.FilterSpec filters = 2;
+  repeated api.common.v1.SortSpec sorts = 3;
+}
+
+message ListMyCreditedWorksResponse {
+  repeated MyCreditedWork works = 1;
+  api.common.v1.PaginationResponse pagination = 2;
+}
+
+// Slug availability
+message CheckWorkSlugAvailableRequest {
+  string slug = 1;
+  optional string exclude_work_id = 2;
+}
+
+message CheckWorkSlugAvailableResponse {
+  bool available = 1;
+}
+
+// Version history
+message WorkVersion {
+  string id = 1;
+  int32 version = 2;
+  string title = 3;
+  optional string summary = 4;
+  string canonical_hash = 5;
+  google.protobuf.Timestamp created_at = 6;
+  repeated VersionContributor contributors = 7;
+  string source_locale = 8;
+}
+
+message ListWorkVersionsRequest {
+  string work_id = 1;
+  api.common.v1.PaginationRequest pagination = 2;
+}
+
+message ListWorkVersionsResponse {
+  repeated WorkVersion versions = 1;
+  api.common.v1.PaginationResponse pagination = 2;
+}
+
+message RestoreWorkVersionRequest {
+  string version_id = 1;
+  string work_id = 2;
+}
+
+// Work Service
+service WorkService {
+  // Admin (all works)
+  rpc ListWorksAdmin(ListWorksAdminRequest) returns (ListWorksAdminResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc CreateWork(CreateWorkRequest) returns (Work) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc DeleteWork(DeleteWorkRequest) returns (DeleteResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc PublishWork(PublishWorkRequest) returns (WorkLifecycleMutationResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc UnpublishWork(UnpublishWorkRequest) returns (WorkLifecycleMutationResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+
+  // Site Admin management surface. Public reads use api.open.v1.WorkService.
+  rpc GetWork(GetWorkRequest) returns (Work) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc UpdateWork(UpdateWorkRequest) returns (UpdateWorkResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc SetWorkFeaturedImage(SetWorkFeaturedImageRequest) returns (SetWorkFeaturedImageResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc DeleteWorkFeaturedImage(DeleteWorkFeaturedImageRequest) returns (OgAssetDeleteResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+
+  // Credit mutation is Site Admin-only; credits remain public attribution.
+  rpc GetWorkCredits(GetWorkCreditsRequest) returns (GetWorkCreditsResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc AddWorkCredit(AddWorkCreditRequest) returns (WorkCredit) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc UpdateWorkCredit(UpdateWorkCreditRequest) returns (WorkCredit) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc DeleteWorkCredit(DeleteWorkCreditRequest) returns (DeleteResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc CreateWorkCreditGroup(CreateWorkCreditGroupRequest) returns (WorkCreditGroup) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc UpdateWorkCreditGroup(UpdateWorkCreditGroupRequest) returns (WorkCreditGroup) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc DeleteWorkCreditGroup(DeleteWorkCreditGroupRequest) returns (DeleteResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+
+  // Credits are attribution only and do not grant Work management rights.
+  rpc ListMyCreditedWorks(ListMyCreditedWorksRequest) returns (ListMyCreditedWorksResponse) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+
+  // Version history
+  rpc ListWorkVersions(ListWorkVersionsRequest) returns (ListWorkVersionsResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc RestoreWorkVersion(RestoreWorkVersionRequest) returns (Work) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  // Utility
+  rpc CheckWorkSlugAvailable(CheckWorkSlugAvailableRequest) returns (CheckWorkSlugAvailableResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+}

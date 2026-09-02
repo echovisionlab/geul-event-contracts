@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "esModuleInterop": true,
+    "strict": true,
+    "noEmit": true
+  },
+  "references": [{ "path": "packages/proto" }, { "path": "packages/event" }],
+  "include": [],
+  "exclude": ["node_modules"]
+}

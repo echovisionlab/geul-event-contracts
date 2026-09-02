@@ -1,0 +1,19 @@
+packages:
+  - "packages/*"
+
+injectWorkspacePackages: true
+
+overrides:
+  "@asyncapi/cli>@asyncapi/studio": 1.3.0
+  "@asyncapi/generator-react-sdk>@babel/core": 7.29.7
+
+allowBuilds:
+  "@asyncapi/cli": true
+  "@hyperjump/json-pointer": true
+  "@hyperjump/json-schema": true
+  "@hyperjump/json-schema-core": true
+  "@hyperjump/pact": true
+  "@scarf/scarf": false
+  esbuild: true
+  protobufjs: true
+  yarn: true

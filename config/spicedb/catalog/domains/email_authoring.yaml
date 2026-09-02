@@ -1,0 +1,56 @@
+# Email Authoring owns Email Template and Email Layout resource authorization
+# plus the global Event Mapping policy namespace.
+domain: email_authoring
+description: Email Template and Email Layout authoring policy
+actions:
+  email_template:
+    view: view
+    edit: edit
+    delete: delete
+    manage: manage
+  email_layout:
+    view: view
+    edit: edit
+    delete: delete
+    manage: manage
+  email_event_mapping: {}
+platform_actions:
+  email_template:
+    create: is_admin
+    list: is_admin
+  email_layout:
+    create: is_admin
+    list: is_admin
+    # Raw Layout content has no persisted Layout ID yet.
+    preview_content: is_admin
+  email_event_mapping:
+    # Clearing a mapping has no Template ID, so this is an exact global action.
+    update: is_admin
+definitions:
+  email_template:
+    relations:
+      policy: [platform]
+    permissions: [platform_admin, view, edit, delete, manage]
+  email_layout:
+    relations:
+      policy: [platform]
+    permissions: [platform_admin, view, edit, delete, manage]
+  # This namespace creates no relationship or persisted authorization state;
+  # the mapping row remains the Email Authoring DB authority.
+  email_event_mapping:
+    relations: {}
+    permissions: []
+permission_expressions:
+  email_template:
+    platform_admin: policy->is_admin
+    view: platform_admin
+    edit: platform_admin
+    delete: platform_admin
+    manage: platform_admin
+  email_layout:
+    platform_admin: policy->is_admin
+    view: platform_admin
+    edit: platform_admin
+    delete: platform_admin
+    manage: platform_admin
+  email_event_mapping: {}

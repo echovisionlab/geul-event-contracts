@@ -1,0 +1,90 @@
+syntax = "proto3";
+
+package api.manage.v1;
+
+import "api/common/v1/common.proto";
+import "api/manage/v1/common.proto";
+// Category entity
+// Maps to: postgres/init/schema.template - category table
+// Note: No sort_order - categories are ordered by name
+import "api/policy/v1/access.proto";
+import "google/protobuf/timestamp.proto";
+
+message Category {
+  string id = 1;
+  string name = 2;
+  optional string slug = 3;
+  optional string description = 4;
+  google.protobuf.Timestamp created_at = 5;
+  optional google.protobuf.Timestamp updated_at = 6;
+}
+
+// Category with post count
+message CategoryWithStats {
+  Category category = 1;
+  int32 post_count = 2;
+}
+
+// Request/Response messages
+
+message ListCategoriesRequest {
+  api.common.v1.PaginationRequest pagination = 1;
+  repeated api.common.v1.FilterSpec filters = 2;
+  repeated api.common.v1.SortSpec sorts = 3; // Default: name ASC
+}
+
+message ListCategoriesResponse {
+  repeated Category categories = 1;
+  api.common.v1.PaginationResponse pagination = 2;
+}
+
+message ListCategoriesAdminRequest {
+  api.common.v1.PaginationRequest pagination = 1;
+  repeated api.common.v1.FilterSpec filters = 2;
+  repeated api.common.v1.SortSpec sorts = 3;
+}
+
+message ListCategoriesAdminResponse {
+  repeated CategoryWithStats categories = 1;
+  api.common.v1.PaginationResponse pagination = 2;
+}
+
+message CreateCategoryRequest {
+  string name = 1;
+  optional string slug = 2;
+  optional string description = 3;
+}
+
+message UpdateCategoryRequest {
+  string id = 1;
+  optional string name = 2;
+  optional string slug = 3;
+  optional string description = 4;
+}
+
+message DeleteCategoryRequest {
+  string id = 1;
+}
+
+// Category Service
+// Note: No ReorderCategories - categories are ordered by name
+service CategoryService {
+  // Public
+  rpc ListCategories(ListCategoriesRequest) returns (ListCategoriesResponse) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+
+  // Admin
+  rpc ListCategoriesAdmin(ListCategoriesAdminRequest) returns (ListCategoriesAdminResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc CreateCategory(CreateCategoryRequest) returns (Category) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc UpdateCategory(UpdateCategoryRequest) returns (Category) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc DeleteCategory(DeleteCategoryRequest) returns (DeleteResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+}

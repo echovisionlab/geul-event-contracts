@@ -1,0 +1,25 @@
+# Member owns Member profile resource authorization; account authentication
+# remains outside this resource definition.
+domain: member
+description: Member profile resource policy
+actions:
+  member:
+    view: view
+    edit: edit
+    delete: delete
+    manage: manage
+platform_actions:
+  member:
+    list: is_admin
+definitions:
+  member:
+    relations:
+      policy: [platform]
+    permissions: [platform_admin, view, edit, delete, manage]
+permission_expressions:
+  member:
+    platform_admin: policy->is_admin
+    view: platform_admin
+    edit: platform_admin
+    delete: platform_admin
+    manage: platform_admin

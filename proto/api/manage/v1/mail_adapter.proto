@@ -1,0 +1,171 @@
+syntax = "proto3";
+
+package api.manage.v1;
+
+import "api/common/v1/common.proto";
+// SESConfig contains AWS SES adapter configuration
+import "api/policy/v1/access.proto";
+
+option go_package = "github.com/echovisionlab/geul-event-contracts/gen/api/v1;apiv1";
+
+// MailAdapterType defines the type of mail adapter
+enum MailAdapterType {
+  MAIL_ADAPTER_TYPE_UNSPECIFIED = 0;
+  MAIL_ADAPTER_TYPE_LOGGING = 1;
+  MAIL_ADAPTER_TYPE_SES = 2;
+  MAIL_ADAPTER_TYPE_SMTP = 3;
+}
+
+message SESConfig {
+  string region = 1;
+  string access_key_id = 2;
+  string secret_access_key = 3; // write-only, never returned in Get
+  string from_email = 4;
+  optional string from_name = 5;
+}
+
+// SMTPConfig contains SMTP adapter configuration
+message SMTPConfig {
+  string host = 1;
+  int32 port = 2;
+  bool secure = 3;
+  string user = 4;
+  string password = 5; // write-only, never returned in Get
+  string from_email = 6;
+  optional string from_name = 7;
+}
+
+// MailAdapter represents a mail sending adapter configuration
+message MailAdapter {
+  string id = 1;
+  string name = 2;
+  MailAdapterType type = 3;
+  bool is_active = 4;
+  int32 priority = 5;
+
+  // Type-specific config (only one will be set based on type)
+  oneof config {
+    SESConfig ses_config = 6;
+    SMTPConfig smtp_config = 7;
+  }
+
+  string created_at = 8;
+  string updated_at = 9;
+}
+
+// CreateMailAdapterRequest creates a new mail adapter
+message CreateMailAdapterRequest {
+  string name = 1;
+  MailAdapterType type = 2;
+  bool is_active = 3;
+  optional int32 priority = 4;
+
+  oneof config {
+    SESConfig ses_config = 5;
+    SMTPConfig smtp_config = 6;
+  }
+}
+
+// CreateMailAdapterResponse
+message CreateMailAdapterResponse {
+  MailAdapter adapter = 1;
+}
+
+// UpdateMailAdapterRequest updates a mail adapter
+message UpdateMailAdapterRequest {
+  string id = 1;
+  optional string name = 2;
+  optional bool is_active = 3;
+  optional int32 priority = 4;
+  optional MailAdapterType type = 5;
+
+  oneof config {
+    SESConfig ses_config = 6;
+    SMTPConfig smtp_config = 7;
+  }
+}
+
+// UpdateMailAdapterResponse
+message UpdateMailAdapterResponse {
+  MailAdapter adapter = 1;
+}
+
+// DeleteMailAdapterRequest deletes a mail adapter
+message DeleteMailAdapterRequest {
+  string id = 1;
+}
+
+// DeleteMailAdapterResponse
+message DeleteMailAdapterResponse {}
+
+// ListMailAdaptersAdminRequest lists mail adapters
+message ListMailAdaptersAdminRequest {
+  api.common.v1.PaginationRequest pagination = 1;
+  repeated api.common.v1.FilterSpec filters = 2;
+  repeated api.common.v1.SortSpec sorts = 3;
+}
+
+// ListMailAdaptersAdminResponse
+message ListMailAdaptersAdminResponse {
+  repeated MailAdapter adapters = 1;
+  api.common.v1.PaginationResponse pagination = 2;
+}
+
+// TestMailAdapterRequest tests a mail adapter by sending a test email
+message TestMailAdapterRequest {
+  string id = 1;
+  string test_email = 2;
+}
+
+// TestMailAdapterConfigRequest tests adapter configuration before saving
+message TestMailAdapterConfigRequest {
+  MailAdapterType type = 1;
+
+  oneof config {
+    SESConfig ses_config = 2;
+    SMTPConfig smtp_config = 3;
+  }
+
+  string test_email = 4;
+}
+
+// TestMailAdapterResponse
+message TestMailAdapterResponse {
+  bool success = 1;
+  optional string error = 2;
+  optional string message_id = 3;
+}
+
+// MailAdapterService provides mail adapter management
+// All methods require admin authentication
+service MailAdapterService {
+  // Create a new mail adapter
+  rpc Create(CreateMailAdapterRequest) returns (CreateMailAdapterResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+
+  // Update a mail adapter
+  rpc Update(UpdateMailAdapterRequest) returns (UpdateMailAdapterResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+
+  // Delete a mail adapter
+  rpc Delete(DeleteMailAdapterRequest) returns (DeleteMailAdapterResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+
+  // List all mail adapters
+  rpc ListMailAdaptersAdmin(ListMailAdaptersAdminRequest) returns (ListMailAdaptersAdminResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+
+  // Test adapter configuration before creating/updating
+  rpc TestConfig(TestMailAdapterConfigRequest) returns (TestMailAdapterResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+
+  // Test a mail adapter by sending a test email
+  rpc Test(TestMailAdapterRequest) returns (TestMailAdapterResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+}

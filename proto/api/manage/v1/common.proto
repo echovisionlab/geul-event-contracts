@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+package api.manage.v1;
+
+// Empty response for delete operations
+import "api/policy/v1/access.proto";
+import "google/protobuf/timestamp.proto";
+
+message DeleteResponse {
+  bool success = 1;
+}
+
+// Delete response for asset mutations that may enqueue OG generation.
+message OgAssetDeleteResponse {
+  bool success = 1;
+  optional string og_generation_run_id = 2;
+}
+
+// Generic success response for operations that don't return data
+message SuccessResponse {
+  bool success = 1;
+}
+
+// One authenticated Member whose edits are included in a content version.
+message VersionContributor {
+  string member_id = 1;
+  string nickname = 2;
+}
+
+enum ThemeAssetVariant {
+  THEME_ASSET_VARIANT_UNSPECIFIED = 0;
+  THEME_ASSET_VARIANT_LIGHT = 1;
+  THEME_ASSET_VARIANT_DARK = 2;
+}
+
+// GeoIP information for request origin
+message GeoIPInfo {
+  string country_code = 1;
+  string country_name = 2;
+  optional string city = 3;
+  double latitude = 4;
+  double longitude = 5;
+  bool is_proxy = 6;
+  bool is_satellite = 7;
+  optional string time_zone = 8;
+}

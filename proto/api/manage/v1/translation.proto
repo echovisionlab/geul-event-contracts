@@ -1,0 +1,448 @@
+syntax = "proto3";
+
+package api.manage.v1;
+
+import "api/common/v1/common.proto";
+import "api/common/v1/media.proto";
+import "api/policy/v1/access.proto";
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/echovisionlab/geul-event-contracts/gen/api/v1;apiv1";
+
+enum TranslationEntityType {
+  TRANSLATION_ENTITY_TYPE_UNSPECIFIED = 0;
+  TRANSLATION_ENTITY_TYPE_PAGE = 1;
+  TRANSLATION_ENTITY_TYPE_POST = 2;
+  TRANSLATION_ENTITY_TYPE_WORK = 3;
+  TRANSLATION_ENTITY_TYPE_MENU = 4;
+  TRANSLATION_ENTITY_TYPE_ARTIST = 5;
+  TRANSLATION_ENTITY_TYPE_LABEL = 6;
+  TRANSLATION_ENTITY_TYPE_RELEASE = 7;
+  TRANSLATION_ENTITY_TYPE_EMAIL_TEMPLATE = 8;
+  TRANSLATION_ENTITY_TYPE_EMAIL_LAYOUT = 9;
+  TRANSLATION_ENTITY_TYPE_PRIVACY = 10;
+  TRANSLATION_ENTITY_TYPE_TERMS = 11;
+  TRANSLATION_ENTITY_TYPE_CAMPAIGN = 12;
+  TRANSLATION_ENTITY_TYPE_FORM = 13;
+  TRANSLATION_ENTITY_TYPE_PROGRAM_EVENT = 14;
+  TRANSLATION_ENTITY_TYPE_POST_SERIES = 15;
+}
+
+enum TranslationJobStatus {
+  TRANSLATION_JOB_STATUS_UNSPECIFIED = 0;
+  TRANSLATION_JOB_STATUS_QUEUED = 1;
+  TRANSLATION_JOB_STATUS_RUNNING = 2;
+}
+
+enum TranslationUnitIssueReason {
+  TRANSLATION_UNIT_ISSUE_REASON_UNSPECIFIED = 0;
+  TRANSLATION_UNIT_ISSUE_REASON_EMPTY_TRANSLATION = 1;
+  TRANSLATION_UNIT_ISSUE_REASON_UNCHANGED_FROM_SOURCE = 2;
+  TRANSLATION_UNIT_ISSUE_REASON_SOURCE_RESIDUE = 3;
+}
+
+// TranslationFailureReason is the bounded public failure classification.
+// Provider response bodies, request XLIFF, document keys, and source/target
+// text never cross this contract or canonical logs. Provider responses are
+// consumed without a persisted raw, validated, or normalized copy.
+enum TranslationFailureReason {
+  TRANSLATION_FAILURE_REASON_UNSPECIFIED = 0;
+  TRANSLATION_FAILURE_REASON_PROVIDER_CONFIGURATION = 1;
+  TRANSLATION_FAILURE_REASON_PROVIDER_AUTHENTICATION = 2;
+  TRANSLATION_FAILURE_REASON_PROVIDER_RATE_LIMITED = 3;
+  TRANSLATION_FAILURE_REASON_PROVIDER_UNAVAILABLE = 4;
+  TRANSLATION_FAILURE_REASON_PROVIDER_REJECTED = 5;
+  TRANSLATION_FAILURE_REASON_PROVIDER_RESPONSE_INVALID = 6;
+  TRANSLATION_FAILURE_REASON_TARGET_APPLY_FAILED = 7;
+  TRANSLATION_FAILURE_REASON_OG_HANDOFF_FAILED = 8;
+  TRANSLATION_FAILURE_REASON_INTERNAL = 9;
+}
+
+enum TranslationProviderType {
+  TRANSLATION_PROVIDER_TYPE_UNSPECIFIED = 0;
+  TRANSLATION_PROVIDER_TYPE_LLM = 1;
+  TRANSLATION_PROVIDER_TYPE_DEEPL = 2;
+}
+
+enum TranslationLLMProviderPreset {
+  TRANSLATION_LLM_PROVIDER_PRESET_UNSPECIFIED = 0;
+  TRANSLATION_LLM_PROVIDER_PRESET_GEMINI = 1;
+  TRANSLATION_LLM_PROVIDER_PRESET_OPENAI_COMPATIBLE = 2;
+}
+
+message TranslationTarget {
+  TranslationEntityType entity_type = 1;
+  string entity_id = 2;
+}
+
+message TranslationLocale {
+  string code = 1;
+  string display_name = 2;
+  bool enabled = 3;
+  bool is_public = 4;
+  string dir = 5;
+  bool machine_translation_allowed = 6;
+  optional string font_profile = 7;
+  int32 sort_order = 8;
+}
+
+message TranslationJob {
+  string id = 1;
+  TranslationTarget target = 2;
+  string target_locale = 3;
+  string source_locale = 4;
+  // Canonical digest of the exact outbound XLIFF 2.2 bytes, stable-unit
+  // manifest, and provider profile. It identifies only this active request and
+  // never acts as source freshness, document CAS, or target lifecycle state.
+  string request_artifact_digest = 5;
+  TranslationJobStatus status = 6;
+  string operation_id = 7;
+  optional string provider = 8;
+  optional string model = 9;
+  optional google.protobuf.Timestamp requested_at = 10;
+  optional google.protobuf.Timestamp started_at = 11;
+  string requested_by_member_id = 12;
+}
+
+message TranslationEntry {
+  TranslationTarget target = 1;
+  string locale = 2;
+  optional string title = 3;
+  optional string summary = 4;
+  optional string content_html = 5;
+  optional string content_text = 6;
+  optional bytes content_json = 7; // Locale body only; Post values are block arrays (excludes document layout)
+  google.protobuf.Timestamp updated_at = 8;
+  optional api.common.v1.AssetRef og_asset = 9;
+}
+
+enum TranslationInterchangeMode {
+  TRANSLATION_INTERCHANGE_MODE_UNSPECIFIED = 0;
+  TRANSLATION_INTERCHANGE_MODE_PATCH = 1;
+  TRANSLATION_INTERCHANGE_MODE_REPLACE = 2;
+}
+
+message TranslationOverviewStats {
+  int32 total_locales = 1;
+  int32 enabled_locales = 2;
+  int32 public_locales = 3;
+  int32 source_entities = 4;
+  int32 active_jobs = 5;
+  int32 existing_entries = 6;
+}
+
+message TranslationLocaleHealth {
+  TranslationLocale locale = 1;
+  int32 existing_entries = 2;
+  int32 active_jobs = 3;
+  optional google.protobuf.Timestamp last_target_update_at = 4;
+}
+
+message TranslationEntityHealth {
+  TranslationEntityType entity_type = 1;
+  int32 source_entities = 2;
+  int32 existing_entries = 3;
+  int32 active_jobs = 4;
+  optional google.protobuf.Timestamp last_source_update_at = 5;
+}
+
+message TranslationSettings {
+  string default_locale = 1;
+  optional google.protobuf.Timestamp updated_at = 2;
+  // Exact case-sensitive spellings that every provider must preserve without
+  // translation. This is a minimal settings-owned exception list, not a
+  // source/target terminology glossary.
+  repeated string protected_terms = 3;
+}
+
+message LLMTranslationProviderConfig {
+  string api_key = 1; // write-only, never returned by admin reads
+  TranslationLLMProviderPreset preset = 2;
+  optional string api_base_url = 3;
+  string model = 4;
+  optional double input_token_price_usd_per_million = 5;
+  optional double output_token_price_usd_per_million = 6;
+  optional int32 max_context_tokens = 7;
+  optional int32 max_output_tokens = 8;
+  bool supports_json_mode = 9;
+  optional double temperature = 10;
+}
+
+message DeepLTranslationProviderConfig {
+  string api_key = 1; // write-only, never returned by admin reads
+  optional string api_base_url = 2;
+}
+
+message TranslationProvider {
+  string id = 1;
+  string name = 2;
+  TranslationProviderType type = 3;
+  bool is_active = 4;
+  int32 priority = 5;
+
+  oneof config {
+    LLMTranslationProviderConfig llm_config = 6;
+    DeepLTranslationProviderConfig deepl_config = 7;
+  }
+
+  optional google.protobuf.Timestamp created_at = 8;
+  optional google.protobuf.Timestamp updated_at = 9;
+}
+
+message ListTranslationLocalesRequest {}
+
+message ListTranslationLocalesResponse {
+  repeated TranslationLocale locales = 1;
+}
+
+message GetTranslationOverviewRequest {}
+
+message GetTranslationOverviewResponse {
+  TranslationOverviewStats stats = 1;
+  repeated TranslationLocaleHealth locale_health = 2;
+  repeated TranslationEntityHealth entity_health = 3;
+}
+
+message GetTranslationSettingsRequest {}
+
+message GetTranslationSettingsResponse {
+  TranslationSettings settings = 1;
+  bool generation_enabled = 2;
+  optional string generation_disabled_reason = 3;
+}
+
+message UpdateTranslationSettingsRequest {
+  TranslationSettings settings = 1;
+}
+
+message UpdateTranslationSettingsResponse {
+  TranslationSettings settings = 1;
+}
+
+message ListTranslationProvidersRequest {
+  api.common.v1.PaginationRequest pagination = 1;
+  repeated api.common.v1.FilterSpec filters = 2;
+  repeated api.common.v1.SortSpec sorts = 3;
+}
+
+message ListTranslationProvidersResponse {
+  repeated TranslationProvider providers = 1;
+  api.common.v1.PaginationResponse pagination = 2;
+}
+
+message CreateTranslationProviderRequest {
+  string name = 1;
+  TranslationProviderType type = 2;
+  bool is_active = 3;
+  optional int32 priority = 4;
+
+  oneof config {
+    LLMTranslationProviderConfig llm_config = 5;
+    DeepLTranslationProviderConfig deepl_config = 6;
+  }
+}
+
+message CreateTranslationProviderResponse {
+  TranslationProvider provider = 1;
+}
+
+message UpdateTranslationProviderRequest {
+  string id = 1;
+  optional string name = 2;
+  optional bool is_active = 3;
+  optional int32 priority = 4;
+  optional TranslationProviderType type = 5;
+
+  oneof config {
+    LLMTranslationProviderConfig llm_config = 6;
+    DeepLTranslationProviderConfig deepl_config = 7;
+  }
+}
+
+message UpdateTranslationProviderResponse {
+  TranslationProvider provider = 1;
+}
+
+message DeleteTranslationProviderRequest {
+  string id = 1;
+}
+
+message DeleteTranslationProviderResponse {}
+
+message ListTranslationJobsRequest {
+  api.common.v1.PaginationRequest pagination = 1;
+  repeated api.common.v1.FilterSpec filters = 2;
+  repeated api.common.v1.SortSpec sorts = 3;
+}
+
+message ListTranslationJobsResponse {
+  repeated TranslationJob jobs = 1;
+  api.common.v1.PaginationResponse pagination = 2;
+}
+
+message CancelTranslationJobRequest {
+  string job_id = 1;
+}
+
+message CancelTranslationJobResponse {}
+
+message ListEntityTranslationsRequest {
+  TranslationTarget target = 1;
+}
+
+message ListEntityTranslationsResponse {
+  repeated TranslationEntry entries = 1;
+  string source_locale = 2;
+}
+
+message GetEntityTranslationRequest {
+  TranslationTarget target = 1;
+  string locale = 2;
+}
+
+message GetEntityTranslationResponse {
+  TranslationEntry entry = 1;
+}
+
+// SetEntitySourceLocale changes the one editable source locale. Existing
+// targets and in-flight jobs remain unchanged, and the switch does not enqueue
+// translation jobs. A running job applies the request-time source artifact only
+// to unit identities still present in the current graph and its captured
+// manifest. The authenticated requester is the sole Member attribution; public
+// callers cannot declare an actor or additional contributors.
+message SetEntitySourceLocaleRequest {
+  TranslationTarget target = 1;
+  string source_locale = 2;
+  // Required canonical Content Document revision CAS for every supported
+  // translation domain; absence is invalid. The source-locale switch and
+  // document metadata mutation share this revision CAS.
+  optional string expected_document_revision = 3;
+}
+
+message SetEntitySourceLocaleResponse {
+  string document_revision = 1;
+  bool changed = 2;
+  bool source_changed = 3;
+  repeated string changed_locales = 4;
+}
+
+message RegenerateEntityTranslationsRequest {
+  TranslationTarget target = 1;
+  // Required non-empty explicit locale selection. Empty never means all.
+  repeated string locales = 2;
+}
+
+message RegenerateEntityTranslationsResponse {
+  repeated TranslationJob jobs = 1;
+}
+
+// Export creates a short-lived XLIFF 2.2 artifact. PATCH requires an explicit
+// non-empty stable-unit selection; REPLACE exports the complete current unit
+// manifest and requires unit_handles to be empty.
+message ExportEntityTranslationXLIFFRequest {
+  TranslationTarget target = 1;
+  string target_locale = 2;
+  TranslationInterchangeMode mode = 3;
+  repeated string unit_handles = 4;
+}
+
+message ExportEntityTranslationXLIFFResponse {
+  api.common.v1.ExpiringMediaRef artifact = 1;
+  string source_locale = 2;
+  string target_locale = 3;
+  optional string target_revision = 4;
+  TranslationInterchangeMode mode = 5;
+}
+
+// Import consumes an upload completed through the existing File ingest. XML
+// and base64 payloads never cross this RPC. An absent expected_target_revision
+// means the target locale must still be missing; a present value is the exact
+// locale write CAS. The server never infers PATCH versus REPLACE.
+message ImportEntityTranslationXLIFFRequest {
+  TranslationTarget target = 1;
+  string target_locale = 2;
+  TranslationInterchangeMode mode = 3;
+  string file_id = 4;
+  optional string expected_target_revision = 5;
+}
+
+message ImportEntityTranslationXLIFFResponse {
+  string target_revision = 1;
+  bool changed = 2;
+  repeated string affected_unit_handles = 3;
+}
+
+service TranslationService {
+  rpc ListTranslationLocales(ListTranslationLocalesRequest) returns (ListTranslationLocalesResponse) {
+    // Authenticated Series Managers receive only enabled locale definitions;
+    // the API keeps every other non-Admin translation surface denied.
+    option (api.policy.v1.access) = {role: USER};
+  }
+
+  rpc GetTranslationOverview(GetTranslationOverviewRequest) returns (GetTranslationOverviewResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+
+  rpc GetTranslationSettings(GetTranslationSettingsRequest) returns (GetTranslationSettingsResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+
+  rpc UpdateTranslationSettings(UpdateTranslationSettingsRequest) returns (UpdateTranslationSettingsResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+
+  rpc ListTranslationProviders(ListTranslationProvidersRequest) returns (ListTranslationProvidersResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+
+  rpc CreateTranslationProvider(CreateTranslationProviderRequest) returns (CreateTranslationProviderResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+
+  rpc UpdateTranslationProvider(UpdateTranslationProviderRequest) returns (UpdateTranslationProviderResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+
+  rpc DeleteTranslationProvider(DeleteTranslationProviderRequest) returns (DeleteTranslationProviderResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+
+  // Admin callers may browse globally. Other authenticated callers must use
+  // exact entity_type/entity_id equality filters and pass the API's resource
+  // manager check for that entity.
+  rpc ListTranslationJobs(ListTranslationJobsRequest) returns (ListTranslationJobsResponse) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+
+  rpc CancelTranslationJob(CancelTranslationJobRequest) returns (CancelTranslationJobResponse) {
+    // The API enforces the current exact source-document edit permission.
+    option (api.policy.v1.access) = {role: USER};
+  }
+
+  rpc ListEntityTranslations(ListEntityTranslationsRequest) returns (ListEntityTranslationsResponse) {
+    // The API enforces the exact owning-domain read permission.
+    option (api.policy.v1.access) = {role: USER};
+  }
+
+  rpc GetEntityTranslation(GetEntityTranslationRequest) returns (GetEntityTranslationResponse) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+
+  rpc SetEntitySourceLocale(SetEntitySourceLocaleRequest) returns (SetEntitySourceLocaleResponse) {
+    // The API enforces the exact owning-domain edit permission for the target.
+    option (api.policy.v1.access) = {role: USER};
+  }
+
+  rpc RegenerateEntityTranslations(RegenerateEntityTranslationsRequest) returns (RegenerateEntityTranslationsResponse) {
+    // The API enforces the current exact source-document edit permission.
+    option (api.policy.v1.access) = {role: USER};
+  }
+
+  rpc ExportEntityTranslationXLIFF(ExportEntityTranslationXLIFFRequest) returns (ExportEntityTranslationXLIFFResponse) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+
+  rpc ImportEntityTranslationXLIFF(ImportEntityTranslationXLIFFRequest) returns (ImportEntityTranslationXLIFFResponse) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+}

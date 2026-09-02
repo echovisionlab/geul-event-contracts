@@ -1,0 +1,1523 @@
+schema_version: 1
+
+# This file is the language-neutral authority for durable authored content.
+# Generated protobuf, Go and TypeScript contracts must never be edited by hand.
+ownerships: [shared, locale, source]
+
+limits:
+  max_document_blocks: 10000
+  max_block_depth: 32
+  max_inline_nodes_per_block: 10000
+  max_table_rows: 100
+  max_table_columns: 100
+  max_source_bytes: 100000
+
+runtime_forbidden_fields:
+  - _tempUrl
+  - allowOriginalDownload
+  - allow_original_download
+  - clientThumbnail
+  - downloadUrl
+  - duration
+  - entityId
+  - entityType
+  - faviconUrl
+  - featuredImageUrl
+  - fileName
+  - hlsUrl
+  - imageUrl
+  - loaderUrl
+  - logoDarkUrl
+  - logoLightUrl
+  - logoUrl
+  - mediaAttemptId
+  - mediaSlotId
+  - mimeType
+  - objectKey
+  - originalUrl
+  - outputKey
+  - pendingUploadFileId
+  - playbackUrl
+  - posterUrl
+  - processingProgress
+  - processingStatus
+  - publicUrl
+  - shareToken
+  - signedUrl
+  - size
+  - sourceKey
+  - spectrogramKey
+  - spectrogramUrl
+  - thumbnailKey
+  - thumbnailUrl
+  - uploadStage
+  - url
+  - waveformKey
+  - waveformUrl
+
+# MIME reuse policy is part of the typed File reference, not a caller hint.
+# An empty policy means the generic File Block accepts any verified library File.
+file_reference_policies:
+  file: {}
+  shader_channel: { mime_prefixes: [image/, video/] }
+  shader_cubemap_face: { mime_prefixes: [image/] }
+  immersive.mesh: { mime_types: [model/gltf-binary] }
+  immersive.optimization_source: { mime_types: [model/gltf-binary] }
+  immersive.optimized_mesh: { mime_types: [model/gltf-binary] }
+  immersive.texture: { mime_prefixes: [image/] }
+  immersive.dark_texture: { mime_prefixes: [image/] }
+
+field_sets:
+  text_block:
+    backgroundColor: { type: editor_color, default: default, ownership: shared }
+    textColor: { type: editor_color, default: default, ownership: shared }
+    textAlignment:
+      {
+        type: enum,
+        values: [left, center, right],
+        default: left,
+        ownership: shared,
+      }
+  executable_layout:
+    mode:
+      {
+        type: enum,
+        values: [edit, source, preview],
+        default: edit,
+        ownership: shared,
+      }
+    previewHeight:
+      { type: integer, min: 180, max: 720, default: 360, ownership: shared }
+    previewWidth:
+      { type: integer, min: 10, max: 100, default: 100, ownership: shared }
+    textAlignment:
+      {
+        type: enum,
+        values: [left, center, right],
+        default: left,
+        ownership: shared,
+      }
+  page_list:
+    layout:
+      {
+        type: enum,
+        values: [grid, list, cards, minimal, carousel],
+        default: grid,
+        ownership: shared,
+      }
+    columns: { type: integer, min: 1, max: 4, default: 3, ownership: shared }
+    sortOrder:
+      { type: enum, values: [asc, desc], default: desc, ownership: shared }
+    showPagination: { type: boolean, default: false, ownership: shared }
+    showImage: { type: boolean, default: true, ownership: shared }
+    showMeta: { type: boolean, default: true, ownership: shared }
+    carouselLoop: { type: boolean, default: true, ownership: shared }
+    carouselIndicators: { type: boolean, default: true, ownership: shared }
+  marquee:
+    direction:
+      { type: enum, values: [left, right], default: left, ownership: shared }
+    speed:
+      {
+        type: enum,
+        values: [slow, normal, fast],
+        default: normal,
+        ownership: shared,
+      }
+    speedPxPerSecond: { type: number, min: 4, max: 36, ownership: shared }
+    itemHeight:
+      { type: enum, values: [sm, md, lg, xl], default: md, ownership: shared }
+    itemHeightPx: { type: number, min: 16, max: 56, ownership: shared }
+    gap:
+      { type: enum, values: [sm, md, lg, xl], default: lg, ownership: shared }
+    pauseOnHover: { type: boolean, default: true, ownership: shared }
+    linkTarget:
+      {
+        type: enum,
+        values: [same-tab, new-tab],
+        default: same-tab,
+        ownership: shared,
+      }
+
+rich_text:
+  document_field: blocks
+  block_id: { type: uuid, ownership: shared }
+  inline:
+    styles:
+      bold: { type: boolean, ownership: locale }
+      italic: { type: boolean, ownership: locale }
+      underline: { type: boolean, ownership: locale }
+      strike: { type: boolean, ownership: locale }
+      code: { type: boolean, ownership: locale }
+      textColor: { type: editor_color, ownership: locale }
+      backgroundColor: { type: editor_color, ownership: locale }
+    kinds:
+      text:
+        fields:
+          text:
+            {
+              type: string,
+              required: true,
+              ownership: locale,
+              translatable: true,
+            }
+      hardBreak: { fields: {} }
+      link:
+        fields:
+          href:
+            {
+              type: uri,
+              schemes: [http, https, mailto, tel],
+              required: true,
+              ownership: locale,
+            }
+        content: text
+      mathInline:
+        fields:
+          source: { type: string, required: true, ownership: locale }
+  table:
+    fields:
+      columnWidths:
+        {
+          type: array,
+          items: { type: number, min_exclusive: 0 },
+          item_identity: { strategy: position, mutation: whole-list-replace },
+          ownership: shared,
+        }
+      headerRows: { type: integer, min: 0, ownership: shared }
+      headerColumns: { type: integer, min: 0, ownership: shared }
+    row_id: { type: uuid, required: true, ownership: shared }
+    cell_id: { type: uuid, required: true, ownership: shared }
+    cell_fields:
+      colspan: { type: integer, min: 1, default: 1, ownership: shared }
+      rowspan: { type: integer, min: 1, default: 1, ownership: shared }
+      backgroundColor:
+        { type: editor_color, default: default, ownership: shared }
+      textColor: { type: editor_color, default: default, ownership: shared }
+      textAlignment:
+        {
+          type: enum,
+          values: [left, center, right],
+          default: left,
+          ownership: shared,
+        }
+
+  blocks:
+    paragraph:
+      field_sets: [text_block]
+      fields:
+        previewWidth:
+          { type: integer, min: 10, max: 100, default: 100, ownership: shared }
+        aspectRatio:
+          {
+            type: enum,
+            values: [auto, "16:9", "4:3", "1:1", "9:16"],
+            default: auto,
+            ownership: shared,
+          }
+      content: inline
+    heading:
+      field_sets: [text_block]
+      fields:
+        level:
+          { type: enum_int, values: [1, 2, 3], default: 1, ownership: shared }
+      content: inline
+    bullet-list-item:
+      field_sets: [text_block]
+      fields: {}
+      content: inline
+    numbered-list-item:
+      field_sets: [text_block]
+      fields:
+        start: { type: integer, min: 1, ownership: shared }
+      content: inline
+    check-list-item:
+      field_sets: [text_block]
+      fields:
+        checked: { type: boolean, default: false, ownership: shared }
+      content: inline
+    quote:
+      fields:
+        backgroundColor:
+          { type: editor_color, default: default, ownership: shared }
+        textColor: { type: editor_color, default: default, ownership: shared }
+      content: inline
+    code-block:
+      fields:
+        title:
+          { type: string, default: "", ownership: locale, translatable: true }
+        language:
+          type: enum
+          ownership: shared
+          default: javascript
+          values:
+            [
+              text,
+              c,
+              cpp,
+              css,
+              glsl,
+              go,
+              graphql,
+              haml,
+              html,
+              java,
+              javascript,
+              json,
+              jsonc,
+              jsonl,
+              jsx,
+              julia,
+              less,
+              markdown,
+              mdx,
+              php,
+              postcss,
+              pug,
+              python,
+              r,
+              regexp,
+              sass,
+              scss,
+              shellscript,
+              sql,
+              svelte,
+              typescript,
+              vue,
+              vue-html,
+              wasm,
+              wgsl,
+              xml,
+              yaml,
+              tsx,
+              haskell,
+              csharp,
+              latex,
+              lua,
+              mermaid,
+              ruby,
+              rust,
+              scala,
+              swift,
+              kotlin,
+              objective-c,
+            ]
+        previewWidth:
+          { type: integer, min: 10, max: 100, default: 100, ownership: shared }
+        textAlignment:
+          {
+            type: enum,
+            values: [left, center, right],
+            default: left,
+            ownership: shared,
+          }
+      content: locale_text
+      content_translatable: true
+    divider: { fields: {}, content: none }
+    table:
+      fields:
+        textColor: { type: editor_color, default: default, ownership: shared }
+        previewWidth:
+          { type: integer, min: 10, max: 100, default: 100, ownership: shared }
+        textAlignment:
+          {
+            type: enum,
+            values: [left, center, right],
+            default: left,
+            ownership: shared,
+          }
+      content: table
+    p5-sketch:
+      field_sets: [executable_layout]
+      fields:
+        title:
+          { type: string, default: "", ownership: locale, translatable: true }
+        source:
+          { type: string, default: "", max_length: 100000, ownership: source }
+        capabilities:
+          type: array
+          ownership: shared
+          unique: true
+          default: []
+          item_identity: { strategy: value }
+          items:
+            {
+              type: enum,
+              values:
+                [
+                  camera,
+                  microphone,
+                  motion,
+                  midi,
+                  gamepad,
+                  serial,
+                  location,
+                  bluetooth,
+                ],
+            }
+      content: none
+    three-scene:
+      field_sets: [executable_layout]
+      fields:
+        title:
+          { type: string, default: "", ownership: locale, translatable: true }
+        source:
+          { type: string, default: "", max_length: 100000, ownership: source }
+        language:
+          {
+            type: enum,
+            values: [javascript, typescript],
+            default: typescript,
+            ownership: shared,
+          }
+      content: none
+    shader:
+      field_sets: [executable_layout]
+      fields:
+        title:
+          { type: string, default: "", ownership: locale, translatable: true }
+        stages:
+          type: array
+          required: true
+          exact_length: 9
+          ownership: source
+          item_identity: { strategy: field, field: kind }
+          items:
+            type: object
+            fields:
+              kind:
+                type: enum
+                required: true
+                values:
+                  [
+                    common,
+                    vertex,
+                    bufferA,
+                    bufferB,
+                    bufferC,
+                    bufferD,
+                    cubemap,
+                    sound,
+                    image,
+                  ]
+              source: { type: string, required: true, max_length: 100000 }
+              channels:
+                type: array
+                exact_length: 4
+                item_identity:
+                  {
+                    strategy: fixed,
+                    values: [channel-a, channel-b, channel-c, channel-d],
+                  }
+                items:
+                  type: object
+                  fields:
+                    kind:
+                      {
+                        type: enum,
+                        required: true,
+                        values:
+                          [
+                            none,
+                            buffer,
+                            textureFile,
+                            videoFile,
+                            cubemapFiles,
+                            cubemapPass,
+                          ],
+                      }
+                    buffer: { type: enum, values: [A, B, C, D] }
+                    file:
+                      { type: file_attachment, file_reference: shader_channel }
+                    faces:
+                      type: array
+                      exact_length: 6
+                      item_identity:
+                        { strategy: fixed, values: [px, nx, py, ny, pz, nz] }
+                      items:
+                        {
+                          type: file_attachment,
+                          file_reference: shader_cubemap_face,
+                        }
+                    sampler:
+                      type: object
+                      fields:
+                        filter:
+                          {
+                            type: enum,
+                            values: [nearest, linear],
+                            default: linear,
+                          }
+                        wrap:
+                          {
+                            type: enum,
+                            values: [clamp, repeat],
+                            default: clamp,
+                          }
+                        vflip: { type: boolean, default: false }
+      content: none
+    math:
+      fields:
+        latex: { type: string, default: "", ownership: shared }
+      content: none
+    map:
+      fields:
+        mapPlaceIds:
+          {
+            type: array,
+            default: [],
+            ownership: shared,
+            unique: true,
+            item_identity: { strategy: value },
+            items: { type: uuid },
+          }
+        aspectRatio:
+          {
+            type: enum,
+            values: ["16:9", "4:3", "1:1"],
+            default: "16:9",
+            ownership: shared,
+          }
+        previewWidth:
+          { type: integer, min: 10, max: 100, default: 100, ownership: shared }
+        textAlignment:
+          {
+            type: enum,
+            values: [left, center, right],
+            default: left,
+            ownership: shared,
+          }
+        zoom: { type: number, min: -2, max: 22, default: 15, ownership: shared }
+        minZoom:
+          { type: number, min: -2, max: 22, default: -2, ownership: shared }
+        maxZoom:
+          { type: number, min: -2, max: 22, default: 22, ownership: shared }
+        draggable: { type: boolean, default: true, ownership: shared }
+        zoomable: { type: boolean, default: true, ownership: shared }
+        rotatable: { type: boolean, default: false, ownership: shared }
+        tiltable: { type: boolean, default: false, ownership: shared }
+        pinClickable: { type: boolean, default: true, ownership: shared }
+        centerLat: { type: number, min: -90, max: 90, ownership: shared }
+        centerLng: { type: number, min: -180, max: 180, ownership: shared }
+        pitch: { type: number, default: 0, ownership: shared }
+        bearing: { type: number, default: 0, ownership: shared }
+        show3dBuildings: { type: boolean, default: false, ownership: shared }
+        autoRotate: { type: boolean, default: false, ownership: shared }
+        autoRotateSpeed: { type: number, default: 1, ownership: shared }
+        showDirections: { type: boolean, default: true, ownership: shared }
+        variant:
+          { type: enum, values: [default], default: default, ownership: shared }
+        themeId: { type: uuid, ownership: shared }
+        preferredScheme:
+          {
+            type: enum,
+            values: [auto, light, dark],
+            default: auto,
+            ownership: shared,
+          }
+        areaLabelsMode:
+          {
+            type: enum,
+            values: [inherit, show, hide],
+            default: inherit,
+            ownership: shared,
+          }
+        poiLabelsMode:
+          {
+            type: enum,
+            values: [inherit, show, hide],
+            default: inherit,
+            ownership: shared,
+          }
+        caption:
+          { type: string, default: "", ownership: locale, translatable: true }
+      content: none
+    file:
+      fields:
+        attachment:
+          {
+            type: file_attachment,
+            required: true,
+            ownership: shared,
+            file_reference: file,
+          }
+        name: { type: string, default: "", ownership: shared }
+        alt:
+          { type: string, default: "", ownership: locale, translatable: true }
+        caption:
+          { type: string, default: "", ownership: locale, translatable: true }
+        width: { type: number, min: 0, default: 0, ownership: shared }
+        height: { type: number, min: 0, default: 0, ownership: shared }
+        previewWidth:
+          { type: integer, min: 10, max: 100, default: 100, ownership: shared }
+        textAlignment:
+          {
+            type: enum,
+            values: [left, center, right],
+            default: left,
+            ownership: shared,
+          }
+      content: none
+    callout:
+      fields:
+        icon:
+          {
+            type: string,
+            min_length: 1,
+            max_length: 32,
+            default: "💡",
+            ownership: shared,
+          }
+        backgroundColor:
+          { type: editor_color, default: gray, ownership: shared }
+        textColor: { type: editor_color, default: default, ownership: shared }
+      content: inline
+
+profiles:
+  post:
+    blocks:
+      [
+        paragraph,
+        heading,
+        bullet-list-item,
+        numbered-list-item,
+        check-list-item,
+        quote,
+        code-block,
+        divider,
+        table,
+        p5-sketch,
+        three-scene,
+        shader,
+        math,
+        map,
+        file,
+        callout,
+      ]
+    inline_math: true
+    paragraph_external_video: true
+    marks:
+      [bold, italic, underline, strike, code, textColor, backgroundColor, link]
+  page:
+    blocks:
+      [
+        paragraph,
+        heading,
+        bullet-list-item,
+        numbered-list-item,
+        check-list-item,
+        quote,
+        code-block,
+        divider,
+        table,
+        p5-sketch,
+        three-scene,
+        shader,
+        math,
+        file,
+        callout,
+      ]
+    inline_math: false
+    paragraph_external_video: true
+    marks:
+      [bold, italic, underline, strike, code, textColor, backgroundColor, link]
+  work: &full_profile
+    blocks:
+      [
+        paragraph,
+        heading,
+        bullet-list-item,
+        numbered-list-item,
+        check-list-item,
+        quote,
+        code-block,
+        divider,
+        table,
+        p5-sketch,
+        three-scene,
+        shader,
+        math,
+        map,
+        file,
+        callout,
+      ]
+    inline_math: true
+    paragraph_external_video: false
+    marks:
+      [bold, italic, underline, strike, code, textColor, backgroundColor, link]
+  program_event: *full_profile
+  compact:
+    blocks: [paragraph, divider]
+    inline_math: false
+    paragraph_external_video: false
+    marks:
+      [bold, italic, underline, strike, code, textColor, backgroundColor, link]
+  email: &restricted_profile
+    blocks:
+      [
+        paragraph,
+        heading,
+        bullet-list-item,
+        numbered-list-item,
+        check-list-item,
+        quote,
+        code-block,
+        divider,
+        table,
+        callout,
+      ]
+    inline_math: false
+    paragraph_external_video: false
+    marks:
+      [bold, italic, underline, strike, code, textColor, backgroundColor, link]
+  policy: *restricted_profile
+
+page:
+  document_field: sections
+  section_id: { type: uuid, ownership: shared }
+  max_columns_depth: 1
+  settings:
+    backgroundColor:
+      { type: hex_color, allow_empty: true, default: "", ownership: shared }
+    paddingTop: { type: number, min: 0, default: 0, ownership: shared }
+    paddingBottom: { type: number, min: 0, default: 0, ownership: shared }
+    paddingLeft: { type: number, min: 0, default: 0, ownership: shared }
+    paddingRight: { type: number, min: 0, default: 0, ownership: shared }
+    maxWidth:
+      {
+        type: enum,
+        values: [full, container, narrow],
+        default: full,
+        ownership: shared,
+      }
+  immersive_unit:
+    fields:
+      name: { type: string, ownership: shared }
+      attribution: { type: string, ownership: shared }
+      mesh:
+        {
+          type: enum,
+          values: [sphere, box, torus, cone],
+          default: sphere,
+          ownership: shared,
+        }
+      meshSource: { type: enum, values: [primitive, file], ownership: shared }
+      meshFile:
+        {
+          type: file_attachment,
+          ownership: shared,
+          file_reference: immersive.mesh,
+        }
+      meshObjectName: { type: string, ownership: shared }
+      meshOptimizationCandidateId: { type: uuid, ownership: shared }
+      meshOptimizationSourceFile:
+        {
+          type: file_attachment,
+          ownership: shared,
+          file_reference: immersive.optimization_source,
+        }
+      meshOptimizationFile:
+        {
+          type: file_attachment,
+          ownership: shared,
+          file_reference: immersive.optimized_mesh,
+        }
+      scale: { type: number, min: 0.1, max: 8, ownership: shared }
+      meshOffsetY: { type: number, min: -5, max: 5, ownership: shared }
+      particleSize: { type: number, min: 0.2, max: 5, ownership: shared }
+      holdSeconds: { type: number, min: 0.2, max: 60, ownership: shared }
+      rotationX: { type: number, min: -360, max: 360, ownership: shared }
+      rotationY: { type: number, min: -360, max: 360, ownership: shared }
+      rotationZ: { type: number, min: -360, max: 360, ownership: shared }
+      rotationSpeedX: { type: number, min: -2, max: 2, ownership: shared }
+      rotationSpeedY: { type: number, min: -2, max: 2, ownership: shared }
+      rotationSpeedZ: { type: number, min: -2, max: 2, ownership: shared }
+      scrollRotationTurnsX: { type: number, min: -2, max: 2, ownership: shared }
+      scrollRotationTurnsY: { type: number, min: -2, max: 2, ownership: shared }
+      scrollRotationTurnsZ: { type: number, min: -2, max: 2, ownership: shared }
+      color: { type: hex_color, default: "#d8dde5", ownership: shared }
+      textureSource: { type: enum, values: [color, image], ownership: shared }
+      textureFile:
+        {
+          type: file_attachment,
+          ownership: shared,
+          file_reference: immersive.texture,
+        }
+      darkColor: { type: hex_color, ownership: shared }
+      darkTextureSource:
+        { type: enum, values: [color, image], ownership: shared }
+      darkTextureFile:
+        {
+          type: file_attachment,
+          ownership: shared,
+          file_reference: immersive.dark_texture,
+        }
+      title:
+        { type: string, default: "", ownership: locale, translatable: true }
+      text: { type: string, default: "", ownership: locale, translatable: true }
+  column_child_kinds:
+    [
+      rich-text,
+      external-video,
+      post-list,
+      post-table,
+      post-map,
+      work-map,
+      work-table,
+      work-list,
+      program-event-list,
+      release-list,
+      artist-list,
+      label-list,
+      text-marquee,
+      client-marquee,
+      label-marquee,
+      author-list,
+      form,
+      map,
+    ]
+  sections:
+    rich-text:
+      fields: {}
+      rich_text_profile: page
+    external-video:
+      fields:
+        uri:
+          {
+            type: uri,
+            schemes: [http, https],
+            required: true,
+            ownership: shared,
+          }
+        caption:
+          { type: string, default: "", ownership: locale, translatable: true }
+        aspectRatio:
+          {
+            type: enum,
+            values: [auto, "16:9", "4:3", "1:1", "9:16"],
+            default: auto,
+            ownership: shared,
+          }
+    post-list:
+      field_sets: [page_list]
+      fields:
+        categoryIds:
+          {
+            type: array,
+            default: [],
+            ownership: shared,
+            unique: true,
+            items: { type: uuid },
+          }
+        tagIds:
+          {
+            type: array,
+            default: [],
+            ownership: shared,
+            unique: true,
+            items: { type: uuid },
+          }
+        authorIds:
+          {
+            type: array,
+            default: [],
+            ownership: shared,
+            unique: true,
+            items: { type: uuid },
+          }
+        seriesId: { type: uuid, ownership: shared }
+        sortBy:
+          {
+            type: enum,
+            values: [published_at, updated_at, title],
+            default: published_at,
+            ownership: shared,
+          }
+        limit: { type: integer, min: 1, max: 50, default: 6, ownership: shared }
+        showFeaturedImage: { type: boolean, default: true, ownership: shared }
+        imageAspectRatio:
+          {
+            type: enum,
+            values: ["16:9", "4:3", "1:1", auto],
+            default: "16:9",
+            ownership: shared,
+          }
+    post-table:
+      fields:
+        categoryIds:
+          {
+            type: array,
+            default: [],
+            ownership: shared,
+            unique: true,
+            items: { type: uuid },
+          }
+        tagIds:
+          {
+            type: array,
+            default: [],
+            ownership: shared,
+            unique: true,
+            items: { type: uuid },
+          }
+        authorIds:
+          {
+            type: array,
+            default: [],
+            ownership: shared,
+            unique: true,
+            items: { type: uuid },
+          }
+        seriesId: { type: uuid, ownership: shared }
+        statuses:
+          {
+            type: array,
+            default: [published, archived],
+            ownership: shared,
+            unique: true,
+            items: { type: enum, values: [published, archived] },
+          }
+        filterFields:
+          {
+            type: array,
+            default:
+              [category_id, tag_id, author_id, series_id, status, published_at],
+            ownership: shared,
+            unique: true,
+            items:
+              {
+                type: enum,
+                values:
+                  [
+                    category_id,
+                    tag_id,
+                    author_id,
+                    series_id,
+                    status,
+                    published_at,
+                  ],
+              },
+          }
+        sortFields:
+          {
+            type: array,
+            default: [published_at, title],
+            ownership: shared,
+            unique: true,
+            items: { type: enum, values: [published_at, title] },
+          }
+        pageSize:
+          { type: integer, min: 1, max: 50, default: 10, ownership: shared }
+    post-map:
+      fields: &post_map_fields
+        categoryIds:
+          {
+            type: array,
+            default: [],
+            ownership: shared,
+            unique: true,
+            items: { type: uuid },
+          }
+        tagIds:
+          {
+            type: array,
+            default: [],
+            ownership: shared,
+            unique: true,
+            items: { type: uuid },
+          }
+        authorIds:
+          {
+            type: array,
+            default: [],
+            ownership: shared,
+            unique: true,
+            items: { type: uuid },
+          }
+        seriesId: { type: uuid, ownership: shared }
+        requirePlace: { type: boolean, default: true, ownership: shared }
+        sortBy:
+          {
+            type: enum,
+            values: [published_at, updated_at, title],
+            default: published_at,
+            ownership: shared,
+          }
+        sortOrder:
+          { type: enum, values: [asc, desc], default: desc, ownership: shared }
+        aspectRatio:
+          {
+            type: enum,
+            values: ["16:9", "4:3", "1:1"],
+            default: "16:9",
+            ownership: shared,
+          }
+        previewWidth:
+          { type: integer, min: 10, max: 100, default: 100, ownership: shared }
+        minZoom:
+          { type: number, min: -2, max: 22, default: -2, ownership: shared }
+        maxZoom:
+          { type: number, min: -2, max: 22, default: 22, ownership: shared }
+        primaryLabel:
+          {
+            type: enum,
+            values: [content_title, place_name],
+            default: content_title,
+            ownership: shared,
+          }
+        themeId: { type: uuid, ownership: shared }
+        preferredScheme:
+          {
+            type: enum,
+            values: [auto, light, dark],
+            default: auto,
+            ownership: shared,
+          }
+        areaLabelsMode:
+          {
+            type: enum,
+            values: [inherit, show, hide],
+            default: inherit,
+            ownership: shared,
+          }
+        poiLabelsMode:
+          {
+            type: enum,
+            values: [inherit, show, hide],
+            default: inherit,
+            ownership: shared,
+          }
+    work-map:
+      fields:
+        workTypes:
+          {
+            type: array,
+            default: [],
+            ownership: shared,
+            unique: true,
+            items:
+              {
+                type: enum,
+                values: [music_project, portfolio, article, contribution],
+              },
+          }
+        featuredOnly: { type: boolean, default: false, ownership: shared }
+        sortBy:
+          {
+            type: enum,
+            values: [published_at, updated_at, title],
+            default: published_at,
+            ownership: shared,
+          }
+        sortOrder:
+          { type: enum, values: [asc, desc], default: desc, ownership: shared }
+        aspectRatio:
+          {
+            type: enum,
+            values: ["16:9", "4:3", "1:1"],
+            default: "16:9",
+            ownership: shared,
+          }
+        previewWidth:
+          { type: integer, min: 10, max: 100, default: 100, ownership: shared }
+        minZoom:
+          { type: number, min: -2, max: 22, default: -2, ownership: shared }
+        maxZoom:
+          { type: number, min: -2, max: 22, default: 22, ownership: shared }
+        primaryLabel:
+          {
+            type: enum,
+            values: [content_title, place_name],
+            default: content_title,
+            ownership: shared,
+          }
+        themeId: { type: uuid, ownership: shared }
+        preferredScheme:
+          {
+            type: enum,
+            values: [auto, light, dark],
+            default: auto,
+            ownership: shared,
+          }
+        areaLabelsMode:
+          {
+            type: enum,
+            values: [inherit, show, hide],
+            default: inherit,
+            ownership: shared,
+          }
+        poiLabelsMode:
+          {
+            type: enum,
+            values: [inherit, show, hide],
+            default: inherit,
+            ownership: shared,
+          }
+    work-table:
+      fields:
+        workTypes:
+          {
+            type: array,
+            default: [],
+            ownership: shared,
+            unique: true,
+            items:
+              {
+                type: enum,
+                values: [music_project, portfolio, article, contribution],
+              },
+          }
+        featuredOnly: { type: boolean, default: false, ownership: shared }
+        statuses:
+          {
+            type: array,
+            default: [published],
+            ownership: shared,
+            unique: true,
+            items: { type: enum, values: [published, archived] },
+          }
+        filterFields:
+          {
+            type: array,
+            default: [type, featured, status, year, published_at],
+            ownership: shared,
+            unique: true,
+            items:
+              {
+                type: enum,
+                values:
+                  [
+                    type,
+                    featured,
+                    status,
+                    year,
+                    month,
+                    until_year,
+                    until_month,
+                    is_present,
+                    published_at,
+                  ],
+              },
+          }
+        sortFields:
+          {
+            type: array,
+            default: [published_at, updated_at, title],
+            ownership: shared,
+            unique: true,
+            items: { type: enum, values: [published_at, updated_at, title] },
+          }
+        pageSize:
+          { type: integer, min: 1, max: 50, default: 10, ownership: shared }
+    work-list:
+      field_sets: [page_list]
+      fields:
+        workTypes:
+          {
+            type: array,
+            default: [],
+            ownership: shared,
+            unique: true,
+            items:
+              {
+                type: enum,
+                values: [music_project, portfolio, article, contribution],
+              },
+          }
+        featuredOnly: { type: boolean, default: false, ownership: shared }
+        sortBy:
+          {
+            type: enum,
+            values: [published_at, updated_at, title],
+            default: published_at,
+            ownership: shared,
+          }
+        limit: { type: integer, min: 1, max: 24, default: 6, ownership: shared }
+        imageAspectRatio:
+          {
+            type: enum,
+            values: ["16:9", "4:3", "1:1", auto],
+            default: "16:9",
+            ownership: shared,
+          }
+    program-event-list:
+      field_sets: [page_list]
+      fields:
+        typeIds:
+          {
+            type: array,
+            default: [],
+            ownership: shared,
+            unique: true,
+            items: { type: uuid },
+          }
+        seriesId: { type: uuid, ownership: shared }
+        timeWindow:
+          {
+            type: enum,
+            values: [upcoming, current, past, all],
+            default: all,
+            ownership: shared,
+          }
+        sortBy:
+          {
+            type: enum,
+            values: [starts_at, ends_at, published_at, updated_at, title],
+            default: starts_at,
+            ownership: shared,
+          }
+        sortOrder:
+          { type: enum, values: [asc, desc], default: asc, ownership: shared }
+        limit: { type: integer, min: 1, max: 24, default: 6, ownership: shared }
+        imageAspectRatio:
+          {
+            type: enum,
+            values: ["16:9", "4:3", "1:1", auto],
+            default: "16:9",
+            ownership: shared,
+          }
+    release-list:
+      field_sets: [page_list]
+      fields:
+        columns:
+          { type: integer, min: 1, max: 4, default: 4, ownership: shared }
+        types:
+          {
+            type: array,
+            default: [],
+            ownership: shared,
+            unique: true,
+            items: { type: enum, values: [album, ep, single, compilation] },
+          }
+        categoryIds:
+          {
+            type: array,
+            default: [],
+            ownership: shared,
+            unique: true,
+            items: { type: uuid },
+          }
+        artistId: { type: uuid, ownership: shared }
+        labelId: { type: uuid, ownership: shared }
+        sortBy:
+          {
+            type: enum,
+            values: [published_at, release_date, title],
+            default: release_date,
+            ownership: shared,
+          }
+        limit: { type: integer, min: 1, max: 24, default: 8, ownership: shared }
+        imageAspectRatio:
+          {
+            type: enum,
+            values: ["16:9", "4:3", "1:1", auto],
+            default: "1:1",
+            ownership: shared,
+          }
+    artist-list:
+      field_sets: [page_list]
+      fields:
+        labelIds:
+          {
+            type: array,
+            default: [],
+            ownership: shared,
+            unique: true,
+            items: { type: uuid },
+          }
+        sortBy:
+          {
+            type: enum,
+            values: [name, published_at],
+            default: name,
+            ownership: shared,
+          }
+        sortOrder:
+          { type: enum, values: [asc, desc], default: asc, ownership: shared }
+        limit:
+          { type: integer, min: 1, max: 24, default: 12, ownership: shared }
+        imageAspectRatio:
+          {
+            type: enum,
+            values: ["16:9", "4:3", "1:1", auto],
+            default: "1:1",
+            ownership: shared,
+          }
+    label-list:
+      field_sets: [page_list]
+      fields:
+        sortBy:
+          {
+            type: enum,
+            values: [name, published_at],
+            default: name,
+            ownership: shared,
+          }
+        sortOrder:
+          { type: enum, values: [asc, desc], default: asc, ownership: shared }
+        limit:
+          { type: integer, min: 1, max: 24, default: 12, ownership: shared }
+        imageAspectRatio:
+          {
+            type: enum,
+            values: ["16:9", "4:3", "1:1", auto],
+            default: "1:1",
+            ownership: shared,
+          }
+    author-list:
+      fields:
+        layout:
+          { type: enum, values: [grid, list], default: grid, ownership: shared }
+        columns:
+          { type: integer, min: 1, max: 4, default: 3, ownership: shared }
+        limit: { type: integer, min: 1, max: 24, default: 6, ownership: shared }
+        showBio: { type: boolean, default: true, ownership: shared }
+        showAvatar: { type: boolean, default: true, ownership: shared }
+        source:
+          {
+            type: enum,
+            values: [automatic, selected],
+            default: automatic,
+            ownership: shared,
+          }
+        authorIds:
+          {
+            type: array,
+            default: [],
+            max_length: 24,
+            ownership: shared,
+            unique: true,
+            items: { type: uuid },
+          }
+    form:
+      fields:
+        formId: { type: uuid, required: true, ownership: shared }
+        showTitle: { type: boolean, default: true, ownership: shared }
+    text-marquee:
+      field_sets: [marquee]
+      fields:
+        items:
+          type: array
+          default: []
+          ownership: shared
+          items:
+            type: object
+            fields:
+              text: { type: string, required: true }
+              href: { type: uri, schemes: [http, https] }
+    client-marquee: &entity_marquee
+      field_sets: [marquee]
+      fields:
+        source:
+          {
+            type: enum,
+            values: [all, selected],
+            default: all,
+            ownership: shared,
+          }
+        ids:
+          {
+            type: array,
+            default: [],
+            ownership: shared,
+            unique: true,
+            items: { type: uuid },
+          }
+        linkMode:
+          {
+            type: enum,
+            values: [none, entity],
+            default: entity,
+            ownership: shared,
+          }
+        logoScale:
+          {
+            type: enum,
+            values: [contain, fill-height],
+            default: contain,
+            ownership: shared,
+          }
+        fallbackMode:
+          { type: enum, values: [name, hide], default: name, ownership: shared }
+        limit:
+          { type: integer, min: 1, max: 100, default: 24, ownership: shared }
+    label-marquee: *entity_marquee
+    map:
+      fields:
+        mapPlaceIds:
+          {
+            type: array,
+            default: [],
+            ownership: shared,
+            unique: true,
+            items: { type: uuid },
+          }
+        aspectRatio:
+          {
+            type: enum,
+            values: ["16:9", "4:3", "1:1"],
+            default: "16:9",
+            ownership: shared,
+          }
+        previewWidth:
+          { type: integer, min: 10, max: 100, default: 100, ownership: shared }
+        zoom: { type: number, min: -2, max: 22, default: 15, ownership: shared }
+        minZoom:
+          { type: number, min: -2, max: 22, default: -2, ownership: shared }
+        maxZoom:
+          { type: number, min: -2, max: 22, default: 22, ownership: shared }
+        draggable: { type: boolean, default: true, ownership: shared }
+        zoomable: { type: boolean, default: true, ownership: shared }
+        rotatable: { type: boolean, default: false, ownership: shared }
+        tiltable: { type: boolean, default: false, ownership: shared }
+        pinClickable: { type: boolean, default: true, ownership: shared }
+        centerLat: { type: number, min: -90, max: 90, ownership: shared }
+        centerLng: { type: number, min: -180, max: 180, ownership: shared }
+        pitch: { type: number, default: 0, ownership: shared }
+        bearing: { type: number, default: 0, ownership: shared }
+        show3dBuildings: { type: boolean, default: false, ownership: shared }
+        autoRotate: { type: boolean, default: false, ownership: shared }
+        autoRotateSpeed: { type: number, default: 1, ownership: shared }
+        showDirections: { type: boolean, default: true, ownership: shared }
+        variant:
+          { type: enum, values: [default], default: default, ownership: shared }
+        themeId: { type: uuid, ownership: shared }
+        preferredScheme:
+          {
+            type: enum,
+            values: [auto, light, dark],
+            default: auto,
+            ownership: shared,
+          }
+        areaLabelsMode:
+          {
+            type: enum,
+            values: [inherit, show, hide],
+            default: inherit,
+            ownership: shared,
+          }
+        poiLabelsMode:
+          {
+            type: enum,
+            values: [inherit, show, hide],
+            default: inherit,
+            ownership: shared,
+          }
+        caption:
+          { type: string, default: "", ownership: locale, translatable: true }
+    immersive-scene:
+      immersive_units: true
+      fields:
+        playback:
+          {
+            type: enum,
+            values: [scroll, autoplay],
+            default: scroll,
+            ownership: shared,
+          }
+        loop: { type: boolean, default: false, ownership: shared }
+        transition:
+          {
+            type: enum,
+            values: [linear, smooth],
+            default: smooth,
+            ownership: shared,
+          }
+        transitionWindow:
+          {
+            type: number,
+            min: 0.08,
+            max: 0.8,
+            default: 0.22,
+            ownership: shared,
+          }
+        textureSize:
+          {
+            type: enum_int,
+            values: [32, 64, 96, 128],
+            default: 64,
+            ownership: shared,
+          }
+        heightVh:
+          { type: number, min: 120, max: 900, default: 360, ownership: shared }
+        minHeightPx:
+          { type: number, min: 360, max: 1600, default: 720, ownership: shared }
+        unitHoldSeconds:
+          { type: number, min: 0.2, max: 60, default: 5, ownership: shared }
+        unitGapSeconds:
+          { type: number, min: 0, max: 30, default: 1.5, ownership: shared }
+        particleSize:
+          { type: number, min: 0.2, max: 5, default: 1, ownership: shared }
+        particleBrightness:
+          { type: number, min: 0.2, max: 3, default: 1.25, ownership: shared }
+        backgroundColor:
+          { type: hex_color, default: "#070a0d", ownership: shared }
+        backgroundEnabled: { type: boolean, default: true, ownership: shared }
+        preferredScheme:
+          {
+            type: enum,
+            values: [auto, light, dark],
+            default: auto,
+            ownership: shared,
+          }
+        textColorSource:
+          {
+            type: enum,
+            values: [theme, custom],
+            default: theme,
+            ownership: shared,
+          }
+        lightTextColor:
+          { type: hex_color, default: "#111827", ownership: shared }
+        darkTextColorSource:
+          {
+            type: enum,
+            values: [inherit, custom],
+            default: inherit,
+            ownership: shared,
+          }
+        darkTextColor:
+          { type: hex_color, default: "#f8fafc", ownership: shared }
+        darkBackgroundColor:
+          { type: hex_color, default: "#030712", ownership: shared }
+        darkParticleBrightness:
+          { type: number, min: 0.2, max: 3, default: 1.45, ownership: shared }
+        rotationEnabled: { type: boolean, default: true, ownership: shared }
+        rotationX:
+          { type: number, min: -360, max: 360, default: 0, ownership: shared }
+        rotationY:
+          { type: number, min: -360, max: 360, default: 0, ownership: shared }
+        rotationZ:
+          { type: number, min: -360, max: 360, default: 0, ownership: shared }
+        rotationSpeedX:
+          { type: number, min: -2, max: 2, default: 0, ownership: shared }
+        rotationSpeedY:
+          { type: number, min: -2, max: 2, default: 0.18, ownership: shared }
+        rotationSpeedZ:
+          { type: number, min: -2, max: 2, default: 0, ownership: shared }
+        scrollRotationEnabled:
+          { type: boolean, default: true, ownership: shared }
+        scrollRotationTurnsX:
+          { type: number, min: -2, max: 2, default: 0, ownership: shared }
+        scrollRotationTurnsY:
+          { type: number, min: -2, max: 2, default: 0.35, ownership: shared }
+        scrollRotationTurnsZ:
+          { type: number, min: -2, max: 2, default: 0, ownership: shared }
+        hoverEnabled: { type: boolean, default: true, ownership: shared }
+        hoverRepelRadius:
+          { type: number, min: 0.05, max: 2, default: 0.45, ownership: shared }
+    columns:
+      fields:
+        columns:
+          type: array
+          required: true
+          min_length: 2
+          max_length: 4
+          ownership: shared
+          items:
+            type: object
+            fields:
+              id: { type: uuid, required: true }
+              ratio: { type: number, min_exclusive: 0, required: true }
+        gap: { type: integer, min: 0, max: 100, default: 24, ownership: shared }
+        mobileStack: { type: boolean, default: true, ownership: shared }
+      columns: true

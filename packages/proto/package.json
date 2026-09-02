@@ -1,0 +1,66 @@
+{
+  "name": "@echovisionlab/geul-proto",
+  "version": "0.1.0",
+  "private": false,
+  "type": "module",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "lint": "echo \"No lintable source files in @echovisionlab/geul-proto\"",
+    "lint-fix": "echo \"No lintable source files in @echovisionlab/geul-proto\""
+  },
+  "exports": {
+    "./secure/*": "./gen/api/manage/v1/*",
+    "./public/*": "./gen/api/open/v1/*",
+    "./common/*": "./gen/api/common/v1/*",
+    "./content/block_catalog.ts": "./gen/api/content/v1/block_catalog.ts",
+    "./content/block_content_pb.ts": "./gen/api/content/v1/block_content_pb.ts",
+    "./content/*": "./gen/api/content/v1/*",
+    "./intra/*": "./gen/api/intra/v1/*",
+    "./policy/access_pb.ts": "./gen/api/policy/v1/access_pb.ts",
+    "./policy/spicedb/core.ts": "./gen/api/policy/v1/spicedb/core.ts",
+    "./policy/spicedb/artist.ts": "./gen/api/policy/v1/spicedb/artist.ts",
+    "./policy/spicedb/audience.ts": "./gen/api/policy/v1/spicedb/audience.ts",
+    "./policy/spicedb/campaign.ts": "./gen/api/policy/v1/spicedb/campaign.ts",
+    "./policy/spicedb/email_authoring.ts": "./gen/api/policy/v1/spicedb/email_authoring.ts",
+    "./policy/spicedb/email_delivery.ts": "./gen/api/policy/v1/spicedb/email_delivery.ts",
+    "./policy/spicedb/file.ts": "./gen/api/policy/v1/spicedb/file.ts",
+    "./policy/spicedb/form.ts": "./gen/api/policy/v1/spicedb/form.ts",
+    "./policy/spicedb/label.ts": "./gen/api/policy/v1/spicedb/label.ts",
+    "./policy/spicedb/legal_policy.ts": "./gen/api/policy/v1/spicedb/legal_policy.ts",
+    "./policy/spicedb/map_theme.ts": "./gen/api/policy/v1/spicedb/map_theme.ts",
+    "./policy/spicedb/member.ts": "./gen/api/policy/v1/spicedb/member.ts",
+    "./policy/spicedb/menu.ts": "./gen/api/policy/v1/spicedb/menu.ts",
+    "./policy/spicedb/page.ts": "./gen/api/policy/v1/spicedb/page.ts",
+    "./policy/spicedb/post.ts": "./gen/api/policy/v1/spicedb/post.ts",
+    "./policy/spicedb/post_series.ts": "./gen/api/policy/v1/spicedb/post_series.ts",
+    "./policy/spicedb/program_event.ts": "./gen/api/policy/v1/spicedb/program_event.ts",
+    "./policy/spicedb/program_event_series.ts": "./gen/api/policy/v1/spicedb/program_event_series.ts",
+    "./policy/spicedb/reference_data.ts": "./gen/api/policy/v1/spicedb/reference_data.ts",
+    "./policy/spicedb/release.ts": "./gen/api/policy/v1/spicedb/release.ts",
+    "./policy/spicedb/site_settings.ts": "./gen/api/policy/v1/spicedb/site_settings.ts",
+    "./policy/spicedb/translation.ts": "./gen/api/policy/v1/spicedb/translation.ts",
+    "./policy/spicedb/work.ts": "./gen/api/policy/v1/spicedb/work.ts"
+  },
+  "dependencies": {
+    "@bufbuild/protobuf": "^2.14.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.13.3",
+    "@typescript/native": "npm:typescript@7.0.2",
+    "eslint": "^10.8.1",
+    "typescript": "npm:@typescript/typescript6@6.0.2",
+    "typescript-eslint": "^8.67.0"
+  },
+  "license": "PolyForm-Noncommercial-1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/echovisionlab/geul-event-contracts.git"
+  },
+  "homepage": "https://github.com/echovisionlab/geul-event-contracts#readme",
+  "bugs": {
+    "url": "https://github.com/echovisionlab/geul-event-contracts/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

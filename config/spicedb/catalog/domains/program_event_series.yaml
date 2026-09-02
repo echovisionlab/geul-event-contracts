@@ -1,0 +1,27 @@
+# Program Event Series owns its independent series lifecycle.
+domain: program_event_series
+description: Program Event Series lifecycle policy
+actions:
+  program_event_series:
+    view: view
+    edit: edit
+    delete: delete
+    publish: publish
+    manage: manage
+platform_actions:
+  program_event_series:
+    create: is_admin
+    list: is_admin
+definitions:
+  program_event_series:
+    relations:
+      policy: [platform]
+    permissions: [platform_admin, view, edit, delete, publish, manage]
+permission_expressions:
+  program_event_series:
+    platform_admin: policy->is_admin
+    view: platform_admin
+    edit: platform_admin
+    delete: platform_admin
+    publish: platform_admin
+    manage: platform_admin

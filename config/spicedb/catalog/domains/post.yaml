@@ -1,0 +1,69 @@
+# Post owns Author and Collaborator participation plus archived/share-link
+# authorization for one Post resource.
+domain: post
+description: Post authoring and participant policy
+actions:
+  post:
+    edit: edit
+    view: view
+    view_archived: view_archived
+    edit_archived: edit_archived
+    delete: delete
+    publish: publish
+    manage: manage
+    manage_participants: manage_participants
+    manage_share_links: manage_share_links
+action_aliases:
+  post:
+    remove_author: platform_admin
+lookup_permissions:
+  post:
+    - view
+    - edit
+    - delete
+    - publish
+    - manage
+    - manage_participants
+    - manage_share_links
+    - platform_admin
+    - view_archived
+    - edit_archived
+platform_actions:
+  post:
+    create: is_author
+    list: is_admin
+definitions:
+  post:
+    relations:
+      policy: [platform]
+      author: [account_identity]
+      collaborator: [account_identity]
+    permissions:
+      - platform_admin
+      - platform_author
+      - author_manage
+      - collaborator_edit
+      - edit
+      - view
+      - view_archived
+      - edit_archived
+      - delete
+      - publish
+      - manage
+      - manage_participants
+      - manage_share_links
+permission_expressions:
+  post:
+    platform_admin: policy->is_admin
+    platform_author: policy->is_author
+    author_manage: platform_admin + (author & platform_author)
+    collaborator_edit: collaborator
+    edit: author_manage + collaborator_edit
+    view: edit
+    view_archived: platform_author
+    edit_archived: platform_admin
+    delete: author_manage
+    publish: author_manage
+    manage: author_manage
+    manage_participants: author_manage
+    manage_share_links: author_manage

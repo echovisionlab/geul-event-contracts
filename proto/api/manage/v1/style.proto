@@ -1,0 +1,87 @@
+syntax = "proto3";
+
+package api.manage.v1;
+
+import "api/common/v1/common.proto";
+import "api/manage/v1/common.proto";
+// Style entity
+// Maps to: postgres/init/schema.template - style table
+import "api/policy/v1/access.proto";
+import "google/protobuf/timestamp.proto";
+
+message Style {
+  string id = 1;
+  string name = 2;
+  string slug = 3;
+  optional string description = 4;
+  google.protobuf.Timestamp created_at = 5;
+}
+
+// Style with release count for admin list
+message StyleWithStats {
+  Style style = 1;
+  int32 release_count = 2;
+}
+
+// Request/Response messages
+
+message ListStylesRequest {
+  api.common.v1.PaginationRequest pagination = 1;
+  repeated api.common.v1.FilterSpec filters = 2;
+  repeated api.common.v1.SortSpec sorts = 3; // Default: name ASC
+}
+
+message ListStylesResponse {
+  repeated Style styles = 1;
+  api.common.v1.PaginationResponse pagination = 2;
+}
+
+message ListStylesAdminRequest {
+  api.common.v1.PaginationRequest pagination = 1;
+  repeated api.common.v1.FilterSpec filters = 2;
+  repeated api.common.v1.SortSpec sorts = 3;
+}
+
+message ListStylesAdminResponse {
+  repeated StyleWithStats styles = 1;
+  api.common.v1.PaginationResponse pagination = 2;
+}
+
+message CreateStyleRequest {
+  string name = 1;
+  optional string slug = 2;
+  optional string description = 3;
+}
+
+message UpdateStyleRequest {
+  string id = 1;
+  optional string name = 2;
+  optional string slug = 3;
+  optional string description = 4;
+}
+
+message DeleteStyleRequest {
+  string id = 1;
+}
+
+// Style Service
+service StyleService {
+  // Public
+  rpc ListStyles(ListStylesRequest) returns (ListStylesResponse) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+
+  // Admin
+  rpc ListStylesAdmin(ListStylesAdminRequest) returns (ListStylesAdminResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc CreateStyle(CreateStyleRequest) returns (Style) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc UpdateStyle(UpdateStyleRequest) returns (Style) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc DeleteStyle(DeleteStyleRequest) returns (DeleteResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+}

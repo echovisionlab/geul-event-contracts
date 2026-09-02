@@ -1,0 +1,25 @@
+# Campaign owns Campaign authoring and delivery configuration authorization.
+domain: campaign
+description: Campaign resource policy
+actions:
+  campaign:
+    view: view
+    edit: edit
+    delete: delete
+    manage: manage
+platform_actions:
+  campaign:
+    create: is_admin
+    list: is_admin
+definitions:
+  campaign:
+    relations:
+      policy: [platform]
+    permissions: [platform_admin, view, edit, delete, manage]
+permission_expressions:
+  campaign:
+    platform_admin: policy->is_admin
+    view: platform_admin
+    edit: platform_admin
+    delete: platform_admin
+    manage: platform_admin

@@ -1,0 +1,87 @@
+syntax = "proto3";
+
+package api.manage.v1;
+
+import "api/common/v1/common.proto";
+import "api/manage/v1/common.proto";
+// Genre entity
+// Maps to: postgres/init/schema.template - genre table
+import "api/policy/v1/access.proto";
+import "google/protobuf/timestamp.proto";
+
+message Genre {
+  string id = 1;
+  string name = 2;
+  string slug = 3;
+  optional string description = 4;
+  google.protobuf.Timestamp created_at = 5;
+}
+
+// Genre with release count for admin list
+message GenreWithStats {
+  Genre genre = 1;
+  int32 release_count = 2;
+}
+
+// Request/Response messages
+
+message ListGenresRequest {
+  api.common.v1.PaginationRequest pagination = 1;
+  repeated api.common.v1.FilterSpec filters = 2;
+  repeated api.common.v1.SortSpec sorts = 3; // Default: name ASC
+}
+
+message ListGenresResponse {
+  repeated Genre genres = 1;
+  api.common.v1.PaginationResponse pagination = 2;
+}
+
+message ListGenresAdminRequest {
+  api.common.v1.PaginationRequest pagination = 1;
+  repeated api.common.v1.FilterSpec filters = 2;
+  repeated api.common.v1.SortSpec sorts = 3;
+}
+
+message ListGenresAdminResponse {
+  repeated GenreWithStats genres = 1;
+  api.common.v1.PaginationResponse pagination = 2;
+}
+
+message CreateGenreRequest {
+  string name = 1;
+  optional string slug = 2;
+  optional string description = 3;
+}
+
+message UpdateGenreRequest {
+  string id = 1;
+  optional string name = 2;
+  optional string slug = 3;
+  optional string description = 4;
+}
+
+message DeleteGenreRequest {
+  string id = 1;
+}
+
+// Genre Service
+service GenreService {
+  // Public
+  rpc ListGenres(ListGenresRequest) returns (ListGenresResponse) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+
+  // Admin
+  rpc ListGenresAdmin(ListGenresAdminRequest) returns (ListGenresAdminResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc CreateGenre(CreateGenreRequest) returns (Genre) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc UpdateGenre(UpdateGenreRequest) returns (Genre) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc DeleteGenre(DeleteGenreRequest) returns (DeleteResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+}

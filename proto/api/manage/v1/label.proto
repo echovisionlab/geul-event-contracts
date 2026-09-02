@@ -1,0 +1,269 @@
+syntax = "proto3";
+
+package api.manage.v1;
+
+import "api/common/v1/common.proto";
+import "api/common/v1/media.proto";
+import "api/content/v1/block_content.proto";
+import "api/manage/v1/common.proto";
+// Label entity (record label)
+import "api/policy/v1/access.proto";
+import "google/protobuf/timestamp.proto";
+
+// Label status enum
+enum LabelStatus {
+  LABEL_STATUS_UNSPECIFIED = 0;
+  LABEL_STATUS_DRAFT = 1;
+  LABEL_STATUS_PUBLISHED = 2;
+}
+
+enum LabelParticipantRole {
+  LABEL_PARTICIPANT_ROLE_UNSPECIFIED = 0;
+  LABEL_PARTICIPANT_ROLE_OWNER = 1;
+  LABEL_PARTICIPANT_ROLE_MANAGER = 2;
+}
+
+enum LabelAction {
+  LABEL_ACTION_UNSPECIFIED = 0;
+  LABEL_ACTION_EDIT = 1;
+  LABEL_ACTION_PUBLISH = 2;
+  LABEL_ACTION_UNPUBLISH = 3;
+  LABEL_ACTION_MANAGE_SHARE_LINKS = 4;
+  LABEL_ACTION_DELETE = 5;
+  LABEL_ACTION_MANAGE_PARTICIPANTS = 6;
+  LABEL_ACTION_REMOVE_OWNER = 7;
+}
+
+message Label {
+  string id = 1;
+  string name = 2;
+  optional string slug = 3;
+  api.content.v1.RichTextDocument document = 4;
+  optional string country_code = 5;
+  optional string website = 6;
+  map<string, string> social_links = 7;
+  optional string parent_label_id = 8;
+  string status = 9; // "draft" or "published"
+  google.protobuf.Timestamp published_at = 10;
+  google.protobuf.Timestamp created_at = 11;
+  google.protobuf.Timestamp updated_at = 12;
+  optional api.common.v1.AssetRef og_asset = 13;
+  optional api.common.v1.AssetRef image_light_asset = 14;
+  optional api.common.v1.AssetRef image_dark_asset = 15;
+  string revision = 16;
+  string source_locale = 17;
+}
+
+// Label with artist count (for admin list)
+message LabelWithStats {
+  Label label = 1;
+  int32 artist_count = 2;
+  int32 release_count = 3;
+}
+
+// Request/Response messages
+
+message GetLabelEditorDataRequest {
+  string id = 1;
+}
+
+message GetLabelEditorDataResponse {
+  Label label = 1;
+  repeated LabelAction allowed_actions = 2;
+}
+
+message ListLabelsRequest {
+  api.common.v1.PaginationRequest pagination = 1;
+  repeated api.common.v1.FilterSpec filters = 2;
+  repeated api.common.v1.SortSpec sorts = 3;
+}
+
+message ListLabelsResponse {
+  repeated Label labels = 1;
+  api.common.v1.PaginationResponse pagination = 2;
+}
+
+message ListLabelsAdminRequest {
+  api.common.v1.PaginationRequest pagination = 1;
+  repeated api.common.v1.FilterSpec filters = 2;
+  repeated api.common.v1.SortSpec sorts = 3;
+}
+
+message ListLabelsAdminResponse {
+  repeated LabelWithStats labels = 1;
+  api.common.v1.PaginationResponse pagination = 2;
+}
+
+message CreateLabelRequest {
+  string name = 1;
+  optional string slug = 2;
+  // Optional initial source document. When omitted, the Label service creates an empty compact document atomically.
+  api.content.v1.RichTextDocument document = 3;
+  optional string country_code = 4;
+  optional string website = 5;
+  map<string, string> social_links = 6;
+  optional string parent_label_id = 7;
+  // Required initial source locale for the new Label.
+  string source_locale = 8;
+}
+
+message DeleteLabelRequest {
+  string id = 1;
+  string preview_revision = 2;
+}
+
+enum LabelDeletionImpactKind {
+  LABEL_DELETION_IMPACT_KIND_UNSPECIFIED = 0;
+  LABEL_DELETION_IMPACT_KIND_CHILD_LABEL = 1;
+  LABEL_DELETION_IMPACT_KIND_ARTIST = 2;
+  LABEL_DELETION_IMPACT_KIND_PROGRAM_EVENT = 3;
+  LABEL_DELETION_IMPACT_KIND_RELEASE = 4;
+}
+
+message LabelDeletionImpact {
+  LabelDeletionImpactKind kind = 1;
+  string entity_id = 2;
+  string display_name = 3;
+}
+
+message PreviewDeleteLabelRequest {
+  string id = 1;
+}
+
+message PreviewDeleteLabelResponse {
+  string revision = 1;
+  repeated LabelDeletionImpact impacts = 2;
+  int32 child_label_count = 3;
+  int32 artist_count = 4;
+  int32 program_event_count = 5;
+  int32 release_count = 6;
+}
+
+message PublishLabelRequest {
+  string id = 1;
+}
+
+message UnpublishLabelRequest {
+  string id = 1;
+}
+
+message LabelLifecycleMutationResponse {
+  string id = 1;
+  bool changed = 2;
+  LabelStatus status = 3;
+  optional google.protobuf.Timestamp published_at = 4;
+  google.protobuf.Timestamp updated_at = 5;
+}
+
+// Label image management
+
+message SetLabelImageRequest {
+  string label_id = 1;
+  string file_id = 2;
+  ThemeAssetVariant variant = 3;
+}
+
+message SetLabelImageResponse {
+  optional api.common.v1.AssetRef image_light_asset = 1;
+  optional api.common.v1.AssetRef image_dark_asset = 2;
+  optional string og_generation_run_id = 3;
+}
+
+message DeleteLabelImageRequest {
+  string label_id = 1;
+  ThemeAssetVariant variant = 2;
+}
+
+// Owner and Manager are mutually exclusive durable roles for one Member and
+// Label. has_effective_authority is false when the Member has no active,
+// onboarded Identity, while the durable relation remains.
+message LabelParticipant {
+  api.common.v1.MemberSummary member = 1;
+  LabelParticipantRole role = 2;
+  google.protobuf.Timestamp created_at = 3;
+  bool has_effective_authority = 4;
+}
+
+message ListLabelParticipantsRequest {
+  string label_id = 1;
+}
+
+message ListLabelParticipantsResponse {
+  repeated LabelParticipant participants = 1;
+}
+
+message SetLabelParticipantRequest {
+  string label_id = 1;
+  string member_id = 2;
+  LabelParticipantRole role = 3;
+}
+
+message RemoveLabelParticipantRequest {
+  string label_id = 1;
+  string member_id = 2;
+}
+
+// Slug check
+
+message CheckLabelSlugAvailableRequest {
+  string slug = 1;
+  optional string exclude_label_id = 2;
+}
+
+message CheckLabelSlugAvailableResponse {
+  bool available = 1;
+}
+
+// Label Service
+service LabelService {
+  // Public (only published labels)
+  rpc GetLabelEditorData(GetLabelEditorDataRequest) returns (GetLabelEditorDataResponse) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+  rpc ListLabels(ListLabelsRequest) returns (ListLabelsResponse) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+
+  // Admin
+  rpc ListLabelsAdmin(ListLabelsAdminRequest) returns (ListLabelsAdminResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc CreateLabel(CreateLabelRequest) returns (Label) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc DeleteLabel(DeleteLabelRequest) returns (DeleteResponse) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+  rpc PreviewDeleteLabel(PreviewDeleteLabelRequest) returns (PreviewDeleteLabelResponse) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+  rpc PublishLabel(PublishLabelRequest) returns (LabelLifecycleMutationResponse) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+  rpc UnpublishLabel(UnpublishLabelRequest) returns (LabelLifecycleMutationResponse) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+
+  // Image management (Admin or Manager)
+  rpc SetLabelImage(SetLabelImageRequest) returns (SetLabelImageResponse) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+  rpc DeleteLabelImage(DeleteLabelImageRequest) returns (OgAssetDeleteResponse) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+
+  rpc ListLabelParticipants(ListLabelParticipantsRequest) returns (ListLabelParticipantsResponse) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+  rpc SetLabelParticipant(SetLabelParticipantRequest) returns (LabelParticipant) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+  rpc RemoveLabelParticipant(RemoveLabelParticipantRequest) returns (DeleteResponse) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+
+  // Utility
+  rpc CheckLabelSlugAvailable(CheckLabelSlugAvailableRequest) returns (CheckLabelSlugAvailableResponse) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+}

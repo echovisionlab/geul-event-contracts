@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package api.manage.v1;
+
+// ============================================================
+// Collaborative Document Types
+// ============================================================
+// Used for Yjs/Hocuspocus collaborative editing documents.
+// Each type represents an entity that supports real-time collaboration.
+
+// Document types for collaborative editing (Yjs)
+import "api/policy/v1/access.proto";
+
+enum CollaborativeDocumentType {
+  COLLABORATIVE_DOCUMENT_TYPE_UNSPECIFIED = 0;
+  COLLABORATIVE_DOCUMENT_TYPE_POST = 1;
+  COLLABORATIVE_DOCUMENT_TYPE_PAGE = 2;
+  COLLABORATIVE_DOCUMENT_TYPE_WORK = 3;
+  COLLABORATIVE_DOCUMENT_TYPE_CAMPAIGN = 4;
+  COLLABORATIVE_DOCUMENT_TYPE_EMAIL_TEMPLATE = 5;
+  COLLABORATIVE_DOCUMENT_TYPE_EMAIL_LAYOUT = 6;
+  COLLABORATIVE_DOCUMENT_TYPE_TERMS_HISTORY = 7;
+  COLLABORATIVE_DOCUMENT_TYPE_PRIVACY_HISTORY = 8;
+  COLLABORATIVE_DOCUMENT_TYPE_ARTIST = 9;
+  COLLABORATIVE_DOCUMENT_TYPE_RELEASE = 10;
+  COLLABORATIVE_DOCUMENT_TYPE_LABEL = 11;
+  COLLABORATIVE_DOCUMENT_TYPE_FORM = 12;
+  COLLABORATIVE_DOCUMENT_TYPE_MAP_THEME = 13;
+  COLLABORATIVE_DOCUMENT_TYPE_PROGRAM_EVENT = 14;
+  COLLABORATIVE_DOCUMENT_TYPE_MENU = 15;
+  COLLABORATIVE_DOCUMENT_TYPE_POST_SERIES = 16;
+}

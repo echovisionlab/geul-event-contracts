@@ -1,0 +1,29 @@
+schema_version: 1
+
+# Canonical Form Collaboration/DCDP locale leaf identity. Generated Go and
+# TypeScript helpers are the only source of AIDocumentFieldTarget handles.
+# Stable IDs are unique per kind across the whole persisted Form schema.
+stable_id:
+  pattern: "^[A-Za-z0-9][A-Za-z0-9_-]{0,95}$"
+  reject_all_digits: true
+
+blocks:
+  root:
+    fixed_handle: document
+    locale_fields: [title]
+  step:
+    handle_prefix: "form:step:"
+    stable_id_required: true
+    locale_fields: [title, description]
+  field:
+    handle_prefix: "form:field:"
+    stable_id_required: true
+    locale_fields: [label, description, placeholder, checkbox_label]
+  option:
+    handle_prefix: "form:option:"
+    stable_id_required: true
+    locale_fields: [label]
+  validator:
+    handle_prefix: "form:validator:"
+    stable_id_required: true
+    locale_fields: [message]

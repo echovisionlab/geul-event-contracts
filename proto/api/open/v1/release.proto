@@ -1,0 +1,175 @@
+syntax = "proto3";
+
+package api.open.v1;
+
+import "api/common/v1/common.proto";
+import "api/common/v1/media.proto";
+import "api/content/v1/block_content.proto";
+import "api/open/v1/file.proto";
+import "api/open/v1/translation.proto";
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/echovisionlab/geul-event-contracts/gen/api/open/v1;openv1";
+
+// ReleaseService provides public release access
+service ReleaseService {
+  // Get retrieves a release by slug or ID
+  // - Server tries slug first, then ID (same as Page/Work pattern)
+  // - share_token allows access to draft releases
+  // - Includes artists and tracks
+  rpc Get(GetReleaseRequest) returns (GetReleaseResponse);
+
+  // List returns published releases (for release gallery, artist pages)
+  // - Filters by type, label, artist, category
+  // - Only returns published releases
+  rpc List(ListReleasesRequest) returns (ListReleasesResponse);
+}
+
+// === Get ===
+
+message GetReleaseRequest {
+  string slug = 1; // slug or ID (server handles both)
+  optional string share_token = 2;
+  optional string share_password = 3;
+}
+
+message GetReleaseResponse {
+  optional Release release = 1;
+}
+
+// Release for Get - includes relations
+// share_token can access drafts, so published_at is optional
+message Release {
+  string id = 1;
+  string title = 2;
+  optional string slug = 3;
+  ReleaseType type = 4;
+  api.content.v1.LocalizedRichTextDocument document = 5;
+  optional string catalog_number = 6;
+  optional google.protobuf.Timestamp release_date = 7;
+  ReleaseStatus status = 8;
+  google.protobuf.Timestamp created_at = 9;
+  google.protobuf.Timestamp updated_at = 10;
+  optional google.protobuf.Timestamp published_at = 11; // optional (share_token -> draft)
+
+  // Streaming URLs
+  optional string spotify_url = 12;
+  optional string apple_music_url = 13;
+  optional string bandcamp_url = 14;
+  optional string youtube_music_url = 15;
+  optional api.common.v1.AssetRef og_asset = 16;
+
+  // Relations (Get only - includes artists and tracks)
+  repeated ReleaseArtist artists = 17;
+  repeated ReleaseTrack tracks = 18;
+  optional LocalizationInfo localization_info = 19;
+  repeated ReleaseLabel labels = 20;
+  repeated ReleaseReference genres = 21;
+  repeated ReleaseReference styles = 22;
+  repeated ReleaseFormat formats = 23;
+  repeated ReleaseCredit credits = 24;
+  optional api.common.v1.AssetRef artwork_asset = 25;
+  string revision = 26;
+}
+
+// === List ===
+
+message ListReleasesRequest {
+  api.common.v1.PaginationRequest pagination = 1;
+  repeated api.common.v1.FilterSpec filters = 2; // type, label_id, artist_id, category_id, release_date, published_at
+  repeated api.common.v1.SortSpec sorts = 3; // title, release_date, published_at
+}
+
+message ListReleasesResponse {
+  repeated ReleaseSummary releases = 1;
+  api.common.v1.PaginationResponse pagination = 2;
+}
+
+// ReleaseSummary for List - metadata only, no tracks
+// List only returns published items, so published_at is NOT optional
+message ReleaseSummary {
+  string id = 1;
+  string title = 2;
+  optional string slug = 3;
+  ReleaseType type = 4;
+  optional google.protobuf.Timestamp release_date = 5;
+  google.protobuf.Timestamp published_at = 6; // NOT optional (List = published only)
+  repeated ReleaseArtist artists = 7;
+  optional api.common.v1.AssetRef og_asset = 8;
+  optional api.common.v1.AssetRef artwork_asset = 9;
+}
+
+// === Enums and Embedded Messages ===
+
+enum ReleaseType {
+  RELEASE_TYPE_UNSPECIFIED = 0;
+  RELEASE_TYPE_ALBUM = 1;
+  RELEASE_TYPE_EP = 2;
+  RELEASE_TYPE_SINGLE = 3;
+  RELEASE_TYPE_COMPILATION = 4;
+}
+
+enum ReleaseStatus {
+  RELEASE_STATUS_UNSPECIFIED = 0;
+  RELEASE_STATUS_DRAFT = 1;
+  RELEASE_STATUS_PUBLISHED = 2;
+}
+
+message ReleaseArtist {
+  string id = 1;
+  string name = 2;
+  optional string slug = 3;
+  string role = 4; // primary, featured, etc.
+  optional api.common.v1.AssetRef image_asset = 5;
+}
+
+message ReleaseReference {
+  string id = 1;
+  string name = 2;
+  optional string slug = 3;
+}
+
+message ReleaseLabel {
+  string id = 1;
+  string name = 2;
+  optional string slug = 3;
+  optional string catalog_number = 4;
+}
+
+message ReleaseFormat {
+  string id = 1;
+  string name = 2;
+  optional string slug = 3;
+  optional string description = 4;
+}
+
+message ReleaseCredit {
+  string id = 1;
+  string name = 2;
+  optional string slug = 3;
+  optional string credit_role = 4;
+  optional string artist_id = 5;
+  optional string member_id = 6;
+  optional api.common.v1.MemberSummary member = 7;
+  optional string note = 8;
+  optional api.common.v1.AssetRef image_asset = 9;
+}
+
+message ReleaseTrack {
+  string id = 1;
+  string title = 2;
+  int32 track_number = 3;
+  optional int32 disc_number = 4;
+  optional int32 duration_ms = 5;
+  repeated TrackCredit credits = 6;
+  optional api.common.v1.MediaDelivery delivery = 7;
+  FileDownloadAvailability download_availability = 8;
+  FileDownloadAction download_action = 9;
+}
+
+message TrackCredit {
+  string id = 1;
+  optional string name = 2; // custom name override
+  optional string credit_role = 3; // role name
+  optional ReleaseArtist artist = 4; // linked artist (if any)
+}

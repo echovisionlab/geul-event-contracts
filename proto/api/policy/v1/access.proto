@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package api.policy.v1;
+
+import "google/protobuf/descriptor.proto";
+
+option go_package = "github.com/echovisionlab/geul-event-contracts/gen/api/policy/v1;policyv1";
+
+// AuthorizationRole is the single site-wide authorization vocabulary used by
+// account projections, manage access policies, and the gateway. Protobuf JSON
+// uses these enum identifiers verbatim.
+enum AuthorizationRole {
+  UNSPECIFIED = 0;
+  ANON = 1;
+  USER = 2;
+  AUTHOR = 3;
+  ADMIN = 4;
+}
+
+// AccessPolicy defines gateway-level policy metadata for an RPC.
+message AccessPolicy {
+  AuthorizationRole role = 1;
+  string resource = 2;
+  string action = 3;
+}
+
+extend google.protobuf.MethodOptions {
+  AccessPolicy access = 51001;
+}

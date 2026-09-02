@@ -1,0 +1,124 @@
+syntax = "proto3";
+
+package api.manage.v1;
+
+import "api/common/v1/common.proto";
+import "api/content/v1/block_content.proto";
+import "api/manage/v1/common.proto";
+import "api/policy/v1/access.proto";
+import "google/protobuf/timestamp.proto";
+
+enum PrivacyStatus {
+  PRIVACY_STATUS_UNSPECIFIED = 0;
+  PRIVACY_STATUS_DRAFT = 1;
+  PRIVACY_STATUS_SCHEDULED = 2;
+  PRIVACY_STATUS_ACTIVE = 3;
+  PRIVACY_STATUS_ARCHIVED = 4;
+}
+
+// Privacy is one legal history row and its history-owned typed Block document.
+// HTML and plain text are derived projections and are not authoring fields.
+message Privacy {
+  string id = 1;
+  int32 version = 2;
+  string title = 3;
+  api.content.v1.RichTextDocument document = 4;
+  string revision = 5;
+  PrivacyStatus status = 6;
+  optional google.protobuf.Timestamp effective_from = 7;
+  optional google.protobuf.Timestamp effective_until = 8;
+  google.protobuf.Timestamp created_at = 9;
+  google.protobuf.Timestamp updated_at = 10;
+  // Inherited from the prior official Privacy version when this version is created.
+  string source_locale = 11;
+  // Current authoritative Block snapshot digest used to fence derived-content regeneration.
+  string snapshot_digest = 12;
+}
+
+message GetPrivacyVersionRequest {
+  string id = 1;
+}
+
+message ListPrivacyVersionsRequest {
+  api.common.v1.PaginationRequest pagination = 1;
+  optional PrivacyStatus status = 2;
+}
+
+message ListPrivacyVersionsResponse {
+  repeated Privacy versions = 1;
+  api.common.v1.PaginationResponse pagination = 2;
+}
+
+message CreatePrivacyVersionRequest {
+  // The new version inherits the prior official Privacy source locale.
+  optional string title = 1;
+  // document.source_locale must equal the inherited source locale.
+  api.content.v1.RichTextDocument document = 2;
+}
+
+message SchedulePrivacyRequest {
+  string id = 1;
+  google.protobuf.Timestamp effective_from = 2;
+  string expected_revision = 3;
+}
+
+message CancelPrivacyScheduleRequest {
+  string id = 1;
+}
+
+message ActivatePrivacyNowRequest {
+  string id = 1;
+  string expected_revision = 2;
+}
+
+message PrivacyLifecycleMutationResponse {
+  string id = 1;
+  bool changed = 2;
+  string document_revision = 3;
+  PrivacyStatus status = 4;
+  optional google.protobuf.Timestamp effective_from = 5;
+  optional google.protobuf.Timestamp effective_until = 6;
+  google.protobuf.Timestamp updated_at = 7;
+}
+
+message DeletePrivacyRequest {
+  string id = 1;
+  string expected_revision = 2;
+}
+
+message RegeneratePrivacyDerivedContentRequest {
+  string id = 1;
+  string expected_snapshot_digest = 2;
+}
+
+message RegeneratePrivacyDerivedContentResponse {
+  bool regenerated = 1;
+  string snapshot_digest = 2;
+}
+
+service PrivacyService {
+  rpc GetPrivacyVersion(GetPrivacyVersionRequest) returns (Privacy) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc ListPrivacyVersions(ListPrivacyVersionsRequest) returns (ListPrivacyVersionsResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc CreatePrivacyVersion(CreatePrivacyVersionRequest) returns (Privacy) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc SchedulePrivacy(SchedulePrivacyRequest) returns (PrivacyLifecycleMutationResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc CancelPrivacySchedule(CancelPrivacyScheduleRequest) returns (PrivacyLifecycleMutationResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc ActivatePrivacyNow(ActivatePrivacyNowRequest) returns (PrivacyLifecycleMutationResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc DeletePrivacy(DeletePrivacyRequest) returns (DeleteResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc RegeneratePrivacyDerivedContent(RegeneratePrivacyDerivedContentRequest) returns (RegeneratePrivacyDerivedContentResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+}

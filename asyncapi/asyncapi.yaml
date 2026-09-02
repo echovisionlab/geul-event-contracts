@@ -1,0 +1,380 @@
+asyncapi: 3.0.0
+info:
+  title: GEUL Event API
+  version: 4.0.0
+  description: |
+    PostgreSQL asynchronous channels for the GEUL platform.
+    This is the source of truth for PGMQ durable queue and PostgreSQL NOTIFY
+    signal names. Message types are defined in proto/api/manage/v1/events.proto.
+
+    Architecture Pattern:
+    - Durable commands/results: PGMQ queue with at-least-once consumers
+    - Reconstructable lifecycle/status: PostgreSQL NOTIFY signal followed by
+      authoritative state refetch
+    - Browser clients receive signals only through API/editor-collab relays
+
+    Naming Convention:
+    - Durable Queue: {domain}.{action} (e.g., og.generate, transcode.result)
+    - Realtime Signal: {domain}.{action} (e.g., og.lifecycle, transcode.progress)
+
+servers:
+  postgresql:
+    host: localhost:5432
+    protocol: postgresql
+    description: PostgreSQL with the PGMQ extension
+
+channels:
+  # ============================================================
+  # Durable Queues - Work, Results, and Projections (Competing Consumers)
+  # Work/result publishers send directly; each queue has competing consumers
+  # Consumers compete for messages, enabling horizontal scaling
+  # ============================================================
+
+  ogGenerate:
+    address: og.generate
+    x-channel-kind: durable_queue
+    description: Database-backed OG image generation identities (work queue)
+    messages:
+      ogGenerationJob:
+        $ref: "#/components/messages/OgGenerationJob"
+  transcoderAudio:
+    address: transcoder.audio
+    x-channel-kind: durable_queue
+    description: Audio transcoding requests (work queue)
+    messages:
+      transcodeAudioEvent:
+        $ref: "#/components/messages/TranscodeAudioEvent"
+  transcoderVideo:
+    address: transcoder.video
+    x-channel-kind: durable_queue
+    description: Video transcoding requests (work queue)
+    messages:
+      transcodeVideoEvent:
+        $ref: "#/components/messages/TranscodeVideoEvent"
+  waveformGenerate:
+    address: waveform.generate
+    x-channel-kind: durable_queue
+    description: Waveform sidecar generation requests (work queue)
+    messages:
+      waveformGenerateEvent:
+        $ref: "#/components/messages/WaveformGenerateEvent"
+  assetOptimizerMesh:
+    address: asset_optimizer.mesh
+    x-channel-kind: durable_queue
+    description: GLB mesh optimization requests for editor assets (work queue)
+    messages:
+      meshOptimizationJob:
+        $ref: "#/components/messages/MeshOptimizationJob"
+  fileDelete:
+    address: file.delete
+    x-channel-kind: durable_queue
+    description: S3 file deletion requests (work queue)
+    messages:
+      fileDeleteEvent:
+        $ref: "#/components/messages/FileDeleteEvent"
+  emailSend:
+    address: email.send
+    x-channel-kind: durable_queue
+    description: Non-authentication transactional email delivery requests (work queue)
+    messages:
+      sendEmailEvent:
+        $ref: "#/components/messages/SendEmailEvent"
+  emailAuth:
+    address: email.auth
+    x-channel-kind: durable_queue
+    description: Expiring authentication-code email delivery requests (dedicated work queue)
+    messages:
+      sendAuthEmailEvent:
+        $ref: "#/components/messages/SendEmailEvent"
+  emailCampaign:
+    address: email.campaign
+    x-channel-kind: durable_queue
+    description: Materialized campaign delivery-run batch requests (dedicated work queue)
+    messages:
+      sendBulkEmailBatchEvent:
+        $ref: "#/components/messages/SendBulkEmailBatchEvent"
+  userDeleteIdentity:
+    address: user.delete.identity
+    x-channel-kind: durable_queue
+    description: "Run the complete permanent account-deletion lifecycle in order. TOMBSTONE retains the Member tombstone and audit attribution and sends completion mail; UNONBOARDED_HARD_DELETE removes a pre-onboarding Member and account anchor without completion mail. UNSPECIFIED is malformed and must be rejected, never inferred as a cleanup mode. SpiceDB subject cleanup and avatar retirement remain independently retryable (work queue)"
+    messages:
+      userDeleteIdentityCommand:
+        $ref: "#/components/messages/UserDeleteIdentityCommand"
+  userDeleteAvatar:
+    address: user.delete.avatar
+    x-channel-kind: durable_queue
+    description: Release and retire one deleted Member's avatar asset (work queue)
+    messages:
+      userDeleteAvatarCommand:
+        $ref: "#/components/messages/UserDeleteAvatarCommand"
+  aiMetadataGenerate:
+    address: ai.metadata.generate
+    x-channel-kind: durable_queue
+    description: Metadata AI generation requests (work queue)
+    messages:
+      metadataGenerationQueueEvent:
+        $ref: "#/components/messages/MetadataGenerationQueueEvent"
+  translationGenerate:
+    address: translation.generate
+    x-channel-kind: durable_queue
+    description: Translation generation requests (work queue)
+    messages:
+      translationGenerateEvent:
+        $ref: "#/components/messages/TranslationGenerateEvent"
+  transcodeResult:
+    address: transcode.result
+    x-channel-kind: durable_queue
+    description: Authoritative transcoding terminal results for backend reconciliation (durable work queue)
+    messages:
+      transcodeCompleteEvent:
+        $ref: "#/components/messages/TranscodeCompleteEvent"
+  waveformResult:
+    address: waveform.result
+    x-channel-kind: durable_queue
+    description: Authoritative waveform terminal results for backend reconciliation (durable work queue)
+    messages:
+      waveformResultEvent:
+        $ref: "#/components/messages/WaveformResultEvent"
+  meshOptimizationResult:
+    address: mesh.optimization.result
+    x-channel-kind: durable_queue
+    description: Authoritative mesh optimization terminal results for backend reconciliation (durable work queue)
+    messages:
+      meshOptimizationResultEvent:
+        $ref: "#/components/messages/MeshOptimizationResultEvent"
+  releaseTrackOriginalAudioProjection:
+    address: release.track_original_audio.projection
+    x-channel-kind: durable_queue
+    description: API-owned durable Release Track original-audio projection queue carrying verified ingest identity and first-attach or replacement CAS expectation; no collaboration document or Yjs state participates
+    messages:
+      fileIngestAttachedEvent:
+        $ref: "#/components/messages/FileIngestAttachedEvent"
+  # ============================================================
+  # Reconstructable PostgreSQL signals (all active listeners receive them)
+  # ============================================================
+
+  transcodeProgress:
+    address: transcode.progress
+    x-channel-kind: signal
+    description: Transcoding progress PostgreSQL signal
+    messages:
+      transcodeProgressEvent:
+        $ref: "#/components/messages/TranscodeProgressEvent"
+  transcodeCancel:
+    address: transcode.cancel
+    x-channel-kind: signal
+    description: Transcoding cancellation PostgreSQL signal
+    messages:
+      transcodeCancelEvent:
+        $ref: "#/components/messages/TranscodeCancelEvent"
+  waveformProgress:
+    address: waveform.progress
+    x-channel-kind: signal
+    description: Waveform generation progress PostgreSQL signal
+    messages:
+      waveformProgressEvent:
+        $ref: "#/components/messages/WaveformProgressEvent"
+  waveformCancel:
+    address: waveform.cancel
+    x-channel-kind: signal
+    description: Waveform generation cancellation PostgreSQL signal
+    messages:
+      waveformCancelEvent:
+        $ref: "#/components/messages/WaveformCancelEvent"
+  meshOptimizationProgress:
+    address: mesh.optimization.progress
+    x-channel-kind: signal
+    description: Mesh optimization progress PostgreSQL signal
+    messages:
+      meshOptimizationProgressEvent:
+        $ref: "#/components/messages/MeshOptimizationProgressEvent"
+  mediaProcessingLifecycle:
+    address: media.processing.lifecycle
+    x-channel-kind: signal
+    description: Backend-owned aggregate media processing lifecycle PostgreSQL signal
+    messages:
+      mediaProcessingLifecycleEvent:
+        $ref: "#/components/messages/MediaProcessingLifecycleEvent"
+  ogLifecycle:
+    address: og.lifecycle
+    x-channel-kind: signal
+    description: Best-effort OG lifecycle PostgreSQL signal; consumers re-read authoritative generation state
+    messages:
+      ogGenerationLifecycleEvent:
+        $ref: "#/components/messages/OgGenerationLifecycleEvent"
+  mailAdapterChanged:
+    address: mail_adapter.changed
+    x-channel-kind: signal
+    description: Mail adapter configuration changed PostgreSQL signal
+    messages:
+      mailAdapterChangedEvent:
+        $ref: "#/components/messages/MailAdapterChangedEvent"
+  contentUpdated:
+    address: content.updated
+    x-channel-kind: signal
+    description: >-
+      Debounced content/document update PostgreSQL signal for downstream
+      consumers. Locale-owned authoring carries an exact locale tuple: locale
+      plus required locale_exists, with target_revision only for an existing
+      non-source target. Non-locale updates omit the tuple; target deletion
+      reports locale_exists false without a target token; source-locale writes
+      report true without a target token. Target-only updates keep
+      document_state_changed false and never masquerade as source revision
+      changes.
+    messages:
+      contentUpdatedEvent:
+        $ref: "#/components/messages/ContentUpdatedEvent"
+  fileIngest:
+    address: file.ingest
+    x-channel-kind: signal
+    description: File ingest lifecycle PostgreSQL signal; File-scoped editor uploads are runtime-only and Track original audio additionally emits the durable attached event
+    messages:
+      fileIngestUploadEvent:
+        $ref: "#/components/messages/FileIngestUploadEvent"
+      fileIngestDownloadEvent:
+        $ref: "#/components/messages/FileIngestDownloadEvent"
+      fileIngestFinalizedEvent:
+        $ref: "#/components/messages/FileIngestFinalizedEvent"
+      fileIngestAttachedEvent:
+        $ref: "#/components/messages/FileIngestAttachedEvent"
+      fileIngestFailedEvent:
+        $ref: "#/components/messages/FileIngestFailedEvent"
+    x-signal-types:
+      - upload
+      - download
+      - finalized
+      - attached
+      - failed
+  translationLifecycle:
+    address: translation.lifecycle
+    x-channel-kind: signal
+    description: Terminal applied-or-failed machine-translation target refetch/failure signal
+    messages:
+      translationLifecycleEvent:
+        $ref: "#/components/messages/TranslationLifecycleEvent"
+components:
+  messages:
+    # Request Messages (for Work Queues)
+    OgGenerationJob:
+      contentType: application/x-protobuf
+      description: Database-backed OG generation work item (see proto/api/manage/v1/events.proto)
+
+    FileDeleteEvent:
+      contentType: application/x-protobuf
+      description: File deletion event (see proto/api/manage/v1/events.proto)
+
+    SendEmailEvent:
+      contentType: application/x-protobuf
+      description: Email send event (see proto/api/manage/v1/events.proto)
+
+    SendBulkEmailBatchEvent:
+      contentType: application/x-protobuf
+      description: Materialized campaign delivery-run batch request (see proto/api/manage/v1/events.proto)
+
+    UserDeleteIdentityCommand:
+      contentType: application/x-protobuf
+      description: Single durable permanent account-deletion command with an explicit UserDeleteIdentityMode.TOMBSTONE or UserDeleteIdentityMode.UNONBOARDED_HARD_DELETE mode; UserDeleteIdentityMode.UNSPECIFIED is malformed and must be rejected, never inferred as a destructive mode. A pre-mode payload decodes to UserDeleteIdentityMode.UNSPECIFIED and must be explicitly reissued as TOMBSTONE after the hard cut. It closes Kratos termination, SpiceDB subject cleanup, account_identity anchor deletion, and the selected Member cleanup in order; TOMBSTONE retains the Member tombstone and sends completion mail, while UNONBOARDED_HARD_DELETE removes the pre-onboarding Member and sends no completion mail. It carries the minimal immutable snapshot needed after identity deletion (see proto/api/manage/v1/events.proto)
+
+    UserDeleteAvatarCommand:
+      contentType: application/x-protobuf
+      description: Deleted-Member avatar retirement command keyed by member_id (see proto/api/manage/v1/events.proto)
+
+    TranscodeAudioEvent:
+      contentType: application/x-protobuf
+      description: Audio transcoding event (see proto/api/manage/v1/events.proto)
+
+    TranscodeVideoEvent:
+      contentType: application/x-protobuf
+      description: Video transcoding event (see proto/api/manage/v1/events.proto)
+
+    WaveformGenerateEvent:
+      contentType: application/x-protobuf
+      description: Waveform generation queue event (see proto/api/manage/v1/events.proto)
+
+    MeshOptimizationJob:
+      contentType: application/x-protobuf
+      description: Mesh optimization job event (see proto/api/manage/v1/events.proto)
+
+    MetadataGenerationQueueEvent:
+      contentType: application/x-protobuf
+      description: Metadata AI job queue event (see proto/api/manage/v1/ai.proto)
+
+    TranslationGenerateEvent:
+      contentType: application/x-protobuf
+      description: Translation generation queue event (see proto/api/manage/v1/events.proto)
+
+    # Durable worker result and reconstructable lifecycle/status messages
+    TranscodeCompleteEvent:
+      contentType: application/x-protobuf
+      description: Authoritative transcode result (see proto/api/manage/v1/events.proto)
+
+    TranscodeProgressEvent:
+      contentType: application/x-protobuf
+      description: Transcode progress event (see proto/api/manage/v1/events.proto)
+
+    TranscodeCancelEvent:
+      contentType: application/x-protobuf
+      description: Transcode cancel event (see proto/api/manage/v1/events.proto)
+
+    WaveformResultEvent:
+      contentType: application/x-protobuf
+      description: Authoritative waveform result wrapper (see proto/api/manage/v1/events.proto)
+
+    WaveformProgressEvent:
+      contentType: application/x-protobuf
+      description: Waveform progress event (see proto/api/manage/v1/events.proto)
+
+    WaveformCancelEvent:
+      contentType: application/x-protobuf
+      description: Waveform cancel event (see proto/api/manage/v1/events.proto)
+
+    MeshOptimizationResultEvent:
+      contentType: application/x-protobuf
+      description: Authoritative mesh optimization result wrapper (see proto/api/manage/v1/events.proto)
+
+    MeshOptimizationProgressEvent:
+      contentType: application/x-protobuf
+      description: Mesh optimization progress event (see proto/api/manage/v1/events.proto)
+
+    MediaProcessingLifecycleEvent:
+      contentType: application/x-protobuf
+      description: Canonical backend-owned media processing lifecycle event (see proto/api/manage/v1/events.proto)
+
+    OgGenerationLifecycleEvent:
+      contentType: application/x-protobuf
+      description: OG generation lifecycle event (see proto/api/manage/v1/events.proto)
+
+    MailAdapterChangedEvent:
+      contentType: application/x-protobuf
+      description: Mail adapter changed event - broadcast on create/update/delete (see proto/api/manage/v1/events.proto)
+
+    ContentUpdatedEvent:
+      contentType: application/x-protobuf
+      description: >-
+        Debounced content/document update event with an optional exact-locale
+        accepted tuple for locale-owned authoring (see
+        proto/api/manage/v1/events.proto)
+
+    FileIngestUploadEvent:
+      contentType: application/x-protobuf
+      description: File ingest upload progress event (see proto/api/manage/v1/events.proto)
+
+    FileIngestDownloadEvent:
+      contentType: application/x-protobuf
+      description: File ingest remote download progress event (see proto/api/manage/v1/events.proto)
+
+    FileIngestFinalizedEvent:
+      contentType: application/x-protobuf
+      description: File ingest original object finalized event (see proto/api/manage/v1/events.proto)
+
+    FileIngestAttachedEvent:
+      contentType: application/x-protobuf
+      description: Release Track original-audio durable attach event carrying its original-slot CAS (see proto/api/manage/v1/events.proto)
+
+    FileIngestFailedEvent:
+      contentType: application/x-protobuf
+      description: File ingest terminal failure event (see proto/api/manage/v1/events.proto)
+
+    TranslationLifecycleEvent:
+      contentType: application/x-protobuf
+      description: Terminal applied-or-failed machine-translation refetch signal with exact target identity and bounded failure reason; request-time source locale, translation specification version, source epoch, hash, revision, request artifact, raw provider error detail, and target deletion state are absent (see proto/api/manage/v1/events.proto)

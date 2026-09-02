@@ -1,0 +1,134 @@
+syntax = "proto3";
+
+package api.manage.v1;
+
+// Track entity
+import "api/common/v1/common.proto";
+import "api/manage/v1/common.proto";
+import "api/policy/v1/access.proto";
+import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
+
+// Track processing status enum
+enum TrackProcessingStatus {
+  TRACK_PROCESSING_STATUS_UNSPECIFIED = 0;
+  TRACK_PROCESSING_STATUS_PENDING = 1;
+  TRACK_PROCESSING_STATUS_PROCESSING = 2;
+  TRACK_PROCESSING_STATUS_COMPLETED = 3;
+  TRACK_PROCESSING_STATUS_FAILED = 4;
+}
+
+message Track {
+  string id = 1;
+  string release_id = 2;
+  int32 track_number = 3;
+  string title = 4;
+  optional int32 duration_seconds = 5;
+  optional string processing_status = 6;
+  optional string lyrics = 7;
+  google.protobuf.Struct metadata = 8;
+  google.protobuf.Timestamp created_at = 9;
+  optional string audio_original_file_id = 10;
+}
+
+// Track credit with resolved artist/Member info
+message TrackCredit {
+  string id = 1;
+  string credit_type = 2; // "artist", "member", "text"
+  // Artist credit
+  optional string artist_id = 3;
+  optional string artist_name = 4;
+  optional string artist_slug = 5;
+  // Member credit
+  optional string member_id = 6;
+  optional api.common.v1.MemberSummary member = 7;
+  // Text credit
+  optional string credited_name = 8;
+  // Common
+  optional string credit_role = 9;
+  int32 sort_order = 10;
+}
+
+// Track with credits
+message TrackWithCredits {
+  Track track = 1;
+  repeated TrackCredit credits = 2;
+}
+
+// Credit input for SetTrackCredits
+message TrackCreditInput {
+  optional string artist_id = 1;
+  optional string id = 2;
+  optional string member_id = 3;
+  optional string credited_name = 4;
+  optional string credit_role = 5;
+  int32 sort_order = 6;
+}
+
+// Request/Response messages
+
+message ListTracksByReleaseRequest {
+  string release_id = 1;
+}
+
+message ListTracksByReleaseResponse {
+  repeated TrackWithCredits tracks = 1;
+}
+
+message CreateTrackRequest {
+  string release_id = 1;
+  int32 track_number = 2;
+  string title = 3;
+  optional int32 duration_seconds = 4;
+  optional string lyrics = 5;
+}
+
+message UpdateTrackRequest {
+  string id = 1;
+  optional int32 track_number = 2;
+  optional string title = 3;
+  optional int32 duration_seconds = 4;
+  optional string processing_status = 5;
+  optional string lyrics = 6;
+  bool clear_duration = 7;
+  bool clear_audio_original = 8;
+  bool clear_lyrics = 9;
+}
+
+message DeleteTrackRequest {
+  string id = 1;
+}
+
+message SetTrackCreditsRequest {
+  string track_id = 1;
+  repeated TrackCreditInput credits = 2;
+}
+
+message ReorderTracksRequest {
+  repeated string track_ids = 1;
+}
+
+// Track Service
+service TrackService {
+  // Public
+  rpc ListTracksByRelease(ListTracksByReleaseRequest) returns (ListTracksByReleaseResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+
+  // Admin
+  rpc CreateTrack(CreateTrackRequest) returns (Track) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc UpdateTrack(UpdateTrackRequest) returns (Track) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc DeleteTrack(DeleteTrackRequest) returns (DeleteResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc SetTrackCredits(SetTrackCreditsRequest) returns (TrackWithCredits) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc ReorderTracks(ReorderTracksRequest) returns (ListTracksByReleaseResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+}

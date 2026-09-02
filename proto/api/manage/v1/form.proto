@@ -1,0 +1,250 @@
+syntax = "proto3";
+
+package api.manage.v1;
+
+import "api/common/v1/common.proto";
+import "api/common/v1/media.proto";
+import "api/manage/v1/common.proto";
+// Form entity
+// Maps to: postgres/init/schema.template - form table
+import "api/policy/v1/access.proto";
+import "google/protobuf/timestamp.proto";
+
+// Form status enum
+// Maps to: postgres/init/schema.template - form_status ENUM
+enum FormStatus {
+  FORM_STATUS_UNSPECIFIED = 0;
+  FORM_STATUS_DRAFT = 1;
+  FORM_STATUS_PUBLISHED = 2;
+}
+
+message Form {
+  string id = 1;
+  string title = 2;
+  optional string slug = 3;
+  bytes schema = 4; // JSON - form field definitions
+  FormStatus status = 5;
+  bool is_public = 6;
+  optional bool require_auth = 7;
+  repeated string allowed_roles = 8;
+  optional bool allow_duplicate_submission = 9;
+  bool has_password = 10; // Don't expose the hash, just indicate if protected
+  optional int32 max_submissions = 11;
+  optional google.protobuf.Timestamp opens_at = 12;
+  optional google.protobuf.Timestamp closes_at = 13;
+  google.protobuf.Timestamp created_at = 14;
+  optional google.protobuf.Timestamp updated_at = 15;
+  optional api.common.v1.AssetRef og_asset = 16;
+  optional api.common.v1.AssetRef featured_image_asset = 17;
+  string source_locale = 18;
+}
+
+// Form summary for listing
+message FormSummary {
+  string id = 1;
+  string title = 2;
+  optional string slug = 3;
+  FormStatus status = 4;
+  int32 submission_count = 5;
+  google.protobuf.Timestamp created_at = 6;
+  optional google.protobuf.Timestamp updated_at = 7;
+  string source_locale = 8;
+}
+
+// Form submission
+// Maps to: postgres/init/schema.template - form_submission table
+message FormSubmission {
+  string id = 1;
+  string form_id = 2;
+  optional string member_id = 3;
+  bytes data = 4; // JSON object of submitted values
+  optional string ip_address = 5;
+  optional string country_code = 6;
+  optional string user_agent = 7;
+  google.protobuf.Timestamp created_at = 8;
+}
+
+// Request/Response messages
+
+message GetFormRequest {
+  string id = 1;
+}
+
+message CheckFormSlugAvailableRequest {
+  string slug = 1;
+  optional string exclude_id = 2;
+}
+
+message CheckFormSlugAvailableResponse {
+  bool available = 1;
+}
+
+message ListFormsAdminRequest {
+  api.common.v1.PaginationRequest pagination = 1;
+  repeated api.common.v1.FilterSpec filters = 2;
+  repeated api.common.v1.SortSpec sorts = 3;
+}
+
+message ListFormsAdminResponse {
+  repeated FormSummary forms = 1;
+  api.common.v1.PaginationResponse pagination = 2;
+}
+
+message CreateFormRequest {
+  string title = 1;
+  optional string slug = 2;
+  bytes schema = 3;
+  optional bool is_public = 4;
+  optional bool require_auth = 5;
+  optional bool allow_duplicate_submission = 6;
+  optional string password = 7; // Plain text, will be hashed
+  optional int32 max_submissions = 8;
+  optional google.protobuf.Timestamp opens_at = 9;
+  optional google.protobuf.Timestamp closes_at = 10;
+  repeated string allowed_roles = 11;
+  // Required initial source locale for the new Form.
+  string source_locale = 12;
+}
+
+message UpdateFormRequest {
+  string id = 1;
+  optional string title = 2;
+  optional string slug = 3;
+  optional bytes schema = 4;
+  optional bool is_public = 5;
+  optional bool require_auth = 6;
+  optional bool allow_duplicate_submission = 7;
+  optional string password = 8; // Empty string to remove password
+  optional int32 max_submissions = 9;
+  optional google.protobuf.Timestamp opens_at = 10;
+  optional google.protobuf.Timestamp closes_at = 11;
+  optional FormStatus status = 12;
+  repeated string allowed_roles = 13;
+  bool clear_slug = 14;
+  bool clear_opens_at = 15;
+  bool clear_closes_at = 16;
+  bool clear_max_submissions = 17;
+  // Proto repeated fields have no presence. Set this when replacing the full
+  // role list, including when clearing it to an empty list.
+  bool replace_allowed_roles = 18;
+}
+
+message DeleteFormRequest {
+  string id = 1;
+}
+
+// Featured image management
+
+message SetFormFeaturedImageRequest {
+  string form_id = 1;
+  string file_id = 2;
+}
+
+message SetFormFeaturedImageResponse {
+  api.common.v1.AssetRef image_asset = 1;
+  optional string og_generation_run_id = 2;
+}
+
+message DeleteFormFeaturedImageRequest {
+  string form_id = 1;
+}
+
+// Form submission operations
+
+message ListFormSubmissionsRequest {
+  string form_id = 1;
+  api.common.v1.PaginationRequest pagination = 2;
+  repeated api.common.v1.SortSpec sorts = 3;
+}
+
+message ListFormSubmissionsResponse {
+  repeated FormSubmission submissions = 1;
+  api.common.v1.PaginationResponse pagination = 2;
+}
+
+message FormSubmissionFieldValue {
+  string value = 1;
+  int32 count = 2;
+}
+
+message FormSubmissionFieldStat {
+  string field_id = 1;
+  string field_label = 2;
+  repeated FormSubmissionFieldValue values = 3;
+}
+
+message FormSubmissionStats {
+  int32 total_submissions = 1;
+  int32 submissions_today = 2;
+  int32 submissions_this_week = 3;
+  int32 submissions_this_month = 4;
+  repeated FormSubmissionFieldStat field_stats = 5;
+}
+
+message GetFormSubmissionStatsRequest {
+  string form_id = 1;
+}
+
+message GetFormSubmissionStatsResponse {
+  FormSubmissionStats stats = 1;
+}
+
+message GetFormSubmissionRequest {
+  string id = 1;
+}
+
+// Response containing submission with form schema for rendering
+message FormSubmissionWithSchema {
+  FormSubmission submission = 1;
+  bytes form_schema = 2; // JSON - form field definitions from Form.schema
+  string form_title = 3;
+}
+
+message DeleteFormSubmissionRequest {
+  string id = 1;
+}
+
+// Form Service
+service FormService {
+  // Site Admin management
+  rpc GetForm(GetFormRequest) returns (Form) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc ListFormsAdmin(ListFormsAdminRequest) returns (ListFormsAdminResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc CreateForm(CreateFormRequest) returns (Form) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc UpdateForm(UpdateFormRequest) returns (Form) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc DeleteForm(DeleteFormRequest) returns (DeleteResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc SetFormFeaturedImage(SetFormFeaturedImageRequest) returns (SetFormFeaturedImageResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc DeleteFormFeaturedImage(DeleteFormFeaturedImageRequest) returns (OgAssetDeleteResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+
+  // Utility
+  rpc CheckFormSlugAvailable(CheckFormSlugAvailableRequest) returns (CheckFormSlugAvailableResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+
+  // Submissions
+  rpc ListFormSubmissions(ListFormSubmissionsRequest) returns (ListFormSubmissionsResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc GetFormSubmissionStats(GetFormSubmissionStatsRequest) returns (GetFormSubmissionStatsResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc GetFormSubmissionWithSchema(GetFormSubmissionRequest) returns (FormSubmissionWithSchema) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc DeleteFormSubmission(DeleteFormSubmissionRequest) returns (DeleteResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+}

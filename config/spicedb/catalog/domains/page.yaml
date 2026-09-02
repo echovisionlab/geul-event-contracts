@@ -1,0 +1,38 @@
+# Page owns Page lifecycle and share-link authorization.
+domain: page
+description: Page lifecycle and share-link policy
+actions:
+  page:
+    view: view
+    edit: edit
+    delete: delete
+    publish: publish
+    manage: manage
+    manage_share_links: manage_share_links
+lookup_permissions:
+  page: [manage]
+platform_actions:
+  page:
+    create: is_admin
+    list: is_admin
+definitions:
+  page:
+    relations:
+      policy: [platform]
+    permissions:
+      - platform_admin
+      - view
+      - edit
+      - delete
+      - publish
+      - manage
+      - manage_share_links
+permission_expressions:
+  page:
+    platform_admin: policy->is_admin
+    view: platform_admin
+    edit: platform_admin
+    delete: platform_admin
+    publish: platform_admin
+    manage: platform_admin
+    manage_share_links: platform_admin

@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package api.intra.v1;
+
+option go_package = "github.com/echovisionlab/geul-event-contracts/gen/api/intra/v1;intrav1";
+
+// InternalFileIngestService owns the typed API boundary for applying a verified
+// Release Track original-audio ingest projection. No collaboration document or
+// Yjs state participates in this mutation.
+service InternalFileIngestService {
+  rpc AttachTrackOriginalAudio(AttachTrackOriginalAudioRequest) returns (AttachTrackOriginalAudioResponse);
+}
+
+message AttachTrackOriginalAudioRequest {
+  string track_id = 1;
+  // The API must verify this File and its immutable ingest binding before
+  // changing the Track relation.
+  string verified_file_id = 2;
+  // Stable ingest provenance and duplicate-delivery identity.
+  string ingest_attempt_id = 3;
+  // When present, the Track's current original must equal this File. When
+  // absent, the Track must not have a current original. A duplicate delivery
+  // of this same attempt and verified File is still ALREADY_APPLIED.
+  optional string expected_current_file_id = 4;
+}
+
+enum AttachTrackOriginalAudioResult {
+  ATTACH_TRACK_ORIGINAL_AUDIO_RESULT_UNSPECIFIED = 0;
+  ATTACH_TRACK_ORIGINAL_AUDIO_RESULT_APPLIED = 1;
+  ATTACH_TRACK_ORIGINAL_AUDIO_RESULT_ALREADY_APPLIED = 2;
+}
+
+message AttachTrackOriginalAudioResponse {
+  AttachTrackOriginalAudioResult result = 1;
+  string current_file_id = 2;
+  // Authoritative Track parent for transient Release-room ingest lifecycle
+  // broadcast. Returned for both APPLIED and ALREADY_APPLIED.
+  string release_id = 3;
+}

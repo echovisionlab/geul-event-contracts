@@ -1,0 +1,18 @@
+version: v2
+managed:
+  enabled: true
+  override:
+    - file_option: go_package_prefix
+      value: github.com/echovisionlab/geul-event-contracts/gen
+plugins:
+  - local: protoc-gen-es
+    out: packages/proto/gen
+    opt: target=ts,import_extension=ts
+  - local: [go, tool, protoc-gen-go]
+    out: gen
+    opt: paths=source_relative
+    strategy: all
+  - local: [go, tool, protoc-gen-connect-go]
+    out: gen
+    opt: paths=source_relative
+    strategy: all

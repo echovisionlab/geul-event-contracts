@@ -1,0 +1,17 @@
+{
+  "$schema": "https://unpkg.com/knip@6/schema.json",
+  "workspaces": {
+    ".": {
+      "entry": ["asyncapi/templates/*/template/*.js"],
+      "ignoreDependencies": [
+        "@asyncapi/generator-react-sdk",
+        "@bufbuild/protoc-gen-es"
+      ]
+    },
+    "packages/proto": {
+      "ignoreIssues": {
+        "gen/**/*.ts": ["exports", "types"]
+      }
+    }
+  }
+}

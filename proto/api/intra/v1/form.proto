@@ -1,0 +1,83 @@
+syntax = "proto3";
+
+package api.intra.v1;
+
+import "api/manage/v1/ai.proto";
+
+option go_package = "github.com/echovisionlab/geul-event-contracts/gen/api/intra/v1;intrav1";
+
+// InternalFormService provides internal-only access for form document operations.
+// This service is NOT exposed via the public gateway and should only be called
+// by trusted internal services (e.g., Collab server).
+service InternalFormService {
+  // SaveDocument saves document state from Hocuspocus.
+  rpc SaveDocument(SaveFormDocumentRequest) returns (SaveFormDocumentResponse);
+
+  // LoadDocument loads document state for Hocuspocus initial sync.
+  rpc LoadDocument(LoadFormDocumentRequest) returns (LoadFormDocumentResponse);
+}
+
+message FormMeta {
+  optional string title = 1;
+  optional string schema = 2; // Canonical JSON string.
+}
+
+message SaveFormDocumentRequest {
+  string form_id = 1;
+  // Whole canonical post-state owned by this exact room locale. The message is
+  // required semantically: schema must be present, an omitted title means the
+  // canonical title is absent/NULL, and an empty title is explicitly present.
+  // This message carries no patch history or lifecycle state.
+  optional FormMeta meta = 2;
+  repeated string contributor_member_ids = 3;
+  // Exact canonical collaboration room locale. The owning root source pointer
+  // is loaded by the API and protected by expected_document_revision.
+  string locale = 4;
+  // Whole post-state declaration of locale-owned leaf terminals actually
+  // present in this exact room. The API validates source saves against
+  // canonical source presence and validates/preserves target saves as sparse
+  // target presence. It is never inferred from fallback/materialized values;
+  // callers send canonical-sorted, duplicate-free targets. relation_item,
+  // shared/topology/File, identity-terminal (row_id, cell_id, Page unit_id), and
+  // composite object/list targets are forbidden.
+  repeated api.manage.v1.AIDocumentFieldTarget present_locale_values = 5;
+  // Current source/shared document CAS. A root source-locale pointer change
+  // advances this token and therefore fails a stale room save closed.
+  string expected_document_revision = 6;
+  // Required for an existing non-source locale and absent for the source
+  // locale. Missing-target creation remains an AIDocument lifecycle operation.
+  optional string expected_target_revision = 7;
+}
+
+message SaveFormDocumentResponse {
+  bool success = 1;
+  string locale = 2;
+  string document_revision = 3;
+  optional string target_revision = 4;
+}
+
+message LoadFormDocumentRequest {
+  string form_id = 1;
+  string locale = 2;
+}
+
+message LoadFormDocumentResponse {
+  // Exact canonical source values. The source row is authoritative even when
+  // the requested target locale is missing.
+  FormMeta source_metadata = 1;
+  // Exact canonical values from the requested locale row, present only when
+  // that row exists. A missing target is represented by locale_exists=false.
+  optional FormMeta locale_metadata = 2;
+  string source_locale = 3;
+  string locale = 4;
+  bool locale_exists = 5;
+  // Exact persisted locale-owned leaf-terminal presence for the requested room
+  // locale; never inferred from materialized/source-fallback values. Source and
+  // target rooms report actual presence; a missing target reports an empty list.
+  // Order is meaningless; producers emit canonical-sorted, duplicate-free
+  // targets. relation_item, shared/topology/File, identity-terminal (row_id,
+  // cell_id, Page unit_id), and composite object/list targets are forbidden.
+  repeated api.manage.v1.AIDocumentFieldTarget present_locale_values = 6;
+  string document_revision = 7;
+  optional string target_revision = 8;
+}

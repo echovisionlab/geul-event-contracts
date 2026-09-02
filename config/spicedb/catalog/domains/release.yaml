@@ -1,0 +1,55 @@
+# Release owns Release and Track resources. Track remains a child lifecycle
+# resource without publish or share-link actions.
+domain: release
+description: Release and Track lifecycle policy
+actions:
+  release:
+    view: view
+    edit: edit
+    delete: delete
+    publish: publish
+    manage: manage
+    manage_share_links: manage_share_links
+  track:
+    view: view
+    edit: edit
+    delete: delete
+    manage: manage
+lookup_permissions:
+  release: [manage]
+  track: [manage]
+platform_actions:
+  release:
+    create: is_admin
+    list: is_admin
+definitions:
+  release:
+    relations:
+      policy: [platform]
+    permissions:
+      - platform_admin
+      - view
+      - edit
+      - delete
+      - publish
+      - manage
+      - manage_share_links
+  track:
+    relations:
+      policy: [platform]
+    permissions: [platform_admin, view, edit, delete, manage]
+permission_expressions:
+  release:
+    platform_admin: policy->is_admin
+    view: platform_admin
+    edit: platform_admin
+    delete: platform_admin
+    publish: platform_admin
+    manage: platform_admin
+    manage_share_links: manage
+  track:
+    platform_admin: policy->is_admin
+    view: platform_admin
+    edit: platform_admin
+    delete: platform_admin
+    manage: platform_admin

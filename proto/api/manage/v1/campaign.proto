@@ -1,0 +1,331 @@
+syntax = "proto3";
+
+package api.manage.v1;
+
+import "api/common/v1/common.proto";
+import "api/content/v1/block_content.proto";
+// Campaign represents an email campaign
+import "api/manage/v1/common.proto";
+import "api/policy/v1/access.proto";
+import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/echovisionlab/geul-event-contracts/gen/api/v1;apiv1";
+
+// Campaign status
+enum CampaignStatus {
+  CAMPAIGN_STATUS_UNSPECIFIED = 0;
+  CAMPAIGN_STATUS_DRAFT = 1;
+  CAMPAIGN_STATUS_SCHEDULED = 2;
+  CAMPAIGN_STATUS_SENDING = 3;
+  CAMPAIGN_STATUS_SENT = 4;
+  CAMPAIGN_STATUS_FAILED = 5;
+}
+
+// CampaignTargetMode makes the target population explicit. A campaign must
+// never infer ALL from a missing segment relationship.
+enum CampaignTargetMode {
+  CAMPAIGN_TARGET_MODE_UNSPECIFIED = 0;
+  CAMPAIGN_TARGET_MODE_ALL = 1;
+  CAMPAIGN_TARGET_MODE_SEGMENT = 2;
+}
+
+// CampaignRecipientScope is a positive delivery gate applied after Audience
+// matching. The product default is SUBSCRIBED_USERS.
+enum CampaignRecipientScope {
+  CAMPAIGN_RECIPIENT_SCOPE_SUBSCRIBED_USERS = 0;
+  CAMPAIGN_RECIPIENT_SCOPE_ALL_MATCHING_USERS = 1;
+}
+
+message Campaign {
+  string id = 1;
+  string subject = 2;
+  CampaignStatus status = 3;
+  optional google.protobuf.Timestamp scheduled_at = 4;
+  optional google.protobuf.Timestamp sent_at = 5;
+  int32 sent_count = 6;
+  google.protobuf.Timestamp created_at = 7;
+  google.protobuf.Timestamp updated_at = 8;
+  optional string segment_id = 9;
+  optional string layout_id = 10;
+  CampaignRecipientScope recipient_scope = 11;
+  string name = 12;
+  CampaignTargetMode target_mode = 13;
+  api.content.v1.RichTextDocument document = 14;
+  string document_revision = 15;
+  string source_locale = 16;
+}
+
+// CampaignStats contains campaign delivery-run statistics.
+// Sent/failed/blocked/suppressed/skipped are sourced from email_delivery_recipient.
+message CampaignStats {
+  int32 total_sent = 1;
+  int32 total_skipped = 2;
+  int32 total_failed = 3;
+  int32 total_blocked = 4;
+  int32 total_suppressed = 5;
+}
+
+// CampaignPreview represents a preview of the campaign email
+message CampaignPreview {
+  string subject = 1;
+  string html_content = 2;
+  string text_content = 3;
+}
+
+// GetCampaignRequest
+message GetCampaignRequest {
+  string id = 1;
+}
+
+// GetCampaignResponse
+message GetCampaignResponse {
+  Campaign campaign = 1;
+}
+
+// ListCampaignsAdminRequest
+message ListCampaignsAdminRequest {
+  api.common.v1.PaginationRequest pagination = 1;
+  repeated api.common.v1.FilterSpec filters = 2;
+  repeated api.common.v1.SortSpec sorts = 3;
+}
+
+// ListCampaignsAdminResponse
+message ListCampaignsAdminResponse {
+  repeated Campaign campaigns = 1;
+  api.common.v1.PaginationResponse pagination = 2;
+}
+
+// CreateCampaignRequest creates a draft with an explicit target. The API must
+// reject an unset target and an empty segment_id; it must never infer all
+// recipients from either case.
+message CreateCampaignRequest {
+  string subject = 1;
+  string name = 2;
+  oneof target {
+    google.protobuf.Empty all = 3;
+    string segment_id = 4;
+  }
+  // Required initial source locale for the new Campaign.
+  string source_locale = 5;
+}
+
+// CreateCampaignResponse
+message CreateCampaignResponse {
+  Campaign campaign = 1;
+}
+
+message UpdateCampaignNameRequest {
+  string id = 1;
+  string name = 2;
+}
+
+message UpdateCampaignNameResponse {
+  string id = 1;
+  bool changed = 2;
+  string name = 3;
+  google.protobuf.Timestamp updated_at = 4;
+}
+
+// UpdateCampaignConfiguration owns durable delivery targeting. It is separate
+// from collaboration documents so the authenticated Admin is the Audit actor.
+message UpdateCampaignConfigurationRequest {
+  string id = 1;
+  CampaignTargetMode target_mode = 2;
+  optional string segment_id = 3;
+  optional string layout_id = 4;
+  CampaignRecipientScope recipient_scope = 5;
+}
+
+message UpdateCampaignConfigurationResponse {
+  string id = 1;
+  bool changed = 2;
+  CampaignTargetMode target_mode = 3;
+  optional string segment_id = 4;
+  optional string layout_id = 5;
+  CampaignRecipientScope recipient_scope = 6;
+  google.protobuf.Timestamp updated_at = 7;
+}
+
+// DeleteCampaignRequest
+message DeleteCampaignRequest {
+  string id = 1;
+}
+
+// DeleteCampaignResponse
+message DeleteCampaignResponse {
+  bool success = 1;
+}
+
+// ScheduleCampaignRequest
+message ScheduleCampaignRequest {
+  string id = 1;
+  google.protobuf.Timestamp scheduled_at = 2;
+  CampaignRecipientScope recipient_scope = 3;
+}
+
+// ScheduleCampaignResponse
+message ScheduleCampaignResponse {
+  string id = 1;
+  bool changed = 2;
+  CampaignStatus status = 3;
+  google.protobuf.Timestamp scheduled_at = 4;
+  CampaignRecipientScope recipient_scope = 5;
+  google.protobuf.Timestamp updated_at = 6;
+}
+
+// CancelCampaignRequest
+message CancelCampaignRequest {
+  string id = 1;
+}
+
+// CancelCampaignResponse
+message CancelCampaignResponse {
+  string id = 1;
+  bool changed = 2;
+  CampaignStatus status = 3;
+  google.protobuf.Timestamp updated_at = 4;
+}
+
+// SendCampaignNowRequest - immediately sends the campaign
+message SendCampaignNowRequest {
+  string id = 1;
+  CampaignRecipientScope recipient_scope = 2;
+}
+
+// SendCampaignNowResponse
+message SendCampaignNowResponse {
+  string id = 1;
+  CampaignStatus status = 2;
+  int32 recipient_count = 3;
+  optional google.protobuf.Timestamp sent_at = 4;
+  google.protobuf.Timestamp updated_at = 5;
+}
+
+// PreviewCampaignRequest
+message PreviewCampaignRequest {
+  string id = 1;
+  optional string layout_id = 2; // Optional: preview with specific layout (overrides saved layout)
+  optional string locale = 3; // Optional: preview in a specific locale
+  optional string subject = 4; // Optional: draft subject override for editor preview
+  optional api.content.v1.LocalizedRichTextDocument document = 5; // Optional unsaved typed Block document
+}
+
+// PreviewCampaignResponse
+message PreviewCampaignResponse {
+  CampaignPreview preview = 1;
+}
+
+// SendTestCampaignRequest
+message SendTestCampaignRequest {
+  string id = 1;
+  string email = 2; // Test email recipient
+  optional string locale = 3; // Optional: explicit preview/send locale
+}
+
+// SendTestCampaignResponse
+message SendTestCampaignResponse {
+  bool success = 1;
+}
+
+// GetCampaignStatsRequest
+message GetCampaignStatsRequest {
+  string id = 1;
+}
+
+// GetCampaignStatsResponse
+message GetCampaignStatsResponse {
+  CampaignStats stats = 1;
+}
+
+// GetCampaignRecipientsRequest
+message GetCampaignRecipientsRequest {
+  string id = 1;
+  int32 limit = 2;
+  int32 offset = 3;
+}
+
+// CampaignRecipient represents the durable Member attribution and delivery
+// snapshot targeted by the campaign.
+message CampaignRecipient {
+  string email = 1;
+  string status = 2;
+  optional google.protobuf.Timestamp sent_at = 3;
+  optional google.protobuf.Timestamp terminal_at = 4;
+  optional string error_type = 5;
+  string member_id = 6;
+}
+
+// GetCampaignRecipientsResponse
+message GetCampaignRecipientsResponse {
+  repeated CampaignRecipient recipients = 1;
+  int32 total = 2;
+}
+
+// CampaignService provides campaign management
+service CampaignService {
+  // GetCampaign returns a campaign by ID (Admin)
+  rpc GetCampaign(GetCampaignRequest) returns (GetCampaignResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+
+  // ListCampaigns returns all campaigns (Admin)
+  rpc ListCampaignsAdmin(ListCampaignsAdminRequest) returns (ListCampaignsAdminResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+
+  // CreateCampaign creates a new campaign (Admin)
+  rpc CreateCampaign(CreateCampaignRequest) returns (CreateCampaignResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+
+  // UpdateCampaignName updates a campaign's shared admin name (Admin)
+  rpc UpdateCampaignName(UpdateCampaignNameRequest) returns (UpdateCampaignNameResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+
+  rpc UpdateCampaignConfiguration(UpdateCampaignConfigurationRequest) returns (UpdateCampaignConfigurationResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+
+  // DeleteCampaign deletes a campaign (Admin)
+  rpc DeleteCampaign(DeleteCampaignRequest) returns (DeleteCampaignResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+
+  // ScheduleCampaign schedules a campaign to be sent (Admin)
+  rpc ScheduleCampaign(ScheduleCampaignRequest) returns (ScheduleCampaignResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+
+  // CancelCampaign cancels a scheduled campaign (Admin)
+  rpc CancelCampaign(CancelCampaignRequest) returns (CancelCampaignResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+
+  // SendCampaignNow immediately sends a campaign (Admin)
+  rpc SendCampaignNow(SendCampaignNowRequest) returns (SendCampaignNowResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+
+  // PreviewCampaign returns a preview of the campaign email (Admin)
+  rpc PreviewCampaign(PreviewCampaignRequest) returns (PreviewCampaignResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+
+  // SendTestCampaign sends a test email (Admin)
+  rpc SendTestCampaign(SendTestCampaignRequest) returns (SendTestCampaignResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+
+  // GetCampaignStats returns statistics for a sent campaign (Admin)
+  rpc GetCampaignStats(GetCampaignStatsRequest) returns (GetCampaignStatsResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+
+  // GetCampaignRecipients returns the recipients of a campaign (Admin)
+  rpc GetCampaignRecipients(GetCampaignRecipientsRequest) returns (GetCampaignRecipientsResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+}

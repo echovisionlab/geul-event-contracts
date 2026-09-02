@@ -1,0 +1,54 @@
+syntax = "proto3";
+
+package api.open.v1;
+
+import "api/common/v1/media.proto";
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/echovisionlab/geul-event-contracts/gen/api/open/v1;openv1";
+
+// Address components parsed from geocoding service
+message AddressComponents {
+  optional string street = 1;
+  optional string city = 2;
+  optional string region = 3;
+  optional string country = 4;
+  optional string postal_code = 5;
+}
+
+// Full MapPlace entity
+message MapPlace {
+  string id = 1;
+  string name = 2;
+  string address = 3;
+  double lat = 4;
+  double lng = 5;
+  optional AddressComponents address_components = 6;
+  google.protobuf.Timestamp created_at = 7;
+  optional string google_place_id = 8;
+  optional api.common.v1.AssetRef image_asset = 9;
+}
+
+// Compact map place data embedded in public content responses.
+message MapPlaceBasic {
+  string id = 1;
+  string name = 2;
+  string address = 3;
+  double lat = 4;
+  double lng = 5;
+  optional string google_place_id = 6;
+}
+
+// MapPlaceService provides public access to map places
+service MapPlaceService {
+  // GetByIds returns multiple map places by IDs
+  rpc GetByIds(GetMapPlacesByIdsRequest) returns (GetMapPlacesByIdsResponse);
+}
+
+message GetMapPlacesByIdsRequest {
+  repeated string ids = 1;
+}
+
+message GetMapPlacesByIdsResponse {
+  repeated MapPlace places = 1;
+}

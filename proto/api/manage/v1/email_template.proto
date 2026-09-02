@@ -1,0 +1,165 @@
+syntax = "proto3";
+
+package api.manage.v1;
+
+import "api/common/v1/common.proto";
+import "api/content/v1/block_content.proto";
+// EmailTemplate represents an email template configuration
+import "api/manage/v1/common.proto";
+import "api/policy/v1/access.proto";
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/echovisionlab/geul-event-contracts/gen/api/v1;apiv1";
+
+message EmailTemplate {
+  string id = 1;
+  string key = 2;
+  string name = 3;
+  string subject = 4;
+  optional string description = 5;
+  api.content.v1.RichTextDocument document = 6;
+  repeated EmailTemplateVariable variables = 7;
+  bool is_system = 8;
+  bool is_active = 9;
+  google.protobuf.Timestamp created_at = 10;
+  google.protobuf.Timestamp updated_at = 11;
+  optional string event_key = 12;
+  optional string layout_id = 13;
+  int32 delivery_run_count = 14; // Number of durable delivery runs that reference this template
+  string document_revision = 15;
+  string source_locale = 16;
+}
+
+// EmailTemplateVariable defines a variable available in the template
+message EmailTemplateVariable {
+  string name = 1;
+  string description = 2;
+  optional string default_value = 3;
+}
+
+// EmailEventMapping maps an event type to a template
+message EmailEventMapping {
+  string event = 1;
+  optional string template_id = 2;
+  optional string template_name = 3;
+}
+
+// ListEmailTemplatesAdminRequest - admin only, with pagination
+message ListEmailTemplatesAdminRequest {
+  api.common.v1.PaginationRequest pagination = 1;
+  repeated api.common.v1.FilterSpec filters = 2;
+  repeated api.common.v1.SortSpec sorts = 3;
+}
+
+message ListEmailTemplatesAdminResponse {
+  repeated EmailTemplate templates = 1;
+  api.common.v1.PaginationResponse pagination = 2;
+}
+
+// GetEmailTemplateRequest
+message GetEmailTemplateRequest {
+  string id = 1;
+}
+
+// CreateEmailTemplateRequest
+message CreateEmailTemplateRequest {
+  string key = 1;
+  string name = 2;
+  string subject = 3;
+  optional string description = 4;
+  // Required initial source locale for the new Email Template.
+  string source_locale = 5;
+}
+
+// UpdateEmailTemplateSubjectRequest
+// UpdateEmailTemplateRequest - full update
+message UpdateEmailTemplateRequest {
+  string id = 1;
+  optional string name = 2;
+  optional string description = 3;
+  optional bool is_active = 4;
+  optional string layout_id = 5;
+}
+
+message UpdateEmailTemplateResponse {
+  string id = 1;
+  bool changed = 2;
+  string name = 3;
+  optional string description = 4;
+  bool is_active = 5;
+  optional string layout_id = 6;
+  google.protobuf.Timestamp updated_at = 7;
+}
+
+message DeleteEmailTemplateRequest {
+  string id = 1;
+}
+
+// GetEventMappingsRequest
+message GetEventMappingsRequest {}
+
+message GetEventMappingsResponse {
+  repeated EmailEventMapping mappings = 1;
+}
+
+// UpdateEventMappingRequest
+message UpdateEventMappingRequest {
+  string event = 1;
+  optional string template_id = 2;
+}
+
+// SendTestEmailRequest
+message SendTestEmailRequest {
+  string id = 1;
+  string email = 2;
+  optional string locale = 3;
+}
+
+// PreviewEmailTemplateRequest
+message PreviewEmailTemplateRequest {
+  string id = 1;
+  optional string layout_id = 2; // Optional: preview with specific layout (overrides saved layout)
+  optional string subject = 3; // Optional: preview with unsaved subject text
+  optional api.content.v1.LocalizedRichTextDocument document = 4; // Optional unsaved typed Block document
+  optional string locale = 5; // Optional: preview in a specific locale
+}
+
+message PreviewEmailTemplateResponse {
+  string subject = 1;
+  string html = 2;
+}
+
+service EmailTemplateService {
+  // Admin endpoints
+  rpc ListEmailTemplatesAdmin(ListEmailTemplatesAdminRequest) returns (ListEmailTemplatesAdminResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc GetEmailTemplate(GetEmailTemplateRequest) returns (EmailTemplate) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc CreateEmailTemplate(CreateEmailTemplateRequest) returns (EmailTemplate) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc UpdateEmailTemplate(UpdateEmailTemplateRequest) returns (UpdateEmailTemplateResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc DeleteEmailTemplate(DeleteEmailTemplateRequest) returns (DeleteResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+
+  // Event mapping management
+  rpc GetEventMappings(GetEventMappingsRequest) returns (GetEventMappingsResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc UpdateEventMapping(UpdateEventMappingRequest) returns (SuccessResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+
+  // Template operations
+  rpc SendTestEmail(SendTestEmailRequest) returns (SuccessResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc PreviewEmailTemplate(PreviewEmailTemplateRequest) returns (PreviewEmailTemplateResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+}

@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+package api.open.v1;
+
+import "api/common/v1/common.proto";
+import "api/common/v1/media.proto";
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/echovisionlab/geul-event-contracts/gen/api/open/v1;openv1";
+
+service ClientService {
+  rpc Get(GetClientRequest) returns (GetClientResponse);
+  rpc List(ListClientsRequest) returns (ListClientsResponse);
+}
+
+message GetClientRequest {
+  string id = 1;
+}
+
+message GetClientResponse {
+  optional ClientSummary client = 1;
+}
+
+message ListClientsRequest {
+  api.common.v1.PaginationRequest pagination = 1;
+  repeated api.common.v1.FilterSpec filters = 2;
+  repeated api.common.v1.SortSpec sorts = 3;
+}
+
+message ListClientsResponse {
+  repeated ClientSummary clients = 1;
+  api.common.v1.PaginationResponse pagination = 2;
+}
+
+message ClientSummary {
+  string id = 1;
+  string name = 2;
+  optional string website = 3;
+  google.protobuf.Timestamp created_at = 4;
+  optional api.common.v1.AssetRef logo_light_asset = 5;
+  optional api.common.v1.AssetRef logo_dark_asset = 6;
+}

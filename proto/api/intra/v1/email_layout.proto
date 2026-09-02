@@ -1,0 +1,70 @@
+syntax = "proto3";
+
+package api.intra.v1;
+
+option go_package = "github.com/echovisionlab/geul-event-contracts/gen/api/intra/v1;intrav1";
+
+// InternalEmailLayoutService provides internal-only access for email layout document operations.
+// This service is NOT exposed via the public gateway and should only be called
+// by trusted internal services (e.g., Collab server).
+service InternalEmailLayoutService {
+  // SaveDocument saves the exact source or existing target locale room.
+  rpc SaveDocument(SaveEmailLayoutDocumentRequest) returns (SaveEmailLayoutDocumentResponse);
+
+  // LoadDocument loads the exact source or requested target locale room.
+  rpc LoadDocument(LoadEmailLayoutDocumentRequest) returns (LoadEmailLayoutDocumentResponse);
+}
+
+message SaveEmailLayoutDocumentRequest {
+  string email_layout_id = 1;
+  string content_html = 2;
+  string content_text = 3;
+  repeated string contributor_member_ids = 4;
+  // Exact canonical collaboration room locale. The owning root source pointer
+  // is loaded by the API and protected by expected_document_revision.
+  string locale = 5;
+  string expected_document_revision = 6;
+  optional string expected_target_revision = 7;
+  // Target rooms send only sparse locale-owned values. Source rooms send
+  // content_html and must leave this list empty.
+  repeated EmailLayoutLocaleValue locale_values = 8;
+}
+
+message SaveEmailLayoutDocumentResponse {
+  bool success = 1;
+  string locale = 2;
+  string document_revision = 3;
+  optional string target_revision = 4;
+}
+
+message LoadEmailLayoutDocumentRequest {
+  string email_layout_id = 1;
+  string locale = 2;
+}
+
+message LoadEmailLayoutDocumentResponse {
+  string content_html = 1;
+  string content_text = 2;
+  string source_locale = 3;
+  string locale = 4;
+  string document_revision = 5;
+  optional string target_revision = 6;
+  // Stable source-owned unit catalog and the exact sparse values owned by the
+  // requested target locale. Source rooms leave both lists empty.
+  repeated EmailLayoutContentUnit units = 7;
+  repeated EmailLayoutLocaleValue locale_values = 8;
+}
+
+message EmailLayoutContentUnit {
+  string handle = 1;
+  string kind = 2;
+  string element = 3;
+  string attribute = 4;
+  uint32 order = 5;
+  string source_value = 6;
+}
+
+message EmailLayoutLocaleValue {
+  string handle = 1;
+  string value = 2;
+}

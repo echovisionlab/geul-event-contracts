@@ -1,0 +1,25 @@
+# Menu owns menu-tree authorization.
+domain: menu
+description: Menu tree resource policy
+actions:
+  menu:
+    view: view
+    edit: edit
+    delete: delete
+    manage: manage
+platform_actions:
+  menu:
+    create: is_admin
+    list: is_admin
+definitions:
+  menu:
+    relations:
+      policy: [platform]
+    permissions: [platform_admin, view, edit, delete, manage]
+permission_expressions:
+  menu:
+    platform_admin: policy->is_admin
+    view: platform_admin
+    edit: platform_admin
+    delete: platform_admin
+    manage: platform_admin

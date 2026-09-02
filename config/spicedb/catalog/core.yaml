@@ -1,0 +1,50 @@
+# Small shared policy core. Only account identities, the closed role hierarchy,
+# and the singleton platform policy belong here; product resources live in
+# their owning domain modules.
+subject_type: account_identity
+platform:
+  type: platform
+  id: global
+roles:
+  - admin
+  - author
+  - user
+role_inheritance:
+  - role: author
+    includes: admin
+  - role: user
+    includes: author
+# Platform subject enumeration is limited to the three closed role
+# permissions and always returns account_identity subjects.
+subject_lookups:
+  admin: is_admin
+  author: is_author
+  user: is_user
+definitions:
+  account_identity:
+    relations: {}
+    permissions: []
+  role:
+    relations:
+      member: [account_identity, "role#member"]
+    permissions: []
+  platform:
+    relations:
+      admin: ["role#member"]
+      author: ["role#member"]
+      user: ["role#member"]
+    permissions: [is_admin, is_author, is_user]
+actions:
+  account_identity: {}
+  role: {}
+  platform:
+    is_admin: is_admin
+    is_author: is_author
+    is_user: is_user
+permission_expressions:
+  account_identity: {}
+  role: {}
+  platform:
+    is_admin: admin
+    is_author: author + admin
+    is_user: user + author + admin

@@ -1,0 +1,83 @@
+syntax = "proto3";
+
+package api.manage.v1;
+
+import "api/common/v1/common.proto";
+import "api/manage/v1/common.proto";
+// Format entity
+// Maps to: postgres/init/schema.template - format table
+// Note: Format has no description or created_at, simpler than Genre/Style
+import "api/policy/v1/access.proto";
+
+message Format {
+  string id = 1;
+  string name = 2;
+  string slug = 3;
+}
+
+// Format with release count for admin list
+message FormatWithStats {
+  Format format = 1;
+  int32 release_count = 2;
+}
+
+// Request/Response messages
+
+message ListFormatsRequest {
+  api.common.v1.PaginationRequest pagination = 1;
+  repeated api.common.v1.FilterSpec filters = 2;
+  repeated api.common.v1.SortSpec sorts = 3; // Default: name ASC
+}
+
+message ListFormatsResponse {
+  repeated Format formats = 1;
+  api.common.v1.PaginationResponse pagination = 2;
+}
+
+message ListFormatsAdminRequest {
+  api.common.v1.PaginationRequest pagination = 1;
+  repeated api.common.v1.FilterSpec filters = 2;
+  repeated api.common.v1.SortSpec sorts = 3;
+}
+
+message ListFormatsAdminResponse {
+  repeated FormatWithStats formats = 1;
+  api.common.v1.PaginationResponse pagination = 2;
+}
+
+message CreateFormatRequest {
+  string name = 1;
+  optional string slug = 2;
+}
+
+message UpdateFormatRequest {
+  string id = 1;
+  optional string name = 2;
+  optional string slug = 3;
+}
+
+message DeleteFormatRequest {
+  string id = 1;
+}
+
+// Format Service
+service FormatService {
+  // Public
+  rpc ListFormats(ListFormatsRequest) returns (ListFormatsResponse) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+
+  // Admin
+  rpc ListFormatsAdmin(ListFormatsAdminRequest) returns (ListFormatsAdminResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc CreateFormat(CreateFormatRequest) returns (Format) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc UpdateFormat(UpdateFormatRequest) returns (Format) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc DeleteFormat(DeleteFormatRequest) returns (DeleteResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+}

@@ -1,0 +1,809 @@
+syntax = "proto3";
+
+package api.manage.v1;
+
+import "api/common/v1/media.proto";
+import "api/manage/v1/translation.proto";
+import "api/policy/v1/access.proto";
+import "google/protobuf/timestamp.proto";
+
+// ============================================================
+// PGMQ Queue and PostgreSQL Signal Names (constants for reference)
+// ============================================================
+// Queues:
+//   - og.generate: OG image generation jobs
+//   - transcoder.audio: Audio transcoding events
+//   - transcoder.video: Video transcoding events
+//   - waveform.generate: Waveform sidecar generation events
+//   - asset_optimizer.mesh: GLB mesh optimization events
+//   - file.delete: S3 file deletion events
+//   - email.send: Transactional email delivery
+//   - email.auth: Authentication email delivery
+//   - email.campaign: Materialized campaign delivery-run batches
+//   - user.delete.identity: Run the complete permanent account-deletion lifecycle
+//   - user.delete.avatar: Retire a deleted user's avatar binding and asset
+//   - ai.metadata.generate: AI metadata generation work items
+//   - translation.generate: Translation generation work items
+//   - transcode.result: Authoritative transcoding terminal results
+//   - waveform.result: Authoritative waveform terminal results
+//   - mesh.optimization.result: Authoritative mesh optimization terminal results
+//   - release.track_original_audio.projection: API-owned Release Track original-audio projection
+//
+// Reconstructable PostgreSQL signals:
+//   - transcode.progress: Transcoding progress updates
+//   - transcode.cancel: Transcoding cancellation requests
+//   - waveform.progress: Waveform generation progress updates
+//   - waveform.cancel: Waveform generation cancellation requests
+//   - mesh.optimization.progress: Mesh optimization progress updates
+//   - media.processing.lifecycle: Authoritative media lifecycle wake-ups
+//   - og.lifecycle: OG image generation lifecycle notifications
+//   - mail_adapter.changed: Mail adapter configuration changes
+//   - content.updated: Debounced content/document update notifications
+//   - file.ingest: File ingest lifecycle updates; protobuf type identifies the stage
+//   - translation.lifecycle: Translation lifecycle notifications
+
+// ============================================================
+// Domain-specific Entity Type Enums
+// ============================================================
+
+// Entity types for OG image generation
+enum OgEntityType {
+  OG_ENTITY_TYPE_UNSPECIFIED = 0;
+  OG_ENTITY_TYPE_POST = 1;
+  OG_ENTITY_TYPE_PAGE = 2;
+  OG_ENTITY_TYPE_WORK = 3;
+  OG_ENTITY_TYPE_LABEL = 4;
+  OG_ENTITY_TYPE_ARTIST = 5;
+  OG_ENTITY_TYPE_SITE = 6;
+  OG_ENTITY_TYPE_RELEASE = 7;
+  OG_ENTITY_TYPE_SERIES = 8;
+  OG_ENTITY_TYPE_FORM = 9;
+  OG_ENTITY_TYPE_PRIVACY = 10;
+  OG_ENTITY_TYPE_TERMS = 11;
+}
+
+enum OgGenerationStatus {
+  OG_GENERATION_STATUS_UNSPECIFIED = 0;
+  OG_GENERATION_STATUS_QUEUED = 1;
+  OG_GENERATION_STATUS_PROCESSING = 2;
+  OG_GENERATION_STATUS_READY = 3;
+  OG_GENERATION_STATUS_FAILED = 4;
+  OG_GENERATION_STATUS_SUPERSEDED = 5;
+  OG_GENERATION_STATUS_CANCELLED = 6;
+}
+
+// Entity types for transcoding (audio/video)
+enum TranscodeEntityType {
+  TRANSCODE_ENTITY_TYPE_UNSPECIFIED = 0;
+  TRANSCODE_ENTITY_TYPE_POST = 1;
+  TRANSCODE_ENTITY_TYPE_PAGE = 2;
+  TRANSCODE_ENTITY_TYPE_WORK = 3;
+  TRANSCODE_ENTITY_TYPE_TRACK = 4;
+  TRANSCODE_ENTITY_TYPE_PROGRAM_EVENT = 5;
+  TRANSCODE_ENTITY_TYPE_FILE = 6;
+}
+
+// ============================================================
+// Email Events
+// ============================================================
+
+// Email error type for categorization
+enum EmailErrorType {
+  EMAIL_ERROR_TYPE_UNSPECIFIED = 0;
+  EMAIL_ERROR_TYPE_CONNECTION_TIMEOUT = 1;
+  EMAIL_ERROR_TYPE_AUTH_FAILED = 2;
+  EMAIL_ERROR_TYPE_RATE_LIMITED = 3;
+  EMAIL_ERROR_TYPE_INVALID_RECIPIENT = 4;
+  EMAIL_ERROR_TYPE_TEMPLATE_ERROR = 5;
+  EMAIL_ERROR_TYPE_UNKNOWN = 6;
+}
+
+// Send individual transactional or authentication-code email (email.send and email.auth queues)
+// All emails are rendered by Worker using template_type + template_data
+message SendEmailEvent {
+  string recipient = 1;
+  string template_type = 2; // Template key (e.g., "login_code", "campaign:uuid")
+  map<string, string> template_data = 3; // Variables for template rendering
+  optional string unsubscribe_url = 4;
+  optional string reference_id = 5;
+  optional string locale = 6; // Optional: explicit target locale hint
+  optional string delivery_recipient_id = 7; // Campaign delivery recipient row for durable status tracking
+  optional string message_id = 8; // Stable command identity for idempotent processing
+  optional string issuance_id = 9; // Stable identity for one generated authentication code or automatic-mail intent
+  optional google.protobuf.Timestamp expires_at = 10; // Delivery is forbidden after this instant
+  oneof recipient_context {
+    AccountSelectedPrimaryEmailRecipient account_selected_primary_email = 11;
+    AccountVerificationRecipient account_verification = 12;
+    TestEmailRecipient test_email = 13;
+    SystemDirectRecipient system_direct = 14;
+    NewsletterSubscriptionRecipient newsletter_subscription = 15;
+    AuthLoginRecipient auth_login = 16;
+    AuthRegistrationRecipient auth_registration = 17;
+  }
+}
+
+message AccountSelectedPrimaryEmailRecipient {
+  // The worker resolves the active bilateral Member's selected primary_email
+  // for this Identity immediately before delivery.
+  string identity_id = 1;
+}
+
+message AccountVerificationRecipient {
+  string identity_id = 1;
+  string target_email = 2;
+}
+
+message TestEmailRecipient {
+  string actor_member_id = 1;
+}
+
+message SystemDirectRecipient {
+  string reason = 1;
+}
+
+message NewsletterSubscriptionRecipient {
+  string identity_id = 1;
+  string member_id = 2;
+}
+
+// Send a durable delivery-run batch (email.campaign queue).
+message SendBulkEmailBatchEvent {
+  string delivery_run_id = 1;
+  int32 batch_size = 2;
+  int32 rate_per_second = 3;
+}
+
+// ============================================================
+// Permanent User Deletion Commands
+// ============================================================
+
+// Selects the terminal lifecycle for UserDeleteIdentityCommand. UNSPECIFIED
+// is invalid on the durable queue and must be rejected by the producer and
+// consumer; it is never an alias for a destructive cleanup mode.
+enum UserDeleteIdentityMode {
+  UNSPECIFIED = 0;
+  TOMBSTONE = 1;
+  UNONBOARDED_HARD_DELETE = 2;
+}
+
+// Runs the complete permanent deletion lifecycle for one account. The durable
+// command closes these steps in order: Kratos termination, removal of every
+// SpiceDB relation for the account_identity subject, account_identity anchor
+// deletion, then either Member tombstone and audit preservation (TOMBSTONE) or
+// removal of the pre-onboarding Member and its account anchor
+// (UNONBOARDED_HARD_DELETE). Only TOMBSTONE sends completion mail.
+// The bounded snapshot carries the exact notification/avatar inputs required
+// after Identity deletion; PGMQ owns visibility retries, archival, and
+// intentional replay. Avatar retirement remains an independent idempotent
+// command and may be retried separately. A command with mode
+// UNSPECIFIED is malformed and must be rejected;
+// consumers must not infer TOMBSTONE or UNONBOARDED_HARD_DELETE from it.
+// A pre-mode payload decodes to UNSPECIFIED and must
+// be explicitly reissued as TOMBSTONE after the producer/consumer hard cut.
+message UserDeleteIdentityCommand {
+  UserDeleteIdentityMode mode = 1;
+  optional string avatar_asset_id = 2;
+  optional string notification_email = 3;
+  optional string notification_name = 4;
+  optional string notification_locale = 5;
+  string member_id = 6;
+  string identity_id = 7;
+}
+
+// Releases the Member's avatar binding and retires the immutable asset captured
+// before identity deletion. An absent asset means only binding cleanup
+// is required.
+message UserDeleteAvatarCommand {
+  optional string avatar_asset_id = 1;
+  string member_id = 2;
+}
+
+// ============================================================
+// OG Image Events (og.generate queue)
+// ============================================================
+
+// The database owns all generation state and payload snapshots. PGMQ only
+// transports the generation identity to competing workers.
+message OgEntityTarget {}
+
+message OgLocaleTarget {
+  string locale = 1;
+}
+
+message OgGenerationTarget {
+  OgEntityType entity_type = 1;
+  string entity_id = 2;
+  oneof scope {
+    OgEntityTarget entity = 3;
+    OgLocaleTarget locale = 4;
+  }
+}
+
+message OgGenerationJob {
+  string generation_id = 1;
+}
+
+// ============================================================
+// File Delete Events (file.delete queue)
+// ============================================================
+
+// File deletion event (file.delete queue)
+message FileDeleteEvent {
+  api.common.v1.MediaObjectTarget original = 1;
+  repeated api.common.v1.AssetWriteTarget assets = 2;
+  string file_id = 3;
+  google.protobuf.Timestamp timestamp = 4;
+  repeated api.common.v1.MediaGenerationWriteTarget generations = 5;
+}
+
+// ============================================================
+// File Ingest Events (file.ingest PostgreSQL signal)
+// ============================================================
+
+enum FileIngestSource {
+  FILE_INGEST_SOURCE_UNSPECIFIED = 0;
+  FILE_INGEST_SOURCE_DIRECT_UPLOAD = 1;
+  FILE_INGEST_SOURCE_REMOTE_URL = 2;
+}
+
+enum FileIngestMediaKind {
+  FILE_INGEST_MEDIA_KIND_UNSPECIFIED = 0;
+  FILE_INGEST_MEDIA_KIND_EDITOR_IMAGE = 1;
+  FILE_INGEST_MEDIA_KIND_EDITOR_AUDIO = 2;
+  FILE_INGEST_MEDIA_KIND_EDITOR_VIDEO = 3;
+  FILE_INGEST_MEDIA_KIND_EDITOR_ATTACHMENT = 4;
+  FILE_INGEST_MEDIA_KIND_TRACK_AUDIO = 5;
+  FILE_INGEST_MEDIA_KIND_OTHER = 6;
+  FILE_INGEST_MEDIA_KIND_EDITOR_MESH = 7;
+}
+
+enum FileIngestFailureReason {
+  FILE_INGEST_FAILURE_REASON_UNSPECIFIED = 0;
+  FILE_INGEST_FAILURE_REASON_ABORTED = 1;
+  FILE_INGEST_FAILURE_REASON_REJECTED = 2;
+  FILE_INGEST_FAILURE_REASON_STORAGE_FAILED = 3;
+  FILE_INGEST_FAILURE_REASON_INTERNAL = 4;
+  FILE_INGEST_FAILURE_REASON_EXPIRED = 5;
+}
+
+message FileIngestIdentity {
+  TranscodeEntityType entity_type = 1;
+  string entity_id = 2;
+  string file_id = 3;
+  api.common.v1.MediaObjectTarget target = 4;
+  FileIngestSource source = 5;
+  FileIngestMediaKind media_kind = 6;
+  optional string upload_id = 7;
+  optional string slot_id = 8;
+  optional string attempt_id = 9;
+  // Track original-audio attach CAS. Editor File upload and Block attachment are
+  // independent operations and never carry document or Block identity here.
+  optional string expected_current_file_id = 10;
+}
+
+message FileIngestProgress {
+  int32 percentage = 1;
+  optional int64 bytes_completed = 2;
+  optional int64 bytes_total = 3;
+}
+
+// The protobuf message type is the lifecycle discriminator: upload, download,
+// finalized, attached, or failed. Attached is Track-original only and is
+// projected through the durable API-owned Release Track queue without Yjs.
+//
+// File ingest ends when the original file is durable and attached. Media processing is not part
+// of this contract; HLS, waveform, spectrogram, thumbnail, duration, and playback readiness are
+// reported by MediaProcessingLifecycleEvent.
+message FileIngestUploadEvent {
+  string correlation_id = 1;
+  FileIngestIdentity identity = 2;
+  int64 sequence_number = 3;
+  int64 timestamp_ms = 4;
+  FileIngestProgress progress = 5;
+}
+
+message FileIngestDownloadEvent {
+  string correlation_id = 1;
+  FileIngestIdentity identity = 2;
+  int64 sequence_number = 3;
+  int64 timestamp_ms = 4;
+  FileIngestProgress progress = 5;
+}
+
+message FileIngestFinalizedEvent {
+  string correlation_id = 1;
+  FileIngestIdentity identity = 2;
+  int64 sequence_number = 3;
+  int64 timestamp_ms = 4;
+  FileIngestProgress progress = 5;
+}
+
+message FileIngestAttachedEvent {
+  string correlation_id = 1;
+  FileIngestIdentity identity = 2;
+  int64 sequence_number = 3;
+  int64 timestamp_ms = 4;
+  string file_name = 5;
+  string mime_type = 6;
+  int64 file_size = 7;
+}
+
+message FileIngestFailedEvent {
+  string correlation_id = 1;
+  FileIngestIdentity identity = 2;
+  int64 sequence_number = 3;
+  int64 timestamp_ms = 4;
+  FileIngestFailureReason reason = 5;
+  string error = 6;
+  optional FileIngestProgress progress = 7;
+}
+
+// ============================================================
+// Transcoding Events (transcoder.audio, transcoder.video queues)
+// ============================================================
+
+// Audio transcoding event (transcoder.audio queue)
+message TranscodeAudioEvent {
+  string event_id = 1;
+  TranscodeEntityType entity_type = 2;
+  string entity_id = 3;
+  string file_id = 4;
+  api.common.v1.MediaObjectTarget source = 5;
+  api.common.v1.MediaGenerationWriteTarget hls_output = 6;
+  api.common.v1.AssetWriteTarget spectrogram_output = 7;
+}
+
+// Video resolution
+enum VideoResolution {
+  VIDEO_RESOLUTION_UNSPECIFIED = 0;
+  VIDEO_RESOLUTION_360P = 1;
+  VIDEO_RESOLUTION_480P = 2;
+  VIDEO_RESOLUTION_720P = 3;
+  VIDEO_RESOLUTION_1080P = 4;
+}
+
+// Video transcoding options
+message VideoTranscodeOptions {
+  bool generate_thumbnail = 1;
+  repeated VideoResolution resolutions = 2;
+}
+
+// Video transcoding event (transcoder.video queue)
+message TranscodeVideoEvent {
+  string event_id = 1;
+  TranscodeEntityType entity_type = 2;
+  string entity_id = 3;
+  string file_id = 4;
+  api.common.v1.MediaObjectTarget source = 5;
+  optional VideoTranscodeOptions options = 6;
+  api.common.v1.MediaGenerationWriteTarget hls_output = 7;
+  optional api.common.v1.AssetWriteTarget thumbnail_output = 8;
+}
+
+// Waveform sidecar generation event (waveform.generate queue)
+message WaveformGenerateEvent {
+  string event_id = 1;
+  TranscodeEntityType entity_type = 2;
+  string entity_id = 3;
+  string file_id = 4; // Canonical source/original file ID for stale-guard checks
+  api.common.v1.MediaObjectTarget source = 5;
+  api.common.v1.AssetWriteTarget output = 6;
+}
+
+// ============================================================
+// Mesh Optimization Events (asset_optimizer.mesh queue)
+// ============================================================
+
+enum MeshOptimizationCompressionMethod {
+  MESH_OPTIMIZATION_COMPRESSION_METHOD_UNSPECIFIED = 0;
+  MESH_OPTIMIZATION_COMPRESSION_METHOD_DRACO = 1;
+}
+
+// Selects which mesh data the optimizer preserves. Producers emit an explicit
+// profile and consumers reject UNSPECIFIED.
+enum MeshOptimizationProfile {
+  MESH_OPTIMIZATION_PROFILE_UNSPECIFIED = 0;
+  MESH_OPTIMIZATION_PROFILE_DRACO_WEBP_V1 = 1;
+  MESH_OPTIMIZATION_PROFILE_PARTICLE_MESH_V1 = 2;
+}
+
+enum MeshOptimizationStage {
+  MESH_OPTIMIZATION_STAGE_UNSPECIFIED = 0;
+  MESH_OPTIMIZATION_STAGE_DOWNLOADING = 1;
+  MESH_OPTIMIZATION_STAGE_ANALYZING = 2;
+  MESH_OPTIMIZATION_STAGE_OPTIMIZING = 3;
+  MESH_OPTIMIZATION_STAGE_UPLOADING = 4;
+}
+
+enum MeshOptimizationFailureReason {
+  MESH_OPTIMIZATION_FAILURE_REASON_UNSPECIFIED = 0;
+  MESH_OPTIMIZATION_FAILURE_REASON_REJECTED = 1;
+  MESH_OPTIMIZATION_FAILURE_REASON_SOURCE_NOT_FOUND = 2;
+  MESH_OPTIMIZATION_FAILURE_REASON_DOWNLOAD_FAILED = 3;
+  MESH_OPTIMIZATION_FAILURE_REASON_OPTIMIZATION_FAILED = 4;
+  MESH_OPTIMIZATION_FAILURE_REASON_UPLOAD_FAILED = 5;
+  MESH_OPTIMIZATION_FAILURE_REASON_INTERNAL = 6;
+}
+
+message MeshOptimizationIdentity {
+  TranscodeEntityType entity_type = 1;
+  string entity_id = 2;
+  string file_id = 3;
+  api.common.v1.MediaObjectTarget source = 4;
+  optional string slot_id = 5;
+  optional string attempt_id = 6;
+  optional string block_id = 7;
+}
+
+message MeshOptimizationOptions {
+  MeshOptimizationCompressionMethod compression_method = 1; // MVP: DRACO
+  int32 target_ratio_percent = 2; // 1..100 target retained geometry percent
+  MeshOptimizationProfile profile = 3;
+}
+
+// Mesh optimization job (asset_optimizer.mesh queue).
+message MeshOptimizationJob {
+  string job_id = 1;
+  string correlation_id = 2;
+  MeshOptimizationIdentity identity = 3;
+  MeshOptimizationOptions options = 4;
+  api.common.v1.MediaObjectTarget output = 5;
+  int64 timestamp_ms = 6;
+}
+
+message MeshOptimizationOutput {
+  api.common.v1.MediaObjectWriteResult written = 1;
+  optional int64 original_size_bytes = 2;
+  optional int64 optimized_size_bytes = 3;
+  MeshOptimizationCompressionMethod compression_method = 4;
+  int32 target_ratio_percent = 5;
+  optional int64 original_vertex_count = 6;
+  optional int64 optimized_vertex_count = 7;
+  optional int64 original_triangle_count = 8;
+  optional int64 optimized_triangle_count = 9;
+  MeshOptimizationProfile profile = 10;
+}
+
+// ============================================================
+// Worker Results and Broadcast Events
+// ============================================================
+
+// Transcode output information
+message TranscodeOutputs {
+  optional api.common.v1.AssetWriteResult spectrogram = 1;
+  optional api.common.v1.AssetWriteResult waveform = 2;
+  optional api.common.v1.AssetWriteResult thumbnail = 3;
+  optional api.common.v1.MediaGenerationWriteResult hls = 4;
+  optional int32 duration_seconds = 5;
+}
+
+// Canonical media processing outputs. These are attached only when status is READY.
+message MediaProcessingLifecycleOutputs {
+  optional string spectrogram_asset_id = 1;
+  optional string waveform_asset_id = 2;
+  optional string thumbnail_asset_id = 3;
+  optional string hls_generation_id = 4;
+  optional int32 duration_seconds = 5;
+}
+
+// media.processing.lifecycle PostgreSQL signal.
+//
+// Backend is the single source of truth for this aggregate lifecycle. Consumers must not infer
+// readiness from percentage, worker stage, or derivative counts.
+message MediaProcessingLifecycleEvent {
+  string correlation_id = 1;
+  TranscodeEntityType entity_type = 2;
+  string entity_id = 3;
+  string file_id = 4;
+  api.common.v1.MediaProcessingStatus status = 5;
+  optional int32 percentage = 6; // 0-100, only meaningful while PROCESSING
+  optional MediaProcessingLifecycleOutputs outputs = 7; // present only when READY
+  optional string error = 8;
+  int64 sequence_number = 9;
+  int64 timestamp_ms = 10;
+  optional string slot_id = 11;
+  optional string attempt_id = 12;
+  optional string track_id = 13;
+  optional string release_id = 14;
+}
+
+// Transcode event type (for result event)
+enum TranscodeEventType {
+  TRANSCODE_EVENT_TYPE_UNSPECIFIED = 0;
+  TRANSCODE_EVENT_TYPE_AUDIO = 1;
+  TRANSCODE_EVENT_TYPE_VIDEO = 2;
+}
+
+// transcode.result queue
+message TranscodeCompleteEvent {
+  TranscodeEventType event_type = 1;
+  TranscodeEntityType entity_type = 2;
+  string entity_id = 3;
+  string file_id = 4;
+  bool success = 5;
+  optional TranscodeOutputs outputs = 6;
+  optional string error = 7;
+  int64 processing_time_ms = 8;
+  int64 timestamp_ms = 9;
+  string event_id = 10;
+}
+
+// Transcode processing stage
+enum TranscodeStage {
+  TRANSCODE_STAGE_UNSPECIFIED = 0;
+  TRANSCODE_STAGE_DOWNLOADING = 1;
+  TRANSCODE_STAGE_PROCESSING = 2;
+  TRANSCODE_STAGE_UPLOADING = 3;
+  TRANSCODE_STAGE_HLS_PROCESSING = 4;
+  TRANSCODE_STAGE_HLS_UPLOADING = 5;
+  TRANSCODE_STAGE_WAVEFORM_PROCESSING = 6;
+  TRANSCODE_STAGE_SPECTROGRAM_PROCESSING = 7;
+  TRANSCODE_STAGE_SPECTROGRAM_UPLOADING = 8;
+  TRANSCODE_STAGE_THUMBNAIL_PROCESSING = 9;
+  TRANSCODE_STAGE_THUMBNAIL_UPLOADING = 10;
+}
+
+// transcode.progress PostgreSQL signal
+message TranscodeProgressEvent {
+  string event_id = 1;
+  TranscodeEntityType entity_type = 2;
+  string entity_id = 3;
+  string file_id = 4;
+  int64 sequence_number = 5;
+  int32 progress = 6; // 0-100
+  optional TranscodeStage stage = 7;
+  int64 timestamp_ms = 8;
+}
+
+// Transcode cancellation reason
+enum TranscodeCancelReason {
+  TRANSCODE_CANCEL_REASON_UNSPECIFIED = 0;
+  TRANSCODE_CANCEL_REASON_USER_DELETED = 1;
+  TRANSCODE_CANCEL_REASON_USER_CANCELLED = 2;
+  TRANSCODE_CANCEL_REASON_TIMEOUT = 3;
+  TRANSCODE_CANCEL_REASON_ORPHAN_DETECTED = 4;
+}
+
+// transcode.cancel PostgreSQL signal
+message TranscodeCancelEvent {
+  string file_id = 1;
+  TranscodeEntityType entity_type = 2;
+  string entity_id = 3;
+  TranscodeCancelReason reason = 4;
+  int64 timestamp_ms = 5;
+}
+
+// Waveform terminal payloads carried by WaveformResultEvent.
+message WaveformCompleteEvent {
+  string event_id = 1;
+  TranscodeEntityType entity_type = 2;
+  string entity_id = 3;
+  string file_id = 4; // Canonical source/original file ID for stale-guard checks
+  api.common.v1.AssetWriteResult output = 5;
+  int64 processing_time_ms = 6;
+  int64 timestamp_ms = 7;
+}
+
+// waveform.progress PostgreSQL signal
+message WaveformProgressEvent {
+  string event_id = 1;
+  TranscodeEntityType entity_type = 2;
+  string entity_id = 3;
+  string file_id = 4; // Canonical source/original file ID for stale-guard checks
+  int64 sequence_number = 5;
+  int32 progress = 6; // 0-100
+  optional TranscodeStage stage = 7;
+  int64 timestamp_ms = 8;
+}
+
+// waveform.cancel PostgreSQL signal
+message WaveformCancelEvent {
+  string event_id = 1;
+  TranscodeEntityType entity_type = 2;
+  string entity_id = 3;
+  string file_id = 4;
+  TranscodeCancelReason reason = 5;
+  int64 timestamp_ms = 6;
+}
+
+message WaveformFailEvent {
+  string event_id = 1;
+  TranscodeEntityType entity_type = 2;
+  string entity_id = 3;
+  string file_id = 4; // Canonical source/original file ID for stale-guard checks
+  string error = 5;
+  int64 processing_time_ms = 6;
+  int64 timestamp_ms = 7;
+}
+
+// waveform.result queue. Exactly one terminal outcome is present.
+message WaveformResultEvent {
+  oneof outcome {
+    WaveformCompleteEvent completed = 1;
+    WaveformFailEvent failed = 2;
+  }
+}
+
+// Mesh optimization terminal payloads carried by MeshOptimizationResultEvent.
+message MeshOptimizationCompleteEvent {
+  string job_id = 1;
+  string correlation_id = 2;
+  MeshOptimizationIdentity identity = 3;
+  MeshOptimizationOutput output = 4;
+  int64 processing_time_ms = 5;
+  int64 timestamp_ms = 6;
+}
+
+// mesh.optimization.progress PostgreSQL signal
+message MeshOptimizationProgressEvent {
+  string job_id = 1;
+  string correlation_id = 2;
+  MeshOptimizationIdentity identity = 3;
+  int64 sequence_number = 4;
+  int32 progress = 5; // 0-100
+  optional MeshOptimizationStage stage = 6;
+  int64 timestamp_ms = 7;
+}
+
+message MeshOptimizationFailEvent {
+  string job_id = 1;
+  string correlation_id = 2;
+  MeshOptimizationIdentity identity = 3;
+  MeshOptimizationFailureReason reason = 4;
+  string error = 5;
+  int64 processing_time_ms = 6;
+  int64 timestamp_ms = 7;
+}
+
+// mesh.optimization.result queue. Exactly one terminal outcome is present.
+message MeshOptimizationResultEvent {
+  oneof outcome {
+    MeshOptimizationCompleteEvent completed = 1;
+    MeshOptimizationFailEvent failed = 2;
+  }
+}
+
+// og.lifecycle best-effort PostgreSQL signal; generation rows remain authoritative.
+message OgGenerationLifecycleEvent {
+  string generation_id = 1;
+  string run_id = 2;
+  OgGenerationTarget target = 3;
+  OgGenerationStatus status = 4;
+  api.common.v1.AssetRef asset = 5;
+  optional string error_code = 6;
+  optional string error = 7;
+  google.protobuf.Timestamp occurred_at = 8;
+  optional string replacement_generation_id = 9;
+}
+
+// Mail adapter change type
+enum MailAdapterChangeType {
+  MAIL_ADAPTER_CHANGE_TYPE_UNSPECIFIED = 0;
+  MAIL_ADAPTER_CHANGE_TYPE_CREATED = 1;
+  MAIL_ADAPTER_CHANGE_TYPE_UPDATED = 2;
+  MAIL_ADAPTER_CHANGE_TYPE_DELETED = 3;
+}
+
+// mail_adapter.changed PostgreSQL signal
+// Broadcast when a mail adapter is created, updated, or deleted
+message MailAdapterChangedEvent {
+  string adapter_id = 1;
+  MailAdapterChangeType change_type = 2;
+  int64 timestamp_ms = 3;
+}
+
+// ============================================================
+// Content Update Events
+// ============================================================
+
+enum ContentEntityType {
+  CONTENT_ENTITY_TYPE_UNSPECIFIED = 0;
+  CONTENT_ENTITY_TYPE_POST = 1;
+  CONTENT_ENTITY_TYPE_PAGE = 2;
+  CONTENT_ENTITY_TYPE_WORK = 3;
+  CONTENT_ENTITY_TYPE_ARTIST = 4;
+  CONTENT_ENTITY_TYPE_LABEL = 5;
+  CONTENT_ENTITY_TYPE_RELEASE = 6;
+  CONTENT_ENTITY_TYPE_FORM = 7;
+  CONTENT_ENTITY_TYPE_PROGRAM_EVENT = 8;
+  CONTENT_ENTITY_TYPE_POST_SERIES = 9;
+  CONTENT_ENTITY_TYPE_MENU = 10;
+  CONTENT_ENTITY_TYPE_EMAIL_TEMPLATE = 11;
+  CONTENT_ENTITY_TYPE_EMAIL_LAYOUT = 12;
+  CONTENT_ENTITY_TYPE_CAMPAIGN = 13;
+  CONTENT_ENTITY_TYPE_PRIVACY = 14;
+  CONTENT_ENTITY_TYPE_TERMS = 15;
+}
+
+enum ContentUpdateSource {
+  CONTENT_UPDATE_SOURCE_UNSPECIFIED = 0;
+  CONTENT_UPDATE_SOURCE_COLLAB = 1;
+  CONTENT_UPDATE_SOURCE_MANAGE = 2;
+  CONTENT_UPDATE_SOURCE_SYSTEM = 3;
+  CONTENT_UPDATE_SOURCE_AI = 4;
+}
+
+enum ContentUpdatedFieldKind {
+  CONTENT_UPDATED_FIELD_KIND_UNSPECIFIED = 0;
+  CONTENT_UPDATED_FIELD_KIND_TEXT = 1;
+  CONTENT_UPDATED_FIELD_KIND_SEO = 2;
+  CONTENT_UPDATED_FIELD_KIND_RELATION = 3;
+  CONTENT_UPDATED_FIELD_KIND_MEDIA = 4;
+  CONTENT_UPDATED_FIELD_KIND_STATE = 5;
+  CONTENT_UPDATED_FIELD_KIND_CONFIGURATION = 6;
+}
+
+message ContentUpdatedField {
+  string path = 1;
+  ContentUpdatedFieldKind kind = 2;
+}
+
+// content.updated PostgreSQL signal
+// Emitted for an accepted content/document mutation.
+message ContentUpdatedEvent {
+  ContentEntityType entity_type = 1;
+  string entity_id = 2;
+  ContentUpdateSource source = 3;
+  repeated ContentUpdatedField changed_fields = 4;
+  // Current UUID revision of the accepted typed document. A source/shared
+  // mutation advances it; a target-only mutation may carry the unchanged
+  // current token and must keep document_state_changed false. Absent for
+  // metadata-only signals outside document authoring.
+  optional string document_revision = 5;
+  // Distinct authenticated Members whose edits produced this persisted update.
+  repeated string contributor_member_ids = 6;
+  bool document_state_changed = 7;
+  int64 timestamp_ms = 8;
+  // Exact locale affected by a locale-owned authoring mutation. The entire
+  // locale tuple is absent for non-locale updates. Presence requires
+  // locale_exists presence in the same event.
+  optional string locale = 9;
+  // Exact post-mutation locale existence. Required when locale is present.
+  // false means target deletion and forbids target_revision; true means an
+  // existing source or target locale.
+  optional bool locale_exists = 10;
+  // Accepted exact non-source target token. Required for an existing target,
+  // absent for source-locale writes and target deletion. Target-only mutations
+  // must not masquerade as a source document revision change.
+  optional string target_revision = 11;
+}
+
+// ============================================================
+// Translation Events
+// ============================================================
+
+// translation.generate queue
+message TranslationGenerateEvent {
+  string job_id = 1;
+}
+
+// translation.lifecycle PostgreSQL signal status enum
+enum TranslationLifecycleStatus {
+  TRANSLATION_LIFECYCLE_STATUS_UNSPECIFIED = 0;
+  TRANSLATION_LIFECYCLE_STATUS_APPLIED = 1;
+  TRANSLATION_LIFECYCLE_STATUS_FAILED = 2;
+}
+
+// translation.lifecycle terminal target refetch/failure signal
+message TranslationLifecycleEvent {
+  string job_id = 1;
+  TranslationEntityType entity_type = 2;
+  string entity_id = 3;
+  string target_locale = 4;
+  TranslationLifecycleStatus status = 5;
+  int64 timestamp_ms = 6;
+  TranslationFailureReason failure_reason = 7;
+}
+
+// Existing-account passwordless login. The identity authority's code credential
+// must contain target_email at delivery time.
+message AuthLoginRecipient {
+  string identity_id = 1;
+  string target_email = 2;
+}
+
+// Pre-identity passwordless registration. This context is accepted only from
+// the authenticated internal courier and does not require newsletter state.
+message AuthRegistrationRecipient {
+  string target_email = 1;
+}

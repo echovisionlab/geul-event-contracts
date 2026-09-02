@@ -1,0 +1,67 @@
+{
+  "name": "@echovisionlab/geul-event-contracts",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Canonical Protobuf, event, and policy contracts for Geul.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/echovisionlab/geul-event-contracts.git"
+  },
+  "engines": {
+    "node": "24.19.0"
+  },
+  "packageManager": "pnpm@11.22.0+sha512.1ff870c4c6133dfd88fb2afc46dd13d47f09c9794b438c6fdb47ca98caf3bc16381ee0be93a091b8e3824cf01f889f46d7d9e20910fb0be1ab0fb5baa80dd621",
+  "scripts": {
+    "proto:clean": "rm -rf gen packages/proto/gen",
+    "proto:generate": "buf generate proto --template proto/buf.gen.yaml",
+    "proto:format": "prettier --write \"packages/proto/gen/**/*.ts\"",
+    "proto:normalize": "node scripts/generated/normalize-generated-ts.mjs packages/proto/gen",
+    "block-catalog:proto": "node scripts/generated/generate-block-catalog.mjs --proto-only",
+    "block-catalog:generate": "node scripts/generated/generate-block-catalog.mjs",
+    "block-catalog:check": "node scripts/generated/generate-block-catalog.mjs --check",
+    "form-locale-catalog:generate": "node scripts/generated/generate-form-locale-catalog.mjs",
+    "form-locale-catalog:check": "node scripts/generated/generate-form-locale-catalog.mjs --check",
+    "catalogs:generate": "pnpm block-catalog:generate && pnpm form-locale-catalog:generate",
+    "catalogs:check": "pnpm block-catalog:check && pnpm form-locale-catalog:check",
+    "collaboration-relay:generate": "node scripts/generated/generate-collaboration-relay-validator.mjs",
+    "spicedb:generate": "node scripts/generated/generate-spicedb-catalog.mjs",
+    "spicedb:format": "gofmt -w gen/api/policy/v1/spicedb_*.go && prettier --write \"packages/proto/gen/api/policy/v1/spicedb/*.ts\"",
+    "spicedb:check": "node scripts/generated/generate-spicedb-catalog.mjs --check",
+    "proto:lint": "buf lint proto",
+    "asyncapi:generate:go": "SUPPRESS_NO_CONFIG_WARNING=true asyncapi generate fromTemplate asyncapi/asyncapi.yaml ./asyncapi/templates/go-constants -o go/event --force-write",
+    "asyncapi:generate:ts": "SUPPRESS_NO_CONFIG_WARNING=true asyncapi generate fromTemplate asyncapi/asyncapi.yaml ./asyncapi/templates/ts-constants -o packages/event/src --force-write",
+    "asyncapi:clean": "rm -rf asyncapi/templates/*/__transpiled",
+    "asyncapi:format:go": "gofmt -w go/event/*.go",
+    "asyncapi:format:ts": "prettier --write \"packages/event/src/generated.ts\"",
+    "asyncapi:normalize": "node scripts/generated/normalize-generated-ts.mjs packages/event/src",
+    "check:contracts": "node scripts/contracts/audit-consumers.mjs",
+    "inventory:sync": "node scripts/contracts/audit-consumers.mjs --sync-rpc-inventory",
+    "typecheck:proto": "pnpm --filter @echovisionlab/geul-proto typecheck",
+    "typecheck:event": "pnpm --filter @echovisionlab/geul-event typecheck",
+    "lint:proto": "pnpm --filter @echovisionlab/geul-proto lint",
+    "lint:event": "pnpm --filter @echovisionlab/geul-event lint",
+    "deadcode": "knip --include files,dependencies,unlisted,types",
+    "test:ts": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "format:prettier": "prettier --write \"**/*.{js,mjs,ts,json,md,yaml,yml}\"",
+    "format:go": "gofmt -w go gen",
+    "format:check:prettier": "prettier --check \"**/*.{js,mjs,ts,json,md,yaml,yml}\"",
+    "format:check:go": "test -z \"$(gofmt -l go gen)\""
+  },
+  "devDependencies": {
+    "@asyncapi/cli": "^6.0.2",
+    "@bufbuild/protoc-gen-es": "^2.14.0",
+    "@types/node": "^24.13.3",
+    "@vitest/coverage-v8": "4.1.10",
+    "knip": "6.32.2",
+    "prettier": "^3.9.6",
+    "typescript": "npm:@typescript/typescript6@6.0.2",
+    "vitest": "4.1.10",
+    "yaml": "^2.9.0"
+  },
+  "license": "PolyForm-Noncommercial-1.0.0",
+  "homepage": "https://github.com/echovisionlab/geul-event-contracts#readme",
+  "bugs": {
+    "url": "https://github.com/echovisionlab/geul-event-contracts/issues"
+  }
+}

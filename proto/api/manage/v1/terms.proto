@@ -1,0 +1,124 @@
+syntax = "proto3";
+
+package api.manage.v1;
+
+import "api/common/v1/common.proto";
+import "api/content/v1/block_content.proto";
+import "api/manage/v1/common.proto";
+import "api/policy/v1/access.proto";
+import "google/protobuf/timestamp.proto";
+
+enum TermsStatus {
+  TERMS_STATUS_UNSPECIFIED = 0;
+  TERMS_STATUS_DRAFT = 1;
+  TERMS_STATUS_SCHEDULED = 2;
+  TERMS_STATUS_ACTIVE = 3;
+  TERMS_STATUS_ARCHIVED = 4;
+}
+
+// Terms is one legal history row and its history-owned typed Block document.
+// HTML and plain text are derived projections and are not authoring fields.
+message Terms {
+  string id = 1;
+  int32 version = 2;
+  string title = 3;
+  api.content.v1.RichTextDocument document = 4;
+  string revision = 5;
+  TermsStatus status = 6;
+  optional google.protobuf.Timestamp effective_from = 7;
+  optional google.protobuf.Timestamp effective_until = 8;
+  google.protobuf.Timestamp created_at = 9;
+  google.protobuf.Timestamp updated_at = 10;
+  // Inherited from the prior official Terms version when this version is created.
+  string source_locale = 11;
+  // Current authoritative Block snapshot digest used to fence derived-content regeneration.
+  string snapshot_digest = 12;
+}
+
+message GetTermsVersionRequest {
+  string id = 1;
+}
+
+message ListTermsVersionsRequest {
+  api.common.v1.PaginationRequest pagination = 1;
+  optional TermsStatus status = 2;
+}
+
+message ListTermsVersionsResponse {
+  repeated Terms versions = 1;
+  api.common.v1.PaginationResponse pagination = 2;
+}
+
+message CreateTermsVersionRequest {
+  // The new version inherits the prior official Terms source locale.
+  optional string title = 1;
+  // document.source_locale must equal the inherited source locale.
+  api.content.v1.RichTextDocument document = 2;
+}
+
+message ScheduleTermsRequest {
+  string id = 1;
+  google.protobuf.Timestamp effective_from = 2;
+  string expected_revision = 3;
+}
+
+message CancelTermsScheduleRequest {
+  string id = 1;
+}
+
+message ActivateTermsNowRequest {
+  string id = 1;
+  string expected_revision = 2;
+}
+
+message TermsLifecycleMutationResponse {
+  string id = 1;
+  bool changed = 2;
+  string document_revision = 3;
+  TermsStatus status = 4;
+  optional google.protobuf.Timestamp effective_from = 5;
+  optional google.protobuf.Timestamp effective_until = 6;
+  google.protobuf.Timestamp updated_at = 7;
+}
+
+message DeleteTermsRequest {
+  string id = 1;
+  string expected_revision = 2;
+}
+
+message RegenerateTermsDerivedContentRequest {
+  string id = 1;
+  string expected_snapshot_digest = 2;
+}
+
+message RegenerateTermsDerivedContentResponse {
+  bool regenerated = 1;
+  string snapshot_digest = 2;
+}
+
+service TermsService {
+  rpc GetTermsVersion(GetTermsVersionRequest) returns (Terms) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc ListTermsVersions(ListTermsVersionsRequest) returns (ListTermsVersionsResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc CreateTermsVersion(CreateTermsVersionRequest) returns (Terms) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc ScheduleTerms(ScheduleTermsRequest) returns (TermsLifecycleMutationResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc CancelTermsSchedule(CancelTermsScheduleRequest) returns (TermsLifecycleMutationResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc ActivateTermsNow(ActivateTermsNowRequest) returns (TermsLifecycleMutationResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc DeleteTerms(DeleteTermsRequest) returns (DeleteResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc RegenerateTermsDerivedContent(RegenerateTermsDerivedContentRequest) returns (RegenerateTermsDerivedContentResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+}

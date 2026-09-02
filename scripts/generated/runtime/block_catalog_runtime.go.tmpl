@@ -1,0 +1,2347 @@
+__GENERATED_FILE_HEADER__
+
+package contentv1
+
+import (
+	"bytes"
+	"crypto/sha256"
+	"encoding/hex"
+	"encoding/json"
+	"errors"
+	"fmt"
+	"io"
+	"net/url"
+	"regexp"
+	"sort"
+	"strings"
+
+	"google.golang.org/protobuf/encoding/protojson"
+	"google.golang.org/protobuf/proto"
+	"google.golang.org/protobuf/reflect/protoreflect"
+)
+
+const ContentBlockCatalogFingerprint = "__CONTENT_BLOCK_CATALOG_FINGERPRINT__"
+const ContentStorageKindRichTextBlock = "richTextBlock"
+const ContentStorageKindPageSection = "pageSection"
+
+const contentBlockRuntimeDescriptorJSON = `__CONTENT_BLOCK_RUNTIME_DESCRIPTOR__`
+
+var contentBlockUUIDPattern = regexp.MustCompile(`^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$`)
+var contentBlockHexColorPattern = regexp.MustCompile(`^#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{4}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$`)
+
+type ContentBlockValidationError struct{ Path, Code, Message string }
+
+func (e *ContentBlockValidationError) Error() string {
+	return fmt.Sprintf("%s: %s (%s)", e.Path, e.Message, e.Code)
+}
+func contentValidationError(path, code, message string) error {
+	return &ContentBlockValidationError{Path: path, Code: code, Message: message}
+}
+
+type ContentStorageLocale struct {
+	Locale        string
+	LocalizedData []byte
+}
+type ContentStorageRow struct {
+	BlockID, ParentBlockID, ContainerSlot string
+	Position                              int32
+	Kind                                  string
+	SharedData                            []byte
+	Locales                               []ContentStorageLocale
+}
+type ContentStorageFileReference struct {
+	ReferencePath, FileID                 string
+	Missing                               bool
+	MissingAttachmentMediaKind            MissingAttachmentMediaKind
+	AllowedMIMETypes, AllowedMIMEPrefixes []string
+}
+type ContentStorageMove struct {
+	BlockID, ParentBlockID, ContainerSlot string
+	Position                              int32
+}
+type ContentStorageLocaleUpsert struct {
+	BlockID, ExpectedKind string
+	LocalizedData         []byte
+}
+type ContentStorageLocaleMutationGroup struct {
+	Locale  string
+	Upserts []ContentStorageLocaleUpsert
+	Deletes []string
+}
+type ContentStorageMutationBatch struct {
+	ExpectedRevision     string
+	BaseUpserts          []ContentStorageRow
+	Deletes              []string
+	Moves                []ContentStorageMove
+	LocaleGroups         []ContentStorageLocaleMutationGroup
+	ContributorMemberIDs []string
+}
+type ValidatedContentStorageBlock struct {
+	SharedData, LocalizedData []byte
+	FileReferences            []ContentStorageFileReference
+}
+type ValidatedContentStorageShared struct {
+	SharedData     []byte
+	FileReferences []ContentStorageFileReference
+}
+
+type runtimeFieldSpec struct {
+	Type          string                      `json:"type"`
+	Ownership     string                      `json:"ownership"`
+	Required      bool                        `json:"required"`
+	Translatable  bool                        `json:"translatable"`
+	AllowEmpty    bool                        `json:"allow_empty"`
+	Unique        bool                        `json:"unique"`
+	Default       runtimeOptionalValue        `json:"default"`
+	Min           *float64                    `json:"min"`
+	Max           *float64                    `json:"max"`
+	MinExclusive  *float64                    `json:"min_exclusive"`
+	MinLength     *int                        `json:"min_length"`
+	MaxLength     *int                        `json:"max_length"`
+	ExactLength   *int                        `json:"exact_length"`
+	Schemes       []string                    `json:"schemes"`
+	Values        []any                       `json:"values"`
+	FileReference string                      `json:"file_reference"`
+	ItemIdentity  *runtimeItemIdentity        `json:"item_identity"`
+	Items         *runtimeFieldSpec           `json:"items"`
+	Fields        map[string]runtimeFieldSpec `json:"fields"`
+}
+
+type runtimeItemIdentity struct {
+	Strategy string   `json:"strategy"`
+	Field    string   `json:"field"`
+	Values   []string `json:"values"`
+	Mutation string   `json:"mutation"`
+}
+
+type runtimeOptionalValue struct {
+	Present bool
+	Value   any
+}
+
+func (v *runtimeOptionalValue) UnmarshalJSON(data []byte) error {
+	v.Present = true
+	return json.Unmarshal(data, &v.Value)
+}
+
+type runtimeDefinition struct {
+	Fields          map[string]runtimeFieldSpec `json:"fields"`
+	Content         string                      `json:"content"`
+	RichTextProfile string                      `json:"richTextProfile"`
+	Columns         bool                        `json:"columns"`
+}
+type runtimeProfile struct {
+	Blocks                 []string `json:"blocks"`
+	InlineMath             bool     `json:"inline_math"`
+	ParagraphExternalVideo bool     `json:"paragraph_external_video"`
+	Marks                  []string `json:"marks"`
+}
+type runtimeFilePolicy struct {
+	MIMETypes    []string `json:"mime_types"`
+	MIMEPrefixes []string `json:"mime_prefixes"`
+}
+type runtimeLimits struct {
+	MaxDocumentBlocks int `json:"max_document_blocks"`
+	MaxBlockDepth     int `json:"max_block_depth"`
+	MaxInlineNodes    int `json:"max_inline_nodes_per_block"`
+	MaxTableRows      int `json:"max_table_rows"`
+	MaxTableColumns   int `json:"max_table_columns"`
+	MaxSourceBytes    int `json:"max_source_bytes"`
+}
+type runtimeDescriptor struct {
+	Limits                 runtimeLimits                `json:"limits"`
+	RuntimeForbiddenFields []string                     `json:"runtimeForbiddenFields"`
+	FileReferencePolicies  map[string]runtimeFilePolicy `json:"fileReferencePolicies"`
+	RichTextBlocks         map[string]runtimeDefinition `json:"richTextBlocks"`
+	RichTextInline         runtimeInlineDescriptor      `json:"richTextInline"`
+	RichTextTable          runtimeTableDescriptor       `json:"richTextTable"`
+	Profiles               map[string]runtimeProfile    `json:"profiles"`
+	PageSettings           map[string]runtimeFieldSpec  `json:"pageSettings"`
+	PageImmersiveUnit      map[string]runtimeFieldSpec  `json:"pageImmersiveUnit"`
+	PageSections           map[string]runtimeDefinition `json:"pageSections"`
+	PageColumnChildKinds   []string                     `json:"pageColumnChildKinds"`
+}
+
+type runtimeInlineDescriptor struct {
+	Styles map[string]runtimeFieldSpec `json:"styles"`
+	Kinds  map[string]runtimeDefinition `json:"kinds"`
+}
+
+type runtimeTableDescriptor struct {
+	Fields     map[string]runtimeFieldSpec `json:"fields"`
+	RowID      runtimeFieldSpec            `json:"row_id"`
+	CellID     runtimeFieldSpec            `json:"cell_id"`
+	CellFields map[string]runtimeFieldSpec `json:"cell_fields"`
+}
+
+var contentBlockRuntimeDescriptor = func() runtimeDescriptor {
+	var descriptor runtimeDescriptor
+	if err := json.Unmarshal([]byte(contentBlockRuntimeDescriptorJSON), &descriptor); err != nil {
+		panic(err)
+	}
+	return descriptor
+}()
+
+// ContentFieldDescriptor is one generated, closed field rule. Nested array
+// and object definitions retain their declared shape instead of exposing a
+// document JSON escape hatch. Default and enum values are caller-owned copies.
+type ContentFieldDescriptor struct {
+	Name          string
+	Type          string
+	Ownership     string
+	Required      bool
+	Translatable  bool
+	AllowEmpty    bool
+	Unique        bool
+	HasDefault    bool
+	Default       any
+	Min           *float64
+	Max           *float64
+	MinExclusive  *float64
+	MinLength     *int
+	MaxLength     *int
+	ExactLength   *int
+	Schemes       []string
+	Values        []any
+	FileReference string
+	ItemIdentity  *ContentArrayItemIdentityDescriptor
+	Item          *ContentFieldDescriptor
+	Fields        []ContentFieldDescriptor
+}
+
+// ContentArrayItemIdentityDescriptor defines the stable semantic identity used
+// for one canonical array. Positional arrays are mutated only as whole lists.
+type ContentArrayItemIdentityDescriptor struct {
+	Strategy string
+	Field    string
+	Values   []string
+	Mutation string
+}
+
+type ContentInlineMarkDescriptor struct {
+	Name      string
+	Parameter *ContentFieldDescriptor
+}
+
+type ContentInlineKindDescriptor struct {
+	Kind    string
+	Content string
+	Fields  []ContentFieldDescriptor
+}
+
+type ContentInlineDescriptor struct {
+	Marks []ContentInlineMarkDescriptor
+	Kinds []ContentInlineKindDescriptor
+}
+
+type ContentTableDescriptor struct {
+	Fields      []ContentFieldDescriptor
+	RowIdentity ContentFieldDescriptor
+	CellIdentity ContentFieldDescriptor
+	CellFields  []ContentFieldDescriptor
+	CellContent ContentInlineDescriptor
+}
+
+type ContentBlockDescriptor struct {
+	Kind    string
+	Content string
+	Fields  []ContentFieldDescriptor
+}
+
+type ContentFilePolicyDescriptor struct {
+	Name         string
+	MIMETypes    []string
+	MIMEPrefixes []string
+}
+
+// RichTextCatalogDescriptor is an immutable-by-copy view of the exact
+// generated Rich Text profile used by storage validation.
+type RichTextCatalogDescriptor struct {
+	Fingerprint            string
+	Profile                string
+	InlineMath             bool
+	ParagraphExternalVideo bool
+	Marks                  []ContentInlineMarkDescriptor
+	Inline                 ContentInlineDescriptor
+	Table                  ContentTableDescriptor
+	Blocks                 []ContentBlockDescriptor
+	FilePolicies           []ContentFilePolicyDescriptor
+}
+
+// PageSectionDescriptor is one generated Page Section rule. Fields retain
+// their exact ownership so collaboration and persistence consumers can derive
+// locale leaf presence without maintaining a second handwritten catalog.
+type PageSectionDescriptor struct {
+	Kind            string
+	RichTextProfile string
+	Columns         bool
+	Fields          []ContentFieldDescriptor
+}
+
+// PageCatalogDescriptor is an immutable-by-copy view of the exact generated
+// Page catalog used by storage validation.
+type PageCatalogDescriptor struct {
+	Fingerprint         string
+	Sections            []PageSectionDescriptor
+	ImmersiveUnitFields []ContentFieldDescriptor
+}
+
+// DescribePageCatalog returns a fresh deep copy so consumers cannot mutate the
+// generated validation authority shared by other requests.
+func DescribePageCatalog() PageCatalogDescriptor {
+	descriptor := PageCatalogDescriptor{Fingerprint: ContentBlockCatalogFingerprint}
+	kinds := make([]string, 0, len(contentBlockRuntimeDescriptor.PageSections))
+	for kind := range contentBlockRuntimeDescriptor.PageSections {
+		kinds = append(kinds, kind)
+	}
+	sort.Strings(kinds)
+	for _, kind := range kinds {
+		definition := contentBlockRuntimeDescriptor.PageSections[kind]
+		descriptor.Sections = append(descriptor.Sections, PageSectionDescriptor{
+			Kind:            kind,
+			RichTextProfile: definition.RichTextProfile,
+			Columns:         definition.Columns,
+			Fields:          describeContentFields(definition.Fields, "shared"),
+		})
+	}
+	descriptor.ImmersiveUnitFields = describeContentFields(
+		contentBlockRuntimeDescriptor.PageImmersiveUnit,
+		"shared",
+	)
+	return descriptor
+}
+
+// DescribeRichTextCatalog returns a fresh deep copy so consumers cannot
+// mutate the generated validation authority shared by other requests.
+func DescribeRichTextCatalog(profile RichTextProfile) (RichTextCatalogDescriptor, error) {
+	name, err := RichTextProfileStorageName(profile)
+	if err != nil {
+		return RichTextCatalogDescriptor{}, err
+	}
+	profileDescriptor, ok := contentBlockRuntimeDescriptor.Profiles[name]
+	if !ok {
+		return RichTextCatalogDescriptor{}, contentValidationError("$.profile", "profile", "unknown rich-text profile")
+	}
+	descriptor := RichTextCatalogDescriptor{
+		Fingerprint:            ContentBlockCatalogFingerprint,
+		Profile:                name,
+		InlineMath:             profileDescriptor.InlineMath,
+		ParagraphExternalVideo: profileDescriptor.ParagraphExternalVideo,
+	}
+	descriptor.Inline = describeInlineCatalog(contentBlockRuntimeDescriptor.RichTextInline, profileDescriptor.Marks)
+	descriptor.Marks = append([]ContentInlineMarkDescriptor(nil), descriptor.Inline.Marks...)
+	descriptor.Table = describeTableCatalog(contentBlockRuntimeDescriptor.RichTextTable, descriptor.Inline)
+	for _, kind := range profileDescriptor.Blocks {
+		definition, exists := contentBlockRuntimeDescriptor.RichTextBlocks[kind]
+		if !exists {
+			return RichTextCatalogDescriptor{}, contentValidationError("$.profile.blocks", "kind", "profile references an unknown Block kind")
+		}
+		descriptor.Blocks = append(descriptor.Blocks, ContentBlockDescriptor{
+			Kind:    kind,
+			Content: definition.Content,
+			Fields:  describeContentFields(definition.Fields, "shared"),
+		})
+	}
+	usedPolicies := make(map[string]struct{})
+	for _, block := range descriptor.Blocks {
+		collectContentFilePolicies(block.Fields, usedPolicies)
+	}
+	policyNames := make([]string, 0, len(usedPolicies))
+	for policyName := range usedPolicies {
+		policyNames = append(policyNames, policyName)
+	}
+	sort.Strings(policyNames)
+	for _, policyName := range policyNames {
+		policy := contentBlockRuntimeDescriptor.FileReferencePolicies[policyName]
+		descriptor.FilePolicies = append(descriptor.FilePolicies, ContentFilePolicyDescriptor{
+			Name:         policyName,
+			MIMETypes:    append([]string(nil), policy.MIMETypes...),
+			MIMEPrefixes: append([]string(nil), policy.MIMEPrefixes...),
+		})
+	}
+	return descriptor, nil
+}
+
+func describeInlineCatalog(inline runtimeInlineDescriptor, allowedMarks []string) ContentInlineDescriptor {
+	descriptor := ContentInlineDescriptor{}
+	for _, name := range allowedMarks {
+		mark := ContentInlineMarkDescriptor{Name: name}
+		if spec, ok := inline.Styles[name]; ok && spec.Type != "boolean" {
+			parameter := describeContentFields(map[string]runtimeFieldSpec{"value": spec}, "locale")[0]
+			mark.Parameter = &parameter
+		}
+		if name == "link" {
+			if definition, ok := inline.Kinds["link"]; ok {
+				parameter := describeContentFields(definition.Fields, "locale")[0]
+				mark.Parameter = &parameter
+			}
+		}
+		descriptor.Marks = append(descriptor.Marks, mark)
+	}
+	kinds := make([]string, 0, len(inline.Kinds))
+	for kind := range inline.Kinds {
+		kinds = append(kinds, kind)
+	}
+	sort.Strings(kinds)
+	for _, kind := range kinds {
+		definition := inline.Kinds[kind]
+		descriptor.Kinds = append(descriptor.Kinds, ContentInlineKindDescriptor{
+			Kind: kind, Content: definition.Content, Fields: describeContentFields(definition.Fields, "locale"),
+		})
+	}
+	return descriptor
+}
+
+func describeTableCatalog(table runtimeTableDescriptor, inline ContentInlineDescriptor) ContentTableDescriptor {
+	return ContentTableDescriptor{
+		Fields: describeContentFields(table.Fields, "shared"),
+		RowIdentity: describeContentFields(map[string]runtimeFieldSpec{"id": table.RowID}, "shared")[0],
+		CellIdentity: describeContentFields(map[string]runtimeFieldSpec{"id": table.CellID}, "shared")[0],
+		CellFields: describeContentFields(table.CellFields, "shared"),
+		CellContent: cloneInlineDescriptor(inline),
+	}
+}
+
+func cloneInlineDescriptor(inline ContentInlineDescriptor) ContentInlineDescriptor {
+	result := ContentInlineDescriptor{}
+	for _, mark := range inline.Marks {
+		copy := ContentInlineMarkDescriptor{Name: mark.Name}
+		if mark.Parameter != nil { parameter := cloneContentFieldDescriptor(*mark.Parameter); copy.Parameter = &parameter }
+		result.Marks = append(result.Marks, copy)
+	}
+	for _, kind := range inline.Kinds {
+		copy := ContentInlineKindDescriptor{Kind: kind.Kind, Content: kind.Content}
+		for _, field := range kind.Fields { copy.Fields = append(copy.Fields, cloneContentFieldDescriptor(field)) }
+		result.Kinds = append(result.Kinds, copy)
+	}
+	return result
+}
+
+func describeContentFields(fields map[string]runtimeFieldSpec, inheritedOwnership string) []ContentFieldDescriptor {
+	names := make([]string, 0, len(fields))
+	for name := range fields {
+		names = append(names, name)
+	}
+	sort.Strings(names)
+	result := make([]ContentFieldDescriptor, 0, len(names))
+	for _, name := range names {
+		spec := fields[name]
+		ownership := spec.Ownership
+		if ownership == "" {
+			ownership = inheritedOwnership
+		}
+		field := ContentFieldDescriptor{
+			Name:          name,
+			Type:          spec.Type,
+			Ownership:     ownership,
+			Required:      spec.Required,
+			Translatable:  spec.Translatable,
+			AllowEmpty:    spec.AllowEmpty,
+			Unique:        spec.Unique,
+			HasDefault:    spec.Default.Present,
+			Default:       cloneDescriptorValue(spec.Default.Value),
+			Min:           cloneFloat64(spec.Min),
+			Max:           cloneFloat64(spec.Max),
+			MinExclusive:  cloneFloat64(spec.MinExclusive),
+			MinLength:     cloneInt(spec.MinLength),
+			MaxLength:     cloneInt(spec.MaxLength),
+			ExactLength:   cloneInt(spec.ExactLength),
+			Schemes:       append([]string(nil), spec.Schemes...),
+			Values:        cloneDescriptorValues(spec.Values),
+			FileReference: spec.FileReference,
+		}
+		if spec.ItemIdentity != nil {
+			field.ItemIdentity = &ContentArrayItemIdentityDescriptor{
+				Strategy: spec.ItemIdentity.Strategy, Field: spec.ItemIdentity.Field,
+				Values: append([]string(nil), spec.ItemIdentity.Values...), Mutation: spec.ItemIdentity.Mutation,
+			}
+		}
+		if spec.Items != nil {
+			item := describeContentFields(map[string]runtimeFieldSpec{"item": *spec.Items}, ownership)[0]
+			item.Name = ""
+			field.Item = &item
+		}
+		field.Fields = describeContentFields(spec.Fields, ownership)
+		result = append(result, field)
+	}
+	return result
+}
+
+func cloneContentFieldDescriptor(field ContentFieldDescriptor) ContentFieldDescriptor {
+	result := field
+	result.Default = cloneDescriptorValue(field.Default)
+	result.Min = cloneFloat64(field.Min)
+	result.Max = cloneFloat64(field.Max)
+	result.MinExclusive = cloneFloat64(field.MinExclusive)
+	result.MinLength = cloneInt(field.MinLength)
+	result.MaxLength = cloneInt(field.MaxLength)
+	result.ExactLength = cloneInt(field.ExactLength)
+	result.Schemes = append([]string(nil), field.Schemes...)
+	result.Values = cloneDescriptorValues(field.Values)
+	if field.ItemIdentity != nil {
+		copy := *field.ItemIdentity
+		copy.Values = append([]string(nil), field.ItemIdentity.Values...)
+		result.ItemIdentity = &copy
+	}
+	if field.Item != nil { item := cloneContentFieldDescriptor(*field.Item); result.Item = &item }
+	result.Fields = make([]ContentFieldDescriptor, 0, len(field.Fields))
+	for _, nested := range field.Fields { result.Fields = append(result.Fields, cloneContentFieldDescriptor(nested)) }
+	return result
+}
+
+func collectContentFilePolicies(fields []ContentFieldDescriptor, policies map[string]struct{}) {
+	for _, field := range fields {
+		if field.FileReference != "" {
+			policies[field.FileReference] = struct{}{}
+		}
+		if field.Item != nil {
+			collectContentFilePolicies([]ContentFieldDescriptor{*field.Item}, policies)
+		}
+		collectContentFilePolicies(field.Fields, policies)
+	}
+}
+
+func cloneDescriptorValues(values []any) []any {
+	if values == nil {
+		return nil
+	}
+	result := make([]any, len(values))
+	for index, value := range values {
+		result[index] = cloneDescriptorValue(value)
+	}
+	return result
+}
+
+func cloneDescriptorValue(value any) any {
+	switch typed := value.(type) {
+	case []any:
+		return cloneDescriptorValues(typed)
+	case map[string]any:
+		result := make(map[string]any, len(typed))
+		for key, item := range typed {
+			result[key] = cloneDescriptorValue(item)
+		}
+		return result
+	default:
+		return typed
+	}
+}
+
+func cloneFloat64(value *float64) *float64 {
+	if value == nil {
+		return nil
+	}
+	cloned := *value
+	return &cloned
+}
+
+func cloneInt(value *int) *int {
+	if value == nil {
+		return nil
+	}
+	cloned := *value
+	return &cloned
+}
+
+func RichTextProfileStorageName(profile RichTextProfile) (string, error) {
+	switch profile {
+	case RichTextProfile_RICH_TEXT_PROFILE_POST:
+		return "post", nil
+	case RichTextProfile_RICH_TEXT_PROFILE_PAGE:
+		return "page", nil
+	case RichTextProfile_RICH_TEXT_PROFILE_WORK:
+		return "work", nil
+	case RichTextProfile_RICH_TEXT_PROFILE_PROGRAM_EVENT:
+		return "program_event", nil
+	case RichTextProfile_RICH_TEXT_PROFILE_COMPACT:
+		return "compact", nil
+	case RichTextProfile_RICH_TEXT_PROFILE_EMAIL:
+		return "email", nil
+	case RichTextProfile_RICH_TEXT_PROFILE_POLICY:
+		return "policy", nil
+	default:
+		return "", contentValidationError("$.profile", "profile", "unknown rich-text profile")
+	}
+}
+
+func ParseRichTextProfileStorageName(name string) (RichTextProfile, error) {
+	switch strings.TrimSpace(name) {
+	case "post":
+		return RichTextProfile_RICH_TEXT_PROFILE_POST, nil
+	case "page":
+		return RichTextProfile_RICH_TEXT_PROFILE_PAGE, nil
+	case "work":
+		return RichTextProfile_RICH_TEXT_PROFILE_WORK, nil
+	case "program_event":
+		return RichTextProfile_RICH_TEXT_PROFILE_PROGRAM_EVENT, nil
+	case "compact":
+		return RichTextProfile_RICH_TEXT_PROFILE_COMPACT, nil
+	case "email":
+		return RichTextProfile_RICH_TEXT_PROFILE_EMAIL, nil
+	case "policy":
+		return RichTextProfile_RICH_TEXT_PROFILE_POLICY, nil
+	default:
+		return RichTextProfile_RICH_TEXT_PROFILE_UNSPECIFIED, contentValidationError("$.profile", "profile", "unknown rich-text profile")
+	}
+}
+
+func protoCaseForStorageKind(kind string) string {
+	parts := strings.Split(kind, "-")
+	for index := 1; index < len(parts); index++ {
+		if parts[index] != "" {
+			parts[index] = strings.ToUpper(parts[index][:1]) + parts[index][1:]
+		}
+	}
+	return strings.Join(parts, "")
+}
+func storageKindForProtoCase(value string, page bool) string {
+	if page {
+		for kind := range contentBlockRuntimeDescriptor.PageSections {
+			if protoCaseForStorageKind(kind) == value {
+				return kind
+			}
+		}
+		return ""
+	}
+	for kind := range contentBlockRuntimeDescriptor.RichTextBlocks {
+		if protoCaseForStorageKind(kind) == value {
+			return kind
+		}
+	}
+	return ""
+}
+func isRichKind(kind string) bool {
+	_, ok := contentBlockRuntimeDescriptor.RichTextBlocks[kind]
+	return ok
+}
+func isPageKind(kind string) bool {
+	_, ok := contentBlockRuntimeDescriptor.PageSections[kind]
+	return ok
+}
+func containsString(values []string, target string) bool {
+	for _, value := range values {
+		if value == target {
+			return true
+		}
+	}
+	return false
+}
+func requireUUID(value, path string) error {
+	if !contentBlockUUIDPattern.MatchString(value) {
+		return contentValidationError(path, "uuid", "value must be a UUID")
+	}
+	return nil
+}
+func normalizeUUID(value string) string { return strings.ToLower(value) }
+
+func oneofJSONName(message proto.Message, name protoreflect.Name) string {
+	reflection := message.ProtoReflect()
+	oneof := reflection.Descriptor().Oneofs().ByName(name)
+	if oneof == nil {
+		return ""
+	}
+	field := reflection.WhichOneof(oneof)
+	if field == nil {
+		return ""
+	}
+	return field.JSONName()
+}
+
+var marshalProtoJSON = protojson.MarshalOptions{UseProtoNames: false}
+var unmarshalProtoJSON = protojson.UnmarshalOptions{DiscardUnknown: false}
+
+func decodeJSONObject(data []byte) (map[string]any, error) {
+	if len(bytes.TrimSpace(data)) == 0 {
+		data = []byte(`{}`)
+	}
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.UseNumber()
+	var result map[string]any
+	if err := decoder.Decode(&result); err != nil {
+		return nil, err
+	}
+	if result == nil {
+		result = map[string]any{}
+	}
+	if err := decoder.Decode(&struct{}{}); !errors.Is(err, io.EOF) {
+		return nil, errors.New("multiple JSON values")
+	}
+	return result, nil
+}
+
+func normalizeProtoJSON(data []byte, message proto.Message) ([]byte, map[string]any, error) {
+	if len(bytes.TrimSpace(data)) == 0 {
+		data = []byte(`{}`)
+	}
+	if err := unmarshalProtoJSON.Unmarshal(data, message); err != nil {
+		return nil, nil, err
+	}
+	encoded, err := marshalProtoJSON.Marshal(message)
+	if err != nil {
+		return nil, nil, err
+	}
+	object, err := decodeJSONObject(encoded)
+	if err != nil {
+		return nil, nil, err
+	}
+	return encoded, object, nil
+}
+
+func jsonEqual(left, right any) bool {
+	leftJSON, _ := json.Marshal(left)
+	rightJSON, _ := json.Marshal(right)
+	return bytes.Equal(leftJSON, rightJSON)
+}
+func normalizeDefaultEnum(value any, expected any) bool {
+	text, ok := value.(string)
+	if !ok {
+		return false
+	}
+	want := strings.ToUpper(strings.NewReplacer("-", "_", ":", "_", ".", "_").Replace(fmt.Sprint(expected)))
+	return strings.HasSuffix(text, "_"+want)
+}
+
+func validateAndNormalizeFields(record map[string]any, fields map[string]runtimeFieldSpec, ownerships map[string]bool, omitDescriptorDefaults bool, path string, mode ContentValidationMode) error {
+	for name, spec := range fields {
+		ownership := spec.Ownership
+		if ownership == "" {
+			ownership = "shared"
+		}
+		if !ownerships[ownership] {
+			continue
+		}
+		value, present := record[name]
+		if !present || value == nil {
+			if spec.Required {
+				return contentValidationError(path+"."+name, "required", "field is required")
+			}
+			continue
+		}
+		if omitDescriptorDefaults && spec.Default.Present && (jsonEqual(value, spec.Default.Value) || ((spec.Type == "enum" || spec.Type == "enum_int") && normalizeDefaultEnum(value, spec.Default.Value))) {
+			delete(record, name)
+			continue
+		}
+		fieldPath := path + "." + name
+		switch spec.Type {
+		case "uuid":
+			text, ok := value.(string)
+			if !ok {
+				return contentValidationError(fieldPath, "type", "expected UUID string")
+			}
+			if err := requireUUID(text, fieldPath); err != nil {
+				return err
+			}
+			record[name] = normalizeUUID(text)
+		case "uri":
+			text, ok := value.(string)
+			if !ok {
+				return contentValidationError(fieldPath, "type", "expected URI string")
+			}
+			parsed, err := url.Parse(text)
+			if err != nil || parsed.Scheme == "" || !containsString(spec.Schemes, strings.ToLower(parsed.Scheme)) {
+				return contentValidationError(fieldPath, "uri", "invalid or forbidden URI")
+			}
+		case "editor_color":
+			text, ok := value.(string)
+			if !ok {
+				return contentValidationError(fieldPath, "type", "expected color string")
+			}
+			lowered := strings.ToLower(text)
+			if !contentBlockHexColorPattern.MatchString(lowered) && !containsString([]string{"default", "gray", "brown", "red", "orange", "yellow", "green", "blue", "purple", "pink"}, lowered) {
+				return contentValidationError(fieldPath, "color", "invalid editor color")
+			}
+			record[name] = lowered
+		case "hex_color":
+			text, ok := value.(string)
+			if !ok {
+				return contentValidationError(fieldPath, "type", "expected color string")
+			}
+			lowered := strings.ToLower(text)
+			if !(spec.AllowEmpty && lowered == "") && !contentBlockHexColorPattern.MatchString(lowered) {
+				return contentValidationError(fieldPath, "color", "invalid hex color")
+			}
+			record[name] = lowered
+		case "file_attachment":
+			attachment, ok := value.(map[string]any)
+			if !ok {
+				return contentValidationError(fieldPath, "type", "expected File attachment")
+			}
+			if err := validateAttachmentObject(attachment, fieldPath, mode); err != nil {
+				return err
+			}
+		case "integer", "number":
+			number, ok := value.(json.Number)
+			if !ok {
+				return contentValidationError(fieldPath, "type", "expected number")
+			}
+			numeric, err := number.Float64()
+			if err != nil {
+				return contentValidationError(fieldPath, "number", "invalid number")
+			}
+			if numeric == 0 {
+				record[name] = json.Number("0")
+			}
+			if spec.Type == "integer" {
+				if _, err := number.Int64(); err != nil {
+					return contentValidationError(fieldPath, "integer", "expected integer")
+				}
+			}
+			if spec.Min != nil && numeric < *spec.Min {
+				return contentValidationError(fieldPath, "min", "value is below minimum")
+			}
+			if spec.Max != nil && numeric > *spec.Max {
+				return contentValidationError(fieldPath, "max", "value exceeds maximum")
+			}
+			if spec.MinExclusive != nil && numeric <= *spec.MinExclusive {
+				return contentValidationError(fieldPath, "min_exclusive", "value must be greater than minimum")
+			}
+		case "string":
+			text, ok := value.(string)
+			if !ok {
+				return contentValidationError(fieldPath, "type", "expected string")
+			}
+			if spec.MaxLength != nil && len([]byte(text)) > *spec.MaxLength {
+				return contentValidationError(fieldPath, "max_length", "string is too long")
+			}
+		case "boolean":
+			if _, ok := value.(bool); !ok {
+				return contentValidationError(fieldPath, "type", "expected boolean")
+			}
+		case "enum", "enum_int":
+			text, ok := value.(string)
+			if !ok || strings.HasSuffix(text, "_UNSPECIFIED") {
+				return contentValidationError(fieldPath, "enum", "invalid enum value")
+			}
+		case "array":
+			values, ok := value.([]any)
+			if !ok {
+				return contentValidationError(fieldPath, "type", "expected array")
+			}
+			if spec.ExactLength != nil && len(values) != *spec.ExactLength {
+				return contentValidationError(fieldPath, "length", "array length mismatch")
+			}
+			if spec.MinLength != nil && len(values) < *spec.MinLength {
+				return contentValidationError(fieldPath, "length", "array is too short")
+			}
+			if spec.MaxLength != nil && len(values) > *spec.MaxLength {
+				return contentValidationError(fieldPath, "length", "array is too long")
+			}
+			if spec.Items != nil {
+				for index, item := range values {
+					holder := map[string]any{"item": item}
+					child := *spec.Items
+					if child.Ownership == "" {
+						child.Ownership = ownership
+					}
+					if err := validateAndNormalizeFields(holder, map[string]runtimeFieldSpec{"item": child}, ownerships, omitDescriptorDefaults, fmt.Sprintf("%s[%d]", fieldPath, index), mode); err != nil {
+						return err
+					}
+					values[index] = holder["item"]
+				}
+			}
+			if spec.Unique {
+				seen := map[string]struct{}{}
+				for _, item := range values {
+					encoded, _ := json.Marshal(item)
+					key := string(encoded)
+					if _, exists := seen[key]; exists {
+						return contentValidationError(fieldPath, "duplicate", "array values must be unique")
+					}
+					seen[key] = struct{}{}
+				}
+			}
+		case "object":
+			object, ok := value.(map[string]any)
+			if !ok {
+				return contentValidationError(fieldPath, "type", "expected object")
+			}
+			if err := validateAndNormalizeFields(object, spec.Fields, ownerships, omitDescriptorDefaults, fieldPath, mode); err != nil {
+				return err
+			}
+		}
+	}
+	return nil
+}
+
+func validateAttachmentObject(attachment map[string]any, path string, mode ContentValidationMode) error {
+	if active, ok := attachment["activeFileId"].(string); ok {
+		if err := requireUUID(active, path+".activeFileId"); err != nil {
+			return err
+		}
+		attachment["activeFileId"] = normalizeUUID(active)
+		return nil
+	}
+	missing, ok := attachment["missingAttachment"].(map[string]any)
+	if !ok {
+		return contentValidationError(path, "required", "File attachment state is required")
+	}
+	former, ok := missing["formerFileId"].(string)
+	if !ok {
+		return contentValidationError(path+".missingAttachment.formerFileId", "required", "former File UUID is required")
+	}
+	if err := requireUUID(former, path+".missingAttachment.formerFileId"); err != nil {
+		return err
+	}
+	if mode != ContentValidationMode_CONTENT_VALIDATION_MODE_RESTORE_SNAPSHOT {
+		return contentValidationError(path, "restore_only", "missing attachment is snapshot-restore only")
+	}
+	missing["formerFileId"] = normalizeUUID(former)
+	return nil
+}
+
+func validateRuntimeShared(profile, kind string, shared map[string]any, mode ContentValidationMode) error {
+	if definition, ok := contentBlockRuntimeDescriptor.RichTextBlocks[kind]; ok {
+		if !containsString(contentBlockRuntimeDescriptor.Profiles[profile].Blocks, kind) {
+			return contentValidationError("$.kind", "profile", "Block kind is forbidden by profile")
+		}
+		sharedValue, _ := shared[protoCaseForStorageKind(kind)].(map[string]any)
+		if sharedValue == nil {
+			return contentValidationError("$.shared", "kind_mismatch", "shared Block kind is required")
+		}
+		sharedProps, _ := sharedValue["props"].(map[string]any)
+		if sharedProps == nil {
+			sharedProps = map[string]any{}
+			sharedValue["props"] = sharedProps
+		}
+		return validateAndNormalizeFields(sharedProps, definition.Fields, map[string]bool{"shared": true, "source": true}, true, "$.shared.props", mode)
+	}
+	definition, ok := contentBlockRuntimeDescriptor.PageSections[kind]
+	if !ok || profile != "page" {
+		return contentValidationError("$.kind", "kind", "unknown storage Block kind")
+	}
+	caseName := protoCaseForStorageKind(kind)
+	sharedValue, _ := shared[caseName].(map[string]any)
+	if sharedValue == nil {
+		return contentValidationError("$.shared", "kind_mismatch", "shared section kind is required")
+	}
+	settings, _ := shared["settings"].(map[string]any)
+	if settings == nil {
+		settings = map[string]any{}
+		shared["settings"] = settings
+	}
+	if err := validateAndNormalizeFields(settings, contentBlockRuntimeDescriptor.PageSettings, map[string]bool{"shared": true}, true, "$.shared.settings", mode); err != nil {
+		return err
+	}
+	sharedProps, _ := sharedValue["props"].(map[string]any)
+	if sharedProps == nil {
+		sharedProps = map[string]any{}
+		sharedValue["props"] = sharedProps
+	}
+	if err := validateAndNormalizeFields(sharedProps, definition.Fields, map[string]bool{"shared": true, "source": true}, true, "$.shared.props", mode); err != nil {
+		return err
+	}
+	if kind == "rich-text" {
+		if blocks, ok := sharedValue["blocks"].(map[string]any); ok && len(blocks) != 0 {
+			return contentValidationError("$.shared.richText.blocks", "nested_authority", "rich-text descendants must be separate storage rows")
+		}
+	}
+	if kind == "immersive-scene" {
+		if units, ok := sharedValue["units"].([]any); ok {
+			seen := map[string]struct{}{}
+			for index, raw := range units {
+				unit, ok := raw.(map[string]any)
+				if !ok {
+					return contentValidationError(fmt.Sprintf("$.shared.units[%d]", index), "type", "expected unit object")
+				}
+				id, _ := unit["id"].(string)
+				if err := requireUUID(id, fmt.Sprintf("$.shared.units[%d].id", index)); err != nil {
+					return err
+				}
+				id = normalizeUUID(id)
+				unit["id"] = id
+				if _, exists := seen[id]; exists {
+					return contentValidationError("$.shared.units", "duplicate", "unit IDs must be unique")
+				}
+				seen[id] = struct{}{}
+				props, _ := unit["props"].(map[string]any)
+				if props == nil {
+					props = map[string]any{}
+					unit["props"] = props
+				}
+				if err := validateAndNormalizeFields(props, contentBlockRuntimeDescriptor.PageImmersiveUnit, map[string]bool{"shared": true, "source": true}, true, fmt.Sprintf("$.shared.units[%d].props", index), mode); err != nil {
+					return err
+				}
+			}
+		}
+	}
+	return nil
+}
+
+func validateRichContent(value map[string]any, profile, path string, mode ContentValidationMode) error {
+	profileDescriptor, ok := contentBlockRuntimeDescriptor.Profiles[profile]
+	if !ok {
+		return contentValidationError("$.profile", "profile", "unknown rich-text profile")
+	}
+	var walk func(any, string) error
+	count := 0
+	walk = func(current any, currentPath string) error {
+		switch typed := current.(type) {
+		case []any:
+			count += len(typed)
+			if count > contentBlockRuntimeDescriptor.Limits.MaxInlineNodes {
+				return contentValidationError(path, "limit", "too many inline nodes")
+			}
+			for index, item := range typed {
+				if err := walk(item, fmt.Sprintf("%s[%d]", currentPath, index)); err != nil {
+					return err
+				}
+			}
+		case map[string]any:
+			if rawStyles, present := typed["styles"]; present {
+				styles, ok := rawStyles.(map[string]any)
+				if !ok {
+					return contentValidationError(currentPath+".styles", "type", "expected inline styles")
+				}
+				for mark, value := range styles {
+					active, isBoolean := value.(bool)
+					if (!isBoolean || active) && !containsString(profileDescriptor.Marks, mark) {
+						return contentValidationError(currentPath+".styles."+mark, "profile", "mark is forbidden")
+					}
+				}
+				if err := validateAndNormalizeFields(styles, contentBlockRuntimeDescriptor.RichTextInline.Styles, map[string]bool{"locale": true}, false, currentPath+".styles", mode); err != nil {
+					return err
+				}
+			}
+			if _, present := typed["mathInline"]; present && !profileDescriptor.InlineMath {
+				return contentValidationError(currentPath+".mathInline", "profile", "inline math is forbidden")
+			}
+			if _, present := typed["href"]; present {
+				linkDefinition, exists := contentBlockRuntimeDescriptor.RichTextInline.Kinds["link"]
+				if !exists {
+					return contentValidationError(currentPath, "kind", "link descriptor is missing")
+				}
+				if err := validateAndNormalizeFields(typed, linkDefinition.Fields, map[string]bool{"locale": true}, false, currentPath, mode); err != nil {
+					return err
+				}
+			}
+			for name, item := range typed {
+				if err := walk(item, currentPath+"."+name); err != nil {
+					return err
+				}
+			}
+		}
+		return nil
+	}
+	return walk(value["content"], path+".content")
+}
+
+func NormalizeContentStorageShared(profile, kind string, sharedData []byte, mode ContentValidationMode) (ValidatedContentStorageShared, error) {
+	if _, err := ParseRichTextProfileStorageName(profile); err != nil {
+		return ValidatedContentStorageShared{}, err
+	}
+	var sharedMessage proto.Message
+	if isRichKind(kind) {
+		sharedMessage = &RichTextBlockData{}
+	} else if profile == "page" && isPageKind(kind) {
+		sharedMessage = &PageSectionData{}
+	} else {
+		return ValidatedContentStorageShared{}, contentValidationError("$.kind", "kind", "unknown storage Block kind")
+	}
+	_, sharedObject, err := normalizeProtoJSON(sharedData, sharedMessage)
+	if err != nil {
+		return ValidatedContentStorageShared{}, contentValidationError("$.shared", "decode", err.Error())
+	}
+	expectedCase := protoCaseForStorageKind(kind)
+	if oneofJSONName(sharedMessage, "value") != expectedCase {
+		return ValidatedContentStorageShared{}, contentValidationError("$.kind", "kind_mismatch", "row payload kind does not match storage kind")
+	}
+	if err := validateRuntimeShared(profile, kind, sharedObject, mode); err != nil {
+		return ValidatedContentStorageShared{}, err
+	}
+	sharedNormalized, _ := json.Marshal(sharedObject)
+	references, err := extractStorageFileReferences(kind, sharedObject)
+	if err != nil {
+		return ValidatedContentStorageShared{}, err
+	}
+	return ValidatedContentStorageShared{SharedData: sharedNormalized, FileReferences: references}, nil
+}
+
+func normalizeStorageBlock(profile, kind string, sharedData, localizedData []byte, mode ContentValidationMode) (ValidatedContentStorageBlock, error) {
+	shared, err := NormalizeContentStorageShared(profile, kind, sharedData, mode)
+	if err != nil {
+		return ValidatedContentStorageBlock{}, err
+	}
+	localized, err := NormalizeContentStorageLocale(profile, kind, localizedData, mode)
+	if err != nil {
+		return ValidatedContentStorageBlock{}, err
+	}
+	return ValidatedContentStorageBlock{SharedData: shared.SharedData, LocalizedData: localized, FileReferences: shared.FileReferences}, nil
+}
+
+func NormalizeContentStorageBlock(profile, kind string, shared, localized []byte) (ValidatedContentStorageBlock, error) {
+	return normalizeStorageBlock(profile, kind, shared, localized, ContentValidationMode_CONTENT_VALIDATION_MODE_RESTORE_SNAPSHOT)
+}
+
+// NormalizeContentStorageLocale validates and canonicalizes a row-local locale
+// payload without requiring the base row. ExpectedKind lets the Store compare
+// the locale mutation with the locked base row before writing it.
+func NormalizeContentStorageLocale(profile, kind string, localizedData []byte, mode ContentValidationMode) ([]byte, error) {
+	if _, err := ParseRichTextProfileStorageName(profile); err != nil {
+		return nil, err
+	}
+	originalObject, err := decodeJSONObject(localizedData)
+	if err != nil {
+		return nil, contentValidationError("$.localized", "decode", err.Error())
+	}
+	var localizedMessage proto.Message
+	if isRichKind(kind) {
+		localizedMessage = &RichTextBlockLocaleData{}
+	} else if profile == "page" && isPageKind(kind) {
+		localizedMessage = &PageSectionLocaleData{}
+	} else {
+		return nil, contentValidationError("$.kind", "kind", "unknown storage Block kind")
+	}
+	_, localizedObject, err := normalizeProtoJSON(localizedData, localizedMessage)
+	if err != nil {
+		return nil, contentValidationError("$.localized", "decode", err.Error())
+	}
+	caseName := protoCaseForStorageKind(kind)
+	if oneofJSONName(localizedMessage, "value") != caseName {
+		return nil, contentValidationError("$.kind", "kind_mismatch", "locale payload kind does not match expected storage kind")
+	}
+	localizedValue, _ := localizedObject[caseName].(map[string]any)
+	if localizedValue == nil {
+		return nil, contentValidationError("$.localized", "kind_mismatch", "locale payload kind is required")
+	}
+	originalValue, _ := originalObject[caseName].(map[string]any)
+	localeProps, _ := localizedValue["props"].(map[string]any)
+	if localeProps == nil {
+		localeProps = map[string]any{}
+		localizedValue["props"] = localeProps
+	}
+	if definition, ok := contentBlockRuntimeDescriptor.RichTextBlocks[kind]; ok {
+		if !containsString(contentBlockRuntimeDescriptor.Profiles[profile].Blocks, kind) {
+			return nil, contentValidationError("$.kind", "profile", "Block kind is forbidden by profile")
+		}
+		restoreExplicitEmptyRichTextLocaleContent(originalValue, localizedValue, definition.Content)
+		if err := validateAndNormalizeFields(localeProps, definition.Fields, map[string]bool{"locale": true}, false, "$.locale.props", mode); err != nil {
+			return nil, err
+		}
+		if err := validateRichContent(localizedValue, profile, "$.locale", mode); err != nil {
+			return nil, err
+		}
+	} else {
+		definition := contentBlockRuntimeDescriptor.PageSections[kind]
+		if err := validateAndNormalizeFields(localeProps, definition.Fields, map[string]bool{"locale": true}, false, "$.locale.props", mode); err != nil {
+			return nil, err
+		}
+		if kind == "immersive-scene" {
+			units, ok := localizedValue["units"].([]any)
+			if !ok && localizedValue["units"] != nil {
+				return nil, contentValidationError("$.locale.units", "type", "expected unit array")
+			}
+			seen := map[string]struct{}{}
+			for index, raw := range units {
+				unit, ok := raw.(map[string]any)
+				if !ok {
+					return nil, contentValidationError(fmt.Sprintf("$.locale.units[%d]", index), "type", "expected unit object")
+				}
+				id, ok := unit["unitId"].(string)
+				if !ok {
+					return nil, contentValidationError(fmt.Sprintf("$.locale.units[%d].unitId", index), "required", "unit UUID is required")
+				}
+				if err := requireUUID(id, fmt.Sprintf("$.locale.units[%d].unitId", index)); err != nil {
+					return nil, err
+				}
+				id = normalizeUUID(id)
+				if _, duplicate := seen[id]; duplicate {
+					return nil, contentValidationError("$.locale.units", "duplicate", "unit IDs must be unique")
+				}
+				seen[id] = struct{}{}
+				unit["unitId"] = id
+				props, _ := unit["props"].(map[string]any)
+				if props == nil {
+					props = map[string]any{}
+					unit["props"] = props
+				}
+				if err := validateAndNormalizeFields(props, contentBlockRuntimeDescriptor.PageImmersiveUnit, map[string]bool{"locale": true}, false, fmt.Sprintf("$.locale.units[%d].props", index), mode); err != nil {
+					return nil, err
+				}
+			}
+		}
+		if kind == "rich-text" {
+			if blocks, ok := localizedValue["blocks"].(map[string]any); ok && len(blocks) != 0 {
+				return nil, contentValidationError("$.locale.richText.blocks", "nested_authority", "rich-text descendants must be separate storage rows")
+			}
+		}
+	}
+	return json.Marshal(localizedObject)
+}
+
+// Repeated and non-optional scalar Protobuf fields do not retain explicit
+// default presence. Sparse locale storage does: an authored empty Paragraph,
+// Code Block, or table cell is different from an absent target value that
+// should source-fallback. Restore only those validated empty shapes after the
+// Protobuf JSON round trip; non-empty values are already retained by it.
+func restoreExplicitEmptyRichTextLocaleContent(original, normalized map[string]any, contentKind string) {
+	if original == nil || normalized == nil {
+		return
+	}
+	originalContent, present := original["content"]
+	if !present {
+		return
+	}
+	switch contentKind {
+	case "inline":
+		if values, ok := originalContent.([]any); ok && len(values) == 0 {
+			normalized["content"] = []any{}
+		}
+	case "locale_text":
+		if value, ok := originalContent.(string); ok && value == "" {
+			normalized["content"] = ""
+		}
+	case "table":
+		restoreExplicitEmptyTableCellContent(originalContent, normalized["content"])
+	}
+}
+
+func restoreExplicitEmptyTableCellContent(originalContent, normalizedContent any) {
+	originalTable, ok := originalContent.(map[string]any)
+	if !ok {
+		return
+	}
+	normalizedTable, ok := normalizedContent.(map[string]any)
+	if !ok {
+		return
+	}
+	normalizedRows := indexIdentityObjects(anySlice(normalizedTable["rows"]), "rowId")
+	for _, rawRow := range anySlice(originalTable["rows"]) {
+		originalRow, _ := rawRow.(map[string]any)
+		rowID, _ := originalRow["rowId"].(string)
+		normalizedRow := normalizedRows[rowID]
+		if normalizedRow == nil {
+			continue
+		}
+		normalizedCells := indexIdentityObjects(anySlice(normalizedRow["cells"]), "cellId")
+		for _, rawCell := range anySlice(originalRow["cells"]) {
+			originalCell, _ := rawCell.(map[string]any)
+			cellID, _ := originalCell["cellId"].(string)
+			normalizedCell := normalizedCells[cellID]
+			if normalizedCell == nil {
+				continue
+			}
+			if content, present := originalCell["content"]; present {
+				if values, ok := content.([]any); ok && len(values) == 0 {
+					normalizedCell["content"] = []any{}
+				}
+			}
+		}
+	}
+}
+
+func indexIdentityObjects(values []any, identityField string) map[string]map[string]any {
+	result := make(map[string]map[string]any, len(values))
+	for _, raw := range values {
+		value, _ := raw.(map[string]any)
+		identity, _ := value[identityField].(string)
+		if identity != "" {
+			result[identity] = value
+		}
+	}
+	return result
+}
+
+// BuildExplicitEmptyContentStorageLocale derives one complete locale payload
+// from an existing source payload while preserving stable structure and every
+// non-translatable locale value. It is used when an absent locale becomes the
+// source: visible language fields become explicit empty values instead of
+// borrowing another locale at read time.
+func BuildExplicitEmptyContentStorageLocale(profile, kind string, localizedData []byte) ([]byte, error) {
+	normalized, err := NormalizeContentStorageLocale(
+		profile,
+		kind,
+		localizedData,
+		ContentValidationMode_CONTENT_VALIDATION_MODE_WRITE,
+	)
+	if err != nil {
+		return nil, err
+	}
+	localizedObject, err := decodeJSONObject(normalized)
+	if err != nil {
+		return nil, contentValidationError("$.localized", "decode", err.Error())
+	}
+	caseName := protoCaseForStorageKind(kind)
+	localizedValue, _ := localizedObject[caseName].(map[string]any)
+	if localizedValue == nil {
+		return nil, contentValidationError("$.localized", "kind_mismatch", "locale payload kind is required")
+	}
+	localeProps, _ := localizedValue["props"].(map[string]any)
+	if localeProps == nil {
+		localeProps = map[string]any{}
+		localizedValue["props"] = localeProps
+	}
+
+	if definition, ok := contentBlockRuntimeDescriptor.RichTextBlocks[kind]; ok {
+		emptyRuntimeTranslatableFields(localeProps, definition.Fields, "locale")
+		switch definition.Content {
+		case "inline", "table":
+			emptyRichTextVisibleText(localizedValue["content"])
+		case "locale_text":
+			localizedValue["content"] = ""
+		}
+	} else {
+		definition, ok := contentBlockRuntimeDescriptor.PageSections[kind]
+		if !ok || profile != "page" {
+			return nil, contentValidationError("$.kind", "kind", "unknown storage Block kind")
+		}
+		emptyRuntimeTranslatableFields(localeProps, definition.Fields, "locale")
+		if kind == "immersive-scene" {
+			for _, raw := range anySlice(localizedValue["units"]) {
+				unit, _ := raw.(map[string]any)
+				props, _ := unit["props"].(map[string]any)
+				if props == nil {
+					props = map[string]any{}
+					unit["props"] = props
+				}
+				emptyRuntimeTranslatableFields(
+					props,
+					contentBlockRuntimeDescriptor.PageImmersiveUnit,
+					"locale",
+				)
+			}
+		}
+	}
+
+	empty, err := json.Marshal(localizedObject)
+	if err != nil {
+		return nil, err
+	}
+	return NormalizeContentStorageLocale(
+		profile,
+		kind,
+		empty,
+		ContentValidationMode_CONTENT_VALIDATION_MODE_WRITE,
+	)
+}
+
+func emptyRuntimeTranslatableFields(
+	record map[string]any,
+	fields map[string]runtimeFieldSpec,
+	inheritedOwnership string,
+) {
+	for name, spec := range fields {
+		ownership := spec.Ownership
+		if ownership == "" {
+			ownership = inheritedOwnership
+		}
+		if ownership == "locale" && spec.Translatable {
+			record[name] = ""
+			continue
+		}
+		value, present := record[name]
+		if !present || value == nil {
+			continue
+		}
+		switch spec.Type {
+		case "object":
+			object, _ := value.(map[string]any)
+			if object != nil {
+				emptyRuntimeTranslatableFields(object, spec.Fields, ownership)
+			}
+		case "array":
+			if spec.Items == nil {
+				continue
+			}
+			values := anySlice(value)
+			for index, item := range values {
+				holder := map[string]any{"item": item}
+				emptyRuntimeTranslatableFields(
+					holder,
+					map[string]runtimeFieldSpec{"item": *spec.Items},
+					ownership,
+				)
+				values[index] = holder["item"]
+			}
+		}
+	}
+}
+
+func emptyRichTextVisibleText(value any) {
+	switch typed := value.(type) {
+	case []any:
+		for _, item := range typed {
+			emptyRichTextVisibleText(item)
+		}
+	case map[string]any:
+		for name, item := range typed {
+			if name == "text" {
+				if _, ok := item.(string); ok {
+					typed[name] = ""
+					continue
+				}
+			}
+			emptyRichTextVisibleText(item)
+		}
+	}
+}
+
+func anySlice(value any) []any {
+	values, _ := value.([]any)
+	return values
+}
+
+// RewriteContentStorageMissingAttachments converts only explicitly unavailable
+// active File references into the typed restore-only placeholder. It runs over
+// the generated closed storage payload and revalidates every changed row.
+func RewriteContentStorageMissingAttachments(profile, sourceLocale string, rows []ContentStorageRow, unavailable map[string]MissingAttachmentMediaKind) ([]ContentStorageRow, error) {
+	result := append([]ContentStorageRow(nil), rows...)
+	var rewrite func(any) error
+	rewrite = func(current any) error {
+		switch value := current.(type) {
+		case []any:
+			for _, item := range value {
+				if err := rewrite(item); err != nil {
+					return err
+				}
+			}
+		case map[string]any:
+			if raw, ok := value["activeFileId"].(string); ok {
+				id := normalizeUUID(raw)
+				if mediaKind, present := unavailable[id]; present {
+					if mediaKind == MissingAttachmentMediaKind_MISSING_ATTACHMENT_MEDIA_KIND_UNSPECIFIED {
+						return contentValidationError("$.missing_attachment.media_kind", "required", "missing attachment media kind is required")
+					}
+					delete(value, "activeFileId")
+					value["missingAttachment"] = map[string]any{"formerFileId": id, "mediaKind": mediaKind.String()}
+				}
+			}
+			for _, item := range value {
+				if err := rewrite(item); err != nil {
+					return err
+				}
+			}
+		}
+		return nil
+	}
+	for index := range result {
+		shared, err := decodeJSONObject(result[index].SharedData)
+		if err != nil {
+			return nil, err
+		}
+		if err := rewrite(shared); err != nil {
+			return nil, err
+		}
+		result[index].SharedData, err = json.Marshal(shared)
+		if err != nil {
+			return nil, err
+		}
+		source := findStorageLocale(result[index].Locales, sourceLocale)
+		if source == nil {
+			return nil, contentValidationError("$.source_locale", "source_overlay", "each base Block requires source locale data")
+		}
+		normalized, err := normalizeStorageBlock(profile, result[index].Kind, result[index].SharedData, source.LocalizedData, ContentValidationMode_CONTENT_VALIDATION_MODE_RESTORE_SNAPSHOT)
+		if err != nil {
+			return nil, err
+		}
+		result[index].SharedData = normalized.SharedData
+	}
+	return result, nil
+}
+
+func attachmentReference(value any, referencePath string, policyName string) (ContentStorageFileReference, bool, error) {
+	object, ok := value.(map[string]any)
+	if !ok {
+		return ContentStorageFileReference{}, false, nil
+	}
+	policy := contentBlockRuntimeDescriptor.FileReferencePolicies[policyName]
+	if active, ok := object["activeFileId"].(string); ok {
+		return ContentStorageFileReference{ReferencePath: referencePath, FileID: normalizeUUID(active), AllowedMIMETypes: append([]string(nil), policy.MIMETypes...), AllowedMIMEPrefixes: append([]string(nil), policy.MIMEPrefixes...)}, true, nil
+	}
+	if missing, ok := object["missingAttachment"].(map[string]any); ok {
+		former, _ := missing["formerFileId"].(string)
+		mediaKindName, _ := missing["mediaKind"].(string)
+		mediaKindValue, known := MissingAttachmentMediaKind_value[mediaKindName]
+		if !known || mediaKindValue == int32(MissingAttachmentMediaKind_MISSING_ATTACHMENT_MEDIA_KIND_UNSPECIFIED) {
+			return ContentStorageFileReference{}, false, contentValidationError("$."+referencePath+".missingAttachment.mediaKind", "required", "missing attachment media kind is required")
+		}
+		return ContentStorageFileReference{ReferencePath: referencePath, FileID: normalizeUUID(former), Missing: true, MissingAttachmentMediaKind: MissingAttachmentMediaKind(mediaKindValue), AllowedMIMETypes: append([]string(nil), policy.MIMETypes...), AllowedMIMEPrefixes: append([]string(nil), policy.MIMEPrefixes...)}, true, nil
+	}
+	return ContentStorageFileReference{}, false, nil
+}
+
+func extractStorageFileReferences(kind string, shared map[string]any) ([]ContentStorageFileReference, error) {
+	caseName := protoCaseForStorageKind(kind)
+	value, _ := shared[caseName].(map[string]any)
+	props, _ := value["props"].(map[string]any)
+	var result []ContentStorageFileReference
+	appendReference := func(raw any, path, policy string) error {
+		ref, present, err := attachmentReference(raw, path, policy)
+		if err != nil {
+			return err
+		}
+		if present {
+			result = append(result, ref)
+		}
+		return nil
+	}
+	if kind == "file" {
+		if err := appendReference(props["attachment"], "file", "file"); err != nil {
+			return nil, err
+		}
+	}
+	if kind == "shader" {
+		if stages, ok := props["stages"].([]any); ok {
+			for i, rawStage := range stages {
+				stage, _ := rawStage.(map[string]any)
+				channels, _ := stage["channels"].([]any)
+				for j, rawChannel := range channels {
+					channel, _ := rawChannel.(map[string]any)
+					if err := appendReference(channel["file"], fmt.Sprintf("shader.stages.%d.channels.%d.file", i, j), "shader_channel"); err != nil {
+						return nil, err
+					}
+					faces, _ := channel["faces"].([]any)
+					for k, face := range faces {
+						if err := appendReference(face, fmt.Sprintf("shader.stages.%d.channels.%d.faces.%d", i, j, k), "shader_cubemap_face"); err != nil {
+							return nil, err
+						}
+					}
+				}
+			}
+		}
+	}
+	if kind == "immersive-scene" {
+		if units, ok := value["units"].([]any); ok {
+			fields := []struct{ Name, Role, Policy string }{{"meshFile", "mesh", "immersive.mesh"}, {"meshOptimizationSourceFile", "optimization_source", "immersive.optimization_source"}, {"meshOptimizationFile", "optimized_mesh", "immersive.optimized_mesh"}, {"textureFile", "texture", "immersive.texture"}, {"darkTextureFile", "dark_texture", "immersive.dark_texture"}}
+			for _, rawUnit := range units {
+				unit, _ := rawUnit.(map[string]any)
+				id, _ := unit["id"].(string)
+				unitProps, _ := unit["props"].(map[string]any)
+				for _, field := range fields {
+					if err := appendReference(unitProps[field.Name], fmt.Sprintf("immersive_scene:%s:%s", id, field.Role), field.Policy); err != nil {
+						return nil, err
+					}
+				}
+			}
+		}
+	}
+	sort.Slice(result, func(i, j int) bool { return result[i].ReferencePath < result[j].ReferencePath })
+	return result, nil
+}
+
+func ValidateContentStorageParent(profile, parentKind string, parentShared []byte, childKind string, childShared []byte, containerSlot string) error {
+	_ = childShared
+	if profile == "page" && isPageKind(childKind) {
+		if parentKind == "" {
+			if containerSlot != "sections" {
+				return contentValidationError("$.container_slot", "slot", "root Page sections use sections")
+			}
+			return nil
+		}
+		if parentKind != "columns" || !strings.HasPrefix(containerSlot, "column-") || !contentBlockUUIDPattern.MatchString(strings.TrimPrefix(containerSlot, "column-")) || childKind == "columns" || !containsString(contentBlockRuntimeDescriptor.PageColumnChildKinds, childKind) {
+			return contentValidationError("$.parent", "parent", "invalid Page column placement")
+		}
+		parent, err := decodeJSONObject(parentShared)
+		if err != nil {
+			return contentValidationError("$.parent.shared_data", "decode", err.Error())
+		}
+		columnsValue, _ := parent["columns"].(map[string]any)
+		props, _ := columnsValue["props"].(map[string]any)
+		columns, _ := props["columns"].([]any)
+		columnID := strings.TrimPrefix(containerSlot, "column-")
+		found := false
+		for _, rawColumn := range columns {
+			column, _ := rawColumn.(map[string]any)
+			if id, _ := column["id"].(string); normalizeUUID(id) == columnID {
+				found = true
+				break
+			}
+		}
+		if !found {
+			return contentValidationError("$.container_slot", "column", "placement column does not exist")
+		}
+		return nil
+	}
+	if isRichKind(childKind) {
+		if containerSlot != "content" {
+			return contentValidationError("$.container_slot", "slot", "rich-text Blocks use content")
+		}
+		if parentKind == "" || isRichKind(parentKind) || (profile == "page" && parentKind == "rich-text") {
+			return nil
+		}
+	}
+	return contentValidationError("$.parent", "parent", "invalid Block parent")
+}
+
+type canonicalStorageDocument struct {
+	Profile string                  `json:"profile"`
+	Blocks  []canonicalStorageBlock `json:"blocks"`
+}
+type canonicalStorageBlock struct {
+	ID            string                   `json:"id"`
+	ParentID      *string                  `json:"parent_id"`
+	ContainerSlot string                   `json:"container_slot"`
+	Position      int32                    `json:"position"`
+	Kind          string                   `json:"kind"`
+	SharedData    json.RawMessage          `json:"shared_data"`
+	Locales       []canonicalStorageLocale `json:"locales"`
+}
+type canonicalStorageLocale struct {
+	Locale string          `json:"locale"`
+	Data   json.RawMessage `json:"data"`
+}
+
+func canonicalStorageBytes(profile string, rows []ContentStorageRow, sourceLocale string, sourceOnly bool) ([]byte, error) {
+	ordered := append([]ContentStorageRow(nil), rows...)
+	sort.Slice(ordered, func(i, j int) bool { return ordered[i].BlockID < ordered[j].BlockID })
+	document := canonicalStorageDocument{Profile: profile}
+	for _, row := range ordered {
+		shared := json.RawMessage(row.SharedData)
+		if sourceOnly {
+			shared = json.RawMessage(`{}`)
+		}
+		entry := canonicalStorageBlock{ID: row.BlockID, ContainerSlot: row.ContainerSlot, Position: row.Position, Kind: row.Kind, SharedData: shared}
+		if row.ParentBlockID != "" {
+			parent := row.ParentBlockID
+			entry.ParentID = &parent
+		}
+		locales := append([]ContentStorageLocale(nil), row.Locales...)
+		sort.Slice(locales, func(i, j int) bool { return locales[i].Locale < locales[j].Locale })
+		for _, locale := range locales {
+			if sourceOnly && locale.Locale != sourceLocale {
+				continue
+			}
+			entry.Locales = append(entry.Locales, canonicalStorageLocale{Locale: locale.Locale, Data: json.RawMessage(locale.LocalizedData)})
+		}
+		document.Blocks = append(document.Blocks, entry)
+	}
+	return json.Marshal(document)
+}
+func ContentStorageCanonicalHash(profile string, rows []ContentStorageRow) (string, error) {
+	encoded, err := canonicalStorageBytes(profile, rows, "", false)
+	if err != nil {
+		return "", err
+	}
+	sum := sha256.Sum256(encoded)
+	return hex.EncodeToString(sum[:]), nil
+}
+func ContentStorageTranslationSourceHash(profile string, rows []ContentStorageRow, sourceLocale string) (string, error) {
+	encoded, err := canonicalStorageBytes(profile, rows, sourceLocale, true)
+	if err != nil {
+		return "", err
+	}
+	sum := sha256.Sum256(encoded)
+	return hex.EncodeToString(sum[:]), nil
+}
+func ContentStorageTranslationSourceChanged(profile string, before, after []ContentStorageRow, sourceLocale string) (bool, error) {
+	left, err := ContentStorageTranslationSourceHash(profile, before, sourceLocale)
+	if err != nil {
+		return false, err
+	}
+	right, err := ContentStorageTranslationSourceHash(profile, after, sourceLocale)
+	return left != right, err
+}
+
+func rowDataFromMessage(message proto.Message, idField string, stripRich bool) ([]byte, error) {
+	encoded, err := marshalProtoJSON.Marshal(message)
+	if err != nil {
+		return nil, err
+	}
+	object, err := decodeJSONObject(encoded)
+	if err != nil {
+		return nil, err
+	}
+	delete(object, idField)
+	if stripRich {
+		if rich, ok := object["richText"].(map[string]any); ok {
+			delete(rich, "blocks")
+		}
+	}
+	return json.Marshal(object)
+}
+func localeMapRich(document *RichTextDocument) map[string]map[string]*RichTextBlockLocale {
+	result := map[string]map[string]*RichTextBlockLocale{}
+	for _, overlay := range document.GetLocaleOverlays() {
+		values := map[string]*RichTextBlockLocale{}
+		for _, block := range overlay.GetBlocks() {
+			values[block.GetBlockId()] = block
+		}
+		result[overlay.GetLocale()] = values
+	}
+	return result
+}
+
+func ValidateRichTextDocument(document *RichTextDocument, mode ContentValidationMode) error {
+	_, err := FlattenRichTextDocumentStorage(document, mode)
+	return err
+}
+func FlattenRichTextDocumentStorage(document *RichTextDocument, mode ContentValidationMode) ([]ContentStorageRow, error) {
+	if document == nil || document.GetBase() == nil {
+		return nil, contentValidationError("$", "required", "document and base graph are required")
+	}
+	if document.GetBlockCatalogFingerprint() != ContentBlockCatalogFingerprint {
+		return nil, contentValidationError("$.block_catalog_fingerprint", "fingerprint_mismatch", "fingerprint mismatch")
+	}
+	profile, err := RichTextProfileStorageName(document.GetProfile())
+	if err != nil {
+		return nil, err
+	}
+	if strings.TrimSpace(document.GetSourceLocale()) == "" {
+		return nil, contentValidationError("$.source_locale", "required", "source locale is required")
+	}
+	locales := localeMapRich(document)
+	if _, ok := locales[document.GetSourceLocale()]; !ok {
+		return nil, contentValidationError("$.source_locale", "source_overlay", "source locale overlay is required")
+	}
+	seen := map[string]struct{}{}
+	var rows []ContentStorageRow
+	for index, node := range document.GetBase().GetNodes() {
+		if node.GetBlock() == nil || node.GetPlacement() == nil {
+			return nil, contentValidationError(fmt.Sprintf("$.base.nodes[%d]", index), "required", "block and placement are required")
+		}
+		id := normalizeUUID(node.GetBlock().GetId())
+		if err := requireUUID(id, fmt.Sprintf("$.base.nodes[%d].block.id", index)); err != nil {
+			return nil, err
+		}
+		if _, exists := seen[id]; exists {
+			return nil, contentValidationError("$.base.nodes", "duplicate_id", "duplicate Block ID")
+		}
+		seen[id] = struct{}{}
+		kind := storageKindForProtoCase(oneofJSONName(node.GetBlock(), "value"), false)
+		if kind == "" {
+			return nil, contentValidationError("$.kind", "kind", "unknown rich-text Block kind")
+		}
+		shared, err := rowDataFromMessage(node.GetBlock(), "id", false)
+		if err != nil {
+			return nil, err
+		}
+		row := ContentStorageRow{BlockID: id, ParentBlockID: normalizeUUID(node.GetPlacement().GetParentBlockId()), ContainerSlot: "content", Position: int32(node.GetPlacement().GetIndex()), Kind: kind, SharedData: shared}
+		for locale, values := range locales {
+			if value := values[id]; value != nil {
+				localized, err := rowDataFromMessage(value, "blockId", false)
+				if err != nil {
+					return nil, err
+				}
+				row.Locales = append(row.Locales, ContentStorageLocale{Locale: locale, LocalizedData: localized})
+			}
+		}
+		sort.Slice(row.Locales, func(i, j int) bool { return row.Locales[i].Locale < row.Locales[j].Locale })
+		source := findStorageLocale(row.Locales, document.GetSourceLocale())
+		if source == nil {
+			return nil, contentValidationError("$.source_locale", "source_overlay", "each base Block requires source locale data")
+		}
+		normalized, err := NormalizeContentStorageShared(profile, kind, row.SharedData, mode)
+		if err != nil {
+			return nil, err
+		}
+		row.SharedData = normalized.SharedData
+		for localeIndex := range row.Locales {
+			normalizedLocale, err := NormalizeContentStorageLocale(profile, kind, row.Locales[localeIndex].LocalizedData, mode)
+			if err != nil {
+				return nil, err
+			}
+			row.Locales[localeIndex].LocalizedData = normalizedLocale
+		}
+		rows = append(rows, row)
+	}
+	if len(rows) > contentBlockRuntimeDescriptor.Limits.MaxDocumentBlocks {
+		return nil, contentValidationError("$.base.nodes", "limit", "too many Blocks")
+	}
+	return rows, nil
+}
+func findStorageLocale(values []ContentStorageLocale, locale string) *ContentStorageLocale {
+	for index := range values {
+		if values[index].Locale == locale {
+			return &values[index]
+		}
+	}
+	return nil
+}
+
+func messageFromRowData(data []byte, idField, id string, target proto.Message) error {
+	object, err := decodeJSONObject(data)
+	if err != nil {
+		return err
+	}
+	object[idField] = id
+	encoded, err := json.Marshal(object)
+	if err != nil {
+		return err
+	}
+	return unmarshalProtoJSON.Unmarshal(encoded, target)
+}
+
+func MaterializeRichTextDocumentStorage(profile RichTextProfile, sourceLocale string, rows []ContentStorageRow) (*RichTextDocument, error) {
+	profileName, err := RichTextProfileStorageName(profile)
+	if err != nil {
+		return nil, err
+	}
+	document := &RichTextDocument{BlockCatalogFingerprint: ContentBlockCatalogFingerprint, Profile: profile, SourceLocale: sourceLocale, Base: &RichTextBlockGraph{}}
+	overlays := map[string]*RichTextLocaleOverlay{}
+	for _, row := range rows {
+		if !isRichKind(row.Kind) {
+			return nil, contentValidationError("$.kind", "kind", "non-rich row in rich document")
+		}
+		block := &RichTextBlock{}
+		if err := messageFromRowData(row.SharedData, "id", row.BlockID, block); err != nil {
+			return nil, err
+		}
+		placement := &ContentBlockPlacement{Index: uint32(row.Position)}
+		if row.ParentBlockID != "" {
+			parent := row.ParentBlockID
+			placement.ParentBlockId = &parent
+		}
+		document.Base.Nodes = append(document.Base.Nodes, &RichTextBlockNode{Block: block, Placement: placement})
+		for _, locale := range row.Locales {
+			overlay := overlays[locale.Locale]
+			if overlay == nil {
+				overlay = &RichTextLocaleOverlay{Locale: locale.Locale}
+				overlays[locale.Locale] = overlay
+			}
+			value := &RichTextBlockLocale{}
+			if err := messageFromRowData(locale.LocalizedData, "blockId", row.BlockID, value); err != nil {
+				return nil, err
+			}
+			overlay.Blocks = append(overlay.Blocks, value)
+		}
+	}
+	if overlays[sourceLocale] == nil {
+		overlays[sourceLocale] = &RichTextLocaleOverlay{Locale: sourceLocale}
+	}
+	for _, overlay := range overlays {
+		document.LocaleOverlays = append(document.LocaleOverlays, overlay)
+	}
+	sort.Slice(document.LocaleOverlays, func(i, j int) bool { return document.LocaleOverlays[i].Locale < document.LocaleOverlays[j].Locale })
+	if _, err := FlattenRichTextDocumentStorage(document, ContentValidationMode_CONTENT_VALIDATION_MODE_RESTORE_SNAPSHOT); err != nil {
+		return nil, err
+	}
+	_ = profileName
+	return document, nil
+}
+func MaterializeLocalizedRichTextDocumentStorage(profile RichTextProfile, locale string, rows []ContentStorageRow) (*LocalizedRichTextDocument, error) {
+	document, err := MaterializeRichTextDocumentStorage(profile, locale, rows)
+	if err != nil {
+		return nil, err
+	}
+	for _, overlay := range document.LocaleOverlays {
+		if overlay.GetLocale() == locale {
+			return &LocalizedRichTextDocument{BlockCatalogFingerprint: ContentBlockCatalogFingerprint, Profile: profile, Locale: locale, Base: document.Base, LocaleOverlay: overlay}, nil
+		}
+	}
+	return nil, contentValidationError("$.locale", "not_found", "locale overlay not found")
+}
+
+func validateMembers(values []string, required bool) ([]string, error) {
+	if required && len(values) == 0 {
+		return nil, contentValidationError("$.contributor_member_ids", "required", "at least one contributor Member is required")
+	}
+	result := append([]string(nil), values...)
+	for index, value := range result {
+		if err := requireUUID(value, fmt.Sprintf("$.contributor_member_ids[%d]", index)); err != nil {
+			return nil, err
+		}
+		result[index] = normalizeUUID(value)
+	}
+	sort.Strings(result)
+	for index := 1; index < len(result); index++ {
+		if result[index] == result[index-1] {
+			return nil, contentValidationError("$.contributor_member_ids", "duplicate", "contributors must be unique")
+		}
+	}
+	return result, nil
+}
+
+func flattenRichTextMutationBatchStorage(batch *RichTextBlockMutationBatch, mode ContentValidationMode, system bool) (ContentStorageMutationBatch, error) {
+	if batch == nil {
+		return ContentStorageMutationBatch{}, contentValidationError("$", "required", "batch is required")
+	}
+	if batch.GetBlockCatalogFingerprint() != ContentBlockCatalogFingerprint {
+		return ContentStorageMutationBatch{}, contentValidationError("$.block_catalog_fingerprint", "fingerprint_mismatch", "fingerprint mismatch")
+	}
+	if err := requireUUID(batch.GetExpectedRevision(), "$.expected_revision"); err != nil {
+		return ContentStorageMutationBatch{}, err
+	}
+	profile, err := RichTextProfileStorageName(batch.GetProfile())
+	if err != nil {
+		return ContentStorageMutationBatch{}, err
+	}
+	var members []string
+	if system {
+		if len(batch.GetContributorMemberIds()) != 0 {
+			return ContentStorageMutationBatch{}, contentValidationError("$.contributor_member_ids", "system_contributors", "system mutation must not attribute contributor Members")
+		}
+	} else {
+		members, err = validateMembers(batch.GetContributorMemberIds(), true)
+		if err != nil {
+			return ContentStorageMutationBatch{}, err
+		}
+	}
+	result := ContentStorageMutationBatch{ExpectedRevision: normalizeUUID(batch.GetExpectedRevision()), ContributorMemberIDs: members}
+	for _, mutation := range batch.GetBaseMutations() {
+		switch operation := mutation.GetOperation().(type) {
+		case *RichTextBlockMutation_Upsert:
+			node := operation.Upsert.GetNode()
+			if node == nil || node.GetBlock() == nil || node.GetPlacement() == nil {
+				return ContentStorageMutationBatch{}, contentValidationError("$.base_mutations", "required", "upsert node is required")
+			}
+			kind := storageKindForProtoCase(oneofJSONName(node.GetBlock(), "value"), false)
+			if kind == "" {
+				return result, contentValidationError("$.kind", "kind", "unknown rich-text Block kind")
+			}
+			shared, err := rowDataFromMessage(node.GetBlock(), "id", false)
+			if err != nil {
+				return result, err
+			}
+			normalized, err := NormalizeContentStorageShared(profile, kind, shared, mode)
+			if err != nil {
+				return result, err
+			}
+			result.BaseUpserts = append(result.BaseUpserts, ContentStorageRow{BlockID: normalizeUUID(node.GetBlock().GetId()), ParentBlockID: normalizeUUID(node.GetPlacement().GetParentBlockId()), ContainerSlot: "content", Position: int32(node.GetPlacement().GetIndex()), Kind: kind, SharedData: normalized.SharedData})
+		case *RichTextBlockMutation_Delete:
+			result.Deletes = append(result.Deletes, normalizeUUID(operation.Delete.GetBlockId()))
+		case *RichTextBlockMutation_Move:
+			result.Moves = append(result.Moves, ContentStorageMove{BlockID: normalizeUUID(operation.Move.GetBlockId()), ParentBlockID: normalizeUUID(operation.Move.GetPlacement().GetParentBlockId()), ContainerSlot: "content", Position: int32(operation.Move.GetPlacement().GetIndex())})
+		default:
+			return result, contentValidationError("$.base_mutations", "operation", "unknown mutation")
+		}
+	}
+	for _, group := range batch.GetLocaleMutationGroups() {
+		if strings.TrimSpace(group.GetLocale()) == "" {
+			return result, contentValidationError("$.locale_mutation_groups.locale", "required", "locale is required")
+		}
+		target := ContentStorageLocaleMutationGroup{Locale: group.GetLocale()}
+		for _, mutation := range group.GetMutations() {
+			switch operation := mutation.GetOperation().(type) {
+			case *RichTextBlockLocaleMutation_Upsert:
+				value := operation.Upsert.GetBlock()
+				if value == nil {
+					return result, contentValidationError("$.locale_mutation_groups", "required", "locale upsert is required")
+				}
+				localized, err := rowDataFromMessage(value, "blockId", false)
+				if err != nil {
+					return result, err
+				}
+				expectedKind := storageKindForProtoCase(oneofJSONName(value, "value"), false)
+				localized, err = NormalizeContentStorageLocale(profile, expectedKind, localized, mode)
+				if err != nil {
+					return result, err
+				}
+				target.Upserts = append(target.Upserts, ContentStorageLocaleUpsert{BlockID: normalizeUUID(value.GetBlockId()), ExpectedKind: expectedKind, LocalizedData: localized})
+			case *RichTextBlockLocaleMutation_Delete:
+				target.Deletes = append(target.Deletes, normalizeUUID(operation.Delete.GetBlockId()))
+			default:
+				return result, contentValidationError("$.locale_mutation_groups", "operation", "unknown locale mutation")
+			}
+		}
+		result.LocaleGroups = append(result.LocaleGroups, target)
+	}
+	if len(result.BaseUpserts)+len(result.Deletes)+len(result.Moves)+len(result.LocaleGroups) == 0 {
+		return result, contentValidationError("$.mutations", "required", "at least one mutation is required")
+	}
+	return result, nil
+}
+func FlattenRichTextMutationBatchStorage(batch *RichTextBlockMutationBatch, mode ContentValidationMode) (ContentStorageMutationBatch, error) {
+	return flattenRichTextMutationBatchStorage(batch, mode, false)
+}
+func FlattenRichTextSystemMutationBatchStorage(batch *RichTextBlockMutationBatch, mode ContentValidationMode) (ContentStorageMutationBatch, error) {
+	return flattenRichTextMutationBatchStorage(batch, mode, true)
+}
+
+// Page adapters flatten section rows and every rich-text descendant into the
+// same global UUID Block tree. Columns remain typed section payload metadata.
+func ValidatePageDocument(document *PageDocument, mode ContentValidationMode) error {
+	_, err := FlattenPageDocumentStorage(document, mode)
+	return err
+}
+func FlattenPageDocumentStorage(document *PageDocument, mode ContentValidationMode) ([]ContentStorageRow, error) {
+	if document == nil || document.GetBase() == nil {
+		return nil, contentValidationError("$", "required", "Page document and base graph are required")
+	}
+	if document.GetBlockCatalogFingerprint() != ContentBlockCatalogFingerprint {
+		return nil, contentValidationError("$.block_catalog_fingerprint", "fingerprint_mismatch", "fingerprint mismatch")
+	}
+	if strings.TrimSpace(document.GetSourceLocale()) == "" {
+		return nil, contentValidationError("$.source_locale", "required", "source locale is required")
+	}
+	sectionLocales := map[string]map[string]*PageSectionLocale{}
+	for _, overlay := range document.GetLocaleOverlays() {
+		values := map[string]*PageSectionLocale{}
+		for _, section := range overlay.GetSections() {
+			values[section.GetSectionId()] = section
+		}
+		sectionLocales[overlay.GetLocale()] = values
+	}
+	if _, ok := sectionLocales[document.GetSourceLocale()]; !ok {
+		return nil, contentValidationError("$.source_locale", "source_overlay", "source locale overlay is required")
+	}
+	var rows []ContentStorageRow
+	for _, node := range document.GetBase().GetNodes() {
+		section := node.GetSection()
+		placement := node.GetPlacement()
+		if section == nil || placement == nil {
+			return nil, contentValidationError("$.base.nodes", "required", "section and placement are required")
+		}
+		kind := storageKindForProtoCase(oneofJSONName(section, "value"), true)
+		shared, err := rowDataFromMessage(section, "id", true)
+		if err != nil {
+			return nil, err
+		}
+		slot := "sections"
+		parent := normalizeUUID(placement.GetParentSectionId())
+		if placement.GetColumnId() != "" {
+			slot = "column-" + normalizeUUID(placement.GetColumnId())
+		}
+		row := ContentStorageRow{BlockID: normalizeUUID(section.GetId()), ParentBlockID: parent, ContainerSlot: slot, Position: int32(placement.GetIndex()), Kind: kind, SharedData: shared}
+		for locale, values := range sectionLocales {
+			if value := values[row.BlockID]; value != nil {
+				localized, err := rowDataFromMessage(value, "sectionId", true)
+				if err != nil {
+					return nil, err
+				}
+				row.Locales = append(row.Locales, ContentStorageLocale{Locale: locale, LocalizedData: localized})
+			}
+		}
+		source := findStorageLocale(row.Locales, document.GetSourceLocale())
+		if source == nil {
+			return nil, contentValidationError("$.source_locale", "source_overlay", "each Page section requires source locale data")
+		}
+		normalized, err := NormalizeContentStorageShared("page", kind, row.SharedData, mode)
+		if err != nil {
+			return nil, err
+		}
+		row.SharedData = normalized.SharedData
+		for index := range row.Locales {
+			value, err := NormalizeContentStorageLocale("page", kind, row.Locales[index].LocalizedData, mode)
+			if err != nil {
+				return nil, err
+			}
+			row.Locales[index].LocalizedData = value
+		}
+		rows = append(rows, row)
+		if section.GetRichText() != nil {
+			richDocument := &RichTextDocument{BlockCatalogFingerprint: ContentBlockCatalogFingerprint, Profile: RichTextProfile_RICH_TEXT_PROFILE_PAGE, SourceLocale: document.GetSourceLocale(), Base: section.GetRichText().GetBlocks()}
+			for _, overlay := range document.GetLocaleOverlays() {
+				localized := sectionLocales[overlay.GetLocale()][row.BlockID]
+				blocks := &RichTextLocaleOverlay{Locale: overlay.GetLocale()}
+				if localized != nil && localized.GetRichText() != nil && localized.GetRichText().GetBlocks() != nil {
+					blocks = localized.GetRichText().GetBlocks()
+				}
+				richDocument.LocaleOverlays = append(richDocument.LocaleOverlays, blocks)
+			}
+			richRows, err := FlattenRichTextDocumentStorage(richDocument, mode)
+			if err != nil {
+				return nil, err
+			}
+			for index := range richRows {
+				if richRows[index].ParentBlockID == "" {
+					richRows[index].ParentBlockID = row.BlockID
+				}
+			}
+			rows = append(rows, richRows...)
+		}
+	}
+	if len(rows) > contentBlockRuntimeDescriptor.Limits.MaxDocumentBlocks {
+		return nil, contentValidationError("$.base.nodes", "limit", "too many Blocks")
+	}
+	return rows, nil
+}
+
+func MaterializePageDocumentStorage(sourceLocale string, rows []ContentStorageRow) (*PageDocument, error) {
+	document := &PageDocument{BlockCatalogFingerprint: ContentBlockCatalogFingerprint, SourceLocale: sourceLocale, Base: &PageSectionGraph{}}
+	sectionRows := map[string]ContentStorageRow{}
+	richRows := map[string]ContentStorageRow{}
+	rowsByID := make(map[string]ContentStorageRow, len(rows))
+	for _, row := range rows {
+		if _, exists := rowsByID[row.BlockID]; exists {
+			return nil, contentValidationError("$.block_id", "duplicate_id", "duplicate Block ID")
+		}
+		rowsByID[row.BlockID] = row
+	}
+	var classify func(string, map[string]bool) (bool, error)
+	classified := map[string]bool{}
+	isSection := map[string]bool{}
+	classify = func(id string, ancestry map[string]bool) (bool, error) {
+		if classified[id] {
+			return isSection[id], nil
+		}
+		if ancestry[id] {
+			return false, contentValidationError("$.parent_block_id", "cycle", "Page storage parent cycle")
+		}
+		row, exists := rowsByID[id]
+		if !exists {
+			return false, contentValidationError("$.parent_block_id", "orphan", "Page storage parent does not exist")
+		}
+		if row.ParentBlockID == "" {
+			if !isPageKind(row.Kind) {
+				return false, contentValidationError("$.kind", "kind", "root Page row must be a Page section kind")
+			}
+			classified[id], isSection[id] = true, true
+			return true, nil
+		}
+		nextAncestry := make(map[string]bool, len(ancestry)+1)
+		for ancestor := range ancestry {
+			nextAncestry[ancestor] = true
+		}
+		nextAncestry[id] = true
+		parentSection, err := classify(row.ParentBlockID, nextAncestry)
+		if err != nil {
+			return false, err
+		}
+		section := parentSection && !(rowsByID[row.ParentBlockID].Kind == "rich-text" && row.ContainerSlot == "content")
+		if section && !isPageKind(row.Kind) {
+			return false, contentValidationError("$.kind", "kind", "Page section row has a rich-text Block kind")
+		}
+		if !section && !isRichKind(row.Kind) {
+			return false, contentValidationError("$.kind", "kind", "Page rich-text row has a section kind")
+		}
+		classified[id], isSection[id] = true, section
+		return section, nil
+	}
+	for id, row := range rowsByID {
+		section, err := classify(id, nil)
+		if err != nil {
+			return nil, err
+		}
+		if section {
+			sectionRows[id] = row
+		} else {
+			richRows[id] = row
+		}
+	}
+	overlays := map[string]*PageLocaleOverlay{}
+	for _, row := range sectionRows {
+		section := &PageSection{}
+		if err := messageFromRowData(row.SharedData, "id", row.BlockID, section); err != nil {
+			return nil, err
+		}
+		placement := &PageSectionPlacement{Index: uint32(row.Position)}
+		if row.ParentBlockID != "" {
+			parent := row.ParentBlockID
+			placement.ParentSectionId = &parent
+			column := strings.TrimPrefix(row.ContainerSlot, "column-")
+			placement.ColumnId = &column
+		}
+		document.Base.Nodes = append(document.Base.Nodes, &PageSectionNode{Section: section, Placement: placement})
+		for _, locale := range row.Locales {
+			overlay := overlays[locale.Locale]
+			if overlay == nil {
+				overlay = &PageLocaleOverlay{Locale: locale.Locale}
+				overlays[locale.Locale] = overlay
+			}
+			value := &PageSectionLocale{}
+			if err := messageFromRowData(locale.LocalizedData, "sectionId", row.BlockID, value); err != nil {
+				return nil, err
+			}
+			overlay.Sections = append(overlay.Sections, value)
+		}
+	}
+	for sectionID, row := range sectionRows {
+		if row.Kind != "rich-text" {
+			continue
+		}
+		var descendants []ContentStorageRow
+		for _, candidate := range richRows {
+			parent := candidate.ParentBlockID
+			for parent != "" {
+				if parent == sectionID {
+					// Page storage roots are attached to their owning section in the
+					// global tree. Inside the nested RichText graph that owner is an
+					// external boundary, so expose those rows as graph roots again.
+					descendant := candidate
+					if descendant.ParentBlockID == sectionID {
+						descendant.ParentBlockID = ""
+					}
+					descendants = append(descendants, descendant)
+					break
+				}
+				next, ok := richRows[parent]
+				if !ok {
+					break
+				}
+				parent = next.ParentBlockID
+			}
+		}
+		richDocument, err := MaterializeRichTextDocumentStorage(RichTextProfile_RICH_TEXT_PROFILE_PAGE, sourceLocale, descendants)
+		if err != nil {
+			return nil, err
+		}
+		for _, node := range document.Base.Nodes {
+			if node.GetSection().GetId() == sectionID && node.GetSection().GetRichText() != nil {
+				node.GetSection().GetRichText().Blocks = richDocument.Base
+			}
+		}
+		for _, richOverlay := range richDocument.LocaleOverlays {
+			overlay := overlays[richOverlay.Locale]
+			if overlay == nil {
+				overlay = &PageLocaleOverlay{Locale: richOverlay.Locale}
+				overlays[richOverlay.Locale] = overlay
+			}
+			var localized *PageSectionLocale
+			for _, candidate := range overlay.Sections {
+				if candidate.GetSectionId() == sectionID {
+					localized = candidate
+					break
+				}
+			}
+			if localized == nil {
+				localized = &PageSectionLocale{SectionId: sectionID, Value: &PageSectionLocale_RichText{RichText: &RichTextSectionLocale{}}}
+				overlay.Sections = append(overlay.Sections, localized)
+			}
+			if localized.GetRichText() == nil {
+				return nil, contentValidationError("$.locale", "kind_mismatch", "rich section locale kind mismatch")
+			}
+			localized.GetRichText().Blocks = richOverlay
+		}
+	}
+	if overlays[sourceLocale] == nil {
+		overlays[sourceLocale] = &PageLocaleOverlay{Locale: sourceLocale}
+	}
+	for _, overlay := range overlays {
+		document.LocaleOverlays = append(document.LocaleOverlays, overlay)
+	}
+	sort.Slice(document.LocaleOverlays, func(i, j int) bool { return document.LocaleOverlays[i].Locale < document.LocaleOverlays[j].Locale })
+	return document, nil
+}
+func MaterializeLocalizedPageDocumentStorage(locale string, rows []ContentStorageRow) (*LocalizedPageDocument, error) {
+	document, err := MaterializePageDocumentStorage(locale, rows)
+	if err != nil {
+		return nil, err
+	}
+	for _, overlay := range document.LocaleOverlays {
+		if overlay.GetLocale() == locale {
+			return &LocalizedPageDocument{BlockCatalogFingerprint: ContentBlockCatalogFingerprint, Locale: locale, Base: document.Base, LocaleOverlay: overlay}, nil
+		}
+	}
+	return nil, contentValidationError("$.locale", "not_found", "locale overlay not found")
+}
+
+func flattenPageMutationBatchStorage(batch *PageSectionMutationBatch, mode ContentValidationMode, system bool) (ContentStorageMutationBatch, error) {
+	if batch == nil {
+		return ContentStorageMutationBatch{}, contentValidationError("$", "required", "batch is required")
+	}
+	if batch.GetBlockCatalogFingerprint() != ContentBlockCatalogFingerprint {
+		return ContentStorageMutationBatch{}, contentValidationError("$.block_catalog_fingerprint", "fingerprint_mismatch", "fingerprint mismatch")
+	}
+	if err := requireUUID(batch.GetExpectedRevision(), "$.expected_revision"); err != nil {
+		return ContentStorageMutationBatch{}, err
+	}
+	var members []string
+	if system {
+		if len(batch.GetContributorMemberIds()) != 0 {
+			return ContentStorageMutationBatch{}, contentValidationError("$.contributor_member_ids", "system_contributors", "system mutation must not attribute contributor Members")
+		}
+	} else {
+		var err error
+		members, err = validateMembers(batch.GetContributorMemberIds(), true)
+		if err != nil {
+			return ContentStorageMutationBatch{}, err
+		}
+	}
+	result := ContentStorageMutationBatch{ExpectedRevision: normalizeUUID(batch.GetExpectedRevision()), ContributorMemberIDs: members}
+	for _, mutation := range batch.GetBaseMutations() {
+		switch operation := mutation.GetOperation().(type) {
+		case *PageSectionMutation_Upsert:
+			node := operation.Upsert.GetNode()
+			if node == nil || node.GetSection() == nil || node.GetPlacement() == nil {
+				return result, contentValidationError("$.base_mutations", "required", "section upsert is required")
+			}
+			if node.GetSection().GetRichText() != nil && len(node.GetSection().GetRichText().GetBlocks().GetNodes()) > 0 {
+				return result, contentValidationError("$.base_mutations", "descendant_ambiguity", "section upsert cannot contain rich descendants")
+			}
+			kind := storageKindForProtoCase(oneofJSONName(node.GetSection(), "value"), true)
+			shared, err := rowDataFromMessage(node.GetSection(), "id", true)
+			if err != nil {
+				return result, err
+			}
+			normalized, err := NormalizeContentStorageShared("page", kind, shared, mode)
+			if err != nil {
+				return result, err
+			}
+			slot := "sections"
+			if node.GetPlacement().GetColumnId() != "" {
+				slot = "column-" + normalizeUUID(node.GetPlacement().GetColumnId())
+			}
+			result.BaseUpserts = append(result.BaseUpserts, ContentStorageRow{BlockID: normalizeUUID(node.GetSection().GetId()), ParentBlockID: normalizeUUID(node.GetPlacement().GetParentSectionId()), ContainerSlot: slot, Position: int32(node.GetPlacement().GetIndex()), Kind: kind, SharedData: normalized.SharedData})
+		case *PageSectionMutation_Delete:
+			result.Deletes = append(result.Deletes, normalizeUUID(operation.Delete.GetSectionId()))
+		case *PageSectionMutation_Move:
+			slot := "sections"
+			if operation.Move.GetPlacement().GetColumnId() != "" {
+				slot = "column-" + normalizeUUID(operation.Move.GetPlacement().GetColumnId())
+			}
+			result.Moves = append(result.Moves, ContentStorageMove{BlockID: normalizeUUID(operation.Move.GetSectionId()), ParentBlockID: normalizeUUID(operation.Move.GetPlacement().GetParentSectionId()), ContainerSlot: slot, Position: int32(operation.Move.GetPlacement().GetIndex())})
+		case *PageSectionMutation_MutateRichTextBlock:
+			sectionID := normalizeUUID(operation.MutateRichTextBlock.GetSectionId())
+			rich := operation.MutateRichTextBlock.GetMutation()
+			switch nested := rich.GetOperation().(type) {
+			case *RichTextBlockMutation_Upsert:
+				node := nested.Upsert.GetNode()
+				shared, err := rowDataFromMessage(node.GetBlock(), "id", false)
+				if err != nil {
+					return result, err
+				}
+				parent := normalizeUUID(node.GetPlacement().GetParentBlockId())
+				if parent == "" {
+					parent = sectionID
+				}
+				kind := storageKindForProtoCase(oneofJSONName(node.GetBlock(), "value"), false)
+				if kind == "" {
+					return result, contentValidationError("$.kind", "kind", "unknown rich-text Block kind")
+				}
+				normalized, err := NormalizeContentStorageShared("page", kind, shared, mode)
+				if err != nil {
+					return result, err
+				}
+				result.BaseUpserts = append(result.BaseUpserts, ContentStorageRow{BlockID: normalizeUUID(node.GetBlock().GetId()), ParentBlockID: parent, ContainerSlot: "content", Position: int32(node.GetPlacement().GetIndex()), Kind: kind, SharedData: normalized.SharedData})
+			case *RichTextBlockMutation_Delete:
+				result.Deletes = append(result.Deletes, normalizeUUID(nested.Delete.GetBlockId()))
+			case *RichTextBlockMutation_Move:
+				parent := normalizeUUID(nested.Move.GetPlacement().GetParentBlockId())
+				if parent == "" {
+					parent = sectionID
+				}
+				result.Moves = append(result.Moves, ContentStorageMove{BlockID: normalizeUUID(nested.Move.GetBlockId()), ParentBlockID: parent, ContainerSlot: "content", Position: int32(nested.Move.GetPlacement().GetIndex())})
+			}
+		default:
+			return result, contentValidationError("$.base_mutations", "operation", "unknown Page mutation")
+		}
+	}
+	for _, group := range batch.GetLocaleMutationGroups() {
+		target := ContentStorageLocaleMutationGroup{Locale: group.GetLocale()}
+		for _, mutation := range group.GetMutations() {
+			switch operation := mutation.GetOperation().(type) {
+			case *PageSectionLocaleMutation_Upsert:
+				value := operation.Upsert.GetSection()
+				localized, err := rowDataFromMessage(value, "sectionId", true)
+				if err != nil {
+					return result, err
+				}
+				expectedKind := storageKindForProtoCase(oneofJSONName(value, "value"), true)
+				localized, err = NormalizeContentStorageLocale("page", expectedKind, localized, mode)
+				if err != nil {
+					return result, err
+				}
+				target.Upserts = append(target.Upserts, ContentStorageLocaleUpsert{BlockID: normalizeUUID(value.GetSectionId()), ExpectedKind: expectedKind, LocalizedData: localized})
+			case *PageSectionLocaleMutation_Delete:
+				target.Deletes = append(target.Deletes, normalizeUUID(operation.Delete.GetSectionId()))
+			case *PageSectionLocaleMutation_MutateRichTextBlock:
+				rich := operation.MutateRichTextBlock.GetMutation()
+				switch nested := rich.GetOperation().(type) {
+				case *RichTextBlockLocaleMutation_Upsert:
+					value := nested.Upsert.GetBlock()
+					localized, err := rowDataFromMessage(value, "blockId", false)
+					if err != nil {
+						return result, err
+					}
+					expectedKind := storageKindForProtoCase(oneofJSONName(value, "value"), false)
+					localized, err = NormalizeContentStorageLocale("page", expectedKind, localized, mode)
+					if err != nil {
+						return result, err
+					}
+					target.Upserts = append(target.Upserts, ContentStorageLocaleUpsert{BlockID: normalizeUUID(value.GetBlockId()), ExpectedKind: expectedKind, LocalizedData: localized})
+				case *RichTextBlockLocaleMutation_Delete:
+					target.Deletes = append(target.Deletes, normalizeUUID(nested.Delete.GetBlockId()))
+				}
+			}
+		}
+		result.LocaleGroups = append(result.LocaleGroups, target)
+	}
+	return result, nil
+}
+
+func FlattenPageMutationBatchStorage(batch *PageSectionMutationBatch, mode ContentValidationMode) (ContentStorageMutationBatch, error) {
+	return flattenPageMutationBatchStorage(batch, mode, false)
+}
+
+func FlattenPageSystemMutationBatchStorage(batch *PageSectionMutationBatch, mode ContentValidationMode) (ContentStorageMutationBatch, error) {
+	return flattenPageMutationBatchStorage(batch, mode, true)
+}

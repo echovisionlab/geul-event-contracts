@@ -1,0 +1,45 @@
+# Program Event owns Event lifecycle plus the exact archived actions.
+domain: program_event
+description: Program Event lifecycle and archived editing policy
+actions:
+  program_event:
+    view: view
+    edit: edit
+    view_archived: view_archived
+    edit_archived: edit_archived
+    delete: delete
+    publish: publish
+    manage: manage
+platform_actions:
+  program_event:
+    create: is_admin
+    list: is_admin
+    create_type: is_admin
+    list_types: is_admin
+    # Event Type is a DB-owned global catalog, so its mutations check the
+    # singleton platform policy rather than inventing per-Type relationships.
+    update_type: is_admin
+    delete_type: is_admin
+definitions:
+  program_event:
+    relations:
+      policy: [platform]
+    permissions:
+      - platform_admin
+      - view
+      - edit
+      - view_archived
+      - edit_archived
+      - delete
+      - publish
+      - manage
+permission_expressions:
+  program_event:
+    platform_admin: policy->is_admin
+    view: platform_admin
+    edit: platform_admin
+    view_archived: policy->is_author
+    edit_archived: platform_admin
+    delete: platform_admin
+    publish: platform_admin
+    manage: platform_admin

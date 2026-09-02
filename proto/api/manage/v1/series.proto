@@ -1,0 +1,267 @@
+syntax = "proto3";
+
+package api.manage.v1;
+
+import "api/common/v1/common.proto";
+import "api/common/v1/media.proto";
+import "api/manage/v1/common.proto";
+// Series entity
+// Maps to: postgres/init/schema.template - series table
+import "api/policy/v1/access.proto";
+import "google/protobuf/timestamp.proto";
+
+// Series status enum
+enum SeriesStatus {
+  SERIES_STATUS_UNSPECIFIED = 0;
+  SERIES_STATUS_DRAFT = 1;
+  SERIES_STATUS_PUBLISHED = 2;
+}
+
+message Series {
+  string id = 1;
+  string title = 2;
+  string slug = 3;
+  optional string description = 4;
+  string status = 5; // "draft" or "published"
+  google.protobuf.Timestamp created_at = 6;
+  optional google.protobuf.Timestamp updated_at = 7;
+  optional api.common.v1.AssetRef og_asset = 8;
+  optional api.common.v1.AssetRef featured_image_asset = 9;
+  string source_locale = 10;
+}
+
+// Series with post count for admin list
+message SeriesWithStats {
+  Series series = 1;
+  int32 post_count = 2;
+  int32 manager_count = 3;
+}
+
+// Member who currently manages the series.
+message SeriesManager {
+  string member_id = 1;
+  string nickname = 2;
+  google.protobuf.Timestamp created_at = 3;
+  optional api.common.v1.AssetRef avatar_asset = 4;
+}
+
+// Post in series (minimal info for ordering)
+message SeriesPost {
+  string id = 1;
+  string title = 2;
+  string slug = 3;
+  string status = 4;
+  int32 series_order = 5;
+  optional google.protobuf.Timestamp published_at = 6;
+  string source_locale = 7;
+}
+
+// Simple series for dropdowns
+message SeriesSimple {
+  string id = 1;
+  string title = 2;
+  string slug = 3;
+  string source_locale = 4;
+}
+
+// Request/Response messages
+
+message CheckSeriesSlugAvailableRequest {
+  string slug = 1;
+  optional string exclude_id = 2;
+}
+
+message CheckSeriesSlugAvailableResponse {
+  bool available = 1;
+}
+
+// Combined request for series detail page (series + managers in one call)
+message GetSeriesWithManagersRequest {
+  string id = 1;
+}
+
+message GetSeriesWithManagersResponse {
+  Series series = 1;
+  repeated SeriesManager managers = 2;
+}
+
+message ListSeriesAdminRequest {
+  api.common.v1.PaginationRequest pagination = 1;
+  repeated api.common.v1.FilterSpec filters = 2;
+  repeated api.common.v1.SortSpec sorts = 3;
+}
+
+message ListSeriesAdminResponse {
+  repeated SeriesWithStats series = 1;
+  api.common.v1.PaginationResponse pagination = 2;
+}
+
+message ListSeriesSimpleRequest {
+  // No pagination - returns all for dropdown
+}
+
+message ListSeriesSimpleResponse {
+  repeated SeriesSimple series = 1;
+}
+
+message ListMySeriesRequest {
+  // Returns series where the current Member is a manager.
+  api.common.v1.PaginationRequest pagination = 1;
+}
+
+message ListMySeriesResponse {
+  repeated SeriesWithStats series = 1;
+  api.common.v1.PaginationResponse pagination = 2;
+}
+
+message CreateSeriesRequest {
+  string title = 1;
+  optional string slug = 2;
+  optional string description = 3;
+  // Required initial source locale for the new Post Series.
+  string source_locale = 4;
+}
+
+message UpdateSeriesRequest {
+  string id = 1;
+  optional string title = 2;
+  optional string slug = 3;
+  optional string description = 4;
+  optional string status = 5;
+}
+
+message DeleteSeriesRequest {
+  string id = 1;
+}
+
+// Featured image management
+
+message SetSeriesFeaturedImageRequest {
+  string series_id = 1;
+  string file_id = 2;
+}
+
+message SetSeriesFeaturedImageResponse {
+  api.common.v1.AssetRef image_asset = 1;
+  optional string og_generation_run_id = 2;
+}
+
+message DeleteSeriesFeaturedImageRequest {
+  string series_id = 1;
+}
+
+// Manager management
+
+message ListSeriesManagersRequest {
+  string series_id = 1;
+}
+
+message ListSeriesManagersResponse {
+  repeated SeriesManager managers = 1;
+}
+
+message AddSeriesManagerRequest {
+  string series_id = 1;
+  string member_id = 2;
+}
+
+message RemoveSeriesManagerRequest {
+  string series_id = 1;
+  string member_id = 2;
+}
+
+// Post management
+
+message ListSeriesPostsRequest {
+  string series_id = 1;
+}
+
+message ListSeriesPostsResponse {
+  repeated SeriesPost posts = 1;
+}
+
+message AssignPostToSeriesRequest {
+  string series_id = 1;
+  string post_id = 2;
+}
+
+message UnassignPostFromSeriesRequest {
+  string series_id = 1;
+  string post_id = 2;
+}
+
+message ReorderSeriesPostsRequest {
+  string series_id = 1;
+  repeated string post_ids = 2; // Ordered list of post IDs
+}
+
+// Series Service
+service SeriesService {
+  // Public
+  rpc ListSeriesPosts(ListSeriesPostsRequest) returns (ListSeriesPostsResponse) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+
+  // Authenticated; the service resolves exact manager/admin authority.
+  rpc ListMySeries(ListMySeriesRequest) returns (ListMySeriesResponse) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+
+  // Authenticated read; the service returns not-found without exact authority.
+  rpc GetSeriesWithManagers(GetSeriesWithManagersRequest) returns (GetSeriesWithManagersResponse) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+
+  // Admin-only collection and lifecycle operations.
+  rpc ListSeriesAdmin(ListSeriesAdminRequest) returns (ListSeriesAdminResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc ListSeriesSimple(ListSeriesSimpleRequest) returns (ListSeriesSimpleResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc CreateSeries(CreateSeriesRequest) returns (Series) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc UpdateSeries(UpdateSeriesRequest) returns (Series) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+  rpc DeleteSeries(DeleteSeriesRequest) returns (DeleteResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc SetSeriesFeaturedImage(SetSeriesFeaturedImageRequest) returns (SetSeriesFeaturedImageResponse) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+  rpc DeleteSeriesFeaturedImage(DeleteSeriesFeaturedImageRequest) returns (OgAssetDeleteResponse) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+
+  // Manager reads require exact manager/admin authority in the service.
+  rpc ListSeriesManagers(ListSeriesManagersRequest) returns (ListSeriesManagersResponse) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+
+  // Manager assignment is Admin-only.
+  rpc AddSeriesManager(AddSeriesManagerRequest) returns (DeleteResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc RemoveSeriesManager(RemoveSeriesManagerRequest) returns (DeleteResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+
+  // Post management; the service verifies exact Series and Post authority.
+  rpc AssignPostToSeries(AssignPostToSeriesRequest) returns (DeleteResponse) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+  rpc UnassignPostFromSeries(UnassignPostFromSeriesRequest) returns (DeleteResponse) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+  rpc ReorderSeriesPosts(ReorderSeriesPostsRequest) returns (DeleteResponse) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+
+  // Utility; the service requires exact Series edit authority when exclude_id is set,
+  // otherwise Site Admin authority.
+  rpc CheckSeriesSlugAvailable(CheckSeriesSlugAvailableRequest) returns (CheckSeriesSlugAvailableResponse) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+}

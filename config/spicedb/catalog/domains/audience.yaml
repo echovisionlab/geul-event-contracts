@@ -1,0 +1,26 @@
+# Audience owns Audience Segment authorization.
+domain: audience
+description: Audience Segment resource policy
+actions:
+  audience_segment:
+    view: view
+    edit: edit
+    delete: delete
+    manage: manage
+platform_actions:
+  audience_segment:
+    create: is_admin
+    list: is_admin
+    list_authenticated_access: is_author
+definitions:
+  audience_segment:
+    relations:
+      policy: [platform]
+    permissions: [platform_admin, view, edit, delete, manage]
+permission_expressions:
+  audience_segment:
+    platform_admin: policy->is_admin
+    view: platform_admin
+    edit: platform_admin
+    delete: platform_admin
+    manage: platform_admin

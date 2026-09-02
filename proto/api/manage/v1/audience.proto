@@ -1,0 +1,141 @@
+syntax = "proto3";
+
+package api.manage.v1;
+
+import "api/common/v1/common.proto";
+// Segment config for different segment types
+import "api/policy/v1/access.proto";
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/echovisionlab/geul-event-contracts/gen/api/v1;apiv1";
+
+// Segment type
+enum SegmentType {
+  SEGMENT_TYPE_UNSPECIFIED = 0;
+  SEGMENT_TYPE_ALL_MEMBERS = 1;
+  SEGMENT_TYPE_MEMBER_TAGS = 2;
+  SEGMENT_TYPE_MEMBERS_BY_FILTER = 3;
+}
+
+message SegmentConfig {
+  repeated string member_tag_ids = 1; // For MEMBER_TAGS
+  repeated api.policy.v1.AuthorizationRole account_roles = 2; // For MEMBERS_BY_FILTER
+  optional google.protobuf.Timestamp created_after = 3; // For MEMBERS_BY_FILTER
+  optional google.protobuf.Timestamp created_before = 4; // For MEMBERS_BY_FILTER
+  repeated string exclude_member_ids = 5; // For MEMBERS_BY_FILTER
+}
+
+// Audience segment for targeting campaigns
+message Segment {
+  string id = 1;
+  string name = 2;
+  optional string description = 3;
+  SegmentType segment_type = 4;
+  SegmentConfig config = 5;
+  google.protobuf.Timestamp created_at = 6;
+  optional google.protobuf.Timestamp updated_at = 7;
+  optional int32 estimated_count = 8; // Populated on read
+  int32 campaign_count = 9; // Number of campaigns that currently reference this segment
+  int32 delivery_run_count = 10; // Number of durable delivery runs that reference this segment
+  // Number of exact File Block and Track download-policy relations that reference this segment
+  int32 download_policy_reference_count = 11;
+  google.protobuf.Timestamp archived_at = 12;
+}
+
+// Minimal reusable audience metadata for authenticated file access.
+// Membership configuration remains admin-only.
+message AudienceSegmentSummary {
+  string id = 1;
+  string name = 2;
+  optional string description = 3;
+  SegmentType segment_type = 4;
+}
+
+// Request/Response messages
+
+message GetSegmentRequest {
+  string id = 1;
+}
+
+message ListSegmentsAdminRequest {
+  api.common.v1.PaginationRequest pagination = 1;
+  repeated api.common.v1.FilterSpec filters = 2;
+  repeated api.common.v1.SortSpec sorts = 3;
+  bool include_archived = 4;
+}
+
+message ListSegmentsAdminResponse {
+  repeated Segment segments = 1;
+  api.common.v1.PaginationResponse pagination = 2;
+}
+
+message ListSegmentsForAuthenticatedAccessRequest {
+  api.common.v1.PaginationRequest pagination = 1;
+  repeated api.common.v1.FilterSpec filters = 2;
+  repeated api.common.v1.SortSpec sorts = 3;
+}
+
+message ListSegmentsForAuthenticatedAccessResponse {
+  repeated AudienceSegmentSummary segments = 1;
+  api.common.v1.PaginationResponse pagination = 2;
+}
+
+message CreateSegmentRequest {
+  string name = 1;
+  optional string description = 2;
+  SegmentType segment_type = 3;
+  SegmentConfig config = 4;
+}
+
+message UpdateSegmentRequest {
+  string id = 1;
+  optional string name = 2;
+  optional string description = 3;
+  optional SegmentType segment_type = 4;
+  optional SegmentConfig config = 5;
+}
+
+message ArchiveSegmentRequest {
+  string id = 1;
+}
+
+message RestoreSegmentRequest {
+  string id = 1;
+}
+
+message EstimateSegmentCountRequest {
+  SegmentType segment_type = 1;
+  SegmentConfig config = 2;
+}
+
+message EstimateSegmentCountResponse {
+  int32 count = 1;
+}
+
+// AudienceService provides audience segment management (Admin)
+service AudienceService {
+  rpc GetSegment(GetSegmentRequest) returns (Segment) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc ListSegmentsAdmin(ListSegmentsAdminRequest) returns (ListSegmentsAdminResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc ListSegmentsForAuthenticatedAccess(ListSegmentsForAuthenticatedAccessRequest) returns (ListSegmentsForAuthenticatedAccessResponse) {
+    option (api.policy.v1.access) = {role: AUTHOR};
+  }
+  rpc CreateSegment(CreateSegmentRequest) returns (Segment) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc UpdateSegment(UpdateSegmentRequest) returns (Segment) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc ArchiveSegment(ArchiveSegmentRequest) returns (Segment) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc RestoreSegment(RestoreSegmentRequest) returns (Segment) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc EstimateSegmentCount(EstimateSegmentCountRequest) returns (EstimateSegmentCountResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+}

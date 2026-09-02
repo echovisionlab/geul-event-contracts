@@ -1,0 +1,213 @@
+syntax = "proto3";
+
+package api.open.v1;
+
+import "api/common/v1/common.proto";
+import "api/common/v1/media.proto";
+import "api/content/v1/block_content.proto";
+import "api/open/v1/map_place.proto";
+import "api/open/v1/translation.proto";
+import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/echovisionlab/geul-event-contracts/gen/api/open/v1;openv1";
+
+// WorkService provides public work access
+service WorkService {
+  // Get retrieves a work by slug or ID
+  // - A UUID selects by ID; any other value selects by slug
+  // - An exact share_token plus its optional password allows access to a draft
+  // - Includes credits with artist/user details
+  rpc Get(GetWorkRequest) returns (GetWorkResponse);
+
+  // List returns public works for list/table blocks.
+  // - Defaults to published and archived works
+  // - An explicit status filter may narrow the public states
+  // - Filters by type, featured, status, period fields
+  rpc List(ListWorksRequest) returns (ListWorksResponse);
+
+  // ListMapFeatures returns server-clustered map data for public works.
+  // - Defaults to published and archived works
+  // - An explicit status filter may narrow the public states
+  rpc ListMapFeatures(ListWorkMapFeaturesRequest) returns (ListWorkMapFeaturesResponse);
+}
+
+// === Get ===
+
+message GetWorkRequest {
+  string slug = 1; // slug or ID (server handles both)
+  optional string share_token = 2;
+  optional string share_password = 3;
+}
+
+message GetWorkResponse {
+  optional Work work = 1;
+  // Work owns content authorization; File contributes only current usage and
+  // delivery/download policy after that authorization succeeds.
+  repeated api.content.v1.ContentBlockMediaItem block_media = 2;
+}
+
+// Work for Get includes the authoritative typed Block document.
+// share_token can access drafts, so published_at is optional
+message Work {
+  string id = 1;
+  string title = 2;
+  optional string slug = 3;
+  WorkType type = 4;
+  optional string summary = 5;
+  google.protobuf.Struct metadata = 6;
+  bool featured = 7;
+  WorkStatus status = 8;
+  google.protobuf.Timestamp created_at = 9;
+  google.protobuf.Timestamp updated_at = 10;
+  optional google.protobuf.Timestamp published_at = 11;
+
+  // Relations
+  repeated WorkCredit credits = 12;
+  repeated WorkClient clients = 13;
+
+  api.content.v1.LocalizedRichTextDocument document = 14;
+  optional api.common.v1.AssetRef og_asset = 15;
+  int32 year = 16;
+  int32 month = 17;
+  optional string map_place_id = 18;
+  optional int32 until_year = 19;
+  optional int32 until_month = 20;
+  bool is_present = 21;
+  optional MapPlaceBasic location_place = 22;
+  optional LocalizationInfo localization_info = 23;
+  optional api.common.v1.AssetRef featured_image_asset = 24;
+  repeated WorkCreditGroup credit_groups = 25;
+  string revision = 26;
+}
+
+// === List ===
+
+message ListWorksRequest {
+  api.common.v1.PaginationRequest pagination = 1;
+  repeated api.common.v1.FilterSpec filters = 2; // type, featured, status, year, month, until_year, until_month, is_present, map_place_id, published_at
+  repeated api.common.v1.SortSpec sorts = 3; // title, published_at, updated_at
+}
+
+message ListWorksResponse {
+  repeated WorkSummary works = 1;
+  api.common.v1.PaginationResponse pagination = 2;
+}
+
+message WorkMapBounds {
+  double west = 1;
+  double south = 2;
+  double east = 3;
+  double north = 4;
+}
+
+message WorkMapViewport {
+  WorkMapBounds bounds = 1;
+  double zoom = 2;
+  int32 width_px = 3;
+  int32 height_px = 4;
+  int32 cluster_radius_px = 5;
+  int32 min_cluster_points = 6;
+}
+
+message ListWorkMapFeaturesRequest {
+  WorkMapViewport viewport = 1;
+  repeated api.common.v1.FilterSpec filters = 2; // type, featured, status, year, month, until_year, until_month, is_present, map_place_id
+  repeated api.common.v1.SortSpec sorts = 3; // title, published_at, updated_at
+}
+
+message WorkMapCluster {
+  string id = 1;
+  double lat = 2;
+  double lng = 3;
+  int32 place_count = 4;
+  int32 work_count = 5;
+  WorkMapBounds bounds = 6;
+  optional double min_breakout_zoom = 7;
+}
+
+message WorkMapItem {
+  string place_id = 1;
+  string name = 2;
+  string address = 3;
+  double lat = 4;
+  double lng = 5;
+  int32 work_count = 6;
+  string primary_work_id = 7;
+  optional string primary_work_slug = 8;
+  string primary_work_title = 9;
+}
+
+message ListWorkMapFeaturesResponse {
+  repeated WorkMapCluster clusters = 1;
+  repeated WorkMapItem items = 2;
+}
+
+// WorkSummary for List - metadata only, no content
+message WorkSummary {
+  string id = 1;
+  string title = 2;
+  optional string slug = 3;
+  WorkType type = 4;
+  optional string summary = 5;
+  bool featured = 6;
+  optional google.protobuf.Timestamp published_at = 7;
+  WorkStatus status = 8;
+  int32 year = 9;
+  int32 month = 10;
+  optional string map_place_id = 11;
+  optional int32 until_year = 12;
+  optional int32 until_month = 13;
+  bool is_present = 14;
+  optional api.common.v1.AssetRef featured_image_asset = 15;
+}
+
+// === Enums and Embedded Messages ===
+
+enum WorkType {
+  WORK_TYPE_UNSPECIFIED = 0;
+  WORK_TYPE_MUSIC_PROJECT = 1;
+  WORK_TYPE_PORTFOLIO = 2;
+  WORK_TYPE_ARTICLE = 3;
+  WORK_TYPE_CONTRIBUTION = 4;
+}
+
+enum WorkStatus {
+  WORK_STATUS_UNSPECIFIED = 0;
+  WORK_STATUS_DRAFT = 1;
+  WORK_STATUS_PUBLISHED = 2;
+  // Publicly visible legacy state. Archived Works remain readable but are
+  // read-only on management surfaces until republished.
+  WORK_STATUS_ARCHIVED = 3;
+}
+
+// Credit with artist/Member details (replaces GetWorkWithCredits)
+message WorkCreditGroup {
+  string id = 1;
+  string name = 2;
+}
+
+message WorkCredit {
+  string id = 1;
+  optional string group_id = 2;
+  optional string name = 3;
+  optional string credit_role = 4;
+  optional CreditArtist artist = 5;
+  optional api.common.v1.MemberSummary member = 6;
+}
+
+message CreditArtist {
+  string id = 1;
+  string name = 2;
+  optional string slug = 3;
+  optional api.common.v1.AssetRef image_asset = 4;
+}
+
+// Client associated with a work
+message WorkClient {
+  string id = 1;
+  string name = 2;
+  optional string website = 3;
+  optional api.common.v1.AssetRef logo_light_asset = 4;
+  optional api.common.v1.AssetRef logo_dark_asset = 5;
+}

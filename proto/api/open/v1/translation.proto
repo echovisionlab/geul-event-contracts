@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package api.open.v1;
+
+option go_package = "github.com/echovisionlab/geul-event-contracts/gen/api/open/v1;openv1";
+
+enum LocalizationFallbackReason {
+  LOCALIZATION_FALLBACK_REASON_UNSPECIFIED = 0;
+  LOCALIZATION_FALLBACK_REASON_NONE = 1;
+  LOCALIZATION_FALLBACK_REASON_SOURCE = 2;
+  LOCALIZATION_FALLBACK_REASON_ORIGINAL_VIEW = 3;
+}
+
+message LocalizationInfo {
+  string requested_locale = 1;
+  string displayed_locale = 2;
+  string source_locale = 3;
+  bool is_fallback = 4;
+  bool is_original = 5;
+  bool machine_generated = 6;
+  LocalizationFallbackReason fallback_reason = 7;
+  repeated string available_locales = 8;
+}

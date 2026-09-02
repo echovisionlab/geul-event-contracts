@@ -1,0 +1,319 @@
+syntax = "proto3";
+
+package api.manage.v1;
+
+import "api/manage/v1/common.proto";
+import "api/policy/v1/access.proto";
+import "google/protobuf/timestamp.proto";
+
+enum AccountStatus {
+  ACCOUNT_STATUS_UNSPECIFIED = 0;
+  ACCOUNT_STATUS_ACTIVE = 1;
+  ACCOUNT_STATUS_BANNED = 2;
+  ACCOUNT_STATUS_PENDING_DELETION = 3;
+  ACCOUNT_STATUS_DELETED = 4;
+}
+
+enum AccountEmailSourceType {
+  ACCOUNT_EMAIL_SOURCE_TYPE_UNSPECIFIED = 0;
+  ACCOUNT_EMAIL_SOURCE_TYPE_IDENTITY_CURRENT = 1;
+  ACCOUNT_EMAIL_SOURCE_TYPE_EMAIL_CODE = 2;
+  ACCOUNT_EMAIL_SOURCE_TYPE_OIDC_PROVIDER = 3;
+}
+
+message CanonicalEmailSummary {
+  string email = 1;
+  bool verified = 2;
+}
+
+// Current opt-in state for the active identity. Delivery address
+// selection is a separate account concern and is never copied here.
+message NewsletterSubscriptionState {
+  bool subscribed = 1;
+  optional google.protobuf.Timestamp subscribed_at = 2;
+}
+
+// Bounded account projection. It may be embedded in viewer/admin reads, but
+// only AccountService mutates these fields.
+message AccountSummary {
+  string member_id = 1;
+  optional CanonicalEmailSummary canonical_email = 2;
+  api.policy.v1.AuthorizationRole role = 3;
+  AccountStatus status = 4;
+  bool banned = 5;
+  optional AccountBanDetails ban_details = 6;
+}
+
+message AccountProvider {
+  string provider = 1;
+  string identifier = 2;
+}
+
+message AccountEmailSource {
+  AccountEmailSourceType source_type = 1;
+  optional string provider = 2;
+  optional string provider_subject = 3;
+}
+
+message AccountEmailCandidate {
+  string email = 1;
+  string normalized_email = 2;
+  // True only for the identity authority's canonical account email.
+  bool current = 3;
+  bool identity_verified = 4;
+  repeated AccountEmailSource sources = 5;
+  bool effective_trusted = 6;
+  bool usable_for_delivery = 7;
+}
+
+message AccountSession {
+  string id = 1;
+  bool current = 2;
+  bool active = 3;
+  optional google.protobuf.Timestamp authenticated_at = 4;
+  optional google.protobuf.Timestamp expires_at = 5;
+}
+
+message AccountSecurity {
+  repeated AccountProvider providers = 1;
+  repeated AccountEmailCandidate email_candidates = 2;
+  repeated AccountSession sessions = 3;
+  int32 passkey_count = 4;
+  // True when the exact Identity has at least one usable email-code address.
+  bool email_code_available = 5;
+  // Identity authority's canonical account email. Member primary_email is its projection.
+  string canonical_email = 6;
+}
+
+// Detail-only admin projection for existing provider-removal and verified-email
+// management UI. It deliberately excludes sessions and credential material.
+message AccountAdminDetails {
+  repeated AccountProvider providers = 1;
+  repeated AccountEmailCandidate email_candidates = 2;
+}
+
+message AccountBanDetails {
+  bool metadata_banned = 1;
+  string identity_state = 2;
+  bool inactive_state = 3;
+  optional string reason = 4;
+  optional google.protobuf.Timestamp expires_at = 5;
+}
+
+message GetMySecurityRequest {}
+
+message GetMySecurityResponse {
+  AccountSecurity security = 1;
+}
+
+message SetMyCanonicalEmailRequest {
+  string email = 1;
+}
+
+message AccountSecurityMutationResponse {
+  AccountSecurity security = 1;
+  bool sessions_revoked = 2;
+}
+
+message RequestEmailChangeRequest {
+  string new_email = 1;
+}
+
+message RequestEmailChangeResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+message RevokeMySessionRequest {
+  string session_id = 1;
+}
+
+message RevokeMyOtherSessionsRequest {}
+
+message RequestAccountDeletionRequest {}
+
+message RequestAccountDeletionResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+message SetMyNewsletterSubscriptionRequest {
+  bool subscribed = 1;
+}
+
+message NewsletterSubscriptionMutationResponse {
+  NewsletterSubscriptionState newsletter_subscription = 1;
+}
+
+message SetAccountRoleRequest {
+  string member_id = 1;
+  api.policy.v1.AuthorizationRole role = 2;
+}
+
+message BanAccountRequest {
+  string member_id = 1;
+  optional google.protobuf.Timestamp until = 2;
+  optional string reason = 3;
+}
+
+message UnbanAccountRequest {
+  string member_id = 1;
+}
+
+message SetAccountCanonicalEmailRequest {
+  string member_id = 1;
+  string email = 2;
+}
+
+message RemoveAccountSsoProviderRequest {
+  string member_id = 1;
+  string provider = 2;
+  string identifier = 3;
+}
+
+message DeleteAccountRequest {
+  string member_id = 1;
+}
+
+message UnsubscribeAccountFromNewsletterRequest {
+  string member_id = 1;
+}
+
+// Account-owned token metadata. It never includes credential material or
+// separate read/write scopes; current resource permission is checked per call.
+message PersonalAccessToken {
+  string id = 1;
+  google.protobuf.Timestamp created_at = 2;
+}
+
+message CreateMyPersonalAccessTokenRequest {}
+
+message CreateMyPersonalAccessTokenResponse {
+  PersonalAccessToken personal_access_token = 1;
+  // Returned exactly once. List and ordinary reads never expose it.
+  string secret = 2;
+}
+
+message ListMyPersonalAccessTokensRequest {}
+
+message ListMyPersonalAccessTokensResponse {
+  repeated PersonalAccessToken personal_access_tokens = 1;
+}
+
+message RegenerateMyPersonalAccessTokenRequest {
+  string personal_access_token_id = 1;
+}
+
+message RegenerateMyPersonalAccessTokenResponse {
+  PersonalAccessToken personal_access_token = 1;
+  // Returned exactly once for the new credential.
+  string secret = 2;
+}
+
+message DeleteMyPersonalAccessTokenRequest {
+  string personal_access_token_id = 1;
+}
+
+message DeleteMyPersonalAccessTokenResponse {
+  bool deleted = 1;
+}
+
+message CreateAccountPersonalAccessTokenRequest {
+  string member_id = 1;
+}
+
+message ListAccountPersonalAccessTokensRequest {
+  string member_id = 1;
+}
+
+message RegenerateAccountPersonalAccessTokenRequest {
+  string member_id = 1;
+  string personal_access_token_id = 2;
+}
+
+message DeleteAccountPersonalAccessTokenRequest {
+  string member_id = 1;
+  string personal_access_token_id = 2;
+}
+
+service AccountService {
+  rpc GetMySecurity(GetMySecurityRequest) returns (GetMySecurityResponse) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+  rpc SetMyCanonicalEmail(SetMyCanonicalEmailRequest) returns (AccountSecurityMutationResponse) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+  rpc RequestEmailChange(RequestEmailChangeRequest) returns (RequestEmailChangeResponse) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+  rpc RevokeMySession(RevokeMySessionRequest) returns (AccountSecurityMutationResponse) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+  rpc RevokeMyOtherSessions(RevokeMyOtherSessionsRequest) returns (AccountSecurityMutationResponse) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+  rpc RequestAccountDeletion(RequestAccountDeletionRequest) returns (RequestAccountDeletionResponse) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+  rpc SetMyNewsletterSubscription(SetMyNewsletterSubscriptionRequest) returns (NewsletterSubscriptionMutationResponse) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+  // PAT security mutations accept the normal authenticated browser Session
+  // only and enforce Account's current freshness policy. A machine bearer
+  // cannot create or manage the credential.
+  rpc CreateMyPersonalAccessToken(CreateMyPersonalAccessTokenRequest) returns (CreateMyPersonalAccessTokenResponse) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+  // Browser Session only; a machine bearer cannot enumerate credentials.
+  rpc ListMyPersonalAccessTokens(ListMyPersonalAccessTokensRequest) returns (ListMyPersonalAccessTokensResponse) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+  // Browser Session only. Regeneration enforces Account freshness and
+  // invalidates the old credential atomically before returning the new
+  // one-time secret; a machine bearer cannot invoke it.
+  rpc RegenerateMyPersonalAccessToken(RegenerateMyPersonalAccessTokenRequest) returns (RegenerateMyPersonalAccessTokenResponse) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+  // Browser Session only. Deletion enforces Account freshness; a machine
+  // bearer cannot delete the credential.
+  rpc DeleteMyPersonalAccessToken(DeleteMyPersonalAccessTokenRequest) returns (DeleteMyPersonalAccessTokenResponse) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+
+  rpc SetAccountRole(SetAccountRoleRequest) returns (AccountSummary) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc BanAccount(BanAccountRequest) returns (AccountSummary) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc UnbanAccount(UnbanAccountRequest) returns (AccountSummary) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc SetAccountCanonicalEmail(SetAccountCanonicalEmailRequest) returns (AccountSummary) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc RemoveAccountSsoProvider(RemoveAccountSsoProviderRequest) returns (AccountSummary) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc DeleteAccount(DeleteAccountRequest) returns (DeleteResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc UnsubscribeAccountFromNewsletter(UnsubscribeAccountFromNewsletterRequest) returns (NewsletterSubscriptionMutationResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  // Admin browser Session only. These operations manage the same one-token
+  // Account credential as the self-service RPCs; they do not mint an MCP
+  // credential or bypass resource authorization performed by API consumers.
+  rpc CreateAccountPersonalAccessToken(CreateAccountPersonalAccessTokenRequest) returns (CreateMyPersonalAccessTokenResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc ListAccountPersonalAccessTokens(ListAccountPersonalAccessTokensRequest) returns (ListMyPersonalAccessTokensResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc RegenerateAccountPersonalAccessToken(RegenerateAccountPersonalAccessTokenRequest) returns (RegenerateMyPersonalAccessTokenResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc DeleteAccountPersonalAccessToken(DeleteAccountPersonalAccessTokenRequest) returns (DeleteMyPersonalAccessTokenResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+}

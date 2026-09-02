@@ -1,0 +1,112 @@
+syntax = "proto3";
+
+package api.intra.v1;
+
+import "api/content/v1/block_content.proto";
+import "api/intra/v1/collaboration.proto";
+import "api/manage/v1/ai.proto";
+
+option go_package = "github.com/echovisionlab/geul-event-contracts/gen/api/intra/v1;intrav1";
+
+// InternalReleaseService is the authoritative typed Block boundary for Release
+// collaboration. Yjs remains collaboration runtime state and never crosses
+// this durable API.
+service InternalReleaseService {
+  rpc LoadReleaseBlockDocument(LoadReleaseBlockDocumentRequest) returns (LoadReleaseBlockDocumentResponse);
+  rpc ApplyReleaseBlockBatch(ApplyReleaseBlockBatchRequest) returns (ApplyReleaseBlockBatchResponse);
+  rpc UpdateReleaseLocaleMetadata(UpdateReleaseLocaleMetadataRequest) returns (UpdateReleaseLocaleMetadataResponse);
+}
+
+message ReleaseLocaleMetadata {
+  string locale = 1;
+  optional string title = 2;
+  repeated ReleaseCreditNote credit_notes = 3;
+}
+
+message ReleaseCreditNote {
+  string credit_id = 1;
+  string note = 2;
+}
+
+message ReleaseCreditNotesValue {
+  repeated ReleaseCreditNote values = 1;
+}
+
+message LoadReleaseBlockDocumentRequest {
+  string release_id = 1;
+  CollaborationPrincipal principal = 2;
+  string locale = 3;
+}
+
+message LoadReleaseBlockDocumentResponse {
+  api.content.v1.LocalizedRichTextDocument document = 1;
+  // Persisted content_document.revision for the shared/source graph only.
+  // Target-only writes must not advance it.
+  string document_revision = 2;
+  repeated ReleaseArtistState artists = 3;
+  ReleaseLocaleMetadata source_metadata = 4;
+  string locale = 5;
+  bool locale_exists = 6;
+  optional ReleaseLocaleMetadata locale_metadata = 7;
+  optional string target_revision = 8;
+  // Exact persisted locale-owned leaf-terminal presence for the requested room
+  // locale; never inferred from materialized/source-fallback values. Source and
+  // target rooms report actual presence; a missing target reports an empty list.
+  // Order is meaningless; producers emit canonical-sorted, duplicate-free
+  // targets. relation_item, shared/topology/File, identity-terminal (row_id,
+  // cell_id, Page unit_id), and composite object/list targets are forbidden.
+  repeated api.manage.v1.AIDocumentFieldTarget present_locale_values = 9;
+}
+
+message ReleaseArtistState {
+  string artist_id = 1;
+  string artist_name = 2;
+  optional string artist_slug = 3;
+  int32 sort_order = 4;
+}
+
+message ApplyReleaseBlockBatchRequest {
+  string release_id = 1;
+  api.content.v1.RichTextBlockMutationBatch batch = 2;
+  string locale = 3;
+  // Required for every existing non-source save; absent for source. Missing
+  // targets are rejected until explicit create commits and the room reconnects.
+  optional string expected_target_revision = 4;
+  // Actual changed locale-owned leaf terminals in this batch, including
+  // explicit-empty writes and presence removal. Callers emit canonical-sorted,
+  // duplicate-free targets. relation_item, shared/topology/File,
+  // identity-terminal (row_id, cell_id, Page unit_id), and composite object/list
+  // targets are forbidden. Source/shared-only batches send an empty list.
+  repeated api.manage.v1.AIDocumentFieldTarget affected_locale_values = 5;
+}
+
+message ApplyReleaseBlockBatchResponse {
+  string document_revision = 1;
+  bool changed = 2;
+  bool source_changed = 3;
+  repeated string changed_locales = 4;
+  string locale = 5;
+  optional string target_revision = 6;
+}
+
+message UpdateReleaseLocaleMetadataRequest {
+  string release_id = 1;
+  optional string title = 2;
+  string expected_revision = 3;
+  repeated string contributor_member_ids = 4;
+  ReleaseCreditNotesValue credit_notes = 5;
+  // Exact canonical room locale. Existing non-source rooms may change only
+  // these values; a missing target is not created by this RPC.
+  string locale = 6;
+  // Required for every existing non-source save; absent for source.
+  optional string expected_target_revision = 7;
+}
+
+message UpdateReleaseLocaleMetadataResponse {
+  string document_revision = 1;
+  bool changed = 2;
+  bool source_changed = 3;
+  repeated string changed_locales = 4;
+  string locale = 5;
+  optional string target_revision = 6;
+}

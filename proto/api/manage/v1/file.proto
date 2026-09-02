@@ -1,0 +1,652 @@
+syntax = "proto3";
+
+package api.manage.v1;
+
+// File entity (stored in S3/storage)
+import "api/common/v1/common.proto";
+import "api/common/v1/media.proto";
+import "api/manage/v1/audience.proto";
+import "api/manage/v1/events.proto";
+import "api/policy/v1/access.proto";
+import "google/protobuf/timestamp.proto";
+
+// Upload type enum - defines the type of file upload
+enum UploadType {
+  UPLOAD_TYPE_UNSPECIFIED = 0;
+  UPLOAD_TYPE_USER_AVATAR = 1;
+  UPLOAD_TYPE_ARTIST_IMAGE = 2;
+  UPLOAD_TYPE_EDITOR_IMAGE = 3;
+  UPLOAD_TYPE_EDITOR_VIDEO = 4;
+  UPLOAD_TYPE_EDITOR_AUDIO = 5;
+  UPLOAD_TYPE_EDITOR_ATTACHMENT = 6;
+  UPLOAD_TYPE_FEATURED_IMAGE = 7;
+  UPLOAD_TYPE_WORK_FEATURED_IMAGE = 8;
+  UPLOAD_TYPE_RELEASE_ARTWORK = 9;
+  UPLOAD_TYPE_TRACK_AUDIO = 10;
+  UPLOAD_TYPE_LABEL_IMAGE = 11;
+  UPLOAD_TYPE_CLIENT_LOGO = 12;
+  UPLOAD_TYPE_SITE_LOGO = 13;
+  UPLOAD_TYPE_SITE_FAVICON = 14;
+  UPLOAD_TYPE_SITE_LOADER = 15;
+  UPLOAD_TYPE_SERIES_FEATURED_IMAGE = 16;
+  UPLOAD_TYPE_FORM_FEATURED_IMAGE = 17;
+  UPLOAD_TYPE_SITE_OG_BACKGROUND = 18;
+  UPLOAD_TYPE_PROGRAM_EVENT_POSTER = 19;
+  UPLOAD_TYPE_EDITOR_MESH = 20;
+  UPLOAD_TYPE_MAP_IMAGE = 21;
+  // Standalone File Manager source. It has no owning-domain entity target.
+  UPLOAD_TYPE_GENERAL_FILE = 22;
+}
+
+// File derivative type enum - defines the type of file derivative (thumbnail, HLS, etc.)
+enum FileDerivativeType {
+  FILE_DERIVATIVE_TYPE_UNSPECIFIED = 0;
+  FILE_DERIVATIVE_TYPE_THUMBNAIL = 1;
+  FILE_DERIVATIVE_TYPE_HLS = 2;
+  FILE_DERIVATIVE_TYPE_SPECTROGRAM = 3;
+  FILE_DERIVATIVE_TYPE_WAVEFORM = 4;
+  FILE_DERIVATIVE_TYPE_FAVICON_ICO = 5;
+  FILE_DERIVATIVE_TYPE_FAVICON_PNG_16 = 6;
+  FILE_DERIVATIVE_TYPE_FAVICON_PNG_32 = 7;
+  FILE_DERIVATIVE_TYPE_FAVICON_PNG_48 = 8;
+  FILE_DERIVATIVE_TYPE_FAVICON_APPLE_TOUCH_180 = 9;
+  FILE_DERIVATIVE_TYPE_FAVICON_MANIFEST_192 = 10;
+  FILE_DERIVATIVE_TYPE_FAVICON_MANIFEST_512 = 11;
+  FILE_DERIVATIVE_TYPE_OPTIMIZED_MESH = 12;
+}
+
+// Delete file
+message DeleteFileRequest {
+  string file_id = 1;
+}
+
+message DeleteFileResponse {
+  bool success = 1;
+}
+
+// File Manager catalog
+
+enum FileManagerItemType {
+  FILE_MANAGER_ITEM_TYPE_UNSPECIFIED = 0;
+  FILE_MANAGER_ITEM_TYPE_FOLDER = 1;
+  FILE_MANAGER_ITEM_TYPE_FILE = 2;
+}
+
+enum FileManagerSortField {
+  FILE_MANAGER_SORT_FIELD_UNSPECIFIED = 0;
+  FILE_MANAGER_SORT_FIELD_NAME = 1;
+  FILE_MANAGER_SORT_FIELD_CREATED_AT = 2;
+  FILE_MANAGER_SORT_FIELD_UPDATED_AT = 3;
+  FILE_MANAGER_SORT_FIELD_FILE_SIZE = 4;
+}
+
+message FileFolder {
+  string id = 1;
+  optional string parent_id = 2;
+  string name = 3;
+  optional api.common.v1.MemberSummary created_by_member = 4;
+  google.protobuf.Timestamp created_at = 5;
+  google.protobuf.Timestamp updated_at = 6;
+}
+
+message FileManagerFile {
+  string id = 1;
+  string file_name = 2;
+  string extension = 3;
+  string mime_type = 4;
+  int64 file_size = 5;
+  optional int32 duration_seconds = 6;
+  optional string folder_id = 7;
+  optional api.common.v1.MemberSummary uploaded_by_member = 8;
+  google.protobuf.Timestamp created_at = 9;
+  google.protobuf.Timestamp updated_at = 10;
+  optional api.common.v1.MediaDelivery delivery = 11;
+  int32 usage_count = 12;
+}
+
+// Logical File Manager folder segment. The virtual root is not repeated.
+message FileManagerPathSegment {
+  string id = 1;
+  string name = 2;
+}
+
+message FileManagerItem {
+  FileManagerItemType type = 1;
+  oneof item {
+    FileFolder folder = 2;
+    FileManagerFile file = 3;
+  }
+  // Populated for search results. Folder results include the matched
+  // folder; File results end at the containing folder.
+  repeated FileManagerPathSegment folder_path = 4;
+}
+
+message ListFileManagerItemsRequest {
+  // Directory to browse when query is absent. With a query, restricts search
+  // to this folder and its descendants; omit it for site-wide search.
+  optional string folder_id = 1;
+  // A non-blank query switches from directory browsing to paginated File and
+  // folder search using the folder_id scope above.
+  optional string query = 2;
+  optional string mime_type_prefix = 3;
+  optional string uploaded_by_member_id = 4;
+  FileManagerSortField sort_field = 5;
+  api.common.v1.SortOrder sort_order = 6;
+  int32 page_size = 7;
+  optional string page_token = 8;
+}
+
+message ListFileManagerItemsResponse {
+  repeated FileManagerItem items = 1;
+  optional string next_page_token = 2;
+  int64 total = 3;
+}
+
+message GetFileRequest {
+  string file_id = 1;
+}
+
+message GetFileResponse {
+  FileManagerFile file = 1;
+  repeated FileUsage domain_usage_summary = 2;
+  repeated FileGeneratedOutput generated_outputs = 3;
+}
+
+message FileGeneratedOutput {
+  string id = 1;
+  FileDerivativeType type = 2;
+  api.common.v1.MediaProcessingStatus status = 3;
+  optional api.common.v1.MediaDelivery delivery = 4;
+}
+
+enum FileUsageDomain {
+  FILE_USAGE_DOMAIN_UNSPECIFIED = 0;
+  FILE_USAGE_DOMAIN_POST = 1;
+  FILE_USAGE_DOMAIN_PAGE = 2;
+  FILE_USAGE_DOMAIN_WORK = 3;
+  FILE_USAGE_DOMAIN_SITE_SETTINGS = 4;
+  FILE_USAGE_DOMAIN_RELEASE = 5;
+  FILE_USAGE_DOMAIN_TRACK = 6;
+  FILE_USAGE_DOMAIN_ARTIST = 7;
+  FILE_USAGE_DOMAIN_LABEL = 8;
+  FILE_USAGE_DOMAIN_CLIENT = 9;
+  FILE_USAGE_DOMAIN_SERIES = 10;
+  FILE_USAGE_DOMAIN_FORM = 11;
+  FILE_USAGE_DOMAIN_PROGRAM_EVENT = 12;
+  FILE_USAGE_DOMAIN_MAP_PLACE = 13;
+}
+
+message FileUsage {
+  FileUsageDomain domain = 1;
+  string entity_id = 2;
+  string reference_path = 3;
+  optional string block_id = 4;
+  int32 count = 5;
+  optional string block_type = 6;
+  optional string title = 7;
+  optional string link = 8;
+}
+
+message ListFileUsagesRequest {
+  string file_id = 1;
+  int32 page_size = 2;
+  optional string page_token = 3;
+}
+
+message ListFileUsagesResponse {
+  repeated FileUsage usages = 1;
+  optional string next_page_token = 2;
+  int64 total = 3;
+}
+
+message CreateFileFolderRequest {
+  optional string parent_id = 1;
+  string name = 2;
+}
+
+message CreateFileFolderResponse {
+  FileFolder folder = 1;
+}
+
+message RenameFileFolderRequest {
+  string folder_id = 1;
+  string name = 2;
+}
+
+message RenameFileFolderResponse {
+  FileFolder folder = 1;
+}
+
+message MoveFileFolderRequest {
+  string folder_id = 1;
+  optional string parent_id = 2;
+}
+
+message MoveFileFolderResponse {
+  FileFolder folder = 1;
+}
+
+message DeleteFileFolderRequest {
+  string folder_id = 1;
+}
+
+message DeleteFileFolderResponse {
+  repeated string accepted_file_ids = 1;
+}
+
+message RenameFileRequest {
+  string file_id = 1;
+  string file_name = 2;
+}
+
+message RenameFileResponse {
+  FileManagerFile file = 1;
+}
+
+message MoveFilesRequest {
+  repeated string file_ids = 1;
+  optional string folder_id = 2;
+}
+
+message MoveFilesResponse {
+  repeated FileManagerFile files = 1;
+}
+
+message FileUsageDomainCount {
+  FileUsageDomain domain = 1;
+  int64 count = 2;
+}
+
+message FileDeletionImpact {
+  string file_id = 1;
+  int64 total_usage_count = 2;
+  repeated FileUsageDomainCount domain_counts = 3;
+  // At most five exact usages. Counts cover the complete current
+  // usage set; ListFileUsages owns the complete paginated list.
+  repeated FileUsage first_usages = 4;
+  bool has_more_usages = 5;
+}
+
+message GetFileDeletionImpactRequest {
+  repeated string file_ids = 1;
+}
+
+message GetFileDeletionImpactResponse {
+  repeated FileDeletionImpact impacts = 1;
+}
+
+message DeleteFilesRequest {
+  repeated string file_ids = 1;
+}
+
+message DeleteFilesResponse {
+  repeated string accepted_file_ids = 1;
+  repeated FileDeletionImpact rejected_files = 2;
+}
+
+// Multipart upload support
+
+message InitiateMultipartUploadRequest {
+  UploadType upload_type = 1;
+  string entity_id = 2;
+  int64 file_size = 3;
+  string mime_type = 4;
+  optional TranscodeEntityType entity_type = 5; // Targeted domain uploads only; Editor File omits it.
+  string file_name = 6;
+  optional int64 file_last_modified = 7;
+  optional string slot_id = 8; // Non-document structured asset slot
+  // Track original-audio CAS only. Editor File upload never attaches a Block.
+  optional string expected_current_file_id = 9;
+}
+
+message InitiateMultipartUploadResponse {
+  string upload_id = 1;
+  string file_id = 2;
+  string extension = 3;
+  int32 total_parts = 4;
+  int32 chunk_size = 5;
+  repeated UploadPartInfo uploaded_parts = 6;
+  UploadSessionStatus status = 7;
+  bool resumed = 8;
+  optional string slot_id = 9;
+  optional string ingest_attempt_id = 10;
+  // Echoes the upload session's Track-original CAS expectation.
+  optional string expected_current_file_id = 11;
+}
+
+message UploadPartInfo {
+  int32 part_number = 1;
+  string etag = 2;
+}
+
+message CompleteMultipartUploadRequest {
+  string file_id = 1;
+  string upload_id = 2;
+  optional string correlation_id = 3;
+}
+
+message CompleteMultipartUploadResponse {
+  api.common.v1.MediaDelivery delivery = 1;
+  string file_id = 2;
+}
+
+message AbortMultipartUploadRequest {
+  string file_id = 1;
+  string upload_id = 2;
+  optional string correlation_id = 3;
+}
+
+message AbortMultipartUploadResponse {
+  bool success = 1;
+}
+
+enum UploadSessionStatus {
+  UPLOAD_SESSION_STATUS_UNSPECIFIED = 0;
+  UPLOAD_SESSION_STATUS_INITIATED = 1;
+  UPLOAD_SESSION_STATUS_UPLOADING = 2;
+  UPLOAD_SESSION_STATUS_FINALIZING = 3;
+  UPLOAD_SESSION_STATUS_FAILED = 4;
+  UPLOAD_SESSION_STATUS_ABORTED = 5;
+}
+
+message FindMultipartUploadCandidateRequest {
+  UploadType upload_type = 1;
+  string entity_id = 2;
+  optional string file_id = 3;
+  optional string file_name = 4;
+  optional int64 file_size = 5;
+  optional string mime_type = 6;
+  optional int64 file_last_modified = 7;
+  optional TranscodeEntityType entity_type = 8;
+  optional string slot_id = 9;
+  // Together with file_id, this is the explicit capability for a standalone
+  // File Manager upload. It does not enable implicit session discovery.
+  optional string upload_id = 10;
+  // Must match the Track-original CAS expectation of the session.
+  optional string expected_current_file_id = 11;
+}
+
+message FindMultipartUploadCandidateResponse {
+  optional string upload_id = 1;
+  optional string file_id = 2;
+  optional string extension = 3;
+  int32 total_parts = 4;
+  int32 chunk_size = 5;
+  UploadSessionStatus status = 6;
+  repeated UploadPartInfo uploaded_parts = 7;
+  optional string file_name = 8;
+  int64 file_size = 9;
+  optional string mime_type = 10;
+  optional int64 file_last_modified = 11;
+  optional google.protobuf.Timestamp last_activity_at = 12;
+  optional string slot_id = 13;
+  optional string ingest_attempt_id = 14;
+  // Echoes the candidate session's Track-original CAS expectation.
+  optional string expected_current_file_id = 15;
+}
+
+message DownloadFromUrlRequest {
+  UploadType upload_type = 1;
+  string entity_id = 2;
+  string url = 3;
+  optional TranscodeEntityType entity_type = 4; // Targeted domain imports only; Editor File omits it.
+  optional string correlation_id = 5;
+  optional string slot_id = 6;
+  // Track original-audio CAS only. Editor File import never attaches a Block.
+  optional string expected_current_file_id = 7;
+}
+
+message DownloadFromUrlResponse {
+  api.common.v1.MediaDelivery delivery = 1;
+  string file_id = 2;
+  optional string slot_id = 3;
+  optional string ingest_attempt_id = 4;
+  // Echoes the remote ingest's Track-original CAS expectation.
+  optional string expected_current_file_id = 5;
+}
+
+message GetMediaDeliveryRequest {
+  string file_id = 1;
+}
+
+message GetMediaDeliveryResponse {
+  api.common.v1.MediaDelivery delivery = 1;
+  optional string ingest_slot_id = 2;
+  optional string ingest_attempt_id = 3;
+}
+
+message GetBulkMediaDeliveriesRequest {
+  repeated string file_ids = 1;
+}
+
+message GetBulkMediaDeliveriesResponse {
+  map<string, GetMediaDeliveryResponse> files = 1;
+}
+
+enum FileDownloadAudience {
+  FILE_DOWNLOAD_AUDIENCE_UNSPECIFIED = 0;
+  FILE_DOWNLOAD_AUDIENCE_DISABLED = 1;
+  FILE_DOWNLOAD_AUDIENCE_PUBLIC = 2;
+  FILE_DOWNLOAD_AUDIENCE_AUTHENTICATED = 3;
+  FILE_DOWNLOAD_AUDIENCE_RESTRICTED = 4;
+}
+
+message FileDownloadPolicy {
+  // POST, PAGE, WORK, and PROGRAM_EVENT target an exact Content Block relation;
+  // TRACK targets the Track original-audio relation and omits Block fields.
+  TranscodeEntityType entity_type = 1;
+  string entity_id = 2;
+  optional string block_id = 3;
+  optional string reference_path = 4;
+  // Current File resolved by the server from the exact relation above.
+  string file_id = 5;
+  FileDownloadAudience audience = 6;
+  repeated AudienceSegmentSummary audience_segments = 7;
+}
+
+message GetFileDownloadPolicyRequest {
+  // Content targets require both block_id and reference_path. TRACK requires
+  // neither and resolves the original-audio relation from entity_id.
+  TranscodeEntityType entity_type = 1;
+  string entity_id = 2;
+  optional string block_id = 3;
+  optional string reference_path = 4;
+}
+
+message GetFileDownloadPolicyResponse {
+  FileDownloadPolicy policy = 1;
+}
+
+message UpdateFileDownloadPolicyRequest {
+  // Content targets require both block_id and reference_path. TRACK requires
+  // neither and resolves the original-audio relation from entity_id.
+  TranscodeEntityType entity_type = 1;
+  string entity_id = 2;
+  optional string block_id = 3;
+  optional string reference_path = 4;
+  // Compare-and-set guard only. The server resolves policy authority and the
+  // current File from the exact relation above.
+  string expected_file_id = 5;
+  FileDownloadAudience audience = 6;
+  repeated string audience_segment_ids = 7;
+}
+
+message UpdateFileDownloadPolicyResponse {
+  FileDownloadPolicy policy = 1;
+}
+
+// Mesh optimization candidates for editor GLB assets
+enum MeshOptimizationCandidateStatus {
+  MESH_OPTIMIZATION_CANDIDATE_STATUS_UNSPECIFIED = 0;
+  MESH_OPTIMIZATION_CANDIDATE_STATUS_PENDING = 1;
+  MESH_OPTIMIZATION_CANDIDATE_STATUS_PROCESSING = 2;
+  MESH_OPTIMIZATION_CANDIDATE_STATUS_READY = 3;
+  MESH_OPTIMIZATION_CANDIDATE_STATUS_FAILED = 4;
+  MESH_OPTIMIZATION_CANDIDATE_STATUS_CANCELLED = 5;
+}
+
+message MeshOptimizationCandidate {
+  string id = 1;
+  string source_file_id = 2;
+  optional TranscodeEntityType entity_type = 3;
+  optional string entity_id = 4;
+  optional string file_id = 5;
+  optional string public_asset_id = 6;
+  optional api.common.v1.MediaDelivery delivery = 7;
+  optional string file_name = 8;
+  optional int64 file_size = 9;
+  MeshOptimizationCompressionMethod method = 10; // MVP: DRACO
+  int32 target_ratio_percent = 11;
+  MeshOptimizationCandidateStatus status = 12;
+  optional int64 original_file_size = 13;
+  optional int64 optimized_file_size = 14;
+  optional int64 original_vertex_count = 15;
+  optional int64 optimized_vertex_count = 16;
+  optional int64 original_triangle_count = 17;
+  optional int64 optimized_triangle_count = 18;
+  optional int64 processing_time_ms = 19;
+  optional string error_message = 20;
+  optional google.protobuf.Timestamp selected_at = 21;
+  optional google.protobuf.Timestamp created_at = 22;
+  optional google.protobuf.Timestamp updated_at = 23;
+  MeshOptimizationProfile profile = 24;
+}
+
+message ListMeshOptimizationCandidatesRequest {
+  string source_file_id = 1;
+  TranscodeEntityType entity_type = 2;
+  string entity_id = 3;
+  MeshOptimizationProfile profile = 4;
+}
+
+message ListMeshOptimizationCandidatesResponse {
+  repeated MeshOptimizationCandidate candidates = 1;
+}
+
+message GenerateMeshOptimizationCandidateRequest {
+  string source_file_id = 1;
+  TranscodeEntityType entity_type = 2;
+  string entity_id = 3;
+  MeshOptimizationCompressionMethod method = 4; // MVP: DRACO
+  int32 target_ratio_percent = 5;
+  MeshOptimizationProfile profile = 6;
+}
+
+message GenerateMeshOptimizationCandidateResponse {
+  MeshOptimizationCandidate candidate = 1;
+  bool cache_hit = 2;
+  bool enqueued = 3;
+}
+
+message UseMeshOptimizationCandidateRequest {
+  string candidate_id = 1;
+  optional string source_file_id = 2;
+  optional TranscodeEntityType entity_type = 3;
+  optional string entity_id = 4;
+}
+
+message UseMeshOptimizationCandidateResponse {
+  MeshOptimizationCandidate candidate = 1;
+}
+
+message ClearMeshOptimizationCandidatesRequest {
+  string source_file_id = 1;
+  TranscodeEntityType entity_type = 2;
+  string entity_id = 3;
+  optional string candidate_id = 4;
+  MeshOptimizationProfile profile = 5;
+}
+
+message ClearMeshOptimizationCandidatesResponse {
+  bool success = 1;
+}
+
+// File Service
+service FileService {
+  rpc ListFileManagerItems(ListFileManagerItemsRequest) returns (ListFileManagerItemsResponse) {
+    option (api.policy.v1.access) = {role: AUTHOR};
+  }
+  rpc GetFile(GetFileRequest) returns (GetFileResponse) {
+    option (api.policy.v1.access) = {role: AUTHOR};
+  }
+  rpc ListFileUsages(ListFileUsagesRequest) returns (ListFileUsagesResponse) {
+    option (api.policy.v1.access) = {role: AUTHOR};
+  }
+  rpc CreateFileFolder(CreateFileFolderRequest) returns (CreateFileFolderResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc RenameFileFolder(RenameFileFolderRequest) returns (RenameFileFolderResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc MoveFileFolder(MoveFileFolderRequest) returns (MoveFileFolderResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc DeleteFileFolder(DeleteFileFolderRequest) returns (DeleteFileFolderResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc RenameFile(RenameFileRequest) returns (RenameFileResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc MoveFiles(MoveFilesRequest) returns (MoveFilesResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc GetFileDeletionImpact(GetFileDeletionImpactRequest) returns (GetFileDeletionImpactResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc DeleteFiles(DeleteFilesRequest) returns (DeleteFilesResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+
+  // File deletion
+  rpc DeleteFile(DeleteFileRequest) returns (DeleteFileResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+
+  // Multipart upload
+  rpc InitiateMultipartUpload(InitiateMultipartUploadRequest) returns (InitiateMultipartUploadResponse) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+  rpc CompleteMultipartUpload(CompleteMultipartUploadRequest) returns (CompleteMultipartUploadResponse) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+  rpc AbortMultipartUpload(AbortMultipartUploadRequest) returns (AbortMultipartUploadResponse) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+  rpc FindMultipartUploadCandidate(FindMultipartUploadCandidateRequest) returns (FindMultipartUploadCandidateResponse) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+
+  // Download from external URL
+  rpc DownloadFromUrl(DownloadFromUrlRequest) returns (DownloadFromUrlResponse) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+
+  rpc GetMediaDelivery(GetMediaDeliveryRequest) returns (GetMediaDeliveryResponse) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+  rpc GetBulkMediaDeliveries(GetBulkMediaDeliveriesRequest) returns (GetBulkMediaDeliveriesResponse) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+
+  // Exact Content Block or Track relation original-download policy management.
+  rpc GetFileDownloadPolicy(GetFileDownloadPolicyRequest) returns (GetFileDownloadPolicyResponse) {
+    option (api.policy.v1.access) = {role: AUTHOR};
+  }
+  rpc UpdateFileDownloadPolicy(UpdateFileDownloadPolicyRequest) returns (UpdateFileDownloadPolicyResponse) {
+    option (api.policy.v1.access) = {role: AUTHOR};
+  }
+
+  // Mesh optimization candidate management for editor GLB assets
+  rpc ListMeshOptimizationCandidates(ListMeshOptimizationCandidatesRequest) returns (ListMeshOptimizationCandidatesResponse) {
+    option (api.policy.v1.access) = {role: AUTHOR};
+  }
+  rpc GenerateMeshOptimizationCandidate(GenerateMeshOptimizationCandidateRequest) returns (GenerateMeshOptimizationCandidateResponse) {
+    option (api.policy.v1.access) = {role: AUTHOR};
+  }
+  rpc UseMeshOptimizationCandidate(UseMeshOptimizationCandidateRequest) returns (UseMeshOptimizationCandidateResponse) {
+    option (api.policy.v1.access) = {role: AUTHOR};
+  }
+  rpc ClearMeshOptimizationCandidates(ClearMeshOptimizationCandidatesRequest) returns (ClearMeshOptimizationCandidatesResponse) {
+    option (api.policy.v1.access) = {role: AUTHOR};
+  }
+}

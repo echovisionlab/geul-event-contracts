@@ -1,0 +1,53 @@
+[
+  {
+    "domain": "artist",
+    "resource_type": "artist",
+    "permissions": ["manage"]
+  },
+  {
+    "domain": "form",
+    "resource_type": "form",
+    "permissions": ["manage"]
+  },
+  {
+    "domain": "page",
+    "resource_type": "page",
+    "permissions": ["manage"]
+  },
+  {
+    "domain": "post",
+    "resource_type": "post",
+    "permissions": [
+      "view",
+      "edit",
+      "delete",
+      "publish",
+      "manage",
+      "manage_participants",
+      "manage_share_links",
+      "platform_admin",
+      "view_archived",
+      "edit_archived"
+    ]
+  },
+  {
+    "domain": "post_series",
+    "resource_type": "series",
+    "permissions": ["view", "manage"]
+  },
+  {
+    "domain": "release",
+    "resource_type": "release",
+    "permissions": ["manage"]
+  },
+  {
+    "domain": "release",
+    "resource_type": "track",
+    "permissions": ["manage"]
+  },
+  {
+    "domain": "work",
+    "resource_type": "work",
+    "permissions": ["manage"]
+  }
+]

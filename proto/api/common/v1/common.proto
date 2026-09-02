@@ -1,0 +1,98 @@
+syntax = "proto3";
+
+package api.common.v1;
+
+import "api/common/v1/media.proto";
+
+option go_package = "github.com/echovisionlab/geul-event-contracts/gen/api/common/v1;commonv1";
+
+// Height behavior for a document's content region.
+enum DocumentContentHeight {
+  DOCUMENT_CONTENT_HEIGHT_UNSPECIFIED = 0;
+  DOCUMENT_CONTENT_HEIGHT_CONTENT = 1;
+  DOCUMENT_CONTENT_HEIGHT_VIEWPORT = 2;
+}
+
+// Placement behavior for document regions shared across locales.
+enum DocumentRegionPlacement {
+  DOCUMENT_REGION_PLACEMENT_UNSPECIFIED = 0;
+  DOCUMENT_REGION_PLACEMENT_FLOW = 1;
+  DOCUMENT_REGION_PLACEMENT_PINNED = 2;
+}
+
+// Document-wide layout authored once and shared across locale bodies.
+message DocumentLayout {
+  DocumentContentHeight content_height = 1;
+  DocumentRegionPlacement page_chrome = 2;
+  DocumentRegionPlacement footer = 3;
+}
+
+// Pagination request parameters
+message PaginationRequest {
+  int32 limit = 1;
+  int32 offset = 2;
+}
+
+// Pagination response metadata
+message PaginationResponse {
+  int32 total = 1;
+  int32 limit = 2;
+  int32 offset = 3;
+  bool has_more = 4;
+}
+
+// Canonical compact projection for another Member in lists, bylines, search,
+// content, management, and collaboration references. Authentication/security
+// data is never embedded in this shape. Feature-specific views compose this
+// message instead of defining another identity shape. Nickname comparison and
+// uniqueness are case-sensitive. When deleted is true, nickname remains the
+// preserved Member name while removable profile fields stay absent.
+message MemberSummary {
+  string id = 1;
+  // Always present. Before onboarding this is the Member UUID placeholder.
+  string nickname = 2;
+  optional AssetRef avatar_asset = 3;
+  bool deleted = 4;
+}
+
+// Sort order
+enum SortOrder {
+  SORT_ORDER_UNSPECIFIED = 0;
+  SORT_ORDER_ASC = 1;
+  SORT_ORDER_DESC = 2;
+}
+
+// Generic sort specification
+message SortSpec {
+  string field = 1;
+  SortOrder order = 2;
+}
+
+// Filter operator
+enum FilterOp {
+  FILTER_OP_UNSPECIFIED = 0;
+  // Universal (all types)
+  FILTER_OP_EQ = 1;
+  FILTER_OP_NEQ = 2;
+  FILTER_OP_IN = 3;
+  FILTER_OP_NOT_IN = 4;
+  // Numeric/Date only
+  FILTER_OP_GT = 5;
+  FILTER_OP_GTE = 6;
+  FILTER_OP_LT = 7;
+  FILTER_OP_LTE = 8;
+  // Text only
+  FILTER_OP_LIKE = 9;
+  FILTER_OP_ILIKE = 10;
+  // Null check
+  FILTER_OP_IS_NULL = 11;
+  FILTER_OP_IS_NOT_NULL = 12;
+}
+
+// Generic filter specification
+message FilterSpec {
+  string field = 1;
+  FilterOp op = 2;
+  string value = 3; // Single value (for EQ, GT, LIKE, etc.)
+  repeated string values = 4; // Multiple values (for IN, NOT_IN)
+}

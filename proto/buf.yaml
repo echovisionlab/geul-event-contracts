@@ -1,0 +1,44 @@
+version: v2
+modules:
+  - path: .
+    name: buf.build/echovisionlab/geul
+lint:
+  use:
+    - STANDARD
+  except:
+    - FIELD_NOT_REQUIRED
+    - PACKAGE_NO_IMPORT_CYCLE
+  ignore_only:
+    # Intentional API-shape exceptions for shared response models and the
+    # repository-owned Go package layout.
+    # Campaign recipient scope intentionally uses its safe product default as
+    # the proto3 zero value instead of an ambiguous UNSPECIFIED state.
+    ENUM_ZERO_VALUE_SUFFIX:
+      - api/manage/v1/campaign.proto
+      # AuthorizationRole keeps every protobuf JSON role name short, including the
+      # required zero value UNSPECIFIED.
+      - api/policy/v1/access.proto
+      # UserDeleteIdentityMode intentionally exposes concise generated public
+      # symbols (UserDeleteIdentityMode_UNSPECIFIED, etc.).
+      - api/manage/v1/events.proto
+    ENUM_VALUE_PREFIX:
+      # AuthorizationRole intentionally owns the public protobuf JSON vocabulary
+      # ANON, USER, AUTHOR, and ADMIN without repeating the type name on wire.
+      - api/policy/v1/access.proto
+      - api/manage/v1/events.proto
+    PACKAGE_SAME_GO_PACKAGE:
+      - api/manage/v1
+    RPC_REQUEST_RESPONSE_UNIQUE:
+      - api/manage/v1
+      - api/open/v1
+    RPC_REQUEST_STANDARD_NAME:
+      - api/intra/v1
+      - api/manage/v1
+      - api/open/v1
+    RPC_RESPONSE_STANDARD_NAME:
+      - api/intra/v1
+      - api/manage/v1
+      - api/open/v1
+breaking:
+  use:
+    - FILE

@@ -1,0 +1,85 @@
+syntax = "proto3";
+
+package api.manage.v1;
+
+import "api/common/v1/common.proto";
+import "api/manage/v1/common.proto";
+// Tag entity
+// Maps to: postgres/init/schema.template - tag table
+// Note: No updated_at column in schema
+import "api/policy/v1/access.proto";
+import "google/protobuf/timestamp.proto";
+
+message Tag {
+  string id = 1;
+  string name = 2;
+  optional string slug = 3;
+  google.protobuf.Timestamp created_at = 4;
+}
+
+// Tag with post count
+message TagWithStats {
+  Tag tag = 1;
+  int32 post_count = 2;
+}
+
+// Request/Response messages
+
+message ListTagsRequest {
+  api.common.v1.PaginationRequest pagination = 1;
+  repeated api.common.v1.FilterSpec filters = 2;
+  repeated api.common.v1.SortSpec sorts = 3;
+}
+
+message ListTagsResponse {
+  repeated Tag tags = 1;
+  api.common.v1.PaginationResponse pagination = 2;
+}
+
+message ListTagsAdminRequest {
+  api.common.v1.PaginationRequest pagination = 1;
+  repeated api.common.v1.FilterSpec filters = 2;
+  repeated api.common.v1.SortSpec sorts = 3;
+}
+
+message ListTagsAdminResponse {
+  repeated TagWithStats tags = 1;
+  api.common.v1.PaginationResponse pagination = 2;
+}
+
+message CreateTagRequest {
+  string name = 1;
+  optional string slug = 2;
+}
+
+message UpdateTagRequest {
+  string id = 1;
+  optional string name = 2;
+  optional string slug = 3;
+}
+
+message DeleteTagRequest {
+  string id = 1;
+}
+
+// Tag Service
+service TagService {
+  // Public
+  rpc ListTags(ListTagsRequest) returns (ListTagsResponse) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+
+  // Admin
+  rpc ListTagsAdmin(ListTagsAdminRequest) returns (ListTagsAdminResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc CreateTag(CreateTagRequest) returns (Tag) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc UpdateTag(UpdateTagRequest) returns (Tag) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc DeleteTag(DeleteTagRequest) returns (DeleteResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+}

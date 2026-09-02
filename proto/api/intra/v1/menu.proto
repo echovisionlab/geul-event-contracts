@@ -1,0 +1,60 @@
+syntax = "proto3";
+
+package api.intra.v1;
+
+option go_package = "github.com/echovisionlab/geul-event-contracts/gen/api/intra/v1;intrav1";
+
+// InternalMenuService is the trusted Collaboration persistence boundary for
+// one exact source or existing target locale room.
+service InternalMenuService {
+  rpc LoadDocument(LoadMenuDocumentRequest) returns (LoadMenuDocumentResponse);
+  rpc SaveDocument(SaveMenuDocumentRequest) returns (SaveMenuDocumentResponse);
+}
+
+message MenuCollaborationItem {
+  string id = 1;
+  string link_type = 2;
+  optional string url = 3;
+  optional string target_id = 4;
+  optional string target_slug = 5;
+  optional bool open_in_new_tab = 6;
+  optional string visibility_mode = 7;
+  repeated string visibility_roles = 8;
+  optional string localization_mode = 9;
+  optional string fixed_locale = 10;
+  repeated MenuCollaborationItem children = 11;
+}
+
+message LoadMenuDocumentRequest {
+  string menu_id = 1;
+  string locale = 2;
+}
+
+message LoadMenuDocumentResponse {
+  string source_locale = 1;
+  string locale = 2;
+  bool locale_exists = 3;
+  string name = 4;
+  repeated MenuCollaborationItem items = 5;
+  map<string, string> source_labels = 6;
+  map<string, string> requested_labels = 7;
+  string document_revision = 8;
+  optional string target_revision = 9;
+}
+
+message SaveMenuDocumentRequest {
+  string menu_id = 1;
+  string locale = 2;
+  string name = 3;
+  repeated MenuCollaborationItem items = 4;
+  map<string, string> requested_labels = 5;
+  repeated string contributor_member_ids = 6;
+  string expected_document_revision = 7;
+  optional string expected_target_revision = 8;
+}
+
+message SaveMenuDocumentResponse {
+  string locale = 1;
+  string document_revision = 2;
+  optional string target_revision = 3;
+}

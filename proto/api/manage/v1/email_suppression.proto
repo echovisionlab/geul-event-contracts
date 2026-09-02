@@ -1,0 +1,47 @@
+syntax = "proto3";
+
+package api.manage.v1;
+
+import "api/policy/v1/access.proto";
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/echovisionlab/geul-event-contracts/gen/api/v1;apiv1";
+
+message EmailSuppression {
+  string id = 1;
+  string email = 2;
+  string reason = 3;
+  string source = 4;
+  optional string reference_id = 5;
+  optional string last_error = 6;
+  google.protobuf.Timestamp suppressed_at = 7;
+  optional google.protobuf.Timestamp released_at = 8;
+  optional string released_by = 9;
+  google.protobuf.Timestamp created_at = 10;
+  google.protobuf.Timestamp updated_at = 11;
+}
+
+message GetEmailSuppressionRequest {
+  string email = 1;
+}
+
+message GetEmailSuppressionResponse {
+  optional EmailSuppression suppression = 1;
+}
+
+message ReleaseEmailSuppressionRequest {
+  string email = 1;
+}
+
+message ReleaseEmailSuppressionResponse {
+  bool success = 1;
+}
+
+service EmailSuppressionService {
+  rpc GetEmailSuppression(GetEmailSuppressionRequest) returns (GetEmailSuppressionResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc ReleaseEmailSuppression(ReleaseEmailSuppressionRequest) returns (ReleaseEmailSuppressionResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+}

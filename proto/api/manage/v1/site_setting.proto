@@ -1,0 +1,179 @@
+syntax = "proto3";
+
+package api.manage.v1;
+
+// SiteSetting represents a single configuration value
+import "api/common/v1/media.proto";
+import "api/policy/v1/access.proto";
+import "google/protobuf/struct.proto";
+
+option go_package = "github.com/echovisionlab/geul-event-contracts/gen/api/v1;apiv1";
+
+message SiteSetting {
+  string key = 1;
+  // Value stored as JSON - can be string, number, boolean, object, or array
+  google.protobuf.Value value = 2;
+}
+
+message SiteLoaderAsset {
+  string file_id = 1;
+  api.common.v1.AssetRef asset = 2;
+}
+
+// PublicSettings contains settings safe to expose to clients
+message PublicSettings {
+  string site_title = 1;
+  string company_name = 2;
+  string company_address = 3;
+  string tax_id = 4;
+  string legal_email = 5;
+  string support_email = 6;
+  string privacy_email = 7;
+  // social_links as JSON object
+  google.protobuf.Struct social_links = 8;
+
+  string primary_color = 9;
+
+  // Reading
+  bool default_comments_enabled = 10;
+  optional string homepage_page_id = 11;
+
+  // Navigation Menus
+  optional string menu_header_id = 12;
+  optional string menu_secondary_id = 13;
+  optional string menu_footer_id = 14;
+  optional string menu_avatar_dropdown_id = 15;
+
+  // SEO
+  string meta_description = 16;
+  optional string google_analytics_id = 17;
+
+  repeated SiteLoaderAsset loader_assets = 18;
+  optional api.common.v1.AssetRef logo_light_asset = 19;
+  optional api.common.v1.AssetRef logo_dark_asset = 20;
+  optional api.common.v1.AssetRef logo_email_asset = 21;
+  // When favicon_asset_set is present, this MUST be that set's icon_png_32
+  // from the same active source. When absent, this may be a legacy original.
+  optional api.common.v1.AssetRef favicon_asset = 22;
+  optional api.common.v1.AssetRef site_og_background_asset = 23;
+  optional api.common.v1.AssetRef privacy_og_background_asset = 24;
+  optional api.common.v1.AssetRef terms_og_background_asset = 25;
+  optional api.common.v1.FaviconAssetSet favicon_asset_set = 26;
+  // Read projection only. MapThemeService.SetDefaultMapTheme owns mutation.
+  string default_map_theme_id = 27;
+}
+
+// RuntimeSettings is a read-only projection of deployment configuration.
+// These values are returned by GetSettings but are never accepted by the
+// generic setting mutation RPCs.
+message RuntimeSettings {
+  string site_origin = 1;
+}
+
+// AllSettings contains persisted admin settings that are not part of the
+// public projection. Runtime/cache/provider configuration is not site state.
+message AllSettings {
+  // All public fields
+  PublicSettings public = 1;
+
+  // OG authoring configuration. The generated site_og_asset is projected by
+  // the open manifest and is not a generic mutable key.
+  optional google.protobuf.Struct og_image_config = 2;
+
+  RuntimeSettings runtime = 3;
+}
+
+// GetSettingsRequest - requires admin auth
+message GetSettingsRequest {}
+
+// GetSettingsResponse
+message GetSettingsResponse {
+  AllSettings settings = 1;
+}
+
+// GetSettingRequest - get a single setting by key
+message GetSettingRequest {
+  string key = 1;
+}
+
+// GetSettingResponse
+message GetSettingResponse {
+  SiteSetting setting = 1;
+}
+
+// SetSettingRequest - set a single persisted setting. The API rejects retired
+// email/cache keys, site_origin, loader_file_id, and default_map_theme_id. Loader
+// membership is changed only with AddSiteLoaderAsset and RemoveSiteLoaderAsset;
+// the default map theme is changed only with MapThemeService.SetDefaultMapTheme.
+message SetSettingRequest {
+  // `og_image_config.home` and `og_image_config.content` atomically replace
+  // only that section while preserving the sibling section under a DB lock.
+  string key = 1;
+  google.protobuf.Value value = 2;
+}
+
+// SetSettingResponse
+message SetSettingResponse {
+  bool success = 1;
+  optional string og_generation_run_id = 2;
+}
+
+// SetManySettingsRequest - set multiple persisted settings at once. Each key
+// follows the same bounded mutation contract as SetSettingRequest.
+message SetManySettingsRequest {
+  repeated SiteSetting settings = 1;
+}
+
+// SetManySettingsResponse
+message SetManySettingsResponse {
+  bool success = 1;
+  optional string og_generation_run_id = 2;
+}
+
+message AddSiteLoaderAssetRequest {
+  string file_id = 1;
+}
+
+message AddSiteLoaderAssetResponse {
+  bool success = 1;
+}
+
+message RemoveSiteLoaderAssetRequest {
+  string file_id = 1;
+}
+
+message RemoveSiteLoaderAssetResponse {
+  bool success = 1;
+}
+
+// SiteSettingService provides site configuration management
+// All methods require admin authentication
+service SiteSettingService {
+  // Get all settings including sensitive ones
+  rpc GetSettings(GetSettingsRequest) returns (GetSettingsResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+
+  // Get a single setting by key
+  rpc GetSetting(GetSettingRequest) returns (GetSettingResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+
+  // Set a single setting
+  rpc SetSetting(SetSettingRequest) returns (SetSettingResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+
+  // Set multiple settings at once
+  rpc SetManySettings(SetManySettingsRequest) returns (SetManySettingsResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+
+  rpc AddSiteLoaderAsset(AddSiteLoaderAssetRequest) returns (AddSiteLoaderAssetResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+
+  rpc RemoveSiteLoaderAsset(RemoveSiteLoaderAssetRequest) returns (RemoveSiteLoaderAssetResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+}

@@ -1,0 +1,125 @@
+syntax = "proto3";
+
+package api.manage.v1;
+
+import "api/common/v1/common.proto";
+import "api/manage/v1/common.proto";
+// Menu item visibility settings
+import "api/policy/v1/access.proto";
+import "google/protobuf/timestamp.proto";
+
+// Menu visibility mode
+enum MenuVisibilityMode {
+  MENU_VISIBILITY_MODE_UNSPECIFIED = 0;
+  MENU_VISIBILITY_MODE_ALL = 1; // All users
+  MENU_VISIBILITY_MODE_AUTHENTICATED = 2; // Logged in only
+  MENU_VISIBILITY_MODE_GUEST = 3; // Not logged in only
+  MENU_VISIBILITY_MODE_ROLES = 4; // Specific roles
+}
+
+// Menu item link type
+enum MenuLinkType {
+  MENU_LINK_TYPE_UNSPECIFIED = 0;
+  MENU_LINK_TYPE_CUSTOM = 1; // Custom URL
+  MENU_LINK_TYPE_PAGE = 2; // Internal page
+  MENU_LINK_TYPE_CATEGORY = 3; // Category archive
+  MENU_LINK_TYPE_TAG = 4; // Tag archive
+  MENU_LINK_TYPE_SERIES = 5; // Series
+}
+
+enum MenuItemLocalizationMode {
+  MENU_ITEM_LOCALIZATION_MODE_UNSPECIFIED = 0;
+  MENU_ITEM_LOCALIZATION_MODE_TRANSLATED = 1; // Follow requested locale translation/fallback
+  MENU_ITEM_LOCALIZATION_MODE_FIXED_LOCALE = 2; // Always use one locale label
+}
+
+message MenuVisibility {
+  MenuVisibilityMode mode = 1;
+  repeated string roles = 2; // Only used when mode is ROLES
+}
+
+// Menu item (stored as JSON in Menu.items)
+// This matches the Next.js MenuItem type
+message MenuItem {
+  string id = 1;
+  string label = 2;
+  MenuLinkType link_type = 3;
+  optional string url = 4; // For custom links
+  optional string target_id = 5; // For page/category/tag/series
+  optional string target_slug = 6; // Resolved slug
+  optional bool open_in_new_tab = 7;
+  optional MenuVisibility visibility = 8;
+  repeated MenuItem children = 9;
+  MenuItemLocalizationMode localization_mode = 10;
+  optional string fixed_locale = 11;
+}
+
+// Menu entity
+// Maps to: postgres/init/schema.template - menu table
+message Menu {
+  string id = 1;
+  string name = 2; // e.g., "header", "footer", "sidebar"
+  repeated MenuItem items = 3; // Stored as JSONB
+  google.protobuf.Timestamp created_at = 4;
+  google.protobuf.Timestamp updated_at = 5;
+  string source_locale = 6;
+}
+
+// Request/Response messages
+
+message GetMenuByIdRequest {
+  string id = 1; // Menu ID (UUID)
+}
+
+message ListMenusRequest {
+  api.common.v1.PaginationRequest pagination = 1;
+}
+
+message ListMenusResponse {
+  repeated Menu menus = 1;
+  api.common.v1.PaginationResponse pagination = 2;
+}
+
+message CreateMenuRequest {
+  string name = 1;
+  repeated MenuItem items = 2;
+  // Required initial source locale for the new Menu.
+  string source_locale = 3;
+}
+
+// Wrapper for menu items update (enables distinguishing between "not provided" and "clear all")
+message MenuItemsUpdate {
+  repeated MenuItem items = 1;
+}
+
+message UpdateMenuRequest {
+  string id = 1;
+  optional string name = 2;
+  optional MenuItemsUpdate items = 3; // Full replacement of items (use wrapper to distinguish nil vs empty)
+}
+
+message DeleteMenuRequest {
+  string id = 1;
+}
+
+// Menu Service
+service MenuService {
+  // Public
+  rpc GetMenuById(GetMenuByIdRequest) returns (Menu) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+
+  // Admin
+  rpc ListMenus(ListMenusRequest) returns (ListMenusResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc CreateMenu(CreateMenuRequest) returns (Menu) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc UpdateMenu(UpdateMenuRequest) returns (Menu) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc DeleteMenu(DeleteMenuRequest) returns (DeleteResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+}

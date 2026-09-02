@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package api.intra.v1;
+
+import "api/policy/v1/access.proto";
+
+option go_package = "github.com/echovisionlab/geul-event-contracts/gen/api/intra/v1;intrav1";
+
+// AuthorizeGatewayAccessRequest is the private Oathkeeper remote_json /
+// Connect JSON request. account_identity_id is the UUID of the Kratos
+// identity and the canonical SpiceDB subject; session_id is the UUID of the
+// Oathkeeper-verified Kratos session. Both are checked together by the API.
+message AuthorizeGatewayAccessRequest {
+  string account_identity_id = 1;
+  string session_id = 2;
+  api.policy.v1.AuthorizationRole role = 3;
+}
+
+// An empty response means that the requested coarse role is authorized.
+// Invalid authentication is unauthenticated and a failed role check is
+// permission denied at the Connect boundary; neither is encoded as a second
+// success state in this message.
+message AuthorizeGatewayAccessResponse {}
+
+// InternalGatewayAuthorizationService is the private coarse authorization
+// boundary used by Oathkeeper. It is not a public API and accepts no generic
+// authorization tuple fields.
+service InternalGatewayAuthorizationService {
+  rpc AuthorizeGatewayAccess(AuthorizeGatewayAccessRequest) returns (AuthorizeGatewayAccessResponse);
+}

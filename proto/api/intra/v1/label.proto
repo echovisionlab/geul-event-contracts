@@ -1,0 +1,130 @@
+syntax = "proto3";
+
+package api.intra.v1;
+
+import "api/content/v1/block_content.proto";
+import "api/intra/v1/collaboration.proto";
+import "api/manage/v1/ai.proto";
+
+option go_package = "github.com/echovisionlab/geul-event-contracts/gen/api/intra/v1;intrav1";
+
+// InternalLabelService is the authoritative typed Block boundary for Label
+// collaboration. Yjs remains collaboration runtime state and never crosses
+// this durable API.
+service InternalLabelService {
+  rpc LoadLabelBlockDocument(LoadLabelBlockDocumentRequest) returns (LoadLabelBlockDocumentResponse);
+  rpc ApplyLabelBlockBatch(ApplyLabelBlockBatchRequest) returns (ApplyLabelBlockBatchResponse);
+  rpc UpdateLabelLocaleMetadata(UpdateLabelLocaleMetadataRequest) returns (UpdateLabelLocaleMetadataResponse);
+  rpc UpdateLabelDocumentMetadata(UpdateLabelDocumentMetadataRequest) returns (UpdateLabelDocumentMetadataResponse);
+}
+
+message LabelDocumentMetadata {
+  optional string slug = 1;
+  optional string country_code = 2;
+  optional string website = 3;
+  map<string, string> social_links = 4;
+  optional string parent_label_id = 5;
+}
+
+message LabelSocialLinksValue {
+  map<string, string> values = 1;
+}
+
+message LabelDocumentMetadataUpdate {
+  NullableStringMutation slug = 1;
+  NullableStringMutation country_code = 2;
+  NullableStringMutation website = 3;
+  LabelSocialLinksValue social_links = 4;
+  NullableStringMutation parent_label_id = 5;
+}
+
+message LabelLocaleMetadata {
+  string locale = 1;
+  optional string title = 2;
+}
+
+message LoadLabelBlockDocumentRequest {
+  string label_id = 1;
+  CollaborationPrincipal principal = 2;
+  string locale = 3;
+}
+
+message LoadLabelBlockDocumentResponse {
+  api.content.v1.LocalizedRichTextDocument document = 1;
+  // Persisted content_document.revision for the shared/source graph only.
+  // Target-only writes must not advance it.
+  string document_revision = 2;
+  optional LabelDocumentMetadata metadata = 3;
+  LabelLocaleMetadata source_metadata = 4;
+  string locale = 5;
+  bool locale_exists = 6;
+  optional LabelLocaleMetadata locale_metadata = 7;
+  optional string target_revision = 8;
+  // Exact persisted locale-owned leaf-terminal presence for the requested room
+  // locale; never inferred from materialized/source-fallback values. Source and
+  // target rooms report actual presence; a missing target reports an empty list.
+  // Order is meaningless; producers emit canonical-sorted, duplicate-free
+  // targets. relation_item, shared/topology/File, identity-terminal (row_id,
+  // cell_id, Page unit_id), and composite object/list targets are forbidden.
+  repeated api.manage.v1.AIDocumentFieldTarget present_locale_values = 9;
+}
+
+message ApplyLabelBlockBatchRequest {
+  string label_id = 1;
+  api.content.v1.RichTextBlockMutationBatch batch = 2;
+  string locale = 3;
+  // Required for every existing non-source save; absent for source. Missing
+  // targets are rejected until explicit create commits and the room reconnects.
+  optional string expected_target_revision = 4;
+  // Actual changed locale-owned leaf terminals in this batch, including
+  // explicit-empty writes and presence removal. Callers emit canonical-sorted,
+  // duplicate-free targets. relation_item, shared/topology/File,
+  // identity-terminal (row_id, cell_id, Page unit_id), and composite object/list
+  // targets are forbidden. Source/shared-only batches send an empty list.
+  repeated api.manage.v1.AIDocumentFieldTarget affected_locale_values = 5;
+}
+
+message ApplyLabelBlockBatchResponse {
+  string document_revision = 1;
+  bool changed = 2;
+  bool source_changed = 3;
+  repeated string changed_locales = 4;
+  string locale = 5;
+  optional string target_revision = 6;
+}
+
+message UpdateLabelLocaleMetadataRequest {
+  string label_id = 1;
+  optional string title = 2;
+  string expected_revision = 3;
+  repeated string contributor_member_ids = 4;
+  // Exact canonical room locale. Existing non-source rooms may change only
+  // these values; a missing target is not created by this RPC.
+  string locale = 5;
+  // Required for every existing non-source save; absent for source.
+  optional string expected_target_revision = 6;
+}
+
+message UpdateLabelLocaleMetadataResponse {
+  string document_revision = 1;
+  bool changed = 2;
+  bool source_changed = 3;
+  repeated string changed_locales = 4;
+  string locale = 5;
+  optional string target_revision = 6;
+}
+
+message UpdateLabelDocumentMetadataRequest {
+  string label_id = 1;
+  LabelDocumentMetadataUpdate update = 2;
+  string expected_revision = 3;
+  repeated string contributor_member_ids = 4;
+  string locale = 5;
+}
+
+message UpdateLabelDocumentMetadataResponse {
+  string document_revision = 1;
+  bool changed = 2;
+  bool source_changed = 3;
+  string locale = 4;
+}

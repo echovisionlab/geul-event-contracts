@@ -1,0 +1,93 @@
+syntax = "proto3";
+
+package api.manage.v1;
+
+// ShareLink represents a shareable link for any entity
+import "api/policy/v1/access.proto";
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/echovisionlab/geul-event-contracts/gen/api/v1;apiv1";
+
+// Entity types for share links
+enum ShareLinkEntityType {
+  SHARE_LINK_ENTITY_TYPE_UNSPECIFIED = 0;
+  SHARE_LINK_ENTITY_TYPE_POST = 1;
+  SHARE_LINK_ENTITY_TYPE_PAGE = 2;
+  SHARE_LINK_ENTITY_TYPE_WORK = 3;
+  SHARE_LINK_ENTITY_TYPE_RELEASE = 4;
+  SHARE_LINK_ENTITY_TYPE_FORM = 5;
+  SHARE_LINK_ENTITY_TYPE_FORM_DASHBOARD = 6;
+  SHARE_LINK_ENTITY_TYPE_PRIVACY = 7;
+  SHARE_LINK_ENTITY_TYPE_TERMS = 8;
+  SHARE_LINK_ENTITY_TYPE_LABEL = 9;
+  SHARE_LINK_ENTITY_TYPE_ARTIST = 10;
+}
+
+message ShareLinkItem {
+  string id = 1;
+  ShareLinkEntityType entity_type = 2;
+  string entity_id = 3;
+  string token = 4;
+  optional string label = 5;
+  string url = 6;
+  // Always present. Omitted creation input receives the 7-day default.
+  google.protobuf.Timestamp expires_at = 7;
+  google.protobuf.Timestamp created_at = 8;
+  bool has_password = 9;
+}
+
+// ListShareLinksRequest - list share links for an entity
+message ListShareLinksRequest {
+  ShareLinkEntityType entity_type = 1;
+  string entity_id = 2;
+}
+
+// ListShareLinksResponse
+message ListShareLinksResponse {
+  repeated ShareLinkItem share_links = 1;
+}
+
+// CreateShareLinkRequest - create a share link for an entity
+message CreateShareLinkRequest {
+  ShareLinkEntityType entity_type = 1;
+  string entity_id = 2;
+  optional string label = 3;
+  // Defaults to 7 days. The API rejects expirations after 1 year and never
+  // creates an unbounded link.
+  optional google.protobuf.Timestamp expires_at = 4;
+  // Optional plaintext creation input. Only its password proof is persisted.
+  optional string password = 5;
+}
+
+// CreateShareLinkResponse
+message CreateShareLinkResponse {
+  ShareLinkItem share_link = 1;
+}
+
+// DeleteShareLinkRequest - delete a share link by ID
+message DeleteShareLinkRequest {
+  string id = 1;
+}
+
+// DeleteShareLinkResponse
+message DeleteShareLinkResponse {
+  bool success = 1;
+}
+
+// ShareLinkService provides operations for managing share links
+service ShareLinkService {
+  // List all share links for an entity
+  rpc ListShareLinks(ListShareLinksRequest) returns (ListShareLinksResponse) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+
+  // Create a new share link
+  rpc CreateShareLink(CreateShareLinkRequest) returns (CreateShareLinkResponse) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+
+  // Delete a share link
+  rpc DeleteShareLink(DeleteShareLinkRequest) returns (DeleteShareLinkResponse) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+}

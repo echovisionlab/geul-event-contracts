@@ -1,0 +1,196 @@
+syntax = "proto3";
+
+package api.open.v1;
+
+import "api/common/v1/common.proto";
+import "api/common/v1/media.proto";
+import "api/content/v1/block_content.proto";
+import "api/open/v1/map_place.proto";
+import "api/open/v1/translation.proto";
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/echovisionlab/geul-event-contracts/gen/api/open/v1;openv1";
+
+// PostService provides public post access
+service PostService {
+  // Get retrieves a post by slug or ID
+  // - Server tries slug first, then ID (same as Page pattern)
+  // - share_token allows access to draft posts
+  rpc Get(GetPostRequest) returns (GetPostResponse);
+
+  // List returns published and archived Posts for public list/table blocks.
+  // - Filters by category, tag, author, series
+  rpc List(ListPostsRequest) returns (ListPostsResponse);
+
+  // ListMapFeatures returns published and archived viewport-scoped Post map features.
+  // - Filters by category, tag, author, series
+  // - Clusters/items are computed server-side from place-grouped posts
+  rpc ListMapFeatures(ListPostMapFeaturesRequest) returns (ListPostMapFeaturesResponse);
+
+  // Search for posts by query (for PostSpotlight search component)
+  rpc Search(SearchPostsRequest) returns (SearchPostsResponse);
+}
+
+// === Get ===
+
+message GetPostRequest {
+  string slug = 1; // slug or ID (server handles both)
+  optional string share_token = 2;
+  optional string share_password = 3;
+}
+
+message GetPostResponse {
+  optional Post post = 1;
+  // Exact Block selector + attachment state + authorized delivery. Consumers
+  // must not collapse distinct references to the same File into a File-ID map.
+  repeated api.content.v1.ContentBlockMediaItem block_media = 2;
+}
+
+// Post for Get includes the authoritative typed Block document.
+// share_token can access drafts, so published_at is optional
+message Post {
+  string id = 1;
+  string title = 2;
+  optional string slug = 3;
+  optional string summary = 4;
+  PostStatus status = 5;
+  bool comments_enabled = 6;
+  google.protobuf.Timestamp created_at = 7;
+  google.protobuf.Timestamp updated_at = 8;
+  optional google.protobuf.Timestamp published_at = 9;
+
+  // Relations
+  repeated api.common.v1.MemberSummary author_members = 10;
+  repeated PostCategory categories = 11;
+  repeated PostTag tags = 12;
+  optional PostSeries series = 13;
+  optional int32 series_order = 14;
+
+  api.content.v1.LocalizedRichTextDocument document = 15;
+  optional api.common.v1.AssetRef og_asset = 16;
+  optional string map_place_id = 17;
+  optional MapPlaceBasic location_place = 18;
+  optional LocalizationInfo localization_info = 19;
+  api.common.v1.DocumentLayout document_layout = 20;
+  optional google.protobuf.Timestamp scheduled_at = 21;
+  optional string scheduled_time_zone = 22;
+  optional api.common.v1.MediaDelivery featured_image_delivery = 23;
+  string revision = 24;
+}
+
+// === List ===
+
+message ListPostsRequest {
+  api.common.v1.PaginationRequest pagination = 1;
+  repeated api.common.v1.FilterSpec filters = 2; // category_id, tag_id, author_id, series_id, map_place_id, published_at
+  repeated api.common.v1.SortSpec sorts = 3; // title, published_at, series_order
+}
+
+message ListPostsResponse {
+  repeated PostSummary posts = 1;
+  api.common.v1.PaginationResponse pagination = 2;
+}
+
+message MapBounds {
+  double west = 1;
+  double south = 2;
+  double east = 3;
+  double north = 4;
+}
+
+message PostMapViewport {
+  MapBounds bounds = 1;
+  double zoom = 2;
+  int32 width_px = 3;
+  int32 height_px = 4;
+  int32 cluster_radius_px = 5;
+  int32 min_cluster_points = 6;
+}
+
+message ListPostMapFeaturesRequest {
+  PostMapViewport viewport = 1;
+  repeated api.common.v1.FilterSpec filters = 2; // category_id, tag_id, author_id, series_id, map_place_id
+  repeated api.common.v1.SortSpec sorts = 3; // title, published_at
+}
+
+message PostMapCluster {
+  string id = 1;
+  double lat = 2;
+  double lng = 3;
+  int32 place_count = 4;
+  int32 post_count = 5;
+  MapBounds bounds = 6;
+  optional double min_breakout_zoom = 7;
+}
+
+message PostMapItem {
+  string place_id = 1;
+  string name = 2;
+  string address = 3;
+  double lat = 4;
+  double lng = 5;
+  int32 post_count = 6;
+  string primary_post_id = 7;
+  optional string primary_post_slug = 8;
+  string primary_post_title = 9;
+}
+
+message ListPostMapFeaturesResponse {
+  repeated PostMapCluster clusters = 1;
+  repeated PostMapItem items = 2;
+}
+
+// PostSummary for List - metadata only, no content
+// Public lists only return items that have been published, so published_at is NOT optional
+message PostSummary {
+  string id = 1;
+  string title = 2;
+  optional string slug = 3;
+  optional string summary = 4;
+  google.protobuf.Timestamp published_at = 5; // Both public states were published.
+  repeated api.common.v1.MemberSummary author_members = 6;
+  repeated PostCategory categories = 7;
+  repeated PostTag tags = 8;
+  optional string map_place_id = 9;
+  optional api.common.v1.MediaDelivery featured_image_delivery = 10;
+  optional int32 series_order = 11;
+}
+
+// === Search ===
+
+message SearchPostsRequest {
+  string query = 1; // min 2 chars
+  int32 limit = 2; // default 10
+}
+
+message SearchPostsResponse {
+  repeated PostSummary posts = 1;
+}
+
+// === Enums and Embedded Messages ===
+
+enum PostStatus {
+  POST_STATUS_UNSPECIFIED = 0;
+  POST_STATUS_DRAFT = 1;
+  POST_STATUS_PUBLISHED = 2;
+  POST_STATUS_ARCHIVED = 3;
+  POST_STATUS_SCHEDULED = 4;
+}
+
+message PostCategory {
+  string id = 1;
+  string name = 2;
+  optional string slug = 3;
+}
+
+message PostTag {
+  string id = 1;
+  string name = 2;
+  optional string slug = 3;
+}
+
+message PostSeries {
+  string id = 1;
+  string title = 2;
+  optional string slug = 3;
+}

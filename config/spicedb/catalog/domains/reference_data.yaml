@@ -1,0 +1,135 @@
+# Reference Data owns Map Place, Category, Tag, Genre, Style, Format, and Client.
+# Map Place intentionally grants Author access while the other catalogs remain
+# Admin policy resources.
+domain: reference_data
+description: Shared reference-data resource policy
+actions:
+  map_place:
+    view: view
+    edit: edit
+    delete: delete
+    manage: manage
+  category:
+    view: view
+    edit: edit
+    delete: delete
+    manage: manage
+  tag:
+    view: view
+    edit: edit
+    delete: delete
+    manage: manage
+  genre:
+    view: view
+    edit: edit
+    delete: delete
+    manage: manage
+  style:
+    view: view
+    edit: edit
+    delete: delete
+    manage: manage
+  format:
+    view: view
+    edit: edit
+    delete: delete
+    manage: manage
+  client:
+    view: view
+    edit: edit
+    delete: delete
+    manage: manage
+platform_actions:
+  map_place:
+    create: is_author
+  category:
+    create: is_admin
+    list: is_admin
+  tag:
+    create: is_admin
+    list: is_admin
+  genre:
+    create: is_admin
+    list: is_admin
+  style:
+    create: is_admin
+    list: is_admin
+  format:
+    create: is_admin
+    list: is_admin
+  client:
+    create: is_admin
+    list: is_admin
+definitions:
+  map_place:
+    relations:
+      policy: [platform]
+    permissions: [platform_admin, platform_author, view, edit, delete, manage]
+  category:
+    relations:
+      policy: [platform]
+    permissions: [platform_admin, view, edit, delete, manage]
+  tag:
+    relations:
+      policy: [platform]
+    permissions: [platform_admin, view, edit, delete, manage]
+  genre:
+    relations:
+      policy: [platform]
+    permissions: [platform_admin, view, edit, delete, manage]
+  style:
+    relations:
+      policy: [platform]
+    permissions: [platform_admin, view, edit, delete, manage]
+  format:
+    relations:
+      policy: [platform]
+    permissions: [platform_admin, view, edit, delete, manage]
+  client:
+    relations:
+      policy: [platform]
+    permissions: [platform_admin, view, edit, delete, manage]
+permission_expressions:
+  map_place:
+    platform_admin: policy->is_admin
+    platform_author: policy->is_author
+    view: platform_admin + platform_author
+    edit: platform_admin + platform_author
+    delete: platform_admin
+    manage: platform_admin + platform_author
+  category:
+    platform_admin: policy->is_admin
+    view: platform_admin
+    edit: platform_admin
+    delete: platform_admin
+    manage: platform_admin
+  tag:
+    platform_admin: policy->is_admin
+    view: platform_admin
+    edit: platform_admin
+    delete: platform_admin
+    manage: platform_admin
+  genre:
+    platform_admin: policy->is_admin
+    view: platform_admin
+    edit: platform_admin
+    delete: platform_admin
+    manage: platform_admin
+  style:
+    platform_admin: policy->is_admin
+    view: platform_admin
+    edit: platform_admin
+    delete: platform_admin
+    manage: platform_admin
+  format:
+    platform_admin: policy->is_admin
+    view: platform_admin
+    edit: platform_admin
+    delete: platform_admin
+    manage: platform_admin
+  client:
+    platform_admin: policy->is_admin
+    view: platform_admin
+    edit: platform_admin
+    delete: platform_admin
+    manage: platform_admin

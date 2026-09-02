@@ -1,0 +1,26 @@
+# Translation owns global runtime settings and provider policy keys. The DB
+# rows remain configuration authority; no per-row SpiceDB relationship exists.
+domain: translation
+description: Translation runtime settings and provider policy
+actions:
+  translation_settings: {}
+  translation_provider: {}
+platform_actions:
+  translation_settings:
+    view: is_admin
+    update: is_admin
+  translation_provider:
+    list: is_admin
+    create: is_admin
+    update: is_admin
+    delete: is_admin
+definitions:
+  translation_settings:
+    relations: {}
+    permissions: []
+  translation_provider:
+    relations: {}
+    permissions: []
+permission_expressions:
+  translation_settings: {}
+  translation_provider: {}

@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+package api.open.v1;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/echovisionlab/geul-event-contracts/gen/api/open/v1;openv1";
+
+service SitemapService {
+  rpc GetDocument(GetSitemapDocumentRequest) returns (GetSitemapDocumentResponse);
+}
+
+enum SitemapDocumentKind {
+  SITEMAP_DOCUMENT_KIND_UNSPECIFIED = 0;
+  SITEMAP_DOCUMENT_KIND_INDEX = 1;
+  SITEMAP_DOCUMENT_KIND_PAGE = 2;
+  SITEMAP_DOCUMENT_KIND_POST = 3;
+  SITEMAP_DOCUMENT_KIND_WORK = 4;
+  SITEMAP_DOCUMENT_KIND_ARTIST = 5;
+  SITEMAP_DOCUMENT_KIND_LABEL = 6;
+  SITEMAP_DOCUMENT_KIND_RELEASE = 7;
+  SITEMAP_DOCUMENT_KIND_TAXONOMY = 8;
+}
+
+enum SitemapDocumentStatus {
+  SITEMAP_DOCUMENT_STATUS_UNSPECIFIED = 0;
+  SITEMAP_DOCUMENT_STATUS_FRESH = 1;
+  SITEMAP_DOCUMENT_STATUS_STALE = 2;
+  SITEMAP_DOCUMENT_STATUS_UNAVAILABLE = 3;
+}
+
+message GetSitemapDocumentRequest {
+  SitemapDocumentKind kind = 1;
+}
+
+message GetSitemapDocumentResponse {
+  SitemapDocumentStatus status = 1;
+  string content = 2;
+  string content_type = 3;
+  optional int32 retry_after_seconds = 4;
+  optional google.protobuf.Timestamp generated_at = 5;
+}

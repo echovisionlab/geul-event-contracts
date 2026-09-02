@@ -1,0 +1,78 @@
+# Legal Policy owns Terms and Privacy history lifecycle, archived editing, and
+# share-link authorization.
+domain: legal_policy
+description: Terms and Privacy history policy
+actions:
+  terms_history:
+    view: view
+    edit: edit
+    view_archived: view_archived
+    edit_archived: edit_archived
+    delete: delete
+    publish: publish
+    manage: manage
+    manage_share_links: manage_share_links
+  privacy_history:
+    view: view
+    edit: edit
+    view_archived: view_archived
+    edit_archived: edit_archived
+    delete: delete
+    publish: publish
+    manage: manage
+    manage_share_links: manage_share_links
+platform_actions:
+  terms_history:
+    create: is_admin
+    list: is_admin
+  privacy_history:
+    create: is_admin
+    list: is_admin
+definitions:
+  terms_history:
+    relations:
+      policy: [platform]
+    permissions:
+      - platform_admin
+      - view
+      - edit
+      - view_archived
+      - edit_archived
+      - delete
+      - publish
+      - manage
+      - manage_share_links
+  privacy_history:
+    relations:
+      policy: [platform]
+    permissions:
+      - platform_admin
+      - view
+      - edit
+      - view_archived
+      - edit_archived
+      - delete
+      - publish
+      - manage
+      - manage_share_links
+permission_expressions:
+  terms_history:
+    platform_admin: policy->is_admin
+    view: platform_admin
+    edit: platform_admin
+    view_archived: policy->is_author
+    edit_archived: platform_admin
+    delete: platform_admin
+    publish: platform_admin
+    manage: platform_admin
+    manage_share_links: manage
+  privacy_history:
+    platform_admin: policy->is_admin
+    view: platform_admin
+    edit: platform_admin
+    view_archived: policy->is_author
+    edit_archived: platform_admin
+    delete: platform_admin
+    publish: platform_admin
+    manage: platform_admin
+    manage_share_links: manage

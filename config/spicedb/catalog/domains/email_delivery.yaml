@@ -1,0 +1,27 @@
+# Email Delivery owns global Mail Adapter and suppression policy keys. Adapter
+# rows and normalized suppression rows remain DB state, not SpiceDB resources.
+domain: email_delivery
+description: Mail Adapter and email suppression management policy
+actions:
+  mail_adapter: {}
+  email_suppression: {}
+platform_actions:
+  mail_adapter:
+    list: is_admin
+    create: is_admin
+    update: is_admin
+    delete: is_admin
+    # Persisted and unsaved adapter checks share one no-state-change action.
+    test: is_admin
+  email_suppression:
+    release: is_admin
+definitions:
+  mail_adapter:
+    relations: {}
+    permissions: []
+  email_suppression:
+    relations: {}
+    permissions: []
+permission_expressions:
+  mail_adapter: {}
+  email_suppression: {}

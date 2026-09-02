@@ -1,0 +1,136 @@
+syntax = "proto3";
+
+package api.manage.v1;
+
+// Comment represents a comment on a post
+import "api/common/v1/common.proto";
+import "api/policy/v1/access.proto";
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/echovisionlab/geul-event-contracts/gen/api/v1;apiv1";
+
+// CommentWithAuthor includes author information
+message CommentWithAuthor {
+  string id = 1;
+  string post_id = 2;
+  optional string parent_id = 3;
+  string content = 4;
+  bool is_deleted = 5;
+  google.protobuf.Timestamp created_at = 6;
+  google.protobuf.Timestamp updated_at = 7;
+  optional string member_id = 8;
+  optional api.common.v1.MemberSummary author = 9;
+}
+
+// CommentNode is a comment with nested replies (tree structure)
+message CommentNode {
+  string id = 1;
+  string post_id = 2;
+  optional string parent_id = 3;
+  string content = 4;
+  bool is_deleted = 5;
+  google.protobuf.Timestamp created_at = 6;
+  google.protobuf.Timestamp updated_at = 7;
+  repeated CommentNode replies = 8;
+  // Pagination for replies (Reddit-style "load more")
+  bool has_more_replies = 9;
+  int32 total_reply_count = 10;
+  optional string member_id = 11;
+  optional api.common.v1.MemberSummary author = 12;
+}
+
+// ListCommentsByPostRequest
+message ListCommentsByPostRequest {
+  string post_id = 1;
+  // Pagination for top-level comments (Reddit-style "load more")
+  int32 limit = 2; // Number of top-level comments to fetch (default: 20)
+  optional string cursor = 3; // Cursor for next page (comment ID)
+  // Pagination for replies within each comment
+  int32 reply_limit = 4; // Number of replies per comment (default: 3)
+}
+
+// ListCommentsByPostResponse returns a tree of comments
+message ListCommentsByPostResponse {
+  repeated CommentNode comments = 1;
+  // Pagination info
+  optional string next_cursor = 2; // Cursor for loading more top-level comments
+  bool has_more = 3; // Whether there are more top-level comments
+  int32 total_count = 4; // Total number of top-level comments
+}
+
+// LoadMoreRepliesRequest - Load more replies for a specific comment
+message LoadMoreRepliesRequest {
+  string comment_id = 1;
+  int32 limit = 2; // Number of replies to fetch (default: 10)
+  optional string cursor = 3; // Cursor for next page (reply ID)
+}
+
+// LoadMoreRepliesResponse
+message LoadMoreRepliesResponse {
+  repeated CommentNode replies = 1;
+  optional string next_cursor = 2;
+  bool has_more = 3;
+  int32 total_count = 4;
+}
+
+// CreateCommentRequest
+message CreateCommentRequest {
+  string post_id = 1;
+  optional string parent_id = 2;
+  string content = 3;
+}
+
+// CreateCommentResponse
+message CreateCommentResponse {
+  CommentWithAuthor comment = 1;
+}
+
+// UpdateCommentRequest
+message UpdateCommentRequest {
+  string id = 1;
+  string content = 2;
+}
+
+// UpdateCommentResponse
+message UpdateCommentResponse {
+  CommentWithAuthor comment = 1;
+}
+
+// DeleteCommentRequest - performs soft delete
+message DeleteCommentRequest {
+  string id = 1;
+}
+
+// DeleteCommentResponse
+message DeleteCommentResponse {
+  bool success = 1;
+}
+
+// CommentService provides comment management for posts
+service CommentService {
+  // ListCommentsByPost returns comments for a post with pagination (Public)
+  // Supports Reddit-style "load more" for both top-level comments and replies
+  rpc ListCommentsByPost(ListCommentsByPostRequest) returns (ListCommentsByPostResponse) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+
+  // LoadMoreReplies returns more replies for a specific comment (Public)
+  rpc LoadMoreReplies(LoadMoreRepliesRequest) returns (LoadMoreRepliesResponse) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+
+  // CreateComment creates a new comment (Authenticated)
+  rpc CreateComment(CreateCommentRequest) returns (CreateCommentResponse) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+
+  // UpdateComment updates a comment's content (Author or Admin)
+  rpc UpdateComment(UpdateCommentRequest) returns (UpdateCommentResponse) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+
+  // DeleteComment soft-deletes a comment (Author or Admin)
+  rpc DeleteComment(DeleteCommentRequest) returns (DeleteCommentResponse) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+}

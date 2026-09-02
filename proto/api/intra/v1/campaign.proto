@@ -1,0 +1,99 @@
+syntax = "proto3";
+
+package api.intra.v1;
+
+import "api/content/v1/block_content.proto";
+import "api/intra/v1/collaboration.proto";
+import "api/manage/v1/ai.proto";
+
+option go_package = "github.com/echovisionlab/geul-event-contracts/gen/api/intra/v1;intrav1";
+
+// InternalCampaignService is the typed Block persistence boundary for the
+// single document owned by a Campaign root.
+service InternalCampaignService {
+  rpc ApplyBlockBatch(ApplyCampaignBlockBatchRequest) returns (ApplyCampaignBlockBatchResponse);
+  rpc UpdateCampaignLocaleMetadata(UpdateCampaignLocaleMetadataRequest) returns (UpdateCampaignLocaleMetadataResponse);
+  rpc LoadDocument(LoadCampaignDocumentRequest) returns (LoadCampaignDocumentResponse);
+}
+
+message ApplyCampaignBlockBatchRequest {
+  string campaign_id = 1;
+  api.content.v1.RichTextBlockMutationBatch batch = 2;
+  string locale = 3;
+  // Required for a target locale and omitted for the source locale. Manual
+  // collaboration only writes an existing target created by the AIDocument
+  // lifecycle boundary.
+  optional string expected_target_revision = 4;
+  // Actual changed locale-owned leaf terminals in this batch, including
+  // explicit-empty writes and presence removal. Callers emit canonical-sorted,
+  // duplicate-free targets. relation_item, shared/topology/File,
+  // identity-terminal (row_id, cell_id, Page unit_id), and composite object/list
+  // targets are forbidden. Source/shared-only batches send an empty list.
+  repeated api.manage.v1.AIDocumentFieldTarget affected_locale_values = 5;
+}
+
+message ApplyCampaignBlockBatchResponse {
+  string document_revision = 1;
+  bool changed = 2;
+  bool source_changed = 3;
+  repeated string changed_locales = 4;
+  string locale = 5;
+  optional string target_revision = 6;
+}
+
+message UpdateCampaignLocaleMetadataRequest {
+  string campaign_id = 1;
+  string expected_revision = 2;
+  optional string subject = 3;
+  repeated string contributor_member_ids = 4;
+  // Required canonical room locale. A target locale must already exist.
+  string locale = 5;
+  // Required for a target locale and omitted for the source locale.
+  optional string expected_target_revision = 6;
+}
+
+message UpdateCampaignLocaleMetadataResponse {
+  string document_revision = 1;
+  bool changed = 2;
+  bool source_changed = 3;
+  repeated string changed_locales = 4;
+  string locale = 5;
+  optional string target_revision = 6;
+}
+
+message LoadCampaignDocumentRequest {
+  string campaign_id = 1;
+  CollaborationPrincipal principal = 2;
+  string locale = 3;
+}
+
+message CampaignLocaleMetadata {
+  // Canonical locale represented by this metadata projection.
+  string locale = 1;
+  optional string subject = 2;
+}
+
+message LoadCampaignDocumentResponse {
+  // Exact requested room projection. It contains the shared graph and one
+  // complete locale overlay; it is never a target-only RichTextDocument.
+  api.content.v1.LocalizedRichTextDocument document = 1;
+  // Persisted content_document.revision. It advances only for source/shared
+  // graph changes; target-only writes must not advance it.
+  string document_revision = 2;
+  // True source projection used for authority and fallback.
+  CampaignLocaleMetadata source_metadata = 3;
+  string locale = 4;
+  bool locale_exists = 5;
+  // Present only when the exact requested locale exists.
+  optional CampaignLocaleMetadata locale_metadata = 6;
+  // Present only for an existing non-source locale. Source/shared changes
+  // invalidate every target token; target-only writes advance only this locale.
+  optional string target_revision = 7;
+  // Exact persisted locale-owned leaf-terminal presence for the requested room
+  // locale; never inferred from materialized/source-fallback values. Source and
+  // target rooms report actual presence; a missing target reports an empty list.
+  // Order is meaningless; producers emit canonical-sorted, duplicate-free
+  // targets. relation_item, shared/topology/File, identity-terminal (row_id,
+  // cell_id, Page unit_id), and composite object/list targets are forbidden.
+  repeated api.manage.v1.AIDocumentFieldTarget present_locale_values = 8;
+}

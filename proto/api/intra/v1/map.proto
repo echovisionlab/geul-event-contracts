@@ -1,0 +1,86 @@
+syntax = "proto3";
+
+package api.intra.v1;
+
+option go_package = "github.com/echovisionlab/geul-event-contracts/gen/api/intra/v1;intrav1";
+
+// InternalMapService provides the typed Map Theme snapshot boundary.
+// The Collab server materializes this DB snapshot into transient Yjs state.
+// This service is NOT exposed via the public gateway.
+service InternalMapService {
+  // SaveMapThemeSnapshot atomically saves the typed Map Theme snapshot.
+  rpc SaveMapThemeSnapshot(SaveMapThemeSnapshotRequest) returns (SaveMapThemeSnapshotResponse);
+
+  // LoadMapThemeSnapshot loads the typed Map Theme snapshot for collaboration.
+  rpc LoadMapThemeSnapshot(LoadMapThemeSnapshotRequest) returns (LoadMapThemeSnapshotResponse);
+}
+
+message MapThemeDocumentSettings {
+  double callout_scale = 1;
+  int32 callout_offset_x = 2;
+  int32 callout_offset_y = 3;
+  repeated string callout_fields = 4;
+  int32 attribution_font_size = 5;
+  bool show_area_labels = 6;
+  bool show_poi_labels = 7;
+}
+
+message MapThemeDocumentVariant {
+  string background_color = 1;
+  string water_color = 2;
+  string land_color = 3;
+  string road_color = 4;
+  string building_fill_color = 5;
+  bool building_stroke_enabled = 6;
+  string building_stroke_color = 7;
+  string callout_line_color = 8;
+  string callout_text_color = 9;
+  string callout_background_color = 10;
+  string callout_description_color = 11;
+  string attribution_color = 12;
+  string label_text_color = 13;
+  string cluster_color = 14;
+  string cluster_hover_color = 15;
+  string cluster_text_color = 16;
+  string cluster_text_hover_color = 17;
+  string callout_hover_line_color = 18;
+  string callout_hover_text_color = 19;
+  string callout_hover_description_color = 20;
+  string callout_hover_background_color = 21;
+}
+
+message MapThemeDocumentSnapshot {
+  string name = 1;
+  MapThemeDocumentSettings settings = 2;
+  MapThemeDocumentVariant light_variant = 3;
+  MapThemeDocumentVariant dark_variant = 4;
+}
+
+message SaveMapThemeSnapshotRequest {
+  string theme_id = 1;
+  MapThemeDocumentSnapshot snapshot = 2;
+  int64 expected_revision = 3;
+  // Authenticated Member whose accepted edit is included in this save.
+  repeated string contributor_member_ids = 4;
+  // Map Theme is locale-neutral. Callers must send the exact canonical locale
+  // "und"; no user locale, source locale, or default fallback is accepted.
+  string locale = 5;
+}
+
+message SaveMapThemeSnapshotResponse {
+  bool success = 1;
+  int64 revision = 2;
+  string locale = 3;
+}
+
+message LoadMapThemeSnapshotRequest {
+  string theme_id = 1;
+  // Map Theme is locale-neutral. The only valid collaboration locale is "und".
+  string locale = 2;
+}
+
+message LoadMapThemeSnapshotResponse {
+  MapThemeDocumentSnapshot snapshot = 1;
+  int64 revision = 2;
+  string locale = 3;
+}

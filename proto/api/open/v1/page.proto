@@ -1,0 +1,58 @@
+syntax = "proto3";
+
+package api.open.v1;
+
+import "api/common/v1/common.proto";
+import "api/common/v1/media.proto";
+import "api/content/v1/block_content.proto";
+import "api/open/v1/translation.proto";
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/echovisionlab/geul-event-contracts/gen/api/open/v1;openv1";
+
+// PageService provides public page access
+service PageService {
+  // Get retrieves a page by slug
+  // - slug="/" returns homepage page (or empty if not configured)
+  // - slug="about" returns the page with that slug
+  // - share_token allows access to draft pages
+  rpc Get(GetPageRequest) returns (GetPageResponse);
+}
+
+message GetPageRequest {
+  string slug = 1;
+  optional string share_token = 2;
+  optional string share_password = 3;
+}
+
+message GetPageResponse {
+  optional Page page = 1;
+  // Exact Block usage, attachment state, inline delivery and content-audience
+  // download action. File identity alone is never a Page usage key.
+  repeated api.content.v1.ContentBlockMediaItem block_media = 2;
+}
+
+// Page status enum
+enum PageStatus {
+  PAGE_STATUS_UNSPECIFIED = 0;
+  PAGE_STATUS_DRAFT = 1;
+  PAGE_STATUS_PUBLISHED = 2;
+}
+
+message Page {
+  string id = 1;
+  string title = 2;
+  optional string slug = 3;
+  bool show_title = 4;
+  PageStatus status = 5;
+  optional google.protobuf.Timestamp published_at = 6;
+  google.protobuf.Timestamp created_at = 7;
+  google.protobuf.Timestamp updated_at = 8;
+  api.content.v1.LocalizedPageDocument document = 9;
+  optional api.common.v1.AssetRef og_asset = 10;
+  optional string summary = 11;
+  optional LocalizationInfo localization_info = 12;
+  string revision = 13;
+  api.common.v1.DocumentLayout document_layout = 14;
+  optional api.common.v1.MediaDelivery featured_image_delivery = 15;
+}

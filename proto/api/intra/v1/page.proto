@@ -1,0 +1,135 @@
+syntax = "proto3";
+
+package api.intra.v1;
+
+import "api/common/v1/common.proto";
+import "api/content/v1/block_content.proto";
+import "api/intra/v1/collaboration.proto";
+import "api/manage/v1/ai.proto";
+
+option go_package = "github.com/echovisionlab/geul-event-contracts/gen/api/intra/v1;intrav1";
+
+// InternalPageService is the authoritative typed Block boundary for Page
+// collaboration. Yjs remains collaboration runtime state and never crosses
+// this durable API.
+service InternalPageService {
+  rpc LoadPageBlockDocument(LoadPageBlockDocumentRequest) returns (LoadPageBlockDocumentResponse);
+  rpc ApplyPageBlockBatch(ApplyPageBlockBatchRequest) returns (ApplyPageBlockBatchResponse);
+  rpc UpdatePageLocaleMetadata(UpdatePageLocaleMetadataRequest) returns (UpdatePageLocaleMetadataResponse);
+  rpc UpdatePageDocumentMetadata(UpdatePageDocumentMetadataRequest) returns (UpdatePageDocumentMetadataResponse);
+  rpc CreatePageVersionCheckpoint(CreatePageVersionCheckpointRequest) returns (CreatePageVersionCheckpointResponse);
+}
+
+message LoadPageBlockDocumentRequest {
+  string page_id = 1;
+  CollaborationPrincipal principal = 2;
+  string locale = 3;
+}
+
+message PageLocaleMetadata {
+  string locale = 1;
+  optional string title = 2;
+  optional string summary = 3;
+}
+
+message LoadPageBlockDocumentResponse {
+  // Exact room projection: shared/source base plus one complete materialized
+  // requested-locale overlay.
+  api.content.v1.LocalizedPageDocument document = 1;
+  // Persisted content_document.revision for the shared/source graph only.
+  // Target-only writes must not advance it.
+  string document_revision = 2;
+  api.common.v1.DocumentLayout document_layout = 3;
+  repeated api.content.v1.ContentBlockMediaItem block_media = 4;
+  // True current source projection for authority and fallback.
+  PageLocaleMetadata source_metadata = 5;
+  string locale = 6;
+  bool locale_exists = 7;
+  optional PageLocaleMetadata locale_metadata = 8;
+  optional string target_revision = 9;
+  // Exact persisted locale-owned leaf-terminal presence for the requested room
+  // locale; never inferred from materialized/source-fallback values. Source and
+  // target rooms report actual presence; a missing target reports an empty list.
+  // Order is meaningless; producers emit canonical-sorted, duplicate-free
+  // targets. relation_item, shared/topology/File, identity-terminal (row_id,
+  // cell_id, Page unit_id), and composite object/list targets are forbidden.
+  repeated api.manage.v1.AIDocumentFieldTarget present_locale_values = 10;
+}
+
+message ApplyPageBlockBatchRequest {
+  string page_id = 1;
+  api.content.v1.PageSectionMutationBatch batch = 2;
+  string locale = 3;
+  // Required for every non-source save; absent for source. Missing targets are
+  // rejected until AIDocument explicit create commits and the room reconnects.
+  optional string expected_target_revision = 4;
+  // Actual changed locale-owned leaf terminals in this batch, including
+  // explicit-empty writes and presence removal. Callers emit canonical-sorted,
+  // duplicate-free targets. relation_item, shared/topology/File,
+  // identity-terminal (row_id, cell_id, Page unit_id), and composite object/list
+  // targets are forbidden. Source/shared-only batches send an empty list.
+  repeated api.manage.v1.AIDocumentFieldTarget affected_locale_values = 5;
+}
+
+message ApplyPageBlockBatchResponse {
+  string document_revision = 1;
+  bool changed = 2;
+  bool source_changed = 3;
+  repeated string changed_locales = 4;
+  string locale = 5;
+  optional string target_revision = 6;
+}
+
+message UpdatePageLocaleMetadataRequest {
+  string page_id = 1;
+  optional string title = 2;
+  oneof summary_change {
+    string set_summary = 3;
+    bool clear_summary = 4;
+  }
+  string expected_revision = 5;
+  repeated string contributor_member_ids = 6;
+  // Exact canonical room locale. Non-source rooms may change only these values.
+  string locale = 7;
+  // Required for every existing non-source save; absent for source. Missing
+  // targets are rejected until explicit create commits and the room reconnects.
+  optional string expected_target_revision = 8;
+}
+
+message UpdatePageLocaleMetadataResponse {
+  string document_revision = 1;
+  bool changed = 2;
+  bool source_changed = 3;
+  repeated string changed_locales = 4;
+  string locale = 5;
+  optional string target_revision = 6;
+}
+
+message UpdatePageDocumentMetadataRequest {
+  string page_id = 1;
+  string expected_revision = 2;
+  api.common.v1.DocumentLayout document_layout = 3;
+  repeated string contributor_member_ids = 4;
+  string locale = 5;
+}
+
+message UpdatePageDocumentMetadataResponse {
+  string document_revision = 1;
+  bool changed = 2;
+  bool source_changed = 3;
+  string locale = 4;
+}
+
+message CreatePageVersionCheckpointRequest {
+  string page_id = 1;
+  string expected_revision = 2;
+  repeated string contributor_member_ids = 3;
+  string locale = 4;
+}
+
+message CreatePageVersionCheckpointResponse {
+  bool created = 1;
+  optional string version_id = 2;
+  string revision = 3;
+  string locale = 4;
+}

@@ -1,0 +1,74 @@
+syntax = "proto3";
+
+package api.open.v1;
+
+import "api/common/v1/media.proto";
+
+option go_package = "github.com/echovisionlab/geul-event-contracts/gen/api/open/v1;openv1";
+
+// ManifestService provides site manifest for initial page load
+service ManifestService {
+  rpc Get(GetRequest) returns (GetResponse);
+}
+
+message GetRequest {}
+
+message GetResponse {
+  SiteSettings settings = 1;
+  Menus menus = 2;
+}
+
+// SiteSettings contains public configuration values
+message SiteSettings {
+  string site_title = 1;
+  string meta_description = 2;
+  string primary_color = 3;
+  optional string google_analytics_id = 4;
+  string company_name = 5;
+  string company_address = 6;
+  string tax_id = 7;
+  map<string, string> social_links = 8;
+  bool default_comments_enabled = 9;
+  optional api.common.v1.AssetRef site_og_asset = 10;
+  string site_origin = 11;
+  optional api.common.v1.AssetRef logo_light_asset = 12;
+  optional api.common.v1.AssetRef logo_dark_asset = 13;
+  // When favicon_asset_set is present, this MUST be that set's icon_png_32
+  // from the same active source. When absent, this may be a legacy original.
+  optional api.common.v1.AssetRef favicon_asset = 14;
+  repeated api.common.v1.AssetRef loader_assets = 15;
+  optional api.common.v1.FaviconAssetSet favicon_asset_set = 16;
+  string legal_email = 17;
+  string support_email = 18;
+  string privacy_email = 19;
+}
+
+// Menus contains all navigation menus (pre-filtered by user role)
+message Menus {
+  repeated MenuItem header = 1;
+  repeated MenuItem secondary = 2;
+  repeated MenuItem footer = 3;
+  repeated MenuItem avatar_dropdown = 4;
+}
+
+// LinkType defines how a menu item links to content
+enum LinkType {
+  LINK_TYPE_UNSPECIFIED = 0;
+  LINK_TYPE_CUSTOM = 1;
+  LINK_TYPE_PAGE = 2;
+  LINK_TYPE_CATEGORY = 3;
+  LINK_TYPE_TAG = 4;
+  LINK_TYPE_SERIES = 5;
+}
+
+// MenuItem represents a single menu entry (visibility already filtered server-side)
+message MenuItem {
+  string id = 1;
+  string label = 2;
+  LinkType link_type = 3;
+  optional string url = 4;
+  optional string target_id = 5;
+  optional string target_slug = 6;
+  bool open_in_new_tab = 7;
+  repeated MenuItem children = 8;
+}

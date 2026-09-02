@@ -1,0 +1,21 @@
+# Site Settings owns the singleton-style runtime settings resource policy.
+domain: site_settings
+description: Site Settings resource policy
+actions:
+  site_setting:
+    view: view
+    edit: edit
+    delete: delete
+    manage: manage
+definitions:
+  site_setting:
+    relations:
+      policy: [platform]
+    permissions: [platform_admin, view, edit, delete, manage]
+permission_expressions:
+  site_setting:
+    platform_admin: policy->is_admin
+    view: platform_admin
+    edit: platform_admin
+    delete: platform_admin
+    manage: platform_admin

@@ -1,0 +1,53 @@
+syntax = "proto3";
+
+package api.open.v1;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/echovisionlab/geul-event-contracts/gen/api/open/v1;openv1";
+
+// Token-authenticated account lifecycle endpoints. These methods do not own
+// public profile reads and never accept a Member identifier as proof.
+service AccountService {
+  rpc ConfirmAccountDeletion(ConfirmAccountDeletionRequest) returns (ConfirmAccountDeletionResponse);
+  rpc CancelAccountDeletion(CancelAccountDeletionRequest) returns (CancelAccountDeletionResponse);
+  rpc RequestAccountRecovery(RequestAccountRecoveryRequest) returns (RequestAccountRecoveryResponse);
+  rpc ConfirmAccountRecovery(ConfirmAccountRecoveryRequest) returns (ConfirmAccountRecoveryResponse);
+}
+
+message ConfirmAccountDeletionRequest {
+  string token = 1;
+}
+
+message ConfirmAccountDeletionResponse {
+  bool success = 1;
+  string message = 2;
+  optional google.protobuf.Timestamp scheduled_at = 3;
+}
+
+message CancelAccountDeletionRequest {
+  string token = 1;
+}
+
+message CancelAccountDeletionResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+message RequestAccountRecoveryRequest {
+  string email = 1;
+}
+
+message RequestAccountRecoveryResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+message ConfirmAccountRecoveryRequest {
+  string token = 1;
+}
+
+message ConfirmAccountRecoveryResponse {
+  bool success = 1;
+  string message = 2;
+}

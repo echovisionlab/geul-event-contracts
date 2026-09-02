@@ -1,0 +1,605 @@
+syntax = "proto3";
+
+package api.manage.v1;
+
+import "api/policy/v1/access.proto";
+import "google/protobuf/timestamp.proto";
+
+enum AIResourceType {
+  AI_RESOURCE_TYPE_UNSPECIFIED = 0;
+  AI_RESOURCE_TYPE_POST = 1;
+  AI_RESOURCE_TYPE_WORK = 2;
+  AI_RESOURCE_TYPE_PAGE = 3;
+  AI_RESOURCE_TYPE_FORM = 4;
+  AI_RESOURCE_TYPE_ARTIST = 5;
+  AI_RESOURCE_TYPE_RELEASE = 6;
+  AI_RESOURCE_TYPE_LABEL = 7;
+  AI_RESOURCE_TYPE_CAMPAIGN = 8;
+  AI_RESOURCE_TYPE_EMAIL_TEMPLATE = 9;
+}
+
+message AIResourceTarget {
+  AIResourceType type = 1;
+  string id = 2;
+}
+
+message MetadataSuggestion {
+  optional string summary = 1;
+}
+
+enum MetadataGenerationJobStatus {
+  METADATA_GENERATION_JOB_STATUS_UNSPECIFIED = 0;
+  METADATA_GENERATION_JOB_STATUS_QUEUED = 1;
+  METADATA_GENERATION_JOB_STATUS_RUNNING = 2;
+  METADATA_GENERATION_JOB_STATUS_READY = 3;
+  METADATA_GENERATION_JOB_STATUS_FAILED = 4;
+  METADATA_GENERATION_JOB_STATUS_APPLIED = 5;
+  METADATA_GENERATION_JOB_STATUS_DISMISSED = 6;
+}
+
+enum MetadataGenerationJobResolution {
+  METADATA_GENERATION_JOB_RESOLUTION_UNSPECIFIED = 0;
+  METADATA_GENERATION_JOB_RESOLUTION_APPLIED = 1;
+  METADATA_GENERATION_JOB_RESOLUTION_DISMISSED = 2;
+}
+
+message MetadataGenerationJob {
+  string id = 1;
+  AIResourceTarget target = 2;
+  string requester_member_id = 3;
+  MetadataGenerationJobStatus status = 4;
+  repeated string requested_keys = 5;
+  optional MetadataSuggestion suggestion = 6;
+  optional string error = 7;
+  optional string provider = 8;
+  optional string model = 9;
+  optional int64 duration_ms = 10;
+  optional google.protobuf.Timestamp started_at = 11;
+  optional google.protobuf.Timestamp completed_at = 12;
+  optional google.protobuf.Timestamp resolved_at = 13;
+  google.protobuf.Timestamp created_at = 14;
+  google.protobuf.Timestamp updated_at = 15;
+}
+
+message MetadataGenerationQueueEvent {
+  string job_id = 1;
+}
+
+message StartMetadataGenerationRequest {
+  string context = 1;
+  string prompt = 2;
+  AIResourceTarget target = 3;
+}
+
+message StartMetadataGenerationResponse {
+  MetadataGenerationJob job = 1;
+}
+
+message GetMetadataGenerationJobRequest {
+  string job_id = 1;
+}
+
+message GetMetadataGenerationJobResponse {
+  MetadataGenerationJob job = 1;
+}
+
+message ResolveMetadataGenerationJobRequest {
+  string job_id = 1;
+  MetadataGenerationJobResolution resolution = 2;
+}
+
+message ResolveMetadataGenerationJobResponse {
+  MetadataGenerationJob job = 1;
+}
+
+// DCDP/1 is the provider-neutral authenticated document protocol. It exposes
+// stable semantic handles only; editor-native documents, numeric positions,
+// generic patch paths, binary payloads, and translation artifacts are outside
+// this contract.
+enum AIDocumentDomain {
+  AI_DOCUMENT_DOMAIN_UNSPECIFIED = 0;
+  AI_DOCUMENT_DOMAIN_POST = 1;
+  AI_DOCUMENT_DOMAIN_PAGE = 2;
+  AI_DOCUMENT_DOMAIN_WORK = 3;
+  AI_DOCUMENT_DOMAIN_PROGRAM_EVENT = 4;
+  AI_DOCUMENT_DOMAIN_RELEASE = 5;
+  AI_DOCUMENT_DOMAIN_ARTIST = 6;
+  AI_DOCUMENT_DOMAIN_LABEL = 7;
+  AI_DOCUMENT_DOMAIN_MENU = 8;
+  AI_DOCUMENT_DOMAIN_EMAIL_TEMPLATE = 9;
+  AI_DOCUMENT_DOMAIN_EMAIL_LAYOUT = 10;
+  AI_DOCUMENT_DOMAIN_CAMPAIGN = 11;
+  AI_DOCUMENT_DOMAIN_FORM = 12;
+  AI_DOCUMENT_DOMAIN_PRIVACY = 13;
+  AI_DOCUMENT_DOMAIN_TERMS = 14;
+  AI_DOCUMENT_DOMAIN_POST_SERIES = 15;
+}
+
+enum AIDocumentLocaleRole {
+  AI_DOCUMENT_LOCALE_ROLE_UNSPECIFIED = 0;
+  AI_DOCUMENT_LOCALE_ROLE_SOURCE = 1;
+  AI_DOCUMENT_LOCALE_ROLE_NON_SOURCE = 2;
+}
+
+enum AIDocumentOperationKind {
+  AI_DOCUMENT_OPERATION_KIND_UNSPECIFIED = 0;
+  AI_DOCUMENT_OPERATION_KIND_SET_FIELD = 1;
+  AI_DOCUMENT_OPERATION_KIND_UNSET_FIELD = 2;
+  AI_DOCUMENT_OPERATION_KIND_INSERT_BLOCK = 3;
+  AI_DOCUMENT_OPERATION_KIND_DELETE_BLOCK = 4;
+  AI_DOCUMENT_OPERATION_KIND_MOVE_BLOCK = 5;
+  AI_DOCUMENT_OPERATION_KIND_REPLACE_BLOCK_KIND = 6;
+  AI_DOCUMENT_OPERATION_KIND_ATTACH_FILE = 7;
+  AI_DOCUMENT_OPERATION_KIND_DETACH_FILE = 8;
+  AI_DOCUMENT_OPERATION_KIND_CREATE_TRANSLATION = 9;
+  AI_DOCUMENT_OPERATION_KIND_DELETE_TRANSLATION = 10;
+  AI_DOCUMENT_OPERATION_KIND_INSERT_RELATION_ITEM = 11;
+  AI_DOCUMENT_OPERATION_KIND_DELETE_RELATION_ITEM = 12;
+  AI_DOCUMENT_OPERATION_KIND_MOVE_RELATION_ITEM = 13;
+}
+
+enum AIDocumentIssueCode {
+  AI_DOCUMENT_ISSUE_CODE_UNSPECIFIED = 0;
+  AI_DOCUMENT_ISSUE_CODE_INVALID_OPERATION = 1;
+  AI_DOCUMENT_ISSUE_CODE_UNKNOWN_BLOCK = 2;
+  AI_DOCUMENT_ISSUE_CODE_DUPLICATE_BLOCK = 3;
+  AI_DOCUMENT_ISSUE_CODE_UNKNOWN_BLOCK_KIND = 4;
+  AI_DOCUMENT_ISSUE_CODE_UNKNOWN_FIELD = 5;
+  AI_DOCUMENT_ISSUE_CODE_VALUE_KIND_MISMATCH = 6;
+  AI_DOCUMENT_ISSUE_CODE_SOURCE_AUTHORITY_REQUIRED = 7;
+  AI_DOCUMENT_ISSUE_CODE_TARGET_FIELD_FORBIDDEN = 8;
+  AI_DOCUMENT_ISSUE_CODE_INVALID_BLOCK_RELATION = 9;
+  AI_DOCUMENT_ISSUE_CODE_BLOCK_CYCLE = 10;
+  AI_DOCUMENT_ISSUE_CODE_INVALID_FILE_REFERENCE = 11;
+  AI_DOCUMENT_ISSUE_CODE_TRANSLATION_IS_SOURCE = 12;
+  AI_DOCUMENT_ISSUE_CODE_TRANSLATION_ALREADY_EXISTS = 13;
+  AI_DOCUMENT_ISSUE_CODE_TRANSLATION_MISSING = 14;
+  AI_DOCUMENT_ISSUE_CODE_LOCALE_OPERATION_NOT_EXCLUSIVE = 15;
+  AI_DOCUMENT_ISSUE_CODE_UNKNOWN_RELATION = 16;
+  AI_DOCUMENT_ISSUE_CODE_UNKNOWN_RELATION_ITEM = 17;
+  AI_DOCUMENT_ISSUE_CODE_DUPLICATE_RELATION_ITEM = 18;
+  AI_DOCUMENT_ISSUE_CODE_INVALID_RELATION_ITEM_MOVE = 19;
+}
+
+enum AIDocumentConflictCode {
+  AI_DOCUMENT_CONFLICT_CODE_UNSPECIFIED = 0;
+  AI_DOCUMENT_CONFLICT_CODE_DOCUMENT_REVISION = 1;
+  AI_DOCUMENT_CONFLICT_CODE_TARGET_REVISION = 2;
+}
+
+message AIDocumentReference {
+  AIDocumentDomain domain = 1;
+  // Opaque resource reference. It is not an authorization capability.
+  string reference = 2;
+}
+
+message AIDocumentLocale {
+  // Canonical API locale identifier.
+  string code = 1;
+}
+
+message AIDocumentMetadata {
+  // Exact protocol major for this projection: dcdp/1.
+  string protocol_version = 1;
+  AIDocumentReference document = 2;
+  string catalog_fingerprint = 3;
+  // Opaque persisted owning-domain revision for the shared/source graph.
+  // Target-only writes never advance it; every source/shared change invalidates
+  // all target projections.
+  string document_revision = 4;
+  AIDocumentLocale source_locale = 5;
+  AIDocumentLocale requested_locale = 6;
+  AIDocumentLocaleRole locale_role = 7;
+  // Presence of the requested locale resource, not a persisted lifecycle enum.
+  bool locale_exists = 8;
+  // Present only for an existing non-source locale resource. It binds the
+  // current document revision and exact locale resource token, so a
+  // source/shared change invalidates every target while a target-only write
+  // advances only that locale. Source rooms and missing targets never receive
+  // a target token.
+  optional string target_revision = 9;
+}
+
+message AIDocumentInlineContent {
+  repeated AIDocumentInlineItem items = 1;
+}
+
+message AIDocumentInlineMark {
+  // Canonical catalog short code such as bold or italic.
+  string mark = 1;
+  repeated AIDocumentInlineItem children = 2;
+  // Present only when the catalog declares a typed mark parameter, such as
+  // the canonical editor_color value for textColor or backgroundColor.
+  optional AIDocumentValue parameter = 3;
+}
+
+message AIDocumentInlineLink {
+  string target = 1;
+  repeated AIDocumentInlineItem children = 2;
+}
+
+message AIDocumentHardBreak {}
+
+message AIDocumentInlineItem {
+  oneof item {
+    string text = 1;
+    AIDocumentInlineMark mark = 2;
+    AIDocumentInlineLink link = 3;
+    AIDocumentHardBreak hard_break = 4;
+    string math = 5;
+    string placeholder_handle = 6;
+  }
+}
+
+message AIDocumentValue {
+  oneof value {
+    // Presence of this oneof arm with text="" is explicit empty. Omission of
+    // the containing field is missing and must remain distinguishable.
+    string text = 1;
+    bool boolean = 2;
+    // Canonical decimal text avoids provider-dependent floating encoding.
+    string number = 3;
+    AIDocumentInlineContent inline = 4;
+    AIDocumentListValue list = 5;
+    AIDocumentObjectValue object = 6;
+  }
+}
+
+// Recursive values remain closed and typed. Array item handles are derived
+// from the generated catalog identity rule; they are never caller-defined JSON
+// paths or numeric editor positions.
+message AIDocumentListItem {
+  string item_handle = 1;
+  AIDocumentValue value = 2;
+}
+
+message AIDocumentListValue {
+  repeated AIDocumentListItem items = 1;
+}
+
+message AIDocumentObjectValue {
+  repeated AIDocumentFieldValue fields = 1;
+}
+
+message AIDocumentFieldValue {
+  string field_handle = 1;
+  AIDocumentValue value = 2;
+}
+
+message AIDocumentRelationItemReference {
+  string block_handle = 1;
+  string relation_handle = 2;
+  string item_handle = 3;
+}
+
+message AIDocumentFieldTarget {
+  oneof owner {
+    string block_handle = 1;
+    AIDocumentRelationItemReference relation_item = 2;
+  }
+  string field_handle = 3;
+  // Catalog-validated object fields and semantic array item handles below the
+  // root field. Whole-list positional arrays do not expose item mutations.
+  repeated AIDocumentFieldPathSegment path = 4;
+}
+
+message AIDocumentFieldPathSegment {
+  oneof selector {
+    string field_handle = 1;
+    string item_handle = 2;
+  }
+}
+
+message OpenAIDocumentRequest {
+  AIDocumentReference document = 1;
+  AIDocumentLocale locale = 2;
+}
+
+message OpenAIDocumentResponse {
+  AIDocumentMetadata metadata = 1;
+}
+
+message AIDocumentSetFieldOperation {
+  AIDocumentFieldTarget target = 1;
+  AIDocumentValue value = 2;
+}
+
+message AIDocumentUnsetFieldOperation {
+  AIDocumentFieldTarget target = 1;
+}
+
+message AIDocumentInsertBlockOperation {
+  string block_handle = 1;
+  string kind = 2;
+  optional string parent_block_handle = 3;
+  optional string after_block_handle = 4;
+}
+
+message AIDocumentDeleteBlockOperation {
+  string block_handle = 1;
+}
+
+message AIDocumentMoveBlockOperation {
+  string block_handle = 1;
+  optional string parent_block_handle = 2;
+  optional string after_block_handle = 3;
+}
+
+message AIDocumentReplaceBlockKindOperation {
+  string block_handle = 1;
+  string kind = 2;
+}
+
+message AIDocumentAttachFileOperation {
+  AIDocumentFieldTarget target = 1;
+  string file_handle = 2;
+}
+
+message AIDocumentDetachFileOperation {
+  AIDocumentFieldTarget target = 1;
+}
+
+// Explicitly creates one missing non-source locale. The owning domain seeds
+// every locale-owned stable unit from the current source locale in the same
+// transaction; the client never submits seed values or structure.
+message AIDocumentCreateTranslationOperation {}
+
+// Deletes one exact existing non-source locale. The source locale cannot be
+// deleted and the client must supply that target's exact revision token.
+message AIDocumentDeleteTranslationOperation {}
+
+message AIDocumentInsertRelationItemOperation {
+  string block_handle = 1;
+  string relation_handle = 2;
+  string item_handle = 3;
+  string item_kind = 4;
+  optional string after_item_handle = 5;
+}
+
+message AIDocumentDeleteRelationItemOperation {
+  AIDocumentRelationItemReference item = 1;
+}
+
+message AIDocumentMoveRelationItemOperation {
+  AIDocumentRelationItemReference item = 1;
+  string destination_block_handle = 2;
+  string destination_relation_handle = 3;
+  optional string after_item_handle = 4;
+}
+
+message AIDocumentOperation {
+  oneof operation {
+    AIDocumentSetFieldOperation set_field = 1;
+    AIDocumentUnsetFieldOperation unset_field = 2;
+    AIDocumentInsertBlockOperation insert_block = 3;
+    AIDocumentDeleteBlockOperation delete_block = 4;
+    AIDocumentMoveBlockOperation move_block = 5;
+    AIDocumentReplaceBlockKindOperation replace_block_kind = 6;
+    AIDocumentAttachFileOperation attach_file = 7;
+    AIDocumentDetachFileOperation detach_file = 8;
+    AIDocumentCreateTranslationOperation create_translation = 9;
+    AIDocumentDeleteTranslationOperation delete_translation = 10;
+    AIDocumentInsertRelationItemOperation insert_relation_item = 11;
+    AIDocumentDeleteRelationItemOperation delete_relation_item = 12;
+    AIDocumentMoveRelationItemOperation move_relation_item = 13;
+  }
+}
+
+message AIDocumentMutation {
+  // Must be dcdp/1.
+  string protocol_version = 1;
+  AIDocumentReference document = 2;
+  AIDocumentLocale locale = 3;
+  // Required persisted shared/source graph observation for every mutation.
+  // Target-only writes do not advance it; unrelated target-locale writes do
+  // not invalidate this token.
+  string expected_document_revision = 4;
+  repeated AIDocumentOperation operations = 5;
+  // Required for an existing non-source target and absent for a source room or
+  // missing target. Create therefore starts without a target token; delete
+  // requires the token of the existing target.
+  optional string expected_target_revision = 6;
+}
+
+message AIDocumentIssue {
+  // Zero-based index into the submitted operation list.
+  uint32 operation_index = 1;
+  AIDocumentIssueCode code = 2;
+  optional string handle = 3;
+}
+
+message AIDocumentConflict {
+  AIDocumentConflictCode code = 1;
+  string current_document_revision = 2;
+  repeated string affected_handles = 3;
+  // Present only when TARGET_REVISION identifies an existing non-source
+  // target. A missing target has no target token.
+  optional string current_target_revision = 4;
+}
+
+message AIDocumentValidation {
+  repeated AIDocumentOperation normalized_operations = 1;
+  repeated AIDocumentIssue issues = 2;
+  optional AIDocumentConflict conflict = 3;
+}
+
+message AIDocumentAcceptedChange {
+  uint32 operation_index = 1;
+  AIDocumentOperationKind kind = 2;
+  // Stable semantic handles actually changed by this operation, including
+  // descendants or relation items affected by an owning-domain graph rule.
+  repeated string affected_handles = 3;
+}
+
+message AIDocumentAcceptedMutation {
+  string document_revision = 1;
+  repeated AIDocumentAcceptedChange changes = 2;
+  // New opaque target CAS after an accepted non-source create or value write.
+  // Absent for source mutations and after accepted target deletion.
+  optional string target_revision = 3;
+}
+
+message ApplyAIDocumentOperationsRequest {
+  AIDocumentMutation mutation = 1;
+}
+
+message ApplyAIDocumentOperationsResponse {
+  oneof result {
+    AIDocumentAcceptedMutation accepted = 1;
+    AIDocumentValidation rejected = 2;
+  }
+}
+
+// AI Editor orchestration is a first-party Browser Session surface. It is not
+// Remote MCP, never accepts a PAT, and keeps provider credentials, prompt
+// assembly, model calls, retry policy, and the tool loop on the server. A turn
+// is transient; this contract creates no durable conversation or suggestion.
+enum AIEditorTurnPhase {
+  AI_EDITOR_TURN_PHASE_UNSPECIFIED = 0;
+  AI_EDITOR_TURN_PHASE_PROVIDER_RUNNING = 1;
+  AI_EDITOR_TURN_PHASE_AWAITING_TOOL_APPROVAL = 2;
+  AI_EDITOR_TURN_PHASE_APPLYING_DOCUMENT = 3;
+}
+
+enum AIEditorToolCallDecision {
+  AI_EDITOR_TOOL_CALL_DECISION_UNSPECIFIED = 0;
+  AI_EDITOR_TOOL_CALL_DECISION_APPROVE = 1;
+  AI_EDITOR_TOOL_CALL_DECISION_DENY = 2;
+}
+
+enum AIEditorTurnTerminalStatus {
+  AI_EDITOR_TURN_TERMINAL_STATUS_UNSPECIFIED = 0;
+  AI_EDITOR_TURN_TERMINAL_STATUS_COMPLETED = 1;
+  AI_EDITOR_TURN_TERMINAL_STATUS_CANCELLED = 2;
+  AI_EDITOR_TURN_TERMINAL_STATUS_FAILED = 3;
+}
+
+enum AIEditorTurnFailureCode {
+  AI_EDITOR_TURN_FAILURE_CODE_UNSPECIFIED = 0;
+  AI_EDITOR_TURN_FAILURE_CODE_PROVIDER = 1;
+  AI_EDITOR_TURN_FAILURE_CODE_DOCUMENT = 2;
+  AI_EDITOR_TURN_FAILURE_CODE_INTERNAL = 3;
+}
+
+message StartAIEditorTurnRequest {
+  AIDocumentReference document = 1;
+  AIDocumentLocale locale = 2;
+  // Exact shared/source document revision observed when the user issued this
+  // command.
+  string expected_document_revision = 3;
+  // Stable Block handles only. Empty means document-level context.
+  repeated string block_handles = 4;
+  // Canonical first-party action code selected by the Web UI.
+  string action = 5;
+  optional string prompt = 6;
+  // Exact target revision for an existing non-source locale; absent for source
+  // and missing-target turns.
+  optional string expected_target_revision = 7;
+}
+
+message AIEditorAssistantTextDelta {
+  string text = 1;
+}
+
+message AIEditorTurnPhaseUpdate {
+  AIEditorTurnPhase phase = 1;
+}
+
+message AIEditorDocumentToolApprovalRequired {
+  string tool_call_id = 1;
+  // The server constructs this closed DCDP mutation. Provider output never
+  // supplies document identity, locale, revision, or an editor-native patch.
+  AIDocumentMutation mutation = 2;
+  optional string summary = 3;
+}
+
+message AIEditorDocumentToolResult {
+  string tool_call_id = 1;
+  oneof result {
+    AIDocumentAcceptedMutation accepted = 2;
+    AIDocumentValidation rejected = 3;
+  }
+}
+
+message AIEditorTurnTerminalOutcome {
+  AIEditorTurnTerminalStatus status = 1;
+  optional AIEditorTurnFailureCode failure_code = 2;
+}
+
+message AIEditorTurnEvent {
+  // Server-generated transient identity repeated on every stream event.
+  string turn_id = 1;
+  oneof event {
+    AIEditorAssistantTextDelta assistant_text = 2;
+    AIEditorTurnPhaseUpdate phase = 3;
+    AIEditorDocumentToolApprovalRequired approval_required = 4;
+    AIEditorDocumentToolResult document_result = 5;
+    AIEditorTurnTerminalOutcome terminal = 6;
+  }
+}
+
+message ResolveAIEditorToolCallRequest {
+  string turn_id = 1;
+  string tool_call_id = 2;
+  AIEditorToolCallDecision decision = 3;
+}
+
+message ResolveAIEditorToolCallResponse {}
+
+message CancelAIEditorTurnRequest {
+  string turn_id = 1;
+}
+
+message CancelAIEditorTurnResponse {}
+
+service AIDocumentService {
+  // Open derives source/non-source role and locale resource presence from the
+  // current aggregate; neither is a stored lifecycle state.
+  rpc OpenAIDocument(OpenAIDocumentRequest) returns (OpenAIDocumentResponse) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+  // Source-locale operations may change graph, relations, shared fields, and
+  // File relations. Non-source operations may set locale-owned translatable
+  // values and create/delete that locale resource only. Every accepted batch
+  // is one owning-domain document-revision plus, when applicable,
+  // target-revision CAS transaction. When the requested non-source locale is
+  // absent, its first field set implicitly creates it by server-side seeding
+  // every current source locale-owned stable unit, then applies the submitted
+  // operations in that same transaction. A client never submits seed values.
+  rpc ApplyAIDocumentOperations(ApplyAIDocumentOperationsRequest) returns (ApplyAIDocumentOperationsResponse) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+}
+
+service AIEditorOrchestrationService {
+  // Streams one transient first-party turn. Read tools stay inside the
+  // server-configured provider loop. The only write tool is the exact DCDP
+  // mutation emitted as approval_required below.
+  rpc StartAIEditorTurn(StartAIEditorTurnRequest) returns (stream AIEditorTurnEvent) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+  // APPROVE applies the emitted mutation once through AIDocumentService's
+  // owning-domain authorization and revision CAS. One accepted batch is one
+  // collaboration origin and one session-local undo boundary. DENY performs no
+  // document mutation; both decisions resume the same transient provider loop.
+  rpc ResolveAIEditorToolCall(ResolveAIEditorToolCallRequest) returns (ResolveAIEditorToolCallResponse) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+  rpc CancelAIEditorTurn(CancelAIEditorTurnRequest) returns (CancelAIEditorTurnResponse) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+}
+
+service AIService {
+  rpc StartMetadataGeneration(StartMetadataGenerationRequest) returns (StartMetadataGenerationResponse) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+
+  rpc GetMetadataGenerationJob(GetMetadataGenerationJobRequest) returns (GetMetadataGenerationJobResponse) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+
+  rpc ResolveMetadataGenerationJob(ResolveMetadataGenerationJobRequest) returns (ResolveMetadataGenerationJobResponse) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "valid": {
+    "root": "document",
+    "step": "form:step:step_A-1",
+    "field": "form:field:field_b-2",
+    "option": "form:option:option_C-3",
+    "validator": "form:validator:validator_d-4"
+  },
+  "ids": {
+    "step": "step_A-1",
+    "field": "field_b-2",
+    "option": "option_C-3",
+    "validator": "validator_d-4"
+  },
+  "invalidIds": [
+    "",
+    "0",
+    "123",
+    "-leading",
+    "white space",
+    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  ]
+}

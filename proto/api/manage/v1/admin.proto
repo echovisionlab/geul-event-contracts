@@ -1,0 +1,163 @@
+syntax = "proto3";
+
+package api.manage.v1;
+
+import "api/common/v1/media.proto";
+import "api/manage/v1/events.proto";
+// DashboardStats contains aggregate statistics for the admin dashboard
+import "api/policy/v1/access.proto";
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/echovisionlab/geul-event-contracts/gen/api/v1;apiv1";
+
+message DashboardStats {
+  int32 total_members = 1;
+  int32 total_posts = 2;
+  int32 total_pages = 3;
+  int32 total_comments = 4;
+  int32 total_campaigns = 5;
+}
+
+// GetDashboardStatsRequest - no parameters needed
+message GetDashboardStatsRequest {}
+
+// GetDashboardStatsResponse
+message GetDashboardStatsResponse {
+  DashboardStats stats = 1;
+}
+
+// OG image generation
+
+message OgPrimaryTarget {}
+
+message OgAllLocaleTargets {}
+
+message OgTargetSelection {
+  oneof target {
+    OgPrimaryTarget primary = 1;
+    string locale = 2;
+    OgAllLocaleTargets all_locales = 3;
+  }
+}
+
+message RegenerateOgImageRequest {
+  OgEntityType entity_type = 1;
+  optional string entity_id = 2;
+  OgTargetSelection selection = 3;
+}
+
+message RegenerateOgImageResponse {
+  string run_id = 1;
+  repeated string generation_ids = 2;
+}
+
+// RegenerateAllOgImagesRequest - no parameters needed
+message RegenerateAllOgImagesRequest {}
+
+// RegenerateAllOgImagesResponse
+message RegenerateAllOgImagesResponse {
+  string run_id = 1;
+  int32 generation_count = 2;
+}
+
+message OgGeneration {
+  string generation_id = 1;
+  string run_id = 2;
+  OgGenerationTarget target = 3;
+  OgGenerationStatus status = 4;
+  api.common.v1.AssetRef asset = 5;
+  optional string error_code = 6;
+  optional string error = 7;
+  optional string replacement_generation_id = 8;
+  google.protobuf.Timestamp created_at = 9;
+  google.protobuf.Timestamp updated_at = 10;
+  google.protobuf.Timestamp completed_at = 11;
+}
+
+enum OgGenerationRunStatus {
+  OG_GENERATION_RUN_STATUS_UNSPECIFIED = 0;
+  OG_GENERATION_RUN_STATUS_QUEUED = 1;
+  OG_GENERATION_RUN_STATUS_PROCESSING = 2;
+  OG_GENERATION_RUN_STATUS_READY = 3;
+  OG_GENERATION_RUN_STATUS_PARTIALLY_FAILED = 4;
+  OG_GENERATION_RUN_STATUS_FAILED = 5;
+  OG_GENERATION_RUN_STATUS_CANCELLED = 6;
+}
+
+message OgGenerationFailure {
+  string generation_id = 1;
+  OgGenerationTarget target = 2;
+  string error_code = 3;
+  string error = 4;
+}
+
+message OgGenerationRun {
+  string run_id = 1;
+  OgGenerationRunStatus status = 2;
+  int32 generation_count = 3;
+  int32 queued_count = 4;
+  int32 processing_count = 5;
+  int32 ready_count = 6;
+  int32 failed_count = 7;
+  int32 superseded_count = 8;
+  int32 cancelled_count = 9;
+  repeated OgGenerationFailure failures = 10;
+  google.protobuf.Timestamp created_at = 11;
+  google.protobuf.Timestamp updated_at = 12;
+  google.protobuf.Timestamp completed_at = 13;
+}
+
+message GetOgGenerationRequest {
+  string generation_id = 1;
+}
+
+message GetOgGenerationResponse {
+  OgGeneration generation = 1;
+}
+
+message GetLatestOgGenerationRequest {
+  OgGenerationTarget target = 1;
+}
+
+message GetLatestOgGenerationResponse {
+  OgGeneration generation = 1;
+}
+
+message GetOgGenerationRunRequest {
+  string run_id = 1;
+}
+
+message GetOgGenerationRunResponse {
+  OgGenerationRun run = 1;
+}
+
+// AdminService provides administrative operations
+service AdminService {
+  // Get dashboard statistics
+  rpc GetDashboardStats(GetDashboardStatsRequest) returns (GetDashboardStatsResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+
+  // OG image management
+  // This always plans a new generation. A failed generation is terminal and
+  // is never resumed or retried under its existing generation identity.
+  rpc RegenerateOgImage(RegenerateOgImageRequest) returns (RegenerateOgImageResponse) {
+    // The gateway admits signed-in users; the API must enforce the concrete entity's
+    // edit permission before planning any generation.
+    option (api.policy.v1.access) = {role: USER};
+  }
+  rpc RegenerateAllOgImages(RegenerateAllOgImagesRequest) returns (RegenerateAllOgImagesResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc GetOgGeneration(GetOgGenerationRequest) returns (GetOgGenerationResponse) {
+    // Generation reads carry target snapshots and therefore require the same
+    // concrete entity authorization in the API.
+    option (api.policy.v1.access) = {role: USER};
+  }
+  rpc GetLatestOgGeneration(GetLatestOgGenerationRequest) returns (GetLatestOgGenerationResponse) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+  rpc GetOgGenerationRun(GetOgGenerationRunRequest) returns (GetOgGenerationRunResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+}

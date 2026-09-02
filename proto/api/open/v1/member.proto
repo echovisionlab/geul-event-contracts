@@ -1,0 +1,48 @@
+syntax = "proto3";
+
+package api.open.v1;
+
+import "api/common/v1/common.proto";
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/echovisionlab/geul-event-contracts/gen/api/open/v1;openv1";
+
+service MemberService {
+  rpc GetPublicMember(GetPublicMemberRequest) returns (GetPublicMemberResponse);
+  rpc ListAuthors(ListAuthorsRequest) returns (ListAuthorsResponse);
+}
+
+message GetPublicMemberRequest {
+  string member_id = 1;
+}
+
+message GetPublicMemberResponse {
+  optional PublicMemberProfile member = 1;
+}
+
+// Canonical public detail projection for viewing another Member. Locale,
+// account state, email and administrator data are deliberately excluded.
+message PublicMemberProfile {
+  api.common.v1.MemberSummary summary = 1;
+  optional string bio = 2;
+  optional string website = 3;
+  map<string, string> social_links = 4;
+  optional google.protobuf.Timestamp created_at = 5;
+}
+
+message ListAuthorsRequest {
+  int32 limit = 1;
+  // When present, returns only these effective Authors in request order.
+  // The selection is capped at 24 unique Member IDs.
+  repeated string member_ids = 2;
+}
+
+message ListAuthorsResponse {
+  repeated PublicAuthorSummary authors = 1;
+}
+
+message PublicAuthorSummary {
+  api.common.v1.MemberSummary member = 1;
+  int32 post_count = 2;
+  optional string bio = 3;
+}

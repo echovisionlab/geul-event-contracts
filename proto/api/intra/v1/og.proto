@@ -1,0 +1,72 @@
+syntax = "proto3";
+
+package api.intra.v1;
+
+import "api/common/v1/media.proto";
+import "api/manage/v1/events.proto";
+import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/echovisionlab/geul-event-contracts/gen/api/intra/v1;intrav1";
+
+// InternalOgService provides internal-only access for OG image operations.
+// This service is NOT exposed via the public gateway and should only be called
+// by trusted internal services (e.g., OG service).
+service InternalOgService {
+  rpc ClaimOgGeneration(ClaimOgGenerationRequest) returns (ClaimOgGenerationResponse);
+  rpc CompleteOgGeneration(CompleteOgGenerationRequest) returns (CompleteOgGenerationResponse);
+  rpc FailOgGeneration(FailOgGenerationRequest) returns (FailOgGenerationResponse);
+}
+
+enum OgGenerationClaimResult {
+  OG_GENERATION_CLAIM_RESULT_UNSPECIFIED = 0;
+  OG_GENERATION_CLAIM_RESULT_CLAIMED = 1;
+  OG_GENERATION_CLAIM_RESULT_SKIP = 2;
+}
+
+message OgRenderConfigSnapshot {
+  string site_title = 1;
+  string primary_color = 2;
+  api.common.v1.AssetRef logo_asset = 3;
+  google.protobuf.Struct og_image_config = 4;
+  string revision = 5;
+}
+
+message ClaimOgGenerationRequest {
+  string generation_id = 1;
+}
+
+message ClaimOgGenerationResponse {
+  OgGenerationClaimResult result = 1;
+  api.manage.v1.OgGenerationStatus generation_status = 2;
+  optional string lease_token = 3;
+  google.protobuf.Timestamp lease_expires_at = 4;
+  optional string run_id = 5;
+  api.manage.v1.OgGenerationTarget target = 6;
+  optional string title = 7;
+  api.common.v1.AssetRef featured_image = 8;
+  api.common.v1.AssetWriteTarget output = 9;
+  OgRenderConfigSnapshot render_config = 10;
+}
+
+message CompleteOgGenerationRequest {
+  string generation_id = 1;
+  string lease_token = 2;
+  api.common.v1.AssetWriteResult written = 3;
+}
+
+message CompleteOgGenerationResponse {
+  api.manage.v1.OgGenerationStatus status = 1;
+  api.common.v1.AssetRef asset = 2;
+}
+
+message FailOgGenerationRequest {
+  string generation_id = 1;
+  string lease_token = 2;
+  string error_code = 3;
+  string error = 4;
+}
+
+message FailOgGenerationResponse {
+  api.manage.v1.OgGenerationStatus status = 1;
+}

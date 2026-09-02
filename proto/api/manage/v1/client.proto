@@ -1,0 +1,131 @@
+syntax = "proto3";
+
+package api.manage.v1;
+
+import "api/common/v1/common.proto";
+import "api/common/v1/media.proto";
+import "api/manage/v1/common.proto";
+// Client entity (for work credits, e.g., commissioned by XYZ)
+import "api/policy/v1/access.proto";
+import "google/protobuf/timestamp.proto";
+
+message Client {
+  string id = 1;
+  string name = 2;
+  optional string website = 3;
+  google.protobuf.Timestamp created_at = 4;
+  optional api.common.v1.AssetRef logo_light_asset = 5;
+  optional api.common.v1.AssetRef logo_dark_asset = 6;
+}
+
+// Client with work count (for admin list)
+message ClientWithStats {
+  Client client = 1;
+  int32 work_count = 2;
+}
+
+// Request/Response messages
+
+message GetClientRequest {
+  string id = 1;
+}
+
+message ListClientsRequest {
+  api.common.v1.PaginationRequest pagination = 1;
+  repeated api.common.v1.FilterSpec filters = 2;
+  repeated api.common.v1.SortSpec sorts = 3;
+}
+
+message ListClientsResponse {
+  repeated Client clients = 1;
+  api.common.v1.PaginationResponse pagination = 2;
+}
+
+message ListClientsAdminRequest {
+  api.common.v1.PaginationRequest pagination = 1;
+  repeated api.common.v1.FilterSpec filters = 2;
+  repeated api.common.v1.SortSpec sorts = 3;
+}
+
+message ListClientsAdminResponse {
+  repeated ClientWithStats clients = 1;
+  api.common.v1.PaginationResponse pagination = 2;
+}
+
+message SearchClientsRequest {
+  string query = 1;
+  int32 limit = 2;
+}
+
+message SearchClientsResponse {
+  repeated Client clients = 1;
+}
+
+message CreateClientRequest {
+  string name = 1;
+  optional string website = 2;
+}
+
+message UpdateClientRequest {
+  string id = 1;
+  optional string name = 2;
+  optional string website = 3;
+}
+
+message DeleteClientRequest {
+  string id = 1;
+}
+
+// Client logo management
+
+message SetClientLogoRequest {
+  string client_id = 1;
+  string file_id = 2;
+  ThemeAssetVariant variant = 3;
+}
+
+message SetClientLogoResponse {
+  optional api.common.v1.AssetRef logo_light_asset = 1;
+  optional api.common.v1.AssetRef logo_dark_asset = 2;
+}
+
+message DeleteClientLogoRequest {
+  string client_id = 1;
+  ThemeAssetVariant variant = 2;
+}
+
+// Client Service
+service ClientService {
+  // Public (for selectors, search)
+  rpc GetClient(GetClientRequest) returns (Client) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+  rpc ListClients(ListClientsRequest) returns (ListClientsResponse) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+  rpc SearchClients(SearchClientsRequest) returns (SearchClientsResponse) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+
+  // Admin
+  rpc ListClientsAdmin(ListClientsAdminRequest) returns (ListClientsAdminResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc CreateClient(CreateClientRequest) returns (Client) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc UpdateClient(UpdateClientRequest) returns (Client) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc DeleteClient(DeleteClientRequest) returns (DeleteResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+
+  // Logo management (Admin)
+  rpc SetClientLogo(SetClientLogoRequest) returns (SetClientLogoResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc DeleteClientLogo(DeleteClientLogoRequest) returns (DeleteResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+}

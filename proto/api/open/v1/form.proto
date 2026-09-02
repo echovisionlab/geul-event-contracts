@@ -1,0 +1,154 @@
+syntax = "proto3";
+
+package api.open.v1;
+
+import "api/common/v1/media.proto";
+import "api/open/v1/translation.proto";
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/echovisionlab/geul-event-contracts/gen/api/open/v1;openv1";
+
+// FormService provides public form access
+service FormService {
+  // CheckAccess evaluates form access policy and returns a structured decision.
+  rpc CheckAccess(CheckFormAccessRequest) returns (CheckFormAccessResponse);
+
+  // Submit submits form data
+  // - Validates form is published and within open/close window
+  // - Handles password verification if form has password
+  rpc Submit(SubmitFormRequest) returns (SubmitFormResponse);
+
+  // VerifyPassword checks if the provided password is correct for a form
+  // - Returns valid=true if password matches, false otherwise
+  // - Returns valid=false if form has no password
+  rpc VerifyPassword(VerifyFormPasswordRequest) returns (VerifyFormPasswordResponse);
+
+  // GetDashboard retrieves form dashboard stats via dashboard share link.
+  // - Requires a valid dashboard share_token
+  // - Enforces exact Dashboard ShareLink proof; Form access policy is separate
+  rpc GetDashboard(GetFormDashboardRequest) returns (GetFormDashboardResponse);
+}
+
+enum FormAccessContext {
+  FORM_ACCESS_CONTEXT_UNSPECIFIED = 0;
+  FORM_ACCESS_CONTEXT_URL = 1; // Direct /forms/{slug} access
+  FORM_ACCESS_CONTEXT_EMBED = 2; // Embedded in page/post/block
+}
+
+enum FormAccessTarget {
+  FORM_ACCESS_TARGET_UNSPECIFIED = 0;
+  FORM_ACCESS_TARGET_FORM = 1;
+  FORM_ACCESS_TARGET_DASHBOARD = 2;
+}
+
+enum FormAccessReason {
+  FORM_ACCESS_REASON_UNSPECIFIED = 0;
+  FORM_ACCESS_REASON_ALLOWED = 1;
+  FORM_ACCESS_REASON_FORM_NOT_FOUND = 2;
+  FORM_ACCESS_REASON_FORM_NOT_PUBLISHED = 3;
+  FORM_ACCESS_REASON_NOT_PUBLIC = 4;
+  FORM_ACCESS_REASON_AUTH_REQUIRED = 5;
+  FORM_ACCESS_REASON_ROLE_NOT_ALLOWED = 6;
+  FORM_ACCESS_REASON_PASSWORD_REQUIRED = 7;
+  FORM_ACCESS_REASON_NOT_YET_OPEN = 8;
+  FORM_ACCESS_REASON_CLOSED = 9;
+  FORM_ACCESS_REASON_MAX_SUBMISSIONS_REACHED = 10;
+  FORM_ACCESS_REASON_ALREADY_SUBMITTED = 11;
+}
+
+message CheckFormAccessRequest {
+  string slug = 1;
+  optional string share_token = 2;
+  optional string password = 3;
+  FormAccessContext context = 4;
+  FormAccessTarget target = 5;
+  optional string share_password = 6; // ShareLink password proof; distinct from Form access password
+}
+
+message CheckFormAccessResponse {
+  bool accessible = 1;
+  FormAccessReason reason = 2;
+  optional Form form = 3; // Present when accessible=true
+}
+
+// Form status enum
+enum FormStatus {
+  FORM_STATUS_UNSPECIFIED = 0;
+  FORM_STATUS_DRAFT = 1;
+  FORM_STATUS_PUBLISHED = 2;
+}
+
+message Form {
+  string id = 1;
+  string title = 2;
+  optional string slug = 3;
+  bytes schema = 4; // JSON schema for form fields
+  FormStatus status = 5;
+  bool is_public = 6;
+  bool require_auth = 7;
+  repeated string allowed_roles = 8;
+  bool allow_duplicate_submission = 9;
+  bool has_password = 10; // true if password is set (don't expose actual password)
+  optional int32 max_submissions = 11;
+  optional google.protobuf.Timestamp opens_at = 12;
+  optional google.protobuf.Timestamp closes_at = 13;
+  google.protobuf.Timestamp created_at = 14;
+  google.protobuf.Timestamp updated_at = 15;
+  optional api.common.v1.AssetRef og_asset = 16;
+  optional api.common.v1.AssetRef featured_image_asset = 17;
+  optional LocalizationInfo localization_info = 18;
+}
+
+message FormDashboardFieldValue {
+  string value = 1;
+  int32 count = 2;
+}
+
+message FormDashboardFieldStat {
+  string field_id = 1;
+  string field_label = 2;
+  repeated FormDashboardFieldValue values = 3;
+}
+
+message FormDashboard {
+  string form_id = 1;
+  string form_title = 2;
+  string form_slug = 3;
+  int32 total_submissions = 4;
+  int32 submissions_today = 5;
+  int32 submissions_this_week = 6;
+  int32 submissions_this_month = 7;
+  repeated FormDashboardFieldStat field_stats = 8;
+}
+
+message GetFormDashboardRequest {
+  string slug = 1;
+  string share_token = 2;
+  optional string password = 3;
+  optional string share_password = 4; // Dashboard ShareLink password proof
+}
+
+message GetFormDashboardResponse {
+  FormDashboard dashboard = 1;
+}
+
+message SubmitFormRequest {
+  string form_id = 1;
+  bytes data = 2; // JSON submission data
+  optional string password = 3; // Password if form requires it
+}
+
+message SubmitFormResponse {
+  string submission_id = 1;
+}
+
+message VerifyFormPasswordRequest {
+  string slug = 1;
+  string password = 2;
+  optional string share_token = 3;
+  optional string share_password = 4; // ShareLink password proof; distinct from Form access password
+}
+
+message VerifyFormPasswordResponse {
+  bool valid = 1;
+}

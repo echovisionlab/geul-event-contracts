@@ -1,0 +1,497 @@
+syntax = "proto3";
+
+package api.manage.v1;
+
+import "api/common/v1/common.proto";
+import "api/common/v1/media.proto";
+import "api/content/v1/block_content.proto";
+import "api/manage/v1/common.proto";
+import "api/policy/v1/access.proto";
+import "google/protobuf/timestamp.proto";
+
+enum ProgramEventStatus {
+  PROGRAM_EVENT_STATUS_UNSPECIFIED = 0;
+  PROGRAM_EVENT_STATUS_DRAFT = 1;
+  PROGRAM_EVENT_STATUS_PUBLISHED = 2;
+  PROGRAM_EVENT_STATUS_ARCHIVED = 3;
+}
+
+enum ProgramEventSeriesStatus {
+  PROGRAM_EVENT_SERIES_STATUS_UNSPECIFIED = 0;
+  PROGRAM_EVENT_SERIES_STATUS_DRAFT = 1;
+  PROGRAM_EVENT_SERIES_STATUS_PUBLISHED = 2;
+}
+
+enum ProgramEventLocationMode {
+  PROGRAM_EVENT_LOCATION_MODE_UNSPECIFIED = 0;
+  PROGRAM_EVENT_LOCATION_MODE_MAP_PLACE = 1;
+  PROGRAM_EVENT_LOCATION_MODE_ONLINE = 2;
+  PROGRAM_EVENT_LOCATION_MODE_HYBRID = 3;
+  PROGRAM_EVENT_LOCATION_MODE_TBA = 4;
+}
+
+enum ProgramEventTypeStatus {
+  PROGRAM_EVENT_TYPE_STATUS_UNSPECIFIED = 0;
+  PROGRAM_EVENT_TYPE_STATUS_ACTIVE = 1;
+  PROGRAM_EVENT_TYPE_STATUS_INACTIVE = 2;
+}
+
+message ProgramEventTypeLocale {
+  string locale = 1;
+  string name = 2;
+  optional string description = 3;
+}
+
+message ProgramEventType {
+  string id = 1;
+  string slug = 2;
+  ProgramEventTypeStatus status = 3;
+  int32 sort_order = 4;
+  bool requires_place = 5;
+  bool requires_stream_url = 6;
+  repeated ProgramEventTypeLocale locales = 7;
+  google.protobuf.Timestamp created_at = 8;
+  google.protobuf.Timestamp updated_at = 9;
+}
+
+message ProgramEventSeries {
+  string id = 1;
+  ProgramEventSeriesStatus status = 2;
+  optional string poster_file_id = 3;
+  string slug = 4;
+  string title = 5;
+  google.protobuf.Timestamp created_at = 6;
+  google.protobuf.Timestamp updated_at = 7;
+  optional string summary = 8;
+  optional string description = 9;
+}
+
+message ProgramEventLocale {
+  string locale = 1;
+  optional string summary = 2;
+  optional string content_html = 3;
+  optional string content_text = 4;
+  optional string date_display_override = 5;
+}
+
+message ProgramEventMedia {
+  string id = 1;
+  string file_id = 2;
+  string role = 3;
+  int32 sort_order = 4;
+  bool is_primary = 5;
+  optional string alt = 6;
+  optional string caption = 7;
+  google.protobuf.Timestamp created_at = 8;
+  google.protobuf.Timestamp updated_at = 9;
+}
+
+message ProgramEventArtist {
+  string artist_id = 1;
+  optional string role = 2;
+  int32 sort_order = 3;
+}
+
+message ProgramEventLabel {
+  string label_id = 1;
+  optional string role = 2;
+  int32 sort_order = 3;
+}
+
+message ProgramEventClient {
+  string client_id = 1;
+  optional string role = 2;
+  int32 sort_order = 3;
+}
+
+message ProgramEventCredit {
+  string id = 1;
+  optional string artist_id = 2;
+  optional string display_name = 3;
+  optional string credit_role = 4;
+  optional string description = 5;
+  int32 sort_order = 6;
+  optional ProgramEventCreditArtist artist = 7;
+  optional string member_id = 8;
+  optional api.common.v1.MemberSummary member = 9;
+}
+
+message ProgramEventCreditArtist {
+  string id = 1;
+  string name = 2;
+  optional string slug = 3;
+  optional api.common.v1.AssetRef image_asset = 4;
+}
+
+message ProgramEvent {
+  string id = 1;
+  ProgramEventStatus status = 2;
+  string source_locale = 3;
+  string type_id = 4;
+  optional string series_id = 5;
+  optional int32 series_order = 6;
+  google.protobuf.Timestamp starts_at = 7;
+  optional google.protobuf.Timestamp ends_at = 8;
+  string timezone = 9;
+  bool all_day = 10;
+  ProgramEventLocationMode location_mode = 11;
+  optional string map_place_id = 12;
+  optional string poster_file_id = 13;
+  optional string ticket_url = 14;
+  optional string stream_url = 15;
+  optional string external_url = 16;
+  optional google.protobuf.Timestamp published_at = 17;
+  repeated ProgramEventLocale locales = 18;
+  repeated ProgramEventArtist artists = 19;
+  repeated ProgramEventLabel labels = 20;
+  repeated ProgramEventClient clients = 21;
+  repeated ProgramEventCredit credits = 22;
+  google.protobuf.Timestamp created_at = 23;
+  google.protobuf.Timestamp updated_at = 24;
+  repeated ProgramEventMedia media = 25;
+  string title = 26;
+  string slug = 27;
+  api.content.v1.RichTextDocument document = 28;
+  string document_revision = 29;
+  repeated api.content.v1.ContentBlockMediaItem block_media = 30;
+}
+
+message ProgramEventSummary {
+  string id = 1;
+  ProgramEventStatus status = 2;
+  string source_locale = 3;
+  string title = 4;
+  optional string slug = 5;
+  string type_id = 6;
+  optional string series_id = 7;
+  google.protobuf.Timestamp starts_at = 8;
+  optional google.protobuf.Timestamp ends_at = 9;
+  string timezone = 10;
+  ProgramEventLocationMode location_mode = 11;
+  optional string map_place_id = 12;
+  optional string poster_file_id = 13;
+  optional google.protobuf.Timestamp published_at = 14;
+  google.protobuf.Timestamp updated_at = 15;
+}
+
+message GetProgramEventRequest {
+  string id = 1;
+}
+
+message ListProgramEventsAdminRequest {
+  api.common.v1.PaginationRequest pagination = 1;
+  repeated api.common.v1.FilterSpec filters = 2;
+  repeated api.common.v1.SortSpec sorts = 3;
+}
+
+message ListProgramEventsAdminResponse {
+  repeated ProgramEventSummary events = 1;
+  api.common.v1.PaginationResponse pagination = 2;
+}
+
+message CreateProgramEventRequest {
+  string title = 1;
+  string slug = 2;
+  string source_locale = 3;
+  string type_id = 4;
+  google.protobuf.Timestamp starts_at = 5;
+  string timezone = 6;
+  optional string summary = 7;
+  optional google.protobuf.Timestamp ends_at = 8;
+  bool all_day = 9;
+  ProgramEventLocationMode location_mode = 10;
+  optional string map_place_id = 11;
+  optional string series_id = 12;
+  optional int32 series_order = 13;
+  optional string poster_file_id = 14;
+  optional string ticket_url = 15;
+  optional string stream_url = 16;
+  optional string external_url = 17;
+  repeated ProgramEventArtist artists = 18;
+  repeated ProgramEventLabel labels = 19;
+  repeated ProgramEventClient clients = 20;
+  repeated ProgramEventCredit credits = 21;
+}
+
+message UpdateProgramEventRequest {
+  string id = 1;
+  optional string slug = 2;
+  optional string type_id = 3;
+  optional google.protobuf.Timestamp starts_at = 4;
+  optional google.protobuf.Timestamp ends_at = 5;
+  optional string timezone = 6;
+  optional bool all_day = 7;
+  optional ProgramEventLocationMode location_mode = 8;
+  optional string map_place_id = 9;
+  optional string series_id = 10;
+  optional int32 series_order = 11;
+  optional string poster_file_id = 12;
+  optional string ticket_url = 13;
+  optional string stream_url = 14;
+  optional string external_url = 15;
+  repeated ProgramEventArtist artists = 16;
+  repeated ProgramEventLabel labels = 17;
+  repeated ProgramEventClient clients = 18;
+  repeated ProgramEventCredit credits = 19;
+  bool replace_artists = 20;
+  bool replace_labels = 21;
+  bool replace_clients = 22;
+  bool replace_credits = 23;
+  bool clear_ends_at = 24;
+  bool clear_series_order = 25;
+}
+
+message AddProgramEventMediaRequest {
+  string event_id = 1;
+  string file_id = 2;
+  string role = 3;
+  optional string alt = 4;
+  optional string caption = 5;
+  bool make_primary = 6;
+}
+
+message DeleteProgramEventMediaRequest {
+  string event_id = 1;
+  string media_id = 2;
+}
+
+message ReorderProgramEventMediaRequest {
+  string event_id = 1;
+  string role = 2;
+  repeated string media_ids = 3;
+}
+
+message AddProgramEventCreditRequest {
+  string event_id = 1;
+  optional string artist_id = 2;
+  optional string member_id = 3;
+  optional string display_name = 4;
+  optional string credit_role = 5;
+  optional string description = 6;
+  optional int32 sort_order = 7;
+}
+
+message UpdateProgramEventCreditRequest {
+  string event_id = 1;
+  string credit_id = 2;
+  optional string credit_role = 3;
+  optional string description = 4;
+  optional int32 sort_order = 5;
+}
+
+message DeleteProgramEventCreditRequest {
+  string event_id = 1;
+  string credit_id = 2;
+}
+
+message ReorderProgramEventCreditsRequest {
+  string event_id = 1;
+  repeated string credit_ids = 2;
+}
+
+message DeleteProgramEventRequest {
+  string id = 1;
+}
+
+message PublishProgramEventRequest {
+  string id = 1;
+}
+
+message ArchiveProgramEventRequest {
+  string id = 1;
+}
+
+message UpdateProgramEventResponse {
+  string id = 1;
+  bool changed = 2;
+  google.protobuf.Timestamp updated_at = 3;
+}
+
+message AddProgramEventMediaResponse {
+  string event_id = 1;
+  bool changed = 2;
+  ProgramEventMedia media = 3;
+  google.protobuf.Timestamp updated_at = 4;
+}
+
+message DeleteProgramEventMediaResponse {
+  string event_id = 1;
+  bool changed = 2;
+  string media_id = 3;
+  google.protobuf.Timestamp updated_at = 4;
+}
+
+message ReorderProgramEventMediaResponse {
+  string event_id = 1;
+  bool changed = 2;
+  string role = 3;
+  repeated string media_ids = 4;
+  google.protobuf.Timestamp updated_at = 5;
+}
+
+message ReorderProgramEventCreditsResponse {
+  string event_id = 1;
+  bool changed = 2;
+  repeated string credit_ids = 3;
+  google.protobuf.Timestamp updated_at = 4;
+}
+
+message ProgramEventLifecycleMutationResponse {
+  string id = 1;
+  bool changed = 2;
+  ProgramEventStatus status = 3;
+  optional google.protobuf.Timestamp published_at = 4;
+  google.protobuf.Timestamp updated_at = 5;
+}
+
+message CreateProgramEventSeriesRequest {
+  string title = 1;
+  string slug = 2;
+  optional string summary = 3;
+  optional string description = 4;
+  optional string poster_file_id = 5;
+}
+
+message UpdateProgramEventSeriesRequest {
+  string id = 1;
+  optional string title = 2;
+  optional string slug = 3;
+  optional string summary = 4;
+  optional string description = 5;
+  optional string poster_file_id = 6;
+  optional ProgramEventSeriesStatus status = 7;
+}
+
+message GetProgramEventSeriesRequest {
+  string id = 1;
+}
+
+message ListProgramEventSeriesAdminRequest {
+  api.common.v1.PaginationRequest pagination = 1;
+  repeated api.common.v1.FilterSpec filters = 2;
+  repeated api.common.v1.SortSpec sorts = 3;
+}
+
+message ListProgramEventSeriesAdminResponse {
+  repeated ProgramEventSeries series = 1;
+  api.common.v1.PaginationResponse pagination = 2;
+}
+
+message DeleteProgramEventSeriesRequest {
+  string id = 1;
+}
+
+message CreateProgramEventTypeRequest {
+  string slug = 1;
+  string locale = 2;
+  string name = 3;
+  optional string description = 4;
+  optional int32 sort_order = 5;
+  optional bool requires_place = 6;
+  optional bool requires_stream_url = 7;
+}
+
+message ListProgramEventTypesAdminRequest {
+  api.common.v1.PaginationRequest pagination = 1;
+  repeated api.common.v1.FilterSpec filters = 2;
+  repeated api.common.v1.SortSpec sorts = 3;
+}
+
+message ListProgramEventTypesAdminResponse {
+  repeated ProgramEventType types = 1;
+  api.common.v1.PaginationResponse pagination = 2;
+}
+
+message UpdateProgramEventTypeRequest {
+  string id = 1;
+  optional string slug = 2;
+  optional ProgramEventTypeStatus status = 3;
+  optional int32 sort_order = 4;
+  optional bool requires_place = 5;
+  optional bool requires_stream_url = 6;
+  string locale = 7;
+  optional string name = 8;
+  optional string description = 9;
+}
+
+message DeleteProgramEventTypeRequest {
+  string id = 1;
+}
+
+service ProgramEventService {
+  rpc GetProgramEvent(GetProgramEventRequest) returns (ProgramEvent) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc ListProgramEventsAdmin(ListProgramEventsAdminRequest) returns (ListProgramEventsAdminResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc CreateProgramEvent(CreateProgramEventRequest) returns (ProgramEvent) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc UpdateProgramEvent(UpdateProgramEventRequest) returns (UpdateProgramEventResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc AddProgramEventMedia(AddProgramEventMediaRequest) returns (AddProgramEventMediaResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc DeleteProgramEventMedia(DeleteProgramEventMediaRequest) returns (DeleteProgramEventMediaResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc ReorderProgramEventMedia(ReorderProgramEventMediaRequest) returns (ReorderProgramEventMediaResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc AddProgramEventCredit(AddProgramEventCreditRequest) returns (ProgramEventCredit) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc UpdateProgramEventCredit(UpdateProgramEventCreditRequest) returns (ProgramEventCredit) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc DeleteProgramEventCredit(DeleteProgramEventCreditRequest) returns (DeleteResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc ReorderProgramEventCredits(ReorderProgramEventCreditsRequest) returns (ReorderProgramEventCreditsResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc DeleteProgramEvent(DeleteProgramEventRequest) returns (DeleteResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc PublishProgramEvent(PublishProgramEventRequest) returns (ProgramEventLifecycleMutationResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc ArchiveProgramEvent(ArchiveProgramEventRequest) returns (ProgramEventLifecycleMutationResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+}
+
+service ProgramEventSeriesService {
+  rpc GetProgramEventSeries(GetProgramEventSeriesRequest) returns (ProgramEventSeries) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc ListProgramEventSeriesAdmin(ListProgramEventSeriesAdminRequest) returns (ListProgramEventSeriesAdminResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc CreateProgramEventSeries(CreateProgramEventSeriesRequest) returns (ProgramEventSeries) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc UpdateProgramEventSeries(UpdateProgramEventSeriesRequest) returns (ProgramEventSeries) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc DeleteProgramEventSeries(DeleteProgramEventSeriesRequest) returns (DeleteResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+}
+
+service ProgramEventTypeService {
+  rpc ListProgramEventTypesAdmin(ListProgramEventTypesAdminRequest) returns (ListProgramEventTypesAdminResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc CreateProgramEventType(CreateProgramEventTypeRequest) returns (ProgramEventType) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc UpdateProgramEventType(UpdateProgramEventTypeRequest) returns (ProgramEventType) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc DeleteProgramEventType(DeleteProgramEventTypeRequest) returns (DeleteResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+}

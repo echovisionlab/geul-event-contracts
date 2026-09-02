@@ -1,0 +1,47 @@
+syntax = "proto3";
+
+package api.intra.v1;
+
+option go_package = "github.com/echovisionlab/geul-event-contracts/gen/api/intra/v1;intrav1";
+
+// InternalPostSeriesService is the trusted Collaboration persistence boundary
+// for one exact source or existing target locale room.
+service InternalPostSeriesService {
+  rpc LoadDocument(LoadPostSeriesDocumentRequest) returns (LoadPostSeriesDocumentResponse);
+  rpc SaveDocument(SavePostSeriesDocumentRequest) returns (SavePostSeriesDocumentResponse);
+}
+
+message PostSeriesLocaleFields {
+  optional string title = 1;
+  optional string summary = 2;
+}
+
+message LoadPostSeriesDocumentRequest {
+  string series_id = 1;
+  string locale = 2;
+}
+
+message LoadPostSeriesDocumentResponse {
+  string source_locale = 1;
+  string locale = 2;
+  bool locale_exists = 3;
+  PostSeriesLocaleFields source = 4;
+  PostSeriesLocaleFields requested = 5;
+  string document_revision = 6;
+  optional string target_revision = 7;
+}
+
+message SavePostSeriesDocumentRequest {
+  string series_id = 1;
+  string locale = 2;
+  PostSeriesLocaleFields requested = 3;
+  repeated string contributor_member_ids = 4;
+  string expected_document_revision = 5;
+  optional string expected_target_revision = 6;
+}
+
+message SavePostSeriesDocumentResponse {
+  string locale = 1;
+  string document_revision = 2;
+  optional string target_revision = 3;
+}

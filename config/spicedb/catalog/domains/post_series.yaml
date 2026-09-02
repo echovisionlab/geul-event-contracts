@@ -1,0 +1,44 @@
+# Post Series owns Series Manager participation. Its SpiceDB definition keeps
+# the established wire name `series`.
+domain: post_series
+description: Post Series management policy
+api_names:
+  series: PostSeries
+actions:
+  series:
+    edit: edit
+    view: view
+    delete: delete
+    publish: publish
+    manage: manage
+    manage_participants: manage_participants
+lookup_permissions:
+  series: [view, manage]
+platform_actions:
+  series:
+    create: is_admin
+    list: is_admin
+definitions:
+  series:
+    relations:
+      policy: [platform]
+      manager: [account_identity]
+    permissions:
+      - platform_admin
+      - manager_manage
+      - edit
+      - view
+      - delete
+      - publish
+      - manage
+      - manage_participants
+permission_expressions:
+  series:
+    platform_admin: policy->is_admin
+    manager_manage: platform_admin + manager
+    edit: manager_manage
+    view: edit
+    delete: platform_admin
+    publish: manager_manage
+    manage: manager_manage
+    manage_participants: platform_admin

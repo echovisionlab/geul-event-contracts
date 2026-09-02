@@ -1,0 +1,308 @@
+syntax = "proto3";
+
+package api.manage.v1;
+
+import "api/common/v1/common.proto";
+import "api/manage/v1/account.proto";
+import "api/manage/v1/common.proto";
+import "api/policy/v1/access.proto";
+import "google/protobuf/timestamp.proto";
+
+enum MySection {
+  MY_SECTION_UNSPECIFIED = 0;
+  MY_SECTION_PROFILE = 1;
+  MY_SECTION_SECURITY = 2;
+  MY_SECTION_SETTINGS = 3;
+  MY_SECTION_POSTS = 4;
+  MY_SECTION_SERIES = 5;
+  MY_SECTION_WORKS = 6;
+  MY_SECTION_ARTISTS = 7;
+  MY_SECTION_FORMS = 8;
+}
+
+// Canonical authenticated profile-detail projection. GetMyProfile exposes it
+// to the owner; AdminMember composes it with administrator-only account data.
+// Public profile reads use api.open.v1.PublicMemberProfile instead.
+message MemberProfile {
+  api.common.v1.MemberSummary summary = 1;
+  optional string bio = 2;
+  optional string website = 3;
+  map<string, string> social_links = 4;
+  optional string preferred_locale = 5;
+  google.protobuf.Timestamp created_at = 6;
+  optional google.protobuf.Timestamp updated_at = 7;
+}
+
+message RequestMetadata {
+  optional GeoIPInfo geo = 1;
+  string ip_address = 2;
+}
+
+// Minimal authenticated-session projection used by the site shell and request
+// context. Profile biography, website, social links, timestamps, ban details,
+// and navigation capabilities deliberately live behind dedicated reads.
+message CurrentSessionMember {
+  api.common.v1.MemberSummary summary = 1;
+  optional string email = 2;
+  optional string preferred_locale = 3;
+  api.policy.v1.AuthorizationRole role = 4;
+  AccountStatus status = 5;
+}
+
+message GetCurrentSessionRequest {}
+
+message GetCurrentSessionResponse {
+  CurrentSessionMember member = 1;
+  RequestMetadata metadata = 2;
+  bool onboarded = 3;
+  optional string nickname_suggestion = 4;
+  // Server-only OAuth subject. Web must not expose it from the browser session
+  // endpoint.
+  string account_identity_id = 5;
+}
+
+message GetMyProfileRequest {}
+
+message GetMyProfileResponse {
+  MemberProfile member = 1;
+}
+
+message GetMySectionsRequest {}
+
+message GetMySectionsResponse {
+  repeated MySection sections = 1;
+}
+
+message CookieConsent {
+  bool essential = 1;
+  bool analytics = 2;
+  int32 version = 3;
+  google.protobuf.Timestamp updated_at = 4;
+  string source = 5;
+}
+
+message GetMySettingsRequest {}
+
+message GetMySettingsResponse {
+  optional string preferred_locale = 1;
+  optional CookieConsent cookie_consent = 2;
+  optional CanonicalEmailSummary canonical_email = 3;
+  NewsletterSubscriptionState newsletter_subscription = 4;
+}
+
+message UpdateMyProfileRequest {
+  // The API validates 1-100 characters and atomically enforces case-sensitive
+  // uniqueness. An availability check does not reserve this value. This
+  // mutation changes an existing nickname and never changes onboarded.
+  optional string nickname = 1;
+  optional string bio = 2;
+  optional string website = 3;
+  map<string, string> social_links = 4;
+}
+
+message UpdateMyProfileResponse {
+  api.common.v1.MemberSummary member = 1;
+}
+
+message CookieConsentUpdate {
+  bool analytics = 1;
+  int32 version = 2;
+  optional string source = 3;
+}
+
+message UpdateMyPreferencesRequest {
+  optional string preferred_locale = 1;
+  optional CookieConsentUpdate cookie_consent = 2;
+}
+
+message UpdateMyPreferencesResponse {
+  GetMySettingsResponse settings = 1;
+}
+
+message SetMyAvatarRequest {
+  string file_id = 1;
+}
+
+message MemberSummaryMutationResponse {
+  api.common.v1.MemberSummary member = 1;
+}
+
+message DeleteMyAvatarRequest {}
+
+// Canonical widest administrator projection for Member management. This is
+// never used by the global session, public profile, or compact reference APIs.
+message AdminMember {
+  MemberProfile member = 1;
+  AccountSummary account = 2;
+  repeated string tag_ids = 3;
+  optional AccountAdminDetails account_details = 4;
+  NewsletterSubscriptionState newsletter_subscription = 5;
+  // Admin list/detail visibility only. Admin mutations do not complete
+  // onboarding; only CompleteMyOnboarding can change false to true.
+  bool onboarded = 6;
+}
+
+message GetMemberRequest {
+  string member_id = 1;
+}
+
+message ListMembersAdminRequest {
+  api.common.v1.PaginationRequest pagination = 1;
+  repeated api.common.v1.FilterSpec filters = 2;
+  repeated api.common.v1.SortSpec sorts = 3;
+}
+
+message ListMembersAdminResponse {
+  repeated AdminMember members = 1;
+  api.common.v1.PaginationResponse pagination = 2;
+}
+
+message SearchMembersRequest {
+  string query = 1;
+  repeated string exclude_member_ids = 2;
+  int32 limit = 3;
+  // Restricts results to Members whose linked identity currently has the
+  // effective platform Author permission (including Admin inheritance).
+  bool effective_authors_only = 4;
+}
+
+message SearchMembersResponse {
+  repeated api.common.v1.MemberSummary members = 1;
+}
+
+message CheckNicknameAvailabilityRequest {
+  // Compared case-sensitively. The API rejects values outside 1-100
+  // characters before checking current ownership.
+  string nickname = 1;
+}
+
+message CheckNicknameAvailabilityResponse {
+  // Advisory only. The database-backed profile mutation is the final authority
+  // and may reject a concurrent winner after this response.
+  bool available = 1;
+}
+
+message CompleteMyOnboardingRequest {
+  // The API validates 1-100 characters and atomically claims this
+  // case-sensitive nickname while setting onboarded=true in one transaction.
+  string nickname = 1;
+}
+
+message CompleteMyOnboardingResponse {
+  api.common.v1.MemberSummary member = 1;
+  bool onboarded = 2;
+}
+
+message UpdateMemberProfileRequest {
+  string member_id = 1;
+  // The API validates 1-100 characters and atomically enforces case-sensitive
+  // uniqueness. An availability check does not reserve this value.
+  optional string nickname = 2;
+  optional string bio = 3;
+  optional string website = 4;
+  map<string, string> social_links = 5;
+}
+
+message SetMemberAvatarRequest {
+  string member_id = 1;
+  string file_id = 2;
+}
+
+message DeleteMemberAvatarRequest {
+  string member_id = 1;
+}
+
+message MemberTag {
+  string id = 1;
+  string name = 2;
+  google.protobuf.Timestamp created_at = 3;
+  int32 member_count = 4;
+}
+
+message ListMemberTagsAdminRequest {
+  api.common.v1.PaginationRequest pagination = 1;
+  repeated api.common.v1.FilterSpec filters = 2;
+  repeated api.common.v1.SortSpec sorts = 3;
+}
+
+message ListMemberTagsAdminResponse {
+  repeated MemberTag tags = 1;
+  api.common.v1.PaginationResponse pagination = 2;
+}
+
+message CreateMemberTagRequest {
+  string name = 1;
+}
+
+message DeleteMemberTagRequest {
+  string id = 1;
+}
+
+message SetMemberTagsRequest {
+  string member_id = 1;
+  repeated string tag_ids = 2;
+}
+
+service MemberService {
+  rpc GetCurrentSession(GetCurrentSessionRequest) returns (GetCurrentSessionResponse) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+  rpc GetMyProfile(GetMyProfileRequest) returns (GetMyProfileResponse) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+  rpc GetMySections(GetMySectionsRequest) returns (GetMySectionsResponse) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+  rpc GetMySettings(GetMySettingsRequest) returns (GetMySettingsResponse) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+  rpc SearchMembers(SearchMembersRequest) returns (SearchMembersResponse) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+  rpc CheckNicknameAvailability(CheckNicknameAvailabilityRequest) returns (CheckNicknameAvailabilityResponse) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+  rpc CompleteMyOnboarding(CompleteMyOnboardingRequest) returns (CompleteMyOnboardingResponse) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+  rpc UpdateMyProfile(UpdateMyProfileRequest) returns (UpdateMyProfileResponse) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+  rpc UpdateMyPreferences(UpdateMyPreferencesRequest) returns (UpdateMyPreferencesResponse) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+  rpc SetMyAvatar(SetMyAvatarRequest) returns (MemberSummaryMutationResponse) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+  rpc DeleteMyAvatar(DeleteMyAvatarRequest) returns (MemberSummaryMutationResponse) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+
+  rpc GetMember(GetMemberRequest) returns (AdminMember) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc ListMembersAdmin(ListMembersAdminRequest) returns (ListMembersAdminResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc UpdateMemberProfile(UpdateMemberProfileRequest) returns (AdminMember) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc SetMemberAvatar(SetMemberAvatarRequest) returns (MemberSummaryMutationResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc DeleteMemberAvatar(DeleteMemberAvatarRequest) returns (MemberSummaryMutationResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc ListMemberTagsAdmin(ListMemberTagsAdminRequest) returns (ListMemberTagsAdminResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc CreateMemberTag(CreateMemberTagRequest) returns (MemberTag) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc DeleteMemberTag(DeleteMemberTagRequest) returns (DeleteResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc SetMemberTags(SetMemberTagsRequest) returns (AdminMember) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+}

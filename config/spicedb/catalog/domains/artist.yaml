@@ -1,0 +1,52 @@
+# Artist owns direct Owner/Manager participation and inherited parent Artist
+# management.
+domain: artist
+description: Artist ownership, management, hierarchy, and share links
+actions:
+  artist:
+    edit: edit
+    view: view
+    delete: delete
+    publish: publish
+    manage: manage
+    manage_participants: manage_participants
+    manage_share_links: manage_share_links
+action_aliases:
+  artist:
+    remove_owner: platform_admin
+lookup_permissions:
+  artist: [manage]
+platform_actions:
+  artist:
+    create: is_admin
+    list: is_admin
+definitions:
+  artist:
+    relations:
+      policy: [platform]
+      owner: [account_identity]
+      manager: [account_identity]
+      parent: [artist]
+    permissions:
+      - platform_admin
+      - owner_manage
+      - manager_manage
+      - edit
+      - view
+      - delete
+      - publish
+      - manage
+      - manage_participants
+      - manage_share_links
+permission_expressions:
+  artist:
+    platform_admin: policy->is_admin
+    owner_manage: platform_admin + owner
+    manager_manage: owner_manage + manager + parent->manage
+    edit: manager_manage
+    view: edit
+    delete: owner_manage
+    publish: owner_manage
+    manage: manager_manage
+    manage_participants: owner_manage
+    manage_share_links: owner_manage

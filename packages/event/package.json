@@ -1,0 +1,51 @@
+{
+  "name": "@echovisionlab/geul-event",
+  "version": "0.1.0",
+  "private": false,
+  "type": "module",
+  "scripts": {
+    "build": "tsup",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint --cache .",
+    "lint-fix": "eslint --cache . --fix"
+  },
+  "exports": {
+    ".": {
+      "import": "./src/index.ts",
+      "types": "./src/index.ts"
+    }
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "dependencies": {
+    "@bufbuild/protobuf": "^2.14.0"
+  },
+  "peerDependencies": {
+    "@echovisionlab/geul-proto": "^0.1.0"
+  },
+  "devDependencies": {
+    "@echovisionlab/geul-proto": "workspace:*",
+    "@types/node": "^24.13.3",
+    "@typescript/native": "npm:typescript@7.0.2",
+    "eslint": "^10.8.1",
+    "tsup": "^8.5.1",
+    "typescript": "npm:@typescript/typescript6@6.0.2",
+    "typescript-eslint": "^8.67.0"
+  },
+  "license": "PolyForm-Noncommercial-1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/echovisionlab/geul-event-contracts.git"
+  },
+  "homepage": "https://github.com/echovisionlab/geul-event-contracts#readme",
+  "bugs": {
+    "url": "https://github.com/echovisionlab/geul-event-contracts/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

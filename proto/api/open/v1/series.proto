@@ -1,0 +1,47 @@
+syntax = "proto3";
+
+package api.open.v1;
+
+import "api/common/v1/common.proto";
+import "api/common/v1/media.proto";
+import "api/open/v1/translation.proto";
+
+option go_package = "github.com/echovisionlab/geul-event-contracts/gen/api/open/v1;openv1";
+
+// SeriesService provides public access to series
+service SeriesService {
+  // List returns all series with post counts
+  rpc List(ListSeriesRequest) returns (ListSeriesResponse);
+  // Get returns one published Series by slug or ID using locale fallback.
+  rpc Get(GetSeriesRequest) returns (GetSeriesResponse);
+}
+
+message GetSeriesRequest {
+  string slug = 1;
+}
+
+message GetSeriesResponse {
+  optional Series series = 1;
+}
+
+message ListSeriesRequest {
+  api.common.v1.PaginationRequest pagination = 1;
+  repeated api.common.v1.FilterSpec filters = 2; // (none for now)
+  repeated api.common.v1.SortSpec sorts = 3; // title, post_count
+}
+
+message ListSeriesResponse {
+  repeated Series series = 1;
+  api.common.v1.PaginationResponse pagination = 2;
+}
+
+message Series {
+  string id = 1;
+  string title = 2;
+  string slug = 3;
+  optional string description = 4;
+  int32 post_count = 5;
+  optional api.common.v1.AssetRef og_asset = 6;
+  optional api.common.v1.AssetRef featured_image_asset = 7;
+  optional LocalizationInfo localization_info = 8;
+}

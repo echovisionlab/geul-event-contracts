@@ -1,0 +1,28 @@
+# File owns File resource authorization; object storage is not an authorization
+# authority.
+domain: file
+description: File resource policy
+actions:
+  file:
+    view: view
+    edit: edit
+    delete: delete
+    manage: manage
+platform_actions:
+  file:
+    # The Admin File Manager route, folder CRUD, and library mutations are
+    # distinct from Author-visible editor picker listing and reuse.
+    manage_library: is_admin
+    list: is_author
+definitions:
+  file:
+    relations:
+      policy: [platform]
+    permissions: [platform_admin, view, edit, delete, manage]
+permission_expressions:
+  file:
+    platform_admin: policy->is_admin
+    view: platform_admin
+    edit: platform_admin
+    delete: platform_admin
+    manage: platform_admin

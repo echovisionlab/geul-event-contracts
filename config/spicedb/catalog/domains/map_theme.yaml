@@ -1,0 +1,24 @@
+# Map Theme owns locale-neutral Map Theme authorization.
+domain: map_theme
+description: Map Theme resource policy
+actions:
+  map_theme:
+    view: view
+    edit: edit
+    delete: delete
+    manage: manage
+platform_actions:
+  map_theme:
+    create: is_admin
+definitions:
+  map_theme:
+    relations:
+      policy: [platform]
+    permissions: [platform_admin, view, edit, delete, manage]
+permission_expressions:
+  map_theme:
+    platform_admin: policy->is_admin
+    view: platform_admin
+    edit: platform_admin
+    delete: platform_admin
+    manage: platform_admin

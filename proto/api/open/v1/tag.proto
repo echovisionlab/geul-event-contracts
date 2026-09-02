@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package api.open.v1;
+
+import "api/common/v1/common.proto";
+
+option go_package = "github.com/echovisionlab/geul-event-contracts/gen/api/open/v1;openv1";
+
+// TagService provides public access to tags
+service TagService {
+  // List returns all tags with post counts
+  rpc List(ListTagsRequest) returns (ListTagsResponse);
+}
+
+message ListTagsRequest {
+  api.common.v1.PaginationRequest pagination = 1;
+  repeated api.common.v1.FilterSpec filters = 2; // (none for now)
+  repeated api.common.v1.SortSpec sorts = 3; // name, post_count
+}
+
+message ListTagsResponse {
+  repeated Tag tags = 1;
+  api.common.v1.PaginationResponse pagination = 2;
+}
+
+message Tag {
+  string id = 1;
+  string name = 2;
+  string slug = 3;
+  int32 post_count = 4;
+}

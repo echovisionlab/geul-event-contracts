@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package api.open.v1;
+
+import "api/manage/v1/share_link.proto";
+
+option go_package = "github.com/echovisionlab/geul-event-contracts/gen/api/open/v1;openv1";
+
+// ShareLinkService provides public access to validate share links
+service ShareLinkService {
+  // Validate validates a share link token and returns entity info if valid
+  rpc Validate(ValidateShareLinkRequest) returns (ValidateShareLinkResponse);
+}
+
+message ValidateShareLinkRequest {
+  string token = 1;
+  optional string password = 2;
+}
+
+message ValidateShareLinkResponse {
+  bool valid = 1;
+  optional api.manage.v1.ShareLinkEntityType entity_type = 2;
+  optional string entity_id = 3;
+  optional string slug = 4;
+  bool password_required = 5;
+}

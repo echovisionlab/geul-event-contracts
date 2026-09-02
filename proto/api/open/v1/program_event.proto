@@ -1,0 +1,219 @@
+syntax = "proto3";
+
+package api.open.v1;
+
+import "api/common/v1/common.proto";
+import "api/common/v1/media.proto";
+import "api/content/v1/block_content.proto";
+import "api/open/v1/map_place.proto";
+import "api/open/v1/page.proto";
+import "api/open/v1/translation.proto";
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/echovisionlab/geul-event-contracts/gen/api/open/v1;openv1";
+
+enum ProgramEventStatus {
+  PROGRAM_EVENT_STATUS_UNSPECIFIED = 0;
+  PROGRAM_EVENT_STATUS_DRAFT = 1;
+  PROGRAM_EVENT_STATUS_PUBLISHED = 2;
+  PROGRAM_EVENT_STATUS_ARCHIVED = 3;
+}
+
+enum ProgramEventSeriesStatus {
+  PROGRAM_EVENT_SERIES_STATUS_UNSPECIFIED = 0;
+  PROGRAM_EVENT_SERIES_STATUS_DRAFT = 1;
+  PROGRAM_EVENT_SERIES_STATUS_PUBLISHED = 2;
+}
+
+enum ProgramEventLocationMode {
+  PROGRAM_EVENT_LOCATION_MODE_UNSPECIFIED = 0;
+  PROGRAM_EVENT_LOCATION_MODE_MAP_PLACE = 1;
+  PROGRAM_EVENT_LOCATION_MODE_ONLINE = 2;
+  PROGRAM_EVENT_LOCATION_MODE_HYBRID = 3;
+  PROGRAM_EVENT_LOCATION_MODE_TBA = 4;
+}
+
+enum ProgramEventTypeStatus {
+  PROGRAM_EVENT_TYPE_STATUS_UNSPECIFIED = 0;
+  PROGRAM_EVENT_TYPE_STATUS_ACTIVE = 1;
+  PROGRAM_EVENT_TYPE_STATUS_INACTIVE = 2;
+}
+
+service ProgramEventService {
+  rpc Get(GetProgramEventRequest) returns (GetProgramEventResponse);
+  rpc List(ListProgramEventsRequest) returns (ListProgramEventsResponse);
+}
+
+service ProgramEventSeriesService {
+  rpc Get(GetProgramEventSeriesRequest) returns (GetProgramEventSeriesResponse);
+  rpc List(ListProgramEventSeriesRequest) returns (ListProgramEventSeriesResponse);
+}
+
+service ProgramEventTypeService {
+  rpc List(ListProgramEventTypesRequest) returns (ListProgramEventTypesResponse);
+}
+
+message ProgramEventType {
+  string id = 1;
+  string slug = 2;
+  ProgramEventTypeStatus status = 3;
+  int32 sort_order = 4;
+  string name = 5;
+  optional string description = 6;
+  bool requires_place = 7;
+  bool requires_stream_url = 8;
+}
+
+message ProgramEventSeries {
+  string id = 1;
+  ProgramEventSeriesStatus status = 2;
+  string title = 3;
+  string slug = 4;
+  optional string summary = 5;
+  optional string description = 6;
+  optional api.common.v1.AssetRef poster_asset = 7;
+}
+
+message ProgramEventArtist {
+  string id = 1;
+  string name = 2;
+  optional string slug = 3;
+  optional string role = 4;
+  int32 sort_order = 5;
+}
+
+message ProgramEventLabel {
+  string id = 1;
+  string name = 2;
+  optional string slug = 3;
+  optional string role = 4;
+  int32 sort_order = 5;
+}
+
+message ProgramEventClient {
+  string id = 1;
+  string name = 2;
+  optional string website = 3;
+  optional string role = 4;
+  int32 sort_order = 5;
+}
+
+message ProgramEventCredit {
+  string id = 1;
+  optional string display_name = 2;
+  optional string credit_role = 3;
+  optional string description = 4;
+  int32 sort_order = 5;
+  optional ProgramEventArtist artist = 6;
+  optional api.common.v1.MemberSummary member = 7;
+}
+
+message ProgramEvent {
+  string id = 1;
+  ProgramEventStatus status = 2;
+  string title = 3;
+  optional string slug = 4;
+  optional string summary = 5;
+  optional string content_html = 6;
+  optional string content_text = 7;
+  string type_id = 8;
+  optional ProgramEventType type = 9;
+  optional string series_id = 10;
+  optional ProgramEventSeries series = 11;
+  optional int32 series_order = 12;
+  google.protobuf.Timestamp starts_at = 13;
+  optional google.protobuf.Timestamp ends_at = 14;
+  string timezone = 15;
+  bool all_day = 16;
+  ProgramEventLocationMode location_mode = 17;
+  optional string map_place_id = 18;
+  optional MapPlaceBasic location_place = 19;
+  optional string ticket_url = 20;
+  optional string stream_url = 21;
+  optional string external_url = 22;
+  repeated ProgramEventArtist artists = 23;
+  repeated ProgramEventLabel labels = 24;
+  repeated ProgramEventClient clients = 25;
+  repeated ProgramEventCredit credits = 26;
+  optional google.protobuf.Timestamp published_at = 27;
+  google.protobuf.Timestamp updated_at = 28;
+  optional LocalizationInfo localization_info = 29;
+  optional api.common.v1.AssetRef poster_asset = 30;
+  api.content.v1.LocalizedRichTextDocument document = 31;
+  string document_revision = 32;
+}
+
+message ProgramEventSummary {
+  string id = 1;
+  ProgramEventStatus status = 2;
+  string title = 3;
+  optional string slug = 4;
+  optional string summary = 5;
+  string type_id = 6;
+  optional ProgramEventType type = 7;
+  optional string series_id = 8;
+  optional int32 series_order = 9;
+  google.protobuf.Timestamp starts_at = 10;
+  optional google.protobuf.Timestamp ends_at = 11;
+  string timezone = 12;
+  bool all_day = 13;
+  ProgramEventLocationMode location_mode = 14;
+  optional string map_place_id = 15;
+  optional google.protobuf.Timestamp published_at = 16;
+  google.protobuf.Timestamp updated_at = 17;
+  optional LocalizationInfo localization_info = 18;
+  optional api.common.v1.AssetRef poster_asset = 19;
+}
+
+message GetProgramEventRequest {
+  string slug = 1;
+}
+
+message GetProgramEventResponse {
+  optional ProgramEvent event = 1;
+  // Program Event owns document visibility; File contributes only the exact
+  // active Block references and request-scoped delivery/download policy after
+  // that authorization succeeds.
+  repeated api.content.v1.ContentBlockMediaItem block_media = 2;
+}
+
+message ListProgramEventsRequest {
+  api.common.v1.PaginationRequest pagination = 1;
+  repeated api.common.v1.FilterSpec filters = 2;
+  repeated api.common.v1.SortSpec sorts = 3;
+}
+
+message ListProgramEventsResponse {
+  repeated ProgramEventSummary events = 1;
+  api.common.v1.PaginationResponse pagination = 2;
+}
+
+message GetProgramEventSeriesRequest {
+  string slug = 1;
+}
+
+message GetProgramEventSeriesResponse {
+  optional ProgramEventSeries series = 1;
+}
+
+message ListProgramEventSeriesRequest {
+  api.common.v1.PaginationRequest pagination = 1;
+  repeated api.common.v1.FilterSpec filters = 2;
+  repeated api.common.v1.SortSpec sorts = 3;
+}
+
+message ListProgramEventSeriesResponse {
+  repeated ProgramEventSeries series = 1;
+  api.common.v1.PaginationResponse pagination = 2;
+}
+
+message ListProgramEventTypesRequest {
+  api.common.v1.PaginationRequest pagination = 1;
+  repeated api.common.v1.FilterSpec filters = 2;
+  repeated api.common.v1.SortSpec sorts = 3;
+}
+
+message ListProgramEventTypesResponse {
+  repeated ProgramEventType types = 1;
+  api.common.v1.PaginationResponse pagination = 2;
+}
