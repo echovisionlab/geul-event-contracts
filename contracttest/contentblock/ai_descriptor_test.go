@@ -16,7 +16,7 @@ func TestPostRichTextCatalogDescriptorExposesClosedRecursiveAuthority(t *testing
 	if descriptor.Fingerprint != contentv1.ContentBlockCatalogFingerprint || descriptor.Profile != "post" {
 		t.Fatalf("unexpected descriptor identity: %+v", descriptor)
 	}
-	if len(descriptor.Blocks) != 16 || descriptor.Blocks[0].Kind != "paragraph" || descriptor.Blocks[15].Kind != "callout" {
+	if len(descriptor.Blocks) != 17 || descriptor.Blocks[0].Kind != "paragraph" || descriptor.Blocks[15].Kind != "callout" || descriptor.Blocks[16].Kind != "mermaid" {
 		t.Fatalf("unexpected Post Block order: %+v", descriptor.Blocks)
 	}
 	if !descriptor.InlineMath || !descriptor.ParagraphExternalVideo {
@@ -132,7 +132,7 @@ func TestPageCatalogDescriptorExposesLocaleLeafAuthorityAsCallerOwnedCopies(t *t
 	t.Parallel()
 
 	first := contentv1.DescribePageCatalog()
-	if first.Fingerprint != contentv1.ContentBlockCatalogFingerprint || len(first.Sections) != 20 {
+	if first.Fingerprint != contentv1.ContentBlockCatalogFingerprint || len(first.Sections) != 21 {
 		t.Fatalf("unexpected Page descriptor identity: %+v", first)
 	}
 	externalVideo := requirePageSectionDescriptor(t, first, "external-video")

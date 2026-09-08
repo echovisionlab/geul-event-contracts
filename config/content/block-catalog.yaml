@@ -572,6 +572,14 @@ rich_text:
         textColor: { type: editor_color, default: default, ownership: shared }
       content: inline
 
+    mermaid:
+      fields:
+        title:
+          { type: string, default: "", ownership: locale, translatable: true }
+        source:
+          { type: string, default: "", max_length: 100000, ownership: source }
+      content: none
+
 profiles:
   post:
     blocks:
@@ -592,6 +600,7 @@ profiles:
         map,
         file,
         callout,
+        mermaid,
       ]
     inline_math: true
     paragraph_external_video: true
@@ -615,6 +624,7 @@ profiles:
         math,
         file,
         callout,
+        mermaid,
       ]
     inline_math: false
     paragraph_external_video: true
@@ -639,6 +649,7 @@ profiles:
         map,
         file,
         callout,
+        mermaid,
       ]
     inline_math: true
     paragraph_external_video: false
@@ -774,6 +785,7 @@ page:
       author-list,
       form,
       map,
+      mermaid,
     ]
   sections:
     rich-text:
@@ -1521,3 +1533,9 @@ page:
         gap: { type: integer, min: 0, max: 100, default: 24, ownership: shared }
         mobileStack: { type: boolean, default: true, ownership: shared }
       columns: true
+    mermaid:
+      fields:
+        title:
+          { type: string, default: "", ownership: locale, translatable: true }
+        source:
+          { type: string, default: "", max_length: 100000, ownership: source }

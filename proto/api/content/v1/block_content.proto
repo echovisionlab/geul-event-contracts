@@ -513,6 +513,10 @@ message CalloutProps {
   optional string text_color = 3;
 }
 
+message MermaidProps {
+  optional string source = 1;
+}
+
 message ParagraphLocaleProps {
 
 }
@@ -578,6 +582,10 @@ message CalloutLocaleProps {
 
 }
 
+message MermaidLocaleProps {
+  optional string title = 1;
+}
+
 message ParagraphBlock {
   ParagraphProps props = 1;
 }
@@ -641,6 +649,10 @@ message FileBlock {
 
 message CalloutBlock {
   CalloutProps props = 1;
+}
+
+message MermaidBlock {
+  MermaidProps props = 1;
 }
 
 message ParagraphBlockLocale {
@@ -716,6 +728,10 @@ message CalloutBlockLocale {
   repeated RichTextInline content = 2;
 }
 
+message MermaidBlockLocale {
+  MermaidLocaleProps props = 1;
+}
+
 message RichTextBlock {
   string id = 1;
   oneof value {
@@ -735,6 +751,7 @@ message RichTextBlock {
     MapBlock map = 15;
     FileBlock file = 16;
     CalloutBlock callout = 17;
+    MermaidBlock mermaid = 18;
   }
 }
 
@@ -757,6 +774,7 @@ message RichTextBlockLocale {
     MapBlockLocale map = 15;
     FileBlockLocale file = 16;
     CalloutBlockLocale callout = 17;
+    MermaidBlockLocale mermaid = 18;
   }
 }
 
@@ -780,6 +798,7 @@ message RichTextBlockData {
     MapBlock map = 14;
     FileBlock file = 15;
     CalloutBlock callout = 16;
+    MermaidBlock mermaid = 17;
   }
 }
 
@@ -802,6 +821,7 @@ message RichTextBlockLocaleData {
     MapBlockLocale map = 14;
     FileBlockLocale file = 15;
     CalloutBlockLocale callout = 16;
+    MermaidBlockLocale mermaid = 17;
   }
 }
 
@@ -1787,6 +1807,10 @@ message ColumnsSectionProps {
   optional bool mobile_stack = 3;
 }
 
+message MermaidSectionProps {
+  optional string source = 1;
+}
+
 message RichTextSectionLocaleProps {
 
 }
@@ -1865,6 +1889,10 @@ message ImmersiveSceneSectionLocaleProps {
 
 message ColumnsSectionLocaleProps {
 
+}
+
+message MermaidSectionLocaleProps {
+  optional string title = 1;
 }
 
 message RichTextSection {
@@ -1949,6 +1977,10 @@ message ColumnsSection {
   ColumnsSectionProps props = 1;
 }
 
+message MermaidSection {
+  MermaidSectionProps props = 1;
+}
+
 message RichTextSectionLocale {
   RichTextSectionLocaleProps props = 1;
   RichTextLocaleOverlay blocks = 2;
@@ -2031,6 +2063,10 @@ message ColumnsSectionLocale {
   ColumnsSectionLocaleProps props = 1;
 }
 
+message MermaidSectionLocale {
+  MermaidSectionLocaleProps props = 1;
+}
+
 message PageSection {
   string id = 1;
   PageSectionSettings settings = 2;
@@ -2055,6 +2091,7 @@ message PageSection {
     MapSection map = 20;
     ImmersiveSceneSection immersive_scene = 21;
     ColumnsSection columns = 22;
+    MermaidSection mermaid = 23;
   }
 }
 
@@ -2081,6 +2118,7 @@ message PageSectionLocale {
     MapSectionLocale map = 19;
     ImmersiveSceneSectionLocale immersive_scene = 20;
     ColumnsSectionLocale columns = 21;
+    MermaidSectionLocale mermaid = 22;
   }
 }
 
@@ -2109,6 +2147,7 @@ message PageSectionData {
     MapSection map = 19;
     ImmersiveSceneSection immersive_scene = 20;
     ColumnsSection columns = 21;
+    MermaidSection mermaid = 22;
   }
 }
 
@@ -2135,6 +2174,7 @@ message PageSectionLocaleData {
     MapSectionLocale map = 18;
     ImmersiveSceneSectionLocale immersive_scene = 19;
     ColumnsSectionLocale columns = 20;
+    MermaidSectionLocale mermaid = 21;
   }
 }
 
