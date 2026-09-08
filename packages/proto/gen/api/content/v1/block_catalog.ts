@@ -38,7 +38,7 @@ import {
 } from "./block_content_pb.ts";
 
 export const contentBlockCatalogFingerprint =
-  "1b0b80933dd4e3a92f66d8f85d25c915d74410ee47bb6cf6ec3adffcfe964bc8" as const;
+  "e037d77d859734c7c716372434602edfe8872d521e8f0f9b9e28e12827635335" as const;
 export const contentBlockRuntimeForbiddenFields = [
   "_tempUrl",
   "allowOriginalDownload",
@@ -99,6 +99,7 @@ export const richTextBlockKinds = [
   "map",
   "file",
   "callout",
+  "mermaid",
 ] as const;
 export type RichTextBlockKind = (typeof richTextBlockKinds)[number];
 export const pageSectionKinds = [
@@ -122,6 +123,7 @@ export const pageSectionKinds = [
   "map",
   "immersive-scene",
   "columns",
+  "mermaid",
 ] as const;
 export type PageSectionKind = (typeof pageSectionKinds)[number];
 export const richTextProfiles = {
@@ -143,6 +145,7 @@ export const richTextProfiles = {
       "map",
       "file",
       "callout",
+      "mermaid",
     ],
     inline_math: true,
     paragraph_external_video: true,
@@ -174,6 +177,7 @@ export const richTextProfiles = {
       "math",
       "file",
       "callout",
+      "mermaid",
     ],
     inline_math: false,
     paragraph_external_video: true,
@@ -206,6 +210,7 @@ export const richTextProfiles = {
       "map",
       "file",
       "callout",
+      "mermaid",
     ],
     inline_math: true,
     paragraph_external_video: false,
@@ -238,6 +243,7 @@ export const richTextProfiles = {
       "map",
       "file",
       "callout",
+      "mermaid",
     ],
     inline_math: true,
     paragraph_external_video: false,
@@ -1069,6 +1075,23 @@ export const richTextBlockCatalog = {
       },
     },
     content: "inline",
+  },
+  mermaid: {
+    fields: {
+      title: {
+        type: "string",
+        default: "",
+        ownership: "locale",
+        translatable: true,
+      },
+      source: {
+        type: "string",
+        default: "",
+        max_length: 100000,
+        ownership: "source",
+      },
+    },
+    content: "none",
   },
 } as const;
 const richTextInlineStyleCatalog = {
@@ -2739,6 +2762,24 @@ export const pageSectionCatalog = {
     richTextProfile: null,
     columns: true,
   },
+  mermaid: {
+    fields: {
+      title: {
+        type: "string",
+        default: "",
+        ownership: "locale",
+        translatable: true,
+      },
+      source: {
+        type: "string",
+        default: "",
+        max_length: 100000,
+        ownership: "source",
+      },
+    },
+    richTextProfile: null,
+    columns: false,
+  },
 } as const;
 export const pageSectionSettingsCatalog = {
   backgroundColor: {
@@ -2960,6 +3001,7 @@ export const pageColumnChildKinds = [
   "author-list",
   "form",
   "map",
+  "mermaid",
 ] as const;
 export const contentBlockFileReferencePolicies = {
   file: {},
@@ -3002,6 +3044,7 @@ export const richTextBlockKindByProtoCase = {
   map: "map",
   file: "file",
   callout: "callout",
+  mermaid: "mermaid",
 } as const;
 export const pageSectionKindByProtoCase = {
   richText: "rich-text",
@@ -3024,6 +3067,7 @@ export const pageSectionKindByProtoCase = {
   map: "map",
   immersiveScene: "immersive-scene",
   columns: "columns",
+  mermaid: "mermaid",
 } as const;
 export const richTextCollaborativeTextCatalog = {
   paragraph: ["content"],
@@ -3042,6 +3086,7 @@ export const richTextCollaborativeTextCatalog = {
   map: ["props.caption"],
   file: ["props.name", "props.alt", "props.caption"],
   callout: ["props.icon", "content"],
+  mermaid: ["props.title", "props.source"],
 } as const;
 export const pageSectionCollaborativeTextCatalog = {
   "rich-text": [],
@@ -3070,6 +3115,7 @@ export const pageSectionCollaborativeTextCatalog = {
     "units[*].props.text",
   ],
   columns: [],
+  mermaid: ["props.title", "props.source"],
 } as const;
 const profileByNumber = {
   "1": "post",
