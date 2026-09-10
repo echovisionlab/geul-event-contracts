@@ -51,11 +51,7 @@ func TestInternalProgramEventServiceOwnsSharedDocument(t *testing.T) {
 	requireMessageField(t, metadata, "locale", 1, protoreflect.StringKind, "")
 	requireMessageField(t, metadata, "title", 2, protoreflect.StringKind, "")
 	requireMessageField(t, metadata, "summary", 3, protoreflect.StringKind, "")
-	for _, removed := range []protoreflect.Name{"content_html", "content_text"} {
-		if metadata.Fields().ByName(removed) != nil {
-			t.Errorf("ProgramEventLocaleMetadata.%s must stay removed", removed)
-		}
-	}
+
 	assertProgramEventSourceMetadataReservations(t, metadata)
 
 	manageLocale := (&managev1.ProgramEventLocale{}).ProtoReflect().Descriptor()

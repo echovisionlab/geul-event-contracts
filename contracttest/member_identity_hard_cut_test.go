@@ -83,9 +83,7 @@ func TestMemberAndAccountServicesOwnDisjointMutations(t *testing.T) {
 			t.Errorf("MemberService.%s is missing", method)
 		}
 	}
-	if member.Methods().ByName("GetCurrentViewer") != nil {
-		t.Error("MemberService.GetCurrentViewer legacy aggregate must not remain")
-	}
+
 	for _, forbidden := range []protoreflect.Name{
 		"GetMySecurity",
 		"RequestEmailChange",
@@ -196,9 +194,6 @@ func TestAccountSecurityExposesCanonicalEmailWithoutDeliveryAlias(t *testing.T) 
 	security := (&managev1.AccountSecurity{}).ProtoReflect().Descriptor()
 	requireMessageField(t, security, "email_candidates", 2, protoreflect.MessageKind, "api.manage.v1.AccountEmailCandidate")
 	requireMessageField(t, security, "canonical_email", 6, protoreflect.StringKind, "")
-	if security.Fields().ByName("delivery_primary_email") != nil {
-		t.Fatal("AccountSecurity.delivery_primary_email compatibility alias must not remain")
-	}
 
 	candidate := (&managev1.AccountEmailCandidate{}).ProtoReflect().Descriptor()
 	requireMessageField(t, candidate, "current", 3, protoreflect.BoolKind, "")

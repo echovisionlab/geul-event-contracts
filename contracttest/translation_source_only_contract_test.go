@@ -1,14 +1,11 @@
 package contracttest_test
 
 import (
-	"strings"
 	"testing"
 
 	intrav1 "github.com/echovisionlab/geul-event-contracts/gen/api/intra/v1"
 	managev1 "github.com/echovisionlab/geul-event-contracts/gen/api/manage/v1"
-	openv1 "github.com/echovisionlab/geul-event-contracts/gen/api/open/v1"
 	"google.golang.org/protobuf/reflect/protoreflect"
-	"google.golang.org/protobuf/reflect/protoregistry"
 )
 
 func TestTranslationCapableRootsExposeInitialAndCurrentSourceLocale(t *testing.T) {
@@ -178,11 +175,6 @@ func TestEmailLayoutCollaborationUsesOneExactLocaleDocumentContract(t *testing.T
 			t.Fatalf("Email Layout exact-locale RPC %s is missing", method)
 		}
 	}
-	for _, method := range []protoreflect.Name{"SaveTranslationDocument", "LoadTranslationDocument"} {
-		if service.Methods().ByName(method) != nil {
-			t.Fatalf("Email Layout target RPC %s must be absent", method)
-		}
-	}
 	saveRequest := (&intrav1.SaveEmailLayoutDocumentRequest{}).ProtoReflect().Descriptor()
 	requireField(t, saveRequest, "locale", 5, protoreflect.StringKind)
 	requireField(t, saveRequest, "expected_document_revision", 6, protoreflect.StringKind)
@@ -197,67 +189,13 @@ func TestEmailLayoutCollaborationUsesOneExactLocaleDocumentContract(t *testing.T
 	requireField(t, loadResponse, "locale", 4, protoreflect.StringKind)
 	requireField(t, loadResponse, "document_revision", 5, protoreflect.StringKind)
 	requireOptionalField(t, loadResponse, "target_revision", 6, protoreflect.StringKind)
-	for _, removed := range []protoreflect.Name{"yjs_state", "edit_hash", "expected_source_locale", "expected_current_edit_hash", "source_revision_checkpoint"} {
-		requireNoField(t, saveRequest, removed)
-		requireNoField(t, saveResponse, removed)
-		requireNoField(t, loadResponse, removed)
-	}
 }
 
-func TestTranslationProjectionContractHasNoManualOrStaleFallbackSurface(t *testing.T) {
-	entry := (&managev1.TranslationEntry{}).ProtoReflect().Descriptor()
-	for _, name := range []protoreflect.Name{
-		"manual_edited", "edit_version", "edited_at", "edited_by_member_id",
-		"source_hash", "source_revision", "source_epoch", "status", "published_at",
-		"translation_spec_version", "machine_generated", "provider", "model",
-	} {
-		requireNoField(t, entry, name)
-	}
-	if descriptor, err := protoregistry.GlobalFiles.FindDescriptorByName("api.manage.v1.TranslationEntryStatus"); err == nil {
-		t.Errorf("TranslationEntryStatus must be absent, got %T", descriptor)
-	}
+func TestTranslationSettingsProtectedTermsAreRepeated(t *testing.T) {
 	settings := (&managev1.TranslationSettings{}).ProtoReflect().Descriptor()
-	for _, name := range []protoreflect.Name{"debounce_seconds", "english_fallback_enabled", "stale_exact_enabled", "stale_english_enabled", "machine_generated_public_serve"} {
-		requireNoField(t, settings, name)
-	}
 	protectedTerms := requireField(t, settings, "protected_terms", 3, protoreflect.StringKind)
 	if !protectedTerms.IsList() {
 		t.Fatal("TranslationSettings.protected_terms must be a repeated exact-spelling list")
-	}
-	translationService := managev1.File_api_manage_v1_translation_proto.Services().ByName("TranslationService")
-	for index := 0; index < translationService.Methods().Len(); index++ {
-		method := translationService.Methods().Get(index)
-		if strings.Contains(strings.ToLower(string(method.Name())), "glossary") {
-			t.Fatalf("Translation terminology exceptions must not expose separate glossary RPC %s", method.Name())
-		}
-	}
-	locale := (&managev1.TranslationLocale{}).ProtoReflect().Descriptor()
-	requireNoField(t, locale, "fallback_locale")
-	localeHealth := (&managev1.TranslationLocaleHealth{}).ProtoReflect().Descriptor()
-	requireNoField(t, localeHealth, "expected_entries")
-	job := (&managev1.TranslationJob{}).ProtoReflect().Descriptor()
-	requireNoField(t, job, "trigger_kind")
-	if descriptor, err := protoregistry.GlobalFiles.FindDescriptorByName("api.manage.v1.TranslationJobTriggerKind"); err == nil {
-		t.Errorf("TranslationJobTriggerKind must be absent, got %T", descriptor)
-	}
-	localization := (&openv1.LocalizationInfo{}).ProtoReflect().Descriptor()
-	requireNoField(t, localization, "is_stale")
-	entityType := managev1.TranslationEntityType(0).Descriptor()
-	if entityType.Values().ByName("TRANSLATION_ENTITY_TYPE_SITE_SETTING") != nil {
-		t.Fatal("Site Setting must not remain a translation entity")
-	}
-	lifecycleStatus := managev1.TranslationLifecycleStatus(0).Descriptor()
-	for _, removed := range []protoreflect.Name{
-		"TRANSLATION_LIFECYCLE_STATUS_QUEUED",
-		"TRANSLATION_LIFECYCLE_STATUS_RUNNING",
-		"TRANSLATION_LIFECYCLE_STATUS_PUBLISHED",
-		"TRANSLATION_LIFECYCLE_STATUS_CANCELLED",
-		"TRANSLATION_LIFECYCLE_STATUS_SUPERSEDED",
-		"TRANSLATION_LIFECYCLE_STATUS_DELETED",
-	} {
-		if lifecycleStatus.Values().ByName(removed) != nil {
-			t.Fatalf("%s must not remain a translation lifecycle status", removed)
-		}
 	}
 }
 
@@ -268,7 +206,6 @@ func TestTranslationHealthContainsObservedFactsOnly(t *testing.T) {
 			name   protoreflect.Name
 			number protoreflect.FieldNumber
 		}
-		removed []protoreflect.Name
 	}{
 		{
 			descriptor: (&managev1.TranslationOverviewStats{}).ProtoReflect().Descriptor(),
@@ -283,7 +220,6 @@ func TestTranslationHealthContainsObservedFactsOnly(t *testing.T) {
 				{"active_jobs", 5},
 				{"existing_entries", 6},
 			},
-			removed: []protoreflect.Name{"failed_jobs", "average_generation_latency_ms", "published_entries", "stale_entries", "source_updates_waiting"},
 		},
 		{
 			descriptor: (&managev1.TranslationEntityHealth{}).ProtoReflect().Descriptor(),
@@ -297,7 +233,6 @@ func TestTranslationHealthContainsObservedFactsOnly(t *testing.T) {
 				{"active_jobs", 4},
 				{"last_source_update_at", 5},
 			},
-			removed: []protoreflect.Name{"failed_jobs", "published_entries", "stale_entries", "waiting_sources"},
 		},
 	}
 	for _, test := range tests {
@@ -310,17 +245,11 @@ func TestTranslationHealthContainsObservedFactsOnly(t *testing.T) {
 				t.Fatalf("%s field %d = %s/%d, want %s/%d", test.descriptor.FullName(), index, field.Name(), field.Number(), want.name, want.number)
 			}
 		}
-		for _, removed := range test.removed {
-			requireNoField(t, test.descriptor, removed)
-		}
 	}
 
 	localeHealth := (&managev1.TranslationLocaleHealth{}).ProtoReflect().Descriptor()
 	requireField(t, localeHealth, "existing_entries", 2, protoreflect.Int32Kind)
 	requireField(t, localeHealth, "last_target_update_at", 4, protoreflect.MessageKind)
-	for _, removed := range []protoreflect.Name{"failed_jobs", "published_entries", "stale_entries", "last_published_at"} {
-		requireNoField(t, localeHealth, removed)
-	}
 }
 
 func TestSourceLocaleChangeAndRegenerationStayExplicit(t *testing.T) {

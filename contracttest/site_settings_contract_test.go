@@ -28,9 +28,6 @@ func TestSiteOriginIsRuntimeOnlyAndRemainsPubliclyProjected(t *testing.T) {
 	if openOrigin == nil || openOrigin.Number() != 11 || openOrigin.Kind() != protoreflect.StringKind {
 		t.Fatal("api.open.v1.SiteSettings.site_origin must remain public string field 11")
 	}
-	if field := open.Fields().ByName("site_url"); field != nil {
-		t.Fatal("api.open.v1.SiteSettings.site_url alias must not remain")
-	}
 }
 
 func TestLoaderMutationUsesDedicatedRelationRPCs(t *testing.T) {

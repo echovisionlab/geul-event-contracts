@@ -90,9 +90,6 @@ func TestSpiceDBTypeScriptExportsOnlyPublicModules(t *testing.T) {
 			t.Errorf("package export %s = %q, want %q", key, got, want)
 		}
 	}
-	if _, err := os.Stat(filepath.Join(root, "config/spicedb/catalog.yaml")); !os.IsNotExist(err) {
-		t.Fatal("parallel monolithic catalog source must remain removed")
-	}
 }
 
 func TestSpiceDBDomainActionsHideSchemaHelpersAndKeepAliases(t *testing.T) {

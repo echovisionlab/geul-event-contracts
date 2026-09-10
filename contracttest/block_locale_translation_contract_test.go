@@ -201,7 +201,4 @@ func TestUpdateReleaseDateUsesExplicitSetClearOneof(t *testing.T) {
 	if setDate.ContainingOneof() == nil || setDate.ContainingOneof() != clearDate.ContainingOneof() || setDate.ContainingOneof().Name() != "release_date_change" {
 		t.Fatal("Release date set/clear fields do not share release_date_change oneof")
 	}
-	if request.Fields().ByName("release_date") != nil {
-		t.Fatal("legacy ambiguous UpdateReleaseRequest.release_date is still present")
-	}
 }

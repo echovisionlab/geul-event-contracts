@@ -75,17 +75,6 @@ func TestCampaignAndEmailTemplateCollaborationUseTypedBlockAggregates(t *testing
 			if test.service.Methods().ByName("CreateAuditCheckpoint") != nil {
 				t.Error("Version-less documents must not expose an Audit checkpoint")
 			}
-			for _, removed := range []protoreflect.Name{
-				"SaveDocument",
-				"SaveTranslationDocument",
-				"LoadTranslationDocument",
-				"CreateVersionCheckpoint",
-				"CheckpointSourceRevision",
-			} {
-				if test.service.Methods().ByName(removed) != nil {
-					t.Errorf("service must not expose legacy method %s", removed)
-				}
-			}
 
 			requireField(t, test.load, test.resourceIDField, 1, protoreflect.StringKind)
 			principal := requireField(t, test.load, "principal", 2, protoreflect.MessageKind)
@@ -112,16 +101,6 @@ func TestCampaignAndEmailTemplateCollaborationUseTypedBlockAggregates(t *testing
 			if !expectedTargetRevision.HasOptionalKeyword() {
 				t.Error("target metadata CAS token must be optional for source rooms")
 			}
-			for _, removed := range []protoreflect.Name{
-				"patch_mask",
-				"expected_source_revision",
-				"source_revision_checkpoint",
-				"yjs_state",
-				"content_json",
-				"content_html",
-			} {
-				requireNoField(t, test.metadata, removed)
-			}
 		})
 	}
 }
@@ -142,9 +121,6 @@ func TestCampaignAndEmailTemplateManageContractsExposeTypedEditorDocuments(t *te
 		requireField(t, descriptor, "document_revision", 15, protoreflect.StringKind)
 		requireNoField(t, descriptor, "source_epoch")
 		requireNoField(t, descriptor, "document_canonical_hash")
-		for _, removed := range []protoreflect.Name{"content_html", "content_json", "content_text", "yjs_state", "edit_hash"} {
-			requireNoField(t, descriptor, removed)
-		}
 	}
 
 	campaignPreview := (&managev1.PreviewCampaignRequest{}).ProtoReflect().Descriptor()

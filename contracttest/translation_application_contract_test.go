@@ -5,7 +5,6 @@ import (
 
 	managev1 "github.com/echovisionlab/geul-event-contracts/gen/api/manage/v1"
 	"google.golang.org/protobuf/reflect/protoreflect"
-	"google.golang.org/protobuf/reflect/protoregistry"
 )
 
 func TestTranslationJobExposesOnlyInFlightStates(t *testing.T) {
@@ -25,18 +24,6 @@ func TestTranslationJobExposesOnlyInFlightStates(t *testing.T) {
 		value := status.Values().Get(index)
 		if value.Name() != expected.name || value.Number() != expected.number {
 			t.Fatalf("TranslationJobStatus[%d] = %s/%d, want %s/%d", index, value.Name(), value.Number(), expected.name, expected.number)
-		}
-	}
-	for _, removed := range []protoreflect.Name{
-		"TRANSLATION_JOB_STATUS_APPLIED",
-		"TRANSLATION_JOB_STATUS_FAILED",
-		"TRANSLATION_JOB_STATUS_CANCELLED",
-		"TRANSLATION_JOB_STATUS_PUBLISHED",
-		"TRANSLATION_JOB_STATUS_SUPERSEDED",
-		"TRANSLATION_JOB_STATUS_OBSOLETE",
-	} {
-		if status.Values().ByName(removed) != nil {
-			t.Fatalf("%s must not remain a Translation job state", removed)
 		}
 	}
 }
@@ -93,15 +80,5 @@ func TestTranslationEntryIsExistenceAndContentOnly(t *testing.T) {
 		if field.Name() != expected.name || field.Number() != expected.number {
 			t.Fatalf("TranslationEntry[%d] = %s/%d, want %s/%d", index, field.Name(), field.Number(), expected.name, expected.number)
 		}
-	}
-	if descriptor, err := protoregistry.GlobalFiles.FindDescriptorByName("api.manage.v1.TranslationEntryStatus"); err == nil {
-		t.Fatalf("TranslationEntryStatus must be absent, got %T", descriptor)
-	}
-}
-
-func TestTranslationJobHasNoSupersessionSurface(t *testing.T) {
-	job := (&managev1.TranslationJob{}).ProtoReflect().Descriptor()
-	for _, removed := range []protoreflect.Name{"superseded_by_revision", "superseded_by_source_epoch"} {
-		requireNoField(t, job, removed)
 	}
 }

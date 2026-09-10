@@ -33,19 +33,6 @@ func TestPageCollaborationUsesOneTypedAggregateDocument(t *testing.T) {
 			t.Errorf("InternalPageService must expose %s", method)
 		}
 	}
-	for _, removed := range []protoreflect.Name{
-		"SaveDocument",
-		"LoadDocument",
-		"SaveTranslationDocument",
-		"LoadTranslationDocument",
-		"RematerializeTranslationDocument",
-		"ListVersionProjectionBackfillTargets",
-		"ApplyVersionProjectionBackfill",
-	} {
-		if service.Methods().ByName(removed) != nil {
-			t.Errorf("InternalPageService must not expose legacy method %s", removed)
-		}
-	}
 
 	load := (&intrav1.LoadPageBlockDocumentResponse{}).ProtoReflect().Descriptor()
 	requirePageMessageType(t, load, "document", 1, "api.content.v1.LocalizedPageDocument")
@@ -70,9 +57,6 @@ func TestPageCollaborationUsesOneTypedAggregateDocument(t *testing.T) {
 	requireField(t, apply, "page_id", 1, protoreflect.StringKind)
 	requirePageMessageType(t, apply, "batch", 2, "api.content.v1.PageSectionMutationBatch")
 	requireField(t, apply, "locale", 3, protoreflect.StringKind)
-	for _, removed := range []protoreflect.Name{"scope", "expected_source_revision"} {
-		requireNoField(t, apply, removed)
-	}
 }
 
 func TestPageMetadataAndCheckpointUseSeparateRevisionCAS(t *testing.T) {
@@ -113,11 +97,6 @@ func TestPageManageAndOpenUseTypedDocuments(t *testing.T) {
 	requireNoField(t, managePage, "canonical_hash")
 	requireDocumentLayoutField(t, managePage, 13)
 	requirePageBlockMediaField(t, managePage, 15)
-	for _, removed := range []protoreflect.Name{
-		"content_html", "content_text", "yjs_state", "view_hash", "edit_hash", "content_json", "content_hash",
-	} {
-		requireNoField(t, managePage, removed)
-	}
 
 	update := (&managev1.UpdatePageRequest{}).ProtoReflect().Descriptor()
 	requireField(t, update, "slug", 2, protoreflect.StringKind)

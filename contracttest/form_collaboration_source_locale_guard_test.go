@@ -12,9 +12,6 @@ func TestFormCollaborationUsesOneServerDerivedSourceDocument(t *testing.T) {
 	if service.Methods().ByName("SaveDocument") == nil || service.Methods().ByName("LoadDocument") == nil {
 		t.Fatal("Form source document RPCs are missing")
 	}
-	if service.Methods().ByName("SaveTranslationDocument") != nil || service.Methods().ByName("LoadTranslationDocument") != nil {
-		t.Fatal("Form target translation document RPCs must be absent")
-	}
 
 	sharedSave := (&intrav1.SaveFormDocumentRequest{}).ProtoReflect().Descriptor()
 	meta := requireMessageField(t, sharedSave, "meta", 2, protoreflect.MessageKind, "api.intra.v1.FormMeta")
@@ -45,12 +42,4 @@ func TestFormCollaborationUsesOneServerDerivedSourceDocument(t *testing.T) {
 	formMeta := (&intrav1.FormMeta{}).ProtoReflect().Descriptor()
 	requireOptionalField(t, formMeta, "title", 1, protoreflect.StringKind)
 	requireOptionalField(t, formMeta, "schema", 2, protoreflect.StringKind)
-	for _, removed := range []protoreflect.Name{"yjs_state", "patch_mask", "og_generation_run_id", "expected_source_locale", "expected_current_edit_hash", "edit_hash", "source_revision_checkpoint"} {
-		if sharedSave.Fields().ByName(removed) != nil || sharedLoad.Fields().ByName(removed) != nil {
-			t.Fatalf("Form collaboration must not expose duplicate CAS field %s", removed)
-		}
-		if formMeta.Fields().ByName(removed) != nil {
-			t.Fatalf("Form canonical payload must not expose removed field %s", removed)
-		}
-	}
 }

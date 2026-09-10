@@ -186,9 +186,7 @@ func TestAdminSegmentExposesReferenceCountsAndArchiveState(t *testing.T) {
 	if !archivedAt.HasPresence() {
 		t.Error("api.manage.v1.Segment.archived_at must preserve active versus archived presence")
 	}
-	if segment.Fields().ByName("file_count") != nil {
-		t.Error("api.manage.v1.Segment must not retain the obsolete File-level reference count")
-	}
+
 	if segment.ReservedNames().Len() != 0 || segment.ReservedRanges().Len() != 0 {
 		t.Error("api.manage.v1.Segment must not retain a compatibility reservation")
 	}

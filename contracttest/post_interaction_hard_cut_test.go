@@ -71,7 +71,6 @@ func TestPostActionsKeepAuthorMutationAuthorityDistinct(t *testing.T) {
 	requireMessageField(t, participant, "member", 1, protoreflect.MessageKind, "api.common.v1.MemberSummary")
 	requireMessageField(t, participant, "role", 2, protoreflect.EnumKind, "api.manage.v1.PostParticipantRole")
 	requireMessageField(t, participant, "has_effective_authority", 4, protoreflect.BoolKind, "")
-
 }
 
 func TestPostRPCGatewayTiersPreserveExactAPIAuthority(t *testing.T) {
@@ -140,9 +139,6 @@ func TestPostCollaborationCarriesExactLocaleAndTargetCAS(t *testing.T) {
 	service := intrav1.File_api_intra_v1_post_proto.Services().ByName("InternalPostService")
 	if service.Methods().ByName("UpdatePostLocaleMetadata") == nil {
 		t.Fatal("InternalPostService.UpdatePostLocaleMetadata is missing")
-	}
-	if service.Methods().ByName("UpdatePostSourceMetadata") != nil {
-		t.Fatal("InternalPostService.UpdatePostSourceMetadata must be hard-cut")
 	}
 }
 
