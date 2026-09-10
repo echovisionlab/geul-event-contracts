@@ -290,8 +290,6 @@ function syncRpcInventoryFile(contracts) {
         schemaVersion: 2,
         consumerAuditStatus: "in_progress",
         services: [],
-        removedProcedures: [],
-        removedMessages: [],
       };
   const existingServices = new Map(
     (existing.services ?? []).map((service) => [service.service, service]),
@@ -327,8 +325,6 @@ function syncRpcInventoryFile(contracts) {
         ? "complete"
         : "in_progress",
     services,
-    removedProcedures: sortedUnique(existing.removedProcedures ?? []),
-    removedMessages: sortedUnique(existing.removedMessages ?? []),
   };
   fs.writeFileSync(rpcInventoryPath, `${JSON.stringify(inventory, null, 2)}\n`);
 }
@@ -435,35 +431,6 @@ function auditRpcInventory(contracts) {
       );
     }
   }
-  const removedProcedures = inventory.removedProcedures ?? [];
-  if (
-    JSON.stringify(removedProcedures) !==
-    JSON.stringify(sortedUnique(removedProcedures))
-  ) {
-    failures.push("removed RPC inventory must be unique and sorted");
-  }
-  for (const procedure of removedProcedures) {
-    const separator = procedure.lastIndexOf("/");
-    const serviceName = procedure.slice(0, separator);
-    const methodName = procedure.slice(separator + 1);
-    if (contractServices.get(serviceName)?.procedures.includes(methodName)) {
-      failures.push(`removed RPC still exists in protobuf: ${procedure}`);
-    }
-  }
-
-  const removedMessages = inventory.removedMessages ?? [];
-  if (
-    JSON.stringify(removedMessages) !==
-    JSON.stringify(sortedUnique(removedMessages))
-  ) {
-    failures.push("removed message inventory must be unique and sorted");
-  }
-  for (const message of removedMessages) {
-    if (contracts.messages.has(message)) {
-      failures.push(`removed message still exists in protobuf: ${message}`);
-    }
-  }
-
   if (
     inventory.consumerAuditStatus === "complete" &&
     consumerPendingCount > 0

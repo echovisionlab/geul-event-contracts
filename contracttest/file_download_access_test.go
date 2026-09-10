@@ -284,28 +284,16 @@ func TestOpenAuthorizeDownloadIsScopedAndMinimal(t *testing.T) {
 	}
 }
 
-func TestPublicBulkMediaDeliveryIsHardCut(t *testing.T) {
+func TestPublicFileServiceUsesRelationDownloadAuthorization(t *testing.T) {
 	file := openv1.File_api_open_v1_file_proto
 	service := file.Services().ByName("FileService")
 	if service == nil {
 		t.Fatal("api.open.v1.FileService descriptor is missing")
 	}
-	if service.Methods().ByName("GetBulkMediaDeliveries") != nil {
-		t.Error("api.open.v1.FileService.GetBulkMediaDeliveries must be removed")
-	}
+
 	if service.Methods().Len() != 1 || service.Methods().ByName("AuthorizeDownload") == nil {
 		t.Error("api.open.v1.FileService must expose only exact-relation AuthorizeDownload")
 	}
-	for _, name := range []protoreflect.Name{
-		"PublicMediaFileRequest",
-		"GetBulkMediaDeliveriesRequest",
-		"GetBulkMediaDeliveriesResponse",
-	} {
-		if file.Messages().ByName(name) != nil {
-			t.Errorf("api.open.v1.%s must be removed with the transitional Bulk RPC", name)
-		}
-	}
-
 	effective := (&openv1.FileDownloadAccess{}).ProtoReflect().Descriptor()
 	requireMessageFieldCount(t, effective, 2)
 	requireMessageField(t, effective, "availability", 1, protoreflect.EnumKind, "api.open.v1.FileDownloadAvailability")

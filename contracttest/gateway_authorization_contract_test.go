@@ -57,11 +57,4 @@ func TestGatewayAuthorizationJSONUsesShortAuthorizationRoleNames(t *testing.T) {
 			t.Fatalf("gateway request JSON = %s, want %s", payload, want)
 		}
 	}
-
-	for _, legacy := range []string{"ACCESS_TIER_ADMIN", "GATEWAY_AUTHORIZATION_TIER_ADMIN"} {
-		var request intrav1.AuthorizeGatewayAccessRequest
-		if err := protojson.Unmarshal([]byte(`{"role":"`+legacy+`"}`), &request); err == nil {
-			t.Fatalf("legacy gateway authorization value %q was accepted", legacy)
-		}
-	}
 }

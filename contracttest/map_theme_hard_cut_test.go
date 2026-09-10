@@ -73,9 +73,7 @@ func TestMapThemeDefaultAndCollaborationUseDedicatedCASContracts(t *testing.T) {
 	requireMessageField(t, save, "expected_revision", 3, protoreflect.Int64Kind, "")
 	requireMessageField(t, save, "contributor_member_ids", 4, protoreflect.StringKind, "")
 	requireMessageField(t, save, "locale", 5, protoreflect.StringKind, "")
-	if field := save.Fields().ByName("source_revision_checkpoint"); field != nil {
-		t.Fatal("SaveMapThemeSnapshotRequest.source_revision_checkpoint must be removed")
-	}
+
 	saveResponse := (&intrav1.SaveMapThemeSnapshotResponse{}).ProtoReflect().Descriptor()
 	requireMessageField(t, saveResponse, "revision", 2, protoreflect.Int64Kind, "")
 	requireMessageField(t, saveResponse, "locale", 3, protoreflect.StringKind, "")

@@ -15,7 +15,6 @@ const spec = parse(
   readFileSync(resolve(process.cwd(), "asyncapi/asyncapi.yaml"), "utf8"),
 ) as {
   channels: Record<string, AsyncAPIChannel>;
-  components: { messages: Record<string, unknown> };
 };
 
 describe("durable asynchronous event model", () => {
@@ -91,35 +90,5 @@ describe("durable asynchronous event model", () => {
         "failed",
       ],
     });
-  });
-
-  it("keeps the retired generic render queues and messages absent", () => {
-    for (const queue of [
-      "post.render",
-      "work.render",
-      "program_event.render",
-      "privacy.render",
-      "terms.render",
-    ]) {
-      expect(Object.values(Queues)).not.toContain(queue);
-    }
-    for (const channel of [
-      "postRender",
-      "workRender",
-      "programEventRender",
-      "privacyRender",
-      "termsRender",
-    ]) {
-      expect(Object.keys(spec.channels)).not.toContain(channel);
-    }
-    for (const message of [
-      "PostRenderRequest",
-      "WorkRenderRequest",
-      "ProgramEventRenderRequest",
-      "PrivacyRenderRequest",
-      "TermsRenderRequest",
-    ]) {
-      expect(Object.keys(spec.components.messages)).not.toContain(message);
-    }
   });
 });

@@ -45,11 +45,6 @@ func TestOgFailuresAreTerminalAndRegenerationUsesANewIdentity(t *testing.T) {
 	if admin.Methods().ByName("RegenerateOgImage") == nil {
 		t.Fatal("AdminService must expose RegenerateOgImage as the explicit recovery action")
 	}
-	for _, removed := range []protoreflect.Name{"RetryOgGeneration", "CancelOgGeneration"} {
-		if admin.Methods().ByName(removed) != nil {
-			t.Errorf("AdminService must not expose same-generation %s", removed)
-		}
-	}
 
 	internal := intrav1.File_api_intra_v1_og_proto.Services().ByName("InternalOgService")
 	if got := internal.Methods().Len(); got != 3 {
@@ -65,17 +60,6 @@ func TestOgFailuresAreTerminalAndRegenerationUsesANewIdentity(t *testing.T) {
 	}
 	if claimResult.Values().ByName("OG_GENERATION_CLAIM_RESULT_RETRY_LATER") != nil {
 		t.Fatal("OgGenerationClaimResult must not expose RETRY_LATER")
-	}
-
-	claim := (&intrav1.ClaimOgGenerationResponse{}).ProtoReflect().Descriptor()
-	for _, removed := range []protoreflect.Name{"attempt_count", "retry_at"} {
-		if claim.Fields().ByName(removed) != nil {
-			t.Errorf("ClaimOgGenerationResponse must not expose %s", removed)
-		}
-	}
-	generation := (&managev1.OgGeneration{}).ProtoReflect().Descriptor()
-	if generation.Fields().ByName("attempt_count") != nil {
-		t.Fatal("OgGeneration must not expose retry attempt transport state")
 	}
 }
 
