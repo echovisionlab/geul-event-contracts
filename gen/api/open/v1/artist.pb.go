@@ -1075,6 +1075,7 @@ type ArtistWork struct {
 	Summary       *string                `protobuf:"bytes,4,opt,name=summary,proto3,oneof" json:"summary,omitempty"`
 	PublishedAt   *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=published_at,json=publishedAt,proto3" json:"published_at,omitempty"`
 	ImageAsset    *v11.AssetRef          `protobuf:"bytes,6,opt,name=image_asset,json=imageAsset,proto3,oneof" json:"image_asset,omitempty"`
+	Type          WorkType               `protobuf:"varint,7,opt,name=type,proto3,enum=api.open.v1.WorkType" json:"type,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1151,6 +1152,13 @@ func (x *ArtistWork) GetImageAsset() *v11.AssetRef {
 	return nil
 }
 
+func (x *ArtistWork) GetType() WorkType {
+	if x != nil {
+		return x.Type
+	}
+	return WorkType_WORK_TYPE_UNSPECIFIED
+}
+
 type ArtistLabel struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
@@ -1223,7 +1231,7 @@ var File_api_open_v1_artist_proto protoreflect.FileDescriptor
 
 const file_api_open_v1_artist_proto_rawDesc = "" +
 	"\n" +
-	"\x18api/open/v1/artist.proto\x12\vapi.open.v1\x1a\x1aapi/common/v1/common.proto\x1a\x19api/common/v1/media.proto\x1a\"api/content/v1/block_content.proto\x1a\x1dapi/open/v1/translation.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\x9b\x01\n" +
+	"\x18api/open/v1/artist.proto\x12\vapi.open.v1\x1a\x1aapi/common/v1/common.proto\x1a\x19api/common/v1/media.proto\x1a\"api/content/v1/block_content.proto\x1a\x1dapi/open/v1/translation.proto\x1a\x16api/open/v1/work.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\x9b\x01\n" +
 	"\x10GetArtistRequest\x12\x12\n" +
 	"\x04slug\x18\x01 \x01(\tR\x04slug\x12$\n" +
 	"\vshare_token\x18\x02 \x01(\tH\x00R\n" +
@@ -1342,7 +1350,7 @@ const file_api_open_v1_artist_proto_rawDesc = "" +
 	"\a_offset\"]\n" +
 	"\x16GetArtistWorksResponse\x12-\n" +
 	"\x05works\x18\x01 \x03(\v2\x17.api.open.v1.ArtistWorkR\x05works\x12\x14\n" +
-	"\x05total\x18\x02 \x01(\x05R\x05total\"\x8d\x02\n" +
+	"\x05total\x18\x02 \x01(\x05R\x05total\"\xb8\x02\n" +
 	"\n" +
 	"ArtistWork\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x14\n" +
@@ -1351,7 +1359,8 @@ const file_api_open_v1_artist_proto_rawDesc = "" +
 	"\asummary\x18\x04 \x01(\tH\x01R\asummary\x88\x01\x01\x12=\n" +
 	"\fpublished_at\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\vpublishedAt\x12=\n" +
 	"\vimage_asset\x18\x06 \x01(\v2\x17.api.common.v1.AssetRefH\x02R\n" +
-	"imageAsset\x88\x01\x01B\a\n" +
+	"imageAsset\x88\x01\x01\x12)\n" +
+	"\x04type\x18\a \x01(\x0e2\x15.api.open.v1.WorkTypeR\x04typeB\a\n" +
 	"\x05_slugB\n" +
 	"\n" +
 	"\b_summaryB\x0e\n" +
@@ -1416,6 +1425,7 @@ var file_api_open_v1_artist_proto_goTypes = []any{
 	(*v11.PaginationRequest)(nil),        // 23: api.common.v1.PaginationRequest
 	(*v11.FilterSpec)(nil),               // 24: api.common.v1.FilterSpec
 	(*v11.PaginationResponse)(nil),       // 25: api.common.v1.PaginationResponse
+	(WorkType)(0),                        // 26: api.open.v1.WorkType
 }
 var file_api_open_v1_artist_proto_depIdxs = []int32{
 	3,  // 0: api.open.v1.GetArtistResponse.artist:type_name -> api.open.v1.Artist
@@ -1450,20 +1460,21 @@ var file_api_open_v1_artist_proto_depIdxs = []int32{
 	14, // 29: api.open.v1.GetArtistWorksResponse.works:type_name -> api.open.v1.ArtistWork
 	19, // 30: api.open.v1.ArtistWork.published_at:type_name -> google.protobuf.Timestamp
 	20, // 31: api.open.v1.ArtistWork.image_asset:type_name -> api.common.v1.AssetRef
-	20, // 32: api.open.v1.ArtistLabel.image_asset:type_name -> api.common.v1.AssetRef
-	9,  // 33: api.open.v1.ArtistService.List:input_type -> api.open.v1.ListArtistsRequest
-	1,  // 34: api.open.v1.ArtistService.Get:input_type -> api.open.v1.GetArtistRequest
-	5,  // 35: api.open.v1.ArtistService.GetReleases:input_type -> api.open.v1.GetArtistReleasesRequest
-	12, // 36: api.open.v1.ArtistService.GetWorks:input_type -> api.open.v1.GetArtistWorksRequest
-	10, // 37: api.open.v1.ArtistService.List:output_type -> api.open.v1.ListArtistsResponse
-	2,  // 38: api.open.v1.ArtistService.Get:output_type -> api.open.v1.GetArtistResponse
-	6,  // 39: api.open.v1.ArtistService.GetReleases:output_type -> api.open.v1.GetArtistReleasesResponse
-	13, // 40: api.open.v1.ArtistService.GetWorks:output_type -> api.open.v1.GetArtistWorksResponse
-	37, // [37:41] is the sub-list for method output_type
-	33, // [33:37] is the sub-list for method input_type
-	33, // [33:33] is the sub-list for extension type_name
-	33, // [33:33] is the sub-list for extension extendee
-	0,  // [0:33] is the sub-list for field type_name
+	26, // 32: api.open.v1.ArtistWork.type:type_name -> api.open.v1.WorkType
+	20, // 33: api.open.v1.ArtistLabel.image_asset:type_name -> api.common.v1.AssetRef
+	9,  // 34: api.open.v1.ArtistService.List:input_type -> api.open.v1.ListArtistsRequest
+	1,  // 35: api.open.v1.ArtistService.Get:input_type -> api.open.v1.GetArtistRequest
+	5,  // 36: api.open.v1.ArtistService.GetReleases:input_type -> api.open.v1.GetArtistReleasesRequest
+	12, // 37: api.open.v1.ArtistService.GetWorks:input_type -> api.open.v1.GetArtistWorksRequest
+	10, // 38: api.open.v1.ArtistService.List:output_type -> api.open.v1.ListArtistsResponse
+	2,  // 39: api.open.v1.ArtistService.Get:output_type -> api.open.v1.GetArtistResponse
+	6,  // 40: api.open.v1.ArtistService.GetReleases:output_type -> api.open.v1.GetArtistReleasesResponse
+	13, // 41: api.open.v1.ArtistService.GetWorks:output_type -> api.open.v1.GetArtistWorksResponse
+	38, // [38:42] is the sub-list for method output_type
+	34, // [34:38] is the sub-list for method input_type
+	34, // [34:34] is the sub-list for extension type_name
+	34, // [34:34] is the sub-list for extension extendee
+	0,  // [0:34] is the sub-list for field type_name
 }
 
 func init() { file_api_open_v1_artist_proto_init() }
@@ -1472,6 +1483,7 @@ func file_api_open_v1_artist_proto_init() {
 		return
 	}
 	file_api_open_v1_translation_proto_init()
+	file_api_open_v1_work_proto_init()
 	file_api_open_v1_artist_proto_msgTypes[0].OneofWrappers = []any{}
 	file_api_open_v1_artist_proto_msgTypes[1].OneofWrappers = []any{}
 	file_api_open_v1_artist_proto_msgTypes[2].OneofWrappers = []any{}
