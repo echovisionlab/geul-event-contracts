@@ -1218,12 +1218,16 @@ func (x *DeleteFormFeaturedImageRequest) GetFormId() string {
 }
 
 type ListFormSubmissionsRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	FormId        string                 `protobuf:"bytes,1,opt,name=form_id,json=formId,proto3" json:"form_id,omitempty"`
-	Pagination    *v1.PaginationRequest  `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
-	Sorts         []*v1.SortSpec         `protobuf:"bytes,3,rep,name=sorts,proto3" json:"sorts,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state           protoimpl.MessageState `protogen:"open.v1"`
+	FormId          string                 `protobuf:"bytes,1,opt,name=form_id,json=formId,proto3" json:"form_id,omitempty"`
+	Pagination      *v1.PaginationRequest  `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
+	Sorts           []*v1.SortSpec         `protobuf:"bytes,3,rep,name=sorts,proto3" json:"sorts,omitempty"`
+	Search          *string                `protobuf:"bytes,4,opt,name=search,proto3,oneof" json:"search,omitempty"`                                            // Case-insensitive literal substring in the submitted JSON data, up to 200 characters
+	CountryCode     *string                `protobuf:"bytes,5,opt,name=country_code,json=countryCode,proto3,oneof" json:"country_code,omitempty"`               // Two ASCII letters, normalized to uppercase
+	CreatedAtFrom   *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=created_at_from,json=createdAtFrom,proto3,oneof" json:"created_at_from,omitempty"`       // Inclusive lower bound
+	CreatedAtBefore *timestamppb.Timestamp `protobuf:"bytes,7,opt,name=created_at_before,json=createdAtBefore,proto3,oneof" json:"created_at_before,omitempty"` // Exclusive upper bound
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
 }
 
 func (x *ListFormSubmissionsRequest) Reset() {
@@ -1273,6 +1277,34 @@ func (x *ListFormSubmissionsRequest) GetPagination() *v1.PaginationRequest {
 func (x *ListFormSubmissionsRequest) GetSorts() []*v1.SortSpec {
 	if x != nil {
 		return x.Sorts
+	}
+	return nil
+}
+
+func (x *ListFormSubmissionsRequest) GetSearch() string {
+	if x != nil && x.Search != nil {
+		return *x.Search
+	}
+	return ""
+}
+
+func (x *ListFormSubmissionsRequest) GetCountryCode() string {
+	if x != nil && x.CountryCode != nil {
+		return *x.CountryCode
+	}
+	return ""
+}
+
+func (x *ListFormSubmissionsRequest) GetCreatedAtFrom() *timestamppb.Timestamp {
+	if x != nil {
+		return x.CreatedAtFrom
+	}
+	return nil
+}
+
+func (x *ListFormSubmissionsRequest) GetCreatedAtBefore() *timestamppb.Timestamp {
+	if x != nil {
+		return x.CreatedAtBefore
 	}
 	return nil
 }
@@ -1911,13 +1943,21 @@ const file_api_manage_v1_form_proto_rawDesc = "" +
 	"\x14og_generation_run_id\x18\x02 \x01(\tH\x00R\x11ogGenerationRunId\x88\x01\x01B\x17\n" +
 	"\x15_og_generation_run_id\"9\n" +
 	"\x1eDeleteFormFeaturedImageRequest\x12\x17\n" +
-	"\aform_id\x18\x01 \x01(\tR\x06formId\"\xa6\x01\n" +
+	"\aform_id\x18\x01 \x01(\tR\x06formId\"\xc7\x03\n" +
 	"\x1aListFormSubmissionsRequest\x12\x17\n" +
 	"\aform_id\x18\x01 \x01(\tR\x06formId\x12@\n" +
 	"\n" +
 	"pagination\x18\x02 \x01(\v2 .api.common.v1.PaginationRequestR\n" +
 	"pagination\x12-\n" +
-	"\x05sorts\x18\x03 \x03(\v2\x17.api.common.v1.SortSpecR\x05sorts\"\xa1\x01\n" +
+	"\x05sorts\x18\x03 \x03(\v2\x17.api.common.v1.SortSpecR\x05sorts\x12\x1b\n" +
+	"\x06search\x18\x04 \x01(\tH\x00R\x06search\x88\x01\x01\x12&\n" +
+	"\fcountry_code\x18\x05 \x01(\tH\x01R\vcountryCode\x88\x01\x01\x12G\n" +
+	"\x0fcreated_at_from\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampH\x02R\rcreatedAtFrom\x88\x01\x01\x12K\n" +
+	"\x11created_at_before\x18\a \x01(\v2\x1a.google.protobuf.TimestampH\x03R\x0fcreatedAtBefore\x88\x01\x01B\t\n" +
+	"\a_searchB\x0f\n" +
+	"\r_country_codeB\x12\n" +
+	"\x10_created_at_fromB\x14\n" +
+	"\x12_created_at_before\"\xa1\x01\n" +
 	"\x1bListFormSubmissionsResponse\x12?\n" +
 	"\vsubmissions\x18\x01 \x03(\v2\x1d.api.manage.v1.FormSubmissionR\vsubmissions\x12A\n" +
 	"\n" +
@@ -2051,41 +2091,43 @@ var file_api_manage_v1_form_proto_depIdxs = []int32{
 	26, // 21: api.manage.v1.SetFormFeaturedImageResponse.image_asset:type_name -> api.common.v1.AssetRef
 	27, // 22: api.manage.v1.ListFormSubmissionsRequest.pagination:type_name -> api.common.v1.PaginationRequest
 	29, // 23: api.manage.v1.ListFormSubmissionsRequest.sorts:type_name -> api.common.v1.SortSpec
-	3,  // 24: api.manage.v1.ListFormSubmissionsResponse.submissions:type_name -> api.manage.v1.FormSubmission
-	30, // 25: api.manage.v1.ListFormSubmissionsResponse.pagination:type_name -> api.common.v1.PaginationResponse
-	17, // 26: api.manage.v1.FormSubmissionFieldStat.values:type_name -> api.manage.v1.FormSubmissionFieldValue
-	18, // 27: api.manage.v1.FormSubmissionStats.field_stats:type_name -> api.manage.v1.FormSubmissionFieldStat
-	19, // 28: api.manage.v1.GetFormSubmissionStatsResponse.stats:type_name -> api.manage.v1.FormSubmissionStats
-	3,  // 29: api.manage.v1.FormSubmissionWithSchema.submission:type_name -> api.manage.v1.FormSubmission
-	4,  // 30: api.manage.v1.FormService.GetForm:input_type -> api.manage.v1.GetFormRequest
-	7,  // 31: api.manage.v1.FormService.ListFormsAdmin:input_type -> api.manage.v1.ListFormsAdminRequest
-	9,  // 32: api.manage.v1.FormService.CreateForm:input_type -> api.manage.v1.CreateFormRequest
-	10, // 33: api.manage.v1.FormService.UpdateForm:input_type -> api.manage.v1.UpdateFormRequest
-	11, // 34: api.manage.v1.FormService.DeleteForm:input_type -> api.manage.v1.DeleteFormRequest
-	12, // 35: api.manage.v1.FormService.SetFormFeaturedImage:input_type -> api.manage.v1.SetFormFeaturedImageRequest
-	14, // 36: api.manage.v1.FormService.DeleteFormFeaturedImage:input_type -> api.manage.v1.DeleteFormFeaturedImageRequest
-	5,  // 37: api.manage.v1.FormService.CheckFormSlugAvailable:input_type -> api.manage.v1.CheckFormSlugAvailableRequest
-	15, // 38: api.manage.v1.FormService.ListFormSubmissions:input_type -> api.manage.v1.ListFormSubmissionsRequest
-	20, // 39: api.manage.v1.FormService.GetFormSubmissionStats:input_type -> api.manage.v1.GetFormSubmissionStatsRequest
-	22, // 40: api.manage.v1.FormService.GetFormSubmissionWithSchema:input_type -> api.manage.v1.GetFormSubmissionRequest
-	24, // 41: api.manage.v1.FormService.DeleteFormSubmission:input_type -> api.manage.v1.DeleteFormSubmissionRequest
-	1,  // 42: api.manage.v1.FormService.GetForm:output_type -> api.manage.v1.Form
-	8,  // 43: api.manage.v1.FormService.ListFormsAdmin:output_type -> api.manage.v1.ListFormsAdminResponse
-	1,  // 44: api.manage.v1.FormService.CreateForm:output_type -> api.manage.v1.Form
-	1,  // 45: api.manage.v1.FormService.UpdateForm:output_type -> api.manage.v1.Form
-	31, // 46: api.manage.v1.FormService.DeleteForm:output_type -> api.manage.v1.DeleteResponse
-	13, // 47: api.manage.v1.FormService.SetFormFeaturedImage:output_type -> api.manage.v1.SetFormFeaturedImageResponse
-	32, // 48: api.manage.v1.FormService.DeleteFormFeaturedImage:output_type -> api.manage.v1.OgAssetDeleteResponse
-	6,  // 49: api.manage.v1.FormService.CheckFormSlugAvailable:output_type -> api.manage.v1.CheckFormSlugAvailableResponse
-	16, // 50: api.manage.v1.FormService.ListFormSubmissions:output_type -> api.manage.v1.ListFormSubmissionsResponse
-	21, // 51: api.manage.v1.FormService.GetFormSubmissionStats:output_type -> api.manage.v1.GetFormSubmissionStatsResponse
-	23, // 52: api.manage.v1.FormService.GetFormSubmissionWithSchema:output_type -> api.manage.v1.FormSubmissionWithSchema
-	31, // 53: api.manage.v1.FormService.DeleteFormSubmission:output_type -> api.manage.v1.DeleteResponse
-	42, // [42:54] is the sub-list for method output_type
-	30, // [30:42] is the sub-list for method input_type
-	30, // [30:30] is the sub-list for extension type_name
-	30, // [30:30] is the sub-list for extension extendee
-	0,  // [0:30] is the sub-list for field type_name
+	25, // 24: api.manage.v1.ListFormSubmissionsRequest.created_at_from:type_name -> google.protobuf.Timestamp
+	25, // 25: api.manage.v1.ListFormSubmissionsRequest.created_at_before:type_name -> google.protobuf.Timestamp
+	3,  // 26: api.manage.v1.ListFormSubmissionsResponse.submissions:type_name -> api.manage.v1.FormSubmission
+	30, // 27: api.manage.v1.ListFormSubmissionsResponse.pagination:type_name -> api.common.v1.PaginationResponse
+	17, // 28: api.manage.v1.FormSubmissionFieldStat.values:type_name -> api.manage.v1.FormSubmissionFieldValue
+	18, // 29: api.manage.v1.FormSubmissionStats.field_stats:type_name -> api.manage.v1.FormSubmissionFieldStat
+	19, // 30: api.manage.v1.GetFormSubmissionStatsResponse.stats:type_name -> api.manage.v1.FormSubmissionStats
+	3,  // 31: api.manage.v1.FormSubmissionWithSchema.submission:type_name -> api.manage.v1.FormSubmission
+	4,  // 32: api.manage.v1.FormService.GetForm:input_type -> api.manage.v1.GetFormRequest
+	7,  // 33: api.manage.v1.FormService.ListFormsAdmin:input_type -> api.manage.v1.ListFormsAdminRequest
+	9,  // 34: api.manage.v1.FormService.CreateForm:input_type -> api.manage.v1.CreateFormRequest
+	10, // 35: api.manage.v1.FormService.UpdateForm:input_type -> api.manage.v1.UpdateFormRequest
+	11, // 36: api.manage.v1.FormService.DeleteForm:input_type -> api.manage.v1.DeleteFormRequest
+	12, // 37: api.manage.v1.FormService.SetFormFeaturedImage:input_type -> api.manage.v1.SetFormFeaturedImageRequest
+	14, // 38: api.manage.v1.FormService.DeleteFormFeaturedImage:input_type -> api.manage.v1.DeleteFormFeaturedImageRequest
+	5,  // 39: api.manage.v1.FormService.CheckFormSlugAvailable:input_type -> api.manage.v1.CheckFormSlugAvailableRequest
+	15, // 40: api.manage.v1.FormService.ListFormSubmissions:input_type -> api.manage.v1.ListFormSubmissionsRequest
+	20, // 41: api.manage.v1.FormService.GetFormSubmissionStats:input_type -> api.manage.v1.GetFormSubmissionStatsRequest
+	22, // 42: api.manage.v1.FormService.GetFormSubmissionWithSchema:input_type -> api.manage.v1.GetFormSubmissionRequest
+	24, // 43: api.manage.v1.FormService.DeleteFormSubmission:input_type -> api.manage.v1.DeleteFormSubmissionRequest
+	1,  // 44: api.manage.v1.FormService.GetForm:output_type -> api.manage.v1.Form
+	8,  // 45: api.manage.v1.FormService.ListFormsAdmin:output_type -> api.manage.v1.ListFormsAdminResponse
+	1,  // 46: api.manage.v1.FormService.CreateForm:output_type -> api.manage.v1.Form
+	1,  // 47: api.manage.v1.FormService.UpdateForm:output_type -> api.manage.v1.Form
+	31, // 48: api.manage.v1.FormService.DeleteForm:output_type -> api.manage.v1.DeleteResponse
+	13, // 49: api.manage.v1.FormService.SetFormFeaturedImage:output_type -> api.manage.v1.SetFormFeaturedImageResponse
+	32, // 50: api.manage.v1.FormService.DeleteFormFeaturedImage:output_type -> api.manage.v1.OgAssetDeleteResponse
+	6,  // 51: api.manage.v1.FormService.CheckFormSlugAvailable:output_type -> api.manage.v1.CheckFormSlugAvailableResponse
+	16, // 52: api.manage.v1.FormService.ListFormSubmissions:output_type -> api.manage.v1.ListFormSubmissionsResponse
+	21, // 53: api.manage.v1.FormService.GetFormSubmissionStats:output_type -> api.manage.v1.GetFormSubmissionStatsResponse
+	23, // 54: api.manage.v1.FormService.GetFormSubmissionWithSchema:output_type -> api.manage.v1.FormSubmissionWithSchema
+	31, // 55: api.manage.v1.FormService.DeleteFormSubmission:output_type -> api.manage.v1.DeleteResponse
+	44, // [44:56] is the sub-list for method output_type
+	32, // [32:44] is the sub-list for method input_type
+	32, // [32:32] is the sub-list for extension type_name
+	32, // [32:32] is the sub-list for extension extendee
+	0,  // [0:32] is the sub-list for field type_name
 }
 
 func init() { file_api_manage_v1_form_proto_init() }
@@ -2101,6 +2143,7 @@ func file_api_manage_v1_form_proto_init() {
 	file_api_manage_v1_form_proto_msgTypes[8].OneofWrappers = []any{}
 	file_api_manage_v1_form_proto_msgTypes[9].OneofWrappers = []any{}
 	file_api_manage_v1_form_proto_msgTypes[12].OneofWrappers = []any{}
+	file_api_manage_v1_form_proto_msgTypes[14].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

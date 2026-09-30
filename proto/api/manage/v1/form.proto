@@ -155,6 +155,10 @@ message ListFormSubmissionsRequest {
   string form_id = 1;
   api.common.v1.PaginationRequest pagination = 2;
   repeated api.common.v1.SortSpec sorts = 3;
+  optional string search = 4; // Case-insensitive literal substring in the submitted JSON data, up to 200 characters
+  optional string country_code = 5; // Two ASCII letters, normalized to uppercase
+  optional google.protobuf.Timestamp created_at_from = 6; // Inclusive lower bound
+  optional google.protobuf.Timestamp created_at_before = 7; // Exclusive upper bound
 }
 
 message ListFormSubmissionsResponse {
