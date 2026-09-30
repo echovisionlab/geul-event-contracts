@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.1](https://github.com/echovisionlab/geul-event-contracts/compare/v0.2.0...v0.2.1) (2026-09-30)
+
+
+### Bug Fixes
+
+* **api:** preserve artist work types and form query filters ([#8](https://github.com/echovisionlab/geul-event-contracts/issues/8)) ([3ba817c](https://github.com/echovisionlab/geul-event-contracts/commit/3ba817c1fcfe31193d278ee8ebecca4d0c42abe9))
+
 ## [0.2.0](https://github.com/echovisionlab/geul-event-contracts/compare/v0.1.1...v0.2.0) (2026-09-08)
 
 
