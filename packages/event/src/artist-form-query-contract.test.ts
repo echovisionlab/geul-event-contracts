@@ -16,7 +16,10 @@ describe("artist and form query contracts", () => {
 
     for (const type of types) {
       const work = create(ArtistWorkSchema, { id: "work-1", type });
-      const roundTripped = fromBinary(ArtistWorkSchema, toBinary(ArtistWorkSchema, work));
+      const roundTripped = fromBinary(
+        ArtistWorkSchema,
+        toBinary(ArtistWorkSchema, work),
+      );
 
       expect(roundTripped.type).toBe(type);
     }
