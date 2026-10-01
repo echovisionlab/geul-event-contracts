@@ -79,6 +79,8 @@ message Post {
   optional api.common.v1.MediaDelivery featured_image_delivery = 23;
   repeated api.content.v1.ContentBlockMediaItem block_media = 24;
   string source_locale = 25;
+  // Entity-wide settings version, separate from the content document revision.
+  string configuration_revision = 26;
 }
 
 // Post with stats (for admin list)
@@ -125,6 +127,9 @@ message UpdatePostRequest {
   optional bool comments_enabled = 3;
   optional string map_place_id = 4;
   api.common.v1.DocumentLayout document_layout = 5;
+  // Required resident settings version. Stale writes are rejected with ABORTED;
+  // callers must preserve pending edits and reload rather than rebase implicitly.
+  string expected_configuration_revision = 6;
 }
 
 message DeletePostRequest {
@@ -165,6 +170,8 @@ message UpdatePostResponse {
   optional string map_place_id = 5;
   api.common.v1.DocumentLayout document_layout = 6;
   google.protobuf.Timestamp updated_at = 7;
+  // Actual persisted settings version after this acknowledgement, including no-ops.
+  string configuration_revision = 8;
 }
 
 message PostLifecycleMutationResponse {

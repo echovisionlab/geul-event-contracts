@@ -54,6 +54,16 @@ func TestPostStatusAndScheduleContract(t *testing.T) {
 	)
 }
 
+func TestPostConfigurationRevisionIsIndependentFromDocumentRevision(t *testing.T) {
+	post := (&managev1.Post{}).ProtoReflect().Descriptor()
+	requireMessageField(t, post, "revision", 6, protoreflect.StringKind, "")
+	requireMessageField(t, post, "configuration_revision", 26, protoreflect.StringKind, "")
+	request := (&managev1.UpdatePostRequest{}).ProtoReflect().Descriptor()
+	requireMessageField(t, request, "expected_configuration_revision", 6, protoreflect.StringKind, "")
+	response := (&managev1.UpdatePostResponse{}).ProtoReflect().Descriptor()
+	requireMessageField(t, response, "configuration_revision", 8, protoreflect.StringKind, "")
+}
+
 func TestPostActionsKeepAuthorMutationAuthorityDistinct(t *testing.T) {
 	actions := managev1.File_api_manage_v1_post_proto.Enums().ByName("PostAction")
 	for name, number := range map[protoreflect.Name]protoreflect.EnumNumber{
