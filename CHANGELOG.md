@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.2](https://github.com/echovisionlab/geul-event-contracts/compare/v0.2.1...v0.2.2) (2026-10-01)
+
+
+### Bug Fixes
+
+* require resident revision for post configuration writes ([#10](https://github.com/echovisionlab/geul-event-contracts/issues/10)) ([0465b2b](https://github.com/echovisionlab/geul-event-contracts/commit/0465b2b8bca735dd6b767889635172b2d7f10619))
+
 ## [0.2.1](https://github.com/echovisionlab/geul-event-contracts/compare/v0.2.0...v0.2.1) (2026-09-30)
 
 
