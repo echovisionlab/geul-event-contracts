@@ -5726,6 +5726,23 @@
           "providerTests": []
         },
         {
+          "name": "GetReleaseRelations",
+          "consumerStatus": "verified",
+          "consumers": [
+            {
+              "repository": "web",
+              "file": "lib/actions/release.ts",
+              "symbol": "getReleaseEditorRelationsAction",
+              "call": "client.getReleaseRelations({ releaseId })",
+              "entrypoint": "ReleaseEditor reloads authorized relations on peer change hints and after local relation writes"
+            }
+          ],
+          "consumerTests": ["web/lib/actions/release.test.ts"],
+          "providerTests": [
+            "api/internal/release/release_reference_set_integration_test.go"
+          ]
+        },
+        {
           "name": "ListReleasesAdmin",
           "consumerStatus": "verified",
           "consumers": [
@@ -7156,7 +7173,7 @@
               "repository": "web",
               "file": "app/admin/translations/settings/page.tsx",
               "symbol": "saveMutation",
-              "call": "translationClient.updateTranslationSettings({ settings })",
+              "call": "translationClient.updateTranslationSettings({ settings, updateMask, baseSettings })",
               "entrypoint": "the translation settings admin page saves global translation policy"
             }
           ],
@@ -7369,6 +7386,26 @@
           ],
           "consumerTests": [],
           "providerTests": []
+        },
+        {
+          "name": "MoveWorkCreditItem",
+          "consumerStatus": "verified",
+          "consumers": [
+            {
+              "repository": "web",
+              "file": "lib/actions/work.ts",
+              "symbol": "moveWorkCreditItemAction",
+              "call": "client.moveWorkCreditItem({ workId, kind, itemId, targetGroupId, after, before })",
+              "entrypoint": "WorkCreditsSection serializes stable-anchor drag intents and adopts canonical item order"
+            }
+          ],
+          "consumerTests": [
+            "web/features/work/WorkEditor/credits/credit-order-utils.test.ts"
+          ],
+          "providerTests": [
+            "api/internal/work/credit_order_test.go",
+            "api/internal/work/integration/credit_order_integration_test.go"
+          ]
         },
         {
           "name": "PublishWork",

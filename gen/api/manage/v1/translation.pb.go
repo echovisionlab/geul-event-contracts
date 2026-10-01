@@ -11,6 +11,7 @@ import (
 	_ "github.com/echovisionlab/geul-event-contracts/gen/api/policy/v1"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	fieldmaskpb "google.golang.org/protobuf/types/known/fieldmaskpb"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
 	sync "sync"
@@ -1699,8 +1700,13 @@ func (x *GetTranslationSettingsResponse) GetGenerationDisabledReason() string {
 }
 
 type UpdateTranslationSettingsRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Settings      *TranslationSettings   `protobuf:"bytes,1,opt,name=settings,proto3" json:"settings,omitempty"`
+	state    protoimpl.MessageState `protogen:"open.v1"`
+	Settings *TranslationSettings   `protobuf:"bytes,1,opt,name=settings,proto3" json:"settings,omitempty"`
+	// Required field mask selects only the settings fields to patch.
+	UpdateMask *fieldmaskpb.FieldMask `protobuf:"bytes,2,opt,name=update_mask,json=updateMask,proto3" json:"update_mask,omitempty"`
+	// Snapshot observed by the editor. Protected-term changes apply the
+	// membership delta between this snapshot and settings.protected_terms.
+	BaseSettings  *TranslationSettings `protobuf:"bytes,3,opt,name=base_settings,json=baseSettings,proto3" json:"base_settings,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1738,6 +1744,20 @@ func (*UpdateTranslationSettingsRequest) Descriptor() ([]byte, []int) {
 func (x *UpdateTranslationSettingsRequest) GetSettings() *TranslationSettings {
 	if x != nil {
 		return x.Settings
+	}
+	return nil
+}
+
+func (x *UpdateTranslationSettingsRequest) GetUpdateMask() *fieldmaskpb.FieldMask {
+	if x != nil {
+		return x.UpdateMask
+	}
+	return nil
+}
+
+func (x *UpdateTranslationSettingsRequest) GetBaseSettings() *TranslationSettings {
+	if x != nil {
+		return x.BaseSettings
 	}
 	return nil
 }
@@ -3211,7 +3231,7 @@ var File_api_manage_v1_translation_proto protoreflect.FileDescriptor
 
 const file_api_manage_v1_translation_proto_rawDesc = "" +
 	"\n" +
-	"\x1fapi/manage/v1/translation.proto\x12\rapi.manage.v1\x1a\x1aapi/common/v1/common.proto\x1a\x19api/common/v1/media.proto\x1a\x1aapi/policy/v1/access.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"w\n" +
+	"\x1fapi/manage/v1/translation.proto\x12\rapi.manage.v1\x1a\x1aapi/common/v1/common.proto\x1a\x19api/common/v1/media.proto\x1a\x1aapi/policy/v1/access.proto\x1a google/protobuf/field_mask.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"w\n" +
 	"\x11TranslationTarget\x12E\n" +
 	"\ventity_type\x18\x01 \x01(\x0e2$.api.manage.v1.TranslationEntityTypeR\n" +
 	"entityType\x12\x1b\n" +
@@ -3347,9 +3367,12 @@ const file_api_manage_v1_translation_proto_rawDesc = "" +
 	"\bsettings\x18\x01 \x01(\v2\".api.manage.v1.TranslationSettingsR\bsettings\x12-\n" +
 	"\x12generation_enabled\x18\x02 \x01(\bR\x11generationEnabled\x12A\n" +
 	"\x1ageneration_disabled_reason\x18\x03 \x01(\tH\x00R\x18generationDisabledReason\x88\x01\x01B\x1d\n" +
-	"\x1b_generation_disabled_reason\"b\n" +
+	"\x1b_generation_disabled_reason\"\xe8\x01\n" +
 	" UpdateTranslationSettingsRequest\x12>\n" +
-	"\bsettings\x18\x01 \x01(\v2\".api.manage.v1.TranslationSettingsR\bsettings\"c\n" +
+	"\bsettings\x18\x01 \x01(\v2\".api.manage.v1.TranslationSettingsR\bsettings\x12;\n" +
+	"\vupdate_mask\x18\x02 \x01(\v2\x1a.google.protobuf.FieldMaskR\n" +
+	"updateMask\x12G\n" +
+	"\rbase_settings\x18\x03 \x01(\v2\".api.manage.v1.TranslationSettingsR\fbaseSettings\"c\n" +
 	"!UpdateTranslationSettingsResponse\x12>\n" +
 	"\bsettings\x18\x01 \x01(\v2\".api.manage.v1.TranslationSettingsR\bsettings\"\xc7\x01\n" +
 	"\x1fListTranslationProvidersRequest\x12@\n" +
@@ -3593,11 +3616,12 @@ var file_api_manage_v1_translation_proto_goTypes = []any{
 	(*ImportEntityTranslationXLIFFResponse)(nil), // 49: api.manage.v1.ImportEntityTranslationXLIFFResponse
 	(*timestamppb.Timestamp)(nil),                // 50: google.protobuf.Timestamp
 	(*v1.AssetRef)(nil),                          // 51: api.common.v1.AssetRef
-	(*v1.PaginationRequest)(nil),                 // 52: api.common.v1.PaginationRequest
-	(*v1.FilterSpec)(nil),                        // 53: api.common.v1.FilterSpec
-	(*v1.SortSpec)(nil),                          // 54: api.common.v1.SortSpec
-	(*v1.PaginationResponse)(nil),                // 55: api.common.v1.PaginationResponse
-	(*v1.ExpiringMediaRef)(nil),                  // 56: api.common.v1.ExpiringMediaRef
+	(*fieldmaskpb.FieldMask)(nil),                // 52: google.protobuf.FieldMask
+	(*v1.PaginationRequest)(nil),                 // 53: api.common.v1.PaginationRequest
+	(*v1.FilterSpec)(nil),                        // 54: api.common.v1.FilterSpec
+	(*v1.SortSpec)(nil),                          // 55: api.common.v1.SortSpec
+	(*v1.PaginationResponse)(nil),                // 56: api.common.v1.PaginationResponse
+	(*v1.ExpiringMediaRef)(nil),                  // 57: api.common.v1.ExpiringMediaRef
 }
 var file_api_manage_v1_translation_proto_depIdxs = []int32{
 	0,  // 0: api.manage.v1.TranslationTarget.entity_type:type_name -> api.manage.v1.TranslationEntityType
@@ -3625,75 +3649,77 @@ var file_api_manage_v1_translation_proto_depIdxs = []int32{
 	13, // 22: api.manage.v1.GetTranslationOverviewResponse.entity_health:type_name -> api.manage.v1.TranslationEntityHealth
 	14, // 23: api.manage.v1.GetTranslationSettingsResponse.settings:type_name -> api.manage.v1.TranslationSettings
 	14, // 24: api.manage.v1.UpdateTranslationSettingsRequest.settings:type_name -> api.manage.v1.TranslationSettings
-	14, // 25: api.manage.v1.UpdateTranslationSettingsResponse.settings:type_name -> api.manage.v1.TranslationSettings
-	52, // 26: api.manage.v1.ListTranslationProvidersRequest.pagination:type_name -> api.common.v1.PaginationRequest
-	53, // 27: api.manage.v1.ListTranslationProvidersRequest.filters:type_name -> api.common.v1.FilterSpec
-	54, // 28: api.manage.v1.ListTranslationProvidersRequest.sorts:type_name -> api.common.v1.SortSpec
-	17, // 29: api.manage.v1.ListTranslationProvidersResponse.providers:type_name -> api.manage.v1.TranslationProvider
-	55, // 30: api.manage.v1.ListTranslationProvidersResponse.pagination:type_name -> api.common.v1.PaginationResponse
-	4,  // 31: api.manage.v1.CreateTranslationProviderRequest.type:type_name -> api.manage.v1.TranslationProviderType
-	15, // 32: api.manage.v1.CreateTranslationProviderRequest.llm_config:type_name -> api.manage.v1.LLMTranslationProviderConfig
-	16, // 33: api.manage.v1.CreateTranslationProviderRequest.deepl_config:type_name -> api.manage.v1.DeepLTranslationProviderConfig
-	17, // 34: api.manage.v1.CreateTranslationProviderResponse.provider:type_name -> api.manage.v1.TranslationProvider
-	4,  // 35: api.manage.v1.UpdateTranslationProviderRequest.type:type_name -> api.manage.v1.TranslationProviderType
-	15, // 36: api.manage.v1.UpdateTranslationProviderRequest.llm_config:type_name -> api.manage.v1.LLMTranslationProviderConfig
-	16, // 37: api.manage.v1.UpdateTranslationProviderRequest.deepl_config:type_name -> api.manage.v1.DeepLTranslationProviderConfig
-	17, // 38: api.manage.v1.UpdateTranslationProviderResponse.provider:type_name -> api.manage.v1.TranslationProvider
-	52, // 39: api.manage.v1.ListTranslationJobsRequest.pagination:type_name -> api.common.v1.PaginationRequest
-	53, // 40: api.manage.v1.ListTranslationJobsRequest.filters:type_name -> api.common.v1.FilterSpec
-	54, // 41: api.manage.v1.ListTranslationJobsRequest.sorts:type_name -> api.common.v1.SortSpec
-	9,  // 42: api.manage.v1.ListTranslationJobsResponse.jobs:type_name -> api.manage.v1.TranslationJob
-	55, // 43: api.manage.v1.ListTranslationJobsResponse.pagination:type_name -> api.common.v1.PaginationResponse
-	7,  // 44: api.manage.v1.ListEntityTranslationsRequest.target:type_name -> api.manage.v1.TranslationTarget
-	10, // 45: api.manage.v1.ListEntityTranslationsResponse.entries:type_name -> api.manage.v1.TranslationEntry
-	7,  // 46: api.manage.v1.GetEntityTranslationRequest.target:type_name -> api.manage.v1.TranslationTarget
-	10, // 47: api.manage.v1.GetEntityTranslationResponse.entry:type_name -> api.manage.v1.TranslationEntry
-	7,  // 48: api.manage.v1.SetEntitySourceLocaleRequest.target:type_name -> api.manage.v1.TranslationTarget
-	7,  // 49: api.manage.v1.RegenerateEntityTranslationsRequest.target:type_name -> api.manage.v1.TranslationTarget
-	9,  // 50: api.manage.v1.RegenerateEntityTranslationsResponse.jobs:type_name -> api.manage.v1.TranslationJob
-	7,  // 51: api.manage.v1.ExportEntityTranslationXLIFFRequest.target:type_name -> api.manage.v1.TranslationTarget
-	6,  // 52: api.manage.v1.ExportEntityTranslationXLIFFRequest.mode:type_name -> api.manage.v1.TranslationInterchangeMode
-	56, // 53: api.manage.v1.ExportEntityTranslationXLIFFResponse.artifact:type_name -> api.common.v1.ExpiringMediaRef
-	6,  // 54: api.manage.v1.ExportEntityTranslationXLIFFResponse.mode:type_name -> api.manage.v1.TranslationInterchangeMode
-	7,  // 55: api.manage.v1.ImportEntityTranslationXLIFFRequest.target:type_name -> api.manage.v1.TranslationTarget
-	6,  // 56: api.manage.v1.ImportEntityTranslationXLIFFRequest.mode:type_name -> api.manage.v1.TranslationInterchangeMode
-	18, // 57: api.manage.v1.TranslationService.ListTranslationLocales:input_type -> api.manage.v1.ListTranslationLocalesRequest
-	20, // 58: api.manage.v1.TranslationService.GetTranslationOverview:input_type -> api.manage.v1.GetTranslationOverviewRequest
-	22, // 59: api.manage.v1.TranslationService.GetTranslationSettings:input_type -> api.manage.v1.GetTranslationSettingsRequest
-	24, // 60: api.manage.v1.TranslationService.UpdateTranslationSettings:input_type -> api.manage.v1.UpdateTranslationSettingsRequest
-	26, // 61: api.manage.v1.TranslationService.ListTranslationProviders:input_type -> api.manage.v1.ListTranslationProvidersRequest
-	28, // 62: api.manage.v1.TranslationService.CreateTranslationProvider:input_type -> api.manage.v1.CreateTranslationProviderRequest
-	30, // 63: api.manage.v1.TranslationService.UpdateTranslationProvider:input_type -> api.manage.v1.UpdateTranslationProviderRequest
-	32, // 64: api.manage.v1.TranslationService.DeleteTranslationProvider:input_type -> api.manage.v1.DeleteTranslationProviderRequest
-	34, // 65: api.manage.v1.TranslationService.ListTranslationJobs:input_type -> api.manage.v1.ListTranslationJobsRequest
-	36, // 66: api.manage.v1.TranslationService.CancelTranslationJob:input_type -> api.manage.v1.CancelTranslationJobRequest
-	38, // 67: api.manage.v1.TranslationService.ListEntityTranslations:input_type -> api.manage.v1.ListEntityTranslationsRequest
-	40, // 68: api.manage.v1.TranslationService.GetEntityTranslation:input_type -> api.manage.v1.GetEntityTranslationRequest
-	42, // 69: api.manage.v1.TranslationService.SetEntitySourceLocale:input_type -> api.manage.v1.SetEntitySourceLocaleRequest
-	44, // 70: api.manage.v1.TranslationService.RegenerateEntityTranslations:input_type -> api.manage.v1.RegenerateEntityTranslationsRequest
-	46, // 71: api.manage.v1.TranslationService.ExportEntityTranslationXLIFF:input_type -> api.manage.v1.ExportEntityTranslationXLIFFRequest
-	48, // 72: api.manage.v1.TranslationService.ImportEntityTranslationXLIFF:input_type -> api.manage.v1.ImportEntityTranslationXLIFFRequest
-	19, // 73: api.manage.v1.TranslationService.ListTranslationLocales:output_type -> api.manage.v1.ListTranslationLocalesResponse
-	21, // 74: api.manage.v1.TranslationService.GetTranslationOverview:output_type -> api.manage.v1.GetTranslationOverviewResponse
-	23, // 75: api.manage.v1.TranslationService.GetTranslationSettings:output_type -> api.manage.v1.GetTranslationSettingsResponse
-	25, // 76: api.manage.v1.TranslationService.UpdateTranslationSettings:output_type -> api.manage.v1.UpdateTranslationSettingsResponse
-	27, // 77: api.manage.v1.TranslationService.ListTranslationProviders:output_type -> api.manage.v1.ListTranslationProvidersResponse
-	29, // 78: api.manage.v1.TranslationService.CreateTranslationProvider:output_type -> api.manage.v1.CreateTranslationProviderResponse
-	31, // 79: api.manage.v1.TranslationService.UpdateTranslationProvider:output_type -> api.manage.v1.UpdateTranslationProviderResponse
-	33, // 80: api.manage.v1.TranslationService.DeleteTranslationProvider:output_type -> api.manage.v1.DeleteTranslationProviderResponse
-	35, // 81: api.manage.v1.TranslationService.ListTranslationJobs:output_type -> api.manage.v1.ListTranslationJobsResponse
-	37, // 82: api.manage.v1.TranslationService.CancelTranslationJob:output_type -> api.manage.v1.CancelTranslationJobResponse
-	39, // 83: api.manage.v1.TranslationService.ListEntityTranslations:output_type -> api.manage.v1.ListEntityTranslationsResponse
-	41, // 84: api.manage.v1.TranslationService.GetEntityTranslation:output_type -> api.manage.v1.GetEntityTranslationResponse
-	43, // 85: api.manage.v1.TranslationService.SetEntitySourceLocale:output_type -> api.manage.v1.SetEntitySourceLocaleResponse
-	45, // 86: api.manage.v1.TranslationService.RegenerateEntityTranslations:output_type -> api.manage.v1.RegenerateEntityTranslationsResponse
-	47, // 87: api.manage.v1.TranslationService.ExportEntityTranslationXLIFF:output_type -> api.manage.v1.ExportEntityTranslationXLIFFResponse
-	49, // 88: api.manage.v1.TranslationService.ImportEntityTranslationXLIFF:output_type -> api.manage.v1.ImportEntityTranslationXLIFFResponse
-	73, // [73:89] is the sub-list for method output_type
-	57, // [57:73] is the sub-list for method input_type
-	57, // [57:57] is the sub-list for extension type_name
-	57, // [57:57] is the sub-list for extension extendee
-	0,  // [0:57] is the sub-list for field type_name
+	52, // 25: api.manage.v1.UpdateTranslationSettingsRequest.update_mask:type_name -> google.protobuf.FieldMask
+	14, // 26: api.manage.v1.UpdateTranslationSettingsRequest.base_settings:type_name -> api.manage.v1.TranslationSettings
+	14, // 27: api.manage.v1.UpdateTranslationSettingsResponse.settings:type_name -> api.manage.v1.TranslationSettings
+	53, // 28: api.manage.v1.ListTranslationProvidersRequest.pagination:type_name -> api.common.v1.PaginationRequest
+	54, // 29: api.manage.v1.ListTranslationProvidersRequest.filters:type_name -> api.common.v1.FilterSpec
+	55, // 30: api.manage.v1.ListTranslationProvidersRequest.sorts:type_name -> api.common.v1.SortSpec
+	17, // 31: api.manage.v1.ListTranslationProvidersResponse.providers:type_name -> api.manage.v1.TranslationProvider
+	56, // 32: api.manage.v1.ListTranslationProvidersResponse.pagination:type_name -> api.common.v1.PaginationResponse
+	4,  // 33: api.manage.v1.CreateTranslationProviderRequest.type:type_name -> api.manage.v1.TranslationProviderType
+	15, // 34: api.manage.v1.CreateTranslationProviderRequest.llm_config:type_name -> api.manage.v1.LLMTranslationProviderConfig
+	16, // 35: api.manage.v1.CreateTranslationProviderRequest.deepl_config:type_name -> api.manage.v1.DeepLTranslationProviderConfig
+	17, // 36: api.manage.v1.CreateTranslationProviderResponse.provider:type_name -> api.manage.v1.TranslationProvider
+	4,  // 37: api.manage.v1.UpdateTranslationProviderRequest.type:type_name -> api.manage.v1.TranslationProviderType
+	15, // 38: api.manage.v1.UpdateTranslationProviderRequest.llm_config:type_name -> api.manage.v1.LLMTranslationProviderConfig
+	16, // 39: api.manage.v1.UpdateTranslationProviderRequest.deepl_config:type_name -> api.manage.v1.DeepLTranslationProviderConfig
+	17, // 40: api.manage.v1.UpdateTranslationProviderResponse.provider:type_name -> api.manage.v1.TranslationProvider
+	53, // 41: api.manage.v1.ListTranslationJobsRequest.pagination:type_name -> api.common.v1.PaginationRequest
+	54, // 42: api.manage.v1.ListTranslationJobsRequest.filters:type_name -> api.common.v1.FilterSpec
+	55, // 43: api.manage.v1.ListTranslationJobsRequest.sorts:type_name -> api.common.v1.SortSpec
+	9,  // 44: api.manage.v1.ListTranslationJobsResponse.jobs:type_name -> api.manage.v1.TranslationJob
+	56, // 45: api.manage.v1.ListTranslationJobsResponse.pagination:type_name -> api.common.v1.PaginationResponse
+	7,  // 46: api.manage.v1.ListEntityTranslationsRequest.target:type_name -> api.manage.v1.TranslationTarget
+	10, // 47: api.manage.v1.ListEntityTranslationsResponse.entries:type_name -> api.manage.v1.TranslationEntry
+	7,  // 48: api.manage.v1.GetEntityTranslationRequest.target:type_name -> api.manage.v1.TranslationTarget
+	10, // 49: api.manage.v1.GetEntityTranslationResponse.entry:type_name -> api.manage.v1.TranslationEntry
+	7,  // 50: api.manage.v1.SetEntitySourceLocaleRequest.target:type_name -> api.manage.v1.TranslationTarget
+	7,  // 51: api.manage.v1.RegenerateEntityTranslationsRequest.target:type_name -> api.manage.v1.TranslationTarget
+	9,  // 52: api.manage.v1.RegenerateEntityTranslationsResponse.jobs:type_name -> api.manage.v1.TranslationJob
+	7,  // 53: api.manage.v1.ExportEntityTranslationXLIFFRequest.target:type_name -> api.manage.v1.TranslationTarget
+	6,  // 54: api.manage.v1.ExportEntityTranslationXLIFFRequest.mode:type_name -> api.manage.v1.TranslationInterchangeMode
+	57, // 55: api.manage.v1.ExportEntityTranslationXLIFFResponse.artifact:type_name -> api.common.v1.ExpiringMediaRef
+	6,  // 56: api.manage.v1.ExportEntityTranslationXLIFFResponse.mode:type_name -> api.manage.v1.TranslationInterchangeMode
+	7,  // 57: api.manage.v1.ImportEntityTranslationXLIFFRequest.target:type_name -> api.manage.v1.TranslationTarget
+	6,  // 58: api.manage.v1.ImportEntityTranslationXLIFFRequest.mode:type_name -> api.manage.v1.TranslationInterchangeMode
+	18, // 59: api.manage.v1.TranslationService.ListTranslationLocales:input_type -> api.manage.v1.ListTranslationLocalesRequest
+	20, // 60: api.manage.v1.TranslationService.GetTranslationOverview:input_type -> api.manage.v1.GetTranslationOverviewRequest
+	22, // 61: api.manage.v1.TranslationService.GetTranslationSettings:input_type -> api.manage.v1.GetTranslationSettingsRequest
+	24, // 62: api.manage.v1.TranslationService.UpdateTranslationSettings:input_type -> api.manage.v1.UpdateTranslationSettingsRequest
+	26, // 63: api.manage.v1.TranslationService.ListTranslationProviders:input_type -> api.manage.v1.ListTranslationProvidersRequest
+	28, // 64: api.manage.v1.TranslationService.CreateTranslationProvider:input_type -> api.manage.v1.CreateTranslationProviderRequest
+	30, // 65: api.manage.v1.TranslationService.UpdateTranslationProvider:input_type -> api.manage.v1.UpdateTranslationProviderRequest
+	32, // 66: api.manage.v1.TranslationService.DeleteTranslationProvider:input_type -> api.manage.v1.DeleteTranslationProviderRequest
+	34, // 67: api.manage.v1.TranslationService.ListTranslationJobs:input_type -> api.manage.v1.ListTranslationJobsRequest
+	36, // 68: api.manage.v1.TranslationService.CancelTranslationJob:input_type -> api.manage.v1.CancelTranslationJobRequest
+	38, // 69: api.manage.v1.TranslationService.ListEntityTranslations:input_type -> api.manage.v1.ListEntityTranslationsRequest
+	40, // 70: api.manage.v1.TranslationService.GetEntityTranslation:input_type -> api.manage.v1.GetEntityTranslationRequest
+	42, // 71: api.manage.v1.TranslationService.SetEntitySourceLocale:input_type -> api.manage.v1.SetEntitySourceLocaleRequest
+	44, // 72: api.manage.v1.TranslationService.RegenerateEntityTranslations:input_type -> api.manage.v1.RegenerateEntityTranslationsRequest
+	46, // 73: api.manage.v1.TranslationService.ExportEntityTranslationXLIFF:input_type -> api.manage.v1.ExportEntityTranslationXLIFFRequest
+	48, // 74: api.manage.v1.TranslationService.ImportEntityTranslationXLIFF:input_type -> api.manage.v1.ImportEntityTranslationXLIFFRequest
+	19, // 75: api.manage.v1.TranslationService.ListTranslationLocales:output_type -> api.manage.v1.ListTranslationLocalesResponse
+	21, // 76: api.manage.v1.TranslationService.GetTranslationOverview:output_type -> api.manage.v1.GetTranslationOverviewResponse
+	23, // 77: api.manage.v1.TranslationService.GetTranslationSettings:output_type -> api.manage.v1.GetTranslationSettingsResponse
+	25, // 78: api.manage.v1.TranslationService.UpdateTranslationSettings:output_type -> api.manage.v1.UpdateTranslationSettingsResponse
+	27, // 79: api.manage.v1.TranslationService.ListTranslationProviders:output_type -> api.manage.v1.ListTranslationProvidersResponse
+	29, // 80: api.manage.v1.TranslationService.CreateTranslationProvider:output_type -> api.manage.v1.CreateTranslationProviderResponse
+	31, // 81: api.manage.v1.TranslationService.UpdateTranslationProvider:output_type -> api.manage.v1.UpdateTranslationProviderResponse
+	33, // 82: api.manage.v1.TranslationService.DeleteTranslationProvider:output_type -> api.manage.v1.DeleteTranslationProviderResponse
+	35, // 83: api.manage.v1.TranslationService.ListTranslationJobs:output_type -> api.manage.v1.ListTranslationJobsResponse
+	37, // 84: api.manage.v1.TranslationService.CancelTranslationJob:output_type -> api.manage.v1.CancelTranslationJobResponse
+	39, // 85: api.manage.v1.TranslationService.ListEntityTranslations:output_type -> api.manage.v1.ListEntityTranslationsResponse
+	41, // 86: api.manage.v1.TranslationService.GetEntityTranslation:output_type -> api.manage.v1.GetEntityTranslationResponse
+	43, // 87: api.manage.v1.TranslationService.SetEntitySourceLocale:output_type -> api.manage.v1.SetEntitySourceLocaleResponse
+	45, // 88: api.manage.v1.TranslationService.RegenerateEntityTranslations:output_type -> api.manage.v1.RegenerateEntityTranslationsResponse
+	47, // 89: api.manage.v1.TranslationService.ExportEntityTranslationXLIFF:output_type -> api.manage.v1.ExportEntityTranslationXLIFFResponse
+	49, // 90: api.manage.v1.TranslationService.ImportEntityTranslationXLIFF:output_type -> api.manage.v1.ImportEntityTranslationXLIFFResponse
+	75, // [75:91] is the sub-list for method output_type
+	59, // [59:75] is the sub-list for method input_type
+	59, // [59:59] is the sub-list for extension type_name
+	59, // [59:59] is the sub-list for extension extendee
+	0,  // [0:59] is the sub-list for field type_name
 }
 
 func init() { file_api_manage_v1_translation_proto_init() }

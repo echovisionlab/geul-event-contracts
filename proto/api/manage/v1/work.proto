@@ -124,8 +124,7 @@ message UpdateWorkRequest {
   optional WorkType type = 3;
   google.protobuf.Struct metadata = 4;
   optional bool featured = 5;
-  // Clients management - ordered list of client IDs
-  // If present (even empty), replaces all clients; if absent, no change
+  // Desired ordered client IDs. Writes require observed_clients and merge membership/order changes.
   optional WorkClientsUpdate clients = 6;
   optional int32 year = 7;
   optional int32 month = 8;
@@ -133,6 +132,10 @@ message UpdateWorkRequest {
   optional int32 until_year = 10;
   optional int32 until_month = 11;
   optional bool is_present = 12;
+  // Required baseline when writing metadata; only changes from it are merged.
+  google.protobuf.Struct observed_metadata = 13;
+  // Required baseline when writing clients; membership changes are merged from this list.
+  WorkClientsUpdate observed_clients = 14;
 }
 
 // Wrapper for clients update to distinguish "not provided" from "empty list"
@@ -200,6 +203,7 @@ message GetWorkCreditsRequest {
 message GetWorkCreditsResponse {
   repeated WorkCreditGroup groups = 1;
   repeated WorkCredit credits = 2;
+  repeated WorkCreditOrderItem order = 3;
 }
 
 message AddWorkCreditRequest {
@@ -219,6 +223,35 @@ message UpdateWorkCreditRequest {
 
 message DeleteWorkCreditRequest {
   string credit_id = 1;
+}
+
+enum WorkCreditItemKind {
+  WORK_CREDIT_ITEM_KIND_UNSPECIFIED = 0;
+  WORK_CREDIT_ITEM_KIND_GROUP = 1;
+  WORK_CREDIT_ITEM_KIND_CREDIT = 2;
+}
+
+message WorkCreditOrderItem {
+  WorkCreditItemKind kind = 1;
+  string id = 2;
+  // Present for credit items; an empty value means the credit is ungrouped.
+  optional string group_id = 3;
+}
+
+message MoveWorkCreditItemRequest {
+  string work_id = 1;
+  WorkCreditItemKind kind = 2;
+  string item_id = 3;
+  // Credit items require this field; empty means ungrouped. Group items omit it.
+  optional string target_group_id = 4;
+  // Anchors identify a typed current item. Group-child anchors normalize to the group section boundary.
+  WorkCreditOrderItem after = 5;
+  WorkCreditOrderItem before = 6;
+}
+
+message MoveWorkCreditItemResponse {
+  repeated WorkCreditOrderItem items = 1;
+  bool changed = 2;
 }
 
 message CreateWorkCreditGroupRequest {
@@ -367,6 +400,9 @@ service WorkService {
     option (api.policy.v1.access) = {role: ADMIN};
   }
   rpc DeleteWorkCredit(DeleteWorkCreditRequest) returns (DeleteResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc MoveWorkCreditItem(MoveWorkCreditItemRequest) returns (MoveWorkCreditItemResponse) {
     option (api.policy.v1.access) = {role: ADMIN};
   }
   rpc CreateWorkCreditGroup(CreateWorkCreditGroupRequest) returns (WorkCreditGroup) {

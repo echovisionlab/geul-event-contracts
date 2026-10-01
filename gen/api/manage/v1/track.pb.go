@@ -456,6 +456,50 @@ func (x *TrackCreditInput) GetSortOrder() int32 {
 	return 0
 }
 
+type TrackCreditsSnapshot struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Credits       []*TrackCreditInput    `protobuf:"bytes,1,rep,name=credits,proto3" json:"credits,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *TrackCreditsSnapshot) Reset() {
+	*x = TrackCreditsSnapshot{}
+	mi := &file_api_manage_v1_track_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *TrackCreditsSnapshot) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TrackCreditsSnapshot) ProtoMessage() {}
+
+func (x *TrackCreditsSnapshot) ProtoReflect() protoreflect.Message {
+	mi := &file_api_manage_v1_track_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TrackCreditsSnapshot.ProtoReflect.Descriptor instead.
+func (*TrackCreditsSnapshot) Descriptor() ([]byte, []int) {
+	return file_api_manage_v1_track_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *TrackCreditsSnapshot) GetCredits() []*TrackCreditInput {
+	if x != nil {
+		return x.Credits
+	}
+	return nil
+}
+
 type ListTracksByReleaseRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	ReleaseId     string                 `protobuf:"bytes,1,opt,name=release_id,json=releaseId,proto3" json:"release_id,omitempty"`
@@ -465,7 +509,7 @@ type ListTracksByReleaseRequest struct {
 
 func (x *ListTracksByReleaseRequest) Reset() {
 	*x = ListTracksByReleaseRequest{}
-	mi := &file_api_manage_v1_track_proto_msgTypes[4]
+	mi := &file_api_manage_v1_track_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -477,7 +521,7 @@ func (x *ListTracksByReleaseRequest) String() string {
 func (*ListTracksByReleaseRequest) ProtoMessage() {}
 
 func (x *ListTracksByReleaseRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_track_proto_msgTypes[4]
+	mi := &file_api_manage_v1_track_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -490,7 +534,7 @@ func (x *ListTracksByReleaseRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListTracksByReleaseRequest.ProtoReflect.Descriptor instead.
 func (*ListTracksByReleaseRequest) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_track_proto_rawDescGZIP(), []int{4}
+	return file_api_manage_v1_track_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *ListTracksByReleaseRequest) GetReleaseId() string {
@@ -509,7 +553,7 @@ type ListTracksByReleaseResponse struct {
 
 func (x *ListTracksByReleaseResponse) Reset() {
 	*x = ListTracksByReleaseResponse{}
-	mi := &file_api_manage_v1_track_proto_msgTypes[5]
+	mi := &file_api_manage_v1_track_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -521,7 +565,7 @@ func (x *ListTracksByReleaseResponse) String() string {
 func (*ListTracksByReleaseResponse) ProtoMessage() {}
 
 func (x *ListTracksByReleaseResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_track_proto_msgTypes[5]
+	mi := &file_api_manage_v1_track_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -534,7 +578,7 @@ func (x *ListTracksByReleaseResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListTracksByReleaseResponse.ProtoReflect.Descriptor instead.
 func (*ListTracksByReleaseResponse) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_track_proto_rawDescGZIP(), []int{5}
+	return file_api_manage_v1_track_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *ListTracksByReleaseResponse) GetTracks() []*TrackWithCredits {
@@ -557,7 +601,7 @@ type CreateTrackRequest struct {
 
 func (x *CreateTrackRequest) Reset() {
 	*x = CreateTrackRequest{}
-	mi := &file_api_manage_v1_track_proto_msgTypes[6]
+	mi := &file_api_manage_v1_track_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -569,7 +613,7 @@ func (x *CreateTrackRequest) String() string {
 func (*CreateTrackRequest) ProtoMessage() {}
 
 func (x *CreateTrackRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_track_proto_msgTypes[6]
+	mi := &file_api_manage_v1_track_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -582,7 +626,7 @@ func (x *CreateTrackRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateTrackRequest.ProtoReflect.Descriptor instead.
 func (*CreateTrackRequest) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_track_proto_rawDescGZIP(), []int{6}
+	return file_api_manage_v1_track_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *CreateTrackRequest) GetReleaseId() string {
@@ -637,7 +681,7 @@ type UpdateTrackRequest struct {
 
 func (x *UpdateTrackRequest) Reset() {
 	*x = UpdateTrackRequest{}
-	mi := &file_api_manage_v1_track_proto_msgTypes[7]
+	mi := &file_api_manage_v1_track_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -649,7 +693,7 @@ func (x *UpdateTrackRequest) String() string {
 func (*UpdateTrackRequest) ProtoMessage() {}
 
 func (x *UpdateTrackRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_track_proto_msgTypes[7]
+	mi := &file_api_manage_v1_track_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -662,7 +706,7 @@ func (x *UpdateTrackRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateTrackRequest.ProtoReflect.Descriptor instead.
 func (*UpdateTrackRequest) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_track_proto_rawDescGZIP(), []int{7}
+	return file_api_manage_v1_track_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *UpdateTrackRequest) GetId() string {
@@ -737,7 +781,7 @@ type DeleteTrackRequest struct {
 
 func (x *DeleteTrackRequest) Reset() {
 	*x = DeleteTrackRequest{}
-	mi := &file_api_manage_v1_track_proto_msgTypes[8]
+	mi := &file_api_manage_v1_track_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -749,7 +793,7 @@ func (x *DeleteTrackRequest) String() string {
 func (*DeleteTrackRequest) ProtoMessage() {}
 
 func (x *DeleteTrackRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_track_proto_msgTypes[8]
+	mi := &file_api_manage_v1_track_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -762,7 +806,7 @@ func (x *DeleteTrackRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteTrackRequest.ProtoReflect.Descriptor instead.
 func (*DeleteTrackRequest) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_track_proto_rawDescGZIP(), []int{8}
+	return file_api_manage_v1_track_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *DeleteTrackRequest) GetId() string {
@@ -773,16 +817,19 @@ func (x *DeleteTrackRequest) GetId() string {
 }
 
 type SetTrackCreditsRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	TrackId       string                 `protobuf:"bytes,1,opt,name=track_id,json=trackId,proto3" json:"track_id,omitempty"`
-	Credits       []*TrackCreditInput    `protobuf:"bytes,2,rep,name=credits,proto3" json:"credits,omitempty"`
+	state   protoimpl.MessageState `protogen:"open.v1"`
+	TrackId string                 `protobuf:"bytes,1,opt,name=track_id,json=trackId,proto3" json:"track_id,omitempty"`
+	Credits []*TrackCreditInput    `protobuf:"bytes,2,rep,name=credits,proto3" json:"credits,omitempty"`
+	// Required snapshot of credits observed before this edit. Apply its delta
+	// to the current credits so concurrent additions remain intact.
+	Observed      *TrackCreditsSnapshot `protobuf:"bytes,3,opt,name=observed,proto3" json:"observed,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *SetTrackCreditsRequest) Reset() {
 	*x = SetTrackCreditsRequest{}
-	mi := &file_api_manage_v1_track_proto_msgTypes[9]
+	mi := &file_api_manage_v1_track_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -794,7 +841,7 @@ func (x *SetTrackCreditsRequest) String() string {
 func (*SetTrackCreditsRequest) ProtoMessage() {}
 
 func (x *SetTrackCreditsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_track_proto_msgTypes[9]
+	mi := &file_api_manage_v1_track_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -807,7 +854,7 @@ func (x *SetTrackCreditsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetTrackCreditsRequest.ProtoReflect.Descriptor instead.
 func (*SetTrackCreditsRequest) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_track_proto_rawDescGZIP(), []int{9}
+	return file_api_manage_v1_track_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *SetTrackCreditsRequest) GetTrackId() string {
@@ -824,6 +871,13 @@ func (x *SetTrackCreditsRequest) GetCredits() []*TrackCreditInput {
 	return nil
 }
 
+func (x *SetTrackCreditsRequest) GetObserved() *TrackCreditsSnapshot {
+	if x != nil {
+		return x.Observed
+	}
+	return nil
+}
+
 type ReorderTracksRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	TrackIds      []string               `protobuf:"bytes,1,rep,name=track_ids,json=trackIds,proto3" json:"track_ids,omitempty"`
@@ -833,7 +887,7 @@ type ReorderTracksRequest struct {
 
 func (x *ReorderTracksRequest) Reset() {
 	*x = ReorderTracksRequest{}
-	mi := &file_api_manage_v1_track_proto_msgTypes[10]
+	mi := &file_api_manage_v1_track_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -845,7 +899,7 @@ func (x *ReorderTracksRequest) String() string {
 func (*ReorderTracksRequest) ProtoMessage() {}
 
 func (x *ReorderTracksRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_track_proto_msgTypes[10]
+	mi := &file_api_manage_v1_track_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -858,7 +912,7 @@ func (x *ReorderTracksRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ReorderTracksRequest.ProtoReflect.Descriptor instead.
 func (*ReorderTracksRequest) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_track_proto_rawDescGZIP(), []int{10}
+	return file_api_manage_v1_track_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *ReorderTracksRequest) GetTrackIds() []string {
@@ -872,7 +926,7 @@ var File_api_manage_v1_track_proto protoreflect.FileDescriptor
 
 const file_api_manage_v1_track_proto_rawDesc = "" +
 	"\n" +
-	"\x19api/manage/v1/track.proto\x12\rapi.manage.v1\x1a\x1aapi/common/v1/common.proto\x1a\x1aapi/manage/v1/common.proto\x1a\x1aapi/policy/v1/access.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xe9\x03\n" +
+	"\x19api/manage/v1/track.proto\x12\rapi.manage.v1\x1a\x1aapi/common/v1/common.proto\x1a\x1aapi/manage/v1/common.proto\x1a\x1bapi/manage/v1/release.proto\x1a\x1aapi/policy/v1/access.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xe9\x03\n" +
 	"\x05Track\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1d\n" +
 	"\n" +
@@ -935,7 +989,9 @@ const file_api_manage_v1_track_proto_rawDesc = "" +
 	"\n" +
 	"_member_idB\x10\n" +
 	"\x0e_credited_nameB\x0e\n" +
-	"\f_credit_role\";\n" +
+	"\f_credit_role\"Q\n" +
+	"\x14TrackCreditsSnapshot\x129\n" +
+	"\acredits\x18\x01 \x03(\v2\x1f.api.manage.v1.TrackCreditInputR\acredits\";\n" +
 	"\x1aListTracksByReleaseRequest\x12\x1d\n" +
 	"\n" +
 	"release_id\x18\x01 \x01(\tR\treleaseId\"V\n" +
@@ -966,10 +1022,11 @@ const file_api_manage_v1_track_proto_rawDesc = "" +
 	"\x12_processing_statusB\t\n" +
 	"\a_lyrics\"$\n" +
 	"\x12DeleteTrackRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\"n\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\"\xaf\x01\n" +
 	"\x16SetTrackCreditsRequest\x12\x19\n" +
 	"\btrack_id\x18\x01 \x01(\tR\atrackId\x129\n" +
-	"\acredits\x18\x02 \x03(\v2\x1f.api.manage.v1.TrackCreditInputR\acredits\"3\n" +
+	"\acredits\x18\x02 \x03(\v2\x1f.api.manage.v1.TrackCreditInputR\acredits\x12?\n" +
+	"\bobserved\x18\x03 \x01(\v2#.api.manage.v1.TrackCreditsSnapshotR\bobserved\"3\n" +
 	"\x14ReorderTracksRequest\x12\x1b\n" +
 	"\ttrack_ids\x18\x01 \x03(\tR\btrackIds*\xd8\x01\n" +
 	"\x15TrackProcessingStatus\x12'\n" +
@@ -1001,50 +1058,53 @@ func file_api_manage_v1_track_proto_rawDescGZIP() []byte {
 }
 
 var file_api_manage_v1_track_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_api_manage_v1_track_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
+var file_api_manage_v1_track_proto_msgTypes = make([]protoimpl.MessageInfo, 12)
 var file_api_manage_v1_track_proto_goTypes = []any{
 	(TrackProcessingStatus)(0),          // 0: api.manage.v1.TrackProcessingStatus
 	(*Track)(nil),                       // 1: api.manage.v1.Track
 	(*TrackCredit)(nil),                 // 2: api.manage.v1.TrackCredit
 	(*TrackWithCredits)(nil),            // 3: api.manage.v1.TrackWithCredits
 	(*TrackCreditInput)(nil),            // 4: api.manage.v1.TrackCreditInput
-	(*ListTracksByReleaseRequest)(nil),  // 5: api.manage.v1.ListTracksByReleaseRequest
-	(*ListTracksByReleaseResponse)(nil), // 6: api.manage.v1.ListTracksByReleaseResponse
-	(*CreateTrackRequest)(nil),          // 7: api.manage.v1.CreateTrackRequest
-	(*UpdateTrackRequest)(nil),          // 8: api.manage.v1.UpdateTrackRequest
-	(*DeleteTrackRequest)(nil),          // 9: api.manage.v1.DeleteTrackRequest
-	(*SetTrackCreditsRequest)(nil),      // 10: api.manage.v1.SetTrackCreditsRequest
-	(*ReorderTracksRequest)(nil),        // 11: api.manage.v1.ReorderTracksRequest
-	(*structpb.Struct)(nil),             // 12: google.protobuf.Struct
-	(*timestamppb.Timestamp)(nil),       // 13: google.protobuf.Timestamp
-	(*v1.MemberSummary)(nil),            // 14: api.common.v1.MemberSummary
-	(*DeleteResponse)(nil),              // 15: api.manage.v1.DeleteResponse
+	(*TrackCreditsSnapshot)(nil),        // 5: api.manage.v1.TrackCreditsSnapshot
+	(*ListTracksByReleaseRequest)(nil),  // 6: api.manage.v1.ListTracksByReleaseRequest
+	(*ListTracksByReleaseResponse)(nil), // 7: api.manage.v1.ListTracksByReleaseResponse
+	(*CreateTrackRequest)(nil),          // 8: api.manage.v1.CreateTrackRequest
+	(*UpdateTrackRequest)(nil),          // 9: api.manage.v1.UpdateTrackRequest
+	(*DeleteTrackRequest)(nil),          // 10: api.manage.v1.DeleteTrackRequest
+	(*SetTrackCreditsRequest)(nil),      // 11: api.manage.v1.SetTrackCreditsRequest
+	(*ReorderTracksRequest)(nil),        // 12: api.manage.v1.ReorderTracksRequest
+	(*structpb.Struct)(nil),             // 13: google.protobuf.Struct
+	(*timestamppb.Timestamp)(nil),       // 14: google.protobuf.Timestamp
+	(*v1.MemberSummary)(nil),            // 15: api.common.v1.MemberSummary
+	(*DeleteResponse)(nil),              // 16: api.manage.v1.DeleteResponse
 }
 var file_api_manage_v1_track_proto_depIdxs = []int32{
-	12, // 0: api.manage.v1.Track.metadata:type_name -> google.protobuf.Struct
-	13, // 1: api.manage.v1.Track.created_at:type_name -> google.protobuf.Timestamp
-	14, // 2: api.manage.v1.TrackCredit.member:type_name -> api.common.v1.MemberSummary
+	13, // 0: api.manage.v1.Track.metadata:type_name -> google.protobuf.Struct
+	14, // 1: api.manage.v1.Track.created_at:type_name -> google.protobuf.Timestamp
+	15, // 2: api.manage.v1.TrackCredit.member:type_name -> api.common.v1.MemberSummary
 	1,  // 3: api.manage.v1.TrackWithCredits.track:type_name -> api.manage.v1.Track
 	2,  // 4: api.manage.v1.TrackWithCredits.credits:type_name -> api.manage.v1.TrackCredit
-	3,  // 5: api.manage.v1.ListTracksByReleaseResponse.tracks:type_name -> api.manage.v1.TrackWithCredits
-	4,  // 6: api.manage.v1.SetTrackCreditsRequest.credits:type_name -> api.manage.v1.TrackCreditInput
-	5,  // 7: api.manage.v1.TrackService.ListTracksByRelease:input_type -> api.manage.v1.ListTracksByReleaseRequest
-	7,  // 8: api.manage.v1.TrackService.CreateTrack:input_type -> api.manage.v1.CreateTrackRequest
-	8,  // 9: api.manage.v1.TrackService.UpdateTrack:input_type -> api.manage.v1.UpdateTrackRequest
-	9,  // 10: api.manage.v1.TrackService.DeleteTrack:input_type -> api.manage.v1.DeleteTrackRequest
-	10, // 11: api.manage.v1.TrackService.SetTrackCredits:input_type -> api.manage.v1.SetTrackCreditsRequest
-	11, // 12: api.manage.v1.TrackService.ReorderTracks:input_type -> api.manage.v1.ReorderTracksRequest
-	6,  // 13: api.manage.v1.TrackService.ListTracksByRelease:output_type -> api.manage.v1.ListTracksByReleaseResponse
-	1,  // 14: api.manage.v1.TrackService.CreateTrack:output_type -> api.manage.v1.Track
-	1,  // 15: api.manage.v1.TrackService.UpdateTrack:output_type -> api.manage.v1.Track
-	15, // 16: api.manage.v1.TrackService.DeleteTrack:output_type -> api.manage.v1.DeleteResponse
-	3,  // 17: api.manage.v1.TrackService.SetTrackCredits:output_type -> api.manage.v1.TrackWithCredits
-	6,  // 18: api.manage.v1.TrackService.ReorderTracks:output_type -> api.manage.v1.ListTracksByReleaseResponse
-	13, // [13:19] is the sub-list for method output_type
-	7,  // [7:13] is the sub-list for method input_type
-	7,  // [7:7] is the sub-list for extension type_name
-	7,  // [7:7] is the sub-list for extension extendee
-	0,  // [0:7] is the sub-list for field type_name
+	4,  // 5: api.manage.v1.TrackCreditsSnapshot.credits:type_name -> api.manage.v1.TrackCreditInput
+	3,  // 6: api.manage.v1.ListTracksByReleaseResponse.tracks:type_name -> api.manage.v1.TrackWithCredits
+	4,  // 7: api.manage.v1.SetTrackCreditsRequest.credits:type_name -> api.manage.v1.TrackCreditInput
+	5,  // 8: api.manage.v1.SetTrackCreditsRequest.observed:type_name -> api.manage.v1.TrackCreditsSnapshot
+	6,  // 9: api.manage.v1.TrackService.ListTracksByRelease:input_type -> api.manage.v1.ListTracksByReleaseRequest
+	8,  // 10: api.manage.v1.TrackService.CreateTrack:input_type -> api.manage.v1.CreateTrackRequest
+	9,  // 11: api.manage.v1.TrackService.UpdateTrack:input_type -> api.manage.v1.UpdateTrackRequest
+	10, // 12: api.manage.v1.TrackService.DeleteTrack:input_type -> api.manage.v1.DeleteTrackRequest
+	11, // 13: api.manage.v1.TrackService.SetTrackCredits:input_type -> api.manage.v1.SetTrackCreditsRequest
+	12, // 14: api.manage.v1.TrackService.ReorderTracks:input_type -> api.manage.v1.ReorderTracksRequest
+	7,  // 15: api.manage.v1.TrackService.ListTracksByRelease:output_type -> api.manage.v1.ListTracksByReleaseResponse
+	1,  // 16: api.manage.v1.TrackService.CreateTrack:output_type -> api.manage.v1.Track
+	1,  // 17: api.manage.v1.TrackService.UpdateTrack:output_type -> api.manage.v1.Track
+	16, // 18: api.manage.v1.TrackService.DeleteTrack:output_type -> api.manage.v1.DeleteResponse
+	3,  // 19: api.manage.v1.TrackService.SetTrackCredits:output_type -> api.manage.v1.TrackWithCredits
+	7,  // 20: api.manage.v1.TrackService.ReorderTracks:output_type -> api.manage.v1.ListTracksByReleaseResponse
+	15, // [15:21] is the sub-list for method output_type
+	9,  // [9:15] is the sub-list for method input_type
+	9,  // [9:9] is the sub-list for extension type_name
+	9,  // [9:9] is the sub-list for extension extendee
+	0,  // [0:9] is the sub-list for field type_name
 }
 
 func init() { file_api_manage_v1_track_proto_init() }
@@ -1053,18 +1113,19 @@ func file_api_manage_v1_track_proto_init() {
 		return
 	}
 	file_api_manage_v1_common_proto_init()
+	file_api_manage_v1_release_proto_init()
 	file_api_manage_v1_track_proto_msgTypes[0].OneofWrappers = []any{}
 	file_api_manage_v1_track_proto_msgTypes[1].OneofWrappers = []any{}
 	file_api_manage_v1_track_proto_msgTypes[3].OneofWrappers = []any{}
-	file_api_manage_v1_track_proto_msgTypes[6].OneofWrappers = []any{}
 	file_api_manage_v1_track_proto_msgTypes[7].OneofWrappers = []any{}
+	file_api_manage_v1_track_proto_msgTypes[8].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_api_manage_v1_track_proto_rawDesc), len(file_api_manage_v1_track_proto_rawDesc)),
 			NumEnums:      1,
-			NumMessages:   11,
+			NumMessages:   12,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

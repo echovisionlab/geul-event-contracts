@@ -3826,6 +3826,58 @@ func (x *GetFileDownloadPolicyResponse) GetPolicy() *FileDownloadPolicy {
 	return nil
 }
 
+type FileDownloadPolicyObservedState struct {
+	state              protoimpl.MessageState `protogen:"open.v1"`
+	Audience           FileDownloadAudience   `protobuf:"varint,1,opt,name=audience,proto3,enum=api.manage.v1.FileDownloadAudience" json:"audience,omitempty"`
+	AudienceSegmentIds []string               `protobuf:"bytes,2,rep,name=audience_segment_ids,json=audienceSegmentIds,proto3" json:"audience_segment_ids,omitempty"`
+	unknownFields      protoimpl.UnknownFields
+	sizeCache          protoimpl.SizeCache
+}
+
+func (x *FileDownloadPolicyObservedState) Reset() {
+	*x = FileDownloadPolicyObservedState{}
+	mi := &file_api_manage_v1_file_proto_msgTypes[50]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *FileDownloadPolicyObservedState) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FileDownloadPolicyObservedState) ProtoMessage() {}
+
+func (x *FileDownloadPolicyObservedState) ProtoReflect() protoreflect.Message {
+	mi := &file_api_manage_v1_file_proto_msgTypes[50]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FileDownloadPolicyObservedState.ProtoReflect.Descriptor instead.
+func (*FileDownloadPolicyObservedState) Descriptor() ([]byte, []int) {
+	return file_api_manage_v1_file_proto_rawDescGZIP(), []int{50}
+}
+
+func (x *FileDownloadPolicyObservedState) GetAudience() FileDownloadAudience {
+	if x != nil {
+		return x.Audience
+	}
+	return FileDownloadAudience_FILE_DOWNLOAD_AUDIENCE_UNSPECIFIED
+}
+
+func (x *FileDownloadPolicyObservedState) GetAudienceSegmentIds() []string {
+	if x != nil {
+		return x.AudienceSegmentIds
+	}
+	return nil
+}
+
 type UpdateFileDownloadPolicyRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Content targets require both block_id and reference_path. TRACK requires
@@ -3839,13 +3891,15 @@ type UpdateFileDownloadPolicyRequest struct {
 	ExpectedFileId     string               `protobuf:"bytes,5,opt,name=expected_file_id,json=expectedFileId,proto3" json:"expected_file_id,omitempty"`
 	Audience           FileDownloadAudience `protobuf:"varint,6,opt,name=audience,proto3,enum=api.manage.v1.FileDownloadAudience" json:"audience,omitempty"`
 	AudienceSegmentIds []string             `protobuf:"bytes,7,rep,name=audience_segment_ids,json=audienceSegmentIds,proto3" json:"audience_segment_ids,omitempty"`
-	unknownFields      protoimpl.UnknownFields
-	sizeCache          protoimpl.SizeCache
+	// Required editor baseline used to merge the desired policy into current state.
+	ObservedPolicy *FileDownloadPolicyObservedState `protobuf:"bytes,8,opt,name=observed_policy,json=observedPolicy,proto3" json:"observed_policy,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
 }
 
 func (x *UpdateFileDownloadPolicyRequest) Reset() {
 	*x = UpdateFileDownloadPolicyRequest{}
-	mi := &file_api_manage_v1_file_proto_msgTypes[50]
+	mi := &file_api_manage_v1_file_proto_msgTypes[51]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3857,7 +3911,7 @@ func (x *UpdateFileDownloadPolicyRequest) String() string {
 func (*UpdateFileDownloadPolicyRequest) ProtoMessage() {}
 
 func (x *UpdateFileDownloadPolicyRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_file_proto_msgTypes[50]
+	mi := &file_api_manage_v1_file_proto_msgTypes[51]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3870,7 +3924,7 @@ func (x *UpdateFileDownloadPolicyRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateFileDownloadPolicyRequest.ProtoReflect.Descriptor instead.
 func (*UpdateFileDownloadPolicyRequest) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_file_proto_rawDescGZIP(), []int{50}
+	return file_api_manage_v1_file_proto_rawDescGZIP(), []int{51}
 }
 
 func (x *UpdateFileDownloadPolicyRequest) GetEntityType() TranscodeEntityType {
@@ -3922,6 +3976,13 @@ func (x *UpdateFileDownloadPolicyRequest) GetAudienceSegmentIds() []string {
 	return nil
 }
 
+func (x *UpdateFileDownloadPolicyRequest) GetObservedPolicy() *FileDownloadPolicyObservedState {
+	if x != nil {
+		return x.ObservedPolicy
+	}
+	return nil
+}
+
 type UpdateFileDownloadPolicyResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Policy        *FileDownloadPolicy    `protobuf:"bytes,1,opt,name=policy,proto3" json:"policy,omitempty"`
@@ -3931,7 +3992,7 @@ type UpdateFileDownloadPolicyResponse struct {
 
 func (x *UpdateFileDownloadPolicyResponse) Reset() {
 	*x = UpdateFileDownloadPolicyResponse{}
-	mi := &file_api_manage_v1_file_proto_msgTypes[51]
+	mi := &file_api_manage_v1_file_proto_msgTypes[52]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3943,7 +4004,7 @@ func (x *UpdateFileDownloadPolicyResponse) String() string {
 func (*UpdateFileDownloadPolicyResponse) ProtoMessage() {}
 
 func (x *UpdateFileDownloadPolicyResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_file_proto_msgTypes[51]
+	mi := &file_api_manage_v1_file_proto_msgTypes[52]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3956,7 +4017,7 @@ func (x *UpdateFileDownloadPolicyResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateFileDownloadPolicyResponse.ProtoReflect.Descriptor instead.
 func (*UpdateFileDownloadPolicyResponse) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_file_proto_rawDescGZIP(), []int{51}
+	return file_api_manage_v1_file_proto_rawDescGZIP(), []int{52}
 }
 
 func (x *UpdateFileDownloadPolicyResponse) GetPolicy() *FileDownloadPolicy {
@@ -3998,7 +4059,7 @@ type MeshOptimizationCandidate struct {
 
 func (x *MeshOptimizationCandidate) Reset() {
 	*x = MeshOptimizationCandidate{}
-	mi := &file_api_manage_v1_file_proto_msgTypes[52]
+	mi := &file_api_manage_v1_file_proto_msgTypes[53]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4010,7 +4071,7 @@ func (x *MeshOptimizationCandidate) String() string {
 func (*MeshOptimizationCandidate) ProtoMessage() {}
 
 func (x *MeshOptimizationCandidate) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_file_proto_msgTypes[52]
+	mi := &file_api_manage_v1_file_proto_msgTypes[53]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4023,7 +4084,7 @@ func (x *MeshOptimizationCandidate) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MeshOptimizationCandidate.ProtoReflect.Descriptor instead.
 func (*MeshOptimizationCandidate) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_file_proto_rawDescGZIP(), []int{52}
+	return file_api_manage_v1_file_proto_rawDescGZIP(), []int{53}
 }
 
 func (x *MeshOptimizationCandidate) GetId() string {
@@ -4206,7 +4267,7 @@ type ListMeshOptimizationCandidatesRequest struct {
 
 func (x *ListMeshOptimizationCandidatesRequest) Reset() {
 	*x = ListMeshOptimizationCandidatesRequest{}
-	mi := &file_api_manage_v1_file_proto_msgTypes[53]
+	mi := &file_api_manage_v1_file_proto_msgTypes[54]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4218,7 +4279,7 @@ func (x *ListMeshOptimizationCandidatesRequest) String() string {
 func (*ListMeshOptimizationCandidatesRequest) ProtoMessage() {}
 
 func (x *ListMeshOptimizationCandidatesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_file_proto_msgTypes[53]
+	mi := &file_api_manage_v1_file_proto_msgTypes[54]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4231,7 +4292,7 @@ func (x *ListMeshOptimizationCandidatesRequest) ProtoReflect() protoreflect.Mess
 
 // Deprecated: Use ListMeshOptimizationCandidatesRequest.ProtoReflect.Descriptor instead.
 func (*ListMeshOptimizationCandidatesRequest) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_file_proto_rawDescGZIP(), []int{53}
+	return file_api_manage_v1_file_proto_rawDescGZIP(), []int{54}
 }
 
 func (x *ListMeshOptimizationCandidatesRequest) GetSourceFileId() string {
@@ -4271,7 +4332,7 @@ type ListMeshOptimizationCandidatesResponse struct {
 
 func (x *ListMeshOptimizationCandidatesResponse) Reset() {
 	*x = ListMeshOptimizationCandidatesResponse{}
-	mi := &file_api_manage_v1_file_proto_msgTypes[54]
+	mi := &file_api_manage_v1_file_proto_msgTypes[55]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4283,7 +4344,7 @@ func (x *ListMeshOptimizationCandidatesResponse) String() string {
 func (*ListMeshOptimizationCandidatesResponse) ProtoMessage() {}
 
 func (x *ListMeshOptimizationCandidatesResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_file_proto_msgTypes[54]
+	mi := &file_api_manage_v1_file_proto_msgTypes[55]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4296,7 +4357,7 @@ func (x *ListMeshOptimizationCandidatesResponse) ProtoReflect() protoreflect.Mes
 
 // Deprecated: Use ListMeshOptimizationCandidatesResponse.ProtoReflect.Descriptor instead.
 func (*ListMeshOptimizationCandidatesResponse) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_file_proto_rawDescGZIP(), []int{54}
+	return file_api_manage_v1_file_proto_rawDescGZIP(), []int{55}
 }
 
 func (x *ListMeshOptimizationCandidatesResponse) GetCandidates() []*MeshOptimizationCandidate {
@@ -4320,7 +4381,7 @@ type GenerateMeshOptimizationCandidateRequest struct {
 
 func (x *GenerateMeshOptimizationCandidateRequest) Reset() {
 	*x = GenerateMeshOptimizationCandidateRequest{}
-	mi := &file_api_manage_v1_file_proto_msgTypes[55]
+	mi := &file_api_manage_v1_file_proto_msgTypes[56]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4332,7 +4393,7 @@ func (x *GenerateMeshOptimizationCandidateRequest) String() string {
 func (*GenerateMeshOptimizationCandidateRequest) ProtoMessage() {}
 
 func (x *GenerateMeshOptimizationCandidateRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_file_proto_msgTypes[55]
+	mi := &file_api_manage_v1_file_proto_msgTypes[56]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4345,7 +4406,7 @@ func (x *GenerateMeshOptimizationCandidateRequest) ProtoReflect() protoreflect.M
 
 // Deprecated: Use GenerateMeshOptimizationCandidateRequest.ProtoReflect.Descriptor instead.
 func (*GenerateMeshOptimizationCandidateRequest) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_file_proto_rawDescGZIP(), []int{55}
+	return file_api_manage_v1_file_proto_rawDescGZIP(), []int{56}
 }
 
 func (x *GenerateMeshOptimizationCandidateRequest) GetSourceFileId() string {
@@ -4401,7 +4462,7 @@ type GenerateMeshOptimizationCandidateResponse struct {
 
 func (x *GenerateMeshOptimizationCandidateResponse) Reset() {
 	*x = GenerateMeshOptimizationCandidateResponse{}
-	mi := &file_api_manage_v1_file_proto_msgTypes[56]
+	mi := &file_api_manage_v1_file_proto_msgTypes[57]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4413,7 +4474,7 @@ func (x *GenerateMeshOptimizationCandidateResponse) String() string {
 func (*GenerateMeshOptimizationCandidateResponse) ProtoMessage() {}
 
 func (x *GenerateMeshOptimizationCandidateResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_file_proto_msgTypes[56]
+	mi := &file_api_manage_v1_file_proto_msgTypes[57]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4426,7 +4487,7 @@ func (x *GenerateMeshOptimizationCandidateResponse) ProtoReflect() protoreflect.
 
 // Deprecated: Use GenerateMeshOptimizationCandidateResponse.ProtoReflect.Descriptor instead.
 func (*GenerateMeshOptimizationCandidateResponse) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_file_proto_rawDescGZIP(), []int{56}
+	return file_api_manage_v1_file_proto_rawDescGZIP(), []int{57}
 }
 
 func (x *GenerateMeshOptimizationCandidateResponse) GetCandidate() *MeshOptimizationCandidate {
@@ -4462,7 +4523,7 @@ type UseMeshOptimizationCandidateRequest struct {
 
 func (x *UseMeshOptimizationCandidateRequest) Reset() {
 	*x = UseMeshOptimizationCandidateRequest{}
-	mi := &file_api_manage_v1_file_proto_msgTypes[57]
+	mi := &file_api_manage_v1_file_proto_msgTypes[58]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4474,7 +4535,7 @@ func (x *UseMeshOptimizationCandidateRequest) String() string {
 func (*UseMeshOptimizationCandidateRequest) ProtoMessage() {}
 
 func (x *UseMeshOptimizationCandidateRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_file_proto_msgTypes[57]
+	mi := &file_api_manage_v1_file_proto_msgTypes[58]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4487,7 +4548,7 @@ func (x *UseMeshOptimizationCandidateRequest) ProtoReflect() protoreflect.Messag
 
 // Deprecated: Use UseMeshOptimizationCandidateRequest.ProtoReflect.Descriptor instead.
 func (*UseMeshOptimizationCandidateRequest) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_file_proto_rawDescGZIP(), []int{57}
+	return file_api_manage_v1_file_proto_rawDescGZIP(), []int{58}
 }
 
 func (x *UseMeshOptimizationCandidateRequest) GetCandidateId() string {
@@ -4527,7 +4588,7 @@ type UseMeshOptimizationCandidateResponse struct {
 
 func (x *UseMeshOptimizationCandidateResponse) Reset() {
 	*x = UseMeshOptimizationCandidateResponse{}
-	mi := &file_api_manage_v1_file_proto_msgTypes[58]
+	mi := &file_api_manage_v1_file_proto_msgTypes[59]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4539,7 +4600,7 @@ func (x *UseMeshOptimizationCandidateResponse) String() string {
 func (*UseMeshOptimizationCandidateResponse) ProtoMessage() {}
 
 func (x *UseMeshOptimizationCandidateResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_file_proto_msgTypes[58]
+	mi := &file_api_manage_v1_file_proto_msgTypes[59]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4552,7 +4613,7 @@ func (x *UseMeshOptimizationCandidateResponse) ProtoReflect() protoreflect.Messa
 
 // Deprecated: Use UseMeshOptimizationCandidateResponse.ProtoReflect.Descriptor instead.
 func (*UseMeshOptimizationCandidateResponse) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_file_proto_rawDescGZIP(), []int{58}
+	return file_api_manage_v1_file_proto_rawDescGZIP(), []int{59}
 }
 
 func (x *UseMeshOptimizationCandidateResponse) GetCandidate() *MeshOptimizationCandidate {
@@ -4575,7 +4636,7 @@ type ClearMeshOptimizationCandidatesRequest struct {
 
 func (x *ClearMeshOptimizationCandidatesRequest) Reset() {
 	*x = ClearMeshOptimizationCandidatesRequest{}
-	mi := &file_api_manage_v1_file_proto_msgTypes[59]
+	mi := &file_api_manage_v1_file_proto_msgTypes[60]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4587,7 +4648,7 @@ func (x *ClearMeshOptimizationCandidatesRequest) String() string {
 func (*ClearMeshOptimizationCandidatesRequest) ProtoMessage() {}
 
 func (x *ClearMeshOptimizationCandidatesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_file_proto_msgTypes[59]
+	mi := &file_api_manage_v1_file_proto_msgTypes[60]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4600,7 +4661,7 @@ func (x *ClearMeshOptimizationCandidatesRequest) ProtoReflect() protoreflect.Mes
 
 // Deprecated: Use ClearMeshOptimizationCandidatesRequest.ProtoReflect.Descriptor instead.
 func (*ClearMeshOptimizationCandidatesRequest) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_file_proto_rawDescGZIP(), []int{59}
+	return file_api_manage_v1_file_proto_rawDescGZIP(), []int{60}
 }
 
 func (x *ClearMeshOptimizationCandidatesRequest) GetSourceFileId() string {
@@ -4647,7 +4708,7 @@ type ClearMeshOptimizationCandidatesResponse struct {
 
 func (x *ClearMeshOptimizationCandidatesResponse) Reset() {
 	*x = ClearMeshOptimizationCandidatesResponse{}
-	mi := &file_api_manage_v1_file_proto_msgTypes[60]
+	mi := &file_api_manage_v1_file_proto_msgTypes[61]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4659,7 +4720,7 @@ func (x *ClearMeshOptimizationCandidatesResponse) String() string {
 func (*ClearMeshOptimizationCandidatesResponse) ProtoMessage() {}
 
 func (x *ClearMeshOptimizationCandidatesResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_file_proto_msgTypes[60]
+	mi := &file_api_manage_v1_file_proto_msgTypes[61]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4672,7 +4733,7 @@ func (x *ClearMeshOptimizationCandidatesResponse) ProtoReflect() protoreflect.Me
 
 // Deprecated: Use ClearMeshOptimizationCandidatesResponse.ProtoReflect.Descriptor instead.
 func (*ClearMeshOptimizationCandidatesResponse) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_file_proto_rawDescGZIP(), []int{60}
+	return file_api_manage_v1_file_proto_rawDescGZIP(), []int{61}
 }
 
 func (x *ClearMeshOptimizationCandidatesResponse) GetSuccess() bool {
@@ -5030,7 +5091,10 @@ const file_api_manage_v1_file_proto_rawDesc = "" +
 	"\t_block_idB\x11\n" +
 	"\x0f_reference_path\"Z\n" +
 	"\x1dGetFileDownloadPolicyResponse\x129\n" +
-	"\x06policy\x18\x01 \x01(\v2!.api.manage.v1.FileDownloadPolicyR\x06policy\"\x8c\x03\n" +
+	"\x06policy\x18\x01 \x01(\v2!.api.manage.v1.FileDownloadPolicyR\x06policy\"\x94\x01\n" +
+	"\x1fFileDownloadPolicyObservedState\x12?\n" +
+	"\baudience\x18\x01 \x01(\x0e2#.api.manage.v1.FileDownloadAudienceR\baudience\x120\n" +
+	"\x14audience_segment_ids\x18\x02 \x03(\tR\x12audienceSegmentIds\"\xe5\x03\n" +
 	"\x1fUpdateFileDownloadPolicyRequest\x12C\n" +
 	"\ventity_type\x18\x01 \x01(\x0e2\".api.manage.v1.TranscodeEntityTypeR\n" +
 	"entityType\x12\x1b\n" +
@@ -5039,7 +5103,8 @@ const file_api_manage_v1_file_proto_rawDesc = "" +
 	"\x0ereference_path\x18\x04 \x01(\tH\x01R\rreferencePath\x88\x01\x01\x12(\n" +
 	"\x10expected_file_id\x18\x05 \x01(\tR\x0eexpectedFileId\x12?\n" +
 	"\baudience\x18\x06 \x01(\x0e2#.api.manage.v1.FileDownloadAudienceR\baudience\x120\n" +
-	"\x14audience_segment_ids\x18\a \x03(\tR\x12audienceSegmentIdsB\v\n" +
+	"\x14audience_segment_ids\x18\a \x03(\tR\x12audienceSegmentIds\x12W\n" +
+	"\x0fobserved_policy\x18\b \x01(\v2..api.manage.v1.FileDownloadPolicyObservedStateR\x0eobservedPolicyB\v\n" +
 	"\t_block_idB\x11\n" +
 	"\x0f_reference_path\"]\n" +
 	" UpdateFileDownloadPolicyResponse\x129\n" +
@@ -5271,7 +5336,7 @@ func file_api_manage_v1_file_proto_rawDescGZIP() []byte {
 }
 
 var file_api_manage_v1_file_proto_enumTypes = make([]protoimpl.EnumInfo, 8)
-var file_api_manage_v1_file_proto_msgTypes = make([]protoimpl.MessageInfo, 62)
+var file_api_manage_v1_file_proto_msgTypes = make([]protoimpl.MessageInfo, 63)
 var file_api_manage_v1_file_proto_goTypes = []any{
 	(UploadType)(0),                                   // 0: api.manage.v1.UploadType
 	(FileDerivativeType)(0),                           // 1: api.manage.v1.FileDerivativeType
@@ -5331,49 +5396,50 @@ var file_api_manage_v1_file_proto_goTypes = []any{
 	(*FileDownloadPolicy)(nil),                        // 55: api.manage.v1.FileDownloadPolicy
 	(*GetFileDownloadPolicyRequest)(nil),              // 56: api.manage.v1.GetFileDownloadPolicyRequest
 	(*GetFileDownloadPolicyResponse)(nil),             // 57: api.manage.v1.GetFileDownloadPolicyResponse
-	(*UpdateFileDownloadPolicyRequest)(nil),           // 58: api.manage.v1.UpdateFileDownloadPolicyRequest
-	(*UpdateFileDownloadPolicyResponse)(nil),          // 59: api.manage.v1.UpdateFileDownloadPolicyResponse
-	(*MeshOptimizationCandidate)(nil),                 // 60: api.manage.v1.MeshOptimizationCandidate
-	(*ListMeshOptimizationCandidatesRequest)(nil),     // 61: api.manage.v1.ListMeshOptimizationCandidatesRequest
-	(*ListMeshOptimizationCandidatesResponse)(nil),    // 62: api.manage.v1.ListMeshOptimizationCandidatesResponse
-	(*GenerateMeshOptimizationCandidateRequest)(nil),  // 63: api.manage.v1.GenerateMeshOptimizationCandidateRequest
-	(*GenerateMeshOptimizationCandidateResponse)(nil), // 64: api.manage.v1.GenerateMeshOptimizationCandidateResponse
-	(*UseMeshOptimizationCandidateRequest)(nil),       // 65: api.manage.v1.UseMeshOptimizationCandidateRequest
-	(*UseMeshOptimizationCandidateResponse)(nil),      // 66: api.manage.v1.UseMeshOptimizationCandidateResponse
-	(*ClearMeshOptimizationCandidatesRequest)(nil),    // 67: api.manage.v1.ClearMeshOptimizationCandidatesRequest
-	(*ClearMeshOptimizationCandidatesResponse)(nil),   // 68: api.manage.v1.ClearMeshOptimizationCandidatesResponse
-	nil,                                    // 69: api.manage.v1.GetBulkMediaDeliveriesResponse.FilesEntry
-	(*v1.MemberSummary)(nil),               // 70: api.common.v1.MemberSummary
-	(*timestamppb.Timestamp)(nil),          // 71: google.protobuf.Timestamp
-	(*v1.MediaDelivery)(nil),               // 72: api.common.v1.MediaDelivery
-	(v1.SortOrder)(0),                      // 73: api.common.v1.SortOrder
-	(v1.MediaProcessingStatus)(0),          // 74: api.common.v1.MediaProcessingStatus
-	(TranscodeEntityType)(0),               // 75: api.manage.v1.TranscodeEntityType
-	(*AudienceSegmentSummary)(nil),         // 76: api.manage.v1.AudienceSegmentSummary
-	(MeshOptimizationCompressionMethod)(0), // 77: api.manage.v1.MeshOptimizationCompressionMethod
-	(MeshOptimizationProfile)(0),           // 78: api.manage.v1.MeshOptimizationProfile
+	(*FileDownloadPolicyObservedState)(nil),           // 58: api.manage.v1.FileDownloadPolicyObservedState
+	(*UpdateFileDownloadPolicyRequest)(nil),           // 59: api.manage.v1.UpdateFileDownloadPolicyRequest
+	(*UpdateFileDownloadPolicyResponse)(nil),          // 60: api.manage.v1.UpdateFileDownloadPolicyResponse
+	(*MeshOptimizationCandidate)(nil),                 // 61: api.manage.v1.MeshOptimizationCandidate
+	(*ListMeshOptimizationCandidatesRequest)(nil),     // 62: api.manage.v1.ListMeshOptimizationCandidatesRequest
+	(*ListMeshOptimizationCandidatesResponse)(nil),    // 63: api.manage.v1.ListMeshOptimizationCandidatesResponse
+	(*GenerateMeshOptimizationCandidateRequest)(nil),  // 64: api.manage.v1.GenerateMeshOptimizationCandidateRequest
+	(*GenerateMeshOptimizationCandidateResponse)(nil), // 65: api.manage.v1.GenerateMeshOptimizationCandidateResponse
+	(*UseMeshOptimizationCandidateRequest)(nil),       // 66: api.manage.v1.UseMeshOptimizationCandidateRequest
+	(*UseMeshOptimizationCandidateResponse)(nil),      // 67: api.manage.v1.UseMeshOptimizationCandidateResponse
+	(*ClearMeshOptimizationCandidatesRequest)(nil),    // 68: api.manage.v1.ClearMeshOptimizationCandidatesRequest
+	(*ClearMeshOptimizationCandidatesResponse)(nil),   // 69: api.manage.v1.ClearMeshOptimizationCandidatesResponse
+	nil,                                    // 70: api.manage.v1.GetBulkMediaDeliveriesResponse.FilesEntry
+	(*v1.MemberSummary)(nil),               // 71: api.common.v1.MemberSummary
+	(*timestamppb.Timestamp)(nil),          // 72: google.protobuf.Timestamp
+	(*v1.MediaDelivery)(nil),               // 73: api.common.v1.MediaDelivery
+	(v1.SortOrder)(0),                      // 74: api.common.v1.SortOrder
+	(v1.MediaProcessingStatus)(0),          // 75: api.common.v1.MediaProcessingStatus
+	(TranscodeEntityType)(0),               // 76: api.manage.v1.TranscodeEntityType
+	(*AudienceSegmentSummary)(nil),         // 77: api.manage.v1.AudienceSegmentSummary
+	(MeshOptimizationCompressionMethod)(0), // 78: api.manage.v1.MeshOptimizationCompressionMethod
+	(MeshOptimizationProfile)(0),           // 79: api.manage.v1.MeshOptimizationProfile
 }
 var file_api_manage_v1_file_proto_depIdxs = []int32{
-	70,  // 0: api.manage.v1.FileFolder.created_by_member:type_name -> api.common.v1.MemberSummary
-	71,  // 1: api.manage.v1.FileFolder.created_at:type_name -> google.protobuf.Timestamp
-	71,  // 2: api.manage.v1.FileFolder.updated_at:type_name -> google.protobuf.Timestamp
-	70,  // 3: api.manage.v1.FileManagerFile.uploaded_by_member:type_name -> api.common.v1.MemberSummary
-	71,  // 4: api.manage.v1.FileManagerFile.created_at:type_name -> google.protobuf.Timestamp
-	71,  // 5: api.manage.v1.FileManagerFile.updated_at:type_name -> google.protobuf.Timestamp
-	72,  // 6: api.manage.v1.FileManagerFile.delivery:type_name -> api.common.v1.MediaDelivery
+	71,  // 0: api.manage.v1.FileFolder.created_by_member:type_name -> api.common.v1.MemberSummary
+	72,  // 1: api.manage.v1.FileFolder.created_at:type_name -> google.protobuf.Timestamp
+	72,  // 2: api.manage.v1.FileFolder.updated_at:type_name -> google.protobuf.Timestamp
+	71,  // 3: api.manage.v1.FileManagerFile.uploaded_by_member:type_name -> api.common.v1.MemberSummary
+	72,  // 4: api.manage.v1.FileManagerFile.created_at:type_name -> google.protobuf.Timestamp
+	72,  // 5: api.manage.v1.FileManagerFile.updated_at:type_name -> google.protobuf.Timestamp
+	73,  // 6: api.manage.v1.FileManagerFile.delivery:type_name -> api.common.v1.MediaDelivery
 	2,   // 7: api.manage.v1.FileManagerItem.type:type_name -> api.manage.v1.FileManagerItemType
 	10,  // 8: api.manage.v1.FileManagerItem.folder:type_name -> api.manage.v1.FileFolder
 	11,  // 9: api.manage.v1.FileManagerItem.file:type_name -> api.manage.v1.FileManagerFile
 	12,  // 10: api.manage.v1.FileManagerItem.folder_path:type_name -> api.manage.v1.FileManagerPathSegment
 	3,   // 11: api.manage.v1.ListFileManagerItemsRequest.sort_field:type_name -> api.manage.v1.FileManagerSortField
-	73,  // 12: api.manage.v1.ListFileManagerItemsRequest.sort_order:type_name -> api.common.v1.SortOrder
+	74,  // 12: api.manage.v1.ListFileManagerItemsRequest.sort_order:type_name -> api.common.v1.SortOrder
 	13,  // 13: api.manage.v1.ListFileManagerItemsResponse.items:type_name -> api.manage.v1.FileManagerItem
 	11,  // 14: api.manage.v1.GetFileResponse.file:type_name -> api.manage.v1.FileManagerFile
 	19,  // 15: api.manage.v1.GetFileResponse.domain_usage_summary:type_name -> api.manage.v1.FileUsage
 	18,  // 16: api.manage.v1.GetFileResponse.generated_outputs:type_name -> api.manage.v1.FileGeneratedOutput
 	1,   // 17: api.manage.v1.FileGeneratedOutput.type:type_name -> api.manage.v1.FileDerivativeType
-	74,  // 18: api.manage.v1.FileGeneratedOutput.status:type_name -> api.common.v1.MediaProcessingStatus
-	72,  // 19: api.manage.v1.FileGeneratedOutput.delivery:type_name -> api.common.v1.MediaDelivery
+	75,  // 18: api.manage.v1.FileGeneratedOutput.status:type_name -> api.common.v1.MediaProcessingStatus
+	73,  // 19: api.manage.v1.FileGeneratedOutput.delivery:type_name -> api.common.v1.MediaDelivery
 	4,   // 20: api.manage.v1.FileUsage.domain:type_name -> api.manage.v1.FileUsageDomain
 	19,  // 21: api.manage.v1.ListFileUsagesResponse.usages:type_name -> api.manage.v1.FileUsage
 	10,  // 22: api.manage.v1.CreateFileFolderResponse.folder:type_name -> api.manage.v1.FileFolder
@@ -5387,103 +5453,105 @@ var file_api_manage_v1_file_proto_depIdxs = []int32{
 	35,  // 30: api.manage.v1.GetFileDeletionImpactResponse.impacts:type_name -> api.manage.v1.FileDeletionImpact
 	35,  // 31: api.manage.v1.DeleteFilesResponse.rejected_files:type_name -> api.manage.v1.FileDeletionImpact
 	0,   // 32: api.manage.v1.InitiateMultipartUploadRequest.upload_type:type_name -> api.manage.v1.UploadType
-	75,  // 33: api.manage.v1.InitiateMultipartUploadRequest.entity_type:type_name -> api.manage.v1.TranscodeEntityType
+	76,  // 33: api.manage.v1.InitiateMultipartUploadRequest.entity_type:type_name -> api.manage.v1.TranscodeEntityType
 	42,  // 34: api.manage.v1.InitiateMultipartUploadResponse.uploaded_parts:type_name -> api.manage.v1.UploadPartInfo
 	5,   // 35: api.manage.v1.InitiateMultipartUploadResponse.status:type_name -> api.manage.v1.UploadSessionStatus
-	72,  // 36: api.manage.v1.CompleteMultipartUploadResponse.delivery:type_name -> api.common.v1.MediaDelivery
+	73,  // 36: api.manage.v1.CompleteMultipartUploadResponse.delivery:type_name -> api.common.v1.MediaDelivery
 	0,   // 37: api.manage.v1.FindMultipartUploadCandidateRequest.upload_type:type_name -> api.manage.v1.UploadType
-	75,  // 38: api.manage.v1.FindMultipartUploadCandidateRequest.entity_type:type_name -> api.manage.v1.TranscodeEntityType
+	76,  // 38: api.manage.v1.FindMultipartUploadCandidateRequest.entity_type:type_name -> api.manage.v1.TranscodeEntityType
 	5,   // 39: api.manage.v1.FindMultipartUploadCandidateResponse.status:type_name -> api.manage.v1.UploadSessionStatus
 	42,  // 40: api.manage.v1.FindMultipartUploadCandidateResponse.uploaded_parts:type_name -> api.manage.v1.UploadPartInfo
-	71,  // 41: api.manage.v1.FindMultipartUploadCandidateResponse.last_activity_at:type_name -> google.protobuf.Timestamp
+	72,  // 41: api.manage.v1.FindMultipartUploadCandidateResponse.last_activity_at:type_name -> google.protobuf.Timestamp
 	0,   // 42: api.manage.v1.DownloadFromUrlRequest.upload_type:type_name -> api.manage.v1.UploadType
-	75,  // 43: api.manage.v1.DownloadFromUrlRequest.entity_type:type_name -> api.manage.v1.TranscodeEntityType
-	72,  // 44: api.manage.v1.DownloadFromUrlResponse.delivery:type_name -> api.common.v1.MediaDelivery
-	72,  // 45: api.manage.v1.GetMediaDeliveryResponse.delivery:type_name -> api.common.v1.MediaDelivery
-	69,  // 46: api.manage.v1.GetBulkMediaDeliveriesResponse.files:type_name -> api.manage.v1.GetBulkMediaDeliveriesResponse.FilesEntry
-	75,  // 47: api.manage.v1.FileDownloadPolicy.entity_type:type_name -> api.manage.v1.TranscodeEntityType
+	76,  // 43: api.manage.v1.DownloadFromUrlRequest.entity_type:type_name -> api.manage.v1.TranscodeEntityType
+	73,  // 44: api.manage.v1.DownloadFromUrlResponse.delivery:type_name -> api.common.v1.MediaDelivery
+	73,  // 45: api.manage.v1.GetMediaDeliveryResponse.delivery:type_name -> api.common.v1.MediaDelivery
+	70,  // 46: api.manage.v1.GetBulkMediaDeliveriesResponse.files:type_name -> api.manage.v1.GetBulkMediaDeliveriesResponse.FilesEntry
+	76,  // 47: api.manage.v1.FileDownloadPolicy.entity_type:type_name -> api.manage.v1.TranscodeEntityType
 	6,   // 48: api.manage.v1.FileDownloadPolicy.audience:type_name -> api.manage.v1.FileDownloadAudience
-	76,  // 49: api.manage.v1.FileDownloadPolicy.audience_segments:type_name -> api.manage.v1.AudienceSegmentSummary
-	75,  // 50: api.manage.v1.GetFileDownloadPolicyRequest.entity_type:type_name -> api.manage.v1.TranscodeEntityType
+	77,  // 49: api.manage.v1.FileDownloadPolicy.audience_segments:type_name -> api.manage.v1.AudienceSegmentSummary
+	76,  // 50: api.manage.v1.GetFileDownloadPolicyRequest.entity_type:type_name -> api.manage.v1.TranscodeEntityType
 	55,  // 51: api.manage.v1.GetFileDownloadPolicyResponse.policy:type_name -> api.manage.v1.FileDownloadPolicy
-	75,  // 52: api.manage.v1.UpdateFileDownloadPolicyRequest.entity_type:type_name -> api.manage.v1.TranscodeEntityType
-	6,   // 53: api.manage.v1.UpdateFileDownloadPolicyRequest.audience:type_name -> api.manage.v1.FileDownloadAudience
-	55,  // 54: api.manage.v1.UpdateFileDownloadPolicyResponse.policy:type_name -> api.manage.v1.FileDownloadPolicy
-	75,  // 55: api.manage.v1.MeshOptimizationCandidate.entity_type:type_name -> api.manage.v1.TranscodeEntityType
-	72,  // 56: api.manage.v1.MeshOptimizationCandidate.delivery:type_name -> api.common.v1.MediaDelivery
-	77,  // 57: api.manage.v1.MeshOptimizationCandidate.method:type_name -> api.manage.v1.MeshOptimizationCompressionMethod
-	7,   // 58: api.manage.v1.MeshOptimizationCandidate.status:type_name -> api.manage.v1.MeshOptimizationCandidateStatus
-	71,  // 59: api.manage.v1.MeshOptimizationCandidate.selected_at:type_name -> google.protobuf.Timestamp
-	71,  // 60: api.manage.v1.MeshOptimizationCandidate.created_at:type_name -> google.protobuf.Timestamp
-	71,  // 61: api.manage.v1.MeshOptimizationCandidate.updated_at:type_name -> google.protobuf.Timestamp
-	78,  // 62: api.manage.v1.MeshOptimizationCandidate.profile:type_name -> api.manage.v1.MeshOptimizationProfile
-	75,  // 63: api.manage.v1.ListMeshOptimizationCandidatesRequest.entity_type:type_name -> api.manage.v1.TranscodeEntityType
-	78,  // 64: api.manage.v1.ListMeshOptimizationCandidatesRequest.profile:type_name -> api.manage.v1.MeshOptimizationProfile
-	60,  // 65: api.manage.v1.ListMeshOptimizationCandidatesResponse.candidates:type_name -> api.manage.v1.MeshOptimizationCandidate
-	75,  // 66: api.manage.v1.GenerateMeshOptimizationCandidateRequest.entity_type:type_name -> api.manage.v1.TranscodeEntityType
-	77,  // 67: api.manage.v1.GenerateMeshOptimizationCandidateRequest.method:type_name -> api.manage.v1.MeshOptimizationCompressionMethod
-	78,  // 68: api.manage.v1.GenerateMeshOptimizationCandidateRequest.profile:type_name -> api.manage.v1.MeshOptimizationProfile
-	60,  // 69: api.manage.v1.GenerateMeshOptimizationCandidateResponse.candidate:type_name -> api.manage.v1.MeshOptimizationCandidate
-	75,  // 70: api.manage.v1.UseMeshOptimizationCandidateRequest.entity_type:type_name -> api.manage.v1.TranscodeEntityType
-	60,  // 71: api.manage.v1.UseMeshOptimizationCandidateResponse.candidate:type_name -> api.manage.v1.MeshOptimizationCandidate
-	75,  // 72: api.manage.v1.ClearMeshOptimizationCandidatesRequest.entity_type:type_name -> api.manage.v1.TranscodeEntityType
-	78,  // 73: api.manage.v1.ClearMeshOptimizationCandidatesRequest.profile:type_name -> api.manage.v1.MeshOptimizationProfile
-	52,  // 74: api.manage.v1.GetBulkMediaDeliveriesResponse.FilesEntry.value:type_name -> api.manage.v1.GetMediaDeliveryResponse
-	14,  // 75: api.manage.v1.FileService.ListFileManagerItems:input_type -> api.manage.v1.ListFileManagerItemsRequest
-	16,  // 76: api.manage.v1.FileService.GetFile:input_type -> api.manage.v1.GetFileRequest
-	20,  // 77: api.manage.v1.FileService.ListFileUsages:input_type -> api.manage.v1.ListFileUsagesRequest
-	22,  // 78: api.manage.v1.FileService.CreateFileFolder:input_type -> api.manage.v1.CreateFileFolderRequest
-	24,  // 79: api.manage.v1.FileService.RenameFileFolder:input_type -> api.manage.v1.RenameFileFolderRequest
-	26,  // 80: api.manage.v1.FileService.MoveFileFolder:input_type -> api.manage.v1.MoveFileFolderRequest
-	28,  // 81: api.manage.v1.FileService.DeleteFileFolder:input_type -> api.manage.v1.DeleteFileFolderRequest
-	30,  // 82: api.manage.v1.FileService.RenameFile:input_type -> api.manage.v1.RenameFileRequest
-	32,  // 83: api.manage.v1.FileService.MoveFiles:input_type -> api.manage.v1.MoveFilesRequest
-	36,  // 84: api.manage.v1.FileService.GetFileDeletionImpact:input_type -> api.manage.v1.GetFileDeletionImpactRequest
-	38,  // 85: api.manage.v1.FileService.DeleteFiles:input_type -> api.manage.v1.DeleteFilesRequest
-	8,   // 86: api.manage.v1.FileService.DeleteFile:input_type -> api.manage.v1.DeleteFileRequest
-	40,  // 87: api.manage.v1.FileService.InitiateMultipartUpload:input_type -> api.manage.v1.InitiateMultipartUploadRequest
-	43,  // 88: api.manage.v1.FileService.CompleteMultipartUpload:input_type -> api.manage.v1.CompleteMultipartUploadRequest
-	45,  // 89: api.manage.v1.FileService.AbortMultipartUpload:input_type -> api.manage.v1.AbortMultipartUploadRequest
-	47,  // 90: api.manage.v1.FileService.FindMultipartUploadCandidate:input_type -> api.manage.v1.FindMultipartUploadCandidateRequest
-	49,  // 91: api.manage.v1.FileService.DownloadFromUrl:input_type -> api.manage.v1.DownloadFromUrlRequest
-	51,  // 92: api.manage.v1.FileService.GetMediaDelivery:input_type -> api.manage.v1.GetMediaDeliveryRequest
-	53,  // 93: api.manage.v1.FileService.GetBulkMediaDeliveries:input_type -> api.manage.v1.GetBulkMediaDeliveriesRequest
-	56,  // 94: api.manage.v1.FileService.GetFileDownloadPolicy:input_type -> api.manage.v1.GetFileDownloadPolicyRequest
-	58,  // 95: api.manage.v1.FileService.UpdateFileDownloadPolicy:input_type -> api.manage.v1.UpdateFileDownloadPolicyRequest
-	61,  // 96: api.manage.v1.FileService.ListMeshOptimizationCandidates:input_type -> api.manage.v1.ListMeshOptimizationCandidatesRequest
-	63,  // 97: api.manage.v1.FileService.GenerateMeshOptimizationCandidate:input_type -> api.manage.v1.GenerateMeshOptimizationCandidateRequest
-	65,  // 98: api.manage.v1.FileService.UseMeshOptimizationCandidate:input_type -> api.manage.v1.UseMeshOptimizationCandidateRequest
-	67,  // 99: api.manage.v1.FileService.ClearMeshOptimizationCandidates:input_type -> api.manage.v1.ClearMeshOptimizationCandidatesRequest
-	15,  // 100: api.manage.v1.FileService.ListFileManagerItems:output_type -> api.manage.v1.ListFileManagerItemsResponse
-	17,  // 101: api.manage.v1.FileService.GetFile:output_type -> api.manage.v1.GetFileResponse
-	21,  // 102: api.manage.v1.FileService.ListFileUsages:output_type -> api.manage.v1.ListFileUsagesResponse
-	23,  // 103: api.manage.v1.FileService.CreateFileFolder:output_type -> api.manage.v1.CreateFileFolderResponse
-	25,  // 104: api.manage.v1.FileService.RenameFileFolder:output_type -> api.manage.v1.RenameFileFolderResponse
-	27,  // 105: api.manage.v1.FileService.MoveFileFolder:output_type -> api.manage.v1.MoveFileFolderResponse
-	29,  // 106: api.manage.v1.FileService.DeleteFileFolder:output_type -> api.manage.v1.DeleteFileFolderResponse
-	31,  // 107: api.manage.v1.FileService.RenameFile:output_type -> api.manage.v1.RenameFileResponse
-	33,  // 108: api.manage.v1.FileService.MoveFiles:output_type -> api.manage.v1.MoveFilesResponse
-	37,  // 109: api.manage.v1.FileService.GetFileDeletionImpact:output_type -> api.manage.v1.GetFileDeletionImpactResponse
-	39,  // 110: api.manage.v1.FileService.DeleteFiles:output_type -> api.manage.v1.DeleteFilesResponse
-	9,   // 111: api.manage.v1.FileService.DeleteFile:output_type -> api.manage.v1.DeleteFileResponse
-	41,  // 112: api.manage.v1.FileService.InitiateMultipartUpload:output_type -> api.manage.v1.InitiateMultipartUploadResponse
-	44,  // 113: api.manage.v1.FileService.CompleteMultipartUpload:output_type -> api.manage.v1.CompleteMultipartUploadResponse
-	46,  // 114: api.manage.v1.FileService.AbortMultipartUpload:output_type -> api.manage.v1.AbortMultipartUploadResponse
-	48,  // 115: api.manage.v1.FileService.FindMultipartUploadCandidate:output_type -> api.manage.v1.FindMultipartUploadCandidateResponse
-	50,  // 116: api.manage.v1.FileService.DownloadFromUrl:output_type -> api.manage.v1.DownloadFromUrlResponse
-	52,  // 117: api.manage.v1.FileService.GetMediaDelivery:output_type -> api.manage.v1.GetMediaDeliveryResponse
-	54,  // 118: api.manage.v1.FileService.GetBulkMediaDeliveries:output_type -> api.manage.v1.GetBulkMediaDeliveriesResponse
-	57,  // 119: api.manage.v1.FileService.GetFileDownloadPolicy:output_type -> api.manage.v1.GetFileDownloadPolicyResponse
-	59,  // 120: api.manage.v1.FileService.UpdateFileDownloadPolicy:output_type -> api.manage.v1.UpdateFileDownloadPolicyResponse
-	62,  // 121: api.manage.v1.FileService.ListMeshOptimizationCandidates:output_type -> api.manage.v1.ListMeshOptimizationCandidatesResponse
-	64,  // 122: api.manage.v1.FileService.GenerateMeshOptimizationCandidate:output_type -> api.manage.v1.GenerateMeshOptimizationCandidateResponse
-	66,  // 123: api.manage.v1.FileService.UseMeshOptimizationCandidate:output_type -> api.manage.v1.UseMeshOptimizationCandidateResponse
-	68,  // 124: api.manage.v1.FileService.ClearMeshOptimizationCandidates:output_type -> api.manage.v1.ClearMeshOptimizationCandidatesResponse
-	100, // [100:125] is the sub-list for method output_type
-	75,  // [75:100] is the sub-list for method input_type
-	75,  // [75:75] is the sub-list for extension type_name
-	75,  // [75:75] is the sub-list for extension extendee
-	0,   // [0:75] is the sub-list for field type_name
+	6,   // 52: api.manage.v1.FileDownloadPolicyObservedState.audience:type_name -> api.manage.v1.FileDownloadAudience
+	76,  // 53: api.manage.v1.UpdateFileDownloadPolicyRequest.entity_type:type_name -> api.manage.v1.TranscodeEntityType
+	6,   // 54: api.manage.v1.UpdateFileDownloadPolicyRequest.audience:type_name -> api.manage.v1.FileDownloadAudience
+	58,  // 55: api.manage.v1.UpdateFileDownloadPolicyRequest.observed_policy:type_name -> api.manage.v1.FileDownloadPolicyObservedState
+	55,  // 56: api.manage.v1.UpdateFileDownloadPolicyResponse.policy:type_name -> api.manage.v1.FileDownloadPolicy
+	76,  // 57: api.manage.v1.MeshOptimizationCandidate.entity_type:type_name -> api.manage.v1.TranscodeEntityType
+	73,  // 58: api.manage.v1.MeshOptimizationCandidate.delivery:type_name -> api.common.v1.MediaDelivery
+	78,  // 59: api.manage.v1.MeshOptimizationCandidate.method:type_name -> api.manage.v1.MeshOptimizationCompressionMethod
+	7,   // 60: api.manage.v1.MeshOptimizationCandidate.status:type_name -> api.manage.v1.MeshOptimizationCandidateStatus
+	72,  // 61: api.manage.v1.MeshOptimizationCandidate.selected_at:type_name -> google.protobuf.Timestamp
+	72,  // 62: api.manage.v1.MeshOptimizationCandidate.created_at:type_name -> google.protobuf.Timestamp
+	72,  // 63: api.manage.v1.MeshOptimizationCandidate.updated_at:type_name -> google.protobuf.Timestamp
+	79,  // 64: api.manage.v1.MeshOptimizationCandidate.profile:type_name -> api.manage.v1.MeshOptimizationProfile
+	76,  // 65: api.manage.v1.ListMeshOptimizationCandidatesRequest.entity_type:type_name -> api.manage.v1.TranscodeEntityType
+	79,  // 66: api.manage.v1.ListMeshOptimizationCandidatesRequest.profile:type_name -> api.manage.v1.MeshOptimizationProfile
+	61,  // 67: api.manage.v1.ListMeshOptimizationCandidatesResponse.candidates:type_name -> api.manage.v1.MeshOptimizationCandidate
+	76,  // 68: api.manage.v1.GenerateMeshOptimizationCandidateRequest.entity_type:type_name -> api.manage.v1.TranscodeEntityType
+	78,  // 69: api.manage.v1.GenerateMeshOptimizationCandidateRequest.method:type_name -> api.manage.v1.MeshOptimizationCompressionMethod
+	79,  // 70: api.manage.v1.GenerateMeshOptimizationCandidateRequest.profile:type_name -> api.manage.v1.MeshOptimizationProfile
+	61,  // 71: api.manage.v1.GenerateMeshOptimizationCandidateResponse.candidate:type_name -> api.manage.v1.MeshOptimizationCandidate
+	76,  // 72: api.manage.v1.UseMeshOptimizationCandidateRequest.entity_type:type_name -> api.manage.v1.TranscodeEntityType
+	61,  // 73: api.manage.v1.UseMeshOptimizationCandidateResponse.candidate:type_name -> api.manage.v1.MeshOptimizationCandidate
+	76,  // 74: api.manage.v1.ClearMeshOptimizationCandidatesRequest.entity_type:type_name -> api.manage.v1.TranscodeEntityType
+	79,  // 75: api.manage.v1.ClearMeshOptimizationCandidatesRequest.profile:type_name -> api.manage.v1.MeshOptimizationProfile
+	52,  // 76: api.manage.v1.GetBulkMediaDeliveriesResponse.FilesEntry.value:type_name -> api.manage.v1.GetMediaDeliveryResponse
+	14,  // 77: api.manage.v1.FileService.ListFileManagerItems:input_type -> api.manage.v1.ListFileManagerItemsRequest
+	16,  // 78: api.manage.v1.FileService.GetFile:input_type -> api.manage.v1.GetFileRequest
+	20,  // 79: api.manage.v1.FileService.ListFileUsages:input_type -> api.manage.v1.ListFileUsagesRequest
+	22,  // 80: api.manage.v1.FileService.CreateFileFolder:input_type -> api.manage.v1.CreateFileFolderRequest
+	24,  // 81: api.manage.v1.FileService.RenameFileFolder:input_type -> api.manage.v1.RenameFileFolderRequest
+	26,  // 82: api.manage.v1.FileService.MoveFileFolder:input_type -> api.manage.v1.MoveFileFolderRequest
+	28,  // 83: api.manage.v1.FileService.DeleteFileFolder:input_type -> api.manage.v1.DeleteFileFolderRequest
+	30,  // 84: api.manage.v1.FileService.RenameFile:input_type -> api.manage.v1.RenameFileRequest
+	32,  // 85: api.manage.v1.FileService.MoveFiles:input_type -> api.manage.v1.MoveFilesRequest
+	36,  // 86: api.manage.v1.FileService.GetFileDeletionImpact:input_type -> api.manage.v1.GetFileDeletionImpactRequest
+	38,  // 87: api.manage.v1.FileService.DeleteFiles:input_type -> api.manage.v1.DeleteFilesRequest
+	8,   // 88: api.manage.v1.FileService.DeleteFile:input_type -> api.manage.v1.DeleteFileRequest
+	40,  // 89: api.manage.v1.FileService.InitiateMultipartUpload:input_type -> api.manage.v1.InitiateMultipartUploadRequest
+	43,  // 90: api.manage.v1.FileService.CompleteMultipartUpload:input_type -> api.manage.v1.CompleteMultipartUploadRequest
+	45,  // 91: api.manage.v1.FileService.AbortMultipartUpload:input_type -> api.manage.v1.AbortMultipartUploadRequest
+	47,  // 92: api.manage.v1.FileService.FindMultipartUploadCandidate:input_type -> api.manage.v1.FindMultipartUploadCandidateRequest
+	49,  // 93: api.manage.v1.FileService.DownloadFromUrl:input_type -> api.manage.v1.DownloadFromUrlRequest
+	51,  // 94: api.manage.v1.FileService.GetMediaDelivery:input_type -> api.manage.v1.GetMediaDeliveryRequest
+	53,  // 95: api.manage.v1.FileService.GetBulkMediaDeliveries:input_type -> api.manage.v1.GetBulkMediaDeliveriesRequest
+	56,  // 96: api.manage.v1.FileService.GetFileDownloadPolicy:input_type -> api.manage.v1.GetFileDownloadPolicyRequest
+	59,  // 97: api.manage.v1.FileService.UpdateFileDownloadPolicy:input_type -> api.manage.v1.UpdateFileDownloadPolicyRequest
+	62,  // 98: api.manage.v1.FileService.ListMeshOptimizationCandidates:input_type -> api.manage.v1.ListMeshOptimizationCandidatesRequest
+	64,  // 99: api.manage.v1.FileService.GenerateMeshOptimizationCandidate:input_type -> api.manage.v1.GenerateMeshOptimizationCandidateRequest
+	66,  // 100: api.manage.v1.FileService.UseMeshOptimizationCandidate:input_type -> api.manage.v1.UseMeshOptimizationCandidateRequest
+	68,  // 101: api.manage.v1.FileService.ClearMeshOptimizationCandidates:input_type -> api.manage.v1.ClearMeshOptimizationCandidatesRequest
+	15,  // 102: api.manage.v1.FileService.ListFileManagerItems:output_type -> api.manage.v1.ListFileManagerItemsResponse
+	17,  // 103: api.manage.v1.FileService.GetFile:output_type -> api.manage.v1.GetFileResponse
+	21,  // 104: api.manage.v1.FileService.ListFileUsages:output_type -> api.manage.v1.ListFileUsagesResponse
+	23,  // 105: api.manage.v1.FileService.CreateFileFolder:output_type -> api.manage.v1.CreateFileFolderResponse
+	25,  // 106: api.manage.v1.FileService.RenameFileFolder:output_type -> api.manage.v1.RenameFileFolderResponse
+	27,  // 107: api.manage.v1.FileService.MoveFileFolder:output_type -> api.manage.v1.MoveFileFolderResponse
+	29,  // 108: api.manage.v1.FileService.DeleteFileFolder:output_type -> api.manage.v1.DeleteFileFolderResponse
+	31,  // 109: api.manage.v1.FileService.RenameFile:output_type -> api.manage.v1.RenameFileResponse
+	33,  // 110: api.manage.v1.FileService.MoveFiles:output_type -> api.manage.v1.MoveFilesResponse
+	37,  // 111: api.manage.v1.FileService.GetFileDeletionImpact:output_type -> api.manage.v1.GetFileDeletionImpactResponse
+	39,  // 112: api.manage.v1.FileService.DeleteFiles:output_type -> api.manage.v1.DeleteFilesResponse
+	9,   // 113: api.manage.v1.FileService.DeleteFile:output_type -> api.manage.v1.DeleteFileResponse
+	41,  // 114: api.manage.v1.FileService.InitiateMultipartUpload:output_type -> api.manage.v1.InitiateMultipartUploadResponse
+	44,  // 115: api.manage.v1.FileService.CompleteMultipartUpload:output_type -> api.manage.v1.CompleteMultipartUploadResponse
+	46,  // 116: api.manage.v1.FileService.AbortMultipartUpload:output_type -> api.manage.v1.AbortMultipartUploadResponse
+	48,  // 117: api.manage.v1.FileService.FindMultipartUploadCandidate:output_type -> api.manage.v1.FindMultipartUploadCandidateResponse
+	50,  // 118: api.manage.v1.FileService.DownloadFromUrl:output_type -> api.manage.v1.DownloadFromUrlResponse
+	52,  // 119: api.manage.v1.FileService.GetMediaDelivery:output_type -> api.manage.v1.GetMediaDeliveryResponse
+	54,  // 120: api.manage.v1.FileService.GetBulkMediaDeliveries:output_type -> api.manage.v1.GetBulkMediaDeliveriesResponse
+	57,  // 121: api.manage.v1.FileService.GetFileDownloadPolicy:output_type -> api.manage.v1.GetFileDownloadPolicyResponse
+	60,  // 122: api.manage.v1.FileService.UpdateFileDownloadPolicy:output_type -> api.manage.v1.UpdateFileDownloadPolicyResponse
+	63,  // 123: api.manage.v1.FileService.ListMeshOptimizationCandidates:output_type -> api.manage.v1.ListMeshOptimizationCandidatesResponse
+	65,  // 124: api.manage.v1.FileService.GenerateMeshOptimizationCandidate:output_type -> api.manage.v1.GenerateMeshOptimizationCandidateResponse
+	67,  // 125: api.manage.v1.FileService.UseMeshOptimizationCandidate:output_type -> api.manage.v1.UseMeshOptimizationCandidateResponse
+	69,  // 126: api.manage.v1.FileService.ClearMeshOptimizationCandidates:output_type -> api.manage.v1.ClearMeshOptimizationCandidatesResponse
+	102, // [102:127] is the sub-list for method output_type
+	77,  // [77:102] is the sub-list for method input_type
+	77,  // [77:77] is the sub-list for extension type_name
+	77,  // [77:77] is the sub-list for extension extendee
+	0,   // [0:77] is the sub-list for field type_name
 }
 
 func init() { file_api_manage_v1_file_proto_init() }
@@ -5519,17 +5587,17 @@ func file_api_manage_v1_file_proto_init() {
 	file_api_manage_v1_file_proto_msgTypes[44].OneofWrappers = []any{}
 	file_api_manage_v1_file_proto_msgTypes[47].OneofWrappers = []any{}
 	file_api_manage_v1_file_proto_msgTypes[48].OneofWrappers = []any{}
-	file_api_manage_v1_file_proto_msgTypes[50].OneofWrappers = []any{}
-	file_api_manage_v1_file_proto_msgTypes[52].OneofWrappers = []any{}
-	file_api_manage_v1_file_proto_msgTypes[57].OneofWrappers = []any{}
-	file_api_manage_v1_file_proto_msgTypes[59].OneofWrappers = []any{}
+	file_api_manage_v1_file_proto_msgTypes[51].OneofWrappers = []any{}
+	file_api_manage_v1_file_proto_msgTypes[53].OneofWrappers = []any{}
+	file_api_manage_v1_file_proto_msgTypes[58].OneofWrappers = []any{}
+	file_api_manage_v1_file_proto_msgTypes[60].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_api_manage_v1_file_proto_rawDesc), len(file_api_manage_v1_file_proto_rawDesc)),
 			NumEnums:      8,
-			NumMessages:   62,
+			NumMessages:   63,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

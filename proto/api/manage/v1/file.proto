@@ -457,6 +457,11 @@ message GetFileDownloadPolicyResponse {
   FileDownloadPolicy policy = 1;
 }
 
+message FileDownloadPolicyObservedState {
+  FileDownloadAudience audience = 1;
+  repeated string audience_segment_ids = 2;
+}
+
 message UpdateFileDownloadPolicyRequest {
   // Content targets require both block_id and reference_path. TRACK requires
   // neither and resolves the original-audio relation from entity_id.
@@ -469,6 +474,8 @@ message UpdateFileDownloadPolicyRequest {
   string expected_file_id = 5;
   FileDownloadAudience audience = 6;
   repeated string audience_segment_ids = 7;
+  // Required editor baseline used to merge the desired policy into current state.
+  FileDownloadPolicyObservedState observed_policy = 8;
 }
 
 message UpdateFileDownloadPolicyResponse {

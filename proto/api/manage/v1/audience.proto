@@ -93,6 +93,16 @@ message UpdateSegmentRequest {
   optional string description = 3;
   optional SegmentType segment_type = 4;
   optional SegmentConfig config = 5;
+  // Required baseline for config or type updates; only changes relative to this snapshot are merged.
+  SegmentConfigSnapshot observed = 6;
+}
+
+// Segment type and config observed together so intentional type changes can
+// reset their coupled config atomically, while same-type edits merge config
+// leaves against the current locked state.
+message SegmentConfigSnapshot {
+  SegmentType segment_type = 1;
+  SegmentConfig config = 2;
 }
 
 message ArchiveSegmentRequest {

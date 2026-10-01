@@ -136,6 +136,55 @@ func (WorkStatus) EnumDescriptor() ([]byte, []int) {
 	return file_api_manage_v1_work_proto_rawDescGZIP(), []int{1}
 }
 
+type WorkCreditItemKind int32
+
+const (
+	WorkCreditItemKind_WORK_CREDIT_ITEM_KIND_UNSPECIFIED WorkCreditItemKind = 0
+	WorkCreditItemKind_WORK_CREDIT_ITEM_KIND_GROUP       WorkCreditItemKind = 1
+	WorkCreditItemKind_WORK_CREDIT_ITEM_KIND_CREDIT      WorkCreditItemKind = 2
+)
+
+// Enum value maps for WorkCreditItemKind.
+var (
+	WorkCreditItemKind_name = map[int32]string{
+		0: "WORK_CREDIT_ITEM_KIND_UNSPECIFIED",
+		1: "WORK_CREDIT_ITEM_KIND_GROUP",
+		2: "WORK_CREDIT_ITEM_KIND_CREDIT",
+	}
+	WorkCreditItemKind_value = map[string]int32{
+		"WORK_CREDIT_ITEM_KIND_UNSPECIFIED": 0,
+		"WORK_CREDIT_ITEM_KIND_GROUP":       1,
+		"WORK_CREDIT_ITEM_KIND_CREDIT":      2,
+	}
+)
+
+func (x WorkCreditItemKind) Enum() *WorkCreditItemKind {
+	p := new(WorkCreditItemKind)
+	*p = x
+	return p
+}
+
+func (x WorkCreditItemKind) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (WorkCreditItemKind) Descriptor() protoreflect.EnumDescriptor {
+	return file_api_manage_v1_work_proto_enumTypes[2].Descriptor()
+}
+
+func (WorkCreditItemKind) Type() protoreflect.EnumType {
+	return &file_api_manage_v1_work_proto_enumTypes[2]
+}
+
+func (x WorkCreditItemKind) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use WorkCreditItemKind.Descriptor instead.
+func (WorkCreditItemKind) EnumDescriptor() ([]byte, []int) {
+	return file_api_manage_v1_work_proto_rawDescGZIP(), []int{2}
+}
+
 type MyCreditedWorkCreditType int32
 
 const (
@@ -172,11 +221,11 @@ func (x MyCreditedWorkCreditType) String() string {
 }
 
 func (MyCreditedWorkCreditType) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_manage_v1_work_proto_enumTypes[2].Descriptor()
+	return file_api_manage_v1_work_proto_enumTypes[3].Descriptor()
 }
 
 func (MyCreditedWorkCreditType) Type() protoreflect.EnumType {
-	return &file_api_manage_v1_work_proto_enumTypes[2]
+	return &file_api_manage_v1_work_proto_enumTypes[3]
 }
 
 func (x MyCreditedWorkCreditType) Number() protoreflect.EnumNumber {
@@ -185,7 +234,7 @@ func (x MyCreditedWorkCreditType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use MyCreditedWorkCreditType.Descriptor instead.
 func (MyCreditedWorkCreditType) EnumDescriptor() ([]byte, []int) {
-	return file_api_manage_v1_work_proto_rawDescGZIP(), []int{2}
+	return file_api_manage_v1_work_proto_rawDescGZIP(), []int{3}
 }
 
 // Work entity
@@ -903,17 +952,20 @@ type UpdateWorkRequest struct {
 	Type     *WorkType              `protobuf:"varint,3,opt,name=type,proto3,enum=api.manage.v1.WorkType,oneof" json:"type,omitempty"`
 	Metadata *structpb.Struct       `protobuf:"bytes,4,opt,name=metadata,proto3" json:"metadata,omitempty"`
 	Featured *bool                  `protobuf:"varint,5,opt,name=featured,proto3,oneof" json:"featured,omitempty"`
-	// Clients management - ordered list of client IDs
-	// If present (even empty), replaces all clients; if absent, no change
-	Clients       *WorkClientsUpdate `protobuf:"bytes,6,opt,name=clients,proto3,oneof" json:"clients,omitempty"`
-	Year          *int32             `protobuf:"varint,7,opt,name=year,proto3,oneof" json:"year,omitempty"`
-	Month         *int32             `protobuf:"varint,8,opt,name=month,proto3,oneof" json:"month,omitempty"`
-	MapPlaceId    *string            `protobuf:"bytes,9,opt,name=map_place_id,json=mapPlaceId,proto3,oneof" json:"map_place_id,omitempty"`
-	UntilYear     *int32             `protobuf:"varint,10,opt,name=until_year,json=untilYear,proto3,oneof" json:"until_year,omitempty"`
-	UntilMonth    *int32             `protobuf:"varint,11,opt,name=until_month,json=untilMonth,proto3,oneof" json:"until_month,omitempty"`
-	IsPresent     *bool              `protobuf:"varint,12,opt,name=is_present,json=isPresent,proto3,oneof" json:"is_present,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	// Desired ordered client IDs. Writes require observed_clients and merge membership/order changes.
+	Clients    *WorkClientsUpdate `protobuf:"bytes,6,opt,name=clients,proto3,oneof" json:"clients,omitempty"`
+	Year       *int32             `protobuf:"varint,7,opt,name=year,proto3,oneof" json:"year,omitempty"`
+	Month      *int32             `protobuf:"varint,8,opt,name=month,proto3,oneof" json:"month,omitempty"`
+	MapPlaceId *string            `protobuf:"bytes,9,opt,name=map_place_id,json=mapPlaceId,proto3,oneof" json:"map_place_id,omitempty"`
+	UntilYear  *int32             `protobuf:"varint,10,opt,name=until_year,json=untilYear,proto3,oneof" json:"until_year,omitempty"`
+	UntilMonth *int32             `protobuf:"varint,11,opt,name=until_month,json=untilMonth,proto3,oneof" json:"until_month,omitempty"`
+	IsPresent  *bool              `protobuf:"varint,12,opt,name=is_present,json=isPresent,proto3,oneof" json:"is_present,omitempty"`
+	// Required baseline when writing metadata; only changes from it are merged.
+	ObservedMetadata *structpb.Struct `protobuf:"bytes,13,opt,name=observed_metadata,json=observedMetadata,proto3" json:"observed_metadata,omitempty"`
+	// Required baseline when writing clients; membership changes are merged from this list.
+	ObservedClients *WorkClientsUpdate `protobuf:"bytes,14,opt,name=observed_clients,json=observedClients,proto3" json:"observed_clients,omitempty"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
 }
 
 func (x *UpdateWorkRequest) Reset() {
@@ -1028,6 +1080,20 @@ func (x *UpdateWorkRequest) GetIsPresent() bool {
 		return *x.IsPresent
 	}
 	return false
+}
+
+func (x *UpdateWorkRequest) GetObservedMetadata() *structpb.Struct {
+	if x != nil {
+		return x.ObservedMetadata
+	}
+	return nil
+}
+
+func (x *UpdateWorkRequest) GetObservedClients() *WorkClientsUpdate {
+	if x != nil {
+		return x.ObservedClients
+	}
+	return nil
 }
 
 // Wrapper for clients update to distinguish "not provided" from "empty list"
@@ -1629,6 +1695,7 @@ type GetWorkCreditsResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Groups        []*WorkCreditGroup     `protobuf:"bytes,1,rep,name=groups,proto3" json:"groups,omitempty"`
 	Credits       []*WorkCredit          `protobuf:"bytes,2,rep,name=credits,proto3" json:"credits,omitempty"`
+	Order         []*WorkCreditOrderItem `protobuf:"bytes,3,rep,name=order,proto3" json:"order,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1673,6 +1740,13 @@ func (x *GetWorkCreditsResponse) GetGroups() []*WorkCreditGroup {
 func (x *GetWorkCreditsResponse) GetCredits() []*WorkCredit {
 	if x != nil {
 		return x.Credits
+	}
+	return nil
+}
+
+func (x *GetWorkCreditsResponse) GetOrder() []*WorkCreditOrderItem {
+	if x != nil {
+		return x.Order
 	}
 	return nil
 }
@@ -1865,6 +1939,205 @@ func (x *DeleteWorkCreditRequest) GetCreditId() string {
 	return ""
 }
 
+type WorkCreditOrderItem struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	Kind  WorkCreditItemKind     `protobuf:"varint,1,opt,name=kind,proto3,enum=api.manage.v1.WorkCreditItemKind" json:"kind,omitempty"`
+	Id    string                 `protobuf:"bytes,2,opt,name=id,proto3" json:"id,omitempty"`
+	// Present for credit items; an empty value means the credit is ungrouped.
+	GroupId       *string `protobuf:"bytes,3,opt,name=group_id,json=groupId,proto3,oneof" json:"group_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *WorkCreditOrderItem) Reset() {
+	*x = WorkCreditOrderItem{}
+	mi := &file_api_manage_v1_work_proto_msgTypes[22]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *WorkCreditOrderItem) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*WorkCreditOrderItem) ProtoMessage() {}
+
+func (x *WorkCreditOrderItem) ProtoReflect() protoreflect.Message {
+	mi := &file_api_manage_v1_work_proto_msgTypes[22]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use WorkCreditOrderItem.ProtoReflect.Descriptor instead.
+func (*WorkCreditOrderItem) Descriptor() ([]byte, []int) {
+	return file_api_manage_v1_work_proto_rawDescGZIP(), []int{22}
+}
+
+func (x *WorkCreditOrderItem) GetKind() WorkCreditItemKind {
+	if x != nil {
+		return x.Kind
+	}
+	return WorkCreditItemKind_WORK_CREDIT_ITEM_KIND_UNSPECIFIED
+}
+
+func (x *WorkCreditOrderItem) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *WorkCreditOrderItem) GetGroupId() string {
+	if x != nil && x.GroupId != nil {
+		return *x.GroupId
+	}
+	return ""
+}
+
+type MoveWorkCreditItemRequest struct {
+	state  protoimpl.MessageState `protogen:"open.v1"`
+	WorkId string                 `protobuf:"bytes,1,opt,name=work_id,json=workId,proto3" json:"work_id,omitempty"`
+	Kind   WorkCreditItemKind     `protobuf:"varint,2,opt,name=kind,proto3,enum=api.manage.v1.WorkCreditItemKind" json:"kind,omitempty"`
+	ItemId string                 `protobuf:"bytes,3,opt,name=item_id,json=itemId,proto3" json:"item_id,omitempty"`
+	// Credit items require this field; empty means ungrouped. Group items omit it.
+	TargetGroupId *string `protobuf:"bytes,4,opt,name=target_group_id,json=targetGroupId,proto3,oneof" json:"target_group_id,omitempty"`
+	// Anchors identify a typed current item. Group-child anchors normalize to the group section boundary.
+	After         *WorkCreditOrderItem `protobuf:"bytes,5,opt,name=after,proto3" json:"after,omitempty"`
+	Before        *WorkCreditOrderItem `protobuf:"bytes,6,opt,name=before,proto3" json:"before,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *MoveWorkCreditItemRequest) Reset() {
+	*x = MoveWorkCreditItemRequest{}
+	mi := &file_api_manage_v1_work_proto_msgTypes[23]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *MoveWorkCreditItemRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MoveWorkCreditItemRequest) ProtoMessage() {}
+
+func (x *MoveWorkCreditItemRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_api_manage_v1_work_proto_msgTypes[23]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use MoveWorkCreditItemRequest.ProtoReflect.Descriptor instead.
+func (*MoveWorkCreditItemRequest) Descriptor() ([]byte, []int) {
+	return file_api_manage_v1_work_proto_rawDescGZIP(), []int{23}
+}
+
+func (x *MoveWorkCreditItemRequest) GetWorkId() string {
+	if x != nil {
+		return x.WorkId
+	}
+	return ""
+}
+
+func (x *MoveWorkCreditItemRequest) GetKind() WorkCreditItemKind {
+	if x != nil {
+		return x.Kind
+	}
+	return WorkCreditItemKind_WORK_CREDIT_ITEM_KIND_UNSPECIFIED
+}
+
+func (x *MoveWorkCreditItemRequest) GetItemId() string {
+	if x != nil {
+		return x.ItemId
+	}
+	return ""
+}
+
+func (x *MoveWorkCreditItemRequest) GetTargetGroupId() string {
+	if x != nil && x.TargetGroupId != nil {
+		return *x.TargetGroupId
+	}
+	return ""
+}
+
+func (x *MoveWorkCreditItemRequest) GetAfter() *WorkCreditOrderItem {
+	if x != nil {
+		return x.After
+	}
+	return nil
+}
+
+func (x *MoveWorkCreditItemRequest) GetBefore() *WorkCreditOrderItem {
+	if x != nil {
+		return x.Before
+	}
+	return nil
+}
+
+type MoveWorkCreditItemResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Items         []*WorkCreditOrderItem `protobuf:"bytes,1,rep,name=items,proto3" json:"items,omitempty"`
+	Changed       bool                   `protobuf:"varint,2,opt,name=changed,proto3" json:"changed,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *MoveWorkCreditItemResponse) Reset() {
+	*x = MoveWorkCreditItemResponse{}
+	mi := &file_api_manage_v1_work_proto_msgTypes[24]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *MoveWorkCreditItemResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MoveWorkCreditItemResponse) ProtoMessage() {}
+
+func (x *MoveWorkCreditItemResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_api_manage_v1_work_proto_msgTypes[24]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use MoveWorkCreditItemResponse.ProtoReflect.Descriptor instead.
+func (*MoveWorkCreditItemResponse) Descriptor() ([]byte, []int) {
+	return file_api_manage_v1_work_proto_rawDescGZIP(), []int{24}
+}
+
+func (x *MoveWorkCreditItemResponse) GetItems() []*WorkCreditOrderItem {
+	if x != nil {
+		return x.Items
+	}
+	return nil
+}
+
+func (x *MoveWorkCreditItemResponse) GetChanged() bool {
+	if x != nil {
+		return x.Changed
+	}
+	return false
+}
+
 type CreateWorkCreditGroupRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	WorkId        string                 `protobuf:"bytes,1,opt,name=work_id,json=workId,proto3" json:"work_id,omitempty"`
@@ -1875,7 +2148,7 @@ type CreateWorkCreditGroupRequest struct {
 
 func (x *CreateWorkCreditGroupRequest) Reset() {
 	*x = CreateWorkCreditGroupRequest{}
-	mi := &file_api_manage_v1_work_proto_msgTypes[22]
+	mi := &file_api_manage_v1_work_proto_msgTypes[25]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1887,7 +2160,7 @@ func (x *CreateWorkCreditGroupRequest) String() string {
 func (*CreateWorkCreditGroupRequest) ProtoMessage() {}
 
 func (x *CreateWorkCreditGroupRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_work_proto_msgTypes[22]
+	mi := &file_api_manage_v1_work_proto_msgTypes[25]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1900,7 +2173,7 @@ func (x *CreateWorkCreditGroupRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateWorkCreditGroupRequest.ProtoReflect.Descriptor instead.
 func (*CreateWorkCreditGroupRequest) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_work_proto_rawDescGZIP(), []int{22}
+	return file_api_manage_v1_work_proto_rawDescGZIP(), []int{25}
 }
 
 func (x *CreateWorkCreditGroupRequest) GetWorkId() string {
@@ -1927,7 +2200,7 @@ type UpdateWorkCreditGroupRequest struct {
 
 func (x *UpdateWorkCreditGroupRequest) Reset() {
 	*x = UpdateWorkCreditGroupRequest{}
-	mi := &file_api_manage_v1_work_proto_msgTypes[23]
+	mi := &file_api_manage_v1_work_proto_msgTypes[26]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1939,7 +2212,7 @@ func (x *UpdateWorkCreditGroupRequest) String() string {
 func (*UpdateWorkCreditGroupRequest) ProtoMessage() {}
 
 func (x *UpdateWorkCreditGroupRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_work_proto_msgTypes[23]
+	mi := &file_api_manage_v1_work_proto_msgTypes[26]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1952,7 +2225,7 @@ func (x *UpdateWorkCreditGroupRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateWorkCreditGroupRequest.ProtoReflect.Descriptor instead.
 func (*UpdateWorkCreditGroupRequest) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_work_proto_rawDescGZIP(), []int{23}
+	return file_api_manage_v1_work_proto_rawDescGZIP(), []int{26}
 }
 
 func (x *UpdateWorkCreditGroupRequest) GetGroupId() string {
@@ -1978,7 +2251,7 @@ type DeleteWorkCreditGroupRequest struct {
 
 func (x *DeleteWorkCreditGroupRequest) Reset() {
 	*x = DeleteWorkCreditGroupRequest{}
-	mi := &file_api_manage_v1_work_proto_msgTypes[24]
+	mi := &file_api_manage_v1_work_proto_msgTypes[27]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1990,7 +2263,7 @@ func (x *DeleteWorkCreditGroupRequest) String() string {
 func (*DeleteWorkCreditGroupRequest) ProtoMessage() {}
 
 func (x *DeleteWorkCreditGroupRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_work_proto_msgTypes[24]
+	mi := &file_api_manage_v1_work_proto_msgTypes[27]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2003,7 +2276,7 @@ func (x *DeleteWorkCreditGroupRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteWorkCreditGroupRequest.ProtoReflect.Descriptor instead.
 func (*DeleteWorkCreditGroupRequest) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_work_proto_rawDescGZIP(), []int{24}
+	return file_api_manage_v1_work_proto_rawDescGZIP(), []int{27}
 }
 
 func (x *DeleteWorkCreditGroupRequest) GetGroupId() string {
@@ -2025,7 +2298,7 @@ type ListWorksAdminRequest struct {
 
 func (x *ListWorksAdminRequest) Reset() {
 	*x = ListWorksAdminRequest{}
-	mi := &file_api_manage_v1_work_proto_msgTypes[25]
+	mi := &file_api_manage_v1_work_proto_msgTypes[28]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2037,7 +2310,7 @@ func (x *ListWorksAdminRequest) String() string {
 func (*ListWorksAdminRequest) ProtoMessage() {}
 
 func (x *ListWorksAdminRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_work_proto_msgTypes[25]
+	mi := &file_api_manage_v1_work_proto_msgTypes[28]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2050,7 +2323,7 @@ func (x *ListWorksAdminRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListWorksAdminRequest.ProtoReflect.Descriptor instead.
 func (*ListWorksAdminRequest) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_work_proto_rawDescGZIP(), []int{25}
+	return file_api_manage_v1_work_proto_rawDescGZIP(), []int{28}
 }
 
 func (x *ListWorksAdminRequest) GetPagination() *v11.PaginationRequest {
@@ -2085,7 +2358,7 @@ type WorkWithStats struct {
 
 func (x *WorkWithStats) Reset() {
 	*x = WorkWithStats{}
-	mi := &file_api_manage_v1_work_proto_msgTypes[26]
+	mi := &file_api_manage_v1_work_proto_msgTypes[29]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2097,7 +2370,7 @@ func (x *WorkWithStats) String() string {
 func (*WorkWithStats) ProtoMessage() {}
 
 func (x *WorkWithStats) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_work_proto_msgTypes[26]
+	mi := &file_api_manage_v1_work_proto_msgTypes[29]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2110,7 +2383,7 @@ func (x *WorkWithStats) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WorkWithStats.ProtoReflect.Descriptor instead.
 func (*WorkWithStats) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_work_proto_rawDescGZIP(), []int{26}
+	return file_api_manage_v1_work_proto_rawDescGZIP(), []int{29}
 }
 
 func (x *WorkWithStats) GetWork() *Work {
@@ -2144,7 +2417,7 @@ type ListWorksAdminResponse struct {
 
 func (x *ListWorksAdminResponse) Reset() {
 	*x = ListWorksAdminResponse{}
-	mi := &file_api_manage_v1_work_proto_msgTypes[27]
+	mi := &file_api_manage_v1_work_proto_msgTypes[30]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2156,7 +2429,7 @@ func (x *ListWorksAdminResponse) String() string {
 func (*ListWorksAdminResponse) ProtoMessage() {}
 
 func (x *ListWorksAdminResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_work_proto_msgTypes[27]
+	mi := &file_api_manage_v1_work_proto_msgTypes[30]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2169,7 +2442,7 @@ func (x *ListWorksAdminResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListWorksAdminResponse.ProtoReflect.Descriptor instead.
 func (*ListWorksAdminResponse) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_work_proto_rawDescGZIP(), []int{27}
+	return file_api_manage_v1_work_proto_rawDescGZIP(), []int{30}
 }
 
 func (x *ListWorksAdminResponse) GetWorks() []*WorkWithStats {
@@ -2206,7 +2479,7 @@ type MyCreditedWork struct {
 
 func (x *MyCreditedWork) Reset() {
 	*x = MyCreditedWork{}
-	mi := &file_api_manage_v1_work_proto_msgTypes[28]
+	mi := &file_api_manage_v1_work_proto_msgTypes[31]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2218,7 +2491,7 @@ func (x *MyCreditedWork) String() string {
 func (*MyCreditedWork) ProtoMessage() {}
 
 func (x *MyCreditedWork) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_work_proto_msgTypes[28]
+	mi := &file_api_manage_v1_work_proto_msgTypes[31]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2231,7 +2504,7 @@ func (x *MyCreditedWork) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MyCreditedWork.ProtoReflect.Descriptor instead.
 func (*MyCreditedWork) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_work_proto_rawDescGZIP(), []int{28}
+	return file_api_manage_v1_work_proto_rawDescGZIP(), []int{31}
 }
 
 func (x *MyCreditedWork) GetWorkId() string {
@@ -2329,7 +2602,7 @@ type ListMyCreditedWorksRequest struct {
 
 func (x *ListMyCreditedWorksRequest) Reset() {
 	*x = ListMyCreditedWorksRequest{}
-	mi := &file_api_manage_v1_work_proto_msgTypes[29]
+	mi := &file_api_manage_v1_work_proto_msgTypes[32]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2341,7 +2614,7 @@ func (x *ListMyCreditedWorksRequest) String() string {
 func (*ListMyCreditedWorksRequest) ProtoMessage() {}
 
 func (x *ListMyCreditedWorksRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_work_proto_msgTypes[29]
+	mi := &file_api_manage_v1_work_proto_msgTypes[32]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2354,7 +2627,7 @@ func (x *ListMyCreditedWorksRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListMyCreditedWorksRequest.ProtoReflect.Descriptor instead.
 func (*ListMyCreditedWorksRequest) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_work_proto_rawDescGZIP(), []int{29}
+	return file_api_manage_v1_work_proto_rawDescGZIP(), []int{32}
 }
 
 func (x *ListMyCreditedWorksRequest) GetPagination() *v11.PaginationRequest {
@@ -2388,7 +2661,7 @@ type ListMyCreditedWorksResponse struct {
 
 func (x *ListMyCreditedWorksResponse) Reset() {
 	*x = ListMyCreditedWorksResponse{}
-	mi := &file_api_manage_v1_work_proto_msgTypes[30]
+	mi := &file_api_manage_v1_work_proto_msgTypes[33]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2400,7 +2673,7 @@ func (x *ListMyCreditedWorksResponse) String() string {
 func (*ListMyCreditedWorksResponse) ProtoMessage() {}
 
 func (x *ListMyCreditedWorksResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_work_proto_msgTypes[30]
+	mi := &file_api_manage_v1_work_proto_msgTypes[33]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2413,7 +2686,7 @@ func (x *ListMyCreditedWorksResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListMyCreditedWorksResponse.ProtoReflect.Descriptor instead.
 func (*ListMyCreditedWorksResponse) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_work_proto_rawDescGZIP(), []int{30}
+	return file_api_manage_v1_work_proto_rawDescGZIP(), []int{33}
 }
 
 func (x *ListMyCreditedWorksResponse) GetWorks() []*MyCreditedWork {
@@ -2441,7 +2714,7 @@ type CheckWorkSlugAvailableRequest struct {
 
 func (x *CheckWorkSlugAvailableRequest) Reset() {
 	*x = CheckWorkSlugAvailableRequest{}
-	mi := &file_api_manage_v1_work_proto_msgTypes[31]
+	mi := &file_api_manage_v1_work_proto_msgTypes[34]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2453,7 +2726,7 @@ func (x *CheckWorkSlugAvailableRequest) String() string {
 func (*CheckWorkSlugAvailableRequest) ProtoMessage() {}
 
 func (x *CheckWorkSlugAvailableRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_work_proto_msgTypes[31]
+	mi := &file_api_manage_v1_work_proto_msgTypes[34]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2466,7 +2739,7 @@ func (x *CheckWorkSlugAvailableRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CheckWorkSlugAvailableRequest.ProtoReflect.Descriptor instead.
 func (*CheckWorkSlugAvailableRequest) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_work_proto_rawDescGZIP(), []int{31}
+	return file_api_manage_v1_work_proto_rawDescGZIP(), []int{34}
 }
 
 func (x *CheckWorkSlugAvailableRequest) GetSlug() string {
@@ -2492,7 +2765,7 @@ type CheckWorkSlugAvailableResponse struct {
 
 func (x *CheckWorkSlugAvailableResponse) Reset() {
 	*x = CheckWorkSlugAvailableResponse{}
-	mi := &file_api_manage_v1_work_proto_msgTypes[32]
+	mi := &file_api_manage_v1_work_proto_msgTypes[35]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2504,7 +2777,7 @@ func (x *CheckWorkSlugAvailableResponse) String() string {
 func (*CheckWorkSlugAvailableResponse) ProtoMessage() {}
 
 func (x *CheckWorkSlugAvailableResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_work_proto_msgTypes[32]
+	mi := &file_api_manage_v1_work_proto_msgTypes[35]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2517,7 +2790,7 @@ func (x *CheckWorkSlugAvailableResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CheckWorkSlugAvailableResponse.ProtoReflect.Descriptor instead.
 func (*CheckWorkSlugAvailableResponse) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_work_proto_rawDescGZIP(), []int{32}
+	return file_api_manage_v1_work_proto_rawDescGZIP(), []int{35}
 }
 
 func (x *CheckWorkSlugAvailableResponse) GetAvailable() bool {
@@ -2544,7 +2817,7 @@ type WorkVersion struct {
 
 func (x *WorkVersion) Reset() {
 	*x = WorkVersion{}
-	mi := &file_api_manage_v1_work_proto_msgTypes[33]
+	mi := &file_api_manage_v1_work_proto_msgTypes[36]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2556,7 +2829,7 @@ func (x *WorkVersion) String() string {
 func (*WorkVersion) ProtoMessage() {}
 
 func (x *WorkVersion) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_work_proto_msgTypes[33]
+	mi := &file_api_manage_v1_work_proto_msgTypes[36]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2569,7 +2842,7 @@ func (x *WorkVersion) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WorkVersion.ProtoReflect.Descriptor instead.
 func (*WorkVersion) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_work_proto_rawDescGZIP(), []int{33}
+	return file_api_manage_v1_work_proto_rawDescGZIP(), []int{36}
 }
 
 func (x *WorkVersion) GetId() string {
@@ -2638,7 +2911,7 @@ type ListWorkVersionsRequest struct {
 
 func (x *ListWorkVersionsRequest) Reset() {
 	*x = ListWorkVersionsRequest{}
-	mi := &file_api_manage_v1_work_proto_msgTypes[34]
+	mi := &file_api_manage_v1_work_proto_msgTypes[37]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2650,7 +2923,7 @@ func (x *ListWorkVersionsRequest) String() string {
 func (*ListWorkVersionsRequest) ProtoMessage() {}
 
 func (x *ListWorkVersionsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_work_proto_msgTypes[34]
+	mi := &file_api_manage_v1_work_proto_msgTypes[37]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2663,7 +2936,7 @@ func (x *ListWorkVersionsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListWorkVersionsRequest.ProtoReflect.Descriptor instead.
 func (*ListWorkVersionsRequest) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_work_proto_rawDescGZIP(), []int{34}
+	return file_api_manage_v1_work_proto_rawDescGZIP(), []int{37}
 }
 
 func (x *ListWorkVersionsRequest) GetWorkId() string {
@@ -2690,7 +2963,7 @@ type ListWorkVersionsResponse struct {
 
 func (x *ListWorkVersionsResponse) Reset() {
 	*x = ListWorkVersionsResponse{}
-	mi := &file_api_manage_v1_work_proto_msgTypes[35]
+	mi := &file_api_manage_v1_work_proto_msgTypes[38]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2702,7 +2975,7 @@ func (x *ListWorkVersionsResponse) String() string {
 func (*ListWorkVersionsResponse) ProtoMessage() {}
 
 func (x *ListWorkVersionsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_work_proto_msgTypes[35]
+	mi := &file_api_manage_v1_work_proto_msgTypes[38]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2715,7 +2988,7 @@ func (x *ListWorkVersionsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListWorkVersionsResponse.ProtoReflect.Descriptor instead.
 func (*ListWorkVersionsResponse) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_work_proto_rawDescGZIP(), []int{35}
+	return file_api_manage_v1_work_proto_rawDescGZIP(), []int{38}
 }
 
 func (x *ListWorkVersionsResponse) GetVersions() []*WorkVersion {
@@ -2742,7 +3015,7 @@ type RestoreWorkVersionRequest struct {
 
 func (x *RestoreWorkVersionRequest) Reset() {
 	*x = RestoreWorkVersionRequest{}
-	mi := &file_api_manage_v1_work_proto_msgTypes[36]
+	mi := &file_api_manage_v1_work_proto_msgTypes[39]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2754,7 +3027,7 @@ func (x *RestoreWorkVersionRequest) String() string {
 func (*RestoreWorkVersionRequest) ProtoMessage() {}
 
 func (x *RestoreWorkVersionRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_work_proto_msgTypes[36]
+	mi := &file_api_manage_v1_work_proto_msgTypes[39]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2767,7 +3040,7 @@ func (x *RestoreWorkVersionRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RestoreWorkVersionRequest.ProtoReflect.Descriptor instead.
 func (*RestoreWorkVersionRequest) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_work_proto_rawDescGZIP(), []int{36}
+	return file_api_manage_v1_work_proto_rawDescGZIP(), []int{39}
 }
 
 func (x *RestoreWorkVersionRequest) GetVersionId() string {
@@ -2894,7 +3167,7 @@ const file_api_manage_v1_work_proto_rawDesc = "" +
 	"\t_featuredB\r\n" +
 	"\v_until_yearB\x0e\n" +
 	"\f_until_monthB\r\n" +
-	"\v_is_present\"\xcb\x04\n" +
+	"\v_is_present\"\xde\x05\n" +
 	"\x11UpdateWorkRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x17\n" +
 	"\x04slug\x18\x02 \x01(\tH\x00R\x04slug\x88\x01\x01\x120\n" +
@@ -2912,7 +3185,9 @@ const file_api_manage_v1_work_proto_rawDesc = "" +
 	"\vuntil_month\x18\v \x01(\x05H\bR\n" +
 	"untilMonth\x88\x01\x01\x12\"\n" +
 	"\n" +
-	"is_present\x18\f \x01(\bH\tR\tisPresent\x88\x01\x01B\a\n" +
+	"is_present\x18\f \x01(\bH\tR\tisPresent\x88\x01\x01\x12D\n" +
+	"\x11observed_metadata\x18\r \x01(\v2\x17.google.protobuf.StructR\x10observedMetadata\x12K\n" +
+	"\x10observed_clients\x18\x0e \x01(\v2 .api.manage.v1.WorkClientsUpdateR\x0fobservedClientsB\a\n" +
 	"\x05_slugB\a\n" +
 	"\x05_typeB\v\n" +
 	"\t_featuredB\n" +
@@ -2977,10 +3252,11 @@ const file_api_manage_v1_work_proto_rawDesc = "" +
 	"\x1eDeleteWorkFeaturedImageRequest\x12\x17\n" +
 	"\awork_id\x18\x01 \x01(\tR\x06workId\"0\n" +
 	"\x15GetWorkCreditsRequest\x12\x17\n" +
-	"\awork_id\x18\x01 \x01(\tR\x06workId\"\x85\x01\n" +
+	"\awork_id\x18\x01 \x01(\tR\x06workId\"\xbf\x01\n" +
 	"\x16GetWorkCreditsResponse\x126\n" +
 	"\x06groups\x18\x01 \x03(\v2\x1e.api.manage.v1.WorkCreditGroupR\x06groups\x123\n" +
-	"\acredits\x18\x02 \x03(\v2\x19.api.manage.v1.WorkCreditR\acredits\"\x94\x02\n" +
+	"\acredits\x18\x02 \x03(\v2\x19.api.manage.v1.WorkCreditR\acredits\x128\n" +
+	"\x05order\x18\x03 \x03(\v2\".api.manage.v1.WorkCreditOrderItemR\x05order\"\x94\x02\n" +
 	"\x14AddWorkCreditRequest\x12\x17\n" +
 	"\awork_id\x18\x01 \x01(\tR\x06workId\x12\x1e\n" +
 	"\bgroup_id\x18\x02 \x01(\tH\x00R\agroupId\x88\x01\x01\x12 \n" +
@@ -3004,7 +3280,23 @@ const file_api_manage_v1_work_proto_rawDesc = "" +
 	"\t_group_idB\x0e\n" +
 	"\f_credit_role\"6\n" +
 	"\x17DeleteWorkCreditRequest\x12\x1b\n" +
-	"\tcredit_id\x18\x01 \x01(\tR\bcreditId\"K\n" +
+	"\tcredit_id\x18\x01 \x01(\tR\bcreditId\"\x89\x01\n" +
+	"\x13WorkCreditOrderItem\x125\n" +
+	"\x04kind\x18\x01 \x01(\x0e2!.api.manage.v1.WorkCreditItemKindR\x04kind\x12\x0e\n" +
+	"\x02id\x18\x02 \x01(\tR\x02id\x12\x1e\n" +
+	"\bgroup_id\x18\x03 \x01(\tH\x00R\agroupId\x88\x01\x01B\v\n" +
+	"\t_group_id\"\xbb\x02\n" +
+	"\x19MoveWorkCreditItemRequest\x12\x17\n" +
+	"\awork_id\x18\x01 \x01(\tR\x06workId\x125\n" +
+	"\x04kind\x18\x02 \x01(\x0e2!.api.manage.v1.WorkCreditItemKindR\x04kind\x12\x17\n" +
+	"\aitem_id\x18\x03 \x01(\tR\x06itemId\x12+\n" +
+	"\x0ftarget_group_id\x18\x04 \x01(\tH\x00R\rtargetGroupId\x88\x01\x01\x128\n" +
+	"\x05after\x18\x05 \x01(\v2\".api.manage.v1.WorkCreditOrderItemR\x05after\x12:\n" +
+	"\x06before\x18\x06 \x01(\v2\".api.manage.v1.WorkCreditOrderItemR\x06beforeB\x12\n" +
+	"\x10_target_group_id\"p\n" +
+	"\x1aMoveWorkCreditItemResponse\x128\n" +
+	"\x05items\x18\x01 \x03(\v2\".api.manage.v1.WorkCreditOrderItemR\x05items\x12\x18\n" +
+	"\achanged\x18\x02 \x01(\bR\achanged\"K\n" +
 	"\x1cCreateWorkCreditGroupRequest\x12\x17\n" +
 	"\awork_id\x18\x01 \x01(\tR\x06workId\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\"[\n" +
@@ -3104,12 +3396,16 @@ const file_api_manage_v1_work_proto_rawDesc = "" +
 	"\x17WORK_STATUS_UNSPECIFIED\x10\x00\x12\x15\n" +
 	"\x11WORK_STATUS_DRAFT\x10\x01\x12\x19\n" +
 	"\x15WORK_STATUS_PUBLISHED\x10\x02\x12\x18\n" +
-	"\x14WORK_STATUS_ARCHIVED\x10\x03*\xc1\x01\n" +
+	"\x14WORK_STATUS_ARCHIVED\x10\x03*~\n" +
+	"\x12WorkCreditItemKind\x12%\n" +
+	"!WORK_CREDIT_ITEM_KIND_UNSPECIFIED\x10\x00\x12\x1f\n" +
+	"\x1bWORK_CREDIT_ITEM_KIND_GROUP\x10\x01\x12 \n" +
+	"\x1cWORK_CREDIT_ITEM_KIND_CREDIT\x10\x02*\xc1\x01\n" +
 	"\x18MyCreditedWorkCreditType\x12,\n" +
 	"(MY_CREDITED_WORK_CREDIT_TYPE_UNSPECIFIED\x10\x00\x12'\n" +
 	"#MY_CREDITED_WORK_CREDIT_TYPE_ARTIST\x10\x01\x12'\n" +
 	"#MY_CREDITED_WORK_CREDIT_TYPE_MEMBER\x10\x02\x12%\n" +
-	"!MY_CREDITED_WORK_CREDIT_TYPE_NAME\x10\x032\x89\x10\n" +
+	"!MY_CREDITED_WORK_CREDIT_TYPE_NAME\x10\x032\xfc\x10\n" +
 	"\vWorkService\x12e\n" +
 	"\x0eListWorksAdmin\x12$.api.manage.v1.ListWorksAdminRequest\x1a%.api.manage.v1.ListWorksAdminResponse\"\x06\xca\xf3\x18\x02\b\x04\x12K\n" +
 	"\n" +
@@ -3126,7 +3422,8 @@ const file_api_manage_v1_work_proto_rawDesc = "" +
 	"\x0eGetWorkCredits\x12$.api.manage.v1.GetWorkCreditsRequest\x1a%.api.manage.v1.GetWorkCreditsResponse\"\x06\xca\xf3\x18\x02\b\x04\x12W\n" +
 	"\rAddWorkCredit\x12#.api.manage.v1.AddWorkCreditRequest\x1a\x19.api.manage.v1.WorkCredit\"\x06\xca\xf3\x18\x02\b\x04\x12]\n" +
 	"\x10UpdateWorkCredit\x12&.api.manage.v1.UpdateWorkCreditRequest\x1a\x19.api.manage.v1.WorkCredit\"\x06\xca\xf3\x18\x02\b\x04\x12a\n" +
-	"\x10DeleteWorkCredit\x12&.api.manage.v1.DeleteWorkCreditRequest\x1a\x1d.api.manage.v1.DeleteResponse\"\x06\xca\xf3\x18\x02\b\x04\x12l\n" +
+	"\x10DeleteWorkCredit\x12&.api.manage.v1.DeleteWorkCreditRequest\x1a\x1d.api.manage.v1.DeleteResponse\"\x06\xca\xf3\x18\x02\b\x04\x12q\n" +
+	"\x12MoveWorkCreditItem\x12(.api.manage.v1.MoveWorkCreditItemRequest\x1a).api.manage.v1.MoveWorkCreditItemResponse\"\x06\xca\xf3\x18\x02\b\x04\x12l\n" +
 	"\x15CreateWorkCreditGroup\x12+.api.manage.v1.CreateWorkCreditGroupRequest\x1a\x1e.api.manage.v1.WorkCreditGroup\"\x06\xca\xf3\x18\x02\b\x04\x12l\n" +
 	"\x15UpdateWorkCreditGroup\x12+.api.manage.v1.UpdateWorkCreditGroupRequest\x1a\x1e.api.manage.v1.WorkCreditGroup\"\x06\xca\xf3\x18\x02\b\x04\x12k\n" +
 	"\x15DeleteWorkCreditGroup\x12+.api.manage.v1.DeleteWorkCreditGroupRequest\x1a\x1d.api.manage.v1.DeleteResponse\"\x06\xca\xf3\x18\x02\b\x04\x12t\n" +
@@ -3148,162 +3445,176 @@ func file_api_manage_v1_work_proto_rawDescGZIP() []byte {
 	return file_api_manage_v1_work_proto_rawDescData
 }
 
-var file_api_manage_v1_work_proto_enumTypes = make([]protoimpl.EnumInfo, 3)
-var file_api_manage_v1_work_proto_msgTypes = make([]protoimpl.MessageInfo, 37)
+var file_api_manage_v1_work_proto_enumTypes = make([]protoimpl.EnumInfo, 4)
+var file_api_manage_v1_work_proto_msgTypes = make([]protoimpl.MessageInfo, 40)
 var file_api_manage_v1_work_proto_goTypes = []any{
 	(WorkType)(0),                          // 0: api.manage.v1.WorkType
 	(WorkStatus)(0),                        // 1: api.manage.v1.WorkStatus
-	(MyCreditedWorkCreditType)(0),          // 2: api.manage.v1.MyCreditedWorkCreditType
-	(*Work)(nil),                           // 3: api.manage.v1.Work
-	(*WorkClient)(nil),                     // 4: api.manage.v1.WorkClient
-	(*WorkCredit)(nil),                     // 5: api.manage.v1.WorkCredit
-	(*CreditArtist)(nil),                   // 6: api.manage.v1.CreditArtist
-	(*WorkCreditGroup)(nil),                // 7: api.manage.v1.WorkCreditGroup
-	(*GetWorkRequest)(nil),                 // 8: api.manage.v1.GetWorkRequest
-	(*CreateWorkRequest)(nil),              // 9: api.manage.v1.CreateWorkRequest
-	(*UpdateWorkRequest)(nil),              // 10: api.manage.v1.UpdateWorkRequest
-	(*WorkClientsUpdate)(nil),              // 11: api.manage.v1.WorkClientsUpdate
-	(*DeleteWorkRequest)(nil),              // 12: api.manage.v1.DeleteWorkRequest
-	(*PublishWorkRequest)(nil),             // 13: api.manage.v1.PublishWorkRequest
-	(*UnpublishWorkRequest)(nil),           // 14: api.manage.v1.UnpublishWorkRequest
-	(*UpdateWorkResponse)(nil),             // 15: api.manage.v1.UpdateWorkResponse
-	(*WorkLifecycleMutationResponse)(nil),  // 16: api.manage.v1.WorkLifecycleMutationResponse
-	(*SetWorkFeaturedImageRequest)(nil),    // 17: api.manage.v1.SetWorkFeaturedImageRequest
-	(*SetWorkFeaturedImageResponse)(nil),   // 18: api.manage.v1.SetWorkFeaturedImageResponse
-	(*DeleteWorkFeaturedImageRequest)(nil), // 19: api.manage.v1.DeleteWorkFeaturedImageRequest
-	(*GetWorkCreditsRequest)(nil),          // 20: api.manage.v1.GetWorkCreditsRequest
-	(*GetWorkCreditsResponse)(nil),         // 21: api.manage.v1.GetWorkCreditsResponse
-	(*AddWorkCreditRequest)(nil),           // 22: api.manage.v1.AddWorkCreditRequest
-	(*UpdateWorkCreditRequest)(nil),        // 23: api.manage.v1.UpdateWorkCreditRequest
-	(*DeleteWorkCreditRequest)(nil),        // 24: api.manage.v1.DeleteWorkCreditRequest
-	(*CreateWorkCreditGroupRequest)(nil),   // 25: api.manage.v1.CreateWorkCreditGroupRequest
-	(*UpdateWorkCreditGroupRequest)(nil),   // 26: api.manage.v1.UpdateWorkCreditGroupRequest
-	(*DeleteWorkCreditGroupRequest)(nil),   // 27: api.manage.v1.DeleteWorkCreditGroupRequest
-	(*ListWorksAdminRequest)(nil),          // 28: api.manage.v1.ListWorksAdminRequest
-	(*WorkWithStats)(nil),                  // 29: api.manage.v1.WorkWithStats
-	(*ListWorksAdminResponse)(nil),         // 30: api.manage.v1.ListWorksAdminResponse
-	(*MyCreditedWork)(nil),                 // 31: api.manage.v1.MyCreditedWork
-	(*ListMyCreditedWorksRequest)(nil),     // 32: api.manage.v1.ListMyCreditedWorksRequest
-	(*ListMyCreditedWorksResponse)(nil),    // 33: api.manage.v1.ListMyCreditedWorksResponse
-	(*CheckWorkSlugAvailableRequest)(nil),  // 34: api.manage.v1.CheckWorkSlugAvailableRequest
-	(*CheckWorkSlugAvailableResponse)(nil), // 35: api.manage.v1.CheckWorkSlugAvailableResponse
-	(*WorkVersion)(nil),                    // 36: api.manage.v1.WorkVersion
-	(*ListWorkVersionsRequest)(nil),        // 37: api.manage.v1.ListWorkVersionsRequest
-	(*ListWorkVersionsResponse)(nil),       // 38: api.manage.v1.ListWorkVersionsResponse
-	(*RestoreWorkVersionRequest)(nil),      // 39: api.manage.v1.RestoreWorkVersionRequest
-	(*structpb.Struct)(nil),                // 40: google.protobuf.Struct
-	(*v1.RichTextDocument)(nil),            // 41: api.content.v1.RichTextDocument
-	(*timestamppb.Timestamp)(nil),          // 42: google.protobuf.Timestamp
-	(*v11.AssetRef)(nil),                   // 43: api.common.v1.AssetRef
-	(*v1.ContentBlockMediaItem)(nil),       // 44: api.content.v1.ContentBlockMediaItem
-	(*v11.MemberSummary)(nil),              // 45: api.common.v1.MemberSummary
-	(*v11.PaginationRequest)(nil),          // 46: api.common.v1.PaginationRequest
-	(*v11.FilterSpec)(nil),                 // 47: api.common.v1.FilterSpec
-	(*v11.SortSpec)(nil),                   // 48: api.common.v1.SortSpec
-	(*v11.PaginationResponse)(nil),         // 49: api.common.v1.PaginationResponse
-	(*VersionContributor)(nil),             // 50: api.manage.v1.VersionContributor
-	(*DeleteResponse)(nil),                 // 51: api.manage.v1.DeleteResponse
-	(*OgAssetDeleteResponse)(nil),          // 52: api.manage.v1.OgAssetDeleteResponse
+	(WorkCreditItemKind)(0),                // 2: api.manage.v1.WorkCreditItemKind
+	(MyCreditedWorkCreditType)(0),          // 3: api.manage.v1.MyCreditedWorkCreditType
+	(*Work)(nil),                           // 4: api.manage.v1.Work
+	(*WorkClient)(nil),                     // 5: api.manage.v1.WorkClient
+	(*WorkCredit)(nil),                     // 6: api.manage.v1.WorkCredit
+	(*CreditArtist)(nil),                   // 7: api.manage.v1.CreditArtist
+	(*WorkCreditGroup)(nil),                // 8: api.manage.v1.WorkCreditGroup
+	(*GetWorkRequest)(nil),                 // 9: api.manage.v1.GetWorkRequest
+	(*CreateWorkRequest)(nil),              // 10: api.manage.v1.CreateWorkRequest
+	(*UpdateWorkRequest)(nil),              // 11: api.manage.v1.UpdateWorkRequest
+	(*WorkClientsUpdate)(nil),              // 12: api.manage.v1.WorkClientsUpdate
+	(*DeleteWorkRequest)(nil),              // 13: api.manage.v1.DeleteWorkRequest
+	(*PublishWorkRequest)(nil),             // 14: api.manage.v1.PublishWorkRequest
+	(*UnpublishWorkRequest)(nil),           // 15: api.manage.v1.UnpublishWorkRequest
+	(*UpdateWorkResponse)(nil),             // 16: api.manage.v1.UpdateWorkResponse
+	(*WorkLifecycleMutationResponse)(nil),  // 17: api.manage.v1.WorkLifecycleMutationResponse
+	(*SetWorkFeaturedImageRequest)(nil),    // 18: api.manage.v1.SetWorkFeaturedImageRequest
+	(*SetWorkFeaturedImageResponse)(nil),   // 19: api.manage.v1.SetWorkFeaturedImageResponse
+	(*DeleteWorkFeaturedImageRequest)(nil), // 20: api.manage.v1.DeleteWorkFeaturedImageRequest
+	(*GetWorkCreditsRequest)(nil),          // 21: api.manage.v1.GetWorkCreditsRequest
+	(*GetWorkCreditsResponse)(nil),         // 22: api.manage.v1.GetWorkCreditsResponse
+	(*AddWorkCreditRequest)(nil),           // 23: api.manage.v1.AddWorkCreditRequest
+	(*UpdateWorkCreditRequest)(nil),        // 24: api.manage.v1.UpdateWorkCreditRequest
+	(*DeleteWorkCreditRequest)(nil),        // 25: api.manage.v1.DeleteWorkCreditRequest
+	(*WorkCreditOrderItem)(nil),            // 26: api.manage.v1.WorkCreditOrderItem
+	(*MoveWorkCreditItemRequest)(nil),      // 27: api.manage.v1.MoveWorkCreditItemRequest
+	(*MoveWorkCreditItemResponse)(nil),     // 28: api.manage.v1.MoveWorkCreditItemResponse
+	(*CreateWorkCreditGroupRequest)(nil),   // 29: api.manage.v1.CreateWorkCreditGroupRequest
+	(*UpdateWorkCreditGroupRequest)(nil),   // 30: api.manage.v1.UpdateWorkCreditGroupRequest
+	(*DeleteWorkCreditGroupRequest)(nil),   // 31: api.manage.v1.DeleteWorkCreditGroupRequest
+	(*ListWorksAdminRequest)(nil),          // 32: api.manage.v1.ListWorksAdminRequest
+	(*WorkWithStats)(nil),                  // 33: api.manage.v1.WorkWithStats
+	(*ListWorksAdminResponse)(nil),         // 34: api.manage.v1.ListWorksAdminResponse
+	(*MyCreditedWork)(nil),                 // 35: api.manage.v1.MyCreditedWork
+	(*ListMyCreditedWorksRequest)(nil),     // 36: api.manage.v1.ListMyCreditedWorksRequest
+	(*ListMyCreditedWorksResponse)(nil),    // 37: api.manage.v1.ListMyCreditedWorksResponse
+	(*CheckWorkSlugAvailableRequest)(nil),  // 38: api.manage.v1.CheckWorkSlugAvailableRequest
+	(*CheckWorkSlugAvailableResponse)(nil), // 39: api.manage.v1.CheckWorkSlugAvailableResponse
+	(*WorkVersion)(nil),                    // 40: api.manage.v1.WorkVersion
+	(*ListWorkVersionsRequest)(nil),        // 41: api.manage.v1.ListWorkVersionsRequest
+	(*ListWorkVersionsResponse)(nil),       // 42: api.manage.v1.ListWorkVersionsResponse
+	(*RestoreWorkVersionRequest)(nil),      // 43: api.manage.v1.RestoreWorkVersionRequest
+	(*structpb.Struct)(nil),                // 44: google.protobuf.Struct
+	(*v1.RichTextDocument)(nil),            // 45: api.content.v1.RichTextDocument
+	(*timestamppb.Timestamp)(nil),          // 46: google.protobuf.Timestamp
+	(*v11.AssetRef)(nil),                   // 47: api.common.v1.AssetRef
+	(*v1.ContentBlockMediaItem)(nil),       // 48: api.content.v1.ContentBlockMediaItem
+	(*v11.MemberSummary)(nil),              // 49: api.common.v1.MemberSummary
+	(*v11.PaginationRequest)(nil),          // 50: api.common.v1.PaginationRequest
+	(*v11.FilterSpec)(nil),                 // 51: api.common.v1.FilterSpec
+	(*v11.SortSpec)(nil),                   // 52: api.common.v1.SortSpec
+	(*v11.PaginationResponse)(nil),         // 53: api.common.v1.PaginationResponse
+	(*VersionContributor)(nil),             // 54: api.manage.v1.VersionContributor
+	(*DeleteResponse)(nil),                 // 55: api.manage.v1.DeleteResponse
+	(*OgAssetDeleteResponse)(nil),          // 56: api.manage.v1.OgAssetDeleteResponse
 }
 var file_api_manage_v1_work_proto_depIdxs = []int32{
 	0,  // 0: api.manage.v1.Work.type:type_name -> api.manage.v1.WorkType
-	40, // 1: api.manage.v1.Work.metadata:type_name -> google.protobuf.Struct
+	44, // 1: api.manage.v1.Work.metadata:type_name -> google.protobuf.Struct
 	1,  // 2: api.manage.v1.Work.status:type_name -> api.manage.v1.WorkStatus
-	41, // 3: api.manage.v1.Work.document:type_name -> api.content.v1.RichTextDocument
-	42, // 4: api.manage.v1.Work.created_at:type_name -> google.protobuf.Timestamp
-	42, // 5: api.manage.v1.Work.updated_at:type_name -> google.protobuf.Timestamp
-	42, // 6: api.manage.v1.Work.published_at:type_name -> google.protobuf.Timestamp
-	43, // 7: api.manage.v1.Work.og_asset:type_name -> api.common.v1.AssetRef
-	4,  // 8: api.manage.v1.Work.clients:type_name -> api.manage.v1.WorkClient
-	43, // 9: api.manage.v1.Work.featured_image_asset:type_name -> api.common.v1.AssetRef
-	44, // 10: api.manage.v1.Work.block_media:type_name -> api.content.v1.ContentBlockMediaItem
-	43, // 11: api.manage.v1.WorkClient.logo_light_asset:type_name -> api.common.v1.AssetRef
-	43, // 12: api.manage.v1.WorkClient.logo_dark_asset:type_name -> api.common.v1.AssetRef
-	6,  // 13: api.manage.v1.WorkCredit.artist:type_name -> api.manage.v1.CreditArtist
-	45, // 14: api.manage.v1.WorkCredit.member:type_name -> api.common.v1.MemberSummary
-	43, // 15: api.manage.v1.CreditArtist.image_asset:type_name -> api.common.v1.AssetRef
+	45, // 3: api.manage.v1.Work.document:type_name -> api.content.v1.RichTextDocument
+	46, // 4: api.manage.v1.Work.created_at:type_name -> google.protobuf.Timestamp
+	46, // 5: api.manage.v1.Work.updated_at:type_name -> google.protobuf.Timestamp
+	46, // 6: api.manage.v1.Work.published_at:type_name -> google.protobuf.Timestamp
+	47, // 7: api.manage.v1.Work.og_asset:type_name -> api.common.v1.AssetRef
+	5,  // 8: api.manage.v1.Work.clients:type_name -> api.manage.v1.WorkClient
+	47, // 9: api.manage.v1.Work.featured_image_asset:type_name -> api.common.v1.AssetRef
+	48, // 10: api.manage.v1.Work.block_media:type_name -> api.content.v1.ContentBlockMediaItem
+	47, // 11: api.manage.v1.WorkClient.logo_light_asset:type_name -> api.common.v1.AssetRef
+	47, // 12: api.manage.v1.WorkClient.logo_dark_asset:type_name -> api.common.v1.AssetRef
+	7,  // 13: api.manage.v1.WorkCredit.artist:type_name -> api.manage.v1.CreditArtist
+	49, // 14: api.manage.v1.WorkCredit.member:type_name -> api.common.v1.MemberSummary
+	47, // 15: api.manage.v1.CreditArtist.image_asset:type_name -> api.common.v1.AssetRef
 	0,  // 16: api.manage.v1.CreateWorkRequest.type:type_name -> api.manage.v1.WorkType
-	40, // 17: api.manage.v1.CreateWorkRequest.metadata:type_name -> google.protobuf.Struct
-	41, // 18: api.manage.v1.CreateWorkRequest.document:type_name -> api.content.v1.RichTextDocument
+	44, // 17: api.manage.v1.CreateWorkRequest.metadata:type_name -> google.protobuf.Struct
+	45, // 18: api.manage.v1.CreateWorkRequest.document:type_name -> api.content.v1.RichTextDocument
 	0,  // 19: api.manage.v1.UpdateWorkRequest.type:type_name -> api.manage.v1.WorkType
-	40, // 20: api.manage.v1.UpdateWorkRequest.metadata:type_name -> google.protobuf.Struct
-	11, // 21: api.manage.v1.UpdateWorkRequest.clients:type_name -> api.manage.v1.WorkClientsUpdate
-	0,  // 22: api.manage.v1.UpdateWorkResponse.type:type_name -> api.manage.v1.WorkType
-	40, // 23: api.manage.v1.UpdateWorkResponse.metadata:type_name -> google.protobuf.Struct
-	4,  // 24: api.manage.v1.UpdateWorkResponse.clients:type_name -> api.manage.v1.WorkClient
-	42, // 25: api.manage.v1.UpdateWorkResponse.updated_at:type_name -> google.protobuf.Timestamp
-	1,  // 26: api.manage.v1.WorkLifecycleMutationResponse.status:type_name -> api.manage.v1.WorkStatus
-	42, // 27: api.manage.v1.WorkLifecycleMutationResponse.published_at:type_name -> google.protobuf.Timestamp
-	42, // 28: api.manage.v1.WorkLifecycleMutationResponse.updated_at:type_name -> google.protobuf.Timestamp
-	43, // 29: api.manage.v1.SetWorkFeaturedImageResponse.image_asset:type_name -> api.common.v1.AssetRef
-	7,  // 30: api.manage.v1.GetWorkCreditsResponse.groups:type_name -> api.manage.v1.WorkCreditGroup
-	5,  // 31: api.manage.v1.GetWorkCreditsResponse.credits:type_name -> api.manage.v1.WorkCredit
-	46, // 32: api.manage.v1.ListWorksAdminRequest.pagination:type_name -> api.common.v1.PaginationRequest
-	47, // 33: api.manage.v1.ListWorksAdminRequest.filters:type_name -> api.common.v1.FilterSpec
-	48, // 34: api.manage.v1.ListWorksAdminRequest.sorts:type_name -> api.common.v1.SortSpec
-	3,  // 35: api.manage.v1.WorkWithStats.work:type_name -> api.manage.v1.Work
-	29, // 36: api.manage.v1.ListWorksAdminResponse.works:type_name -> api.manage.v1.WorkWithStats
-	49, // 37: api.manage.v1.ListWorksAdminResponse.pagination:type_name -> api.common.v1.PaginationResponse
-	0,  // 38: api.manage.v1.MyCreditedWork.type:type_name -> api.manage.v1.WorkType
-	1,  // 39: api.manage.v1.MyCreditedWork.status:type_name -> api.manage.v1.WorkStatus
-	2,  // 40: api.manage.v1.MyCreditedWork.credit_type:type_name -> api.manage.v1.MyCreditedWorkCreditType
-	42, // 41: api.manage.v1.MyCreditedWork.created_at:type_name -> google.protobuf.Timestamp
-	43, // 42: api.manage.v1.MyCreditedWork.credited_as_image_asset:type_name -> api.common.v1.AssetRef
-	46, // 43: api.manage.v1.ListMyCreditedWorksRequest.pagination:type_name -> api.common.v1.PaginationRequest
-	47, // 44: api.manage.v1.ListMyCreditedWorksRequest.filters:type_name -> api.common.v1.FilterSpec
-	48, // 45: api.manage.v1.ListMyCreditedWorksRequest.sorts:type_name -> api.common.v1.SortSpec
-	31, // 46: api.manage.v1.ListMyCreditedWorksResponse.works:type_name -> api.manage.v1.MyCreditedWork
-	49, // 47: api.manage.v1.ListMyCreditedWorksResponse.pagination:type_name -> api.common.v1.PaginationResponse
-	42, // 48: api.manage.v1.WorkVersion.created_at:type_name -> google.protobuf.Timestamp
-	50, // 49: api.manage.v1.WorkVersion.contributors:type_name -> api.manage.v1.VersionContributor
-	46, // 50: api.manage.v1.ListWorkVersionsRequest.pagination:type_name -> api.common.v1.PaginationRequest
-	36, // 51: api.manage.v1.ListWorkVersionsResponse.versions:type_name -> api.manage.v1.WorkVersion
-	49, // 52: api.manage.v1.ListWorkVersionsResponse.pagination:type_name -> api.common.v1.PaginationResponse
-	28, // 53: api.manage.v1.WorkService.ListWorksAdmin:input_type -> api.manage.v1.ListWorksAdminRequest
-	9,  // 54: api.manage.v1.WorkService.CreateWork:input_type -> api.manage.v1.CreateWorkRequest
-	12, // 55: api.manage.v1.WorkService.DeleteWork:input_type -> api.manage.v1.DeleteWorkRequest
-	13, // 56: api.manage.v1.WorkService.PublishWork:input_type -> api.manage.v1.PublishWorkRequest
-	14, // 57: api.manage.v1.WorkService.UnpublishWork:input_type -> api.manage.v1.UnpublishWorkRequest
-	8,  // 58: api.manage.v1.WorkService.GetWork:input_type -> api.manage.v1.GetWorkRequest
-	10, // 59: api.manage.v1.WorkService.UpdateWork:input_type -> api.manage.v1.UpdateWorkRequest
-	17, // 60: api.manage.v1.WorkService.SetWorkFeaturedImage:input_type -> api.manage.v1.SetWorkFeaturedImageRequest
-	19, // 61: api.manage.v1.WorkService.DeleteWorkFeaturedImage:input_type -> api.manage.v1.DeleteWorkFeaturedImageRequest
-	20, // 62: api.manage.v1.WorkService.GetWorkCredits:input_type -> api.manage.v1.GetWorkCreditsRequest
-	22, // 63: api.manage.v1.WorkService.AddWorkCredit:input_type -> api.manage.v1.AddWorkCreditRequest
-	23, // 64: api.manage.v1.WorkService.UpdateWorkCredit:input_type -> api.manage.v1.UpdateWorkCreditRequest
-	24, // 65: api.manage.v1.WorkService.DeleteWorkCredit:input_type -> api.manage.v1.DeleteWorkCreditRequest
-	25, // 66: api.manage.v1.WorkService.CreateWorkCreditGroup:input_type -> api.manage.v1.CreateWorkCreditGroupRequest
-	26, // 67: api.manage.v1.WorkService.UpdateWorkCreditGroup:input_type -> api.manage.v1.UpdateWorkCreditGroupRequest
-	27, // 68: api.manage.v1.WorkService.DeleteWorkCreditGroup:input_type -> api.manage.v1.DeleteWorkCreditGroupRequest
-	32, // 69: api.manage.v1.WorkService.ListMyCreditedWorks:input_type -> api.manage.v1.ListMyCreditedWorksRequest
-	37, // 70: api.manage.v1.WorkService.ListWorkVersions:input_type -> api.manage.v1.ListWorkVersionsRequest
-	39, // 71: api.manage.v1.WorkService.RestoreWorkVersion:input_type -> api.manage.v1.RestoreWorkVersionRequest
-	34, // 72: api.manage.v1.WorkService.CheckWorkSlugAvailable:input_type -> api.manage.v1.CheckWorkSlugAvailableRequest
-	30, // 73: api.manage.v1.WorkService.ListWorksAdmin:output_type -> api.manage.v1.ListWorksAdminResponse
-	3,  // 74: api.manage.v1.WorkService.CreateWork:output_type -> api.manage.v1.Work
-	51, // 75: api.manage.v1.WorkService.DeleteWork:output_type -> api.manage.v1.DeleteResponse
-	16, // 76: api.manage.v1.WorkService.PublishWork:output_type -> api.manage.v1.WorkLifecycleMutationResponse
-	16, // 77: api.manage.v1.WorkService.UnpublishWork:output_type -> api.manage.v1.WorkLifecycleMutationResponse
-	3,  // 78: api.manage.v1.WorkService.GetWork:output_type -> api.manage.v1.Work
-	15, // 79: api.manage.v1.WorkService.UpdateWork:output_type -> api.manage.v1.UpdateWorkResponse
-	18, // 80: api.manage.v1.WorkService.SetWorkFeaturedImage:output_type -> api.manage.v1.SetWorkFeaturedImageResponse
-	52, // 81: api.manage.v1.WorkService.DeleteWorkFeaturedImage:output_type -> api.manage.v1.OgAssetDeleteResponse
-	21, // 82: api.manage.v1.WorkService.GetWorkCredits:output_type -> api.manage.v1.GetWorkCreditsResponse
-	5,  // 83: api.manage.v1.WorkService.AddWorkCredit:output_type -> api.manage.v1.WorkCredit
-	5,  // 84: api.manage.v1.WorkService.UpdateWorkCredit:output_type -> api.manage.v1.WorkCredit
-	51, // 85: api.manage.v1.WorkService.DeleteWorkCredit:output_type -> api.manage.v1.DeleteResponse
-	7,  // 86: api.manage.v1.WorkService.CreateWorkCreditGroup:output_type -> api.manage.v1.WorkCreditGroup
-	7,  // 87: api.manage.v1.WorkService.UpdateWorkCreditGroup:output_type -> api.manage.v1.WorkCreditGroup
-	51, // 88: api.manage.v1.WorkService.DeleteWorkCreditGroup:output_type -> api.manage.v1.DeleteResponse
-	33, // 89: api.manage.v1.WorkService.ListMyCreditedWorks:output_type -> api.manage.v1.ListMyCreditedWorksResponse
-	38, // 90: api.manage.v1.WorkService.ListWorkVersions:output_type -> api.manage.v1.ListWorkVersionsResponse
-	3,  // 91: api.manage.v1.WorkService.RestoreWorkVersion:output_type -> api.manage.v1.Work
-	35, // 92: api.manage.v1.WorkService.CheckWorkSlugAvailable:output_type -> api.manage.v1.CheckWorkSlugAvailableResponse
-	73, // [73:93] is the sub-list for method output_type
-	53, // [53:73] is the sub-list for method input_type
-	53, // [53:53] is the sub-list for extension type_name
-	53, // [53:53] is the sub-list for extension extendee
-	0,  // [0:53] is the sub-list for field type_name
+	44, // 20: api.manage.v1.UpdateWorkRequest.metadata:type_name -> google.protobuf.Struct
+	12, // 21: api.manage.v1.UpdateWorkRequest.clients:type_name -> api.manage.v1.WorkClientsUpdate
+	44, // 22: api.manage.v1.UpdateWorkRequest.observed_metadata:type_name -> google.protobuf.Struct
+	12, // 23: api.manage.v1.UpdateWorkRequest.observed_clients:type_name -> api.manage.v1.WorkClientsUpdate
+	0,  // 24: api.manage.v1.UpdateWorkResponse.type:type_name -> api.manage.v1.WorkType
+	44, // 25: api.manage.v1.UpdateWorkResponse.metadata:type_name -> google.protobuf.Struct
+	5,  // 26: api.manage.v1.UpdateWorkResponse.clients:type_name -> api.manage.v1.WorkClient
+	46, // 27: api.manage.v1.UpdateWorkResponse.updated_at:type_name -> google.protobuf.Timestamp
+	1,  // 28: api.manage.v1.WorkLifecycleMutationResponse.status:type_name -> api.manage.v1.WorkStatus
+	46, // 29: api.manage.v1.WorkLifecycleMutationResponse.published_at:type_name -> google.protobuf.Timestamp
+	46, // 30: api.manage.v1.WorkLifecycleMutationResponse.updated_at:type_name -> google.protobuf.Timestamp
+	47, // 31: api.manage.v1.SetWorkFeaturedImageResponse.image_asset:type_name -> api.common.v1.AssetRef
+	8,  // 32: api.manage.v1.GetWorkCreditsResponse.groups:type_name -> api.manage.v1.WorkCreditGroup
+	6,  // 33: api.manage.v1.GetWorkCreditsResponse.credits:type_name -> api.manage.v1.WorkCredit
+	26, // 34: api.manage.v1.GetWorkCreditsResponse.order:type_name -> api.manage.v1.WorkCreditOrderItem
+	2,  // 35: api.manage.v1.WorkCreditOrderItem.kind:type_name -> api.manage.v1.WorkCreditItemKind
+	2,  // 36: api.manage.v1.MoveWorkCreditItemRequest.kind:type_name -> api.manage.v1.WorkCreditItemKind
+	26, // 37: api.manage.v1.MoveWorkCreditItemRequest.after:type_name -> api.manage.v1.WorkCreditOrderItem
+	26, // 38: api.manage.v1.MoveWorkCreditItemRequest.before:type_name -> api.manage.v1.WorkCreditOrderItem
+	26, // 39: api.manage.v1.MoveWorkCreditItemResponse.items:type_name -> api.manage.v1.WorkCreditOrderItem
+	50, // 40: api.manage.v1.ListWorksAdminRequest.pagination:type_name -> api.common.v1.PaginationRequest
+	51, // 41: api.manage.v1.ListWorksAdminRequest.filters:type_name -> api.common.v1.FilterSpec
+	52, // 42: api.manage.v1.ListWorksAdminRequest.sorts:type_name -> api.common.v1.SortSpec
+	4,  // 43: api.manage.v1.WorkWithStats.work:type_name -> api.manage.v1.Work
+	33, // 44: api.manage.v1.ListWorksAdminResponse.works:type_name -> api.manage.v1.WorkWithStats
+	53, // 45: api.manage.v1.ListWorksAdminResponse.pagination:type_name -> api.common.v1.PaginationResponse
+	0,  // 46: api.manage.v1.MyCreditedWork.type:type_name -> api.manage.v1.WorkType
+	1,  // 47: api.manage.v1.MyCreditedWork.status:type_name -> api.manage.v1.WorkStatus
+	3,  // 48: api.manage.v1.MyCreditedWork.credit_type:type_name -> api.manage.v1.MyCreditedWorkCreditType
+	46, // 49: api.manage.v1.MyCreditedWork.created_at:type_name -> google.protobuf.Timestamp
+	47, // 50: api.manage.v1.MyCreditedWork.credited_as_image_asset:type_name -> api.common.v1.AssetRef
+	50, // 51: api.manage.v1.ListMyCreditedWorksRequest.pagination:type_name -> api.common.v1.PaginationRequest
+	51, // 52: api.manage.v1.ListMyCreditedWorksRequest.filters:type_name -> api.common.v1.FilterSpec
+	52, // 53: api.manage.v1.ListMyCreditedWorksRequest.sorts:type_name -> api.common.v1.SortSpec
+	35, // 54: api.manage.v1.ListMyCreditedWorksResponse.works:type_name -> api.manage.v1.MyCreditedWork
+	53, // 55: api.manage.v1.ListMyCreditedWorksResponse.pagination:type_name -> api.common.v1.PaginationResponse
+	46, // 56: api.manage.v1.WorkVersion.created_at:type_name -> google.protobuf.Timestamp
+	54, // 57: api.manage.v1.WorkVersion.contributors:type_name -> api.manage.v1.VersionContributor
+	50, // 58: api.manage.v1.ListWorkVersionsRequest.pagination:type_name -> api.common.v1.PaginationRequest
+	40, // 59: api.manage.v1.ListWorkVersionsResponse.versions:type_name -> api.manage.v1.WorkVersion
+	53, // 60: api.manage.v1.ListWorkVersionsResponse.pagination:type_name -> api.common.v1.PaginationResponse
+	32, // 61: api.manage.v1.WorkService.ListWorksAdmin:input_type -> api.manage.v1.ListWorksAdminRequest
+	10, // 62: api.manage.v1.WorkService.CreateWork:input_type -> api.manage.v1.CreateWorkRequest
+	13, // 63: api.manage.v1.WorkService.DeleteWork:input_type -> api.manage.v1.DeleteWorkRequest
+	14, // 64: api.manage.v1.WorkService.PublishWork:input_type -> api.manage.v1.PublishWorkRequest
+	15, // 65: api.manage.v1.WorkService.UnpublishWork:input_type -> api.manage.v1.UnpublishWorkRequest
+	9,  // 66: api.manage.v1.WorkService.GetWork:input_type -> api.manage.v1.GetWorkRequest
+	11, // 67: api.manage.v1.WorkService.UpdateWork:input_type -> api.manage.v1.UpdateWorkRequest
+	18, // 68: api.manage.v1.WorkService.SetWorkFeaturedImage:input_type -> api.manage.v1.SetWorkFeaturedImageRequest
+	20, // 69: api.manage.v1.WorkService.DeleteWorkFeaturedImage:input_type -> api.manage.v1.DeleteWorkFeaturedImageRequest
+	21, // 70: api.manage.v1.WorkService.GetWorkCredits:input_type -> api.manage.v1.GetWorkCreditsRequest
+	23, // 71: api.manage.v1.WorkService.AddWorkCredit:input_type -> api.manage.v1.AddWorkCreditRequest
+	24, // 72: api.manage.v1.WorkService.UpdateWorkCredit:input_type -> api.manage.v1.UpdateWorkCreditRequest
+	25, // 73: api.manage.v1.WorkService.DeleteWorkCredit:input_type -> api.manage.v1.DeleteWorkCreditRequest
+	27, // 74: api.manage.v1.WorkService.MoveWorkCreditItem:input_type -> api.manage.v1.MoveWorkCreditItemRequest
+	29, // 75: api.manage.v1.WorkService.CreateWorkCreditGroup:input_type -> api.manage.v1.CreateWorkCreditGroupRequest
+	30, // 76: api.manage.v1.WorkService.UpdateWorkCreditGroup:input_type -> api.manage.v1.UpdateWorkCreditGroupRequest
+	31, // 77: api.manage.v1.WorkService.DeleteWorkCreditGroup:input_type -> api.manage.v1.DeleteWorkCreditGroupRequest
+	36, // 78: api.manage.v1.WorkService.ListMyCreditedWorks:input_type -> api.manage.v1.ListMyCreditedWorksRequest
+	41, // 79: api.manage.v1.WorkService.ListWorkVersions:input_type -> api.manage.v1.ListWorkVersionsRequest
+	43, // 80: api.manage.v1.WorkService.RestoreWorkVersion:input_type -> api.manage.v1.RestoreWorkVersionRequest
+	38, // 81: api.manage.v1.WorkService.CheckWorkSlugAvailable:input_type -> api.manage.v1.CheckWorkSlugAvailableRequest
+	34, // 82: api.manage.v1.WorkService.ListWorksAdmin:output_type -> api.manage.v1.ListWorksAdminResponse
+	4,  // 83: api.manage.v1.WorkService.CreateWork:output_type -> api.manage.v1.Work
+	55, // 84: api.manage.v1.WorkService.DeleteWork:output_type -> api.manage.v1.DeleteResponse
+	17, // 85: api.manage.v1.WorkService.PublishWork:output_type -> api.manage.v1.WorkLifecycleMutationResponse
+	17, // 86: api.manage.v1.WorkService.UnpublishWork:output_type -> api.manage.v1.WorkLifecycleMutationResponse
+	4,  // 87: api.manage.v1.WorkService.GetWork:output_type -> api.manage.v1.Work
+	16, // 88: api.manage.v1.WorkService.UpdateWork:output_type -> api.manage.v1.UpdateWorkResponse
+	19, // 89: api.manage.v1.WorkService.SetWorkFeaturedImage:output_type -> api.manage.v1.SetWorkFeaturedImageResponse
+	56, // 90: api.manage.v1.WorkService.DeleteWorkFeaturedImage:output_type -> api.manage.v1.OgAssetDeleteResponse
+	22, // 91: api.manage.v1.WorkService.GetWorkCredits:output_type -> api.manage.v1.GetWorkCreditsResponse
+	6,  // 92: api.manage.v1.WorkService.AddWorkCredit:output_type -> api.manage.v1.WorkCredit
+	6,  // 93: api.manage.v1.WorkService.UpdateWorkCredit:output_type -> api.manage.v1.WorkCredit
+	55, // 94: api.manage.v1.WorkService.DeleteWorkCredit:output_type -> api.manage.v1.DeleteResponse
+	28, // 95: api.manage.v1.WorkService.MoveWorkCreditItem:output_type -> api.manage.v1.MoveWorkCreditItemResponse
+	8,  // 96: api.manage.v1.WorkService.CreateWorkCreditGroup:output_type -> api.manage.v1.WorkCreditGroup
+	8,  // 97: api.manage.v1.WorkService.UpdateWorkCreditGroup:output_type -> api.manage.v1.WorkCreditGroup
+	55, // 98: api.manage.v1.WorkService.DeleteWorkCreditGroup:output_type -> api.manage.v1.DeleteResponse
+	37, // 99: api.manage.v1.WorkService.ListMyCreditedWorks:output_type -> api.manage.v1.ListMyCreditedWorksResponse
+	42, // 100: api.manage.v1.WorkService.ListWorkVersions:output_type -> api.manage.v1.ListWorkVersionsResponse
+	4,  // 101: api.manage.v1.WorkService.RestoreWorkVersion:output_type -> api.manage.v1.Work
+	39, // 102: api.manage.v1.WorkService.CheckWorkSlugAvailable:output_type -> api.manage.v1.CheckWorkSlugAvailableResponse
+	82, // [82:103] is the sub-list for method output_type
+	61, // [61:82] is the sub-list for method input_type
+	61, // [61:61] is the sub-list for extension type_name
+	61, // [61:61] is the sub-list for extension extendee
+	0,  // [0:61] is the sub-list for field type_name
 }
 
 func init() { file_api_manage_v1_work_proto_init() }
@@ -3323,17 +3634,19 @@ func file_api_manage_v1_work_proto_init() {
 	file_api_manage_v1_work_proto_msgTypes[15].OneofWrappers = []any{}
 	file_api_manage_v1_work_proto_msgTypes[19].OneofWrappers = []any{}
 	file_api_manage_v1_work_proto_msgTypes[20].OneofWrappers = []any{}
+	file_api_manage_v1_work_proto_msgTypes[22].OneofWrappers = []any{}
 	file_api_manage_v1_work_proto_msgTypes[23].OneofWrappers = []any{}
-	file_api_manage_v1_work_proto_msgTypes[28].OneofWrappers = []any{}
+	file_api_manage_v1_work_proto_msgTypes[26].OneofWrappers = []any{}
 	file_api_manage_v1_work_proto_msgTypes[31].OneofWrappers = []any{}
-	file_api_manage_v1_work_proto_msgTypes[33].OneofWrappers = []any{}
+	file_api_manage_v1_work_proto_msgTypes[34].OneofWrappers = []any{}
+	file_api_manage_v1_work_proto_msgTypes[36].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_api_manage_v1_work_proto_rawDesc), len(file_api_manage_v1_work_proto_rawDesc)),
-			NumEnums:      3,
-			NumMessages:   37,
+			NumEnums:      4,
+			NumMessages:   40,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

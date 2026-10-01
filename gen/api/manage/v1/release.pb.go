@@ -426,6 +426,530 @@ func (x *GetReleaseRequest) GetId() string {
 	return ""
 }
 
+type GetReleaseRelationsRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	ReleaseId     string                 `protobuf:"bytes,1,opt,name=release_id,json=releaseId,proto3" json:"release_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetReleaseRelationsRequest) Reset() {
+	*x = GetReleaseRelationsRequest{}
+	mi := &file_api_manage_v1_release_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetReleaseRelationsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetReleaseRelationsRequest) ProtoMessage() {}
+
+func (x *GetReleaseRelationsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_api_manage_v1_release_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetReleaseRelationsRequest.ProtoReflect.Descriptor instead.
+func (*GetReleaseRelationsRequest) Descriptor() ([]byte, []int) {
+	return file_api_manage_v1_release_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *GetReleaseRelationsRequest) GetReleaseId() string {
+	if x != nil {
+		return x.ReleaseId
+	}
+	return ""
+}
+
+type ReleaseArtistEditorItem struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	ArtistId      string                 `protobuf:"bytes,1,opt,name=artist_id,json=artistId,proto3" json:"artist_id,omitempty"`
+	ArtistName    string                 `protobuf:"bytes,2,opt,name=artist_name,json=artistName,proto3" json:"artist_name,omitempty"`
+	ArtistSlug    *string                `protobuf:"bytes,3,opt,name=artist_slug,json=artistSlug,proto3,oneof" json:"artist_slug,omitempty"`
+	SortOrder     int32                  `protobuf:"varint,4,opt,name=sort_order,json=sortOrder,proto3" json:"sort_order,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ReleaseArtistEditorItem) Reset() {
+	*x = ReleaseArtistEditorItem{}
+	mi := &file_api_manage_v1_release_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ReleaseArtistEditorItem) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ReleaseArtistEditorItem) ProtoMessage() {}
+
+func (x *ReleaseArtistEditorItem) ProtoReflect() protoreflect.Message {
+	mi := &file_api_manage_v1_release_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ReleaseArtistEditorItem.ProtoReflect.Descriptor instead.
+func (*ReleaseArtistEditorItem) Descriptor() ([]byte, []int) {
+	return file_api_manage_v1_release_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *ReleaseArtistEditorItem) GetArtistId() string {
+	if x != nil {
+		return x.ArtistId
+	}
+	return ""
+}
+
+func (x *ReleaseArtistEditorItem) GetArtistName() string {
+	if x != nil {
+		return x.ArtistName
+	}
+	return ""
+}
+
+func (x *ReleaseArtistEditorItem) GetArtistSlug() string {
+	if x != nil && x.ArtistSlug != nil {
+		return *x.ArtistSlug
+	}
+	return ""
+}
+
+func (x *ReleaseArtistEditorItem) GetSortOrder() int32 {
+	if x != nil {
+		return x.SortOrder
+	}
+	return 0
+}
+
+type ReleaseLabelEditorItem struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	LabelId       string                 `protobuf:"bytes,1,opt,name=label_id,json=labelId,proto3" json:"label_id,omitempty"`
+	LabelName     string                 `protobuf:"bytes,2,opt,name=label_name,json=labelName,proto3" json:"label_name,omitempty"`
+	LabelSlug     *string                `protobuf:"bytes,3,opt,name=label_slug,json=labelSlug,proto3,oneof" json:"label_slug,omitempty"`
+	CatalogNumber *string                `protobuf:"bytes,4,opt,name=catalog_number,json=catalogNumber,proto3,oneof" json:"catalog_number,omitempty"`
+	SortOrder     int32                  `protobuf:"varint,5,opt,name=sort_order,json=sortOrder,proto3" json:"sort_order,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ReleaseLabelEditorItem) Reset() {
+	*x = ReleaseLabelEditorItem{}
+	mi := &file_api_manage_v1_release_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ReleaseLabelEditorItem) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ReleaseLabelEditorItem) ProtoMessage() {}
+
+func (x *ReleaseLabelEditorItem) ProtoReflect() protoreflect.Message {
+	mi := &file_api_manage_v1_release_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ReleaseLabelEditorItem.ProtoReflect.Descriptor instead.
+func (*ReleaseLabelEditorItem) Descriptor() ([]byte, []int) {
+	return file_api_manage_v1_release_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *ReleaseLabelEditorItem) GetLabelId() string {
+	if x != nil {
+		return x.LabelId
+	}
+	return ""
+}
+
+func (x *ReleaseLabelEditorItem) GetLabelName() string {
+	if x != nil {
+		return x.LabelName
+	}
+	return ""
+}
+
+func (x *ReleaseLabelEditorItem) GetLabelSlug() string {
+	if x != nil && x.LabelSlug != nil {
+		return *x.LabelSlug
+	}
+	return ""
+}
+
+func (x *ReleaseLabelEditorItem) GetCatalogNumber() string {
+	if x != nil && x.CatalogNumber != nil {
+		return *x.CatalogNumber
+	}
+	return ""
+}
+
+func (x *ReleaseLabelEditorItem) GetSortOrder() int32 {
+	if x != nil {
+		return x.SortOrder
+	}
+	return 0
+}
+
+type ReleaseReferenceEditorItem struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	Slug          string                 `protobuf:"bytes,3,opt,name=slug,proto3" json:"slug,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ReleaseReferenceEditorItem) Reset() {
+	*x = ReleaseReferenceEditorItem{}
+	mi := &file_api_manage_v1_release_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ReleaseReferenceEditorItem) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ReleaseReferenceEditorItem) ProtoMessage() {}
+
+func (x *ReleaseReferenceEditorItem) ProtoReflect() protoreflect.Message {
+	mi := &file_api_manage_v1_release_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ReleaseReferenceEditorItem.ProtoReflect.Descriptor instead.
+func (*ReleaseReferenceEditorItem) Descriptor() ([]byte, []int) {
+	return file_api_manage_v1_release_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *ReleaseReferenceEditorItem) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *ReleaseReferenceEditorItem) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *ReleaseReferenceEditorItem) GetSlug() string {
+	if x != nil {
+		return x.Slug
+	}
+	return ""
+}
+
+type ReleaseFormatEditorItem struct {
+	state             protoimpl.MessageState `protogen:"open.v1"`
+	Id                string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Name              string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	Slug              string                 `protobuf:"bytes,3,opt,name=slug,proto3" json:"slug,omitempty"`
+	FormatDescription *string                `protobuf:"bytes,4,opt,name=format_description,json=formatDescription,proto3,oneof" json:"format_description,omitempty"`
+	unknownFields     protoimpl.UnknownFields
+	sizeCache         protoimpl.SizeCache
+}
+
+func (x *ReleaseFormatEditorItem) Reset() {
+	*x = ReleaseFormatEditorItem{}
+	mi := &file_api_manage_v1_release_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ReleaseFormatEditorItem) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ReleaseFormatEditorItem) ProtoMessage() {}
+
+func (x *ReleaseFormatEditorItem) ProtoReflect() protoreflect.Message {
+	mi := &file_api_manage_v1_release_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ReleaseFormatEditorItem.ProtoReflect.Descriptor instead.
+func (*ReleaseFormatEditorItem) Descriptor() ([]byte, []int) {
+	return file_api_manage_v1_release_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *ReleaseFormatEditorItem) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *ReleaseFormatEditorItem) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *ReleaseFormatEditorItem) GetSlug() string {
+	if x != nil {
+		return x.Slug
+	}
+	return ""
+}
+
+func (x *ReleaseFormatEditorItem) GetFormatDescription() string {
+	if x != nil && x.FormatDescription != nil {
+		return *x.FormatDescription
+	}
+	return ""
+}
+
+type ReleaseCreditEditorItem struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	ArtistId      *string                `protobuf:"bytes,2,opt,name=artist_id,json=artistId,proto3,oneof" json:"artist_id,omitempty"`
+	ArtistName    *string                `protobuf:"bytes,3,opt,name=artist_name,json=artistName,proto3,oneof" json:"artist_name,omitempty"`
+	ArtistSlug    *string                `protobuf:"bytes,4,opt,name=artist_slug,json=artistSlug,proto3,oneof" json:"artist_slug,omitempty"`
+	MemberId      *string                `protobuf:"bytes,5,opt,name=member_id,json=memberId,proto3,oneof" json:"member_id,omitempty"`
+	MemberName    *string                `protobuf:"bytes,6,opt,name=member_name,json=memberName,proto3,oneof" json:"member_name,omitempty"`
+	CreditedName  *string                `protobuf:"bytes,7,opt,name=credited_name,json=creditedName,proto3,oneof" json:"credited_name,omitempty"`
+	CreditRole    *string                `protobuf:"bytes,8,opt,name=credit_role,json=creditRole,proto3,oneof" json:"credit_role,omitempty"`
+	SortOrder     int32                  `protobuf:"varint,9,opt,name=sort_order,json=sortOrder,proto3" json:"sort_order,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ReleaseCreditEditorItem) Reset() {
+	*x = ReleaseCreditEditorItem{}
+	mi := &file_api_manage_v1_release_proto_msgTypes[8]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ReleaseCreditEditorItem) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ReleaseCreditEditorItem) ProtoMessage() {}
+
+func (x *ReleaseCreditEditorItem) ProtoReflect() protoreflect.Message {
+	mi := &file_api_manage_v1_release_proto_msgTypes[8]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ReleaseCreditEditorItem.ProtoReflect.Descriptor instead.
+func (*ReleaseCreditEditorItem) Descriptor() ([]byte, []int) {
+	return file_api_manage_v1_release_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *ReleaseCreditEditorItem) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *ReleaseCreditEditorItem) GetArtistId() string {
+	if x != nil && x.ArtistId != nil {
+		return *x.ArtistId
+	}
+	return ""
+}
+
+func (x *ReleaseCreditEditorItem) GetArtistName() string {
+	if x != nil && x.ArtistName != nil {
+		return *x.ArtistName
+	}
+	return ""
+}
+
+func (x *ReleaseCreditEditorItem) GetArtistSlug() string {
+	if x != nil && x.ArtistSlug != nil {
+		return *x.ArtistSlug
+	}
+	return ""
+}
+
+func (x *ReleaseCreditEditorItem) GetMemberId() string {
+	if x != nil && x.MemberId != nil {
+		return *x.MemberId
+	}
+	return ""
+}
+
+func (x *ReleaseCreditEditorItem) GetMemberName() string {
+	if x != nil && x.MemberName != nil {
+		return *x.MemberName
+	}
+	return ""
+}
+
+func (x *ReleaseCreditEditorItem) GetCreditedName() string {
+	if x != nil && x.CreditedName != nil {
+		return *x.CreditedName
+	}
+	return ""
+}
+
+func (x *ReleaseCreditEditorItem) GetCreditRole() string {
+	if x != nil && x.CreditRole != nil {
+		return *x.CreditRole
+	}
+	return ""
+}
+
+func (x *ReleaseCreditEditorItem) GetSortOrder() int32 {
+	if x != nil {
+		return x.SortOrder
+	}
+	return 0
+}
+
+type GetReleaseRelationsResponse struct {
+	state         protoimpl.MessageState        `protogen:"open.v1"`
+	ReleaseId     string                        `protobuf:"bytes,1,opt,name=release_id,json=releaseId,proto3" json:"release_id,omitempty"`
+	Artists       []*ReleaseArtistEditorItem    `protobuf:"bytes,2,rep,name=artists,proto3" json:"artists,omitempty"`
+	Labels        []*ReleaseLabelEditorItem     `protobuf:"bytes,3,rep,name=labels,proto3" json:"labels,omitempty"`
+	Categories    []*ReleaseReferenceEditorItem `protobuf:"bytes,4,rep,name=categories,proto3" json:"categories,omitempty"`
+	Genres        []*ReleaseReferenceEditorItem `protobuf:"bytes,5,rep,name=genres,proto3" json:"genres,omitempty"`
+	Styles        []*ReleaseReferenceEditorItem `protobuf:"bytes,6,rep,name=styles,proto3" json:"styles,omitempty"`
+	Formats       []*ReleaseFormatEditorItem    `protobuf:"bytes,7,rep,name=formats,proto3" json:"formats,omitempty"`
+	Credits       []*ReleaseCreditEditorItem    `protobuf:"bytes,8,rep,name=credits,proto3" json:"credits,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetReleaseRelationsResponse) Reset() {
+	*x = GetReleaseRelationsResponse{}
+	mi := &file_api_manage_v1_release_proto_msgTypes[9]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetReleaseRelationsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetReleaseRelationsResponse) ProtoMessage() {}
+
+func (x *GetReleaseRelationsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_api_manage_v1_release_proto_msgTypes[9]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetReleaseRelationsResponse.ProtoReflect.Descriptor instead.
+func (*GetReleaseRelationsResponse) Descriptor() ([]byte, []int) {
+	return file_api_manage_v1_release_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *GetReleaseRelationsResponse) GetReleaseId() string {
+	if x != nil {
+		return x.ReleaseId
+	}
+	return ""
+}
+
+func (x *GetReleaseRelationsResponse) GetArtists() []*ReleaseArtistEditorItem {
+	if x != nil {
+		return x.Artists
+	}
+	return nil
+}
+
+func (x *GetReleaseRelationsResponse) GetLabels() []*ReleaseLabelEditorItem {
+	if x != nil {
+		return x.Labels
+	}
+	return nil
+}
+
+func (x *GetReleaseRelationsResponse) GetCategories() []*ReleaseReferenceEditorItem {
+	if x != nil {
+		return x.Categories
+	}
+	return nil
+}
+
+func (x *GetReleaseRelationsResponse) GetGenres() []*ReleaseReferenceEditorItem {
+	if x != nil {
+		return x.Genres
+	}
+	return nil
+}
+
+func (x *GetReleaseRelationsResponse) GetStyles() []*ReleaseReferenceEditorItem {
+	if x != nil {
+		return x.Styles
+	}
+	return nil
+}
+
+func (x *GetReleaseRelationsResponse) GetFormats() []*ReleaseFormatEditorItem {
+	if x != nil {
+		return x.Formats
+	}
+	return nil
+}
+
+func (x *GetReleaseRelationsResponse) GetCredits() []*ReleaseCreditEditorItem {
+	if x != nil {
+		return x.Credits
+	}
+	return nil
+}
+
 type ListReleasesAdminRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Pagination    *v11.PaginationRequest `protobuf:"bytes,1,opt,name=pagination,proto3" json:"pagination,omitempty"`
@@ -437,7 +961,7 @@ type ListReleasesAdminRequest struct {
 
 func (x *ListReleasesAdminRequest) Reset() {
 	*x = ListReleasesAdminRequest{}
-	mi := &file_api_manage_v1_release_proto_msgTypes[3]
+	mi := &file_api_manage_v1_release_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -449,7 +973,7 @@ func (x *ListReleasesAdminRequest) String() string {
 func (*ListReleasesAdminRequest) ProtoMessage() {}
 
 func (x *ListReleasesAdminRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_release_proto_msgTypes[3]
+	mi := &file_api_manage_v1_release_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -462,7 +986,7 @@ func (x *ListReleasesAdminRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListReleasesAdminRequest.ProtoReflect.Descriptor instead.
 func (*ListReleasesAdminRequest) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_release_proto_rawDescGZIP(), []int{3}
+	return file_api_manage_v1_release_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *ListReleasesAdminRequest) GetPagination() *v11.PaginationRequest {
@@ -496,7 +1020,7 @@ type ListReleasesAdminResponse struct {
 
 func (x *ListReleasesAdminResponse) Reset() {
 	*x = ListReleasesAdminResponse{}
-	mi := &file_api_manage_v1_release_proto_msgTypes[4]
+	mi := &file_api_manage_v1_release_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -508,7 +1032,7 @@ func (x *ListReleasesAdminResponse) String() string {
 func (*ListReleasesAdminResponse) ProtoMessage() {}
 
 func (x *ListReleasesAdminResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_release_proto_msgTypes[4]
+	mi := &file_api_manage_v1_release_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -521,7 +1045,7 @@ func (x *ListReleasesAdminResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListReleasesAdminResponse.ProtoReflect.Descriptor instead.
 func (*ListReleasesAdminResponse) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_release_proto_rawDescGZIP(), []int{4}
+	return file_api_manage_v1_release_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *ListReleasesAdminResponse) GetReleases() []*ReleaseWithStats {
@@ -559,7 +1083,7 @@ type CreateReleaseRequest struct {
 
 func (x *CreateReleaseRequest) Reset() {
 	*x = CreateReleaseRequest{}
-	mi := &file_api_manage_v1_release_proto_msgTypes[5]
+	mi := &file_api_manage_v1_release_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -571,7 +1095,7 @@ func (x *CreateReleaseRequest) String() string {
 func (*CreateReleaseRequest) ProtoMessage() {}
 
 func (x *CreateReleaseRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_release_proto_msgTypes[5]
+	mi := &file_api_manage_v1_release_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -584,7 +1108,7 @@ func (x *CreateReleaseRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateReleaseRequest.ProtoReflect.Descriptor instead.
 func (*CreateReleaseRequest) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_release_proto_rawDescGZIP(), []int{5}
+	return file_api_manage_v1_release_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *CreateReleaseRequest) GetTitle() string {
@@ -685,7 +1209,7 @@ type UpdateReleaseRequest struct {
 
 func (x *UpdateReleaseRequest) Reset() {
 	*x = UpdateReleaseRequest{}
-	mi := &file_api_manage_v1_release_proto_msgTypes[6]
+	mi := &file_api_manage_v1_release_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -697,7 +1221,7 @@ func (x *UpdateReleaseRequest) String() string {
 func (*UpdateReleaseRequest) ProtoMessage() {}
 
 func (x *UpdateReleaseRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_release_proto_msgTypes[6]
+	mi := &file_api_manage_v1_release_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -710,7 +1234,7 @@ func (x *UpdateReleaseRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateReleaseRequest.ProtoReflect.Descriptor instead.
 func (*UpdateReleaseRequest) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_release_proto_rawDescGZIP(), []int{6}
+	return file_api_manage_v1_release_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *UpdateReleaseRequest) GetId() string {
@@ -819,7 +1343,7 @@ type DeleteReleaseRequest struct {
 
 func (x *DeleteReleaseRequest) Reset() {
 	*x = DeleteReleaseRequest{}
-	mi := &file_api_manage_v1_release_proto_msgTypes[7]
+	mi := &file_api_manage_v1_release_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -831,7 +1355,7 @@ func (x *DeleteReleaseRequest) String() string {
 func (*DeleteReleaseRequest) ProtoMessage() {}
 
 func (x *DeleteReleaseRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_release_proto_msgTypes[7]
+	mi := &file_api_manage_v1_release_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -844,7 +1368,7 @@ func (x *DeleteReleaseRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteReleaseRequest.ProtoReflect.Descriptor instead.
 func (*DeleteReleaseRequest) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_release_proto_rawDescGZIP(), []int{7}
+	return file_api_manage_v1_release_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *DeleteReleaseRequest) GetId() string {
@@ -863,7 +1387,7 @@ type PublishReleaseRequest struct {
 
 func (x *PublishReleaseRequest) Reset() {
 	*x = PublishReleaseRequest{}
-	mi := &file_api_manage_v1_release_proto_msgTypes[8]
+	mi := &file_api_manage_v1_release_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -875,7 +1399,7 @@ func (x *PublishReleaseRequest) String() string {
 func (*PublishReleaseRequest) ProtoMessage() {}
 
 func (x *PublishReleaseRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_release_proto_msgTypes[8]
+	mi := &file_api_manage_v1_release_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -888,7 +1412,7 @@ func (x *PublishReleaseRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PublishReleaseRequest.ProtoReflect.Descriptor instead.
 func (*PublishReleaseRequest) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_release_proto_rawDescGZIP(), []int{8}
+	return file_api_manage_v1_release_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *PublishReleaseRequest) GetId() string {
@@ -907,7 +1431,7 @@ type UnpublishReleaseRequest struct {
 
 func (x *UnpublishReleaseRequest) Reset() {
 	*x = UnpublishReleaseRequest{}
-	mi := &file_api_manage_v1_release_proto_msgTypes[9]
+	mi := &file_api_manage_v1_release_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -919,7 +1443,7 @@ func (x *UnpublishReleaseRequest) String() string {
 func (*UnpublishReleaseRequest) ProtoMessage() {}
 
 func (x *UnpublishReleaseRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_release_proto_msgTypes[9]
+	mi := &file_api_manage_v1_release_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -932,7 +1456,7 @@ func (x *UnpublishReleaseRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UnpublishReleaseRequest.ProtoReflect.Descriptor instead.
 func (*UnpublishReleaseRequest) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_release_proto_rawDescGZIP(), []int{9}
+	return file_api_manage_v1_release_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *UnpublishReleaseRequest) GetId() string {
@@ -954,7 +1478,7 @@ type UpdateReleaseResponse struct {
 
 func (x *UpdateReleaseResponse) Reset() {
 	*x = UpdateReleaseResponse{}
-	mi := &file_api_manage_v1_release_proto_msgTypes[10]
+	mi := &file_api_manage_v1_release_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -966,7 +1490,7 @@ func (x *UpdateReleaseResponse) String() string {
 func (*UpdateReleaseResponse) ProtoMessage() {}
 
 func (x *UpdateReleaseResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_release_proto_msgTypes[10]
+	mi := &file_api_manage_v1_release_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -979,7 +1503,7 @@ func (x *UpdateReleaseResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateReleaseResponse.ProtoReflect.Descriptor instead.
 func (*UpdateReleaseResponse) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_release_proto_rawDescGZIP(), []int{10}
+	return file_api_manage_v1_release_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *UpdateReleaseResponse) GetId() string {
@@ -1023,7 +1547,7 @@ type ReleaseLifecycleMutationResponse struct {
 
 func (x *ReleaseLifecycleMutationResponse) Reset() {
 	*x = ReleaseLifecycleMutationResponse{}
-	mi := &file_api_manage_v1_release_proto_msgTypes[11]
+	mi := &file_api_manage_v1_release_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1035,7 +1559,7 @@ func (x *ReleaseLifecycleMutationResponse) String() string {
 func (*ReleaseLifecycleMutationResponse) ProtoMessage() {}
 
 func (x *ReleaseLifecycleMutationResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_release_proto_msgTypes[11]
+	mi := &file_api_manage_v1_release_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1048,7 +1572,7 @@ func (x *ReleaseLifecycleMutationResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ReleaseLifecycleMutationResponse.ProtoReflect.Descriptor instead.
 func (*ReleaseLifecycleMutationResponse) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_release_proto_rawDescGZIP(), []int{11}
+	return file_api_manage_v1_release_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *ReleaseLifecycleMutationResponse) GetId() string {
@@ -1097,7 +1621,7 @@ type SetReleaseArtworkRequest struct {
 
 func (x *SetReleaseArtworkRequest) Reset() {
 	*x = SetReleaseArtworkRequest{}
-	mi := &file_api_manage_v1_release_proto_msgTypes[12]
+	mi := &file_api_manage_v1_release_proto_msgTypes[19]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1109,7 +1633,7 @@ func (x *SetReleaseArtworkRequest) String() string {
 func (*SetReleaseArtworkRequest) ProtoMessage() {}
 
 func (x *SetReleaseArtworkRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_release_proto_msgTypes[12]
+	mi := &file_api_manage_v1_release_proto_msgTypes[19]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1122,7 +1646,7 @@ func (x *SetReleaseArtworkRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetReleaseArtworkRequest.ProtoReflect.Descriptor instead.
 func (*SetReleaseArtworkRequest) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_release_proto_rawDescGZIP(), []int{12}
+	return file_api_manage_v1_release_proto_rawDescGZIP(), []int{19}
 }
 
 func (x *SetReleaseArtworkRequest) GetReleaseId() string {
@@ -1149,7 +1673,7 @@ type SetReleaseArtworkResponse struct {
 
 func (x *SetReleaseArtworkResponse) Reset() {
 	*x = SetReleaseArtworkResponse{}
-	mi := &file_api_manage_v1_release_proto_msgTypes[13]
+	mi := &file_api_manage_v1_release_proto_msgTypes[20]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1161,7 +1685,7 @@ func (x *SetReleaseArtworkResponse) String() string {
 func (*SetReleaseArtworkResponse) ProtoMessage() {}
 
 func (x *SetReleaseArtworkResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_release_proto_msgTypes[13]
+	mi := &file_api_manage_v1_release_proto_msgTypes[20]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1174,7 +1698,7 @@ func (x *SetReleaseArtworkResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetReleaseArtworkResponse.ProtoReflect.Descriptor instead.
 func (*SetReleaseArtworkResponse) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_release_proto_rawDescGZIP(), []int{13}
+	return file_api_manage_v1_release_proto_rawDescGZIP(), []int{20}
 }
 
 func (x *SetReleaseArtworkResponse) GetArtworkAsset() *v11.AssetRef {
@@ -1200,7 +1724,7 @@ type DeleteReleaseArtworkRequest struct {
 
 func (x *DeleteReleaseArtworkRequest) Reset() {
 	*x = DeleteReleaseArtworkRequest{}
-	mi := &file_api_manage_v1_release_proto_msgTypes[14]
+	mi := &file_api_manage_v1_release_proto_msgTypes[21]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1212,7 +1736,7 @@ func (x *DeleteReleaseArtworkRequest) String() string {
 func (*DeleteReleaseArtworkRequest) ProtoMessage() {}
 
 func (x *DeleteReleaseArtworkRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_release_proto_msgTypes[14]
+	mi := &file_api_manage_v1_release_proto_msgTypes[21]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1225,7 +1749,7 @@ func (x *DeleteReleaseArtworkRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteReleaseArtworkRequest.ProtoReflect.Descriptor instead.
 func (*DeleteReleaseArtworkRequest) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_release_proto_rawDescGZIP(), []int{14}
+	return file_api_manage_v1_release_proto_rawDescGZIP(), []int{21}
 }
 
 func (x *DeleteReleaseArtworkRequest) GetReleaseId() string {
@@ -1245,7 +1769,7 @@ type CheckReleaseSlugAvailableRequest struct {
 
 func (x *CheckReleaseSlugAvailableRequest) Reset() {
 	*x = CheckReleaseSlugAvailableRequest{}
-	mi := &file_api_manage_v1_release_proto_msgTypes[15]
+	mi := &file_api_manage_v1_release_proto_msgTypes[22]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1257,7 +1781,7 @@ func (x *CheckReleaseSlugAvailableRequest) String() string {
 func (*CheckReleaseSlugAvailableRequest) ProtoMessage() {}
 
 func (x *CheckReleaseSlugAvailableRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_release_proto_msgTypes[15]
+	mi := &file_api_manage_v1_release_proto_msgTypes[22]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1270,7 +1794,7 @@ func (x *CheckReleaseSlugAvailableRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CheckReleaseSlugAvailableRequest.ProtoReflect.Descriptor instead.
 func (*CheckReleaseSlugAvailableRequest) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_release_proto_rawDescGZIP(), []int{15}
+	return file_api_manage_v1_release_proto_rawDescGZIP(), []int{22}
 }
 
 func (x *CheckReleaseSlugAvailableRequest) GetSlug() string {
@@ -1296,7 +1820,7 @@ type CheckReleaseSlugAvailableResponse struct {
 
 func (x *CheckReleaseSlugAvailableResponse) Reset() {
 	*x = CheckReleaseSlugAvailableResponse{}
-	mi := &file_api_manage_v1_release_proto_msgTypes[16]
+	mi := &file_api_manage_v1_release_proto_msgTypes[23]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1308,7 +1832,7 @@ func (x *CheckReleaseSlugAvailableResponse) String() string {
 func (*CheckReleaseSlugAvailableResponse) ProtoMessage() {}
 
 func (x *CheckReleaseSlugAvailableResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_release_proto_msgTypes[16]
+	mi := &file_api_manage_v1_release_proto_msgTypes[23]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1321,7 +1845,7 @@ func (x *CheckReleaseSlugAvailableResponse) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use CheckReleaseSlugAvailableResponse.ProtoReflect.Descriptor instead.
 func (*CheckReleaseSlugAvailableResponse) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_release_proto_rawDescGZIP(), []int{16}
+	return file_api_manage_v1_release_proto_rawDescGZIP(), []int{23}
 }
 
 func (x *CheckReleaseSlugAvailableResponse) GetAvailable() bool {
@@ -1342,7 +1866,7 @@ type ReleaseLabelInput struct {
 
 func (x *ReleaseLabelInput) Reset() {
 	*x = ReleaseLabelInput{}
-	mi := &file_api_manage_v1_release_proto_msgTypes[17]
+	mi := &file_api_manage_v1_release_proto_msgTypes[24]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1354,7 +1878,7 @@ func (x *ReleaseLabelInput) String() string {
 func (*ReleaseLabelInput) ProtoMessage() {}
 
 func (x *ReleaseLabelInput) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_release_proto_msgTypes[17]
+	mi := &file_api_manage_v1_release_proto_msgTypes[24]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1367,7 +1891,7 @@ func (x *ReleaseLabelInput) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ReleaseLabelInput.ProtoReflect.Descriptor instead.
 func (*ReleaseLabelInput) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_release_proto_rawDescGZIP(), []int{17}
+	return file_api_manage_v1_release_proto_rawDescGZIP(), []int{24}
 }
 
 func (x *ReleaseLabelInput) GetLabelId() string {
@@ -1391,17 +1915,168 @@ func (x *ReleaseLabelInput) GetSortOrder() int32 {
 	return 0
 }
 
+// Relation writes require the observed snapshot and apply its membership and field deltas.
+type StringIdSnapshot struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Ids           []string               `protobuf:"bytes,1,rep,name=ids,proto3" json:"ids,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *StringIdSnapshot) Reset() {
+	*x = StringIdSnapshot{}
+	mi := &file_api_manage_v1_release_proto_msgTypes[25]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *StringIdSnapshot) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*StringIdSnapshot) ProtoMessage() {}
+
+func (x *StringIdSnapshot) ProtoReflect() protoreflect.Message {
+	mi := &file_api_manage_v1_release_proto_msgTypes[25]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use StringIdSnapshot.ProtoReflect.Descriptor instead.
+func (*StringIdSnapshot) Descriptor() ([]byte, []int) {
+	return file_api_manage_v1_release_proto_rawDescGZIP(), []int{25}
+}
+
+func (x *StringIdSnapshot) GetIds() []string {
+	if x != nil {
+		return x.Ids
+	}
+	return nil
+}
+
+type RelationOrderIntent struct {
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	ItemId         string                 `protobuf:"bytes,1,opt,name=item_id,json=itemId,proto3" json:"item_id,omitempty"`
+	PreviousItemId *string                `protobuf:"bytes,2,opt,name=previous_item_id,json=previousItemId,proto3,oneof" json:"previous_item_id,omitempty"`
+	NextItemId     *string                `protobuf:"bytes,3,opt,name=next_item_id,json=nextItemId,proto3,oneof" json:"next_item_id,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
+}
+
+func (x *RelationOrderIntent) Reset() {
+	*x = RelationOrderIntent{}
+	mi := &file_api_manage_v1_release_proto_msgTypes[26]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *RelationOrderIntent) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RelationOrderIntent) ProtoMessage() {}
+
+func (x *RelationOrderIntent) ProtoReflect() protoreflect.Message {
+	mi := &file_api_manage_v1_release_proto_msgTypes[26]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RelationOrderIntent.ProtoReflect.Descriptor instead.
+func (*RelationOrderIntent) Descriptor() ([]byte, []int) {
+	return file_api_manage_v1_release_proto_rawDescGZIP(), []int{26}
+}
+
+func (x *RelationOrderIntent) GetItemId() string {
+	if x != nil {
+		return x.ItemId
+	}
+	return ""
+}
+
+func (x *RelationOrderIntent) GetPreviousItemId() string {
+	if x != nil && x.PreviousItemId != nil {
+		return *x.PreviousItemId
+	}
+	return ""
+}
+
+func (x *RelationOrderIntent) GetNextItemId() string {
+	if x != nil && x.NextItemId != nil {
+		return *x.NextItemId
+	}
+	return ""
+}
+
+type ReleaseLabelsSnapshot struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Labels        []*ReleaseLabelInput   `protobuf:"bytes,1,rep,name=labels,proto3" json:"labels,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ReleaseLabelsSnapshot) Reset() {
+	*x = ReleaseLabelsSnapshot{}
+	mi := &file_api_manage_v1_release_proto_msgTypes[27]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ReleaseLabelsSnapshot) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ReleaseLabelsSnapshot) ProtoMessage() {}
+
+func (x *ReleaseLabelsSnapshot) ProtoReflect() protoreflect.Message {
+	mi := &file_api_manage_v1_release_proto_msgTypes[27]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ReleaseLabelsSnapshot.ProtoReflect.Descriptor instead.
+func (*ReleaseLabelsSnapshot) Descriptor() ([]byte, []int) {
+	return file_api_manage_v1_release_proto_rawDescGZIP(), []int{27}
+}
+
+func (x *ReleaseLabelsSnapshot) GetLabels() []*ReleaseLabelInput {
+	if x != nil {
+		return x.Labels
+	}
+	return nil
+}
+
 type SetReleaseLabelsRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	ReleaseId     string                 `protobuf:"bytes,1,opt,name=release_id,json=releaseId,proto3" json:"release_id,omitempty"`
 	Labels        []*ReleaseLabelInput   `protobuf:"bytes,2,rep,name=labels,proto3" json:"labels,omitempty"`
+	Observed      *ReleaseLabelsSnapshot `protobuf:"bytes,3,opt,name=observed,proto3" json:"observed,omitempty"`
+	OrderIntent   *RelationOrderIntent   `protobuf:"bytes,4,opt,name=order_intent,json=orderIntent,proto3" json:"order_intent,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *SetReleaseLabelsRequest) Reset() {
 	*x = SetReleaseLabelsRequest{}
-	mi := &file_api_manage_v1_release_proto_msgTypes[18]
+	mi := &file_api_manage_v1_release_proto_msgTypes[28]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1413,7 +2088,7 @@ func (x *SetReleaseLabelsRequest) String() string {
 func (*SetReleaseLabelsRequest) ProtoMessage() {}
 
 func (x *SetReleaseLabelsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_release_proto_msgTypes[18]
+	mi := &file_api_manage_v1_release_proto_msgTypes[28]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1426,7 +2101,7 @@ func (x *SetReleaseLabelsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetReleaseLabelsRequest.ProtoReflect.Descriptor instead.
 func (*SetReleaseLabelsRequest) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_release_proto_rawDescGZIP(), []int{18}
+	return file_api_manage_v1_release_proto_rawDescGZIP(), []int{28}
 }
 
 func (x *SetReleaseLabelsRequest) GetReleaseId() string {
@@ -1443,17 +2118,32 @@ func (x *SetReleaseLabelsRequest) GetLabels() []*ReleaseLabelInput {
 	return nil
 }
 
+func (x *SetReleaseLabelsRequest) GetObserved() *ReleaseLabelsSnapshot {
+	if x != nil {
+		return x.Observed
+	}
+	return nil
+}
+
+func (x *SetReleaseLabelsRequest) GetOrderIntent() *RelationOrderIntent {
+	if x != nil {
+		return x.OrderIntent
+	}
+	return nil
+}
+
 type SetReleaseCategoriesRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	ReleaseId     string                 `protobuf:"bytes,1,opt,name=release_id,json=releaseId,proto3" json:"release_id,omitempty"`
 	CategoryIds   []string               `protobuf:"bytes,2,rep,name=category_ids,json=categoryIds,proto3" json:"category_ids,omitempty"`
+	Observed      *StringIdSnapshot      `protobuf:"bytes,3,opt,name=observed,proto3" json:"observed,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *SetReleaseCategoriesRequest) Reset() {
 	*x = SetReleaseCategoriesRequest{}
-	mi := &file_api_manage_v1_release_proto_msgTypes[19]
+	mi := &file_api_manage_v1_release_proto_msgTypes[29]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1465,7 +2155,7 @@ func (x *SetReleaseCategoriesRequest) String() string {
 func (*SetReleaseCategoriesRequest) ProtoMessage() {}
 
 func (x *SetReleaseCategoriesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_release_proto_msgTypes[19]
+	mi := &file_api_manage_v1_release_proto_msgTypes[29]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1478,7 +2168,7 @@ func (x *SetReleaseCategoriesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetReleaseCategoriesRequest.ProtoReflect.Descriptor instead.
 func (*SetReleaseCategoriesRequest) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_release_proto_rawDescGZIP(), []int{19}
+	return file_api_manage_v1_release_proto_rawDescGZIP(), []int{29}
 }
 
 func (x *SetReleaseCategoriesRequest) GetReleaseId() string {
@@ -1495,17 +2185,25 @@ func (x *SetReleaseCategoriesRequest) GetCategoryIds() []string {
 	return nil
 }
 
+func (x *SetReleaseCategoriesRequest) GetObserved() *StringIdSnapshot {
+	if x != nil {
+		return x.Observed
+	}
+	return nil
+}
+
 type SetReleaseGenresRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	ReleaseId     string                 `protobuf:"bytes,1,opt,name=release_id,json=releaseId,proto3" json:"release_id,omitempty"`
 	GenreIds      []string               `protobuf:"bytes,2,rep,name=genre_ids,json=genreIds,proto3" json:"genre_ids,omitempty"`
+	Observed      *StringIdSnapshot      `protobuf:"bytes,3,opt,name=observed,proto3" json:"observed,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *SetReleaseGenresRequest) Reset() {
 	*x = SetReleaseGenresRequest{}
-	mi := &file_api_manage_v1_release_proto_msgTypes[20]
+	mi := &file_api_manage_v1_release_proto_msgTypes[30]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1517,7 +2215,7 @@ func (x *SetReleaseGenresRequest) String() string {
 func (*SetReleaseGenresRequest) ProtoMessage() {}
 
 func (x *SetReleaseGenresRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_release_proto_msgTypes[20]
+	mi := &file_api_manage_v1_release_proto_msgTypes[30]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1530,7 +2228,7 @@ func (x *SetReleaseGenresRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetReleaseGenresRequest.ProtoReflect.Descriptor instead.
 func (*SetReleaseGenresRequest) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_release_proto_rawDescGZIP(), []int{20}
+	return file_api_manage_v1_release_proto_rawDescGZIP(), []int{30}
 }
 
 func (x *SetReleaseGenresRequest) GetReleaseId() string {
@@ -1547,17 +2245,25 @@ func (x *SetReleaseGenresRequest) GetGenreIds() []string {
 	return nil
 }
 
+func (x *SetReleaseGenresRequest) GetObserved() *StringIdSnapshot {
+	if x != nil {
+		return x.Observed
+	}
+	return nil
+}
+
 type SetReleaseStylesRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	ReleaseId     string                 `protobuf:"bytes,1,opt,name=release_id,json=releaseId,proto3" json:"release_id,omitempty"`
 	StyleIds      []string               `protobuf:"bytes,2,rep,name=style_ids,json=styleIds,proto3" json:"style_ids,omitempty"`
+	Observed      *StringIdSnapshot      `protobuf:"bytes,3,opt,name=observed,proto3" json:"observed,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *SetReleaseStylesRequest) Reset() {
 	*x = SetReleaseStylesRequest{}
-	mi := &file_api_manage_v1_release_proto_msgTypes[21]
+	mi := &file_api_manage_v1_release_proto_msgTypes[31]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1569,7 +2275,7 @@ func (x *SetReleaseStylesRequest) String() string {
 func (*SetReleaseStylesRequest) ProtoMessage() {}
 
 func (x *SetReleaseStylesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_release_proto_msgTypes[21]
+	mi := &file_api_manage_v1_release_proto_msgTypes[31]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1582,7 +2288,7 @@ func (x *SetReleaseStylesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetReleaseStylesRequest.ProtoReflect.Descriptor instead.
 func (*SetReleaseStylesRequest) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_release_proto_rawDescGZIP(), []int{21}
+	return file_api_manage_v1_release_proto_rawDescGZIP(), []int{31}
 }
 
 func (x *SetReleaseStylesRequest) GetReleaseId() string {
@@ -1599,6 +2305,13 @@ func (x *SetReleaseStylesRequest) GetStyleIds() []string {
 	return nil
 }
 
+func (x *SetReleaseStylesRequest) GetObserved() *StringIdSnapshot {
+	if x != nil {
+		return x.Observed
+	}
+	return nil
+}
+
 type ReleaseArtistInput struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	ArtistId      string                 `protobuf:"bytes,1,opt,name=artist_id,json=artistId,proto3" json:"artist_id,omitempty"`
@@ -1609,7 +2322,7 @@ type ReleaseArtistInput struct {
 
 func (x *ReleaseArtistInput) Reset() {
 	*x = ReleaseArtistInput{}
-	mi := &file_api_manage_v1_release_proto_msgTypes[22]
+	mi := &file_api_manage_v1_release_proto_msgTypes[32]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1621,7 +2334,7 @@ func (x *ReleaseArtistInput) String() string {
 func (*ReleaseArtistInput) ProtoMessage() {}
 
 func (x *ReleaseArtistInput) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_release_proto_msgTypes[22]
+	mi := &file_api_manage_v1_release_proto_msgTypes[32]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1634,7 +2347,7 @@ func (x *ReleaseArtistInput) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ReleaseArtistInput.ProtoReflect.Descriptor instead.
 func (*ReleaseArtistInput) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_release_proto_rawDescGZIP(), []int{22}
+	return file_api_manage_v1_release_proto_rawDescGZIP(), []int{32}
 }
 
 func (x *ReleaseArtistInput) GetArtistId() string {
@@ -1651,17 +2364,63 @@ func (x *ReleaseArtistInput) GetSortOrder() int32 {
 	return 0
 }
 
-type SetReleaseArtistsRequest struct {
+type ReleaseArtistsSnapshot struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	ReleaseId     string                 `protobuf:"bytes,1,opt,name=release_id,json=releaseId,proto3" json:"release_id,omitempty"`
-	Artists       []*ReleaseArtistInput  `protobuf:"bytes,2,rep,name=artists,proto3" json:"artists,omitempty"`
+	Artists       []*ReleaseArtistInput  `protobuf:"bytes,1,rep,name=artists,proto3" json:"artists,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ReleaseArtistsSnapshot) Reset() {
+	*x = ReleaseArtistsSnapshot{}
+	mi := &file_api_manage_v1_release_proto_msgTypes[33]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ReleaseArtistsSnapshot) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ReleaseArtistsSnapshot) ProtoMessage() {}
+
+func (x *ReleaseArtistsSnapshot) ProtoReflect() protoreflect.Message {
+	mi := &file_api_manage_v1_release_proto_msgTypes[33]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ReleaseArtistsSnapshot.ProtoReflect.Descriptor instead.
+func (*ReleaseArtistsSnapshot) Descriptor() ([]byte, []int) {
+	return file_api_manage_v1_release_proto_rawDescGZIP(), []int{33}
+}
+
+func (x *ReleaseArtistsSnapshot) GetArtists() []*ReleaseArtistInput {
+	if x != nil {
+		return x.Artists
+	}
+	return nil
+}
+
+type SetReleaseArtistsRequest struct {
+	state         protoimpl.MessageState  `protogen:"open.v1"`
+	ReleaseId     string                  `protobuf:"bytes,1,opt,name=release_id,json=releaseId,proto3" json:"release_id,omitempty"`
+	Artists       []*ReleaseArtistInput   `protobuf:"bytes,2,rep,name=artists,proto3" json:"artists,omitempty"`
+	Observed      *ReleaseArtistsSnapshot `protobuf:"bytes,3,opt,name=observed,proto3" json:"observed,omitempty"`
+	OrderIntent   *RelationOrderIntent    `protobuf:"bytes,4,opt,name=order_intent,json=orderIntent,proto3" json:"order_intent,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *SetReleaseArtistsRequest) Reset() {
 	*x = SetReleaseArtistsRequest{}
-	mi := &file_api_manage_v1_release_proto_msgTypes[23]
+	mi := &file_api_manage_v1_release_proto_msgTypes[34]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1673,7 +2432,7 @@ func (x *SetReleaseArtistsRequest) String() string {
 func (*SetReleaseArtistsRequest) ProtoMessage() {}
 
 func (x *SetReleaseArtistsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_release_proto_msgTypes[23]
+	mi := &file_api_manage_v1_release_proto_msgTypes[34]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1686,7 +2445,7 @@ func (x *SetReleaseArtistsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetReleaseArtistsRequest.ProtoReflect.Descriptor instead.
 func (*SetReleaseArtistsRequest) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_release_proto_rawDescGZIP(), []int{23}
+	return file_api_manage_v1_release_proto_rawDescGZIP(), []int{34}
 }
 
 func (x *SetReleaseArtistsRequest) GetReleaseId() string {
@@ -1703,6 +2462,20 @@ func (x *SetReleaseArtistsRequest) GetArtists() []*ReleaseArtistInput {
 	return nil
 }
 
+func (x *SetReleaseArtistsRequest) GetObserved() *ReleaseArtistsSnapshot {
+	if x != nil {
+		return x.Observed
+	}
+	return nil
+}
+
+func (x *SetReleaseArtistsRequest) GetOrderIntent() *RelationOrderIntent {
+	if x != nil {
+		return x.OrderIntent
+	}
+	return nil
+}
+
 type ReleaseFormatInput struct {
 	state             protoimpl.MessageState `protogen:"open.v1"`
 	FormatId          string                 `protobuf:"bytes,1,opt,name=format_id,json=formatId,proto3" json:"format_id,omitempty"`
@@ -1713,7 +2486,7 @@ type ReleaseFormatInput struct {
 
 func (x *ReleaseFormatInput) Reset() {
 	*x = ReleaseFormatInput{}
-	mi := &file_api_manage_v1_release_proto_msgTypes[24]
+	mi := &file_api_manage_v1_release_proto_msgTypes[35]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1725,7 +2498,7 @@ func (x *ReleaseFormatInput) String() string {
 func (*ReleaseFormatInput) ProtoMessage() {}
 
 func (x *ReleaseFormatInput) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_release_proto_msgTypes[24]
+	mi := &file_api_manage_v1_release_proto_msgTypes[35]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1738,7 +2511,7 @@ func (x *ReleaseFormatInput) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ReleaseFormatInput.ProtoReflect.Descriptor instead.
 func (*ReleaseFormatInput) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_release_proto_rawDescGZIP(), []int{24}
+	return file_api_manage_v1_release_proto_rawDescGZIP(), []int{35}
 }
 
 func (x *ReleaseFormatInput) GetFormatId() string {
@@ -1755,17 +2528,62 @@ func (x *ReleaseFormatInput) GetFormatDescription() string {
 	return ""
 }
 
-type SetReleaseFormatsRequest struct {
+type ReleaseFormatsSnapshot struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	ReleaseId     string                 `protobuf:"bytes,1,opt,name=release_id,json=releaseId,proto3" json:"release_id,omitempty"`
-	Formats       []*ReleaseFormatInput  `protobuf:"bytes,2,rep,name=formats,proto3" json:"formats,omitempty"`
+	Formats       []*ReleaseFormatInput  `protobuf:"bytes,1,rep,name=formats,proto3" json:"formats,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ReleaseFormatsSnapshot) Reset() {
+	*x = ReleaseFormatsSnapshot{}
+	mi := &file_api_manage_v1_release_proto_msgTypes[36]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ReleaseFormatsSnapshot) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ReleaseFormatsSnapshot) ProtoMessage() {}
+
+func (x *ReleaseFormatsSnapshot) ProtoReflect() protoreflect.Message {
+	mi := &file_api_manage_v1_release_proto_msgTypes[36]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ReleaseFormatsSnapshot.ProtoReflect.Descriptor instead.
+func (*ReleaseFormatsSnapshot) Descriptor() ([]byte, []int) {
+	return file_api_manage_v1_release_proto_rawDescGZIP(), []int{36}
+}
+
+func (x *ReleaseFormatsSnapshot) GetFormats() []*ReleaseFormatInput {
+	if x != nil {
+		return x.Formats
+	}
+	return nil
+}
+
+type SetReleaseFormatsRequest struct {
+	state         protoimpl.MessageState  `protogen:"open.v1"`
+	ReleaseId     string                  `protobuf:"bytes,1,opt,name=release_id,json=releaseId,proto3" json:"release_id,omitempty"`
+	Formats       []*ReleaseFormatInput   `protobuf:"bytes,2,rep,name=formats,proto3" json:"formats,omitempty"`
+	Observed      *ReleaseFormatsSnapshot `protobuf:"bytes,3,opt,name=observed,proto3" json:"observed,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *SetReleaseFormatsRequest) Reset() {
 	*x = SetReleaseFormatsRequest{}
-	mi := &file_api_manage_v1_release_proto_msgTypes[25]
+	mi := &file_api_manage_v1_release_proto_msgTypes[37]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1777,7 +2595,7 @@ func (x *SetReleaseFormatsRequest) String() string {
 func (*SetReleaseFormatsRequest) ProtoMessage() {}
 
 func (x *SetReleaseFormatsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_release_proto_msgTypes[25]
+	mi := &file_api_manage_v1_release_proto_msgTypes[37]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1790,7 +2608,7 @@ func (x *SetReleaseFormatsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetReleaseFormatsRequest.ProtoReflect.Descriptor instead.
 func (*SetReleaseFormatsRequest) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_release_proto_rawDescGZIP(), []int{25}
+	return file_api_manage_v1_release_proto_rawDescGZIP(), []int{37}
 }
 
 func (x *SetReleaseFormatsRequest) GetReleaseId() string {
@@ -1803,6 +2621,13 @@ func (x *SetReleaseFormatsRequest) GetReleaseId() string {
 func (x *SetReleaseFormatsRequest) GetFormats() []*ReleaseFormatInput {
 	if x != nil {
 		return x.Formats
+	}
+	return nil
+}
+
+func (x *SetReleaseFormatsRequest) GetObserved() *ReleaseFormatsSnapshot {
+	if x != nil {
+		return x.Observed
 	}
 	return nil
 }
@@ -1821,7 +2646,7 @@ type ReleaseCreditInput struct {
 
 func (x *ReleaseCreditInput) Reset() {
 	*x = ReleaseCreditInput{}
-	mi := &file_api_manage_v1_release_proto_msgTypes[26]
+	mi := &file_api_manage_v1_release_proto_msgTypes[38]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1833,7 +2658,7 @@ func (x *ReleaseCreditInput) String() string {
 func (*ReleaseCreditInput) ProtoMessage() {}
 
 func (x *ReleaseCreditInput) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_release_proto_msgTypes[26]
+	mi := &file_api_manage_v1_release_proto_msgTypes[38]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1846,7 +2671,7 @@ func (x *ReleaseCreditInput) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ReleaseCreditInput.ProtoReflect.Descriptor instead.
 func (*ReleaseCreditInput) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_release_proto_rawDescGZIP(), []int{26}
+	return file_api_manage_v1_release_proto_rawDescGZIP(), []int{38}
 }
 
 func (x *ReleaseCreditInput) GetId() string {
@@ -1891,17 +2716,63 @@ func (x *ReleaseCreditInput) GetSortOrder() int32 {
 	return 0
 }
 
-type SetReleaseCreditsRequest struct {
+type ReleaseCreditsSnapshot struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	ReleaseId     string                 `protobuf:"bytes,1,opt,name=release_id,json=releaseId,proto3" json:"release_id,omitempty"`
-	Credits       []*ReleaseCreditInput  `protobuf:"bytes,2,rep,name=credits,proto3" json:"credits,omitempty"`
+	Credits       []*ReleaseCreditInput  `protobuf:"bytes,1,rep,name=credits,proto3" json:"credits,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ReleaseCreditsSnapshot) Reset() {
+	*x = ReleaseCreditsSnapshot{}
+	mi := &file_api_manage_v1_release_proto_msgTypes[39]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ReleaseCreditsSnapshot) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ReleaseCreditsSnapshot) ProtoMessage() {}
+
+func (x *ReleaseCreditsSnapshot) ProtoReflect() protoreflect.Message {
+	mi := &file_api_manage_v1_release_proto_msgTypes[39]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ReleaseCreditsSnapshot.ProtoReflect.Descriptor instead.
+func (*ReleaseCreditsSnapshot) Descriptor() ([]byte, []int) {
+	return file_api_manage_v1_release_proto_rawDescGZIP(), []int{39}
+}
+
+func (x *ReleaseCreditsSnapshot) GetCredits() []*ReleaseCreditInput {
+	if x != nil {
+		return x.Credits
+	}
+	return nil
+}
+
+type SetReleaseCreditsRequest struct {
+	state         protoimpl.MessageState  `protogen:"open.v1"`
+	ReleaseId     string                  `protobuf:"bytes,1,opt,name=release_id,json=releaseId,proto3" json:"release_id,omitempty"`
+	Credits       []*ReleaseCreditInput   `protobuf:"bytes,2,rep,name=credits,proto3" json:"credits,omitempty"`
+	Observed      *ReleaseCreditsSnapshot `protobuf:"bytes,3,opt,name=observed,proto3" json:"observed,omitempty"`
+	OrderIntent   *RelationOrderIntent    `protobuf:"bytes,4,opt,name=order_intent,json=orderIntent,proto3" json:"order_intent,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *SetReleaseCreditsRequest) Reset() {
 	*x = SetReleaseCreditsRequest{}
-	mi := &file_api_manage_v1_release_proto_msgTypes[27]
+	mi := &file_api_manage_v1_release_proto_msgTypes[40]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1913,7 +2784,7 @@ func (x *SetReleaseCreditsRequest) String() string {
 func (*SetReleaseCreditsRequest) ProtoMessage() {}
 
 func (x *SetReleaseCreditsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_release_proto_msgTypes[27]
+	mi := &file_api_manage_v1_release_proto_msgTypes[40]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1926,7 +2797,7 @@ func (x *SetReleaseCreditsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetReleaseCreditsRequest.ProtoReflect.Descriptor instead.
 func (*SetReleaseCreditsRequest) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_release_proto_rawDescGZIP(), []int{27}
+	return file_api_manage_v1_release_proto_rawDescGZIP(), []int{40}
 }
 
 func (x *SetReleaseCreditsRequest) GetReleaseId() string {
@@ -1939,6 +2810,20 @@ func (x *SetReleaseCreditsRequest) GetReleaseId() string {
 func (x *SetReleaseCreditsRequest) GetCredits() []*ReleaseCreditInput {
 	if x != nil {
 		return x.Credits
+	}
+	return nil
+}
+
+func (x *SetReleaseCreditsRequest) GetObserved() *ReleaseCreditsSnapshot {
+	if x != nil {
+		return x.Observed
+	}
+	return nil
+}
+
+func (x *SetReleaseCreditsRequest) GetOrderIntent() *RelationOrderIntent {
+	if x != nil {
+		return x.OrderIntent
 	}
 	return nil
 }
@@ -1987,7 +2872,76 @@ const file_api_manage_v1_release_proto_rawDesc = "" +
 	"trackCount\x12!\n" +
 	"\fcredit_count\x18\x03 \x01(\x05R\vcreditCount\"#\n" +
 	"\x11GetReleaseRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\"\xc0\x01\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\";\n" +
+	"\x1aGetReleaseRelationsRequest\x12\x1d\n" +
+	"\n" +
+	"release_id\x18\x01 \x01(\tR\treleaseId\"\xac\x01\n" +
+	"\x17ReleaseArtistEditorItem\x12\x1b\n" +
+	"\tartist_id\x18\x01 \x01(\tR\bartistId\x12\x1f\n" +
+	"\vartist_name\x18\x02 \x01(\tR\n" +
+	"artistName\x12$\n" +
+	"\vartist_slug\x18\x03 \x01(\tH\x00R\n" +
+	"artistSlug\x88\x01\x01\x12\x1d\n" +
+	"\n" +
+	"sort_order\x18\x04 \x01(\x05R\tsortOrderB\x0e\n" +
+	"\f_artist_slug\"\xe3\x01\n" +
+	"\x16ReleaseLabelEditorItem\x12\x19\n" +
+	"\blabel_id\x18\x01 \x01(\tR\alabelId\x12\x1d\n" +
+	"\n" +
+	"label_name\x18\x02 \x01(\tR\tlabelName\x12\"\n" +
+	"\n" +
+	"label_slug\x18\x03 \x01(\tH\x00R\tlabelSlug\x88\x01\x01\x12*\n" +
+	"\x0ecatalog_number\x18\x04 \x01(\tH\x01R\rcatalogNumber\x88\x01\x01\x12\x1d\n" +
+	"\n" +
+	"sort_order\x18\x05 \x01(\x05R\tsortOrderB\r\n" +
+	"\v_label_slugB\x11\n" +
+	"\x0f_catalog_number\"T\n" +
+	"\x1aReleaseReferenceEditorItem\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
+	"\x04slug\x18\x03 \x01(\tR\x04slug\"\x9c\x01\n" +
+	"\x17ReleaseFormatEditorItem\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
+	"\x04slug\x18\x03 \x01(\tR\x04slug\x122\n" +
+	"\x12format_description\x18\x04 \x01(\tH\x00R\x11formatDescription\x88\x01\x01B\x15\n" +
+	"\x13_format_description\"\xbc\x03\n" +
+	"\x17ReleaseCreditEditorItem\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12 \n" +
+	"\tartist_id\x18\x02 \x01(\tH\x00R\bartistId\x88\x01\x01\x12$\n" +
+	"\vartist_name\x18\x03 \x01(\tH\x01R\n" +
+	"artistName\x88\x01\x01\x12$\n" +
+	"\vartist_slug\x18\x04 \x01(\tH\x02R\n" +
+	"artistSlug\x88\x01\x01\x12 \n" +
+	"\tmember_id\x18\x05 \x01(\tH\x03R\bmemberId\x88\x01\x01\x12$\n" +
+	"\vmember_name\x18\x06 \x01(\tH\x04R\n" +
+	"memberName\x88\x01\x01\x12(\n" +
+	"\rcredited_name\x18\a \x01(\tH\x05R\fcreditedName\x88\x01\x01\x12$\n" +
+	"\vcredit_role\x18\b \x01(\tH\x06R\n" +
+	"creditRole\x88\x01\x01\x12\x1d\n" +
+	"\n" +
+	"sort_order\x18\t \x01(\x05R\tsortOrderB\f\n" +
+	"\n" +
+	"_artist_idB\x0e\n" +
+	"\f_artist_nameB\x0e\n" +
+	"\f_artist_slugB\f\n" +
+	"\n" +
+	"_member_idB\x0e\n" +
+	"\f_member_nameB\x10\n" +
+	"\x0e_credited_nameB\x0e\n" +
+	"\f_credit_role\"\x92\x04\n" +
+	"\x1bGetReleaseRelationsResponse\x12\x1d\n" +
+	"\n" +
+	"release_id\x18\x01 \x01(\tR\treleaseId\x12@\n" +
+	"\aartists\x18\x02 \x03(\v2&.api.manage.v1.ReleaseArtistEditorItemR\aartists\x12=\n" +
+	"\x06labels\x18\x03 \x03(\v2%.api.manage.v1.ReleaseLabelEditorItemR\x06labels\x12I\n" +
+	"\n" +
+	"categories\x18\x04 \x03(\v2).api.manage.v1.ReleaseReferenceEditorItemR\n" +
+	"categories\x12A\n" +
+	"\x06genres\x18\x05 \x03(\v2).api.manage.v1.ReleaseReferenceEditorItemR\x06genres\x12A\n" +
+	"\x06styles\x18\x06 \x03(\v2).api.manage.v1.ReleaseReferenceEditorItemR\x06styles\x12@\n" +
+	"\aformats\x18\a \x03(\v2&.api.manage.v1.ReleaseFormatEditorItemR\aformats\x12@\n" +
+	"\acredits\x18\b \x03(\v2&.api.manage.v1.ReleaseCreditEditorItemR\acredits\"\xc0\x01\n" +
 	"\x18ListReleasesAdminRequest\x12@\n" +
 	"\n" +
 	"pagination\x18\x01 \x01(\v2 .api.common.v1.PaginationRequestR\n" +
@@ -2084,39 +3038,62 @@ const file_api_manage_v1_release_proto_rawDesc = "" +
 	"\x0ecatalog_number\x18\x02 \x01(\tH\x00R\rcatalogNumber\x88\x01\x01\x12\x1d\n" +
 	"\n" +
 	"sort_order\x18\x03 \x01(\x05R\tsortOrderB\x11\n" +
-	"\x0f_catalog_number\"r\n" +
+	"\x0f_catalog_number\"$\n" +
+	"\x10StringIdSnapshot\x12\x10\n" +
+	"\x03ids\x18\x01 \x03(\tR\x03ids\"\xaa\x01\n" +
+	"\x13RelationOrderIntent\x12\x17\n" +
+	"\aitem_id\x18\x01 \x01(\tR\x06itemId\x12-\n" +
+	"\x10previous_item_id\x18\x02 \x01(\tH\x00R\x0epreviousItemId\x88\x01\x01\x12%\n" +
+	"\fnext_item_id\x18\x03 \x01(\tH\x01R\n" +
+	"nextItemId\x88\x01\x01B\x13\n" +
+	"\x11_previous_item_idB\x0f\n" +
+	"\r_next_item_id\"Q\n" +
+	"\x15ReleaseLabelsSnapshot\x128\n" +
+	"\x06labels\x18\x01 \x03(\v2 .api.manage.v1.ReleaseLabelInputR\x06labels\"\xfb\x01\n" +
 	"\x17SetReleaseLabelsRequest\x12\x1d\n" +
 	"\n" +
 	"release_id\x18\x01 \x01(\tR\treleaseId\x128\n" +
-	"\x06labels\x18\x02 \x03(\v2 .api.manage.v1.ReleaseLabelInputR\x06labels\"_\n" +
+	"\x06labels\x18\x02 \x03(\v2 .api.manage.v1.ReleaseLabelInputR\x06labels\x12@\n" +
+	"\bobserved\x18\x03 \x01(\v2$.api.manage.v1.ReleaseLabelsSnapshotR\bobserved\x12E\n" +
+	"\forder_intent\x18\x04 \x01(\v2\".api.manage.v1.RelationOrderIntentR\vorderIntent\"\x9c\x01\n" +
 	"\x1bSetReleaseCategoriesRequest\x12\x1d\n" +
 	"\n" +
 	"release_id\x18\x01 \x01(\tR\treleaseId\x12!\n" +
-	"\fcategory_ids\x18\x02 \x03(\tR\vcategoryIds\"U\n" +
+	"\fcategory_ids\x18\x02 \x03(\tR\vcategoryIds\x12;\n" +
+	"\bobserved\x18\x03 \x01(\v2\x1f.api.manage.v1.StringIdSnapshotR\bobserved\"\x92\x01\n" +
 	"\x17SetReleaseGenresRequest\x12\x1d\n" +
 	"\n" +
 	"release_id\x18\x01 \x01(\tR\treleaseId\x12\x1b\n" +
-	"\tgenre_ids\x18\x02 \x03(\tR\bgenreIds\"U\n" +
+	"\tgenre_ids\x18\x02 \x03(\tR\bgenreIds\x12;\n" +
+	"\bobserved\x18\x03 \x01(\v2\x1f.api.manage.v1.StringIdSnapshotR\bobserved\"\x92\x01\n" +
 	"\x17SetReleaseStylesRequest\x12\x1d\n" +
 	"\n" +
 	"release_id\x18\x01 \x01(\tR\treleaseId\x12\x1b\n" +
-	"\tstyle_ids\x18\x02 \x03(\tR\bstyleIds\"P\n" +
+	"\tstyle_ids\x18\x02 \x03(\tR\bstyleIds\x12;\n" +
+	"\bobserved\x18\x03 \x01(\v2\x1f.api.manage.v1.StringIdSnapshotR\bobserved\"P\n" +
 	"\x12ReleaseArtistInput\x12\x1b\n" +
 	"\tartist_id\x18\x01 \x01(\tR\bartistId\x12\x1d\n" +
 	"\n" +
-	"sort_order\x18\x02 \x01(\x05R\tsortOrder\"v\n" +
+	"sort_order\x18\x02 \x01(\x05R\tsortOrder\"U\n" +
+	"\x16ReleaseArtistsSnapshot\x12;\n" +
+	"\aartists\x18\x01 \x03(\v2!.api.manage.v1.ReleaseArtistInputR\aartists\"\x80\x02\n" +
 	"\x18SetReleaseArtistsRequest\x12\x1d\n" +
 	"\n" +
 	"release_id\x18\x01 \x01(\tR\treleaseId\x12;\n" +
-	"\aartists\x18\x02 \x03(\v2!.api.manage.v1.ReleaseArtistInputR\aartists\"|\n" +
+	"\aartists\x18\x02 \x03(\v2!.api.manage.v1.ReleaseArtistInputR\aartists\x12A\n" +
+	"\bobserved\x18\x03 \x01(\v2%.api.manage.v1.ReleaseArtistsSnapshotR\bobserved\x12E\n" +
+	"\forder_intent\x18\x04 \x01(\v2\".api.manage.v1.RelationOrderIntentR\vorderIntent\"|\n" +
 	"\x12ReleaseFormatInput\x12\x1b\n" +
 	"\tformat_id\x18\x01 \x01(\tR\bformatId\x122\n" +
 	"\x12format_description\x18\x02 \x01(\tH\x00R\x11formatDescription\x88\x01\x01B\x15\n" +
-	"\x13_format_description\"v\n" +
+	"\x13_format_description\"U\n" +
+	"\x16ReleaseFormatsSnapshot\x12;\n" +
+	"\aformats\x18\x01 \x03(\v2!.api.manage.v1.ReleaseFormatInputR\aformats\"\xb9\x01\n" +
 	"\x18SetReleaseFormatsRequest\x12\x1d\n" +
 	"\n" +
 	"release_id\x18\x01 \x01(\tR\treleaseId\x12;\n" +
-	"\aformats\x18\x02 \x03(\v2!.api.manage.v1.ReleaseFormatInputR\aformats\"\xa1\x02\n" +
+	"\aformats\x18\x02 \x03(\v2!.api.manage.v1.ReleaseFormatInputR\aformats\x12A\n" +
+	"\bobserved\x18\x03 \x01(\v2%.api.manage.v1.ReleaseFormatsSnapshotR\bobserved\"\xa1\x02\n" +
 	"\x12ReleaseCreditInput\x12\x13\n" +
 	"\x02id\x18\x01 \x01(\tH\x00R\x02id\x88\x01\x01\x12 \n" +
 	"\tartist_id\x18\x02 \x01(\tH\x01R\bartistId\x88\x01\x01\x12 \n" +
@@ -2132,11 +3109,15 @@ const file_api_manage_v1_release_proto_rawDesc = "" +
 	"\n" +
 	"_member_idB\x10\n" +
 	"\x0e_credited_nameB\x0e\n" +
-	"\f_credit_role\"v\n" +
+	"\f_credit_role\"U\n" +
+	"\x16ReleaseCreditsSnapshot\x12;\n" +
+	"\acredits\x18\x01 \x03(\v2!.api.manage.v1.ReleaseCreditInputR\acredits\"\x80\x02\n" +
 	"\x18SetReleaseCreditsRequest\x12\x1d\n" +
 	"\n" +
 	"release_id\x18\x01 \x01(\tR\treleaseId\x12;\n" +
-	"\acredits\x18\x02 \x03(\v2!.api.manage.v1.ReleaseCreditInputR\acredits*\x8f\x01\n" +
+	"\acredits\x18\x02 \x03(\v2!.api.manage.v1.ReleaseCreditInputR\acredits\x12A\n" +
+	"\bobserved\x18\x03 \x01(\v2%.api.manage.v1.ReleaseCreditsSnapshotR\bobserved\x12E\n" +
+	"\forder_intent\x18\x04 \x01(\v2\".api.manage.v1.RelationOrderIntentR\vorderIntent*\x8f\x01\n" +
 	"\vReleaseType\x12\x1c\n" +
 	"\x18RELEASE_TYPE_UNSPECIFIED\x10\x00\x12\x16\n" +
 	"\x12RELEASE_TYPE_ALBUM\x10\x01\x12\x13\n" +
@@ -2146,10 +3127,11 @@ const file_api_manage_v1_release_proto_rawDesc = "" +
 	"\rReleaseStatus\x12\x1e\n" +
 	"\x1aRELEASE_STATUS_UNSPECIFIED\x10\x00\x12\x18\n" +
 	"\x14RELEASE_STATUS_DRAFT\x10\x01\x12\x1c\n" +
-	"\x18RELEASE_STATUS_PUBLISHED\x10\x022\x82\x0e\n" +
+	"\x18RELEASE_STATUS_PUBLISHED\x10\x022\xf8\x0e\n" +
 	"\x0eReleaseService\x12N\n" +
 	"\n" +
-	"GetRelease\x12 .api.manage.v1.GetReleaseRequest\x1a\x16.api.manage.v1.Release\"\x06\xca\xf3\x18\x02\b\x04\x12n\n" +
+	"GetRelease\x12 .api.manage.v1.GetReleaseRequest\x1a\x16.api.manage.v1.Release\"\x06\xca\xf3\x18\x02\b\x04\x12t\n" +
+	"\x13GetReleaseRelations\x12).api.manage.v1.GetReleaseRelationsRequest\x1a*.api.manage.v1.GetReleaseRelationsResponse\"\x06\xca\xf3\x18\x02\b\x04\x12n\n" +
 	"\x11ListReleasesAdmin\x12'.api.manage.v1.ListReleasesAdminRequest\x1a(.api.manage.v1.ListReleasesAdminResponse\"\x06\xca\xf3\x18\x02\b\x04\x12T\n" +
 	"\rCreateRelease\x12#.api.manage.v1.CreateReleaseRequest\x1a\x16.api.manage.v1.Release\"\x06\xca\xf3\x18\x02\b\x04\x12b\n" +
 	"\rUpdateRelease\x12#.api.manage.v1.UpdateReleaseRequest\x1a$.api.manage.v1.UpdateReleaseResponse\"\x06\xca\xf3\x18\x02\b\x04\x12[\n" +
@@ -2181,120 +3163,156 @@ func file_api_manage_v1_release_proto_rawDescGZIP() []byte {
 }
 
 var file_api_manage_v1_release_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
-var file_api_manage_v1_release_proto_msgTypes = make([]protoimpl.MessageInfo, 28)
+var file_api_manage_v1_release_proto_msgTypes = make([]protoimpl.MessageInfo, 41)
 var file_api_manage_v1_release_proto_goTypes = []any{
 	(ReleaseType)(0),                          // 0: api.manage.v1.ReleaseType
 	(ReleaseStatus)(0),                        // 1: api.manage.v1.ReleaseStatus
 	(*Release)(nil),                           // 2: api.manage.v1.Release
 	(*ReleaseWithStats)(nil),                  // 3: api.manage.v1.ReleaseWithStats
 	(*GetReleaseRequest)(nil),                 // 4: api.manage.v1.GetReleaseRequest
-	(*ListReleasesAdminRequest)(nil),          // 5: api.manage.v1.ListReleasesAdminRequest
-	(*ListReleasesAdminResponse)(nil),         // 6: api.manage.v1.ListReleasesAdminResponse
-	(*CreateReleaseRequest)(nil),              // 7: api.manage.v1.CreateReleaseRequest
-	(*UpdateReleaseRequest)(nil),              // 8: api.manage.v1.UpdateReleaseRequest
-	(*DeleteReleaseRequest)(nil),              // 9: api.manage.v1.DeleteReleaseRequest
-	(*PublishReleaseRequest)(nil),             // 10: api.manage.v1.PublishReleaseRequest
-	(*UnpublishReleaseRequest)(nil),           // 11: api.manage.v1.UnpublishReleaseRequest
-	(*UpdateReleaseResponse)(nil),             // 12: api.manage.v1.UpdateReleaseResponse
-	(*ReleaseLifecycleMutationResponse)(nil),  // 13: api.manage.v1.ReleaseLifecycleMutationResponse
-	(*SetReleaseArtworkRequest)(nil),          // 14: api.manage.v1.SetReleaseArtworkRequest
-	(*SetReleaseArtworkResponse)(nil),         // 15: api.manage.v1.SetReleaseArtworkResponse
-	(*DeleteReleaseArtworkRequest)(nil),       // 16: api.manage.v1.DeleteReleaseArtworkRequest
-	(*CheckReleaseSlugAvailableRequest)(nil),  // 17: api.manage.v1.CheckReleaseSlugAvailableRequest
-	(*CheckReleaseSlugAvailableResponse)(nil), // 18: api.manage.v1.CheckReleaseSlugAvailableResponse
-	(*ReleaseLabelInput)(nil),                 // 19: api.manage.v1.ReleaseLabelInput
-	(*SetReleaseLabelsRequest)(nil),           // 20: api.manage.v1.SetReleaseLabelsRequest
-	(*SetReleaseCategoriesRequest)(nil),       // 21: api.manage.v1.SetReleaseCategoriesRequest
-	(*SetReleaseGenresRequest)(nil),           // 22: api.manage.v1.SetReleaseGenresRequest
-	(*SetReleaseStylesRequest)(nil),           // 23: api.manage.v1.SetReleaseStylesRequest
-	(*ReleaseArtistInput)(nil),                // 24: api.manage.v1.ReleaseArtistInput
-	(*SetReleaseArtistsRequest)(nil),          // 25: api.manage.v1.SetReleaseArtistsRequest
-	(*ReleaseFormatInput)(nil),                // 26: api.manage.v1.ReleaseFormatInput
-	(*SetReleaseFormatsRequest)(nil),          // 27: api.manage.v1.SetReleaseFormatsRequest
-	(*ReleaseCreditInput)(nil),                // 28: api.manage.v1.ReleaseCreditInput
-	(*SetReleaseCreditsRequest)(nil),          // 29: api.manage.v1.SetReleaseCreditsRequest
-	(*v1.RichTextDocument)(nil),               // 30: api.content.v1.RichTextDocument
-	(*timestamppb.Timestamp)(nil),             // 31: google.protobuf.Timestamp
-	(*v11.AssetRef)(nil),                      // 32: api.common.v1.AssetRef
-	(*v11.PaginationRequest)(nil),             // 33: api.common.v1.PaginationRequest
-	(*v11.FilterSpec)(nil),                    // 34: api.common.v1.FilterSpec
-	(*v11.SortSpec)(nil),                      // 35: api.common.v1.SortSpec
-	(*v11.PaginationResponse)(nil),            // 36: api.common.v1.PaginationResponse
-	(*emptypb.Empty)(nil),                     // 37: google.protobuf.Empty
-	(*DeleteResponse)(nil),                    // 38: api.manage.v1.DeleteResponse
-	(*OgAssetDeleteResponse)(nil),             // 39: api.manage.v1.OgAssetDeleteResponse
-	(*SuccessResponse)(nil),                   // 40: api.manage.v1.SuccessResponse
+	(*GetReleaseRelationsRequest)(nil),        // 5: api.manage.v1.GetReleaseRelationsRequest
+	(*ReleaseArtistEditorItem)(nil),           // 6: api.manage.v1.ReleaseArtistEditorItem
+	(*ReleaseLabelEditorItem)(nil),            // 7: api.manage.v1.ReleaseLabelEditorItem
+	(*ReleaseReferenceEditorItem)(nil),        // 8: api.manage.v1.ReleaseReferenceEditorItem
+	(*ReleaseFormatEditorItem)(nil),           // 9: api.manage.v1.ReleaseFormatEditorItem
+	(*ReleaseCreditEditorItem)(nil),           // 10: api.manage.v1.ReleaseCreditEditorItem
+	(*GetReleaseRelationsResponse)(nil),       // 11: api.manage.v1.GetReleaseRelationsResponse
+	(*ListReleasesAdminRequest)(nil),          // 12: api.manage.v1.ListReleasesAdminRequest
+	(*ListReleasesAdminResponse)(nil),         // 13: api.manage.v1.ListReleasesAdminResponse
+	(*CreateReleaseRequest)(nil),              // 14: api.manage.v1.CreateReleaseRequest
+	(*UpdateReleaseRequest)(nil),              // 15: api.manage.v1.UpdateReleaseRequest
+	(*DeleteReleaseRequest)(nil),              // 16: api.manage.v1.DeleteReleaseRequest
+	(*PublishReleaseRequest)(nil),             // 17: api.manage.v1.PublishReleaseRequest
+	(*UnpublishReleaseRequest)(nil),           // 18: api.manage.v1.UnpublishReleaseRequest
+	(*UpdateReleaseResponse)(nil),             // 19: api.manage.v1.UpdateReleaseResponse
+	(*ReleaseLifecycleMutationResponse)(nil),  // 20: api.manage.v1.ReleaseLifecycleMutationResponse
+	(*SetReleaseArtworkRequest)(nil),          // 21: api.manage.v1.SetReleaseArtworkRequest
+	(*SetReleaseArtworkResponse)(nil),         // 22: api.manage.v1.SetReleaseArtworkResponse
+	(*DeleteReleaseArtworkRequest)(nil),       // 23: api.manage.v1.DeleteReleaseArtworkRequest
+	(*CheckReleaseSlugAvailableRequest)(nil),  // 24: api.manage.v1.CheckReleaseSlugAvailableRequest
+	(*CheckReleaseSlugAvailableResponse)(nil), // 25: api.manage.v1.CheckReleaseSlugAvailableResponse
+	(*ReleaseLabelInput)(nil),                 // 26: api.manage.v1.ReleaseLabelInput
+	(*StringIdSnapshot)(nil),                  // 27: api.manage.v1.StringIdSnapshot
+	(*RelationOrderIntent)(nil),               // 28: api.manage.v1.RelationOrderIntent
+	(*ReleaseLabelsSnapshot)(nil),             // 29: api.manage.v1.ReleaseLabelsSnapshot
+	(*SetReleaseLabelsRequest)(nil),           // 30: api.manage.v1.SetReleaseLabelsRequest
+	(*SetReleaseCategoriesRequest)(nil),       // 31: api.manage.v1.SetReleaseCategoriesRequest
+	(*SetReleaseGenresRequest)(nil),           // 32: api.manage.v1.SetReleaseGenresRequest
+	(*SetReleaseStylesRequest)(nil),           // 33: api.manage.v1.SetReleaseStylesRequest
+	(*ReleaseArtistInput)(nil),                // 34: api.manage.v1.ReleaseArtistInput
+	(*ReleaseArtistsSnapshot)(nil),            // 35: api.manage.v1.ReleaseArtistsSnapshot
+	(*SetReleaseArtistsRequest)(nil),          // 36: api.manage.v1.SetReleaseArtistsRequest
+	(*ReleaseFormatInput)(nil),                // 37: api.manage.v1.ReleaseFormatInput
+	(*ReleaseFormatsSnapshot)(nil),            // 38: api.manage.v1.ReleaseFormatsSnapshot
+	(*SetReleaseFormatsRequest)(nil),          // 39: api.manage.v1.SetReleaseFormatsRequest
+	(*ReleaseCreditInput)(nil),                // 40: api.manage.v1.ReleaseCreditInput
+	(*ReleaseCreditsSnapshot)(nil),            // 41: api.manage.v1.ReleaseCreditsSnapshot
+	(*SetReleaseCreditsRequest)(nil),          // 42: api.manage.v1.SetReleaseCreditsRequest
+	(*v1.RichTextDocument)(nil),               // 43: api.content.v1.RichTextDocument
+	(*timestamppb.Timestamp)(nil),             // 44: google.protobuf.Timestamp
+	(*v11.AssetRef)(nil),                      // 45: api.common.v1.AssetRef
+	(*v11.PaginationRequest)(nil),             // 46: api.common.v1.PaginationRequest
+	(*v11.FilterSpec)(nil),                    // 47: api.common.v1.FilterSpec
+	(*v11.SortSpec)(nil),                      // 48: api.common.v1.SortSpec
+	(*v11.PaginationResponse)(nil),            // 49: api.common.v1.PaginationResponse
+	(*emptypb.Empty)(nil),                     // 50: google.protobuf.Empty
+	(*DeleteResponse)(nil),                    // 51: api.manage.v1.DeleteResponse
+	(*OgAssetDeleteResponse)(nil),             // 52: api.manage.v1.OgAssetDeleteResponse
+	(*SuccessResponse)(nil),                   // 53: api.manage.v1.SuccessResponse
 }
 var file_api_manage_v1_release_proto_depIdxs = []int32{
 	0,  // 0: api.manage.v1.Release.type:type_name -> api.manage.v1.ReleaseType
-	30, // 1: api.manage.v1.Release.document:type_name -> api.content.v1.RichTextDocument
-	31, // 2: api.manage.v1.Release.release_date:type_name -> google.protobuf.Timestamp
-	31, // 3: api.manage.v1.Release.published_at:type_name -> google.protobuf.Timestamp
-	31, // 4: api.manage.v1.Release.created_at:type_name -> google.protobuf.Timestamp
-	31, // 5: api.manage.v1.Release.updated_at:type_name -> google.protobuf.Timestamp
-	32, // 6: api.manage.v1.Release.og_asset:type_name -> api.common.v1.AssetRef
-	32, // 7: api.manage.v1.Release.artwork_asset:type_name -> api.common.v1.AssetRef
+	43, // 1: api.manage.v1.Release.document:type_name -> api.content.v1.RichTextDocument
+	44, // 2: api.manage.v1.Release.release_date:type_name -> google.protobuf.Timestamp
+	44, // 3: api.manage.v1.Release.published_at:type_name -> google.protobuf.Timestamp
+	44, // 4: api.manage.v1.Release.created_at:type_name -> google.protobuf.Timestamp
+	44, // 5: api.manage.v1.Release.updated_at:type_name -> google.protobuf.Timestamp
+	45, // 6: api.manage.v1.Release.og_asset:type_name -> api.common.v1.AssetRef
+	45, // 7: api.manage.v1.Release.artwork_asset:type_name -> api.common.v1.AssetRef
 	2,  // 8: api.manage.v1.ReleaseWithStats.release:type_name -> api.manage.v1.Release
-	33, // 9: api.manage.v1.ListReleasesAdminRequest.pagination:type_name -> api.common.v1.PaginationRequest
-	34, // 10: api.manage.v1.ListReleasesAdminRequest.filters:type_name -> api.common.v1.FilterSpec
-	35, // 11: api.manage.v1.ListReleasesAdminRequest.sorts:type_name -> api.common.v1.SortSpec
-	3,  // 12: api.manage.v1.ListReleasesAdminResponse.releases:type_name -> api.manage.v1.ReleaseWithStats
-	36, // 13: api.manage.v1.ListReleasesAdminResponse.pagination:type_name -> api.common.v1.PaginationResponse
-	0,  // 14: api.manage.v1.CreateReleaseRequest.type:type_name -> api.manage.v1.ReleaseType
-	30, // 15: api.manage.v1.CreateReleaseRequest.document:type_name -> api.content.v1.RichTextDocument
-	31, // 16: api.manage.v1.CreateReleaseRequest.release_date:type_name -> google.protobuf.Timestamp
-	0,  // 17: api.manage.v1.UpdateReleaseRequest.type:type_name -> api.manage.v1.ReleaseType
-	31, // 18: api.manage.v1.UpdateReleaseRequest.set_release_date:type_name -> google.protobuf.Timestamp
-	37, // 19: api.manage.v1.UpdateReleaseRequest.clear_release_date:type_name -> google.protobuf.Empty
-	31, // 20: api.manage.v1.UpdateReleaseResponse.release_date:type_name -> google.protobuf.Timestamp
-	31, // 21: api.manage.v1.UpdateReleaseResponse.updated_at:type_name -> google.protobuf.Timestamp
-	1,  // 22: api.manage.v1.ReleaseLifecycleMutationResponse.status:type_name -> api.manage.v1.ReleaseStatus
-	31, // 23: api.manage.v1.ReleaseLifecycleMutationResponse.published_at:type_name -> google.protobuf.Timestamp
-	31, // 24: api.manage.v1.ReleaseLifecycleMutationResponse.updated_at:type_name -> google.protobuf.Timestamp
-	32, // 25: api.manage.v1.SetReleaseArtworkResponse.artwork_asset:type_name -> api.common.v1.AssetRef
-	19, // 26: api.manage.v1.SetReleaseLabelsRequest.labels:type_name -> api.manage.v1.ReleaseLabelInput
-	24, // 27: api.manage.v1.SetReleaseArtistsRequest.artists:type_name -> api.manage.v1.ReleaseArtistInput
-	26, // 28: api.manage.v1.SetReleaseFormatsRequest.formats:type_name -> api.manage.v1.ReleaseFormatInput
-	28, // 29: api.manage.v1.SetReleaseCreditsRequest.credits:type_name -> api.manage.v1.ReleaseCreditInput
-	4,  // 30: api.manage.v1.ReleaseService.GetRelease:input_type -> api.manage.v1.GetReleaseRequest
-	5,  // 31: api.manage.v1.ReleaseService.ListReleasesAdmin:input_type -> api.manage.v1.ListReleasesAdminRequest
-	7,  // 32: api.manage.v1.ReleaseService.CreateRelease:input_type -> api.manage.v1.CreateReleaseRequest
-	8,  // 33: api.manage.v1.ReleaseService.UpdateRelease:input_type -> api.manage.v1.UpdateReleaseRequest
-	9,  // 34: api.manage.v1.ReleaseService.DeleteRelease:input_type -> api.manage.v1.DeleteReleaseRequest
-	10, // 35: api.manage.v1.ReleaseService.PublishRelease:input_type -> api.manage.v1.PublishReleaseRequest
-	11, // 36: api.manage.v1.ReleaseService.UnpublishRelease:input_type -> api.manage.v1.UnpublishReleaseRequest
-	14, // 37: api.manage.v1.ReleaseService.SetReleaseArtwork:input_type -> api.manage.v1.SetReleaseArtworkRequest
-	16, // 38: api.manage.v1.ReleaseService.DeleteReleaseArtwork:input_type -> api.manage.v1.DeleteReleaseArtworkRequest
-	17, // 39: api.manage.v1.ReleaseService.CheckReleaseSlugAvailable:input_type -> api.manage.v1.CheckReleaseSlugAvailableRequest
-	20, // 40: api.manage.v1.ReleaseService.SetReleaseLabels:input_type -> api.manage.v1.SetReleaseLabelsRequest
-	25, // 41: api.manage.v1.ReleaseService.SetReleaseArtists:input_type -> api.manage.v1.SetReleaseArtistsRequest
-	21, // 42: api.manage.v1.ReleaseService.SetReleaseCategories:input_type -> api.manage.v1.SetReleaseCategoriesRequest
-	22, // 43: api.manage.v1.ReleaseService.SetReleaseGenres:input_type -> api.manage.v1.SetReleaseGenresRequest
-	23, // 44: api.manage.v1.ReleaseService.SetReleaseStyles:input_type -> api.manage.v1.SetReleaseStylesRequest
-	27, // 45: api.manage.v1.ReleaseService.SetReleaseFormats:input_type -> api.manage.v1.SetReleaseFormatsRequest
-	29, // 46: api.manage.v1.ReleaseService.SetReleaseCredits:input_type -> api.manage.v1.SetReleaseCreditsRequest
-	2,  // 47: api.manage.v1.ReleaseService.GetRelease:output_type -> api.manage.v1.Release
-	6,  // 48: api.manage.v1.ReleaseService.ListReleasesAdmin:output_type -> api.manage.v1.ListReleasesAdminResponse
-	2,  // 49: api.manage.v1.ReleaseService.CreateRelease:output_type -> api.manage.v1.Release
-	12, // 50: api.manage.v1.ReleaseService.UpdateRelease:output_type -> api.manage.v1.UpdateReleaseResponse
-	38, // 51: api.manage.v1.ReleaseService.DeleteRelease:output_type -> api.manage.v1.DeleteResponse
-	13, // 52: api.manage.v1.ReleaseService.PublishRelease:output_type -> api.manage.v1.ReleaseLifecycleMutationResponse
-	13, // 53: api.manage.v1.ReleaseService.UnpublishRelease:output_type -> api.manage.v1.ReleaseLifecycleMutationResponse
-	15, // 54: api.manage.v1.ReleaseService.SetReleaseArtwork:output_type -> api.manage.v1.SetReleaseArtworkResponse
-	39, // 55: api.manage.v1.ReleaseService.DeleteReleaseArtwork:output_type -> api.manage.v1.OgAssetDeleteResponse
-	18, // 56: api.manage.v1.ReleaseService.CheckReleaseSlugAvailable:output_type -> api.manage.v1.CheckReleaseSlugAvailableResponse
-	40, // 57: api.manage.v1.ReleaseService.SetReleaseLabels:output_type -> api.manage.v1.SuccessResponse
-	40, // 58: api.manage.v1.ReleaseService.SetReleaseArtists:output_type -> api.manage.v1.SuccessResponse
-	40, // 59: api.manage.v1.ReleaseService.SetReleaseCategories:output_type -> api.manage.v1.SuccessResponse
-	40, // 60: api.manage.v1.ReleaseService.SetReleaseGenres:output_type -> api.manage.v1.SuccessResponse
-	40, // 61: api.manage.v1.ReleaseService.SetReleaseStyles:output_type -> api.manage.v1.SuccessResponse
-	40, // 62: api.manage.v1.ReleaseService.SetReleaseFormats:output_type -> api.manage.v1.SuccessResponse
-	40, // 63: api.manage.v1.ReleaseService.SetReleaseCredits:output_type -> api.manage.v1.SuccessResponse
-	47, // [47:64] is the sub-list for method output_type
-	30, // [30:47] is the sub-list for method input_type
-	30, // [30:30] is the sub-list for extension type_name
-	30, // [30:30] is the sub-list for extension extendee
-	0,  // [0:30] is the sub-list for field type_name
+	6,  // 9: api.manage.v1.GetReleaseRelationsResponse.artists:type_name -> api.manage.v1.ReleaseArtistEditorItem
+	7,  // 10: api.manage.v1.GetReleaseRelationsResponse.labels:type_name -> api.manage.v1.ReleaseLabelEditorItem
+	8,  // 11: api.manage.v1.GetReleaseRelationsResponse.categories:type_name -> api.manage.v1.ReleaseReferenceEditorItem
+	8,  // 12: api.manage.v1.GetReleaseRelationsResponse.genres:type_name -> api.manage.v1.ReleaseReferenceEditorItem
+	8,  // 13: api.manage.v1.GetReleaseRelationsResponse.styles:type_name -> api.manage.v1.ReleaseReferenceEditorItem
+	9,  // 14: api.manage.v1.GetReleaseRelationsResponse.formats:type_name -> api.manage.v1.ReleaseFormatEditorItem
+	10, // 15: api.manage.v1.GetReleaseRelationsResponse.credits:type_name -> api.manage.v1.ReleaseCreditEditorItem
+	46, // 16: api.manage.v1.ListReleasesAdminRequest.pagination:type_name -> api.common.v1.PaginationRequest
+	47, // 17: api.manage.v1.ListReleasesAdminRequest.filters:type_name -> api.common.v1.FilterSpec
+	48, // 18: api.manage.v1.ListReleasesAdminRequest.sorts:type_name -> api.common.v1.SortSpec
+	3,  // 19: api.manage.v1.ListReleasesAdminResponse.releases:type_name -> api.manage.v1.ReleaseWithStats
+	49, // 20: api.manage.v1.ListReleasesAdminResponse.pagination:type_name -> api.common.v1.PaginationResponse
+	0,  // 21: api.manage.v1.CreateReleaseRequest.type:type_name -> api.manage.v1.ReleaseType
+	43, // 22: api.manage.v1.CreateReleaseRequest.document:type_name -> api.content.v1.RichTextDocument
+	44, // 23: api.manage.v1.CreateReleaseRequest.release_date:type_name -> google.protobuf.Timestamp
+	0,  // 24: api.manage.v1.UpdateReleaseRequest.type:type_name -> api.manage.v1.ReleaseType
+	44, // 25: api.manage.v1.UpdateReleaseRequest.set_release_date:type_name -> google.protobuf.Timestamp
+	50, // 26: api.manage.v1.UpdateReleaseRequest.clear_release_date:type_name -> google.protobuf.Empty
+	44, // 27: api.manage.v1.UpdateReleaseResponse.release_date:type_name -> google.protobuf.Timestamp
+	44, // 28: api.manage.v1.UpdateReleaseResponse.updated_at:type_name -> google.protobuf.Timestamp
+	1,  // 29: api.manage.v1.ReleaseLifecycleMutationResponse.status:type_name -> api.manage.v1.ReleaseStatus
+	44, // 30: api.manage.v1.ReleaseLifecycleMutationResponse.published_at:type_name -> google.protobuf.Timestamp
+	44, // 31: api.manage.v1.ReleaseLifecycleMutationResponse.updated_at:type_name -> google.protobuf.Timestamp
+	45, // 32: api.manage.v1.SetReleaseArtworkResponse.artwork_asset:type_name -> api.common.v1.AssetRef
+	26, // 33: api.manage.v1.ReleaseLabelsSnapshot.labels:type_name -> api.manage.v1.ReleaseLabelInput
+	26, // 34: api.manage.v1.SetReleaseLabelsRequest.labels:type_name -> api.manage.v1.ReleaseLabelInput
+	29, // 35: api.manage.v1.SetReleaseLabelsRequest.observed:type_name -> api.manage.v1.ReleaseLabelsSnapshot
+	28, // 36: api.manage.v1.SetReleaseLabelsRequest.order_intent:type_name -> api.manage.v1.RelationOrderIntent
+	27, // 37: api.manage.v1.SetReleaseCategoriesRequest.observed:type_name -> api.manage.v1.StringIdSnapshot
+	27, // 38: api.manage.v1.SetReleaseGenresRequest.observed:type_name -> api.manage.v1.StringIdSnapshot
+	27, // 39: api.manage.v1.SetReleaseStylesRequest.observed:type_name -> api.manage.v1.StringIdSnapshot
+	34, // 40: api.manage.v1.ReleaseArtistsSnapshot.artists:type_name -> api.manage.v1.ReleaseArtistInput
+	34, // 41: api.manage.v1.SetReleaseArtistsRequest.artists:type_name -> api.manage.v1.ReleaseArtistInput
+	35, // 42: api.manage.v1.SetReleaseArtistsRequest.observed:type_name -> api.manage.v1.ReleaseArtistsSnapshot
+	28, // 43: api.manage.v1.SetReleaseArtistsRequest.order_intent:type_name -> api.manage.v1.RelationOrderIntent
+	37, // 44: api.manage.v1.ReleaseFormatsSnapshot.formats:type_name -> api.manage.v1.ReleaseFormatInput
+	37, // 45: api.manage.v1.SetReleaseFormatsRequest.formats:type_name -> api.manage.v1.ReleaseFormatInput
+	38, // 46: api.manage.v1.SetReleaseFormatsRequest.observed:type_name -> api.manage.v1.ReleaseFormatsSnapshot
+	40, // 47: api.manage.v1.ReleaseCreditsSnapshot.credits:type_name -> api.manage.v1.ReleaseCreditInput
+	40, // 48: api.manage.v1.SetReleaseCreditsRequest.credits:type_name -> api.manage.v1.ReleaseCreditInput
+	41, // 49: api.manage.v1.SetReleaseCreditsRequest.observed:type_name -> api.manage.v1.ReleaseCreditsSnapshot
+	28, // 50: api.manage.v1.SetReleaseCreditsRequest.order_intent:type_name -> api.manage.v1.RelationOrderIntent
+	4,  // 51: api.manage.v1.ReleaseService.GetRelease:input_type -> api.manage.v1.GetReleaseRequest
+	5,  // 52: api.manage.v1.ReleaseService.GetReleaseRelations:input_type -> api.manage.v1.GetReleaseRelationsRequest
+	12, // 53: api.manage.v1.ReleaseService.ListReleasesAdmin:input_type -> api.manage.v1.ListReleasesAdminRequest
+	14, // 54: api.manage.v1.ReleaseService.CreateRelease:input_type -> api.manage.v1.CreateReleaseRequest
+	15, // 55: api.manage.v1.ReleaseService.UpdateRelease:input_type -> api.manage.v1.UpdateReleaseRequest
+	16, // 56: api.manage.v1.ReleaseService.DeleteRelease:input_type -> api.manage.v1.DeleteReleaseRequest
+	17, // 57: api.manage.v1.ReleaseService.PublishRelease:input_type -> api.manage.v1.PublishReleaseRequest
+	18, // 58: api.manage.v1.ReleaseService.UnpublishRelease:input_type -> api.manage.v1.UnpublishReleaseRequest
+	21, // 59: api.manage.v1.ReleaseService.SetReleaseArtwork:input_type -> api.manage.v1.SetReleaseArtworkRequest
+	23, // 60: api.manage.v1.ReleaseService.DeleteReleaseArtwork:input_type -> api.manage.v1.DeleteReleaseArtworkRequest
+	24, // 61: api.manage.v1.ReleaseService.CheckReleaseSlugAvailable:input_type -> api.manage.v1.CheckReleaseSlugAvailableRequest
+	30, // 62: api.manage.v1.ReleaseService.SetReleaseLabels:input_type -> api.manage.v1.SetReleaseLabelsRequest
+	36, // 63: api.manage.v1.ReleaseService.SetReleaseArtists:input_type -> api.manage.v1.SetReleaseArtistsRequest
+	31, // 64: api.manage.v1.ReleaseService.SetReleaseCategories:input_type -> api.manage.v1.SetReleaseCategoriesRequest
+	32, // 65: api.manage.v1.ReleaseService.SetReleaseGenres:input_type -> api.manage.v1.SetReleaseGenresRequest
+	33, // 66: api.manage.v1.ReleaseService.SetReleaseStyles:input_type -> api.manage.v1.SetReleaseStylesRequest
+	39, // 67: api.manage.v1.ReleaseService.SetReleaseFormats:input_type -> api.manage.v1.SetReleaseFormatsRequest
+	42, // 68: api.manage.v1.ReleaseService.SetReleaseCredits:input_type -> api.manage.v1.SetReleaseCreditsRequest
+	2,  // 69: api.manage.v1.ReleaseService.GetRelease:output_type -> api.manage.v1.Release
+	11, // 70: api.manage.v1.ReleaseService.GetReleaseRelations:output_type -> api.manage.v1.GetReleaseRelationsResponse
+	13, // 71: api.manage.v1.ReleaseService.ListReleasesAdmin:output_type -> api.manage.v1.ListReleasesAdminResponse
+	2,  // 72: api.manage.v1.ReleaseService.CreateRelease:output_type -> api.manage.v1.Release
+	19, // 73: api.manage.v1.ReleaseService.UpdateRelease:output_type -> api.manage.v1.UpdateReleaseResponse
+	51, // 74: api.manage.v1.ReleaseService.DeleteRelease:output_type -> api.manage.v1.DeleteResponse
+	20, // 75: api.manage.v1.ReleaseService.PublishRelease:output_type -> api.manage.v1.ReleaseLifecycleMutationResponse
+	20, // 76: api.manage.v1.ReleaseService.UnpublishRelease:output_type -> api.manage.v1.ReleaseLifecycleMutationResponse
+	22, // 77: api.manage.v1.ReleaseService.SetReleaseArtwork:output_type -> api.manage.v1.SetReleaseArtworkResponse
+	52, // 78: api.manage.v1.ReleaseService.DeleteReleaseArtwork:output_type -> api.manage.v1.OgAssetDeleteResponse
+	25, // 79: api.manage.v1.ReleaseService.CheckReleaseSlugAvailable:output_type -> api.manage.v1.CheckReleaseSlugAvailableResponse
+	53, // 80: api.manage.v1.ReleaseService.SetReleaseLabels:output_type -> api.manage.v1.SuccessResponse
+	53, // 81: api.manage.v1.ReleaseService.SetReleaseArtists:output_type -> api.manage.v1.SuccessResponse
+	53, // 82: api.manage.v1.ReleaseService.SetReleaseCategories:output_type -> api.manage.v1.SuccessResponse
+	53, // 83: api.manage.v1.ReleaseService.SetReleaseGenres:output_type -> api.manage.v1.SuccessResponse
+	53, // 84: api.manage.v1.ReleaseService.SetReleaseStyles:output_type -> api.manage.v1.SuccessResponse
+	53, // 85: api.manage.v1.ReleaseService.SetReleaseFormats:output_type -> api.manage.v1.SuccessResponse
+	53, // 86: api.manage.v1.ReleaseService.SetReleaseCredits:output_type -> api.manage.v1.SuccessResponse
+	69, // [69:87] is the sub-list for method output_type
+	51, // [51:69] is the sub-list for method input_type
+	51, // [51:51] is the sub-list for extension type_name
+	51, // [51:51] is the sub-list for extension extendee
+	0,  // [0:51] is the sub-list for field type_name
 }
 
 func init() { file_api_manage_v1_release_proto_init() }
@@ -2304,25 +3322,30 @@ func file_api_manage_v1_release_proto_init() {
 	}
 	file_api_manage_v1_common_proto_init()
 	file_api_manage_v1_release_proto_msgTypes[0].OneofWrappers = []any{}
+	file_api_manage_v1_release_proto_msgTypes[4].OneofWrappers = []any{}
 	file_api_manage_v1_release_proto_msgTypes[5].OneofWrappers = []any{}
-	file_api_manage_v1_release_proto_msgTypes[6].OneofWrappers = []any{
+	file_api_manage_v1_release_proto_msgTypes[7].OneofWrappers = []any{}
+	file_api_manage_v1_release_proto_msgTypes[8].OneofWrappers = []any{}
+	file_api_manage_v1_release_proto_msgTypes[12].OneofWrappers = []any{}
+	file_api_manage_v1_release_proto_msgTypes[13].OneofWrappers = []any{
 		(*UpdateReleaseRequest_SetReleaseDate)(nil),
 		(*UpdateReleaseRequest_ClearReleaseDate)(nil),
 	}
-	file_api_manage_v1_release_proto_msgTypes[10].OneofWrappers = []any{}
-	file_api_manage_v1_release_proto_msgTypes[11].OneofWrappers = []any{}
-	file_api_manage_v1_release_proto_msgTypes[13].OneofWrappers = []any{}
-	file_api_manage_v1_release_proto_msgTypes[15].OneofWrappers = []any{}
 	file_api_manage_v1_release_proto_msgTypes[17].OneofWrappers = []any{}
+	file_api_manage_v1_release_proto_msgTypes[18].OneofWrappers = []any{}
+	file_api_manage_v1_release_proto_msgTypes[20].OneofWrappers = []any{}
+	file_api_manage_v1_release_proto_msgTypes[22].OneofWrappers = []any{}
 	file_api_manage_v1_release_proto_msgTypes[24].OneofWrappers = []any{}
 	file_api_manage_v1_release_proto_msgTypes[26].OneofWrappers = []any{}
+	file_api_manage_v1_release_proto_msgTypes[35].OneofWrappers = []any{}
+	file_api_manage_v1_release_proto_msgTypes[38].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_api_manage_v1_release_proto_rawDesc), len(file_api_manage_v1_release_proto_rawDesc)),
 			NumEnums:      2,
-			NumMessages:   28,
+			NumMessages:   41,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

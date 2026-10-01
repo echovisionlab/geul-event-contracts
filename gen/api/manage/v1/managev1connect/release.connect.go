@@ -36,6 +36,9 @@ const (
 	// ReleaseServiceGetReleaseProcedure is the fully-qualified name of the ReleaseService's GetRelease
 	// RPC.
 	ReleaseServiceGetReleaseProcedure = "/api.manage.v1.ReleaseService/GetRelease"
+	// ReleaseServiceGetReleaseRelationsProcedure is the fully-qualified name of the ReleaseService's
+	// GetReleaseRelations RPC.
+	ReleaseServiceGetReleaseRelationsProcedure = "/api.manage.v1.ReleaseService/GetReleaseRelations"
 	// ReleaseServiceListReleasesAdminProcedure is the fully-qualified name of the ReleaseService's
 	// ListReleasesAdmin RPC.
 	ReleaseServiceListReleasesAdminProcedure = "/api.manage.v1.ReleaseService/ListReleasesAdmin"
@@ -90,6 +93,8 @@ const (
 type ReleaseServiceClient interface {
 	// Read (authenticated - draft releases require editor permission)
 	GetRelease(context.Context, *connect.Request[v1.GetReleaseRequest]) (*connect.Response[v1.Release], error)
+	// Editor relation snapshot; authorization matches the release view scope.
+	GetReleaseRelations(context.Context, *connect.Request[v1.GetReleaseRelationsRequest]) (*connect.Response[v1.GetReleaseRelationsResponse], error)
 	// Admin list (all statuses, with stats)
 	ListReleasesAdmin(context.Context, *connect.Request[v1.ListReleasesAdminRequest]) (*connect.Response[v1.ListReleasesAdminResponse], error)
 	CreateRelease(context.Context, *connect.Request[v1.CreateReleaseRequest]) (*connect.Response[v1.Release], error)
@@ -127,6 +132,12 @@ func NewReleaseServiceClient(httpClient connect.HTTPClient, baseURL string, opts
 			httpClient,
 			baseURL+ReleaseServiceGetReleaseProcedure,
 			connect.WithSchema(releaseServiceMethods.ByName("GetRelease")),
+			connect.WithClientOptions(opts...),
+		),
+		getReleaseRelations: connect.NewClient[v1.GetReleaseRelationsRequest, v1.GetReleaseRelationsResponse](
+			httpClient,
+			baseURL+ReleaseServiceGetReleaseRelationsProcedure,
+			connect.WithSchema(releaseServiceMethods.ByName("GetReleaseRelations")),
 			connect.WithClientOptions(opts...),
 		),
 		listReleasesAdmin: connect.NewClient[v1.ListReleasesAdminRequest, v1.ListReleasesAdminResponse](
@@ -231,6 +242,7 @@ func NewReleaseServiceClient(httpClient connect.HTTPClient, baseURL string, opts
 // releaseServiceClient implements ReleaseServiceClient.
 type releaseServiceClient struct {
 	getRelease                *connect.Client[v1.GetReleaseRequest, v1.Release]
+	getReleaseRelations       *connect.Client[v1.GetReleaseRelationsRequest, v1.GetReleaseRelationsResponse]
 	listReleasesAdmin         *connect.Client[v1.ListReleasesAdminRequest, v1.ListReleasesAdminResponse]
 	createRelease             *connect.Client[v1.CreateReleaseRequest, v1.Release]
 	updateRelease             *connect.Client[v1.UpdateReleaseRequest, v1.UpdateReleaseResponse]
@@ -252,6 +264,11 @@ type releaseServiceClient struct {
 // GetRelease calls api.manage.v1.ReleaseService.GetRelease.
 func (c *releaseServiceClient) GetRelease(ctx context.Context, req *connect.Request[v1.GetReleaseRequest]) (*connect.Response[v1.Release], error) {
 	return c.getRelease.CallUnary(ctx, req)
+}
+
+// GetReleaseRelations calls api.manage.v1.ReleaseService.GetReleaseRelations.
+func (c *releaseServiceClient) GetReleaseRelations(ctx context.Context, req *connect.Request[v1.GetReleaseRelationsRequest]) (*connect.Response[v1.GetReleaseRelationsResponse], error) {
+	return c.getReleaseRelations.CallUnary(ctx, req)
 }
 
 // ListReleasesAdmin calls api.manage.v1.ReleaseService.ListReleasesAdmin.
@@ -338,6 +355,8 @@ func (c *releaseServiceClient) SetReleaseCredits(ctx context.Context, req *conne
 type ReleaseServiceHandler interface {
 	// Read (authenticated - draft releases require editor permission)
 	GetRelease(context.Context, *connect.Request[v1.GetReleaseRequest]) (*connect.Response[v1.Release], error)
+	// Editor relation snapshot; authorization matches the release view scope.
+	GetReleaseRelations(context.Context, *connect.Request[v1.GetReleaseRelationsRequest]) (*connect.Response[v1.GetReleaseRelationsResponse], error)
 	// Admin list (all statuses, with stats)
 	ListReleasesAdmin(context.Context, *connect.Request[v1.ListReleasesAdminRequest]) (*connect.Response[v1.ListReleasesAdminResponse], error)
 	CreateRelease(context.Context, *connect.Request[v1.CreateReleaseRequest]) (*connect.Response[v1.Release], error)
@@ -371,6 +390,12 @@ func NewReleaseServiceHandler(svc ReleaseServiceHandler, opts ...connect.Handler
 		ReleaseServiceGetReleaseProcedure,
 		svc.GetRelease,
 		connect.WithSchema(releaseServiceMethods.ByName("GetRelease")),
+		connect.WithHandlerOptions(opts...),
+	)
+	releaseServiceGetReleaseRelationsHandler := connect.NewUnaryHandler(
+		ReleaseServiceGetReleaseRelationsProcedure,
+		svc.GetReleaseRelations,
+		connect.WithSchema(releaseServiceMethods.ByName("GetReleaseRelations")),
 		connect.WithHandlerOptions(opts...),
 	)
 	releaseServiceListReleasesAdminHandler := connect.NewUnaryHandler(
@@ -473,6 +498,8 @@ func NewReleaseServiceHandler(svc ReleaseServiceHandler, opts ...connect.Handler
 		switch r.URL.Path {
 		case ReleaseServiceGetReleaseProcedure:
 			releaseServiceGetReleaseHandler.ServeHTTP(w, r)
+		case ReleaseServiceGetReleaseRelationsProcedure:
+			releaseServiceGetReleaseRelationsHandler.ServeHTTP(w, r)
 		case ReleaseServiceListReleasesAdminProcedure:
 			releaseServiceListReleasesAdminHandler.ServeHTTP(w, r)
 		case ReleaseServiceCreateReleaseProcedure:
@@ -516,6 +543,10 @@ type UnimplementedReleaseServiceHandler struct{}
 
 func (UnimplementedReleaseServiceHandler) GetRelease(context.Context, *connect.Request[v1.GetReleaseRequest]) (*connect.Response[v1.Release], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("api.manage.v1.ReleaseService.GetRelease is not implemented"))
+}
+
+func (UnimplementedReleaseServiceHandler) GetReleaseRelations(context.Context, *connect.Request[v1.GetReleaseRelationsRequest]) (*connect.Response[v1.GetReleaseRelationsResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("api.manage.v1.ReleaseService.GetReleaseRelations is not implemented"))
 }
 
 func (UnimplementedReleaseServiceHandler) ListReleasesAdmin(context.Context, *connect.Request[v1.ListReleasesAdminRequest]) (*connect.Response[v1.ListReleasesAdminResponse], error) {
