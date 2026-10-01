@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.3.0](https://github.com/echovisionlab/geul-event-contracts/compare/v0.2.2...v0.3.0) (2026-10-01)
+
+
+### ⚠ BREAKING CHANGES
+
+* require observed editor changes and expose relation intents
+
+### Bug Fixes
+
+* require observed editor changes and expose relation intents ([ed2e238](https://github.com/echovisionlab/geul-event-contracts/commit/ed2e238d647dcdf35b255e6954d9411a520bbb5c))
+
 ## [0.2.2](https://github.com/echovisionlab/geul-event-contracts/compare/v0.2.1...v0.2.2) (2026-10-01)
 
 
