@@ -67,6 +67,9 @@ const (
 	// WorkServiceDeleteWorkCreditProcedure is the fully-qualified name of the WorkService's
 	// DeleteWorkCredit RPC.
 	WorkServiceDeleteWorkCreditProcedure = "/api.manage.v1.WorkService/DeleteWorkCredit"
+	// WorkServiceMoveWorkCreditItemProcedure is the fully-qualified name of the WorkService's
+	// MoveWorkCreditItem RPC.
+	WorkServiceMoveWorkCreditItemProcedure = "/api.manage.v1.WorkService/MoveWorkCreditItem"
 	// WorkServiceCreateWorkCreditGroupProcedure is the fully-qualified name of the WorkService's
 	// CreateWorkCreditGroup RPC.
 	WorkServiceCreateWorkCreditGroupProcedure = "/api.manage.v1.WorkService/CreateWorkCreditGroup"
@@ -108,6 +111,7 @@ type WorkServiceClient interface {
 	AddWorkCredit(context.Context, *connect.Request[v1.AddWorkCreditRequest]) (*connect.Response[v1.WorkCredit], error)
 	UpdateWorkCredit(context.Context, *connect.Request[v1.UpdateWorkCreditRequest]) (*connect.Response[v1.WorkCredit], error)
 	DeleteWorkCredit(context.Context, *connect.Request[v1.DeleteWorkCreditRequest]) (*connect.Response[v1.DeleteResponse], error)
+	MoveWorkCreditItem(context.Context, *connect.Request[v1.MoveWorkCreditItemRequest]) (*connect.Response[v1.MoveWorkCreditItemResponse], error)
 	CreateWorkCreditGroup(context.Context, *connect.Request[v1.CreateWorkCreditGroupRequest]) (*connect.Response[v1.WorkCreditGroup], error)
 	UpdateWorkCreditGroup(context.Context, *connect.Request[v1.UpdateWorkCreditGroupRequest]) (*connect.Response[v1.WorkCreditGroup], error)
 	DeleteWorkCreditGroup(context.Context, *connect.Request[v1.DeleteWorkCreditGroupRequest]) (*connect.Response[v1.DeleteResponse], error)
@@ -209,6 +213,12 @@ func NewWorkServiceClient(httpClient connect.HTTPClient, baseURL string, opts ..
 			connect.WithSchema(workServiceMethods.ByName("DeleteWorkCredit")),
 			connect.WithClientOptions(opts...),
 		),
+		moveWorkCreditItem: connect.NewClient[v1.MoveWorkCreditItemRequest, v1.MoveWorkCreditItemResponse](
+			httpClient,
+			baseURL+WorkServiceMoveWorkCreditItemProcedure,
+			connect.WithSchema(workServiceMethods.ByName("MoveWorkCreditItem")),
+			connect.WithClientOptions(opts...),
+		),
 		createWorkCreditGroup: connect.NewClient[v1.CreateWorkCreditGroupRequest, v1.WorkCreditGroup](
 			httpClient,
 			baseURL+WorkServiceCreateWorkCreditGroupProcedure,
@@ -269,6 +279,7 @@ type workServiceClient struct {
 	addWorkCredit           *connect.Client[v1.AddWorkCreditRequest, v1.WorkCredit]
 	updateWorkCredit        *connect.Client[v1.UpdateWorkCreditRequest, v1.WorkCredit]
 	deleteWorkCredit        *connect.Client[v1.DeleteWorkCreditRequest, v1.DeleteResponse]
+	moveWorkCreditItem      *connect.Client[v1.MoveWorkCreditItemRequest, v1.MoveWorkCreditItemResponse]
 	createWorkCreditGroup   *connect.Client[v1.CreateWorkCreditGroupRequest, v1.WorkCreditGroup]
 	updateWorkCreditGroup   *connect.Client[v1.UpdateWorkCreditGroupRequest, v1.WorkCreditGroup]
 	deleteWorkCreditGroup   *connect.Client[v1.DeleteWorkCreditGroupRequest, v1.DeleteResponse]
@@ -343,6 +354,11 @@ func (c *workServiceClient) DeleteWorkCredit(ctx context.Context, req *connect.R
 	return c.deleteWorkCredit.CallUnary(ctx, req)
 }
 
+// MoveWorkCreditItem calls api.manage.v1.WorkService.MoveWorkCreditItem.
+func (c *workServiceClient) MoveWorkCreditItem(ctx context.Context, req *connect.Request[v1.MoveWorkCreditItemRequest]) (*connect.Response[v1.MoveWorkCreditItemResponse], error) {
+	return c.moveWorkCreditItem.CallUnary(ctx, req)
+}
+
 // CreateWorkCreditGroup calls api.manage.v1.WorkService.CreateWorkCreditGroup.
 func (c *workServiceClient) CreateWorkCreditGroup(ctx context.Context, req *connect.Request[v1.CreateWorkCreditGroupRequest]) (*connect.Response[v1.WorkCreditGroup], error) {
 	return c.createWorkCreditGroup.CallUnary(ctx, req)
@@ -396,6 +412,7 @@ type WorkServiceHandler interface {
 	AddWorkCredit(context.Context, *connect.Request[v1.AddWorkCreditRequest]) (*connect.Response[v1.WorkCredit], error)
 	UpdateWorkCredit(context.Context, *connect.Request[v1.UpdateWorkCreditRequest]) (*connect.Response[v1.WorkCredit], error)
 	DeleteWorkCredit(context.Context, *connect.Request[v1.DeleteWorkCreditRequest]) (*connect.Response[v1.DeleteResponse], error)
+	MoveWorkCreditItem(context.Context, *connect.Request[v1.MoveWorkCreditItemRequest]) (*connect.Response[v1.MoveWorkCreditItemResponse], error)
 	CreateWorkCreditGroup(context.Context, *connect.Request[v1.CreateWorkCreditGroupRequest]) (*connect.Response[v1.WorkCreditGroup], error)
 	UpdateWorkCreditGroup(context.Context, *connect.Request[v1.UpdateWorkCreditGroupRequest]) (*connect.Response[v1.WorkCreditGroup], error)
 	DeleteWorkCreditGroup(context.Context, *connect.Request[v1.DeleteWorkCreditGroupRequest]) (*connect.Response[v1.DeleteResponse], error)
@@ -493,6 +510,12 @@ func NewWorkServiceHandler(svc WorkServiceHandler, opts ...connect.HandlerOption
 		connect.WithSchema(workServiceMethods.ByName("DeleteWorkCredit")),
 		connect.WithHandlerOptions(opts...),
 	)
+	workServiceMoveWorkCreditItemHandler := connect.NewUnaryHandler(
+		WorkServiceMoveWorkCreditItemProcedure,
+		svc.MoveWorkCreditItem,
+		connect.WithSchema(workServiceMethods.ByName("MoveWorkCreditItem")),
+		connect.WithHandlerOptions(opts...),
+	)
 	workServiceCreateWorkCreditGroupHandler := connect.NewUnaryHandler(
 		WorkServiceCreateWorkCreditGroupProcedure,
 		svc.CreateWorkCreditGroup,
@@ -563,6 +586,8 @@ func NewWorkServiceHandler(svc WorkServiceHandler, opts ...connect.HandlerOption
 			workServiceUpdateWorkCreditHandler.ServeHTTP(w, r)
 		case WorkServiceDeleteWorkCreditProcedure:
 			workServiceDeleteWorkCreditHandler.ServeHTTP(w, r)
+		case WorkServiceMoveWorkCreditItemProcedure:
+			workServiceMoveWorkCreditItemHandler.ServeHTTP(w, r)
 		case WorkServiceCreateWorkCreditGroupProcedure:
 			workServiceCreateWorkCreditGroupHandler.ServeHTTP(w, r)
 		case WorkServiceUpdateWorkCreditGroupProcedure:
@@ -636,6 +661,10 @@ func (UnimplementedWorkServiceHandler) UpdateWorkCredit(context.Context, *connec
 
 func (UnimplementedWorkServiceHandler) DeleteWorkCredit(context.Context, *connect.Request[v1.DeleteWorkCreditRequest]) (*connect.Response[v1.DeleteResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("api.manage.v1.WorkService.DeleteWorkCredit is not implemented"))
+}
+
+func (UnimplementedWorkServiceHandler) MoveWorkCreditItem(context.Context, *connect.Request[v1.MoveWorkCreditItemRequest]) (*connect.Response[v1.MoveWorkCreditItemResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("api.manage.v1.WorkService.MoveWorkCreditItem is not implemented"))
 }
 
 func (UnimplementedWorkServiceHandler) CreateWorkCreditGroup(context.Context, *connect.Request[v1.CreateWorkCreditGroupRequest]) (*connect.Response[v1.WorkCreditGroup], error) {

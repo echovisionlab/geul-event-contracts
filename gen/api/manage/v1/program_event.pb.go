@@ -870,6 +870,139 @@ func (x *ProgramEventClient) GetSortOrder() int32 {
 	return 0
 }
 
+// Explicit relation writes require an observed snapshot and merge their membership and field changes.
+type ProgramEventArtistsSnapshot struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Artists       []*ProgramEventArtist  `protobuf:"bytes,1,rep,name=artists,proto3" json:"artists,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ProgramEventArtistsSnapshot) Reset() {
+	*x = ProgramEventArtistsSnapshot{}
+	mi := &file_api_manage_v1_program_event_proto_msgTypes[8]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ProgramEventArtistsSnapshot) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ProgramEventArtistsSnapshot) ProtoMessage() {}
+
+func (x *ProgramEventArtistsSnapshot) ProtoReflect() protoreflect.Message {
+	mi := &file_api_manage_v1_program_event_proto_msgTypes[8]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ProgramEventArtistsSnapshot.ProtoReflect.Descriptor instead.
+func (*ProgramEventArtistsSnapshot) Descriptor() ([]byte, []int) {
+	return file_api_manage_v1_program_event_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *ProgramEventArtistsSnapshot) GetArtists() []*ProgramEventArtist {
+	if x != nil {
+		return x.Artists
+	}
+	return nil
+}
+
+type ProgramEventLabelsSnapshot struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Labels        []*ProgramEventLabel   `protobuf:"bytes,1,rep,name=labels,proto3" json:"labels,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ProgramEventLabelsSnapshot) Reset() {
+	*x = ProgramEventLabelsSnapshot{}
+	mi := &file_api_manage_v1_program_event_proto_msgTypes[9]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ProgramEventLabelsSnapshot) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ProgramEventLabelsSnapshot) ProtoMessage() {}
+
+func (x *ProgramEventLabelsSnapshot) ProtoReflect() protoreflect.Message {
+	mi := &file_api_manage_v1_program_event_proto_msgTypes[9]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ProgramEventLabelsSnapshot.ProtoReflect.Descriptor instead.
+func (*ProgramEventLabelsSnapshot) Descriptor() ([]byte, []int) {
+	return file_api_manage_v1_program_event_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *ProgramEventLabelsSnapshot) GetLabels() []*ProgramEventLabel {
+	if x != nil {
+		return x.Labels
+	}
+	return nil
+}
+
+type ProgramEventClientsSnapshot struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Clients       []*ProgramEventClient  `protobuf:"bytes,1,rep,name=clients,proto3" json:"clients,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ProgramEventClientsSnapshot) Reset() {
+	*x = ProgramEventClientsSnapshot{}
+	mi := &file_api_manage_v1_program_event_proto_msgTypes[10]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ProgramEventClientsSnapshot) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ProgramEventClientsSnapshot) ProtoMessage() {}
+
+func (x *ProgramEventClientsSnapshot) ProtoReflect() protoreflect.Message {
+	mi := &file_api_manage_v1_program_event_proto_msgTypes[10]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ProgramEventClientsSnapshot.ProtoReflect.Descriptor instead.
+func (*ProgramEventClientsSnapshot) Descriptor() ([]byte, []int) {
+	return file_api_manage_v1_program_event_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *ProgramEventClientsSnapshot) GetClients() []*ProgramEventClient {
+	if x != nil {
+		return x.Clients
+	}
+	return nil
+}
+
 type ProgramEventCredit struct {
 	state         protoimpl.MessageState    `protogen:"open.v1"`
 	Id            string                    `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
@@ -887,7 +1020,7 @@ type ProgramEventCredit struct {
 
 func (x *ProgramEventCredit) Reset() {
 	*x = ProgramEventCredit{}
-	mi := &file_api_manage_v1_program_event_proto_msgTypes[8]
+	mi := &file_api_manage_v1_program_event_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -899,7 +1032,7 @@ func (x *ProgramEventCredit) String() string {
 func (*ProgramEventCredit) ProtoMessage() {}
 
 func (x *ProgramEventCredit) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_program_event_proto_msgTypes[8]
+	mi := &file_api_manage_v1_program_event_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -912,7 +1045,7 @@ func (x *ProgramEventCredit) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProgramEventCredit.ProtoReflect.Descriptor instead.
 func (*ProgramEventCredit) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_program_event_proto_rawDescGZIP(), []int{8}
+	return file_api_manage_v1_program_event_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *ProgramEventCredit) GetId() string {
@@ -990,7 +1123,7 @@ type ProgramEventCreditArtist struct {
 
 func (x *ProgramEventCreditArtist) Reset() {
 	*x = ProgramEventCreditArtist{}
-	mi := &file_api_manage_v1_program_event_proto_msgTypes[9]
+	mi := &file_api_manage_v1_program_event_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1002,7 +1135,7 @@ func (x *ProgramEventCreditArtist) String() string {
 func (*ProgramEventCreditArtist) ProtoMessage() {}
 
 func (x *ProgramEventCreditArtist) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_program_event_proto_msgTypes[9]
+	mi := &file_api_manage_v1_program_event_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1015,7 +1148,7 @@ func (x *ProgramEventCreditArtist) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProgramEventCreditArtist.ProtoReflect.Descriptor instead.
 func (*ProgramEventCreditArtist) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_program_event_proto_rawDescGZIP(), []int{9}
+	return file_api_manage_v1_program_event_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *ProgramEventCreditArtist) GetId() string {
@@ -1084,7 +1217,7 @@ type ProgramEvent struct {
 
 func (x *ProgramEvent) Reset() {
 	*x = ProgramEvent{}
-	mi := &file_api_manage_v1_program_event_proto_msgTypes[10]
+	mi := &file_api_manage_v1_program_event_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1096,7 +1229,7 @@ func (x *ProgramEvent) String() string {
 func (*ProgramEvent) ProtoMessage() {}
 
 func (x *ProgramEvent) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_program_event_proto_msgTypes[10]
+	mi := &file_api_manage_v1_program_event_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1109,7 +1242,7 @@ func (x *ProgramEvent) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProgramEvent.ProtoReflect.Descriptor instead.
 func (*ProgramEvent) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_program_event_proto_rawDescGZIP(), []int{10}
+	return file_api_manage_v1_program_event_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *ProgramEvent) GetId() string {
@@ -1345,7 +1478,7 @@ type ProgramEventSummary struct {
 
 func (x *ProgramEventSummary) Reset() {
 	*x = ProgramEventSummary{}
-	mi := &file_api_manage_v1_program_event_proto_msgTypes[11]
+	mi := &file_api_manage_v1_program_event_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1357,7 +1490,7 @@ func (x *ProgramEventSummary) String() string {
 func (*ProgramEventSummary) ProtoMessage() {}
 
 func (x *ProgramEventSummary) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_program_event_proto_msgTypes[11]
+	mi := &file_api_manage_v1_program_event_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1370,7 +1503,7 @@ func (x *ProgramEventSummary) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProgramEventSummary.ProtoReflect.Descriptor instead.
 func (*ProgramEventSummary) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_program_event_proto_rawDescGZIP(), []int{11}
+	return file_api_manage_v1_program_event_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *ProgramEventSummary) GetId() string {
@@ -1487,7 +1620,7 @@ type GetProgramEventRequest struct {
 
 func (x *GetProgramEventRequest) Reset() {
 	*x = GetProgramEventRequest{}
-	mi := &file_api_manage_v1_program_event_proto_msgTypes[12]
+	mi := &file_api_manage_v1_program_event_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1499,7 +1632,7 @@ func (x *GetProgramEventRequest) String() string {
 func (*GetProgramEventRequest) ProtoMessage() {}
 
 func (x *GetProgramEventRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_program_event_proto_msgTypes[12]
+	mi := &file_api_manage_v1_program_event_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1512,7 +1645,7 @@ func (x *GetProgramEventRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetProgramEventRequest.ProtoReflect.Descriptor instead.
 func (*GetProgramEventRequest) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_program_event_proto_rawDescGZIP(), []int{12}
+	return file_api_manage_v1_program_event_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *GetProgramEventRequest) GetId() string {
@@ -1533,7 +1666,7 @@ type ListProgramEventsAdminRequest struct {
 
 func (x *ListProgramEventsAdminRequest) Reset() {
 	*x = ListProgramEventsAdminRequest{}
-	mi := &file_api_manage_v1_program_event_proto_msgTypes[13]
+	mi := &file_api_manage_v1_program_event_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1545,7 +1678,7 @@ func (x *ListProgramEventsAdminRequest) String() string {
 func (*ListProgramEventsAdminRequest) ProtoMessage() {}
 
 func (x *ListProgramEventsAdminRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_program_event_proto_msgTypes[13]
+	mi := &file_api_manage_v1_program_event_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1558,7 +1691,7 @@ func (x *ListProgramEventsAdminRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListProgramEventsAdminRequest.ProtoReflect.Descriptor instead.
 func (*ListProgramEventsAdminRequest) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_program_event_proto_rawDescGZIP(), []int{13}
+	return file_api_manage_v1_program_event_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *ListProgramEventsAdminRequest) GetPagination() *v1.PaginationRequest {
@@ -1592,7 +1725,7 @@ type ListProgramEventsAdminResponse struct {
 
 func (x *ListProgramEventsAdminResponse) Reset() {
 	*x = ListProgramEventsAdminResponse{}
-	mi := &file_api_manage_v1_program_event_proto_msgTypes[14]
+	mi := &file_api_manage_v1_program_event_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1604,7 +1737,7 @@ func (x *ListProgramEventsAdminResponse) String() string {
 func (*ListProgramEventsAdminResponse) ProtoMessage() {}
 
 func (x *ListProgramEventsAdminResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_program_event_proto_msgTypes[14]
+	mi := &file_api_manage_v1_program_event_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1617,7 +1750,7 @@ func (x *ListProgramEventsAdminResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListProgramEventsAdminResponse.ProtoReflect.Descriptor instead.
 func (*ListProgramEventsAdminResponse) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_program_event_proto_rawDescGZIP(), []int{14}
+	return file_api_manage_v1_program_event_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *ListProgramEventsAdminResponse) GetEvents() []*ProgramEventSummary {
@@ -1663,7 +1796,7 @@ type CreateProgramEventRequest struct {
 
 func (x *CreateProgramEventRequest) Reset() {
 	*x = CreateProgramEventRequest{}
-	mi := &file_api_manage_v1_program_event_proto_msgTypes[15]
+	mi := &file_api_manage_v1_program_event_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1675,7 +1808,7 @@ func (x *CreateProgramEventRequest) String() string {
 func (*CreateProgramEventRequest) ProtoMessage() {}
 
 func (x *CreateProgramEventRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_program_event_proto_msgTypes[15]
+	mi := &file_api_manage_v1_program_event_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1688,7 +1821,7 @@ func (x *CreateProgramEventRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateProgramEventRequest.ProtoReflect.Descriptor instead.
 func (*CreateProgramEventRequest) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_program_event_proto_rawDescGZIP(), []int{15}
+	return file_api_manage_v1_program_event_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *CreateProgramEventRequest) GetTitle() string {
@@ -1839,39 +1972,42 @@ func (x *CreateProgramEventRequest) GetCredits() []*ProgramEventCredit {
 }
 
 type UpdateProgramEventRequest struct {
-	state            protoimpl.MessageState    `protogen:"open.v1"`
-	Id               string                    `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Slug             *string                   `protobuf:"bytes,2,opt,name=slug,proto3,oneof" json:"slug,omitempty"`
-	TypeId           *string                   `protobuf:"bytes,3,opt,name=type_id,json=typeId,proto3,oneof" json:"type_id,omitempty"`
-	StartsAt         *timestamppb.Timestamp    `protobuf:"bytes,4,opt,name=starts_at,json=startsAt,proto3,oneof" json:"starts_at,omitempty"`
-	EndsAt           *timestamppb.Timestamp    `protobuf:"bytes,5,opt,name=ends_at,json=endsAt,proto3,oneof" json:"ends_at,omitempty"`
-	Timezone         *string                   `protobuf:"bytes,6,opt,name=timezone,proto3,oneof" json:"timezone,omitempty"`
-	AllDay           *bool                     `protobuf:"varint,7,opt,name=all_day,json=allDay,proto3,oneof" json:"all_day,omitempty"`
-	LocationMode     *ProgramEventLocationMode `protobuf:"varint,8,opt,name=location_mode,json=locationMode,proto3,enum=api.manage.v1.ProgramEventLocationMode,oneof" json:"location_mode,omitempty"`
-	MapPlaceId       *string                   `protobuf:"bytes,9,opt,name=map_place_id,json=mapPlaceId,proto3,oneof" json:"map_place_id,omitempty"`
-	SeriesId         *string                   `protobuf:"bytes,10,opt,name=series_id,json=seriesId,proto3,oneof" json:"series_id,omitempty"`
-	SeriesOrder      *int32                    `protobuf:"varint,11,opt,name=series_order,json=seriesOrder,proto3,oneof" json:"series_order,omitempty"`
-	PosterFileId     *string                   `protobuf:"bytes,12,opt,name=poster_file_id,json=posterFileId,proto3,oneof" json:"poster_file_id,omitempty"`
-	TicketUrl        *string                   `protobuf:"bytes,13,opt,name=ticket_url,json=ticketUrl,proto3,oneof" json:"ticket_url,omitempty"`
-	StreamUrl        *string                   `protobuf:"bytes,14,opt,name=stream_url,json=streamUrl,proto3,oneof" json:"stream_url,omitempty"`
-	ExternalUrl      *string                   `protobuf:"bytes,15,opt,name=external_url,json=externalUrl,proto3,oneof" json:"external_url,omitempty"`
-	Artists          []*ProgramEventArtist     `protobuf:"bytes,16,rep,name=artists,proto3" json:"artists,omitempty"`
-	Labels           []*ProgramEventLabel      `protobuf:"bytes,17,rep,name=labels,proto3" json:"labels,omitempty"`
-	Clients          []*ProgramEventClient     `protobuf:"bytes,18,rep,name=clients,proto3" json:"clients,omitempty"`
-	Credits          []*ProgramEventCredit     `protobuf:"bytes,19,rep,name=credits,proto3" json:"credits,omitempty"`
-	ReplaceArtists   bool                      `protobuf:"varint,20,opt,name=replace_artists,json=replaceArtists,proto3" json:"replace_artists,omitempty"`
-	ReplaceLabels    bool                      `protobuf:"varint,21,opt,name=replace_labels,json=replaceLabels,proto3" json:"replace_labels,omitempty"`
-	ReplaceClients   bool                      `protobuf:"varint,22,opt,name=replace_clients,json=replaceClients,proto3" json:"replace_clients,omitempty"`
-	ReplaceCredits   bool                      `protobuf:"varint,23,opt,name=replace_credits,json=replaceCredits,proto3" json:"replace_credits,omitempty"`
-	ClearEndsAt      bool                      `protobuf:"varint,24,opt,name=clear_ends_at,json=clearEndsAt,proto3" json:"clear_ends_at,omitempty"`
-	ClearSeriesOrder bool                      `protobuf:"varint,25,opt,name=clear_series_order,json=clearSeriesOrder,proto3" json:"clear_series_order,omitempty"`
+	state            protoimpl.MessageState       `protogen:"open.v1"`
+	Id               string                       `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Slug             *string                      `protobuf:"bytes,2,opt,name=slug,proto3,oneof" json:"slug,omitempty"`
+	TypeId           *string                      `protobuf:"bytes,3,opt,name=type_id,json=typeId,proto3,oneof" json:"type_id,omitempty"`
+	StartsAt         *timestamppb.Timestamp       `protobuf:"bytes,4,opt,name=starts_at,json=startsAt,proto3,oneof" json:"starts_at,omitempty"`
+	EndsAt           *timestamppb.Timestamp       `protobuf:"bytes,5,opt,name=ends_at,json=endsAt,proto3,oneof" json:"ends_at,omitempty"`
+	Timezone         *string                      `protobuf:"bytes,6,opt,name=timezone,proto3,oneof" json:"timezone,omitempty"`
+	AllDay           *bool                        `protobuf:"varint,7,opt,name=all_day,json=allDay,proto3,oneof" json:"all_day,omitempty"`
+	LocationMode     *ProgramEventLocationMode    `protobuf:"varint,8,opt,name=location_mode,json=locationMode,proto3,enum=api.manage.v1.ProgramEventLocationMode,oneof" json:"location_mode,omitempty"`
+	MapPlaceId       *string                      `protobuf:"bytes,9,opt,name=map_place_id,json=mapPlaceId,proto3,oneof" json:"map_place_id,omitempty"`
+	SeriesId         *string                      `protobuf:"bytes,10,opt,name=series_id,json=seriesId,proto3,oneof" json:"series_id,omitempty"`
+	SeriesOrder      *int32                       `protobuf:"varint,11,opt,name=series_order,json=seriesOrder,proto3,oneof" json:"series_order,omitempty"`
+	PosterFileId     *string                      `protobuf:"bytes,12,opt,name=poster_file_id,json=posterFileId,proto3,oneof" json:"poster_file_id,omitempty"`
+	TicketUrl        *string                      `protobuf:"bytes,13,opt,name=ticket_url,json=ticketUrl,proto3,oneof" json:"ticket_url,omitempty"`
+	StreamUrl        *string                      `protobuf:"bytes,14,opt,name=stream_url,json=streamUrl,proto3,oneof" json:"stream_url,omitempty"`
+	ExternalUrl      *string                      `protobuf:"bytes,15,opt,name=external_url,json=externalUrl,proto3,oneof" json:"external_url,omitempty"`
+	Artists          []*ProgramEventArtist        `protobuf:"bytes,16,rep,name=artists,proto3" json:"artists,omitempty"`
+	Labels           []*ProgramEventLabel         `protobuf:"bytes,17,rep,name=labels,proto3" json:"labels,omitempty"`
+	Clients          []*ProgramEventClient        `protobuf:"bytes,18,rep,name=clients,proto3" json:"clients,omitempty"`
+	Credits          []*ProgramEventCredit        `protobuf:"bytes,19,rep,name=credits,proto3" json:"credits,omitempty"`
+	ReplaceArtists   bool                         `protobuf:"varint,20,opt,name=replace_artists,json=replaceArtists,proto3" json:"replace_artists,omitempty"`
+	ReplaceLabels    bool                         `protobuf:"varint,21,opt,name=replace_labels,json=replaceLabels,proto3" json:"replace_labels,omitempty"`
+	ReplaceClients   bool                         `protobuf:"varint,22,opt,name=replace_clients,json=replaceClients,proto3" json:"replace_clients,omitempty"`
+	ReplaceCredits   bool                         `protobuf:"varint,23,opt,name=replace_credits,json=replaceCredits,proto3" json:"replace_credits,omitempty"`
+	ClearEndsAt      bool                         `protobuf:"varint,24,opt,name=clear_ends_at,json=clearEndsAt,proto3" json:"clear_ends_at,omitempty"`
+	ClearSeriesOrder bool                         `protobuf:"varint,25,opt,name=clear_series_order,json=clearSeriesOrder,proto3" json:"clear_series_order,omitempty"`
+	ObservedArtists  *ProgramEventArtistsSnapshot `protobuf:"bytes,26,opt,name=observed_artists,json=observedArtists,proto3" json:"observed_artists,omitempty"`
+	ObservedLabels   *ProgramEventLabelsSnapshot  `protobuf:"bytes,27,opt,name=observed_labels,json=observedLabels,proto3" json:"observed_labels,omitempty"`
+	ObservedClients  *ProgramEventClientsSnapshot `protobuf:"bytes,28,opt,name=observed_clients,json=observedClients,proto3" json:"observed_clients,omitempty"`
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
 
 func (x *UpdateProgramEventRequest) Reset() {
 	*x = UpdateProgramEventRequest{}
-	mi := &file_api_manage_v1_program_event_proto_msgTypes[16]
+	mi := &file_api_manage_v1_program_event_proto_msgTypes[19]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1883,7 +2019,7 @@ func (x *UpdateProgramEventRequest) String() string {
 func (*UpdateProgramEventRequest) ProtoMessage() {}
 
 func (x *UpdateProgramEventRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_program_event_proto_msgTypes[16]
+	mi := &file_api_manage_v1_program_event_proto_msgTypes[19]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1896,7 +2032,7 @@ func (x *UpdateProgramEventRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateProgramEventRequest.ProtoReflect.Descriptor instead.
 func (*UpdateProgramEventRequest) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_program_event_proto_rawDescGZIP(), []int{16}
+	return file_api_manage_v1_program_event_proto_rawDescGZIP(), []int{19}
 }
 
 func (x *UpdateProgramEventRequest) GetId() string {
@@ -2074,6 +2210,27 @@ func (x *UpdateProgramEventRequest) GetClearSeriesOrder() bool {
 	return false
 }
 
+func (x *UpdateProgramEventRequest) GetObservedArtists() *ProgramEventArtistsSnapshot {
+	if x != nil {
+		return x.ObservedArtists
+	}
+	return nil
+}
+
+func (x *UpdateProgramEventRequest) GetObservedLabels() *ProgramEventLabelsSnapshot {
+	if x != nil {
+		return x.ObservedLabels
+	}
+	return nil
+}
+
+func (x *UpdateProgramEventRequest) GetObservedClients() *ProgramEventClientsSnapshot {
+	if x != nil {
+		return x.ObservedClients
+	}
+	return nil
+}
+
 type AddProgramEventMediaRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	EventId       string                 `protobuf:"bytes,1,opt,name=event_id,json=eventId,proto3" json:"event_id,omitempty"`
@@ -2088,7 +2245,7 @@ type AddProgramEventMediaRequest struct {
 
 func (x *AddProgramEventMediaRequest) Reset() {
 	*x = AddProgramEventMediaRequest{}
-	mi := &file_api_manage_v1_program_event_proto_msgTypes[17]
+	mi := &file_api_manage_v1_program_event_proto_msgTypes[20]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2100,7 +2257,7 @@ func (x *AddProgramEventMediaRequest) String() string {
 func (*AddProgramEventMediaRequest) ProtoMessage() {}
 
 func (x *AddProgramEventMediaRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_program_event_proto_msgTypes[17]
+	mi := &file_api_manage_v1_program_event_proto_msgTypes[20]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2113,7 +2270,7 @@ func (x *AddProgramEventMediaRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AddProgramEventMediaRequest.ProtoReflect.Descriptor instead.
 func (*AddProgramEventMediaRequest) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_program_event_proto_rawDescGZIP(), []int{17}
+	return file_api_manage_v1_program_event_proto_rawDescGZIP(), []int{20}
 }
 
 func (x *AddProgramEventMediaRequest) GetEventId() string {
@@ -2168,7 +2325,7 @@ type DeleteProgramEventMediaRequest struct {
 
 func (x *DeleteProgramEventMediaRequest) Reset() {
 	*x = DeleteProgramEventMediaRequest{}
-	mi := &file_api_manage_v1_program_event_proto_msgTypes[18]
+	mi := &file_api_manage_v1_program_event_proto_msgTypes[21]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2180,7 +2337,7 @@ func (x *DeleteProgramEventMediaRequest) String() string {
 func (*DeleteProgramEventMediaRequest) ProtoMessage() {}
 
 func (x *DeleteProgramEventMediaRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_program_event_proto_msgTypes[18]
+	mi := &file_api_manage_v1_program_event_proto_msgTypes[21]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2193,7 +2350,7 @@ func (x *DeleteProgramEventMediaRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteProgramEventMediaRequest.ProtoReflect.Descriptor instead.
 func (*DeleteProgramEventMediaRequest) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_program_event_proto_rawDescGZIP(), []int{18}
+	return file_api_manage_v1_program_event_proto_rawDescGZIP(), []int{21}
 }
 
 func (x *DeleteProgramEventMediaRequest) GetEventId() string {
@@ -2221,7 +2378,7 @@ type ReorderProgramEventMediaRequest struct {
 
 func (x *ReorderProgramEventMediaRequest) Reset() {
 	*x = ReorderProgramEventMediaRequest{}
-	mi := &file_api_manage_v1_program_event_proto_msgTypes[19]
+	mi := &file_api_manage_v1_program_event_proto_msgTypes[22]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2233,7 +2390,7 @@ func (x *ReorderProgramEventMediaRequest) String() string {
 func (*ReorderProgramEventMediaRequest) ProtoMessage() {}
 
 func (x *ReorderProgramEventMediaRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_program_event_proto_msgTypes[19]
+	mi := &file_api_manage_v1_program_event_proto_msgTypes[22]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2246,7 +2403,7 @@ func (x *ReorderProgramEventMediaRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ReorderProgramEventMediaRequest.ProtoReflect.Descriptor instead.
 func (*ReorderProgramEventMediaRequest) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_program_event_proto_rawDescGZIP(), []int{19}
+	return file_api_manage_v1_program_event_proto_rawDescGZIP(), []int{22}
 }
 
 func (x *ReorderProgramEventMediaRequest) GetEventId() string {
@@ -2285,7 +2442,7 @@ type AddProgramEventCreditRequest struct {
 
 func (x *AddProgramEventCreditRequest) Reset() {
 	*x = AddProgramEventCreditRequest{}
-	mi := &file_api_manage_v1_program_event_proto_msgTypes[20]
+	mi := &file_api_manage_v1_program_event_proto_msgTypes[23]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2297,7 +2454,7 @@ func (x *AddProgramEventCreditRequest) String() string {
 func (*AddProgramEventCreditRequest) ProtoMessage() {}
 
 func (x *AddProgramEventCreditRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_program_event_proto_msgTypes[20]
+	mi := &file_api_manage_v1_program_event_proto_msgTypes[23]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2310,7 +2467,7 @@ func (x *AddProgramEventCreditRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AddProgramEventCreditRequest.ProtoReflect.Descriptor instead.
 func (*AddProgramEventCreditRequest) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_program_event_proto_rawDescGZIP(), []int{20}
+	return file_api_manage_v1_program_event_proto_rawDescGZIP(), []int{23}
 }
 
 func (x *AddProgramEventCreditRequest) GetEventId() string {
@@ -2375,7 +2532,7 @@ type UpdateProgramEventCreditRequest struct {
 
 func (x *UpdateProgramEventCreditRequest) Reset() {
 	*x = UpdateProgramEventCreditRequest{}
-	mi := &file_api_manage_v1_program_event_proto_msgTypes[21]
+	mi := &file_api_manage_v1_program_event_proto_msgTypes[24]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2387,7 +2544,7 @@ func (x *UpdateProgramEventCreditRequest) String() string {
 func (*UpdateProgramEventCreditRequest) ProtoMessage() {}
 
 func (x *UpdateProgramEventCreditRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_program_event_proto_msgTypes[21]
+	mi := &file_api_manage_v1_program_event_proto_msgTypes[24]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2400,7 +2557,7 @@ func (x *UpdateProgramEventCreditRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateProgramEventCreditRequest.ProtoReflect.Descriptor instead.
 func (*UpdateProgramEventCreditRequest) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_program_event_proto_rawDescGZIP(), []int{21}
+	return file_api_manage_v1_program_event_proto_rawDescGZIP(), []int{24}
 }
 
 func (x *UpdateProgramEventCreditRequest) GetEventId() string {
@@ -2448,7 +2605,7 @@ type DeleteProgramEventCreditRequest struct {
 
 func (x *DeleteProgramEventCreditRequest) Reset() {
 	*x = DeleteProgramEventCreditRequest{}
-	mi := &file_api_manage_v1_program_event_proto_msgTypes[22]
+	mi := &file_api_manage_v1_program_event_proto_msgTypes[25]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2460,7 +2617,7 @@ func (x *DeleteProgramEventCreditRequest) String() string {
 func (*DeleteProgramEventCreditRequest) ProtoMessage() {}
 
 func (x *DeleteProgramEventCreditRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_program_event_proto_msgTypes[22]
+	mi := &file_api_manage_v1_program_event_proto_msgTypes[25]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2473,7 +2630,7 @@ func (x *DeleteProgramEventCreditRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteProgramEventCreditRequest.ProtoReflect.Descriptor instead.
 func (*DeleteProgramEventCreditRequest) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_program_event_proto_rawDescGZIP(), []int{22}
+	return file_api_manage_v1_program_event_proto_rawDescGZIP(), []int{25}
 }
 
 func (x *DeleteProgramEventCreditRequest) GetEventId() string {
@@ -2500,7 +2657,7 @@ type ReorderProgramEventCreditsRequest struct {
 
 func (x *ReorderProgramEventCreditsRequest) Reset() {
 	*x = ReorderProgramEventCreditsRequest{}
-	mi := &file_api_manage_v1_program_event_proto_msgTypes[23]
+	mi := &file_api_manage_v1_program_event_proto_msgTypes[26]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2512,7 +2669,7 @@ func (x *ReorderProgramEventCreditsRequest) String() string {
 func (*ReorderProgramEventCreditsRequest) ProtoMessage() {}
 
 func (x *ReorderProgramEventCreditsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_program_event_proto_msgTypes[23]
+	mi := &file_api_manage_v1_program_event_proto_msgTypes[26]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2525,7 +2682,7 @@ func (x *ReorderProgramEventCreditsRequest) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use ReorderProgramEventCreditsRequest.ProtoReflect.Descriptor instead.
 func (*ReorderProgramEventCreditsRequest) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_program_event_proto_rawDescGZIP(), []int{23}
+	return file_api_manage_v1_program_event_proto_rawDescGZIP(), []int{26}
 }
 
 func (x *ReorderProgramEventCreditsRequest) GetEventId() string {
@@ -2551,7 +2708,7 @@ type DeleteProgramEventRequest struct {
 
 func (x *DeleteProgramEventRequest) Reset() {
 	*x = DeleteProgramEventRequest{}
-	mi := &file_api_manage_v1_program_event_proto_msgTypes[24]
+	mi := &file_api_manage_v1_program_event_proto_msgTypes[27]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2563,7 +2720,7 @@ func (x *DeleteProgramEventRequest) String() string {
 func (*DeleteProgramEventRequest) ProtoMessage() {}
 
 func (x *DeleteProgramEventRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_program_event_proto_msgTypes[24]
+	mi := &file_api_manage_v1_program_event_proto_msgTypes[27]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2576,7 +2733,7 @@ func (x *DeleteProgramEventRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteProgramEventRequest.ProtoReflect.Descriptor instead.
 func (*DeleteProgramEventRequest) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_program_event_proto_rawDescGZIP(), []int{24}
+	return file_api_manage_v1_program_event_proto_rawDescGZIP(), []int{27}
 }
 
 func (x *DeleteProgramEventRequest) GetId() string {
@@ -2595,7 +2752,7 @@ type PublishProgramEventRequest struct {
 
 func (x *PublishProgramEventRequest) Reset() {
 	*x = PublishProgramEventRequest{}
-	mi := &file_api_manage_v1_program_event_proto_msgTypes[25]
+	mi := &file_api_manage_v1_program_event_proto_msgTypes[28]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2607,7 +2764,7 @@ func (x *PublishProgramEventRequest) String() string {
 func (*PublishProgramEventRequest) ProtoMessage() {}
 
 func (x *PublishProgramEventRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_program_event_proto_msgTypes[25]
+	mi := &file_api_manage_v1_program_event_proto_msgTypes[28]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2620,7 +2777,7 @@ func (x *PublishProgramEventRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PublishProgramEventRequest.ProtoReflect.Descriptor instead.
 func (*PublishProgramEventRequest) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_program_event_proto_rawDescGZIP(), []int{25}
+	return file_api_manage_v1_program_event_proto_rawDescGZIP(), []int{28}
 }
 
 func (x *PublishProgramEventRequest) GetId() string {
@@ -2639,7 +2796,7 @@ type ArchiveProgramEventRequest struct {
 
 func (x *ArchiveProgramEventRequest) Reset() {
 	*x = ArchiveProgramEventRequest{}
-	mi := &file_api_manage_v1_program_event_proto_msgTypes[26]
+	mi := &file_api_manage_v1_program_event_proto_msgTypes[29]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2651,7 +2808,7 @@ func (x *ArchiveProgramEventRequest) String() string {
 func (*ArchiveProgramEventRequest) ProtoMessage() {}
 
 func (x *ArchiveProgramEventRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_program_event_proto_msgTypes[26]
+	mi := &file_api_manage_v1_program_event_proto_msgTypes[29]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2664,7 +2821,7 @@ func (x *ArchiveProgramEventRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ArchiveProgramEventRequest.ProtoReflect.Descriptor instead.
 func (*ArchiveProgramEventRequest) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_program_event_proto_rawDescGZIP(), []int{26}
+	return file_api_manage_v1_program_event_proto_rawDescGZIP(), []int{29}
 }
 
 func (x *ArchiveProgramEventRequest) GetId() string {
@@ -2685,7 +2842,7 @@ type UpdateProgramEventResponse struct {
 
 func (x *UpdateProgramEventResponse) Reset() {
 	*x = UpdateProgramEventResponse{}
-	mi := &file_api_manage_v1_program_event_proto_msgTypes[27]
+	mi := &file_api_manage_v1_program_event_proto_msgTypes[30]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2697,7 +2854,7 @@ func (x *UpdateProgramEventResponse) String() string {
 func (*UpdateProgramEventResponse) ProtoMessage() {}
 
 func (x *UpdateProgramEventResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_program_event_proto_msgTypes[27]
+	mi := &file_api_manage_v1_program_event_proto_msgTypes[30]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2710,7 +2867,7 @@ func (x *UpdateProgramEventResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateProgramEventResponse.ProtoReflect.Descriptor instead.
 func (*UpdateProgramEventResponse) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_program_event_proto_rawDescGZIP(), []int{27}
+	return file_api_manage_v1_program_event_proto_rawDescGZIP(), []int{30}
 }
 
 func (x *UpdateProgramEventResponse) GetId() string {
@@ -2746,7 +2903,7 @@ type AddProgramEventMediaResponse struct {
 
 func (x *AddProgramEventMediaResponse) Reset() {
 	*x = AddProgramEventMediaResponse{}
-	mi := &file_api_manage_v1_program_event_proto_msgTypes[28]
+	mi := &file_api_manage_v1_program_event_proto_msgTypes[31]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2758,7 +2915,7 @@ func (x *AddProgramEventMediaResponse) String() string {
 func (*AddProgramEventMediaResponse) ProtoMessage() {}
 
 func (x *AddProgramEventMediaResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_program_event_proto_msgTypes[28]
+	mi := &file_api_manage_v1_program_event_proto_msgTypes[31]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2771,7 +2928,7 @@ func (x *AddProgramEventMediaResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AddProgramEventMediaResponse.ProtoReflect.Descriptor instead.
 func (*AddProgramEventMediaResponse) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_program_event_proto_rawDescGZIP(), []int{28}
+	return file_api_manage_v1_program_event_proto_rawDescGZIP(), []int{31}
 }
 
 func (x *AddProgramEventMediaResponse) GetEventId() string {
@@ -2814,7 +2971,7 @@ type DeleteProgramEventMediaResponse struct {
 
 func (x *DeleteProgramEventMediaResponse) Reset() {
 	*x = DeleteProgramEventMediaResponse{}
-	mi := &file_api_manage_v1_program_event_proto_msgTypes[29]
+	mi := &file_api_manage_v1_program_event_proto_msgTypes[32]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2826,7 +2983,7 @@ func (x *DeleteProgramEventMediaResponse) String() string {
 func (*DeleteProgramEventMediaResponse) ProtoMessage() {}
 
 func (x *DeleteProgramEventMediaResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_program_event_proto_msgTypes[29]
+	mi := &file_api_manage_v1_program_event_proto_msgTypes[32]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2839,7 +2996,7 @@ func (x *DeleteProgramEventMediaResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteProgramEventMediaResponse.ProtoReflect.Descriptor instead.
 func (*DeleteProgramEventMediaResponse) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_program_event_proto_rawDescGZIP(), []int{29}
+	return file_api_manage_v1_program_event_proto_rawDescGZIP(), []int{32}
 }
 
 func (x *DeleteProgramEventMediaResponse) GetEventId() string {
@@ -2883,7 +3040,7 @@ type ReorderProgramEventMediaResponse struct {
 
 func (x *ReorderProgramEventMediaResponse) Reset() {
 	*x = ReorderProgramEventMediaResponse{}
-	mi := &file_api_manage_v1_program_event_proto_msgTypes[30]
+	mi := &file_api_manage_v1_program_event_proto_msgTypes[33]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2895,7 +3052,7 @@ func (x *ReorderProgramEventMediaResponse) String() string {
 func (*ReorderProgramEventMediaResponse) ProtoMessage() {}
 
 func (x *ReorderProgramEventMediaResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_program_event_proto_msgTypes[30]
+	mi := &file_api_manage_v1_program_event_proto_msgTypes[33]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2908,7 +3065,7 @@ func (x *ReorderProgramEventMediaResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ReorderProgramEventMediaResponse.ProtoReflect.Descriptor instead.
 func (*ReorderProgramEventMediaResponse) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_program_event_proto_rawDescGZIP(), []int{30}
+	return file_api_manage_v1_program_event_proto_rawDescGZIP(), []int{33}
 }
 
 func (x *ReorderProgramEventMediaResponse) GetEventId() string {
@@ -2958,7 +3115,7 @@ type ReorderProgramEventCreditsResponse struct {
 
 func (x *ReorderProgramEventCreditsResponse) Reset() {
 	*x = ReorderProgramEventCreditsResponse{}
-	mi := &file_api_manage_v1_program_event_proto_msgTypes[31]
+	mi := &file_api_manage_v1_program_event_proto_msgTypes[34]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2970,7 +3127,7 @@ func (x *ReorderProgramEventCreditsResponse) String() string {
 func (*ReorderProgramEventCreditsResponse) ProtoMessage() {}
 
 func (x *ReorderProgramEventCreditsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_program_event_proto_msgTypes[31]
+	mi := &file_api_manage_v1_program_event_proto_msgTypes[34]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2983,7 +3140,7 @@ func (x *ReorderProgramEventCreditsResponse) ProtoReflect() protoreflect.Message
 
 // Deprecated: Use ReorderProgramEventCreditsResponse.ProtoReflect.Descriptor instead.
 func (*ReorderProgramEventCreditsResponse) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_program_event_proto_rawDescGZIP(), []int{31}
+	return file_api_manage_v1_program_event_proto_rawDescGZIP(), []int{34}
 }
 
 func (x *ReorderProgramEventCreditsResponse) GetEventId() string {
@@ -3027,7 +3184,7 @@ type ProgramEventLifecycleMutationResponse struct {
 
 func (x *ProgramEventLifecycleMutationResponse) Reset() {
 	*x = ProgramEventLifecycleMutationResponse{}
-	mi := &file_api_manage_v1_program_event_proto_msgTypes[32]
+	mi := &file_api_manage_v1_program_event_proto_msgTypes[35]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3039,7 +3196,7 @@ func (x *ProgramEventLifecycleMutationResponse) String() string {
 func (*ProgramEventLifecycleMutationResponse) ProtoMessage() {}
 
 func (x *ProgramEventLifecycleMutationResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_program_event_proto_msgTypes[32]
+	mi := &file_api_manage_v1_program_event_proto_msgTypes[35]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3052,7 +3209,7 @@ func (x *ProgramEventLifecycleMutationResponse) ProtoReflect() protoreflect.Mess
 
 // Deprecated: Use ProgramEventLifecycleMutationResponse.ProtoReflect.Descriptor instead.
 func (*ProgramEventLifecycleMutationResponse) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_program_event_proto_rawDescGZIP(), []int{32}
+	return file_api_manage_v1_program_event_proto_rawDescGZIP(), []int{35}
 }
 
 func (x *ProgramEventLifecycleMutationResponse) GetId() string {
@@ -3103,7 +3260,7 @@ type CreateProgramEventSeriesRequest struct {
 
 func (x *CreateProgramEventSeriesRequest) Reset() {
 	*x = CreateProgramEventSeriesRequest{}
-	mi := &file_api_manage_v1_program_event_proto_msgTypes[33]
+	mi := &file_api_manage_v1_program_event_proto_msgTypes[36]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3115,7 +3272,7 @@ func (x *CreateProgramEventSeriesRequest) String() string {
 func (*CreateProgramEventSeriesRequest) ProtoMessage() {}
 
 func (x *CreateProgramEventSeriesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_program_event_proto_msgTypes[33]
+	mi := &file_api_manage_v1_program_event_proto_msgTypes[36]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3128,7 +3285,7 @@ func (x *CreateProgramEventSeriesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateProgramEventSeriesRequest.ProtoReflect.Descriptor instead.
 func (*CreateProgramEventSeriesRequest) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_program_event_proto_rawDescGZIP(), []int{33}
+	return file_api_manage_v1_program_event_proto_rawDescGZIP(), []int{36}
 }
 
 func (x *CreateProgramEventSeriesRequest) GetTitle() string {
@@ -3181,7 +3338,7 @@ type UpdateProgramEventSeriesRequest struct {
 
 func (x *UpdateProgramEventSeriesRequest) Reset() {
 	*x = UpdateProgramEventSeriesRequest{}
-	mi := &file_api_manage_v1_program_event_proto_msgTypes[34]
+	mi := &file_api_manage_v1_program_event_proto_msgTypes[37]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3193,7 +3350,7 @@ func (x *UpdateProgramEventSeriesRequest) String() string {
 func (*UpdateProgramEventSeriesRequest) ProtoMessage() {}
 
 func (x *UpdateProgramEventSeriesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_program_event_proto_msgTypes[34]
+	mi := &file_api_manage_v1_program_event_proto_msgTypes[37]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3206,7 +3363,7 @@ func (x *UpdateProgramEventSeriesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateProgramEventSeriesRequest.ProtoReflect.Descriptor instead.
 func (*UpdateProgramEventSeriesRequest) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_program_event_proto_rawDescGZIP(), []int{34}
+	return file_api_manage_v1_program_event_proto_rawDescGZIP(), []int{37}
 }
 
 func (x *UpdateProgramEventSeriesRequest) GetId() string {
@@ -3267,7 +3424,7 @@ type GetProgramEventSeriesRequest struct {
 
 func (x *GetProgramEventSeriesRequest) Reset() {
 	*x = GetProgramEventSeriesRequest{}
-	mi := &file_api_manage_v1_program_event_proto_msgTypes[35]
+	mi := &file_api_manage_v1_program_event_proto_msgTypes[38]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3279,7 +3436,7 @@ func (x *GetProgramEventSeriesRequest) String() string {
 func (*GetProgramEventSeriesRequest) ProtoMessage() {}
 
 func (x *GetProgramEventSeriesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_program_event_proto_msgTypes[35]
+	mi := &file_api_manage_v1_program_event_proto_msgTypes[38]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3292,7 +3449,7 @@ func (x *GetProgramEventSeriesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetProgramEventSeriesRequest.ProtoReflect.Descriptor instead.
 func (*GetProgramEventSeriesRequest) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_program_event_proto_rawDescGZIP(), []int{35}
+	return file_api_manage_v1_program_event_proto_rawDescGZIP(), []int{38}
 }
 
 func (x *GetProgramEventSeriesRequest) GetId() string {
@@ -3313,7 +3470,7 @@ type ListProgramEventSeriesAdminRequest struct {
 
 func (x *ListProgramEventSeriesAdminRequest) Reset() {
 	*x = ListProgramEventSeriesAdminRequest{}
-	mi := &file_api_manage_v1_program_event_proto_msgTypes[36]
+	mi := &file_api_manage_v1_program_event_proto_msgTypes[39]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3325,7 +3482,7 @@ func (x *ListProgramEventSeriesAdminRequest) String() string {
 func (*ListProgramEventSeriesAdminRequest) ProtoMessage() {}
 
 func (x *ListProgramEventSeriesAdminRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_program_event_proto_msgTypes[36]
+	mi := &file_api_manage_v1_program_event_proto_msgTypes[39]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3338,7 +3495,7 @@ func (x *ListProgramEventSeriesAdminRequest) ProtoReflect() protoreflect.Message
 
 // Deprecated: Use ListProgramEventSeriesAdminRequest.ProtoReflect.Descriptor instead.
 func (*ListProgramEventSeriesAdminRequest) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_program_event_proto_rawDescGZIP(), []int{36}
+	return file_api_manage_v1_program_event_proto_rawDescGZIP(), []int{39}
 }
 
 func (x *ListProgramEventSeriesAdminRequest) GetPagination() *v1.PaginationRequest {
@@ -3372,7 +3529,7 @@ type ListProgramEventSeriesAdminResponse struct {
 
 func (x *ListProgramEventSeriesAdminResponse) Reset() {
 	*x = ListProgramEventSeriesAdminResponse{}
-	mi := &file_api_manage_v1_program_event_proto_msgTypes[37]
+	mi := &file_api_manage_v1_program_event_proto_msgTypes[40]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3384,7 +3541,7 @@ func (x *ListProgramEventSeriesAdminResponse) String() string {
 func (*ListProgramEventSeriesAdminResponse) ProtoMessage() {}
 
 func (x *ListProgramEventSeriesAdminResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_program_event_proto_msgTypes[37]
+	mi := &file_api_manage_v1_program_event_proto_msgTypes[40]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3397,7 +3554,7 @@ func (x *ListProgramEventSeriesAdminResponse) ProtoReflect() protoreflect.Messag
 
 // Deprecated: Use ListProgramEventSeriesAdminResponse.ProtoReflect.Descriptor instead.
 func (*ListProgramEventSeriesAdminResponse) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_program_event_proto_rawDescGZIP(), []int{37}
+	return file_api_manage_v1_program_event_proto_rawDescGZIP(), []int{40}
 }
 
 func (x *ListProgramEventSeriesAdminResponse) GetSeries() []*ProgramEventSeries {
@@ -3423,7 +3580,7 @@ type DeleteProgramEventSeriesRequest struct {
 
 func (x *DeleteProgramEventSeriesRequest) Reset() {
 	*x = DeleteProgramEventSeriesRequest{}
-	mi := &file_api_manage_v1_program_event_proto_msgTypes[38]
+	mi := &file_api_manage_v1_program_event_proto_msgTypes[41]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3435,7 +3592,7 @@ func (x *DeleteProgramEventSeriesRequest) String() string {
 func (*DeleteProgramEventSeriesRequest) ProtoMessage() {}
 
 func (x *DeleteProgramEventSeriesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_program_event_proto_msgTypes[38]
+	mi := &file_api_manage_v1_program_event_proto_msgTypes[41]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3448,7 +3605,7 @@ func (x *DeleteProgramEventSeriesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteProgramEventSeriesRequest.ProtoReflect.Descriptor instead.
 func (*DeleteProgramEventSeriesRequest) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_program_event_proto_rawDescGZIP(), []int{38}
+	return file_api_manage_v1_program_event_proto_rawDescGZIP(), []int{41}
 }
 
 func (x *DeleteProgramEventSeriesRequest) GetId() string {
@@ -3473,7 +3630,7 @@ type CreateProgramEventTypeRequest struct {
 
 func (x *CreateProgramEventTypeRequest) Reset() {
 	*x = CreateProgramEventTypeRequest{}
-	mi := &file_api_manage_v1_program_event_proto_msgTypes[39]
+	mi := &file_api_manage_v1_program_event_proto_msgTypes[42]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3485,7 +3642,7 @@ func (x *CreateProgramEventTypeRequest) String() string {
 func (*CreateProgramEventTypeRequest) ProtoMessage() {}
 
 func (x *CreateProgramEventTypeRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_program_event_proto_msgTypes[39]
+	mi := &file_api_manage_v1_program_event_proto_msgTypes[42]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3498,7 +3655,7 @@ func (x *CreateProgramEventTypeRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateProgramEventTypeRequest.ProtoReflect.Descriptor instead.
 func (*CreateProgramEventTypeRequest) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_program_event_proto_rawDescGZIP(), []int{39}
+	return file_api_manage_v1_program_event_proto_rawDescGZIP(), []int{42}
 }
 
 func (x *CreateProgramEventTypeRequest) GetSlug() string {
@@ -3561,7 +3718,7 @@ type ListProgramEventTypesAdminRequest struct {
 
 func (x *ListProgramEventTypesAdminRequest) Reset() {
 	*x = ListProgramEventTypesAdminRequest{}
-	mi := &file_api_manage_v1_program_event_proto_msgTypes[40]
+	mi := &file_api_manage_v1_program_event_proto_msgTypes[43]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3573,7 +3730,7 @@ func (x *ListProgramEventTypesAdminRequest) String() string {
 func (*ListProgramEventTypesAdminRequest) ProtoMessage() {}
 
 func (x *ListProgramEventTypesAdminRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_program_event_proto_msgTypes[40]
+	mi := &file_api_manage_v1_program_event_proto_msgTypes[43]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3586,7 +3743,7 @@ func (x *ListProgramEventTypesAdminRequest) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use ListProgramEventTypesAdminRequest.ProtoReflect.Descriptor instead.
 func (*ListProgramEventTypesAdminRequest) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_program_event_proto_rawDescGZIP(), []int{40}
+	return file_api_manage_v1_program_event_proto_rawDescGZIP(), []int{43}
 }
 
 func (x *ListProgramEventTypesAdminRequest) GetPagination() *v1.PaginationRequest {
@@ -3620,7 +3777,7 @@ type ListProgramEventTypesAdminResponse struct {
 
 func (x *ListProgramEventTypesAdminResponse) Reset() {
 	*x = ListProgramEventTypesAdminResponse{}
-	mi := &file_api_manage_v1_program_event_proto_msgTypes[41]
+	mi := &file_api_manage_v1_program_event_proto_msgTypes[44]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3632,7 +3789,7 @@ func (x *ListProgramEventTypesAdminResponse) String() string {
 func (*ListProgramEventTypesAdminResponse) ProtoMessage() {}
 
 func (x *ListProgramEventTypesAdminResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_program_event_proto_msgTypes[41]
+	mi := &file_api_manage_v1_program_event_proto_msgTypes[44]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3645,7 +3802,7 @@ func (x *ListProgramEventTypesAdminResponse) ProtoReflect() protoreflect.Message
 
 // Deprecated: Use ListProgramEventTypesAdminResponse.ProtoReflect.Descriptor instead.
 func (*ListProgramEventTypesAdminResponse) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_program_event_proto_rawDescGZIP(), []int{41}
+	return file_api_manage_v1_program_event_proto_rawDescGZIP(), []int{44}
 }
 
 func (x *ListProgramEventTypesAdminResponse) GetTypes() []*ProgramEventType {
@@ -3679,7 +3836,7 @@ type UpdateProgramEventTypeRequest struct {
 
 func (x *UpdateProgramEventTypeRequest) Reset() {
 	*x = UpdateProgramEventTypeRequest{}
-	mi := &file_api_manage_v1_program_event_proto_msgTypes[42]
+	mi := &file_api_manage_v1_program_event_proto_msgTypes[45]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3691,7 +3848,7 @@ func (x *UpdateProgramEventTypeRequest) String() string {
 func (*UpdateProgramEventTypeRequest) ProtoMessage() {}
 
 func (x *UpdateProgramEventTypeRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_program_event_proto_msgTypes[42]
+	mi := &file_api_manage_v1_program_event_proto_msgTypes[45]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3704,7 +3861,7 @@ func (x *UpdateProgramEventTypeRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateProgramEventTypeRequest.ProtoReflect.Descriptor instead.
 func (*UpdateProgramEventTypeRequest) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_program_event_proto_rawDescGZIP(), []int{42}
+	return file_api_manage_v1_program_event_proto_rawDescGZIP(), []int{45}
 }
 
 func (x *UpdateProgramEventTypeRequest) GetId() string {
@@ -3779,7 +3936,7 @@ type DeleteProgramEventTypeRequest struct {
 
 func (x *DeleteProgramEventTypeRequest) Reset() {
 	*x = DeleteProgramEventTypeRequest{}
-	mi := &file_api_manage_v1_program_event_proto_msgTypes[43]
+	mi := &file_api_manage_v1_program_event_proto_msgTypes[46]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3791,7 +3948,7 @@ func (x *DeleteProgramEventTypeRequest) String() string {
 func (*DeleteProgramEventTypeRequest) ProtoMessage() {}
 
 func (x *DeleteProgramEventTypeRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_program_event_proto_msgTypes[43]
+	mi := &file_api_manage_v1_program_event_proto_msgTypes[46]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3804,7 +3961,7 @@ func (x *DeleteProgramEventTypeRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteProgramEventTypeRequest.ProtoReflect.Descriptor instead.
 func (*DeleteProgramEventTypeRequest) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_program_event_proto_rawDescGZIP(), []int{43}
+	return file_api_manage_v1_program_event_proto_rawDescGZIP(), []int{46}
 }
 
 func (x *DeleteProgramEventTypeRequest) GetId() string {
@@ -3898,7 +4055,13 @@ const file_api_manage_v1_program_event_proto_rawDesc = "" +
 	"\x04role\x18\x02 \x01(\tH\x00R\x04role\x88\x01\x01\x12\x1d\n" +
 	"\n" +
 	"sort_order\x18\x03 \x01(\x05R\tsortOrderB\a\n" +
-	"\x05_role\"\xe0\x03\n" +
+	"\x05_role\"Z\n" +
+	"\x1bProgramEventArtistsSnapshot\x12;\n" +
+	"\aartists\x18\x01 \x03(\v2!.api.manage.v1.ProgramEventArtistR\aartists\"V\n" +
+	"\x1aProgramEventLabelsSnapshot\x128\n" +
+	"\x06labels\x18\x01 \x03(\v2 .api.manage.v1.ProgramEventLabelR\x06labels\"Z\n" +
+	"\x1bProgramEventClientsSnapshot\x12;\n" +
+	"\aclients\x18\x01 \x03(\v2!.api.manage.v1.ProgramEventClientR\aclients\"\xe0\x03\n" +
 	"\x12ProgramEventCredit\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12 \n" +
 	"\tartist_id\x18\x02 \x01(\tH\x00R\bartistId\x88\x01\x01\x12&\n" +
@@ -4054,8 +4217,7 @@ const file_api_manage_v1_program_event_proto_rawDesc = "" +
 	"\x0f_poster_file_idB\r\n" +
 	"\v_ticket_urlB\r\n" +
 	"\v_stream_urlB\x0f\n" +
-	"\r_external_url\"\xa9\n" +
-	"\n" +
+	"\r_external_url\"\xab\f\n" +
 	"\x19UpdateProgramEventRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x17\n" +
 	"\x04slug\x18\x02 \x01(\tH\x00R\x04slug\x88\x01\x01\x12\x1c\n" +
@@ -4086,7 +4248,10 @@ const file_api_manage_v1_program_event_proto_rawDesc = "" +
 	"\x0freplace_clients\x18\x16 \x01(\bR\x0ereplaceClients\x12'\n" +
 	"\x0freplace_credits\x18\x17 \x01(\bR\x0ereplaceCredits\x12\"\n" +
 	"\rclear_ends_at\x18\x18 \x01(\bR\vclearEndsAt\x12,\n" +
-	"\x12clear_series_order\x18\x19 \x01(\bR\x10clearSeriesOrderB\a\n" +
+	"\x12clear_series_order\x18\x19 \x01(\bR\x10clearSeriesOrder\x12U\n" +
+	"\x10observed_artists\x18\x1a \x01(\v2*.api.manage.v1.ProgramEventArtistsSnapshotR\x0fobservedArtists\x12R\n" +
+	"\x0fobserved_labels\x18\x1b \x01(\v2).api.manage.v1.ProgramEventLabelsSnapshotR\x0eobservedLabels\x12U\n" +
+	"\x10observed_clients\x18\x1c \x01(\v2*.api.manage.v1.ProgramEventClientsSnapshotR\x0fobservedClientsB\a\n" +
 	"\x05_slugB\n" +
 	"\n" +
 	"\b_type_idB\f\n" +
@@ -4348,7 +4513,7 @@ func file_api_manage_v1_program_event_proto_rawDescGZIP() []byte {
 }
 
 var file_api_manage_v1_program_event_proto_enumTypes = make([]protoimpl.EnumInfo, 4)
-var file_api_manage_v1_program_event_proto_msgTypes = make([]protoimpl.MessageInfo, 44)
+var file_api_manage_v1_program_event_proto_msgTypes = make([]protoimpl.MessageInfo, 47)
 var file_api_manage_v1_program_event_proto_goTypes = []any{
 	(ProgramEventStatus)(0),                       // 0: api.manage.v1.ProgramEventStatus
 	(ProgramEventSeriesStatus)(0),                 // 1: api.manage.v1.ProgramEventSeriesStatus
@@ -4362,178 +4527,187 @@ var file_api_manage_v1_program_event_proto_goTypes = []any{
 	(*ProgramEventArtist)(nil),                    // 9: api.manage.v1.ProgramEventArtist
 	(*ProgramEventLabel)(nil),                     // 10: api.manage.v1.ProgramEventLabel
 	(*ProgramEventClient)(nil),                    // 11: api.manage.v1.ProgramEventClient
-	(*ProgramEventCredit)(nil),                    // 12: api.manage.v1.ProgramEventCredit
-	(*ProgramEventCreditArtist)(nil),              // 13: api.manage.v1.ProgramEventCreditArtist
-	(*ProgramEvent)(nil),                          // 14: api.manage.v1.ProgramEvent
-	(*ProgramEventSummary)(nil),                   // 15: api.manage.v1.ProgramEventSummary
-	(*GetProgramEventRequest)(nil),                // 16: api.manage.v1.GetProgramEventRequest
-	(*ListProgramEventsAdminRequest)(nil),         // 17: api.manage.v1.ListProgramEventsAdminRequest
-	(*ListProgramEventsAdminResponse)(nil),        // 18: api.manage.v1.ListProgramEventsAdminResponse
-	(*CreateProgramEventRequest)(nil),             // 19: api.manage.v1.CreateProgramEventRequest
-	(*UpdateProgramEventRequest)(nil),             // 20: api.manage.v1.UpdateProgramEventRequest
-	(*AddProgramEventMediaRequest)(nil),           // 21: api.manage.v1.AddProgramEventMediaRequest
-	(*DeleteProgramEventMediaRequest)(nil),        // 22: api.manage.v1.DeleteProgramEventMediaRequest
-	(*ReorderProgramEventMediaRequest)(nil),       // 23: api.manage.v1.ReorderProgramEventMediaRequest
-	(*AddProgramEventCreditRequest)(nil),          // 24: api.manage.v1.AddProgramEventCreditRequest
-	(*UpdateProgramEventCreditRequest)(nil),       // 25: api.manage.v1.UpdateProgramEventCreditRequest
-	(*DeleteProgramEventCreditRequest)(nil),       // 26: api.manage.v1.DeleteProgramEventCreditRequest
-	(*ReorderProgramEventCreditsRequest)(nil),     // 27: api.manage.v1.ReorderProgramEventCreditsRequest
-	(*DeleteProgramEventRequest)(nil),             // 28: api.manage.v1.DeleteProgramEventRequest
-	(*PublishProgramEventRequest)(nil),            // 29: api.manage.v1.PublishProgramEventRequest
-	(*ArchiveProgramEventRequest)(nil),            // 30: api.manage.v1.ArchiveProgramEventRequest
-	(*UpdateProgramEventResponse)(nil),            // 31: api.manage.v1.UpdateProgramEventResponse
-	(*AddProgramEventMediaResponse)(nil),          // 32: api.manage.v1.AddProgramEventMediaResponse
-	(*DeleteProgramEventMediaResponse)(nil),       // 33: api.manage.v1.DeleteProgramEventMediaResponse
-	(*ReorderProgramEventMediaResponse)(nil),      // 34: api.manage.v1.ReorderProgramEventMediaResponse
-	(*ReorderProgramEventCreditsResponse)(nil),    // 35: api.manage.v1.ReorderProgramEventCreditsResponse
-	(*ProgramEventLifecycleMutationResponse)(nil), // 36: api.manage.v1.ProgramEventLifecycleMutationResponse
-	(*CreateProgramEventSeriesRequest)(nil),       // 37: api.manage.v1.CreateProgramEventSeriesRequest
-	(*UpdateProgramEventSeriesRequest)(nil),       // 38: api.manage.v1.UpdateProgramEventSeriesRequest
-	(*GetProgramEventSeriesRequest)(nil),          // 39: api.manage.v1.GetProgramEventSeriesRequest
-	(*ListProgramEventSeriesAdminRequest)(nil),    // 40: api.manage.v1.ListProgramEventSeriesAdminRequest
-	(*ListProgramEventSeriesAdminResponse)(nil),   // 41: api.manage.v1.ListProgramEventSeriesAdminResponse
-	(*DeleteProgramEventSeriesRequest)(nil),       // 42: api.manage.v1.DeleteProgramEventSeriesRequest
-	(*CreateProgramEventTypeRequest)(nil),         // 43: api.manage.v1.CreateProgramEventTypeRequest
-	(*ListProgramEventTypesAdminRequest)(nil),     // 44: api.manage.v1.ListProgramEventTypesAdminRequest
-	(*ListProgramEventTypesAdminResponse)(nil),    // 45: api.manage.v1.ListProgramEventTypesAdminResponse
-	(*UpdateProgramEventTypeRequest)(nil),         // 46: api.manage.v1.UpdateProgramEventTypeRequest
-	(*DeleteProgramEventTypeRequest)(nil),         // 47: api.manage.v1.DeleteProgramEventTypeRequest
-	(*timestamppb.Timestamp)(nil),                 // 48: google.protobuf.Timestamp
-	(*v1.MemberSummary)(nil),                      // 49: api.common.v1.MemberSummary
-	(*v1.AssetRef)(nil),                           // 50: api.common.v1.AssetRef
-	(*v11.RichTextDocument)(nil),                  // 51: api.content.v1.RichTextDocument
-	(*v11.ContentBlockMediaItem)(nil),             // 52: api.content.v1.ContentBlockMediaItem
-	(*v1.PaginationRequest)(nil),                  // 53: api.common.v1.PaginationRequest
-	(*v1.FilterSpec)(nil),                         // 54: api.common.v1.FilterSpec
-	(*v1.SortSpec)(nil),                           // 55: api.common.v1.SortSpec
-	(*v1.PaginationResponse)(nil),                 // 56: api.common.v1.PaginationResponse
-	(*DeleteResponse)(nil),                        // 57: api.manage.v1.DeleteResponse
+	(*ProgramEventArtistsSnapshot)(nil),           // 12: api.manage.v1.ProgramEventArtistsSnapshot
+	(*ProgramEventLabelsSnapshot)(nil),            // 13: api.manage.v1.ProgramEventLabelsSnapshot
+	(*ProgramEventClientsSnapshot)(nil),           // 14: api.manage.v1.ProgramEventClientsSnapshot
+	(*ProgramEventCredit)(nil),                    // 15: api.manage.v1.ProgramEventCredit
+	(*ProgramEventCreditArtist)(nil),              // 16: api.manage.v1.ProgramEventCreditArtist
+	(*ProgramEvent)(nil),                          // 17: api.manage.v1.ProgramEvent
+	(*ProgramEventSummary)(nil),                   // 18: api.manage.v1.ProgramEventSummary
+	(*GetProgramEventRequest)(nil),                // 19: api.manage.v1.GetProgramEventRequest
+	(*ListProgramEventsAdminRequest)(nil),         // 20: api.manage.v1.ListProgramEventsAdminRequest
+	(*ListProgramEventsAdminResponse)(nil),        // 21: api.manage.v1.ListProgramEventsAdminResponse
+	(*CreateProgramEventRequest)(nil),             // 22: api.manage.v1.CreateProgramEventRequest
+	(*UpdateProgramEventRequest)(nil),             // 23: api.manage.v1.UpdateProgramEventRequest
+	(*AddProgramEventMediaRequest)(nil),           // 24: api.manage.v1.AddProgramEventMediaRequest
+	(*DeleteProgramEventMediaRequest)(nil),        // 25: api.manage.v1.DeleteProgramEventMediaRequest
+	(*ReorderProgramEventMediaRequest)(nil),       // 26: api.manage.v1.ReorderProgramEventMediaRequest
+	(*AddProgramEventCreditRequest)(nil),          // 27: api.manage.v1.AddProgramEventCreditRequest
+	(*UpdateProgramEventCreditRequest)(nil),       // 28: api.manage.v1.UpdateProgramEventCreditRequest
+	(*DeleteProgramEventCreditRequest)(nil),       // 29: api.manage.v1.DeleteProgramEventCreditRequest
+	(*ReorderProgramEventCreditsRequest)(nil),     // 30: api.manage.v1.ReorderProgramEventCreditsRequest
+	(*DeleteProgramEventRequest)(nil),             // 31: api.manage.v1.DeleteProgramEventRequest
+	(*PublishProgramEventRequest)(nil),            // 32: api.manage.v1.PublishProgramEventRequest
+	(*ArchiveProgramEventRequest)(nil),            // 33: api.manage.v1.ArchiveProgramEventRequest
+	(*UpdateProgramEventResponse)(nil),            // 34: api.manage.v1.UpdateProgramEventResponse
+	(*AddProgramEventMediaResponse)(nil),          // 35: api.manage.v1.AddProgramEventMediaResponse
+	(*DeleteProgramEventMediaResponse)(nil),       // 36: api.manage.v1.DeleteProgramEventMediaResponse
+	(*ReorderProgramEventMediaResponse)(nil),      // 37: api.manage.v1.ReorderProgramEventMediaResponse
+	(*ReorderProgramEventCreditsResponse)(nil),    // 38: api.manage.v1.ReorderProgramEventCreditsResponse
+	(*ProgramEventLifecycleMutationResponse)(nil), // 39: api.manage.v1.ProgramEventLifecycleMutationResponse
+	(*CreateProgramEventSeriesRequest)(nil),       // 40: api.manage.v1.CreateProgramEventSeriesRequest
+	(*UpdateProgramEventSeriesRequest)(nil),       // 41: api.manage.v1.UpdateProgramEventSeriesRequest
+	(*GetProgramEventSeriesRequest)(nil),          // 42: api.manage.v1.GetProgramEventSeriesRequest
+	(*ListProgramEventSeriesAdminRequest)(nil),    // 43: api.manage.v1.ListProgramEventSeriesAdminRequest
+	(*ListProgramEventSeriesAdminResponse)(nil),   // 44: api.manage.v1.ListProgramEventSeriesAdminResponse
+	(*DeleteProgramEventSeriesRequest)(nil),       // 45: api.manage.v1.DeleteProgramEventSeriesRequest
+	(*CreateProgramEventTypeRequest)(nil),         // 46: api.manage.v1.CreateProgramEventTypeRequest
+	(*ListProgramEventTypesAdminRequest)(nil),     // 47: api.manage.v1.ListProgramEventTypesAdminRequest
+	(*ListProgramEventTypesAdminResponse)(nil),    // 48: api.manage.v1.ListProgramEventTypesAdminResponse
+	(*UpdateProgramEventTypeRequest)(nil),         // 49: api.manage.v1.UpdateProgramEventTypeRequest
+	(*DeleteProgramEventTypeRequest)(nil),         // 50: api.manage.v1.DeleteProgramEventTypeRequest
+	(*timestamppb.Timestamp)(nil),                 // 51: google.protobuf.Timestamp
+	(*v1.MemberSummary)(nil),                      // 52: api.common.v1.MemberSummary
+	(*v1.AssetRef)(nil),                           // 53: api.common.v1.AssetRef
+	(*v11.RichTextDocument)(nil),                  // 54: api.content.v1.RichTextDocument
+	(*v11.ContentBlockMediaItem)(nil),             // 55: api.content.v1.ContentBlockMediaItem
+	(*v1.PaginationRequest)(nil),                  // 56: api.common.v1.PaginationRequest
+	(*v1.FilterSpec)(nil),                         // 57: api.common.v1.FilterSpec
+	(*v1.SortSpec)(nil),                           // 58: api.common.v1.SortSpec
+	(*v1.PaginationResponse)(nil),                 // 59: api.common.v1.PaginationResponse
+	(*DeleteResponse)(nil),                        // 60: api.manage.v1.DeleteResponse
 }
 var file_api_manage_v1_program_event_proto_depIdxs = []int32{
-	3,  // 0: api.manage.v1.ProgramEventType.status:type_name -> api.manage.v1.ProgramEventTypeStatus
-	4,  // 1: api.manage.v1.ProgramEventType.locales:type_name -> api.manage.v1.ProgramEventTypeLocale
-	48, // 2: api.manage.v1.ProgramEventType.created_at:type_name -> google.protobuf.Timestamp
-	48, // 3: api.manage.v1.ProgramEventType.updated_at:type_name -> google.protobuf.Timestamp
-	1,  // 4: api.manage.v1.ProgramEventSeries.status:type_name -> api.manage.v1.ProgramEventSeriesStatus
-	48, // 5: api.manage.v1.ProgramEventSeries.created_at:type_name -> google.protobuf.Timestamp
-	48, // 6: api.manage.v1.ProgramEventSeries.updated_at:type_name -> google.protobuf.Timestamp
-	48, // 7: api.manage.v1.ProgramEventMedia.created_at:type_name -> google.protobuf.Timestamp
-	48, // 8: api.manage.v1.ProgramEventMedia.updated_at:type_name -> google.protobuf.Timestamp
-	13, // 9: api.manage.v1.ProgramEventCredit.artist:type_name -> api.manage.v1.ProgramEventCreditArtist
-	49, // 10: api.manage.v1.ProgramEventCredit.member:type_name -> api.common.v1.MemberSummary
-	50, // 11: api.manage.v1.ProgramEventCreditArtist.image_asset:type_name -> api.common.v1.AssetRef
-	0,  // 12: api.manage.v1.ProgramEvent.status:type_name -> api.manage.v1.ProgramEventStatus
-	48, // 13: api.manage.v1.ProgramEvent.starts_at:type_name -> google.protobuf.Timestamp
-	48, // 14: api.manage.v1.ProgramEvent.ends_at:type_name -> google.protobuf.Timestamp
-	2,  // 15: api.manage.v1.ProgramEvent.location_mode:type_name -> api.manage.v1.ProgramEventLocationMode
-	48, // 16: api.manage.v1.ProgramEvent.published_at:type_name -> google.protobuf.Timestamp
-	7,  // 17: api.manage.v1.ProgramEvent.locales:type_name -> api.manage.v1.ProgramEventLocale
-	9,  // 18: api.manage.v1.ProgramEvent.artists:type_name -> api.manage.v1.ProgramEventArtist
-	10, // 19: api.manage.v1.ProgramEvent.labels:type_name -> api.manage.v1.ProgramEventLabel
-	11, // 20: api.manage.v1.ProgramEvent.clients:type_name -> api.manage.v1.ProgramEventClient
-	12, // 21: api.manage.v1.ProgramEvent.credits:type_name -> api.manage.v1.ProgramEventCredit
-	48, // 22: api.manage.v1.ProgramEvent.created_at:type_name -> google.protobuf.Timestamp
-	48, // 23: api.manage.v1.ProgramEvent.updated_at:type_name -> google.protobuf.Timestamp
-	8,  // 24: api.manage.v1.ProgramEvent.media:type_name -> api.manage.v1.ProgramEventMedia
-	51, // 25: api.manage.v1.ProgramEvent.document:type_name -> api.content.v1.RichTextDocument
-	52, // 26: api.manage.v1.ProgramEvent.block_media:type_name -> api.content.v1.ContentBlockMediaItem
-	0,  // 27: api.manage.v1.ProgramEventSummary.status:type_name -> api.manage.v1.ProgramEventStatus
-	48, // 28: api.manage.v1.ProgramEventSummary.starts_at:type_name -> google.protobuf.Timestamp
-	48, // 29: api.manage.v1.ProgramEventSummary.ends_at:type_name -> google.protobuf.Timestamp
-	2,  // 30: api.manage.v1.ProgramEventSummary.location_mode:type_name -> api.manage.v1.ProgramEventLocationMode
-	48, // 31: api.manage.v1.ProgramEventSummary.published_at:type_name -> google.protobuf.Timestamp
-	48, // 32: api.manage.v1.ProgramEventSummary.updated_at:type_name -> google.protobuf.Timestamp
-	53, // 33: api.manage.v1.ListProgramEventsAdminRequest.pagination:type_name -> api.common.v1.PaginationRequest
-	54, // 34: api.manage.v1.ListProgramEventsAdminRequest.filters:type_name -> api.common.v1.FilterSpec
-	55, // 35: api.manage.v1.ListProgramEventsAdminRequest.sorts:type_name -> api.common.v1.SortSpec
-	15, // 36: api.manage.v1.ListProgramEventsAdminResponse.events:type_name -> api.manage.v1.ProgramEventSummary
-	56, // 37: api.manage.v1.ListProgramEventsAdminResponse.pagination:type_name -> api.common.v1.PaginationResponse
-	48, // 38: api.manage.v1.CreateProgramEventRequest.starts_at:type_name -> google.protobuf.Timestamp
-	48, // 39: api.manage.v1.CreateProgramEventRequest.ends_at:type_name -> google.protobuf.Timestamp
-	2,  // 40: api.manage.v1.CreateProgramEventRequest.location_mode:type_name -> api.manage.v1.ProgramEventLocationMode
-	9,  // 41: api.manage.v1.CreateProgramEventRequest.artists:type_name -> api.manage.v1.ProgramEventArtist
-	10, // 42: api.manage.v1.CreateProgramEventRequest.labels:type_name -> api.manage.v1.ProgramEventLabel
-	11, // 43: api.manage.v1.CreateProgramEventRequest.clients:type_name -> api.manage.v1.ProgramEventClient
-	12, // 44: api.manage.v1.CreateProgramEventRequest.credits:type_name -> api.manage.v1.ProgramEventCredit
-	48, // 45: api.manage.v1.UpdateProgramEventRequest.starts_at:type_name -> google.protobuf.Timestamp
-	48, // 46: api.manage.v1.UpdateProgramEventRequest.ends_at:type_name -> google.protobuf.Timestamp
-	2,  // 47: api.manage.v1.UpdateProgramEventRequest.location_mode:type_name -> api.manage.v1.ProgramEventLocationMode
-	9,  // 48: api.manage.v1.UpdateProgramEventRequest.artists:type_name -> api.manage.v1.ProgramEventArtist
-	10, // 49: api.manage.v1.UpdateProgramEventRequest.labels:type_name -> api.manage.v1.ProgramEventLabel
-	11, // 50: api.manage.v1.UpdateProgramEventRequest.clients:type_name -> api.manage.v1.ProgramEventClient
-	12, // 51: api.manage.v1.UpdateProgramEventRequest.credits:type_name -> api.manage.v1.ProgramEventCredit
-	48, // 52: api.manage.v1.UpdateProgramEventResponse.updated_at:type_name -> google.protobuf.Timestamp
-	8,  // 53: api.manage.v1.AddProgramEventMediaResponse.media:type_name -> api.manage.v1.ProgramEventMedia
-	48, // 54: api.manage.v1.AddProgramEventMediaResponse.updated_at:type_name -> google.protobuf.Timestamp
-	48, // 55: api.manage.v1.DeleteProgramEventMediaResponse.updated_at:type_name -> google.protobuf.Timestamp
-	48, // 56: api.manage.v1.ReorderProgramEventMediaResponse.updated_at:type_name -> google.protobuf.Timestamp
-	48, // 57: api.manage.v1.ReorderProgramEventCreditsResponse.updated_at:type_name -> google.protobuf.Timestamp
-	0,  // 58: api.manage.v1.ProgramEventLifecycleMutationResponse.status:type_name -> api.manage.v1.ProgramEventStatus
-	48, // 59: api.manage.v1.ProgramEventLifecycleMutationResponse.published_at:type_name -> google.protobuf.Timestamp
-	48, // 60: api.manage.v1.ProgramEventLifecycleMutationResponse.updated_at:type_name -> google.protobuf.Timestamp
-	1,  // 61: api.manage.v1.UpdateProgramEventSeriesRequest.status:type_name -> api.manage.v1.ProgramEventSeriesStatus
-	53, // 62: api.manage.v1.ListProgramEventSeriesAdminRequest.pagination:type_name -> api.common.v1.PaginationRequest
-	54, // 63: api.manage.v1.ListProgramEventSeriesAdminRequest.filters:type_name -> api.common.v1.FilterSpec
-	55, // 64: api.manage.v1.ListProgramEventSeriesAdminRequest.sorts:type_name -> api.common.v1.SortSpec
-	6,  // 65: api.manage.v1.ListProgramEventSeriesAdminResponse.series:type_name -> api.manage.v1.ProgramEventSeries
-	56, // 66: api.manage.v1.ListProgramEventSeriesAdminResponse.pagination:type_name -> api.common.v1.PaginationResponse
-	53, // 67: api.manage.v1.ListProgramEventTypesAdminRequest.pagination:type_name -> api.common.v1.PaginationRequest
-	54, // 68: api.manage.v1.ListProgramEventTypesAdminRequest.filters:type_name -> api.common.v1.FilterSpec
-	55, // 69: api.manage.v1.ListProgramEventTypesAdminRequest.sorts:type_name -> api.common.v1.SortSpec
-	5,  // 70: api.manage.v1.ListProgramEventTypesAdminResponse.types:type_name -> api.manage.v1.ProgramEventType
-	56, // 71: api.manage.v1.ListProgramEventTypesAdminResponse.pagination:type_name -> api.common.v1.PaginationResponse
-	3,  // 72: api.manage.v1.UpdateProgramEventTypeRequest.status:type_name -> api.manage.v1.ProgramEventTypeStatus
-	16, // 73: api.manage.v1.ProgramEventService.GetProgramEvent:input_type -> api.manage.v1.GetProgramEventRequest
-	17, // 74: api.manage.v1.ProgramEventService.ListProgramEventsAdmin:input_type -> api.manage.v1.ListProgramEventsAdminRequest
-	19, // 75: api.manage.v1.ProgramEventService.CreateProgramEvent:input_type -> api.manage.v1.CreateProgramEventRequest
-	20, // 76: api.manage.v1.ProgramEventService.UpdateProgramEvent:input_type -> api.manage.v1.UpdateProgramEventRequest
-	21, // 77: api.manage.v1.ProgramEventService.AddProgramEventMedia:input_type -> api.manage.v1.AddProgramEventMediaRequest
-	22, // 78: api.manage.v1.ProgramEventService.DeleteProgramEventMedia:input_type -> api.manage.v1.DeleteProgramEventMediaRequest
-	23, // 79: api.manage.v1.ProgramEventService.ReorderProgramEventMedia:input_type -> api.manage.v1.ReorderProgramEventMediaRequest
-	24, // 80: api.manage.v1.ProgramEventService.AddProgramEventCredit:input_type -> api.manage.v1.AddProgramEventCreditRequest
-	25, // 81: api.manage.v1.ProgramEventService.UpdateProgramEventCredit:input_type -> api.manage.v1.UpdateProgramEventCreditRequest
-	26, // 82: api.manage.v1.ProgramEventService.DeleteProgramEventCredit:input_type -> api.manage.v1.DeleteProgramEventCreditRequest
-	27, // 83: api.manage.v1.ProgramEventService.ReorderProgramEventCredits:input_type -> api.manage.v1.ReorderProgramEventCreditsRequest
-	28, // 84: api.manage.v1.ProgramEventService.DeleteProgramEvent:input_type -> api.manage.v1.DeleteProgramEventRequest
-	29, // 85: api.manage.v1.ProgramEventService.PublishProgramEvent:input_type -> api.manage.v1.PublishProgramEventRequest
-	30, // 86: api.manage.v1.ProgramEventService.ArchiveProgramEvent:input_type -> api.manage.v1.ArchiveProgramEventRequest
-	39, // 87: api.manage.v1.ProgramEventSeriesService.GetProgramEventSeries:input_type -> api.manage.v1.GetProgramEventSeriesRequest
-	40, // 88: api.manage.v1.ProgramEventSeriesService.ListProgramEventSeriesAdmin:input_type -> api.manage.v1.ListProgramEventSeriesAdminRequest
-	37, // 89: api.manage.v1.ProgramEventSeriesService.CreateProgramEventSeries:input_type -> api.manage.v1.CreateProgramEventSeriesRequest
-	38, // 90: api.manage.v1.ProgramEventSeriesService.UpdateProgramEventSeries:input_type -> api.manage.v1.UpdateProgramEventSeriesRequest
-	42, // 91: api.manage.v1.ProgramEventSeriesService.DeleteProgramEventSeries:input_type -> api.manage.v1.DeleteProgramEventSeriesRequest
-	44, // 92: api.manage.v1.ProgramEventTypeService.ListProgramEventTypesAdmin:input_type -> api.manage.v1.ListProgramEventTypesAdminRequest
-	43, // 93: api.manage.v1.ProgramEventTypeService.CreateProgramEventType:input_type -> api.manage.v1.CreateProgramEventTypeRequest
-	46, // 94: api.manage.v1.ProgramEventTypeService.UpdateProgramEventType:input_type -> api.manage.v1.UpdateProgramEventTypeRequest
-	47, // 95: api.manage.v1.ProgramEventTypeService.DeleteProgramEventType:input_type -> api.manage.v1.DeleteProgramEventTypeRequest
-	14, // 96: api.manage.v1.ProgramEventService.GetProgramEvent:output_type -> api.manage.v1.ProgramEvent
-	18, // 97: api.manage.v1.ProgramEventService.ListProgramEventsAdmin:output_type -> api.manage.v1.ListProgramEventsAdminResponse
-	14, // 98: api.manage.v1.ProgramEventService.CreateProgramEvent:output_type -> api.manage.v1.ProgramEvent
-	31, // 99: api.manage.v1.ProgramEventService.UpdateProgramEvent:output_type -> api.manage.v1.UpdateProgramEventResponse
-	32, // 100: api.manage.v1.ProgramEventService.AddProgramEventMedia:output_type -> api.manage.v1.AddProgramEventMediaResponse
-	33, // 101: api.manage.v1.ProgramEventService.DeleteProgramEventMedia:output_type -> api.manage.v1.DeleteProgramEventMediaResponse
-	34, // 102: api.manage.v1.ProgramEventService.ReorderProgramEventMedia:output_type -> api.manage.v1.ReorderProgramEventMediaResponse
-	12, // 103: api.manage.v1.ProgramEventService.AddProgramEventCredit:output_type -> api.manage.v1.ProgramEventCredit
-	12, // 104: api.manage.v1.ProgramEventService.UpdateProgramEventCredit:output_type -> api.manage.v1.ProgramEventCredit
-	57, // 105: api.manage.v1.ProgramEventService.DeleteProgramEventCredit:output_type -> api.manage.v1.DeleteResponse
-	35, // 106: api.manage.v1.ProgramEventService.ReorderProgramEventCredits:output_type -> api.manage.v1.ReorderProgramEventCreditsResponse
-	57, // 107: api.manage.v1.ProgramEventService.DeleteProgramEvent:output_type -> api.manage.v1.DeleteResponse
-	36, // 108: api.manage.v1.ProgramEventService.PublishProgramEvent:output_type -> api.manage.v1.ProgramEventLifecycleMutationResponse
-	36, // 109: api.manage.v1.ProgramEventService.ArchiveProgramEvent:output_type -> api.manage.v1.ProgramEventLifecycleMutationResponse
-	6,  // 110: api.manage.v1.ProgramEventSeriesService.GetProgramEventSeries:output_type -> api.manage.v1.ProgramEventSeries
-	41, // 111: api.manage.v1.ProgramEventSeriesService.ListProgramEventSeriesAdmin:output_type -> api.manage.v1.ListProgramEventSeriesAdminResponse
-	6,  // 112: api.manage.v1.ProgramEventSeriesService.CreateProgramEventSeries:output_type -> api.manage.v1.ProgramEventSeries
-	6,  // 113: api.manage.v1.ProgramEventSeriesService.UpdateProgramEventSeries:output_type -> api.manage.v1.ProgramEventSeries
-	57, // 114: api.manage.v1.ProgramEventSeriesService.DeleteProgramEventSeries:output_type -> api.manage.v1.DeleteResponse
-	45, // 115: api.manage.v1.ProgramEventTypeService.ListProgramEventTypesAdmin:output_type -> api.manage.v1.ListProgramEventTypesAdminResponse
-	5,  // 116: api.manage.v1.ProgramEventTypeService.CreateProgramEventType:output_type -> api.manage.v1.ProgramEventType
-	5,  // 117: api.manage.v1.ProgramEventTypeService.UpdateProgramEventType:output_type -> api.manage.v1.ProgramEventType
-	57, // 118: api.manage.v1.ProgramEventTypeService.DeleteProgramEventType:output_type -> api.manage.v1.DeleteResponse
-	96, // [96:119] is the sub-list for method output_type
-	73, // [73:96] is the sub-list for method input_type
-	73, // [73:73] is the sub-list for extension type_name
-	73, // [73:73] is the sub-list for extension extendee
-	0,  // [0:73] is the sub-list for field type_name
+	3,   // 0: api.manage.v1.ProgramEventType.status:type_name -> api.manage.v1.ProgramEventTypeStatus
+	4,   // 1: api.manage.v1.ProgramEventType.locales:type_name -> api.manage.v1.ProgramEventTypeLocale
+	51,  // 2: api.manage.v1.ProgramEventType.created_at:type_name -> google.protobuf.Timestamp
+	51,  // 3: api.manage.v1.ProgramEventType.updated_at:type_name -> google.protobuf.Timestamp
+	1,   // 4: api.manage.v1.ProgramEventSeries.status:type_name -> api.manage.v1.ProgramEventSeriesStatus
+	51,  // 5: api.manage.v1.ProgramEventSeries.created_at:type_name -> google.protobuf.Timestamp
+	51,  // 6: api.manage.v1.ProgramEventSeries.updated_at:type_name -> google.protobuf.Timestamp
+	51,  // 7: api.manage.v1.ProgramEventMedia.created_at:type_name -> google.protobuf.Timestamp
+	51,  // 8: api.manage.v1.ProgramEventMedia.updated_at:type_name -> google.protobuf.Timestamp
+	9,   // 9: api.manage.v1.ProgramEventArtistsSnapshot.artists:type_name -> api.manage.v1.ProgramEventArtist
+	10,  // 10: api.manage.v1.ProgramEventLabelsSnapshot.labels:type_name -> api.manage.v1.ProgramEventLabel
+	11,  // 11: api.manage.v1.ProgramEventClientsSnapshot.clients:type_name -> api.manage.v1.ProgramEventClient
+	16,  // 12: api.manage.v1.ProgramEventCredit.artist:type_name -> api.manage.v1.ProgramEventCreditArtist
+	52,  // 13: api.manage.v1.ProgramEventCredit.member:type_name -> api.common.v1.MemberSummary
+	53,  // 14: api.manage.v1.ProgramEventCreditArtist.image_asset:type_name -> api.common.v1.AssetRef
+	0,   // 15: api.manage.v1.ProgramEvent.status:type_name -> api.manage.v1.ProgramEventStatus
+	51,  // 16: api.manage.v1.ProgramEvent.starts_at:type_name -> google.protobuf.Timestamp
+	51,  // 17: api.manage.v1.ProgramEvent.ends_at:type_name -> google.protobuf.Timestamp
+	2,   // 18: api.manage.v1.ProgramEvent.location_mode:type_name -> api.manage.v1.ProgramEventLocationMode
+	51,  // 19: api.manage.v1.ProgramEvent.published_at:type_name -> google.protobuf.Timestamp
+	7,   // 20: api.manage.v1.ProgramEvent.locales:type_name -> api.manage.v1.ProgramEventLocale
+	9,   // 21: api.manage.v1.ProgramEvent.artists:type_name -> api.manage.v1.ProgramEventArtist
+	10,  // 22: api.manage.v1.ProgramEvent.labels:type_name -> api.manage.v1.ProgramEventLabel
+	11,  // 23: api.manage.v1.ProgramEvent.clients:type_name -> api.manage.v1.ProgramEventClient
+	15,  // 24: api.manage.v1.ProgramEvent.credits:type_name -> api.manage.v1.ProgramEventCredit
+	51,  // 25: api.manage.v1.ProgramEvent.created_at:type_name -> google.protobuf.Timestamp
+	51,  // 26: api.manage.v1.ProgramEvent.updated_at:type_name -> google.protobuf.Timestamp
+	8,   // 27: api.manage.v1.ProgramEvent.media:type_name -> api.manage.v1.ProgramEventMedia
+	54,  // 28: api.manage.v1.ProgramEvent.document:type_name -> api.content.v1.RichTextDocument
+	55,  // 29: api.manage.v1.ProgramEvent.block_media:type_name -> api.content.v1.ContentBlockMediaItem
+	0,   // 30: api.manage.v1.ProgramEventSummary.status:type_name -> api.manage.v1.ProgramEventStatus
+	51,  // 31: api.manage.v1.ProgramEventSummary.starts_at:type_name -> google.protobuf.Timestamp
+	51,  // 32: api.manage.v1.ProgramEventSummary.ends_at:type_name -> google.protobuf.Timestamp
+	2,   // 33: api.manage.v1.ProgramEventSummary.location_mode:type_name -> api.manage.v1.ProgramEventLocationMode
+	51,  // 34: api.manage.v1.ProgramEventSummary.published_at:type_name -> google.protobuf.Timestamp
+	51,  // 35: api.manage.v1.ProgramEventSummary.updated_at:type_name -> google.protobuf.Timestamp
+	56,  // 36: api.manage.v1.ListProgramEventsAdminRequest.pagination:type_name -> api.common.v1.PaginationRequest
+	57,  // 37: api.manage.v1.ListProgramEventsAdminRequest.filters:type_name -> api.common.v1.FilterSpec
+	58,  // 38: api.manage.v1.ListProgramEventsAdminRequest.sorts:type_name -> api.common.v1.SortSpec
+	18,  // 39: api.manage.v1.ListProgramEventsAdminResponse.events:type_name -> api.manage.v1.ProgramEventSummary
+	59,  // 40: api.manage.v1.ListProgramEventsAdminResponse.pagination:type_name -> api.common.v1.PaginationResponse
+	51,  // 41: api.manage.v1.CreateProgramEventRequest.starts_at:type_name -> google.protobuf.Timestamp
+	51,  // 42: api.manage.v1.CreateProgramEventRequest.ends_at:type_name -> google.protobuf.Timestamp
+	2,   // 43: api.manage.v1.CreateProgramEventRequest.location_mode:type_name -> api.manage.v1.ProgramEventLocationMode
+	9,   // 44: api.manage.v1.CreateProgramEventRequest.artists:type_name -> api.manage.v1.ProgramEventArtist
+	10,  // 45: api.manage.v1.CreateProgramEventRequest.labels:type_name -> api.manage.v1.ProgramEventLabel
+	11,  // 46: api.manage.v1.CreateProgramEventRequest.clients:type_name -> api.manage.v1.ProgramEventClient
+	15,  // 47: api.manage.v1.CreateProgramEventRequest.credits:type_name -> api.manage.v1.ProgramEventCredit
+	51,  // 48: api.manage.v1.UpdateProgramEventRequest.starts_at:type_name -> google.protobuf.Timestamp
+	51,  // 49: api.manage.v1.UpdateProgramEventRequest.ends_at:type_name -> google.protobuf.Timestamp
+	2,   // 50: api.manage.v1.UpdateProgramEventRequest.location_mode:type_name -> api.manage.v1.ProgramEventLocationMode
+	9,   // 51: api.manage.v1.UpdateProgramEventRequest.artists:type_name -> api.manage.v1.ProgramEventArtist
+	10,  // 52: api.manage.v1.UpdateProgramEventRequest.labels:type_name -> api.manage.v1.ProgramEventLabel
+	11,  // 53: api.manage.v1.UpdateProgramEventRequest.clients:type_name -> api.manage.v1.ProgramEventClient
+	15,  // 54: api.manage.v1.UpdateProgramEventRequest.credits:type_name -> api.manage.v1.ProgramEventCredit
+	12,  // 55: api.manage.v1.UpdateProgramEventRequest.observed_artists:type_name -> api.manage.v1.ProgramEventArtistsSnapshot
+	13,  // 56: api.manage.v1.UpdateProgramEventRequest.observed_labels:type_name -> api.manage.v1.ProgramEventLabelsSnapshot
+	14,  // 57: api.manage.v1.UpdateProgramEventRequest.observed_clients:type_name -> api.manage.v1.ProgramEventClientsSnapshot
+	51,  // 58: api.manage.v1.UpdateProgramEventResponse.updated_at:type_name -> google.protobuf.Timestamp
+	8,   // 59: api.manage.v1.AddProgramEventMediaResponse.media:type_name -> api.manage.v1.ProgramEventMedia
+	51,  // 60: api.manage.v1.AddProgramEventMediaResponse.updated_at:type_name -> google.protobuf.Timestamp
+	51,  // 61: api.manage.v1.DeleteProgramEventMediaResponse.updated_at:type_name -> google.protobuf.Timestamp
+	51,  // 62: api.manage.v1.ReorderProgramEventMediaResponse.updated_at:type_name -> google.protobuf.Timestamp
+	51,  // 63: api.manage.v1.ReorderProgramEventCreditsResponse.updated_at:type_name -> google.protobuf.Timestamp
+	0,   // 64: api.manage.v1.ProgramEventLifecycleMutationResponse.status:type_name -> api.manage.v1.ProgramEventStatus
+	51,  // 65: api.manage.v1.ProgramEventLifecycleMutationResponse.published_at:type_name -> google.protobuf.Timestamp
+	51,  // 66: api.manage.v1.ProgramEventLifecycleMutationResponse.updated_at:type_name -> google.protobuf.Timestamp
+	1,   // 67: api.manage.v1.UpdateProgramEventSeriesRequest.status:type_name -> api.manage.v1.ProgramEventSeriesStatus
+	56,  // 68: api.manage.v1.ListProgramEventSeriesAdminRequest.pagination:type_name -> api.common.v1.PaginationRequest
+	57,  // 69: api.manage.v1.ListProgramEventSeriesAdminRequest.filters:type_name -> api.common.v1.FilterSpec
+	58,  // 70: api.manage.v1.ListProgramEventSeriesAdminRequest.sorts:type_name -> api.common.v1.SortSpec
+	6,   // 71: api.manage.v1.ListProgramEventSeriesAdminResponse.series:type_name -> api.manage.v1.ProgramEventSeries
+	59,  // 72: api.manage.v1.ListProgramEventSeriesAdminResponse.pagination:type_name -> api.common.v1.PaginationResponse
+	56,  // 73: api.manage.v1.ListProgramEventTypesAdminRequest.pagination:type_name -> api.common.v1.PaginationRequest
+	57,  // 74: api.manage.v1.ListProgramEventTypesAdminRequest.filters:type_name -> api.common.v1.FilterSpec
+	58,  // 75: api.manage.v1.ListProgramEventTypesAdminRequest.sorts:type_name -> api.common.v1.SortSpec
+	5,   // 76: api.manage.v1.ListProgramEventTypesAdminResponse.types:type_name -> api.manage.v1.ProgramEventType
+	59,  // 77: api.manage.v1.ListProgramEventTypesAdminResponse.pagination:type_name -> api.common.v1.PaginationResponse
+	3,   // 78: api.manage.v1.UpdateProgramEventTypeRequest.status:type_name -> api.manage.v1.ProgramEventTypeStatus
+	19,  // 79: api.manage.v1.ProgramEventService.GetProgramEvent:input_type -> api.manage.v1.GetProgramEventRequest
+	20,  // 80: api.manage.v1.ProgramEventService.ListProgramEventsAdmin:input_type -> api.manage.v1.ListProgramEventsAdminRequest
+	22,  // 81: api.manage.v1.ProgramEventService.CreateProgramEvent:input_type -> api.manage.v1.CreateProgramEventRequest
+	23,  // 82: api.manage.v1.ProgramEventService.UpdateProgramEvent:input_type -> api.manage.v1.UpdateProgramEventRequest
+	24,  // 83: api.manage.v1.ProgramEventService.AddProgramEventMedia:input_type -> api.manage.v1.AddProgramEventMediaRequest
+	25,  // 84: api.manage.v1.ProgramEventService.DeleteProgramEventMedia:input_type -> api.manage.v1.DeleteProgramEventMediaRequest
+	26,  // 85: api.manage.v1.ProgramEventService.ReorderProgramEventMedia:input_type -> api.manage.v1.ReorderProgramEventMediaRequest
+	27,  // 86: api.manage.v1.ProgramEventService.AddProgramEventCredit:input_type -> api.manage.v1.AddProgramEventCreditRequest
+	28,  // 87: api.manage.v1.ProgramEventService.UpdateProgramEventCredit:input_type -> api.manage.v1.UpdateProgramEventCreditRequest
+	29,  // 88: api.manage.v1.ProgramEventService.DeleteProgramEventCredit:input_type -> api.manage.v1.DeleteProgramEventCreditRequest
+	30,  // 89: api.manage.v1.ProgramEventService.ReorderProgramEventCredits:input_type -> api.manage.v1.ReorderProgramEventCreditsRequest
+	31,  // 90: api.manage.v1.ProgramEventService.DeleteProgramEvent:input_type -> api.manage.v1.DeleteProgramEventRequest
+	32,  // 91: api.manage.v1.ProgramEventService.PublishProgramEvent:input_type -> api.manage.v1.PublishProgramEventRequest
+	33,  // 92: api.manage.v1.ProgramEventService.ArchiveProgramEvent:input_type -> api.manage.v1.ArchiveProgramEventRequest
+	42,  // 93: api.manage.v1.ProgramEventSeriesService.GetProgramEventSeries:input_type -> api.manage.v1.GetProgramEventSeriesRequest
+	43,  // 94: api.manage.v1.ProgramEventSeriesService.ListProgramEventSeriesAdmin:input_type -> api.manage.v1.ListProgramEventSeriesAdminRequest
+	40,  // 95: api.manage.v1.ProgramEventSeriesService.CreateProgramEventSeries:input_type -> api.manage.v1.CreateProgramEventSeriesRequest
+	41,  // 96: api.manage.v1.ProgramEventSeriesService.UpdateProgramEventSeries:input_type -> api.manage.v1.UpdateProgramEventSeriesRequest
+	45,  // 97: api.manage.v1.ProgramEventSeriesService.DeleteProgramEventSeries:input_type -> api.manage.v1.DeleteProgramEventSeriesRequest
+	47,  // 98: api.manage.v1.ProgramEventTypeService.ListProgramEventTypesAdmin:input_type -> api.manage.v1.ListProgramEventTypesAdminRequest
+	46,  // 99: api.manage.v1.ProgramEventTypeService.CreateProgramEventType:input_type -> api.manage.v1.CreateProgramEventTypeRequest
+	49,  // 100: api.manage.v1.ProgramEventTypeService.UpdateProgramEventType:input_type -> api.manage.v1.UpdateProgramEventTypeRequest
+	50,  // 101: api.manage.v1.ProgramEventTypeService.DeleteProgramEventType:input_type -> api.manage.v1.DeleteProgramEventTypeRequest
+	17,  // 102: api.manage.v1.ProgramEventService.GetProgramEvent:output_type -> api.manage.v1.ProgramEvent
+	21,  // 103: api.manage.v1.ProgramEventService.ListProgramEventsAdmin:output_type -> api.manage.v1.ListProgramEventsAdminResponse
+	17,  // 104: api.manage.v1.ProgramEventService.CreateProgramEvent:output_type -> api.manage.v1.ProgramEvent
+	34,  // 105: api.manage.v1.ProgramEventService.UpdateProgramEvent:output_type -> api.manage.v1.UpdateProgramEventResponse
+	35,  // 106: api.manage.v1.ProgramEventService.AddProgramEventMedia:output_type -> api.manage.v1.AddProgramEventMediaResponse
+	36,  // 107: api.manage.v1.ProgramEventService.DeleteProgramEventMedia:output_type -> api.manage.v1.DeleteProgramEventMediaResponse
+	37,  // 108: api.manage.v1.ProgramEventService.ReorderProgramEventMedia:output_type -> api.manage.v1.ReorderProgramEventMediaResponse
+	15,  // 109: api.manage.v1.ProgramEventService.AddProgramEventCredit:output_type -> api.manage.v1.ProgramEventCredit
+	15,  // 110: api.manage.v1.ProgramEventService.UpdateProgramEventCredit:output_type -> api.manage.v1.ProgramEventCredit
+	60,  // 111: api.manage.v1.ProgramEventService.DeleteProgramEventCredit:output_type -> api.manage.v1.DeleteResponse
+	38,  // 112: api.manage.v1.ProgramEventService.ReorderProgramEventCredits:output_type -> api.manage.v1.ReorderProgramEventCreditsResponse
+	60,  // 113: api.manage.v1.ProgramEventService.DeleteProgramEvent:output_type -> api.manage.v1.DeleteResponse
+	39,  // 114: api.manage.v1.ProgramEventService.PublishProgramEvent:output_type -> api.manage.v1.ProgramEventLifecycleMutationResponse
+	39,  // 115: api.manage.v1.ProgramEventService.ArchiveProgramEvent:output_type -> api.manage.v1.ProgramEventLifecycleMutationResponse
+	6,   // 116: api.manage.v1.ProgramEventSeriesService.GetProgramEventSeries:output_type -> api.manage.v1.ProgramEventSeries
+	44,  // 117: api.manage.v1.ProgramEventSeriesService.ListProgramEventSeriesAdmin:output_type -> api.manage.v1.ListProgramEventSeriesAdminResponse
+	6,   // 118: api.manage.v1.ProgramEventSeriesService.CreateProgramEventSeries:output_type -> api.manage.v1.ProgramEventSeries
+	6,   // 119: api.manage.v1.ProgramEventSeriesService.UpdateProgramEventSeries:output_type -> api.manage.v1.ProgramEventSeries
+	60,  // 120: api.manage.v1.ProgramEventSeriesService.DeleteProgramEventSeries:output_type -> api.manage.v1.DeleteResponse
+	48,  // 121: api.manage.v1.ProgramEventTypeService.ListProgramEventTypesAdmin:output_type -> api.manage.v1.ListProgramEventTypesAdminResponse
+	5,   // 122: api.manage.v1.ProgramEventTypeService.CreateProgramEventType:output_type -> api.manage.v1.ProgramEventType
+	5,   // 123: api.manage.v1.ProgramEventTypeService.UpdateProgramEventType:output_type -> api.manage.v1.ProgramEventType
+	60,  // 124: api.manage.v1.ProgramEventTypeService.DeleteProgramEventType:output_type -> api.manage.v1.DeleteResponse
+	102, // [102:125] is the sub-list for method output_type
+	79,  // [79:102] is the sub-list for method input_type
+	79,  // [79:79] is the sub-list for extension type_name
+	79,  // [79:79] is the sub-list for extension extendee
+	0,   // [0:79] is the sub-list for field type_name
 }
 
 func init() { file_api_manage_v1_program_event_proto_init() }
@@ -4549,27 +4723,27 @@ func file_api_manage_v1_program_event_proto_init() {
 	file_api_manage_v1_program_event_proto_msgTypes[5].OneofWrappers = []any{}
 	file_api_manage_v1_program_event_proto_msgTypes[6].OneofWrappers = []any{}
 	file_api_manage_v1_program_event_proto_msgTypes[7].OneofWrappers = []any{}
-	file_api_manage_v1_program_event_proto_msgTypes[8].OneofWrappers = []any{}
-	file_api_manage_v1_program_event_proto_msgTypes[9].OneofWrappers = []any{}
-	file_api_manage_v1_program_event_proto_msgTypes[10].OneofWrappers = []any{}
 	file_api_manage_v1_program_event_proto_msgTypes[11].OneofWrappers = []any{}
-	file_api_manage_v1_program_event_proto_msgTypes[15].OneofWrappers = []any{}
-	file_api_manage_v1_program_event_proto_msgTypes[16].OneofWrappers = []any{}
-	file_api_manage_v1_program_event_proto_msgTypes[17].OneofWrappers = []any{}
+	file_api_manage_v1_program_event_proto_msgTypes[12].OneofWrappers = []any{}
+	file_api_manage_v1_program_event_proto_msgTypes[13].OneofWrappers = []any{}
+	file_api_manage_v1_program_event_proto_msgTypes[14].OneofWrappers = []any{}
+	file_api_manage_v1_program_event_proto_msgTypes[18].OneofWrappers = []any{}
+	file_api_manage_v1_program_event_proto_msgTypes[19].OneofWrappers = []any{}
 	file_api_manage_v1_program_event_proto_msgTypes[20].OneofWrappers = []any{}
-	file_api_manage_v1_program_event_proto_msgTypes[21].OneofWrappers = []any{}
-	file_api_manage_v1_program_event_proto_msgTypes[32].OneofWrappers = []any{}
-	file_api_manage_v1_program_event_proto_msgTypes[33].OneofWrappers = []any{}
-	file_api_manage_v1_program_event_proto_msgTypes[34].OneofWrappers = []any{}
-	file_api_manage_v1_program_event_proto_msgTypes[39].OneofWrappers = []any{}
+	file_api_manage_v1_program_event_proto_msgTypes[23].OneofWrappers = []any{}
+	file_api_manage_v1_program_event_proto_msgTypes[24].OneofWrappers = []any{}
+	file_api_manage_v1_program_event_proto_msgTypes[35].OneofWrappers = []any{}
+	file_api_manage_v1_program_event_proto_msgTypes[36].OneofWrappers = []any{}
+	file_api_manage_v1_program_event_proto_msgTypes[37].OneofWrappers = []any{}
 	file_api_manage_v1_program_event_proto_msgTypes[42].OneofWrappers = []any{}
+	file_api_manage_v1_program_event_proto_msgTypes[45].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_api_manage_v1_program_event_proto_rawDesc), len(file_api_manage_v1_program_event_proto_rawDesc)),
 			NumEnums:      4,
-			NumMessages:   44,
+			NumMessages:   47,
 			NumExtensions: 0,
 			NumServices:   3,
 		},

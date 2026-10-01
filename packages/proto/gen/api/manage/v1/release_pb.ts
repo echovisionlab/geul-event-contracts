@@ -43,7 +43,7 @@ import type { Message } from "@bufbuild/protobuf";
 export const file_api_manage_v1_release: GenFile =
   /*@__PURE__*/
   fileDesc(
-    "ChthcGkvbWFuYWdlL3YxL3JlbGVhc2UucHJvdG8SDWFwaS5tYW5hZ2UudjEiowYKB1JlbGVhc2USCgoCaWQYASABKAkSDQoFdGl0bGUYAiABKAkSEQoEc2x1ZxgDIAEoCUgAiAEBEigKBHR5cGUYBCABKA4yGi5hcGkubWFuYWdlLnYxLlJlbGVhc2VUeXBlEjIKCGRvY3VtZW50GAUgASgLMiAuYXBpLmNvbnRlbnQudjEuUmljaFRleHREb2N1bWVudBIbCg5jYXRhbG9nX251bWJlchgGIAEoCUgBiAEBEjUKDHJlbGVhc2VfZGF0ZRgHIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBIAogBARIOCgZzdGF0dXMYCCABKAkSMAoMcHVibGlzaGVkX2F0GAkgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBIuCgpjcmVhdGVkX2F0GAogASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBIuCgp1cGRhdGVkX2F0GAsgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBIYCgtzcG90aWZ5X3VybBgMIAEoCUgDiAEBEhwKD2FwcGxlX211c2ljX3VybBgNIAEoCUgEiAEBEhkKDGJhbmRjYW1wX3VybBgOIAEoCUgFiAEBEh4KEXlvdXR1YmVfbXVzaWNfdXJsGA8gASgJSAaIAQESLgoIb2dfYXNzZXQYECABKAsyFy5hcGkuY29tbW9uLnYxLkFzc2V0UmVmSAeIAQESMwoNYXJ0d29ya19hc3NldBgRIAEoCzIXLmFwaS5jb21tb24udjEuQXNzZXRSZWZICIgBARIQCghyZXZpc2lvbhgSIAEoCRIVCg1zb3VyY2VfbG9jYWxlGBMgASgJQgcKBV9zbHVnQhEKD19jYXRhbG9nX251bWJlckIPCg1fcmVsZWFzZV9kYXRlQg4KDF9zcG90aWZ5X3VybEISChBfYXBwbGVfbXVzaWNfdXJsQg8KDV9iYW5kY2FtcF91cmxCFAoSX3lvdXR1YmVfbXVzaWNfdXJsQgsKCV9vZ19hc3NldEIQCg5fYXJ0d29ya19hc3NldCJmChBSZWxlYXNlV2l0aFN0YXRzEicKB3JlbGVhc2UYASABKAsyFi5hcGkubWFuYWdlLnYxLlJlbGVhc2USEwoLdHJhY2tfY291bnQYAiABKAUSFAoMY3JlZGl0X2NvdW50GAMgASgFIh8KEUdldFJlbGVhc2VSZXF1ZXN0EgoKAmlkGAEgASgJIqQBChhMaXN0UmVsZWFzZXNBZG1pblJlcXVlc3QSNAoKcGFnaW5hdGlvbhgBIAEoCzIgLmFwaS5jb21tb24udjEuUGFnaW5hdGlvblJlcXVlc3QSKgoHZmlsdGVycxgCIAMoCzIZLmFwaS5jb21tb24udjEuRmlsdGVyU3BlYxImCgVzb3J0cxgDIAMoCzIXLmFwaS5jb21tb24udjEuU29ydFNwZWMihQEKGUxpc3RSZWxlYXNlc0FkbWluUmVzcG9uc2USMQoIcmVsZWFzZXMYASADKAsyHy5hcGkubWFuYWdlLnYxLlJlbGVhc2VXaXRoU3RhdHMSNQoKcGFnaW5hdGlvbhgCIAEoCzIhLmFwaS5jb21tb24udjEuUGFnaW5hdGlvblJlc3BvbnNlIuwDChRDcmVhdGVSZWxlYXNlUmVxdWVzdBINCgV0aXRsZRgBIAEoCRIRCgRzbHVnGAIgASgJSACIAQESKAoEdHlwZRgDIAEoDjIaLmFwaS5tYW5hZ2UudjEuUmVsZWFzZVR5cGUSMgoIZG9jdW1lbnQYBCABKAsyIC5hcGkuY29udGVudC52MS5SaWNoVGV4dERvY3VtZW50EhsKDmNhdGFsb2dfbnVtYmVyGAUgASgJSAGIAQESNQoMcmVsZWFzZV9kYXRlGAYgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEgCiAEBEhgKC3Nwb3RpZnlfdXJsGAcgASgJSAOIAQESHAoPYXBwbGVfbXVzaWNfdXJsGAggASgJSASIAQESGQoMYmFuZGNhbXBfdXJsGAkgASgJSAWIAQESHgoReW91dHViZV9tdXNpY191cmwYCiABKAlIBogBARIVCg1zb3VyY2VfbG9jYWxlGAsgASgJQgcKBV9zbHVnQhEKD19jYXRhbG9nX251bWJlckIPCg1fcmVsZWFzZV9kYXRlQg4KDF9zcG90aWZ5X3VybEISChBfYXBwbGVfbXVzaWNfdXJsQg8KDV9iYW5kY2FtcF91cmxCFAoSX3lvdXR1YmVfbXVzaWNfdXJsIukDChRVcGRhdGVSZWxlYXNlUmVxdWVzdBIKCgJpZBgBIAEoCRIRCgRzbHVnGAIgASgJSAGIAQESLQoEdHlwZRgDIAEoDjIaLmFwaS5tYW5hZ2UudjEuUmVsZWFzZVR5cGVIAogBARIbCg5jYXRhbG9nX251bWJlchgEIAEoCUgDiAEBEjYKEHNldF9yZWxlYXNlX2RhdGUYBSABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wSAASNAoSY2xlYXJfcmVsZWFzZV9kYXRlGAYgASgLMhYuZ29vZ2xlLnByb3RvYnVmLkVtcHR5SAASGAoLc3BvdGlmeV91cmwYByABKAlIBIgBARIcCg9hcHBsZV9tdXNpY191cmwYCCABKAlIBYgBARIZCgxiYW5kY2FtcF91cmwYCSABKAlIBogBARIeChF5b3V0dWJlX211c2ljX3VybBgKIAEoCUgHiAEBQhUKE3JlbGVhc2VfZGF0ZV9jaGFuZ2VCBwoFX3NsdWdCBwoFX3R5cGVCEQoPX2NhdGFsb2dfbnVtYmVyQg4KDF9zcG90aWZ5X3VybEISChBfYXBwbGVfbXVzaWNfdXJsQg8KDV9iYW5kY2FtcF91cmxCFAoSX3lvdXR1YmVfbXVzaWNfdXJsIiIKFERlbGV0ZVJlbGVhc2VSZXF1ZXN0EgoKAmlkGAEgASgJIiMKFVB1Ymxpc2hSZWxlYXNlUmVxdWVzdBIKCgJpZBgBIAEoCSIlChdVbnB1Ymxpc2hSZWxlYXNlUmVxdWVzdBIKCgJpZBgBIAEoCSKsAQoVVXBkYXRlUmVsZWFzZVJlc3BvbnNlEgoKAmlkGAEgASgJEg8KB2NoYW5nZWQYAiABKAgSNQoMcmVsZWFzZV9kYXRlGAMgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEgAiAEBEi4KCnVwZGF0ZWRfYXQYBCABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wQg8KDV9yZWxlYXNlX2RhdGUi5QEKIFJlbGVhc2VMaWZlY3ljbGVNdXRhdGlvblJlc3BvbnNlEgoKAmlkGAEgASgJEg8KB2NoYW5nZWQYAiABKAgSLAoGc3RhdHVzGAMgASgOMhwuYXBpLm1hbmFnZS52MS5SZWxlYXNlU3RhdHVzEjUKDHB1Ymxpc2hlZF9hdBgEIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBIAIgBARIuCgp1cGRhdGVkX2F0GAUgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEIPCg1fcHVibGlzaGVkX2F0Ij8KGFNldFJlbGVhc2VBcnR3b3JrUmVxdWVzdBISCgpyZWxlYXNlX2lkGAEgASgJEg8KB2ZpbGVfaWQYAiABKAkihwEKGVNldFJlbGVhc2VBcnR3b3JrUmVzcG9uc2USLgoNYXJ0d29ya19hc3NldBgBIAEoCzIXLmFwaS5jb21tb24udjEuQXNzZXRSZWYSIQoUb2dfZ2VuZXJhdGlvbl9ydW5faWQYAiABKAlIAIgBAUIXChVfb2dfZ2VuZXJhdGlvbl9ydW5faWQiMQobRGVsZXRlUmVsZWFzZUFydHdvcmtSZXF1ZXN0EhIKCnJlbGVhc2VfaWQYASABKAkiaAogQ2hlY2tSZWxlYXNlU2x1Z0F2YWlsYWJsZVJlcXVlc3QSDAoEc2x1ZxgBIAEoCRIfChJleGNsdWRlX3JlbGVhc2VfaWQYAiABKAlIAIgBAUIVChNfZXhjbHVkZV9yZWxlYXNlX2lkIjYKIUNoZWNrUmVsZWFzZVNsdWdBdmFpbGFibGVSZXNwb25zZRIRCglhdmFpbGFibGUYASABKAgiaQoRUmVsZWFzZUxhYmVsSW5wdXQSEAoIbGFiZWxfaWQYASABKAkSGwoOY2F0YWxvZ19udW1iZXIYAiABKAlIAIgBARISCgpzb3J0X29yZGVyGAMgASgFQhEKD19jYXRhbG9nX251bWJlciJfChdTZXRSZWxlYXNlTGFiZWxzUmVxdWVzdBISCgpyZWxlYXNlX2lkGAEgASgJEjAKBmxhYmVscxgCIAMoCzIgLmFwaS5tYW5hZ2UudjEuUmVsZWFzZUxhYmVsSW5wdXQiRwobU2V0UmVsZWFzZUNhdGVnb3JpZXNSZXF1ZXN0EhIKCnJlbGVhc2VfaWQYASABKAkSFAoMY2F0ZWdvcnlfaWRzGAIgAygJIkAKF1NldFJlbGVhc2VHZW5yZXNSZXF1ZXN0EhIKCnJlbGVhc2VfaWQYASABKAkSEQoJZ2VucmVfaWRzGAIgAygJIkAKF1NldFJlbGVhc2VTdHlsZXNSZXF1ZXN0EhIKCnJlbGVhc2VfaWQYASABKAkSEQoJc3R5bGVfaWRzGAIgAygJIjsKElJlbGVhc2VBcnRpc3RJbnB1dBIRCglhcnRpc3RfaWQYASABKAkSEgoKc29ydF9vcmRlchgCIAEoBSJiChhTZXRSZWxlYXNlQXJ0aXN0c1JlcXVlc3QSEgoKcmVsZWFzZV9pZBgBIAEoCRIyCgdhcnRpc3RzGAIgAygLMiEuYXBpLm1hbmFnZS52MS5SZWxlYXNlQXJ0aXN0SW5wdXQiXwoSUmVsZWFzZUZvcm1hdElucHV0EhEKCWZvcm1hdF9pZBgBIAEoCRIfChJmb3JtYXRfZGVzY3JpcHRpb24YAiABKAlIAIgBAUIVChNfZm9ybWF0X2Rlc2NyaXB0aW9uImIKGFNldFJlbGVhc2VGb3JtYXRzUmVxdWVzdBISCgpyZWxlYXNlX2lkGAEgASgJEjIKB2Zvcm1hdHMYAiADKAsyIS5hcGkubWFuYWdlLnYxLlJlbGVhc2VGb3JtYXRJbnB1dCLkAQoSUmVsZWFzZUNyZWRpdElucHV0Eg8KAmlkGAEgASgJSACIAQESFgoJYXJ0aXN0X2lkGAIgASgJSAGIAQESFgoJbWVtYmVyX2lkGAMgASgJSAKIAQESGgoNY3JlZGl0ZWRfbmFtZRgEIAEoCUgDiAEBEhgKC2NyZWRpdF9yb2xlGAUgASgJSASIAQESEgoKc29ydF9vcmRlchgGIAEoBUIFCgNfaWRCDAoKX2FydGlzdF9pZEIMCgpfbWVtYmVyX2lkQhAKDl9jcmVkaXRlZF9uYW1lQg4KDF9jcmVkaXRfcm9sZSJiChhTZXRSZWxlYXNlQ3JlZGl0c1JlcXVlc3QSEgoKcmVsZWFzZV9pZBgBIAEoCRIyCgdjcmVkaXRzGAIgAygLMiEuYXBpLm1hbmFnZS52MS5SZWxlYXNlQ3JlZGl0SW5wdXQqjwEKC1JlbGVhc2VUeXBlEhwKGFJFTEVBU0VfVFlQRV9VTlNQRUNJRklFRBAAEhYKElJFTEVBU0VfVFlQRV9BTEJVTRABEhMKD1JFTEVBU0VfVFlQRV9FUBACEhcKE1JFTEVBU0VfVFlQRV9TSU5HTEUQAxIcChhSRUxFQVNFX1RZUEVfQ09NUElMQVRJT04QBCpnCg1SZWxlYXNlU3RhdHVzEh4KGlJFTEVBU0VfU1RBVFVTX1VOU1BFQ0lGSUVEEAASGAoUUkVMRUFTRV9TVEFUVVNfRFJBRlQQARIcChhSRUxFQVNFX1NUQVRVU19QVUJMSVNIRUQQAjKCDgoOUmVsZWFzZVNlcnZpY2USTgoKR2V0UmVsZWFzZRIgLmFwaS5tYW5hZ2UudjEuR2V0UmVsZWFzZVJlcXVlc3QaFi5hcGkubWFuYWdlLnYxLlJlbGVhc2UiBsrzGAIIBBJuChFMaXN0UmVsZWFzZXNBZG1pbhInLmFwaS5tYW5hZ2UudjEuTGlzdFJlbGVhc2VzQWRtaW5SZXF1ZXN0GiguYXBpLm1hbmFnZS52MS5MaXN0UmVsZWFzZXNBZG1pblJlc3BvbnNlIgbK8xgCCAQSVAoNQ3JlYXRlUmVsZWFzZRIjLmFwaS5tYW5hZ2UudjEuQ3JlYXRlUmVsZWFzZVJlcXVlc3QaFi5hcGkubWFuYWdlLnYxLlJlbGVhc2UiBsrzGAIIBBJiCg1VcGRhdGVSZWxlYXNlEiMuYXBpLm1hbmFnZS52MS5VcGRhdGVSZWxlYXNlUmVxdWVzdBokLmFwaS5tYW5hZ2UudjEuVXBkYXRlUmVsZWFzZVJlc3BvbnNlIgbK8xgCCAQSWwoNRGVsZXRlUmVsZWFzZRIjLmFwaS5tYW5hZ2UudjEuRGVsZXRlUmVsZWFzZVJlcXVlc3QaHS5hcGkubWFuYWdlLnYxLkRlbGV0ZVJlc3BvbnNlIgbK8xgCCAQSbwoOUHVibGlzaFJlbGVhc2USJC5hcGkubWFuYWdlLnYxLlB1Ymxpc2hSZWxlYXNlUmVxdWVzdBovLmFwaS5tYW5hZ2UudjEuUmVsZWFzZUxpZmVjeWNsZU11dGF0aW9uUmVzcG9uc2UiBsrzGAIIBBJzChBVbnB1Ymxpc2hSZWxlYXNlEiYuYXBpLm1hbmFnZS52MS5VbnB1Ymxpc2hSZWxlYXNlUmVxdWVzdBovLmFwaS5tYW5hZ2UudjEuUmVsZWFzZUxpZmVjeWNsZU11dGF0aW9uUmVzcG9uc2UiBsrzGAIIBBJuChFTZXRSZWxlYXNlQXJ0d29yaxInLmFwaS5tYW5hZ2UudjEuU2V0UmVsZWFzZUFydHdvcmtSZXF1ZXN0GiguYXBpLm1hbmFnZS52MS5TZXRSZWxlYXNlQXJ0d29ya1Jlc3BvbnNlIgbK8xgCCAQScAoURGVsZXRlUmVsZWFzZUFydHdvcmsSKi5hcGkubWFuYWdlLnYxLkRlbGV0ZVJlbGVhc2VBcnR3b3JrUmVxdWVzdBokLmFwaS5tYW5hZ2UudjEuT2dBc3NldERlbGV0ZVJlc3BvbnNlIgbK8xgCCAQShgEKGUNoZWNrUmVsZWFzZVNsdWdBdmFpbGFibGUSLy5hcGkubWFuYWdlLnYxLkNoZWNrUmVsZWFzZVNsdWdBdmFpbGFibGVSZXF1ZXN0GjAuYXBpLm1hbmFnZS52MS5DaGVja1JlbGVhc2VTbHVnQXZhaWxhYmxlUmVzcG9uc2UiBsrzGAIIBBJiChBTZXRSZWxlYXNlTGFiZWxzEiYuYXBpLm1hbmFnZS52MS5TZXRSZWxlYXNlTGFiZWxzUmVxdWVzdBoeLmFwaS5tYW5hZ2UudjEuU3VjY2Vzc1Jlc3BvbnNlIgbK8xgCCAQSZAoRU2V0UmVsZWFzZUFydGlzdHMSJy5hcGkubWFuYWdlLnYxLlNldFJlbGVhc2VBcnRpc3RzUmVxdWVzdBoeLmFwaS5tYW5hZ2UudjEuU3VjY2Vzc1Jlc3BvbnNlIgbK8xgCCAQSagoUU2V0UmVsZWFzZUNhdGVnb3JpZXMSKi5hcGkubWFuYWdlLnYxLlNldFJlbGVhc2VDYXRlZ29yaWVzUmVxdWVzdBoeLmFwaS5tYW5hZ2UudjEuU3VjY2Vzc1Jlc3BvbnNlIgbK8xgCCAQSYgoQU2V0UmVsZWFzZUdlbnJlcxImLmFwaS5tYW5hZ2UudjEuU2V0UmVsZWFzZUdlbnJlc1JlcXVlc3QaHi5hcGkubWFuYWdlLnYxLlN1Y2Nlc3NSZXNwb25zZSIGyvMYAggEEmIKEFNldFJlbGVhc2VTdHlsZXMSJi5hcGkubWFuYWdlLnYxLlNldFJlbGVhc2VTdHlsZXNSZXF1ZXN0Gh4uYXBpLm1hbmFnZS52MS5TdWNjZXNzUmVzcG9uc2UiBsrzGAIIBBJkChFTZXRSZWxlYXNlRm9ybWF0cxInLmFwaS5tYW5hZ2UudjEuU2V0UmVsZWFzZUZvcm1hdHNSZXF1ZXN0Gh4uYXBpLm1hbmFnZS52MS5TdWNjZXNzUmVzcG9uc2UiBsrzGAIIBBJkChFTZXRSZWxlYXNlQ3JlZGl0cxInLmFwaS5tYW5hZ2UudjEuU2V0UmVsZWFzZUNyZWRpdHNSZXF1ZXN0Gh4uYXBpLm1hbmFnZS52MS5TdWNjZXNzUmVzcG9uc2UiBsrzGAIIBELBAQoRY29tLmFwaS5tYW5hZ2UudjFCDFJlbGVhc2VQcm90b1ABWkhnaXRodWIuY29tL2VjaG92aXNpb25sYWIvZ2V1bC1ldmVudC1jb250cmFjdHMvZ2VuL2FwaS9tYW5hZ2UvdjE7bWFuYWdldjGiAgNBTViqAg1BcGkuTWFuYWdlLlYxygINQXBpXE1hbmFnZVxWMeICGUFwaVxNYW5hZ2VcVjFcR1BCTWV0YWRhdGHqAg9BcGk6Ok1hbmFnZTo6VjFiBnByb3RvMw",
+    "ChthcGkvbWFuYWdlL3YxL3JlbGVhc2UucHJvdG8SDWFwaS5tYW5hZ2UudjEiowYKB1JlbGVhc2USCgoCaWQYASABKAkSDQoFdGl0bGUYAiABKAkSEQoEc2x1ZxgDIAEoCUgAiAEBEigKBHR5cGUYBCABKA4yGi5hcGkubWFuYWdlLnYxLlJlbGVhc2VUeXBlEjIKCGRvY3VtZW50GAUgASgLMiAuYXBpLmNvbnRlbnQudjEuUmljaFRleHREb2N1bWVudBIbCg5jYXRhbG9nX251bWJlchgGIAEoCUgBiAEBEjUKDHJlbGVhc2VfZGF0ZRgHIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBIAogBARIOCgZzdGF0dXMYCCABKAkSMAoMcHVibGlzaGVkX2F0GAkgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBIuCgpjcmVhdGVkX2F0GAogASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBIuCgp1cGRhdGVkX2F0GAsgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBIYCgtzcG90aWZ5X3VybBgMIAEoCUgDiAEBEhwKD2FwcGxlX211c2ljX3VybBgNIAEoCUgEiAEBEhkKDGJhbmRjYW1wX3VybBgOIAEoCUgFiAEBEh4KEXlvdXR1YmVfbXVzaWNfdXJsGA8gASgJSAaIAQESLgoIb2dfYXNzZXQYECABKAsyFy5hcGkuY29tbW9uLnYxLkFzc2V0UmVmSAeIAQESMwoNYXJ0d29ya19hc3NldBgRIAEoCzIXLmFwaS5jb21tb24udjEuQXNzZXRSZWZICIgBARIQCghyZXZpc2lvbhgSIAEoCRIVCg1zb3VyY2VfbG9jYWxlGBMgASgJQgcKBV9zbHVnQhEKD19jYXRhbG9nX251bWJlckIPCg1fcmVsZWFzZV9kYXRlQg4KDF9zcG90aWZ5X3VybEISChBfYXBwbGVfbXVzaWNfdXJsQg8KDV9iYW5kY2FtcF91cmxCFAoSX3lvdXR1YmVfbXVzaWNfdXJsQgsKCV9vZ19hc3NldEIQCg5fYXJ0d29ya19hc3NldCJmChBSZWxlYXNlV2l0aFN0YXRzEicKB3JlbGVhc2UYASABKAsyFi5hcGkubWFuYWdlLnYxLlJlbGVhc2USEwoLdHJhY2tfY291bnQYAiABKAUSFAoMY3JlZGl0X2NvdW50GAMgASgFIh8KEUdldFJlbGVhc2VSZXF1ZXN0EgoKAmlkGAEgASgJIjAKGkdldFJlbGVhc2VSZWxhdGlvbnNSZXF1ZXN0EhIKCnJlbGVhc2VfaWQYASABKAkifwoXUmVsZWFzZUFydGlzdEVkaXRvckl0ZW0SEQoJYXJ0aXN0X2lkGAEgASgJEhMKC2FydGlzdF9uYW1lGAIgASgJEhgKC2FydGlzdF9zbHVnGAMgASgJSACIAQESEgoKc29ydF9vcmRlchgEIAEoBUIOCgxfYXJ0aXN0X3NsdWciqgEKFlJlbGVhc2VMYWJlbEVkaXRvckl0ZW0SEAoIbGFiZWxfaWQYASABKAkSEgoKbGFiZWxfbmFtZRgCIAEoCRIXCgpsYWJlbF9zbHVnGAMgASgJSACIAQESGwoOY2F0YWxvZ19udW1iZXIYBCABKAlIAYgBARISCgpzb3J0X29yZGVyGAUgASgFQg0KC19sYWJlbF9zbHVnQhEKD19jYXRhbG9nX251bWJlciJEChpSZWxlYXNlUmVmZXJlbmNlRWRpdG9ySXRlbRIKCgJpZBgBIAEoCRIMCgRuYW1lGAIgASgJEgwKBHNsdWcYAyABKAkieQoXUmVsZWFzZUZvcm1hdEVkaXRvckl0ZW0SCgoCaWQYASABKAkSDAoEbmFtZRgCIAEoCRIMCgRzbHVnGAMgASgJEh8KEmZvcm1hdF9kZXNjcmlwdGlvbhgEIAEoCUgAiAEBQhUKE19mb3JtYXRfZGVzY3JpcHRpb24i2wIKF1JlbGVhc2VDcmVkaXRFZGl0b3JJdGVtEgoKAmlkGAEgASgJEhYKCWFydGlzdF9pZBgCIAEoCUgAiAEBEhgKC2FydGlzdF9uYW1lGAMgASgJSAGIAQESGAoLYXJ0aXN0X3NsdWcYBCABKAlIAogBARIWCgltZW1iZXJfaWQYBSABKAlIA4gBARIYCgttZW1iZXJfbmFtZRgGIAEoCUgEiAEBEhoKDWNyZWRpdGVkX25hbWUYByABKAlIBYgBARIYCgtjcmVkaXRfcm9sZRgIIAEoCUgGiAEBEhIKCnNvcnRfb3JkZXIYCSABKAVCDAoKX2FydGlzdF9pZEIOCgxfYXJ0aXN0X25hbWVCDgoMX2FydGlzdF9zbHVnQgwKCl9tZW1iZXJfaWRCDgoMX21lbWJlcl9uYW1lQhAKDl9jcmVkaXRlZF9uYW1lQg4KDF9jcmVkaXRfcm9sZSLIAwobR2V0UmVsZWFzZVJlbGF0aW9uc1Jlc3BvbnNlEhIKCnJlbGVhc2VfaWQYASABKAkSNwoHYXJ0aXN0cxgCIAMoCzImLmFwaS5tYW5hZ2UudjEuUmVsZWFzZUFydGlzdEVkaXRvckl0ZW0SNQoGbGFiZWxzGAMgAygLMiUuYXBpLm1hbmFnZS52MS5SZWxlYXNlTGFiZWxFZGl0b3JJdGVtEj0KCmNhdGVnb3JpZXMYBCADKAsyKS5hcGkubWFuYWdlLnYxLlJlbGVhc2VSZWZlcmVuY2VFZGl0b3JJdGVtEjkKBmdlbnJlcxgFIAMoCzIpLmFwaS5tYW5hZ2UudjEuUmVsZWFzZVJlZmVyZW5jZUVkaXRvckl0ZW0SOQoGc3R5bGVzGAYgAygLMikuYXBpLm1hbmFnZS52MS5SZWxlYXNlUmVmZXJlbmNlRWRpdG9ySXRlbRI3Cgdmb3JtYXRzGAcgAygLMiYuYXBpLm1hbmFnZS52MS5SZWxlYXNlRm9ybWF0RWRpdG9ySXRlbRI3CgdjcmVkaXRzGAggAygLMiYuYXBpLm1hbmFnZS52MS5SZWxlYXNlQ3JlZGl0RWRpdG9ySXRlbSKkAQoYTGlzdFJlbGVhc2VzQWRtaW5SZXF1ZXN0EjQKCnBhZ2luYXRpb24YASABKAsyIC5hcGkuY29tbW9uLnYxLlBhZ2luYXRpb25SZXF1ZXN0EioKB2ZpbHRlcnMYAiADKAsyGS5hcGkuY29tbW9uLnYxLkZpbHRlclNwZWMSJgoFc29ydHMYAyADKAsyFy5hcGkuY29tbW9uLnYxLlNvcnRTcGVjIoUBChlMaXN0UmVsZWFzZXNBZG1pblJlc3BvbnNlEjEKCHJlbGVhc2VzGAEgAygLMh8uYXBpLm1hbmFnZS52MS5SZWxlYXNlV2l0aFN0YXRzEjUKCnBhZ2luYXRpb24YAiABKAsyIS5hcGkuY29tbW9uLnYxLlBhZ2luYXRpb25SZXNwb25zZSLsAwoUQ3JlYXRlUmVsZWFzZVJlcXVlc3QSDQoFdGl0bGUYASABKAkSEQoEc2x1ZxgCIAEoCUgAiAEBEigKBHR5cGUYAyABKA4yGi5hcGkubWFuYWdlLnYxLlJlbGVhc2VUeXBlEjIKCGRvY3VtZW50GAQgASgLMiAuYXBpLmNvbnRlbnQudjEuUmljaFRleHREb2N1bWVudBIbCg5jYXRhbG9nX251bWJlchgFIAEoCUgBiAEBEjUKDHJlbGVhc2VfZGF0ZRgGIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBIAogBARIYCgtzcG90aWZ5X3VybBgHIAEoCUgDiAEBEhwKD2FwcGxlX211c2ljX3VybBgIIAEoCUgEiAEBEhkKDGJhbmRjYW1wX3VybBgJIAEoCUgFiAEBEh4KEXlvdXR1YmVfbXVzaWNfdXJsGAogASgJSAaIAQESFQoNc291cmNlX2xvY2FsZRgLIAEoCUIHCgVfc2x1Z0IRCg9fY2F0YWxvZ19udW1iZXJCDwoNX3JlbGVhc2VfZGF0ZUIOCgxfc3BvdGlmeV91cmxCEgoQX2FwcGxlX211c2ljX3VybEIPCg1fYmFuZGNhbXBfdXJsQhQKEl95b3V0dWJlX211c2ljX3VybCLpAwoUVXBkYXRlUmVsZWFzZVJlcXVlc3QSCgoCaWQYASABKAkSEQoEc2x1ZxgCIAEoCUgBiAEBEi0KBHR5cGUYAyABKA4yGi5hcGkubWFuYWdlLnYxLlJlbGVhc2VUeXBlSAKIAQESGwoOY2F0YWxvZ19udW1iZXIYBCABKAlIA4gBARI2ChBzZXRfcmVsZWFzZV9kYXRlGAUgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEgAEjQKEmNsZWFyX3JlbGVhc2VfZGF0ZRgGIAEoCzIWLmdvb2dsZS5wcm90b2J1Zi5FbXB0eUgAEhgKC3Nwb3RpZnlfdXJsGAcgASgJSASIAQESHAoPYXBwbGVfbXVzaWNfdXJsGAggASgJSAWIAQESGQoMYmFuZGNhbXBfdXJsGAkgASgJSAaIAQESHgoReW91dHViZV9tdXNpY191cmwYCiABKAlIB4gBAUIVChNyZWxlYXNlX2RhdGVfY2hhbmdlQgcKBV9zbHVnQgcKBV90eXBlQhEKD19jYXRhbG9nX251bWJlckIOCgxfc3BvdGlmeV91cmxCEgoQX2FwcGxlX211c2ljX3VybEIPCg1fYmFuZGNhbXBfdXJsQhQKEl95b3V0dWJlX211c2ljX3VybCIiChREZWxldGVSZWxlYXNlUmVxdWVzdBIKCgJpZBgBIAEoCSIjChVQdWJsaXNoUmVsZWFzZVJlcXVlc3QSCgoCaWQYASABKAkiJQoXVW5wdWJsaXNoUmVsZWFzZVJlcXVlc3QSCgoCaWQYASABKAkirAEKFVVwZGF0ZVJlbGVhc2VSZXNwb25zZRIKCgJpZBgBIAEoCRIPCgdjaGFuZ2VkGAIgASgIEjUKDHJlbGVhc2VfZGF0ZRgDIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBIAIgBARIuCgp1cGRhdGVkX2F0GAQgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEIPCg1fcmVsZWFzZV9kYXRlIuUBCiBSZWxlYXNlTGlmZWN5Y2xlTXV0YXRpb25SZXNwb25zZRIKCgJpZBgBIAEoCRIPCgdjaGFuZ2VkGAIgASgIEiwKBnN0YXR1cxgDIAEoDjIcLmFwaS5tYW5hZ2UudjEuUmVsZWFzZVN0YXR1cxI1CgxwdWJsaXNoZWRfYXQYBCABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wSACIAQESLgoKdXBkYXRlZF9hdBgFIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBCDwoNX3B1Ymxpc2hlZF9hdCI/ChhTZXRSZWxlYXNlQXJ0d29ya1JlcXVlc3QSEgoKcmVsZWFzZV9pZBgBIAEoCRIPCgdmaWxlX2lkGAIgASgJIocBChlTZXRSZWxlYXNlQXJ0d29ya1Jlc3BvbnNlEi4KDWFydHdvcmtfYXNzZXQYASABKAsyFy5hcGkuY29tbW9uLnYxLkFzc2V0UmVmEiEKFG9nX2dlbmVyYXRpb25fcnVuX2lkGAIgASgJSACIAQFCFwoVX29nX2dlbmVyYXRpb25fcnVuX2lkIjEKG0RlbGV0ZVJlbGVhc2VBcnR3b3JrUmVxdWVzdBISCgpyZWxlYXNlX2lkGAEgASgJImgKIENoZWNrUmVsZWFzZVNsdWdBdmFpbGFibGVSZXF1ZXN0EgwKBHNsdWcYASABKAkSHwoSZXhjbHVkZV9yZWxlYXNlX2lkGAIgASgJSACIAQFCFQoTX2V4Y2x1ZGVfcmVsZWFzZV9pZCI2CiFDaGVja1JlbGVhc2VTbHVnQXZhaWxhYmxlUmVzcG9uc2USEQoJYXZhaWxhYmxlGAEgASgIImkKEVJlbGVhc2VMYWJlbElucHV0EhAKCGxhYmVsX2lkGAEgASgJEhsKDmNhdGFsb2dfbnVtYmVyGAIgASgJSACIAQESEgoKc29ydF9vcmRlchgDIAEoBUIRCg9fY2F0YWxvZ19udW1iZXIiHwoQU3RyaW5nSWRTbmFwc2hvdBILCgNpZHMYASADKAkihgEKE1JlbGF0aW9uT3JkZXJJbnRlbnQSDwoHaXRlbV9pZBgBIAEoCRIdChBwcmV2aW91c19pdGVtX2lkGAIgASgJSACIAQESGQoMbmV4dF9pdGVtX2lkGAMgASgJSAGIAQFCEwoRX3ByZXZpb3VzX2l0ZW1faWRCDwoNX25leHRfaXRlbV9pZCJJChVSZWxlYXNlTGFiZWxzU25hcHNob3QSMAoGbGFiZWxzGAEgAygLMiAuYXBpLm1hbmFnZS52MS5SZWxlYXNlTGFiZWxJbnB1dCLRAQoXU2V0UmVsZWFzZUxhYmVsc1JlcXVlc3QSEgoKcmVsZWFzZV9pZBgBIAEoCRIwCgZsYWJlbHMYAiADKAsyIC5hcGkubWFuYWdlLnYxLlJlbGVhc2VMYWJlbElucHV0EjYKCG9ic2VydmVkGAMgASgLMiQuYXBpLm1hbmFnZS52MS5SZWxlYXNlTGFiZWxzU25hcHNob3QSOAoMb3JkZXJfaW50ZW50GAQgASgLMiIuYXBpLm1hbmFnZS52MS5SZWxhdGlvbk9yZGVySW50ZW50InoKG1NldFJlbGVhc2VDYXRlZ29yaWVzUmVxdWVzdBISCgpyZWxlYXNlX2lkGAEgASgJEhQKDGNhdGVnb3J5X2lkcxgCIAMoCRIxCghvYnNlcnZlZBgDIAEoCzIfLmFwaS5tYW5hZ2UudjEuU3RyaW5nSWRTbmFwc2hvdCJzChdTZXRSZWxlYXNlR2VucmVzUmVxdWVzdBISCgpyZWxlYXNlX2lkGAEgASgJEhEKCWdlbnJlX2lkcxgCIAMoCRIxCghvYnNlcnZlZBgDIAEoCzIfLmFwaS5tYW5hZ2UudjEuU3RyaW5nSWRTbmFwc2hvdCJzChdTZXRSZWxlYXNlU3R5bGVzUmVxdWVzdBISCgpyZWxlYXNlX2lkGAEgASgJEhEKCXN0eWxlX2lkcxgCIAMoCRIxCghvYnNlcnZlZBgDIAEoCzIfLmFwaS5tYW5hZ2UudjEuU3RyaW5nSWRTbmFwc2hvdCI7ChJSZWxlYXNlQXJ0aXN0SW5wdXQSEQoJYXJ0aXN0X2lkGAEgASgJEhIKCnNvcnRfb3JkZXIYAiABKAUiTAoWUmVsZWFzZUFydGlzdHNTbmFwc2hvdBIyCgdhcnRpc3RzGAEgAygLMiEuYXBpLm1hbmFnZS52MS5SZWxlYXNlQXJ0aXN0SW5wdXQi1QEKGFNldFJlbGVhc2VBcnRpc3RzUmVxdWVzdBISCgpyZWxlYXNlX2lkGAEgASgJEjIKB2FydGlzdHMYAiADKAsyIS5hcGkubWFuYWdlLnYxLlJlbGVhc2VBcnRpc3RJbnB1dBI3CghvYnNlcnZlZBgDIAEoCzIlLmFwaS5tYW5hZ2UudjEuUmVsZWFzZUFydGlzdHNTbmFwc2hvdBI4CgxvcmRlcl9pbnRlbnQYBCABKAsyIi5hcGkubWFuYWdlLnYxLlJlbGF0aW9uT3JkZXJJbnRlbnQiXwoSUmVsZWFzZUZvcm1hdElucHV0EhEKCWZvcm1hdF9pZBgBIAEoCRIfChJmb3JtYXRfZGVzY3JpcHRpb24YAiABKAlIAIgBAUIVChNfZm9ybWF0X2Rlc2NyaXB0aW9uIkwKFlJlbGVhc2VGb3JtYXRzU25hcHNob3QSMgoHZm9ybWF0cxgBIAMoCzIhLmFwaS5tYW5hZ2UudjEuUmVsZWFzZUZvcm1hdElucHV0IpsBChhTZXRSZWxlYXNlRm9ybWF0c1JlcXVlc3QSEgoKcmVsZWFzZV9pZBgBIAEoCRIyCgdmb3JtYXRzGAIgAygLMiEuYXBpLm1hbmFnZS52MS5SZWxlYXNlRm9ybWF0SW5wdXQSNwoIb2JzZXJ2ZWQYAyABKAsyJS5hcGkubWFuYWdlLnYxLlJlbGVhc2VGb3JtYXRzU25hcHNob3Qi5AEKElJlbGVhc2VDcmVkaXRJbnB1dBIPCgJpZBgBIAEoCUgAiAEBEhYKCWFydGlzdF9pZBgCIAEoCUgBiAEBEhYKCW1lbWJlcl9pZBgDIAEoCUgCiAEBEhoKDWNyZWRpdGVkX25hbWUYBCABKAlIA4gBARIYCgtjcmVkaXRfcm9sZRgFIAEoCUgEiAEBEhIKCnNvcnRfb3JkZXIYBiABKAVCBQoDX2lkQgwKCl9hcnRpc3RfaWRCDAoKX21lbWJlcl9pZEIQCg5fY3JlZGl0ZWRfbmFtZUIOCgxfY3JlZGl0X3JvbGUiTAoWUmVsZWFzZUNyZWRpdHNTbmFwc2hvdBIyCgdjcmVkaXRzGAEgAygLMiEuYXBpLm1hbmFnZS52MS5SZWxlYXNlQ3JlZGl0SW5wdXQi1QEKGFNldFJlbGVhc2VDcmVkaXRzUmVxdWVzdBISCgpyZWxlYXNlX2lkGAEgASgJEjIKB2NyZWRpdHMYAiADKAsyIS5hcGkubWFuYWdlLnYxLlJlbGVhc2VDcmVkaXRJbnB1dBI3CghvYnNlcnZlZBgDIAEoCzIlLmFwaS5tYW5hZ2UudjEuUmVsZWFzZUNyZWRpdHNTbmFwc2hvdBI4CgxvcmRlcl9pbnRlbnQYBCABKAsyIi5hcGkubWFuYWdlLnYxLlJlbGF0aW9uT3JkZXJJbnRlbnQqjwEKC1JlbGVhc2VUeXBlEhwKGFJFTEVBU0VfVFlQRV9VTlNQRUNJRklFRBAAEhYKElJFTEVBU0VfVFlQRV9BTEJVTRABEhMKD1JFTEVBU0VfVFlQRV9FUBACEhcKE1JFTEVBU0VfVFlQRV9TSU5HTEUQAxIcChhSRUxFQVNFX1RZUEVfQ09NUElMQVRJT04QBCpnCg1SZWxlYXNlU3RhdHVzEh4KGlJFTEVBU0VfU1RBVFVTX1VOU1BFQ0lGSUVEEAASGAoUUkVMRUFTRV9TVEFUVVNfRFJBRlQQARIcChhSRUxFQVNFX1NUQVRVU19QVUJMSVNIRUQQAjL4DgoOUmVsZWFzZVNlcnZpY2USTgoKR2V0UmVsZWFzZRIgLmFwaS5tYW5hZ2UudjEuR2V0UmVsZWFzZVJlcXVlc3QaFi5hcGkubWFuYWdlLnYxLlJlbGVhc2UiBsrzGAIIBBJ0ChNHZXRSZWxlYXNlUmVsYXRpb25zEikuYXBpLm1hbmFnZS52MS5HZXRSZWxlYXNlUmVsYXRpb25zUmVxdWVzdBoqLmFwaS5tYW5hZ2UudjEuR2V0UmVsZWFzZVJlbGF0aW9uc1Jlc3BvbnNlIgbK8xgCCAQSbgoRTGlzdFJlbGVhc2VzQWRtaW4SJy5hcGkubWFuYWdlLnYxLkxpc3RSZWxlYXNlc0FkbWluUmVxdWVzdBooLmFwaS5tYW5hZ2UudjEuTGlzdFJlbGVhc2VzQWRtaW5SZXNwb25zZSIGyvMYAggEElQKDUNyZWF0ZVJlbGVhc2USIy5hcGkubWFuYWdlLnYxLkNyZWF0ZVJlbGVhc2VSZXF1ZXN0GhYuYXBpLm1hbmFnZS52MS5SZWxlYXNlIgbK8xgCCAQSYgoNVXBkYXRlUmVsZWFzZRIjLmFwaS5tYW5hZ2UudjEuVXBkYXRlUmVsZWFzZVJlcXVlc3QaJC5hcGkubWFuYWdlLnYxLlVwZGF0ZVJlbGVhc2VSZXNwb25zZSIGyvMYAggEElsKDURlbGV0ZVJlbGVhc2USIy5hcGkubWFuYWdlLnYxLkRlbGV0ZVJlbGVhc2VSZXF1ZXN0Gh0uYXBpLm1hbmFnZS52MS5EZWxldGVSZXNwb25zZSIGyvMYAggEEm8KDlB1Ymxpc2hSZWxlYXNlEiQuYXBpLm1hbmFnZS52MS5QdWJsaXNoUmVsZWFzZVJlcXVlc3QaLy5hcGkubWFuYWdlLnYxLlJlbGVhc2VMaWZlY3ljbGVNdXRhdGlvblJlc3BvbnNlIgbK8xgCCAQScwoQVW5wdWJsaXNoUmVsZWFzZRImLmFwaS5tYW5hZ2UudjEuVW5wdWJsaXNoUmVsZWFzZVJlcXVlc3QaLy5hcGkubWFuYWdlLnYxLlJlbGVhc2VMaWZlY3ljbGVNdXRhdGlvblJlc3BvbnNlIgbK8xgCCAQSbgoRU2V0UmVsZWFzZUFydHdvcmsSJy5hcGkubWFuYWdlLnYxLlNldFJlbGVhc2VBcnR3b3JrUmVxdWVzdBooLmFwaS5tYW5hZ2UudjEuU2V0UmVsZWFzZUFydHdvcmtSZXNwb25zZSIGyvMYAggEEnAKFERlbGV0ZVJlbGVhc2VBcnR3b3JrEiouYXBpLm1hbmFnZS52MS5EZWxldGVSZWxlYXNlQXJ0d29ya1JlcXVlc3QaJC5hcGkubWFuYWdlLnYxLk9nQXNzZXREZWxldGVSZXNwb25zZSIGyvMYAggEEoYBChlDaGVja1JlbGVhc2VTbHVnQXZhaWxhYmxlEi8uYXBpLm1hbmFnZS52MS5DaGVja1JlbGVhc2VTbHVnQXZhaWxhYmxlUmVxdWVzdBowLmFwaS5tYW5hZ2UudjEuQ2hlY2tSZWxlYXNlU2x1Z0F2YWlsYWJsZVJlc3BvbnNlIgbK8xgCCAQSYgoQU2V0UmVsZWFzZUxhYmVscxImLmFwaS5tYW5hZ2UudjEuU2V0UmVsZWFzZUxhYmVsc1JlcXVlc3QaHi5hcGkubWFuYWdlLnYxLlN1Y2Nlc3NSZXNwb25zZSIGyvMYAggEEmQKEVNldFJlbGVhc2VBcnRpc3RzEicuYXBpLm1hbmFnZS52MS5TZXRSZWxlYXNlQXJ0aXN0c1JlcXVlc3QaHi5hcGkubWFuYWdlLnYxLlN1Y2Nlc3NSZXNwb25zZSIGyvMYAggEEmoKFFNldFJlbGVhc2VDYXRlZ29yaWVzEiouYXBpLm1hbmFnZS52MS5TZXRSZWxlYXNlQ2F0ZWdvcmllc1JlcXVlc3QaHi5hcGkubWFuYWdlLnYxLlN1Y2Nlc3NSZXNwb25zZSIGyvMYAggEEmIKEFNldFJlbGVhc2VHZW5yZXMSJi5hcGkubWFuYWdlLnYxLlNldFJlbGVhc2VHZW5yZXNSZXF1ZXN0Gh4uYXBpLm1hbmFnZS52MS5TdWNjZXNzUmVzcG9uc2UiBsrzGAIIBBJiChBTZXRSZWxlYXNlU3R5bGVzEiYuYXBpLm1hbmFnZS52MS5TZXRSZWxlYXNlU3R5bGVzUmVxdWVzdBoeLmFwaS5tYW5hZ2UudjEuU3VjY2Vzc1Jlc3BvbnNlIgbK8xgCCAQSZAoRU2V0UmVsZWFzZUZvcm1hdHMSJy5hcGkubWFuYWdlLnYxLlNldFJlbGVhc2VGb3JtYXRzUmVxdWVzdBoeLmFwaS5tYW5hZ2UudjEuU3VjY2Vzc1Jlc3BvbnNlIgbK8xgCCAQSZAoRU2V0UmVsZWFzZUNyZWRpdHMSJy5hcGkubWFuYWdlLnYxLlNldFJlbGVhc2VDcmVkaXRzUmVxdWVzdBoeLmFwaS5tYW5hZ2UudjEuU3VjY2Vzc1Jlc3BvbnNlIgbK8xgCCARCwQEKEWNvbS5hcGkubWFuYWdlLnYxQgxSZWxlYXNlUHJvdG9QAVpIZ2l0aHViLmNvbS9lY2hvdmlzaW9ubGFiL2dldWwtZXZlbnQtY29udHJhY3RzL2dlbi9hcGkvbWFuYWdlL3YxO21hbmFnZXYxogIDQU1YqgINQXBpLk1hbmFnZS5WMcoCDUFwaVxNYW5hZ2VcVjHiAhlBcGlcTWFuYWdlXFYxXEdQQk1ldGFkYXRh6gIPQXBpOjpNYW5hZ2U6OlYxYgZwcm90bzM",
     [
       file_api_common_v1_common,
       file_api_common_v1_media,
@@ -216,6 +216,274 @@ export const GetReleaseRequestSchema: GenMessage<GetReleaseRequest> =
   messageDesc(file_api_manage_v1_release, 2);
 
 /**
+ * @generated from message api.manage.v1.GetReleaseRelationsRequest
+ */
+export type GetReleaseRelationsRequest =
+  Message<"api.manage.v1.GetReleaseRelationsRequest"> & {
+    /**
+     * @generated from field: string release_id = 1;
+     */
+    releaseId: string;
+  };
+
+/**
+ * Describes the message api.manage.v1.GetReleaseRelationsRequest.
+ * Use `create(GetReleaseRelationsRequestSchema)` to create a new message.
+ */
+export const GetReleaseRelationsRequestSchema: GenMessage<GetReleaseRelationsRequest> =
+  /*@__PURE__*/
+  messageDesc(file_api_manage_v1_release, 3);
+
+/**
+ * @generated from message api.manage.v1.ReleaseArtistEditorItem
+ */
+export type ReleaseArtistEditorItem =
+  Message<"api.manage.v1.ReleaseArtistEditorItem"> & {
+    /**
+     * @generated from field: string artist_id = 1;
+     */
+    artistId: string;
+
+    /**
+     * @generated from field: string artist_name = 2;
+     */
+    artistName: string;
+
+    /**
+     * @generated from field: optional string artist_slug = 3;
+     */
+    artistSlug?: string | undefined;
+
+    /**
+     * @generated from field: int32 sort_order = 4;
+     */
+    sortOrder: number;
+  };
+
+/**
+ * Describes the message api.manage.v1.ReleaseArtistEditorItem.
+ * Use `create(ReleaseArtistEditorItemSchema)` to create a new message.
+ */
+export const ReleaseArtistEditorItemSchema: GenMessage<ReleaseArtistEditorItem> =
+  /*@__PURE__*/
+  messageDesc(file_api_manage_v1_release, 4);
+
+/**
+ * @generated from message api.manage.v1.ReleaseLabelEditorItem
+ */
+export type ReleaseLabelEditorItem =
+  Message<"api.manage.v1.ReleaseLabelEditorItem"> & {
+    /**
+     * @generated from field: string label_id = 1;
+     */
+    labelId: string;
+
+    /**
+     * @generated from field: string label_name = 2;
+     */
+    labelName: string;
+
+    /**
+     * @generated from field: optional string label_slug = 3;
+     */
+    labelSlug?: string | undefined;
+
+    /**
+     * @generated from field: optional string catalog_number = 4;
+     */
+    catalogNumber?: string | undefined;
+
+    /**
+     * @generated from field: int32 sort_order = 5;
+     */
+    sortOrder: number;
+  };
+
+/**
+ * Describes the message api.manage.v1.ReleaseLabelEditorItem.
+ * Use `create(ReleaseLabelEditorItemSchema)` to create a new message.
+ */
+export const ReleaseLabelEditorItemSchema: GenMessage<ReleaseLabelEditorItem> =
+  /*@__PURE__*/
+  messageDesc(file_api_manage_v1_release, 5);
+
+/**
+ * @generated from message api.manage.v1.ReleaseReferenceEditorItem
+ */
+export type ReleaseReferenceEditorItem =
+  Message<"api.manage.v1.ReleaseReferenceEditorItem"> & {
+    /**
+     * @generated from field: string id = 1;
+     */
+    id: string;
+
+    /**
+     * @generated from field: string name = 2;
+     */
+    name: string;
+
+    /**
+     * @generated from field: string slug = 3;
+     */
+    slug: string;
+  };
+
+/**
+ * Describes the message api.manage.v1.ReleaseReferenceEditorItem.
+ * Use `create(ReleaseReferenceEditorItemSchema)` to create a new message.
+ */
+export const ReleaseReferenceEditorItemSchema: GenMessage<ReleaseReferenceEditorItem> =
+  /*@__PURE__*/
+  messageDesc(file_api_manage_v1_release, 6);
+
+/**
+ * @generated from message api.manage.v1.ReleaseFormatEditorItem
+ */
+export type ReleaseFormatEditorItem =
+  Message<"api.manage.v1.ReleaseFormatEditorItem"> & {
+    /**
+     * @generated from field: string id = 1;
+     */
+    id: string;
+
+    /**
+     * @generated from field: string name = 2;
+     */
+    name: string;
+
+    /**
+     * @generated from field: string slug = 3;
+     */
+    slug: string;
+
+    /**
+     * @generated from field: optional string format_description = 4;
+     */
+    formatDescription?: string | undefined;
+  };
+
+/**
+ * Describes the message api.manage.v1.ReleaseFormatEditorItem.
+ * Use `create(ReleaseFormatEditorItemSchema)` to create a new message.
+ */
+export const ReleaseFormatEditorItemSchema: GenMessage<ReleaseFormatEditorItem> =
+  /*@__PURE__*/
+  messageDesc(file_api_manage_v1_release, 7);
+
+/**
+ * @generated from message api.manage.v1.ReleaseCreditEditorItem
+ */
+export type ReleaseCreditEditorItem =
+  Message<"api.manage.v1.ReleaseCreditEditorItem"> & {
+    /**
+     * @generated from field: string id = 1;
+     */
+    id: string;
+
+    /**
+     * @generated from field: optional string artist_id = 2;
+     */
+    artistId?: string | undefined;
+
+    /**
+     * @generated from field: optional string artist_name = 3;
+     */
+    artistName?: string | undefined;
+
+    /**
+     * @generated from field: optional string artist_slug = 4;
+     */
+    artistSlug?: string | undefined;
+
+    /**
+     * @generated from field: optional string member_id = 5;
+     */
+    memberId?: string | undefined;
+
+    /**
+     * @generated from field: optional string member_name = 6;
+     */
+    memberName?: string | undefined;
+
+    /**
+     * @generated from field: optional string credited_name = 7;
+     */
+    creditedName?: string | undefined;
+
+    /**
+     * @generated from field: optional string credit_role = 8;
+     */
+    creditRole?: string | undefined;
+
+    /**
+     * @generated from field: int32 sort_order = 9;
+     */
+    sortOrder: number;
+  };
+
+/**
+ * Describes the message api.manage.v1.ReleaseCreditEditorItem.
+ * Use `create(ReleaseCreditEditorItemSchema)` to create a new message.
+ */
+export const ReleaseCreditEditorItemSchema: GenMessage<ReleaseCreditEditorItem> =
+  /*@__PURE__*/
+  messageDesc(file_api_manage_v1_release, 8);
+
+/**
+ * @generated from message api.manage.v1.GetReleaseRelationsResponse
+ */
+export type GetReleaseRelationsResponse =
+  Message<"api.manage.v1.GetReleaseRelationsResponse"> & {
+    /**
+     * @generated from field: string release_id = 1;
+     */
+    releaseId: string;
+
+    /**
+     * @generated from field: repeated api.manage.v1.ReleaseArtistEditorItem artists = 2;
+     */
+    artists: ReleaseArtistEditorItem[];
+
+    /**
+     * @generated from field: repeated api.manage.v1.ReleaseLabelEditorItem labels = 3;
+     */
+    labels: ReleaseLabelEditorItem[];
+
+    /**
+     * @generated from field: repeated api.manage.v1.ReleaseReferenceEditorItem categories = 4;
+     */
+    categories: ReleaseReferenceEditorItem[];
+
+    /**
+     * @generated from field: repeated api.manage.v1.ReleaseReferenceEditorItem genres = 5;
+     */
+    genres: ReleaseReferenceEditorItem[];
+
+    /**
+     * @generated from field: repeated api.manage.v1.ReleaseReferenceEditorItem styles = 6;
+     */
+    styles: ReleaseReferenceEditorItem[];
+
+    /**
+     * @generated from field: repeated api.manage.v1.ReleaseFormatEditorItem formats = 7;
+     */
+    formats: ReleaseFormatEditorItem[];
+
+    /**
+     * @generated from field: repeated api.manage.v1.ReleaseCreditEditorItem credits = 8;
+     */
+    credits: ReleaseCreditEditorItem[];
+  };
+
+/**
+ * Describes the message api.manage.v1.GetReleaseRelationsResponse.
+ * Use `create(GetReleaseRelationsResponseSchema)` to create a new message.
+ */
+export const GetReleaseRelationsResponseSchema: GenMessage<GetReleaseRelationsResponse> =
+  /*@__PURE__*/
+  messageDesc(file_api_manage_v1_release, 9);
+
+/**
  * @generated from message api.manage.v1.ListReleasesAdminRequest
  */
 export type ListReleasesAdminRequest =
@@ -242,7 +510,7 @@ export type ListReleasesAdminRequest =
  */
 export const ListReleasesAdminRequestSchema: GenMessage<ListReleasesAdminRequest> =
   /*@__PURE__*/
-  messageDesc(file_api_manage_v1_release, 3);
+  messageDesc(file_api_manage_v1_release, 10);
 
 /**
  * @generated from message api.manage.v1.ListReleasesAdminResponse
@@ -266,7 +534,7 @@ export type ListReleasesAdminResponse =
  */
 export const ListReleasesAdminResponseSchema: GenMessage<ListReleasesAdminResponse> =
   /*@__PURE__*/
-  messageDesc(file_api_manage_v1_release, 4);
+  messageDesc(file_api_manage_v1_release, 11);
 
 /**
  * @generated from message api.manage.v1.CreateReleaseRequest
@@ -339,7 +607,7 @@ export type CreateReleaseRequest =
  */
 export const CreateReleaseRequestSchema: GenMessage<CreateReleaseRequest> =
   /*@__PURE__*/
-  messageDesc(file_api_manage_v1_release, 5);
+  messageDesc(file_api_manage_v1_release, 12);
 
 /**
  * @generated from message api.manage.v1.UpdateReleaseRequest
@@ -413,7 +681,7 @@ export type UpdateReleaseRequest =
  */
 export const UpdateReleaseRequestSchema: GenMessage<UpdateReleaseRequest> =
   /*@__PURE__*/
-  messageDesc(file_api_manage_v1_release, 6);
+  messageDesc(file_api_manage_v1_release, 13);
 
 /**
  * @generated from message api.manage.v1.DeleteReleaseRequest
@@ -432,7 +700,7 @@ export type DeleteReleaseRequest =
  */
 export const DeleteReleaseRequestSchema: GenMessage<DeleteReleaseRequest> =
   /*@__PURE__*/
-  messageDesc(file_api_manage_v1_release, 7);
+  messageDesc(file_api_manage_v1_release, 14);
 
 /**
  * @generated from message api.manage.v1.PublishReleaseRequest
@@ -451,7 +719,7 @@ export type PublishReleaseRequest =
  */
 export const PublishReleaseRequestSchema: GenMessage<PublishReleaseRequest> =
   /*@__PURE__*/
-  messageDesc(file_api_manage_v1_release, 8);
+  messageDesc(file_api_manage_v1_release, 15);
 
 /**
  * @generated from message api.manage.v1.UnpublishReleaseRequest
@@ -470,7 +738,7 @@ export type UnpublishReleaseRequest =
  */
 export const UnpublishReleaseRequestSchema: GenMessage<UnpublishReleaseRequest> =
   /*@__PURE__*/
-  messageDesc(file_api_manage_v1_release, 9);
+  messageDesc(file_api_manage_v1_release, 16);
 
 /**
  * @generated from message api.manage.v1.UpdateReleaseResponse
@@ -504,7 +772,7 @@ export type UpdateReleaseResponse =
  */
 export const UpdateReleaseResponseSchema: GenMessage<UpdateReleaseResponse> =
   /*@__PURE__*/
-  messageDesc(file_api_manage_v1_release, 10);
+  messageDesc(file_api_manage_v1_release, 17);
 
 /**
  * @generated from message api.manage.v1.ReleaseLifecycleMutationResponse
@@ -543,7 +811,7 @@ export type ReleaseLifecycleMutationResponse =
  */
 export const ReleaseLifecycleMutationResponseSchema: GenMessage<ReleaseLifecycleMutationResponse> =
   /*@__PURE__*/
-  messageDesc(file_api_manage_v1_release, 11);
+  messageDesc(file_api_manage_v1_release, 18);
 
 /**
  * Artwork
@@ -569,7 +837,7 @@ export type SetReleaseArtworkRequest =
  */
 export const SetReleaseArtworkRequestSchema: GenMessage<SetReleaseArtworkRequest> =
   /*@__PURE__*/
-  messageDesc(file_api_manage_v1_release, 12);
+  messageDesc(file_api_manage_v1_release, 19);
 
 /**
  * @generated from message api.manage.v1.SetReleaseArtworkResponse
@@ -593,7 +861,7 @@ export type SetReleaseArtworkResponse =
  */
 export const SetReleaseArtworkResponseSchema: GenMessage<SetReleaseArtworkResponse> =
   /*@__PURE__*/
-  messageDesc(file_api_manage_v1_release, 13);
+  messageDesc(file_api_manage_v1_release, 20);
 
 /**
  * @generated from message api.manage.v1.DeleteReleaseArtworkRequest
@@ -612,7 +880,7 @@ export type DeleteReleaseArtworkRequest =
  */
 export const DeleteReleaseArtworkRequestSchema: GenMessage<DeleteReleaseArtworkRequest> =
   /*@__PURE__*/
-  messageDesc(file_api_manage_v1_release, 14);
+  messageDesc(file_api_manage_v1_release, 21);
 
 /**
  * @generated from message api.manage.v1.CheckReleaseSlugAvailableRequest
@@ -636,7 +904,7 @@ export type CheckReleaseSlugAvailableRequest =
  */
 export const CheckReleaseSlugAvailableRequestSchema: GenMessage<CheckReleaseSlugAvailableRequest> =
   /*@__PURE__*/
-  messageDesc(file_api_manage_v1_release, 15);
+  messageDesc(file_api_manage_v1_release, 22);
 
 /**
  * @generated from message api.manage.v1.CheckReleaseSlugAvailableResponse
@@ -655,7 +923,7 @@ export type CheckReleaseSlugAvailableResponse =
  */
 export const CheckReleaseSlugAvailableResponseSchema: GenMessage<CheckReleaseSlugAvailableResponse> =
   /*@__PURE__*/
-  messageDesc(file_api_manage_v1_release, 16);
+  messageDesc(file_api_manage_v1_release, 23);
 
 /**
  * @generated from message api.manage.v1.ReleaseLabelInput
@@ -683,7 +951,75 @@ export type ReleaseLabelInput = Message<"api.manage.v1.ReleaseLabelInput"> & {
  */
 export const ReleaseLabelInputSchema: GenMessage<ReleaseLabelInput> =
   /*@__PURE__*/
-  messageDesc(file_api_manage_v1_release, 17);
+  messageDesc(file_api_manage_v1_release, 24);
+
+/**
+ * Relation writes require the observed snapshot and apply its membership and field deltas.
+ *
+ * @generated from message api.manage.v1.StringIdSnapshot
+ */
+export type StringIdSnapshot = Message<"api.manage.v1.StringIdSnapshot"> & {
+  /**
+   * @generated from field: repeated string ids = 1;
+   */
+  ids: string[];
+};
+
+/**
+ * Describes the message api.manage.v1.StringIdSnapshot.
+ * Use `create(StringIdSnapshotSchema)` to create a new message.
+ */
+export const StringIdSnapshotSchema: GenMessage<StringIdSnapshot> =
+  /*@__PURE__*/
+  messageDesc(file_api_manage_v1_release, 25);
+
+/**
+ * @generated from message api.manage.v1.RelationOrderIntent
+ */
+export type RelationOrderIntent =
+  Message<"api.manage.v1.RelationOrderIntent"> & {
+    /**
+     * @generated from field: string item_id = 1;
+     */
+    itemId: string;
+
+    /**
+     * @generated from field: optional string previous_item_id = 2;
+     */
+    previousItemId?: string | undefined;
+
+    /**
+     * @generated from field: optional string next_item_id = 3;
+     */
+    nextItemId?: string | undefined;
+  };
+
+/**
+ * Describes the message api.manage.v1.RelationOrderIntent.
+ * Use `create(RelationOrderIntentSchema)` to create a new message.
+ */
+export const RelationOrderIntentSchema: GenMessage<RelationOrderIntent> =
+  /*@__PURE__*/
+  messageDesc(file_api_manage_v1_release, 26);
+
+/**
+ * @generated from message api.manage.v1.ReleaseLabelsSnapshot
+ */
+export type ReleaseLabelsSnapshot =
+  Message<"api.manage.v1.ReleaseLabelsSnapshot"> & {
+    /**
+     * @generated from field: repeated api.manage.v1.ReleaseLabelInput labels = 1;
+     */
+    labels: ReleaseLabelInput[];
+  };
+
+/**
+ * Describes the message api.manage.v1.ReleaseLabelsSnapshot.
+ * Use `create(ReleaseLabelsSnapshotSchema)` to create a new message.
+ */
+export const ReleaseLabelsSnapshotSchema: GenMessage<ReleaseLabelsSnapshot> =
+  /*@__PURE__*/
+  messageDesc(file_api_manage_v1_release, 27);
 
 /**
  * @generated from message api.manage.v1.SetReleaseLabelsRequest
@@ -699,6 +1035,16 @@ export type SetReleaseLabelsRequest =
      * @generated from field: repeated api.manage.v1.ReleaseLabelInput labels = 2;
      */
     labels: ReleaseLabelInput[];
+
+    /**
+     * @generated from field: api.manage.v1.ReleaseLabelsSnapshot observed = 3;
+     */
+    observed?: ReleaseLabelsSnapshot | undefined;
+
+    /**
+     * @generated from field: api.manage.v1.RelationOrderIntent order_intent = 4;
+     */
+    orderIntent?: RelationOrderIntent | undefined;
   };
 
 /**
@@ -707,7 +1053,7 @@ export type SetReleaseLabelsRequest =
  */
 export const SetReleaseLabelsRequestSchema: GenMessage<SetReleaseLabelsRequest> =
   /*@__PURE__*/
-  messageDesc(file_api_manage_v1_release, 18);
+  messageDesc(file_api_manage_v1_release, 28);
 
 /**
  * @generated from message api.manage.v1.SetReleaseCategoriesRequest
@@ -723,6 +1069,11 @@ export type SetReleaseCategoriesRequest =
      * @generated from field: repeated string category_ids = 2;
      */
     categoryIds: string[];
+
+    /**
+     * @generated from field: api.manage.v1.StringIdSnapshot observed = 3;
+     */
+    observed?: StringIdSnapshot | undefined;
   };
 
 /**
@@ -731,7 +1082,7 @@ export type SetReleaseCategoriesRequest =
  */
 export const SetReleaseCategoriesRequestSchema: GenMessage<SetReleaseCategoriesRequest> =
   /*@__PURE__*/
-  messageDesc(file_api_manage_v1_release, 19);
+  messageDesc(file_api_manage_v1_release, 29);
 
 /**
  * @generated from message api.manage.v1.SetReleaseGenresRequest
@@ -747,6 +1098,11 @@ export type SetReleaseGenresRequest =
      * @generated from field: repeated string genre_ids = 2;
      */
     genreIds: string[];
+
+    /**
+     * @generated from field: api.manage.v1.StringIdSnapshot observed = 3;
+     */
+    observed?: StringIdSnapshot | undefined;
   };
 
 /**
@@ -755,7 +1111,7 @@ export type SetReleaseGenresRequest =
  */
 export const SetReleaseGenresRequestSchema: GenMessage<SetReleaseGenresRequest> =
   /*@__PURE__*/
-  messageDesc(file_api_manage_v1_release, 20);
+  messageDesc(file_api_manage_v1_release, 30);
 
 /**
  * @generated from message api.manage.v1.SetReleaseStylesRequest
@@ -771,6 +1127,11 @@ export type SetReleaseStylesRequest =
      * @generated from field: repeated string style_ids = 2;
      */
     styleIds: string[];
+
+    /**
+     * @generated from field: api.manage.v1.StringIdSnapshot observed = 3;
+     */
+    observed?: StringIdSnapshot | undefined;
   };
 
 /**
@@ -779,7 +1140,7 @@ export type SetReleaseStylesRequest =
  */
 export const SetReleaseStylesRequestSchema: GenMessage<SetReleaseStylesRequest> =
   /*@__PURE__*/
-  messageDesc(file_api_manage_v1_release, 21);
+  messageDesc(file_api_manage_v1_release, 31);
 
 /**
  * @generated from message api.manage.v1.ReleaseArtistInput
@@ -802,7 +1163,26 @@ export type ReleaseArtistInput = Message<"api.manage.v1.ReleaseArtistInput"> & {
  */
 export const ReleaseArtistInputSchema: GenMessage<ReleaseArtistInput> =
   /*@__PURE__*/
-  messageDesc(file_api_manage_v1_release, 22);
+  messageDesc(file_api_manage_v1_release, 32);
+
+/**
+ * @generated from message api.manage.v1.ReleaseArtistsSnapshot
+ */
+export type ReleaseArtistsSnapshot =
+  Message<"api.manage.v1.ReleaseArtistsSnapshot"> & {
+    /**
+     * @generated from field: repeated api.manage.v1.ReleaseArtistInput artists = 1;
+     */
+    artists: ReleaseArtistInput[];
+  };
+
+/**
+ * Describes the message api.manage.v1.ReleaseArtistsSnapshot.
+ * Use `create(ReleaseArtistsSnapshotSchema)` to create a new message.
+ */
+export const ReleaseArtistsSnapshotSchema: GenMessage<ReleaseArtistsSnapshot> =
+  /*@__PURE__*/
+  messageDesc(file_api_manage_v1_release, 33);
 
 /**
  * @generated from message api.manage.v1.SetReleaseArtistsRequest
@@ -818,6 +1198,16 @@ export type SetReleaseArtistsRequest =
      * @generated from field: repeated api.manage.v1.ReleaseArtistInput artists = 2;
      */
     artists: ReleaseArtistInput[];
+
+    /**
+     * @generated from field: api.manage.v1.ReleaseArtistsSnapshot observed = 3;
+     */
+    observed?: ReleaseArtistsSnapshot | undefined;
+
+    /**
+     * @generated from field: api.manage.v1.RelationOrderIntent order_intent = 4;
+     */
+    orderIntent?: RelationOrderIntent | undefined;
   };
 
 /**
@@ -826,7 +1216,7 @@ export type SetReleaseArtistsRequest =
  */
 export const SetReleaseArtistsRequestSchema: GenMessage<SetReleaseArtistsRequest> =
   /*@__PURE__*/
-  messageDesc(file_api_manage_v1_release, 23);
+  messageDesc(file_api_manage_v1_release, 34);
 
 /**
  * @generated from message api.manage.v1.ReleaseFormatInput
@@ -849,7 +1239,26 @@ export type ReleaseFormatInput = Message<"api.manage.v1.ReleaseFormatInput"> & {
  */
 export const ReleaseFormatInputSchema: GenMessage<ReleaseFormatInput> =
   /*@__PURE__*/
-  messageDesc(file_api_manage_v1_release, 24);
+  messageDesc(file_api_manage_v1_release, 35);
+
+/**
+ * @generated from message api.manage.v1.ReleaseFormatsSnapshot
+ */
+export type ReleaseFormatsSnapshot =
+  Message<"api.manage.v1.ReleaseFormatsSnapshot"> & {
+    /**
+     * @generated from field: repeated api.manage.v1.ReleaseFormatInput formats = 1;
+     */
+    formats: ReleaseFormatInput[];
+  };
+
+/**
+ * Describes the message api.manage.v1.ReleaseFormatsSnapshot.
+ * Use `create(ReleaseFormatsSnapshotSchema)` to create a new message.
+ */
+export const ReleaseFormatsSnapshotSchema: GenMessage<ReleaseFormatsSnapshot> =
+  /*@__PURE__*/
+  messageDesc(file_api_manage_v1_release, 36);
 
 /**
  * @generated from message api.manage.v1.SetReleaseFormatsRequest
@@ -865,6 +1274,11 @@ export type SetReleaseFormatsRequest =
      * @generated from field: repeated api.manage.v1.ReleaseFormatInput formats = 2;
      */
     formats: ReleaseFormatInput[];
+
+    /**
+     * @generated from field: api.manage.v1.ReleaseFormatsSnapshot observed = 3;
+     */
+    observed?: ReleaseFormatsSnapshot | undefined;
   };
 
 /**
@@ -873,7 +1287,7 @@ export type SetReleaseFormatsRequest =
  */
 export const SetReleaseFormatsRequestSchema: GenMessage<SetReleaseFormatsRequest> =
   /*@__PURE__*/
-  messageDesc(file_api_manage_v1_release, 25);
+  messageDesc(file_api_manage_v1_release, 37);
 
 /**
  * @generated from message api.manage.v1.ReleaseCreditInput
@@ -918,7 +1332,26 @@ export type ReleaseCreditInput = Message<"api.manage.v1.ReleaseCreditInput"> & {
  */
 export const ReleaseCreditInputSchema: GenMessage<ReleaseCreditInput> =
   /*@__PURE__*/
-  messageDesc(file_api_manage_v1_release, 26);
+  messageDesc(file_api_manage_v1_release, 38);
+
+/**
+ * @generated from message api.manage.v1.ReleaseCreditsSnapshot
+ */
+export type ReleaseCreditsSnapshot =
+  Message<"api.manage.v1.ReleaseCreditsSnapshot"> & {
+    /**
+     * @generated from field: repeated api.manage.v1.ReleaseCreditInput credits = 1;
+     */
+    credits: ReleaseCreditInput[];
+  };
+
+/**
+ * Describes the message api.manage.v1.ReleaseCreditsSnapshot.
+ * Use `create(ReleaseCreditsSnapshotSchema)` to create a new message.
+ */
+export const ReleaseCreditsSnapshotSchema: GenMessage<ReleaseCreditsSnapshot> =
+  /*@__PURE__*/
+  messageDesc(file_api_manage_v1_release, 39);
 
 /**
  * @generated from message api.manage.v1.SetReleaseCreditsRequest
@@ -934,6 +1367,16 @@ export type SetReleaseCreditsRequest =
      * @generated from field: repeated api.manage.v1.ReleaseCreditInput credits = 2;
      */
     credits: ReleaseCreditInput[];
+
+    /**
+     * @generated from field: api.manage.v1.ReleaseCreditsSnapshot observed = 3;
+     */
+    observed?: ReleaseCreditsSnapshot | undefined;
+
+    /**
+     * @generated from field: api.manage.v1.RelationOrderIntent order_intent = 4;
+     */
+    orderIntent?: RelationOrderIntent | undefined;
   };
 
 /**
@@ -942,7 +1385,7 @@ export type SetReleaseCreditsRequest =
  */
 export const SetReleaseCreditsRequestSchema: GenMessage<SetReleaseCreditsRequest> =
   /*@__PURE__*/
-  messageDesc(file_api_manage_v1_release, 27);
+  messageDesc(file_api_manage_v1_release, 40);
 
 /**
  * Release type enum
@@ -1028,6 +1471,16 @@ export const ReleaseService: GenService<{
     methodKind: "unary";
     input: typeof GetReleaseRequestSchema;
     output: typeof ReleaseSchema;
+  };
+  /**
+   * Editor relation snapshot; authorization matches the release view scope.
+   *
+   * @generated from rpc api.manage.v1.ReleaseService.GetReleaseRelations
+   */
+  getReleaseRelations: {
+    methodKind: "unary";
+    input: typeof GetReleaseRelationsRequestSchema;
+    output: typeof GetReleaseRelationsResponseSchema;
   };
   /**
    * Admin list (all statuses, with stats)

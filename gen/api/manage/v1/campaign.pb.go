@@ -969,13 +969,15 @@ func (x *UpdateCampaignNameResponse) GetUpdatedAt() *timestamppb.Timestamp {
 
 // UpdateCampaignConfiguration owns durable delivery targeting. It is separate
 // from collaboration documents so the authenticated Admin is the Audit actor.
+// Optional fields form a sparse patch. target_mode updates the target_mode and
+// segment_id pair; an absent segment_id clears the segment when mode is ALL.
 type UpdateCampaignConfigurationRequest struct {
-	state          protoimpl.MessageState `protogen:"open.v1"`
-	Id             string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	TargetMode     CampaignTargetMode     `protobuf:"varint,2,opt,name=target_mode,json=targetMode,proto3,enum=api.manage.v1.CampaignTargetMode" json:"target_mode,omitempty"`
-	SegmentId      *string                `protobuf:"bytes,3,opt,name=segment_id,json=segmentId,proto3,oneof" json:"segment_id,omitempty"`
-	LayoutId       *string                `protobuf:"bytes,4,opt,name=layout_id,json=layoutId,proto3,oneof" json:"layout_id,omitempty"`
-	RecipientScope CampaignRecipientScope `protobuf:"varint,5,opt,name=recipient_scope,json=recipientScope,proto3,enum=api.manage.v1.CampaignRecipientScope" json:"recipient_scope,omitempty"`
+	state          protoimpl.MessageState  `protogen:"open.v1"`
+	Id             string                  `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	TargetMode     *CampaignTargetMode     `protobuf:"varint,2,opt,name=target_mode,json=targetMode,proto3,enum=api.manage.v1.CampaignTargetMode,oneof" json:"target_mode,omitempty"`
+	SegmentId      *string                 `protobuf:"bytes,3,opt,name=segment_id,json=segmentId,proto3,oneof" json:"segment_id,omitempty"`
+	LayoutId       *string                 `protobuf:"bytes,4,opt,name=layout_id,json=layoutId,proto3,oneof" json:"layout_id,omitempty"`
+	RecipientScope *CampaignRecipientScope `protobuf:"varint,5,opt,name=recipient_scope,json=recipientScope,proto3,enum=api.manage.v1.CampaignRecipientScope,oneof" json:"recipient_scope,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
@@ -1018,8 +1020,8 @@ func (x *UpdateCampaignConfigurationRequest) GetId() string {
 }
 
 func (x *UpdateCampaignConfigurationRequest) GetTargetMode() CampaignTargetMode {
-	if x != nil {
-		return x.TargetMode
+	if x != nil && x.TargetMode != nil {
+		return *x.TargetMode
 	}
 	return CampaignTargetMode_CAMPAIGN_TARGET_MODE_UNSPECIFIED
 }
@@ -1039,8 +1041,8 @@ func (x *UpdateCampaignConfigurationRequest) GetLayoutId() string {
 }
 
 func (x *UpdateCampaignConfigurationRequest) GetRecipientScope() CampaignRecipientScope {
-	if x != nil {
-		return x.RecipientScope
+	if x != nil && x.RecipientScope != nil {
+		return *x.RecipientScope
 	}
 	return CampaignRecipientScope_CAMPAIGN_RECIPIENT_SCOPE_SUBSCRIBED_USERS
 }
@@ -2213,18 +2215,20 @@ const file_api_manage_v1_campaign_proto_rawDesc = "" +
 	"\achanged\x18\x02 \x01(\bR\achanged\x12\x12\n" +
 	"\x04name\x18\x03 \x01(\tR\x04name\x129\n" +
 	"\n" +
-	"updated_at\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\"\xab\x02\n" +
+	"updated_at\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\"\xd9\x02\n" +
 	"\"UpdateCampaignConfigurationRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\x12B\n" +
-	"\vtarget_mode\x18\x02 \x01(\x0e2!.api.manage.v1.CampaignTargetModeR\n" +
-	"targetMode\x12\"\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12G\n" +
+	"\vtarget_mode\x18\x02 \x01(\x0e2!.api.manage.v1.CampaignTargetModeH\x00R\n" +
+	"targetMode\x88\x01\x01\x12\"\n" +
 	"\n" +
-	"segment_id\x18\x03 \x01(\tH\x00R\tsegmentId\x88\x01\x01\x12 \n" +
-	"\tlayout_id\x18\x04 \x01(\tH\x01R\blayoutId\x88\x01\x01\x12N\n" +
-	"\x0frecipient_scope\x18\x05 \x01(\x0e2%.api.manage.v1.CampaignRecipientScopeR\x0erecipientScopeB\r\n" +
+	"segment_id\x18\x03 \x01(\tH\x01R\tsegmentId\x88\x01\x01\x12 \n" +
+	"\tlayout_id\x18\x04 \x01(\tH\x02R\blayoutId\x88\x01\x01\x12S\n" +
+	"\x0frecipient_scope\x18\x05 \x01(\x0e2%.api.manage.v1.CampaignRecipientScopeH\x03R\x0erecipientScope\x88\x01\x01B\x0e\n" +
+	"\f_target_modeB\r\n" +
 	"\v_segment_idB\f\n" +
 	"\n" +
-	"_layout_id\"\x81\x03\n" +
+	"_layout_idB\x12\n" +
+	"\x10_recipient_scope\"\x81\x03\n" +
 	"#UpdateCampaignConfigurationResponse\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x18\n" +
 	"\achanged\x18\x02 \x01(\bR\achanged\x12B\n" +
