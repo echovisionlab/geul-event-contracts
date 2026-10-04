@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.0](https://github.com/echovisionlab/geul-event-contracts/compare/v0.3.0...v0.4.0) (2026-10-04)
+
+
+### Features
+
+* add browser-prepared media upload contracts ([e2c36aa](https://github.com/echovisionlab/geul-event-contracts/commit/e2c36aab3bd8f60ebaeb164117820546a4f2053c))
+
 ## [0.3.0](https://github.com/echovisionlab/geul-event-contracts/compare/v0.2.2...v0.3.0) (2026-10-01)
 
 
