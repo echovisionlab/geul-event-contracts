@@ -2846,8 +2846,8 @@
               "repository": "web",
               "file": "lib/actions/file.ts",
               "symbol": "completeUploadAction",
-              "call": "createFileClient().completeMultipartUpload({ fileId, uploadId, correlationId, blockId })",
-              "entrypoint": "lib/hooks/useFileUpload.ts finalizes unified uploads used by editors and media uploaders"
+              "call": "client.completeMultipartUpload({ fileId, uploadId, correlationId, clientMediaBundleId })",
+              "entrypoint": "lib/upload/direct-upload-runner.ts runDirectFileUpload commits the original upload and optional prepared client media bundle."
             }
           ],
           "consumerTests": [],
@@ -3159,6 +3159,21 @@
               "symbol": "moveManagedFilesAction",
               "call": "(await createFileClient()).moveFiles(input)",
               "entrypoint": "FileManager moves the selected files into the current directory."
+            }
+          ],
+          "consumerTests": [],
+          "providerTests": []
+        },
+        {
+          "name": "PrepareClientMediaUpload",
+          "consumerStatus": "verified",
+          "consumers": [
+            {
+              "repository": "web",
+              "file": "lib/actions/file.ts",
+              "symbol": "prepareClientMediaUploadAction",
+              "call": "client.prepareClientMediaUpload({ fileId, uploadId, kind, durationSeconds, artifacts })",
+              "entrypoint": "lib/upload/direct-upload-runner.ts runDirectFileUpload prepares the complete browser media bundle before artifact uploads."
             }
           ],
           "consumerTests": [],
