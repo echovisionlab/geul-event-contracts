@@ -55,6 +55,13 @@ enum FileDerivativeType {
   FILE_DERIVATIVE_TYPE_OPTIMIZED_MESH = 12;
 }
 
+// Media kind for a complete browser-generated upload bundle.
+enum ClientMediaKind {
+  CLIENT_MEDIA_KIND_UNSPECIFIED = 0;
+  CLIENT_MEDIA_KIND_AUDIO = 1;
+  CLIENT_MEDIA_KIND_VIDEO = 2;
+}
+
 // Delete file
 message DeleteFileRequest {
   string file_id = 1;
@@ -319,10 +326,35 @@ message UploadPartInfo {
   string etag = 2;
 }
 
+// Immutable expected metadata for one session-owned staged artifact.
+message ClientMediaUploadArtifact {
+  string path = 1;
+  string mime_type = 2;
+  int64 size = 3;
+  string sha256 = 4;
+  FileDerivativeType derivative_type = 5;
+}
+
+// Prepare a complete bundle before uploading its artifacts. Repeating an
+// identical plan returns the same bundle identity; conflicting plans fail.
+message PrepareClientMediaUploadRequest {
+  string file_id = 1;
+  string upload_id = 2;
+  ClientMediaKind kind = 3;
+  double duration_seconds = 4;
+  repeated ClientMediaUploadArtifact artifacts = 5;
+}
+
+message PrepareClientMediaUploadResponse {
+  string bundle_id = 1;
+}
+
 message CompleteMultipartUploadRequest {
   string file_id = 1;
   string upload_id = 2;
   optional string correlation_id = 3;
+  // Required when this session has an immutable client media manifest.
+  optional string client_media_bundle_id = 4;
 }
 
 message CompleteMultipartUploadResponse {
@@ -383,6 +415,8 @@ message FindMultipartUploadCandidateResponse {
   optional string ingest_attempt_id = 14;
   // Echoes the candidate session's Track-original CAS expectation.
   optional string expected_current_file_id = 15;
+  // A client bundle cannot resume without its cached prepared artifact bytes.
+  optional string client_media_bundle_id = 16;
 }
 
 message DownloadFromUrlRequest {
@@ -413,6 +447,8 @@ message GetMediaDeliveryResponse {
   api.common.v1.MediaDelivery delivery = 1;
   optional string ingest_slot_id = 2;
   optional string ingest_attempt_id = 3;
+  // Durable completed bundle identity for recovery after session cleanup.
+  optional string client_media_bundle_id = 4;
 }
 
 message GetBulkMediaDeliveriesRequest {
@@ -611,6 +647,9 @@ service FileService {
 
   // Multipart upload
   rpc InitiateMultipartUpload(InitiateMultipartUploadRequest) returns (InitiateMultipartUploadResponse) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+  rpc PrepareClientMediaUpload(PrepareClientMediaUploadRequest) returns (PrepareClientMediaUploadResponse) {
     option (api.policy.v1.access) = {role: USER};
   }
   rpc CompleteMultipartUpload(CompleteMultipartUploadRequest) returns (CompleteMultipartUploadResponse) {
