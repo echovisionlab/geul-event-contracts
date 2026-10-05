@@ -104,6 +104,19 @@ message ProgramEventClient {
   int32 sort_order = 3;
 }
 
+// Explicit relation writes require an observed snapshot and merge their membership and field changes.
+message ProgramEventArtistsSnapshot {
+  repeated ProgramEventArtist artists = 1;
+}
+
+message ProgramEventLabelsSnapshot {
+  repeated ProgramEventLabel labels = 1;
+}
+
+message ProgramEventClientsSnapshot {
+  repeated ProgramEventClient clients = 1;
+}
+
 message ProgramEventCredit {
   string id = 1;
   optional string artist_id = 2;
@@ -239,6 +252,9 @@ message UpdateProgramEventRequest {
   bool replace_credits = 23;
   bool clear_ends_at = 24;
   bool clear_series_order = 25;
+  ProgramEventArtistsSnapshot observed_artists = 26;
+  ProgramEventLabelsSnapshot observed_labels = 27;
+  ProgramEventClientsSnapshot observed_clients = 28;
 }
 
 message AddProgramEventMediaRequest {

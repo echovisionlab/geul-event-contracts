@@ -250,6 +250,8 @@ type Post struct {
 	FeaturedImageDelivery *v11.MediaDelivery          `protobuf:"bytes,23,opt,name=featured_image_delivery,json=featuredImageDelivery,proto3,oneof" json:"featured_image_delivery,omitempty"`
 	BlockMedia            []*v1.ContentBlockMediaItem `protobuf:"bytes,24,rep,name=block_media,json=blockMedia,proto3" json:"block_media,omitempty"`
 	SourceLocale          string                      `protobuf:"bytes,25,opt,name=source_locale,json=sourceLocale,proto3" json:"source_locale,omitempty"`
+	// Entity-wide settings version, separate from the content document revision.
+	ConfigurationRevision string `protobuf:"bytes,26,opt,name=configuration_revision,json=configurationRevision,proto3" json:"configuration_revision,omitempty"`
 	unknownFields         protoimpl.UnknownFields
 	sizeCache             protoimpl.SizeCache
 }
@@ -455,6 +457,13 @@ func (x *Post) GetBlockMedia() []*v1.ContentBlockMediaItem {
 func (x *Post) GetSourceLocale() string {
 	if x != nil {
 		return x.SourceLocale
+	}
+	return ""
+}
+
+func (x *Post) GetConfigurationRevision() string {
+	if x != nil {
+		return x.ConfigurationRevision
 	}
 	return ""
 }
@@ -793,8 +802,11 @@ type UpdatePostRequest struct {
 	CommentsEnabled *bool                  `protobuf:"varint,3,opt,name=comments_enabled,json=commentsEnabled,proto3,oneof" json:"comments_enabled,omitempty"`
 	MapPlaceId      *string                `protobuf:"bytes,4,opt,name=map_place_id,json=mapPlaceId,proto3,oneof" json:"map_place_id,omitempty"`
 	DocumentLayout  *v11.DocumentLayout    `protobuf:"bytes,5,opt,name=document_layout,json=documentLayout,proto3" json:"document_layout,omitempty"`
-	unknownFields   protoimpl.UnknownFields
-	sizeCache       protoimpl.SizeCache
+	// Required resident settings version. Stale writes are rejected with ABORTED;
+	// callers must preserve pending edits and reload rather than rebase implicitly.
+	ExpectedConfigurationRevision string `protobuf:"bytes,6,opt,name=expected_configuration_revision,json=expectedConfigurationRevision,proto3" json:"expected_configuration_revision,omitempty"`
+	unknownFields                 protoimpl.UnknownFields
+	sizeCache                     protoimpl.SizeCache
 }
 
 func (x *UpdatePostRequest) Reset() {
@@ -860,6 +872,13 @@ func (x *UpdatePostRequest) GetDocumentLayout() *v11.DocumentLayout {
 		return x.DocumentLayout
 	}
 	return nil
+}
+
+func (x *UpdatePostRequest) GetExpectedConfigurationRevision() string {
+	if x != nil {
+		return x.ExpectedConfigurationRevision
+	}
+	return ""
 }
 
 type DeletePostRequest struct {
@@ -1195,8 +1214,10 @@ type UpdatePostResponse struct {
 	MapPlaceId      *string                `protobuf:"bytes,5,opt,name=map_place_id,json=mapPlaceId,proto3,oneof" json:"map_place_id,omitempty"`
 	DocumentLayout  *v11.DocumentLayout    `protobuf:"bytes,6,opt,name=document_layout,json=documentLayout,proto3" json:"document_layout,omitempty"`
 	UpdatedAt       *timestamppb.Timestamp `protobuf:"bytes,7,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
-	unknownFields   protoimpl.UnknownFields
-	sizeCache       protoimpl.SizeCache
+	// Actual persisted settings version after this acknowledgement, including no-ops.
+	ConfigurationRevision string `protobuf:"bytes,8,opt,name=configuration_revision,json=configurationRevision,proto3" json:"configuration_revision,omitempty"`
+	unknownFields         protoimpl.UnknownFields
+	sizeCache             protoimpl.SizeCache
 }
 
 func (x *UpdatePostResponse) Reset() {
@@ -1276,6 +1297,13 @@ func (x *UpdatePostResponse) GetUpdatedAt() *timestamppb.Timestamp {
 		return x.UpdatedAt
 	}
 	return nil
+}
+
+func (x *UpdatePostResponse) GetConfigurationRevision() string {
+	if x != nil {
+		return x.ConfigurationRevision
+	}
+	return ""
 }
 
 type PostLifecycleMutationResponse struct {
@@ -2362,7 +2390,7 @@ var File_api_manage_v1_post_proto protoreflect.FileDescriptor
 
 const file_api_manage_v1_post_proto_rawDesc = "" +
 	"\n" +
-	"\x18api/manage/v1/post.proto\x12\rapi.manage.v1\x1a\x1aapi/common/v1/common.proto\x1a\x19api/common/v1/media.proto\x1a\"api/content/v1/block_content.proto\x1a\x1capi/manage/v1/category.proto\x1a\x1aapi/manage/v1/common.proto\x1a\x1aapi/manage/v1/series.proto\x1a\x17api/manage/v1/tag.proto\x1a\x1aapi/policy/v1/access.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xaa\v\n" +
+	"\x18api/manage/v1/post.proto\x12\rapi.manage.v1\x1a\x1aapi/common/v1/common.proto\x1a\x19api/common/v1/media.proto\x1a\"api/content/v1/block_content.proto\x1a\x1capi/manage/v1/category.proto\x1a\x1aapi/manage/v1/common.proto\x1a\x1aapi/manage/v1/series.proto\x1a\x17api/manage/v1/tag.proto\x1a\x1aapi/policy/v1/access.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xe1\v\n" +
 	"\x04Post\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x14\n" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x12\x17\n" +
@@ -2395,7 +2423,8 @@ const file_api_manage_v1_post_proto_rawDesc = "" +
 	"\x17featured_image_delivery\x18\x17 \x01(\v2\x1c.api.common.v1.MediaDeliveryH\tR\x15featuredImageDelivery\x88\x01\x01\x12F\n" +
 	"\vblock_media\x18\x18 \x03(\v2%.api.content.v1.ContentBlockMediaItemR\n" +
 	"blockMedia\x12#\n" +
-	"\rsource_locale\x18\x19 \x01(\tR\fsourceLocaleB\a\n" +
+	"\rsource_locale\x18\x19 \x01(\tR\fsourceLocale\x125\n" +
+	"\x16configuration_revision\x18\x1a \x01(\tR\x15configurationRevisionB\a\n" +
 	"\x05_slugB\n" +
 	"\n" +
 	"\b_summaryB\x0f\n" +
@@ -2439,14 +2468,15 @@ const file_api_manage_v1_post_proto_rawDesc = "" +
 	"\x05_slugB\n" +
 	"\n" +
 	"\b_summaryB\x0f\n" +
-	"\r_map_place_id\"\x8a\x02\n" +
+	"\r_map_place_id\"\xd2\x02\n" +
 	"\x11UpdatePostRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x17\n" +
 	"\x04slug\x18\x02 \x01(\tH\x00R\x04slug\x88\x01\x01\x12.\n" +
 	"\x10comments_enabled\x18\x03 \x01(\bH\x01R\x0fcommentsEnabled\x88\x01\x01\x12%\n" +
 	"\fmap_place_id\x18\x04 \x01(\tH\x02R\n" +
 	"mapPlaceId\x88\x01\x01\x12F\n" +
-	"\x0fdocument_layout\x18\x05 \x01(\v2\x1d.api.common.v1.DocumentLayoutR\x0edocumentLayoutB\a\n" +
+	"\x0fdocument_layout\x18\x05 \x01(\v2\x1d.api.common.v1.DocumentLayoutR\x0edocumentLayout\x12F\n" +
+	"\x1fexpected_configuration_revision\x18\x06 \x01(\tR\x1dexpectedConfigurationRevisionB\a\n" +
 	"\x05_slugB\x13\n" +
 	"\x11_comments_enabledB\x0f\n" +
 	"\r_map_place_id\"#\n" +
@@ -2465,7 +2495,7 @@ const file_api_manage_v1_post_proto_rawDesc = "" +
 	"\x19CancelPostScheduleRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\"&\n" +
 	"\x14RepublishPostRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\"\xc6\x02\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\"\xfd\x02\n" +
 	"\x12UpdatePostResponse\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x18\n" +
 	"\achanged\x18\x02 \x01(\bR\achanged\x12\x17\n" +
@@ -2475,7 +2505,8 @@ const file_api_manage_v1_post_proto_rawDesc = "" +
 	"mapPlaceId\x88\x01\x01\x12F\n" +
 	"\x0fdocument_layout\x18\x06 \x01(\v2\x1d.api.common.v1.DocumentLayoutR\x0edocumentLayout\x129\n" +
 	"\n" +
-	"updated_at\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAtB\a\n" +
+	"updated_at\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\x125\n" +
+	"\x16configuration_revision\x18\b \x01(\tR\x15configurationRevisionB\a\n" +
 	"\x05_slugB\x0f\n" +
 	"\r_map_place_id\"\xf2\x03\n" +
 	"\x1dPostLifecycleMutationResponse\x12\x0e\n" +

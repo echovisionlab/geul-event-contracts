@@ -57,7 +57,7 @@ func TestManageFileDownloadPolicyTargetsExactRelation(t *testing.T) {
 	}
 
 	updatePolicy := (&managev1.UpdateFileDownloadPolicyRequest{}).ProtoReflect().Descriptor()
-	requireMessageFieldCount(t, updatePolicy, 7)
+	requireMessageFieldCount(t, updatePolicy, 8)
 	requireMessageField(t, updatePolicy, "entity_type", 1, protoreflect.EnumKind, "api.manage.v1.TranscodeEntityType")
 	requireMessageField(t, updatePolicy, "entity_id", 2, protoreflect.StringKind, "")
 	updateBlockID := requireMessageField(t, updatePolicy, "block_id", 3, protoreflect.StringKind, "")
@@ -76,6 +76,10 @@ func TestManageFileDownloadPolicyTargetsExactRelation(t *testing.T) {
 	segmentIDs := requireMessageField(t, updatePolicy, "audience_segment_ids", 7, protoreflect.StringKind, "")
 	if !segmentIDs.IsList() {
 		t.Error("UpdateFileDownloadPolicyRequest.audience_segment_ids must be repeated")
+	}
+	observedPolicy := requireMessageField(t, updatePolicy, "observed_policy", 8, protoreflect.MessageKind, "api.manage.v1.FileDownloadPolicyObservedState")
+	if !observedPolicy.HasPresence() {
+		t.Error("UpdateFileDownloadPolicyRequest.observed_policy must distinguish an empty baseline from legacy omission")
 	}
 	if updatePolicy.Fields().ByName("file_id") != nil {
 		t.Error("UpdateFileDownloadPolicyRequest must use expected_file_id only as a CAS guard")

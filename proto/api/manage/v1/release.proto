@@ -63,6 +63,61 @@ message GetReleaseRequest {
   string id = 1;
 }
 
+message GetReleaseRelationsRequest {
+  string release_id = 1;
+}
+
+message ReleaseArtistEditorItem {
+  string artist_id = 1;
+  string artist_name = 2;
+  optional string artist_slug = 3;
+  int32 sort_order = 4;
+}
+
+message ReleaseLabelEditorItem {
+  string label_id = 1;
+  string label_name = 2;
+  optional string label_slug = 3;
+  optional string catalog_number = 4;
+  int32 sort_order = 5;
+}
+
+message ReleaseReferenceEditorItem {
+  string id = 1;
+  string name = 2;
+  string slug = 3;
+}
+
+message ReleaseFormatEditorItem {
+  string id = 1;
+  string name = 2;
+  string slug = 3;
+  optional string format_description = 4;
+}
+
+message ReleaseCreditEditorItem {
+  string id = 1;
+  optional string artist_id = 2;
+  optional string artist_name = 3;
+  optional string artist_slug = 4;
+  optional string member_id = 5;
+  optional string member_name = 6;
+  optional string credited_name = 7;
+  optional string credit_role = 8;
+  int32 sort_order = 9;
+}
+
+message GetReleaseRelationsResponse {
+  string release_id = 1;
+  repeated ReleaseArtistEditorItem artists = 2;
+  repeated ReleaseLabelEditorItem labels = 3;
+  repeated ReleaseReferenceEditorItem categories = 4;
+  repeated ReleaseReferenceEditorItem genres = 5;
+  repeated ReleaseReferenceEditorItem styles = 6;
+  repeated ReleaseFormatEditorItem formats = 7;
+  repeated ReleaseCreditEditorItem credits = 8;
+}
+
 message ListReleasesAdminRequest {
   api.common.v1.PaginationRequest pagination = 1;
   repeated api.common.v1.FilterSpec filters = 2;
@@ -167,24 +222,44 @@ message ReleaseLabelInput {
   int32 sort_order = 3;
 }
 
+// Relation writes require the observed snapshot and apply its membership and field deltas.
+message StringIdSnapshot {
+  repeated string ids = 1;
+}
+
+message RelationOrderIntent {
+  string item_id = 1;
+  optional string previous_item_id = 2;
+  optional string next_item_id = 3;
+}
+
+message ReleaseLabelsSnapshot {
+  repeated ReleaseLabelInput labels = 1;
+}
+
 message SetReleaseLabelsRequest {
   string release_id = 1;
   repeated ReleaseLabelInput labels = 2;
+  ReleaseLabelsSnapshot observed = 3;
+  RelationOrderIntent order_intent = 4;
 }
 
 message SetReleaseCategoriesRequest {
   string release_id = 1;
   repeated string category_ids = 2;
+  StringIdSnapshot observed = 3;
 }
 
 message SetReleaseGenresRequest {
   string release_id = 1;
   repeated string genre_ids = 2;
+  StringIdSnapshot observed = 3;
 }
 
 message SetReleaseStylesRequest {
   string release_id = 1;
   repeated string style_ids = 2;
+  StringIdSnapshot observed = 3;
 }
 
 message ReleaseArtistInput {
@@ -192,9 +267,15 @@ message ReleaseArtistInput {
   int32 sort_order = 2;
 }
 
+message ReleaseArtistsSnapshot {
+  repeated ReleaseArtistInput artists = 1;
+}
+
 message SetReleaseArtistsRequest {
   string release_id = 1;
   repeated ReleaseArtistInput artists = 2;
+  ReleaseArtistsSnapshot observed = 3;
+  RelationOrderIntent order_intent = 4;
 }
 
 message ReleaseFormatInput {
@@ -202,9 +283,14 @@ message ReleaseFormatInput {
   optional string format_description = 2;
 }
 
+message ReleaseFormatsSnapshot {
+  repeated ReleaseFormatInput formats = 1;
+}
+
 message SetReleaseFormatsRequest {
   string release_id = 1;
   repeated ReleaseFormatInput formats = 2;
+  ReleaseFormatsSnapshot observed = 3;
 }
 
 message ReleaseCreditInput {
@@ -216,9 +302,15 @@ message ReleaseCreditInput {
   int32 sort_order = 6;
 }
 
+message ReleaseCreditsSnapshot {
+  repeated ReleaseCreditInput credits = 1;
+}
+
 message SetReleaseCreditsRequest {
   string release_id = 1;
   repeated ReleaseCreditInput credits = 2;
+  ReleaseCreditsSnapshot observed = 3;
+  RelationOrderIntent order_intent = 4;
 }
 
 // Release Service (Admin/Editor operations only)
@@ -226,6 +318,10 @@ message SetReleaseCreditsRequest {
 service ReleaseService {
   // Read (authenticated - draft releases require editor permission)
   rpc GetRelease(GetReleaseRequest) returns (Release) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  // Editor relation snapshot; authorization matches the release view scope.
+  rpc GetReleaseRelations(GetReleaseRelationsRequest) returns (GetReleaseRelationsResponse) {
     option (api.policy.v1.access) = {role: ADMIN};
   }
   // Admin list (all statuses, with stats)

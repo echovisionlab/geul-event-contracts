@@ -702,12 +702,14 @@ func (x *CreateSegmentRequest) GetConfig() *SegmentConfig {
 }
 
 type UpdateSegmentRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Name          *string                `protobuf:"bytes,2,opt,name=name,proto3,oneof" json:"name,omitempty"`
-	Description   *string                `protobuf:"bytes,3,opt,name=description,proto3,oneof" json:"description,omitempty"`
-	SegmentType   *SegmentType           `protobuf:"varint,4,opt,name=segment_type,json=segmentType,proto3,enum=api.manage.v1.SegmentType,oneof" json:"segment_type,omitempty"`
-	Config        *SegmentConfig         `protobuf:"bytes,5,opt,name=config,proto3,oneof" json:"config,omitempty"`
+	state       protoimpl.MessageState `protogen:"open.v1"`
+	Id          string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Name        *string                `protobuf:"bytes,2,opt,name=name,proto3,oneof" json:"name,omitempty"`
+	Description *string                `protobuf:"bytes,3,opt,name=description,proto3,oneof" json:"description,omitempty"`
+	SegmentType *SegmentType           `protobuf:"varint,4,opt,name=segment_type,json=segmentType,proto3,enum=api.manage.v1.SegmentType,oneof" json:"segment_type,omitempty"`
+	Config      *SegmentConfig         `protobuf:"bytes,5,opt,name=config,proto3,oneof" json:"config,omitempty"`
+	// Required baseline for config or type updates; only changes relative to this snapshot are merged.
+	Observed      *SegmentConfigSnapshot `protobuf:"bytes,6,opt,name=observed,proto3" json:"observed,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -777,6 +779,68 @@ func (x *UpdateSegmentRequest) GetConfig() *SegmentConfig {
 	return nil
 }
 
+func (x *UpdateSegmentRequest) GetObserved() *SegmentConfigSnapshot {
+	if x != nil {
+		return x.Observed
+	}
+	return nil
+}
+
+// Segment type and config observed together so intentional type changes can
+// reset their coupled config atomically, while same-type edits merge config
+// leaves against the current locked state.
+type SegmentConfigSnapshot struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	SegmentType   SegmentType            `protobuf:"varint,1,opt,name=segment_type,json=segmentType,proto3,enum=api.manage.v1.SegmentType" json:"segment_type,omitempty"`
+	Config        *SegmentConfig         `protobuf:"bytes,2,opt,name=config,proto3" json:"config,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SegmentConfigSnapshot) Reset() {
+	*x = SegmentConfigSnapshot{}
+	mi := &file_api_manage_v1_audience_proto_msgTypes[10]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SegmentConfigSnapshot) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SegmentConfigSnapshot) ProtoMessage() {}
+
+func (x *SegmentConfigSnapshot) ProtoReflect() protoreflect.Message {
+	mi := &file_api_manage_v1_audience_proto_msgTypes[10]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SegmentConfigSnapshot.ProtoReflect.Descriptor instead.
+func (*SegmentConfigSnapshot) Descriptor() ([]byte, []int) {
+	return file_api_manage_v1_audience_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *SegmentConfigSnapshot) GetSegmentType() SegmentType {
+	if x != nil {
+		return x.SegmentType
+	}
+	return SegmentType_SEGMENT_TYPE_UNSPECIFIED
+}
+
+func (x *SegmentConfigSnapshot) GetConfig() *SegmentConfig {
+	if x != nil {
+		return x.Config
+	}
+	return nil
+}
+
 type ArchiveSegmentRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
@@ -786,7 +850,7 @@ type ArchiveSegmentRequest struct {
 
 func (x *ArchiveSegmentRequest) Reset() {
 	*x = ArchiveSegmentRequest{}
-	mi := &file_api_manage_v1_audience_proto_msgTypes[10]
+	mi := &file_api_manage_v1_audience_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -798,7 +862,7 @@ func (x *ArchiveSegmentRequest) String() string {
 func (*ArchiveSegmentRequest) ProtoMessage() {}
 
 func (x *ArchiveSegmentRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_audience_proto_msgTypes[10]
+	mi := &file_api_manage_v1_audience_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -811,7 +875,7 @@ func (x *ArchiveSegmentRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ArchiveSegmentRequest.ProtoReflect.Descriptor instead.
 func (*ArchiveSegmentRequest) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_audience_proto_rawDescGZIP(), []int{10}
+	return file_api_manage_v1_audience_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *ArchiveSegmentRequest) GetId() string {
@@ -830,7 +894,7 @@ type RestoreSegmentRequest struct {
 
 func (x *RestoreSegmentRequest) Reset() {
 	*x = RestoreSegmentRequest{}
-	mi := &file_api_manage_v1_audience_proto_msgTypes[11]
+	mi := &file_api_manage_v1_audience_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -842,7 +906,7 @@ func (x *RestoreSegmentRequest) String() string {
 func (*RestoreSegmentRequest) ProtoMessage() {}
 
 func (x *RestoreSegmentRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_audience_proto_msgTypes[11]
+	mi := &file_api_manage_v1_audience_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -855,7 +919,7 @@ func (x *RestoreSegmentRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RestoreSegmentRequest.ProtoReflect.Descriptor instead.
 func (*RestoreSegmentRequest) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_audience_proto_rawDescGZIP(), []int{11}
+	return file_api_manage_v1_audience_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *RestoreSegmentRequest) GetId() string {
@@ -875,7 +939,7 @@ type EstimateSegmentCountRequest struct {
 
 func (x *EstimateSegmentCountRequest) Reset() {
 	*x = EstimateSegmentCountRequest{}
-	mi := &file_api_manage_v1_audience_proto_msgTypes[12]
+	mi := &file_api_manage_v1_audience_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -887,7 +951,7 @@ func (x *EstimateSegmentCountRequest) String() string {
 func (*EstimateSegmentCountRequest) ProtoMessage() {}
 
 func (x *EstimateSegmentCountRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_audience_proto_msgTypes[12]
+	mi := &file_api_manage_v1_audience_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -900,7 +964,7 @@ func (x *EstimateSegmentCountRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use EstimateSegmentCountRequest.ProtoReflect.Descriptor instead.
 func (*EstimateSegmentCountRequest) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_audience_proto_rawDescGZIP(), []int{12}
+	return file_api_manage_v1_audience_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *EstimateSegmentCountRequest) GetSegmentType() SegmentType {
@@ -926,7 +990,7 @@ type EstimateSegmentCountResponse struct {
 
 func (x *EstimateSegmentCountResponse) Reset() {
 	*x = EstimateSegmentCountResponse{}
-	mi := &file_api_manage_v1_audience_proto_msgTypes[13]
+	mi := &file_api_manage_v1_audience_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -938,7 +1002,7 @@ func (x *EstimateSegmentCountResponse) String() string {
 func (*EstimateSegmentCountResponse) ProtoMessage() {}
 
 func (x *EstimateSegmentCountResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_audience_proto_msgTypes[13]
+	mi := &file_api_manage_v1_audience_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -951,7 +1015,7 @@ func (x *EstimateSegmentCountResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use EstimateSegmentCountResponse.ProtoReflect.Descriptor instead.
 func (*EstimateSegmentCountResponse) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_audience_proto_rawDescGZIP(), []int{13}
+	return file_api_manage_v1_audience_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *EstimateSegmentCountResponse) GetCount() int32 {
@@ -1030,17 +1094,21 @@ const file_api_manage_v1_audience_proto_rawDesc = "" +
 	"\vdescription\x18\x02 \x01(\tH\x00R\vdescription\x88\x01\x01\x12=\n" +
 	"\fsegment_type\x18\x03 \x01(\x0e2\x1a.api.manage.v1.SegmentTypeR\vsegmentType\x124\n" +
 	"\x06config\x18\x04 \x01(\v2\x1c.api.manage.v1.SegmentConfigR\x06configB\x0e\n" +
-	"\f_description\"\x9a\x02\n" +
+	"\f_description\"\xdc\x02\n" +
 	"\x14UpdateSegmentRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x17\n" +
 	"\x04name\x18\x02 \x01(\tH\x00R\x04name\x88\x01\x01\x12%\n" +
 	"\vdescription\x18\x03 \x01(\tH\x01R\vdescription\x88\x01\x01\x12B\n" +
 	"\fsegment_type\x18\x04 \x01(\x0e2\x1a.api.manage.v1.SegmentTypeH\x02R\vsegmentType\x88\x01\x01\x129\n" +
-	"\x06config\x18\x05 \x01(\v2\x1c.api.manage.v1.SegmentConfigH\x03R\x06config\x88\x01\x01B\a\n" +
+	"\x06config\x18\x05 \x01(\v2\x1c.api.manage.v1.SegmentConfigH\x03R\x06config\x88\x01\x01\x12@\n" +
+	"\bobserved\x18\x06 \x01(\v2$.api.manage.v1.SegmentConfigSnapshotR\bobservedB\a\n" +
 	"\x05_nameB\x0e\n" +
 	"\f_descriptionB\x0f\n" +
 	"\r_segment_typeB\t\n" +
-	"\a_config\"'\n" +
+	"\a_config\"\x8c\x01\n" +
+	"\x15SegmentConfigSnapshot\x12=\n" +
+	"\fsegment_type\x18\x01 \x01(\x0e2\x1a.api.manage.v1.SegmentTypeR\vsegmentType\x124\n" +
+	"\x06config\x18\x02 \x01(\v2\x1c.api.manage.v1.SegmentConfigR\x06config\"'\n" +
 	"\x15ArchiveSegmentRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\"'\n" +
 	"\x15RestoreSegmentRequest\x12\x0e\n" +
@@ -1080,7 +1148,7 @@ func file_api_manage_v1_audience_proto_rawDescGZIP() []byte {
 }
 
 var file_api_manage_v1_audience_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_api_manage_v1_audience_proto_msgTypes = make([]protoimpl.MessageInfo, 14)
+var file_api_manage_v1_audience_proto_msgTypes = make([]protoimpl.MessageInfo, 15)
 var file_api_manage_v1_audience_proto_goTypes = []any{
 	(SegmentType)(0),                                   // 0: api.manage.v1.SegmentType
 	(*SegmentConfig)(nil),                              // 1: api.manage.v1.SegmentConfig
@@ -1093,64 +1161,68 @@ var file_api_manage_v1_audience_proto_goTypes = []any{
 	(*ListSegmentsForAuthenticatedAccessResponse)(nil), // 8: api.manage.v1.ListSegmentsForAuthenticatedAccessResponse
 	(*CreateSegmentRequest)(nil),                       // 9: api.manage.v1.CreateSegmentRequest
 	(*UpdateSegmentRequest)(nil),                       // 10: api.manage.v1.UpdateSegmentRequest
-	(*ArchiveSegmentRequest)(nil),                      // 11: api.manage.v1.ArchiveSegmentRequest
-	(*RestoreSegmentRequest)(nil),                      // 12: api.manage.v1.RestoreSegmentRequest
-	(*EstimateSegmentCountRequest)(nil),                // 13: api.manage.v1.EstimateSegmentCountRequest
-	(*EstimateSegmentCountResponse)(nil),               // 14: api.manage.v1.EstimateSegmentCountResponse
-	(v1.AuthorizationRole)(0),                          // 15: api.policy.v1.AuthorizationRole
-	(*timestamppb.Timestamp)(nil),                      // 16: google.protobuf.Timestamp
-	(*v11.PaginationRequest)(nil),                      // 17: api.common.v1.PaginationRequest
-	(*v11.FilterSpec)(nil),                             // 18: api.common.v1.FilterSpec
-	(*v11.SortSpec)(nil),                               // 19: api.common.v1.SortSpec
-	(*v11.PaginationResponse)(nil),                     // 20: api.common.v1.PaginationResponse
+	(*SegmentConfigSnapshot)(nil),                      // 11: api.manage.v1.SegmentConfigSnapshot
+	(*ArchiveSegmentRequest)(nil),                      // 12: api.manage.v1.ArchiveSegmentRequest
+	(*RestoreSegmentRequest)(nil),                      // 13: api.manage.v1.RestoreSegmentRequest
+	(*EstimateSegmentCountRequest)(nil),                // 14: api.manage.v1.EstimateSegmentCountRequest
+	(*EstimateSegmentCountResponse)(nil),               // 15: api.manage.v1.EstimateSegmentCountResponse
+	(v1.AuthorizationRole)(0),                          // 16: api.policy.v1.AuthorizationRole
+	(*timestamppb.Timestamp)(nil),                      // 17: google.protobuf.Timestamp
+	(*v11.PaginationRequest)(nil),                      // 18: api.common.v1.PaginationRequest
+	(*v11.FilterSpec)(nil),                             // 19: api.common.v1.FilterSpec
+	(*v11.SortSpec)(nil),                               // 20: api.common.v1.SortSpec
+	(*v11.PaginationResponse)(nil),                     // 21: api.common.v1.PaginationResponse
 }
 var file_api_manage_v1_audience_proto_depIdxs = []int32{
-	15, // 0: api.manage.v1.SegmentConfig.account_roles:type_name -> api.policy.v1.AuthorizationRole
-	16, // 1: api.manage.v1.SegmentConfig.created_after:type_name -> google.protobuf.Timestamp
-	16, // 2: api.manage.v1.SegmentConfig.created_before:type_name -> google.protobuf.Timestamp
+	16, // 0: api.manage.v1.SegmentConfig.account_roles:type_name -> api.policy.v1.AuthorizationRole
+	17, // 1: api.manage.v1.SegmentConfig.created_after:type_name -> google.protobuf.Timestamp
+	17, // 2: api.manage.v1.SegmentConfig.created_before:type_name -> google.protobuf.Timestamp
 	0,  // 3: api.manage.v1.Segment.segment_type:type_name -> api.manage.v1.SegmentType
 	1,  // 4: api.manage.v1.Segment.config:type_name -> api.manage.v1.SegmentConfig
-	16, // 5: api.manage.v1.Segment.created_at:type_name -> google.protobuf.Timestamp
-	16, // 6: api.manage.v1.Segment.updated_at:type_name -> google.protobuf.Timestamp
-	16, // 7: api.manage.v1.Segment.archived_at:type_name -> google.protobuf.Timestamp
+	17, // 5: api.manage.v1.Segment.created_at:type_name -> google.protobuf.Timestamp
+	17, // 6: api.manage.v1.Segment.updated_at:type_name -> google.protobuf.Timestamp
+	17, // 7: api.manage.v1.Segment.archived_at:type_name -> google.protobuf.Timestamp
 	0,  // 8: api.manage.v1.AudienceSegmentSummary.segment_type:type_name -> api.manage.v1.SegmentType
-	17, // 9: api.manage.v1.ListSegmentsAdminRequest.pagination:type_name -> api.common.v1.PaginationRequest
-	18, // 10: api.manage.v1.ListSegmentsAdminRequest.filters:type_name -> api.common.v1.FilterSpec
-	19, // 11: api.manage.v1.ListSegmentsAdminRequest.sorts:type_name -> api.common.v1.SortSpec
+	18, // 9: api.manage.v1.ListSegmentsAdminRequest.pagination:type_name -> api.common.v1.PaginationRequest
+	19, // 10: api.manage.v1.ListSegmentsAdminRequest.filters:type_name -> api.common.v1.FilterSpec
+	20, // 11: api.manage.v1.ListSegmentsAdminRequest.sorts:type_name -> api.common.v1.SortSpec
 	2,  // 12: api.manage.v1.ListSegmentsAdminResponse.segments:type_name -> api.manage.v1.Segment
-	20, // 13: api.manage.v1.ListSegmentsAdminResponse.pagination:type_name -> api.common.v1.PaginationResponse
-	17, // 14: api.manage.v1.ListSegmentsForAuthenticatedAccessRequest.pagination:type_name -> api.common.v1.PaginationRequest
-	18, // 15: api.manage.v1.ListSegmentsForAuthenticatedAccessRequest.filters:type_name -> api.common.v1.FilterSpec
-	19, // 16: api.manage.v1.ListSegmentsForAuthenticatedAccessRequest.sorts:type_name -> api.common.v1.SortSpec
+	21, // 13: api.manage.v1.ListSegmentsAdminResponse.pagination:type_name -> api.common.v1.PaginationResponse
+	18, // 14: api.manage.v1.ListSegmentsForAuthenticatedAccessRequest.pagination:type_name -> api.common.v1.PaginationRequest
+	19, // 15: api.manage.v1.ListSegmentsForAuthenticatedAccessRequest.filters:type_name -> api.common.v1.FilterSpec
+	20, // 16: api.manage.v1.ListSegmentsForAuthenticatedAccessRequest.sorts:type_name -> api.common.v1.SortSpec
 	3,  // 17: api.manage.v1.ListSegmentsForAuthenticatedAccessResponse.segments:type_name -> api.manage.v1.AudienceSegmentSummary
-	20, // 18: api.manage.v1.ListSegmentsForAuthenticatedAccessResponse.pagination:type_name -> api.common.v1.PaginationResponse
+	21, // 18: api.manage.v1.ListSegmentsForAuthenticatedAccessResponse.pagination:type_name -> api.common.v1.PaginationResponse
 	0,  // 19: api.manage.v1.CreateSegmentRequest.segment_type:type_name -> api.manage.v1.SegmentType
 	1,  // 20: api.manage.v1.CreateSegmentRequest.config:type_name -> api.manage.v1.SegmentConfig
 	0,  // 21: api.manage.v1.UpdateSegmentRequest.segment_type:type_name -> api.manage.v1.SegmentType
 	1,  // 22: api.manage.v1.UpdateSegmentRequest.config:type_name -> api.manage.v1.SegmentConfig
-	0,  // 23: api.manage.v1.EstimateSegmentCountRequest.segment_type:type_name -> api.manage.v1.SegmentType
-	1,  // 24: api.manage.v1.EstimateSegmentCountRequest.config:type_name -> api.manage.v1.SegmentConfig
-	4,  // 25: api.manage.v1.AudienceService.GetSegment:input_type -> api.manage.v1.GetSegmentRequest
-	5,  // 26: api.manage.v1.AudienceService.ListSegmentsAdmin:input_type -> api.manage.v1.ListSegmentsAdminRequest
-	7,  // 27: api.manage.v1.AudienceService.ListSegmentsForAuthenticatedAccess:input_type -> api.manage.v1.ListSegmentsForAuthenticatedAccessRequest
-	9,  // 28: api.manage.v1.AudienceService.CreateSegment:input_type -> api.manage.v1.CreateSegmentRequest
-	10, // 29: api.manage.v1.AudienceService.UpdateSegment:input_type -> api.manage.v1.UpdateSegmentRequest
-	11, // 30: api.manage.v1.AudienceService.ArchiveSegment:input_type -> api.manage.v1.ArchiveSegmentRequest
-	12, // 31: api.manage.v1.AudienceService.RestoreSegment:input_type -> api.manage.v1.RestoreSegmentRequest
-	13, // 32: api.manage.v1.AudienceService.EstimateSegmentCount:input_type -> api.manage.v1.EstimateSegmentCountRequest
-	2,  // 33: api.manage.v1.AudienceService.GetSegment:output_type -> api.manage.v1.Segment
-	6,  // 34: api.manage.v1.AudienceService.ListSegmentsAdmin:output_type -> api.manage.v1.ListSegmentsAdminResponse
-	8,  // 35: api.manage.v1.AudienceService.ListSegmentsForAuthenticatedAccess:output_type -> api.manage.v1.ListSegmentsForAuthenticatedAccessResponse
-	2,  // 36: api.manage.v1.AudienceService.CreateSegment:output_type -> api.manage.v1.Segment
-	2,  // 37: api.manage.v1.AudienceService.UpdateSegment:output_type -> api.manage.v1.Segment
-	2,  // 38: api.manage.v1.AudienceService.ArchiveSegment:output_type -> api.manage.v1.Segment
-	2,  // 39: api.manage.v1.AudienceService.RestoreSegment:output_type -> api.manage.v1.Segment
-	14, // 40: api.manage.v1.AudienceService.EstimateSegmentCount:output_type -> api.manage.v1.EstimateSegmentCountResponse
-	33, // [33:41] is the sub-list for method output_type
-	25, // [25:33] is the sub-list for method input_type
-	25, // [25:25] is the sub-list for extension type_name
-	25, // [25:25] is the sub-list for extension extendee
-	0,  // [0:25] is the sub-list for field type_name
+	11, // 23: api.manage.v1.UpdateSegmentRequest.observed:type_name -> api.manage.v1.SegmentConfigSnapshot
+	0,  // 24: api.manage.v1.SegmentConfigSnapshot.segment_type:type_name -> api.manage.v1.SegmentType
+	1,  // 25: api.manage.v1.SegmentConfigSnapshot.config:type_name -> api.manage.v1.SegmentConfig
+	0,  // 26: api.manage.v1.EstimateSegmentCountRequest.segment_type:type_name -> api.manage.v1.SegmentType
+	1,  // 27: api.manage.v1.EstimateSegmentCountRequest.config:type_name -> api.manage.v1.SegmentConfig
+	4,  // 28: api.manage.v1.AudienceService.GetSegment:input_type -> api.manage.v1.GetSegmentRequest
+	5,  // 29: api.manage.v1.AudienceService.ListSegmentsAdmin:input_type -> api.manage.v1.ListSegmentsAdminRequest
+	7,  // 30: api.manage.v1.AudienceService.ListSegmentsForAuthenticatedAccess:input_type -> api.manage.v1.ListSegmentsForAuthenticatedAccessRequest
+	9,  // 31: api.manage.v1.AudienceService.CreateSegment:input_type -> api.manage.v1.CreateSegmentRequest
+	10, // 32: api.manage.v1.AudienceService.UpdateSegment:input_type -> api.manage.v1.UpdateSegmentRequest
+	12, // 33: api.manage.v1.AudienceService.ArchiveSegment:input_type -> api.manage.v1.ArchiveSegmentRequest
+	13, // 34: api.manage.v1.AudienceService.RestoreSegment:input_type -> api.manage.v1.RestoreSegmentRequest
+	14, // 35: api.manage.v1.AudienceService.EstimateSegmentCount:input_type -> api.manage.v1.EstimateSegmentCountRequest
+	2,  // 36: api.manage.v1.AudienceService.GetSegment:output_type -> api.manage.v1.Segment
+	6,  // 37: api.manage.v1.AudienceService.ListSegmentsAdmin:output_type -> api.manage.v1.ListSegmentsAdminResponse
+	8,  // 38: api.manage.v1.AudienceService.ListSegmentsForAuthenticatedAccess:output_type -> api.manage.v1.ListSegmentsForAuthenticatedAccessResponse
+	2,  // 39: api.manage.v1.AudienceService.CreateSegment:output_type -> api.manage.v1.Segment
+	2,  // 40: api.manage.v1.AudienceService.UpdateSegment:output_type -> api.manage.v1.Segment
+	2,  // 41: api.manage.v1.AudienceService.ArchiveSegment:output_type -> api.manage.v1.Segment
+	2,  // 42: api.manage.v1.AudienceService.RestoreSegment:output_type -> api.manage.v1.Segment
+	15, // 43: api.manage.v1.AudienceService.EstimateSegmentCount:output_type -> api.manage.v1.EstimateSegmentCountResponse
+	36, // [36:44] is the sub-list for method output_type
+	28, // [28:36] is the sub-list for method input_type
+	28, // [28:28] is the sub-list for extension type_name
+	28, // [28:28] is the sub-list for extension extendee
+	0,  // [0:28] is the sub-list for field type_name
 }
 
 func init() { file_api_manage_v1_audience_proto_init() }
@@ -1169,7 +1241,7 @@ func file_api_manage_v1_audience_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_api_manage_v1_audience_proto_rawDesc), len(file_api_manage_v1_audience_proto_rawDesc)),
 			NumEnums:      1,
-			NumMessages:   14,
+			NumMessages:   15,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

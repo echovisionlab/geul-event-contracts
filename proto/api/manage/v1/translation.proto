@@ -5,6 +5,7 @@ package api.manage.v1;
 import "api/common/v1/common.proto";
 import "api/common/v1/media.proto";
 import "api/policy/v1/access.proto";
+import "google/protobuf/field_mask.proto";
 import "google/protobuf/timestamp.proto";
 
 option go_package = "github.com/echovisionlab/geul-event-contracts/gen/api/v1;apiv1";
@@ -213,6 +214,11 @@ message GetTranslationSettingsResponse {
 
 message UpdateTranslationSettingsRequest {
   TranslationSettings settings = 1;
+  // Required field mask selects only the settings fields to patch.
+  google.protobuf.FieldMask update_mask = 2;
+  // Snapshot observed by the editor. Protected-term changes apply the
+  // membership delta between this snapshot and settings.protected_terms.
+  TranslationSettings base_settings = 3;
 }
 
 message UpdateTranslationSettingsResponse {

@@ -67,6 +67,9 @@ const (
 	// FileServiceInitiateMultipartUploadProcedure is the fully-qualified name of the FileService's
 	// InitiateMultipartUpload RPC.
 	FileServiceInitiateMultipartUploadProcedure = "/api.manage.v1.FileService/InitiateMultipartUpload"
+	// FileServicePrepareClientMediaUploadProcedure is the fully-qualified name of the FileService's
+	// PrepareClientMediaUpload RPC.
+	FileServicePrepareClientMediaUploadProcedure = "/api.manage.v1.FileService/PrepareClientMediaUpload"
 	// FileServiceCompleteMultipartUploadProcedure is the fully-qualified name of the FileService's
 	// CompleteMultipartUpload RPC.
 	FileServiceCompleteMultipartUploadProcedure = "/api.manage.v1.FileService/CompleteMultipartUpload"
@@ -122,6 +125,7 @@ type FileServiceClient interface {
 	DeleteFile(context.Context, *connect.Request[v1.DeleteFileRequest]) (*connect.Response[v1.DeleteFileResponse], error)
 	// Multipart upload
 	InitiateMultipartUpload(context.Context, *connect.Request[v1.InitiateMultipartUploadRequest]) (*connect.Response[v1.InitiateMultipartUploadResponse], error)
+	PrepareClientMediaUpload(context.Context, *connect.Request[v1.PrepareClientMediaUploadRequest]) (*connect.Response[v1.PrepareClientMediaUploadResponse], error)
 	CompleteMultipartUpload(context.Context, *connect.Request[v1.CompleteMultipartUploadRequest]) (*connect.Response[v1.CompleteMultipartUploadResponse], error)
 	AbortMultipartUpload(context.Context, *connect.Request[v1.AbortMultipartUploadRequest]) (*connect.Response[v1.AbortMultipartUploadResponse], error)
 	FindMultipartUploadCandidate(context.Context, *connect.Request[v1.FindMultipartUploadCandidateRequest]) (*connect.Response[v1.FindMultipartUploadCandidateResponse], error)
@@ -228,6 +232,12 @@ func NewFileServiceClient(httpClient connect.HTTPClient, baseURL string, opts ..
 			connect.WithSchema(fileServiceMethods.ByName("InitiateMultipartUpload")),
 			connect.WithClientOptions(opts...),
 		),
+		prepareClientMediaUpload: connect.NewClient[v1.PrepareClientMediaUploadRequest, v1.PrepareClientMediaUploadResponse](
+			httpClient,
+			baseURL+FileServicePrepareClientMediaUploadProcedure,
+			connect.WithSchema(fileServiceMethods.ByName("PrepareClientMediaUpload")),
+			connect.WithClientOptions(opts...),
+		),
 		completeMultipartUpload: connect.NewClient[v1.CompleteMultipartUploadRequest, v1.CompleteMultipartUploadResponse](
 			httpClient,
 			baseURL+FileServiceCompleteMultipartUploadProcedure,
@@ -318,6 +328,7 @@ type fileServiceClient struct {
 	deleteFiles                       *connect.Client[v1.DeleteFilesRequest, v1.DeleteFilesResponse]
 	deleteFile                        *connect.Client[v1.DeleteFileRequest, v1.DeleteFileResponse]
 	initiateMultipartUpload           *connect.Client[v1.InitiateMultipartUploadRequest, v1.InitiateMultipartUploadResponse]
+	prepareClientMediaUpload          *connect.Client[v1.PrepareClientMediaUploadRequest, v1.PrepareClientMediaUploadResponse]
 	completeMultipartUpload           *connect.Client[v1.CompleteMultipartUploadRequest, v1.CompleteMultipartUploadResponse]
 	abortMultipartUpload              *connect.Client[v1.AbortMultipartUploadRequest, v1.AbortMultipartUploadResponse]
 	findMultipartUploadCandidate      *connect.Client[v1.FindMultipartUploadCandidateRequest, v1.FindMultipartUploadCandidateResponse]
@@ -395,6 +406,11 @@ func (c *fileServiceClient) DeleteFile(ctx context.Context, req *connect.Request
 // InitiateMultipartUpload calls api.manage.v1.FileService.InitiateMultipartUpload.
 func (c *fileServiceClient) InitiateMultipartUpload(ctx context.Context, req *connect.Request[v1.InitiateMultipartUploadRequest]) (*connect.Response[v1.InitiateMultipartUploadResponse], error) {
 	return c.initiateMultipartUpload.CallUnary(ctx, req)
+}
+
+// PrepareClientMediaUpload calls api.manage.v1.FileService.PrepareClientMediaUpload.
+func (c *fileServiceClient) PrepareClientMediaUpload(ctx context.Context, req *connect.Request[v1.PrepareClientMediaUploadRequest]) (*connect.Response[v1.PrepareClientMediaUploadResponse], error) {
+	return c.prepareClientMediaUpload.CallUnary(ctx, req)
 }
 
 // CompleteMultipartUpload calls api.manage.v1.FileService.CompleteMultipartUpload.
@@ -475,6 +491,7 @@ type FileServiceHandler interface {
 	DeleteFile(context.Context, *connect.Request[v1.DeleteFileRequest]) (*connect.Response[v1.DeleteFileResponse], error)
 	// Multipart upload
 	InitiateMultipartUpload(context.Context, *connect.Request[v1.InitiateMultipartUploadRequest]) (*connect.Response[v1.InitiateMultipartUploadResponse], error)
+	PrepareClientMediaUpload(context.Context, *connect.Request[v1.PrepareClientMediaUploadRequest]) (*connect.Response[v1.PrepareClientMediaUploadResponse], error)
 	CompleteMultipartUpload(context.Context, *connect.Request[v1.CompleteMultipartUploadRequest]) (*connect.Response[v1.CompleteMultipartUploadResponse], error)
 	AbortMultipartUpload(context.Context, *connect.Request[v1.AbortMultipartUploadRequest]) (*connect.Response[v1.AbortMultipartUploadResponse], error)
 	FindMultipartUploadCandidate(context.Context, *connect.Request[v1.FindMultipartUploadCandidateRequest]) (*connect.Response[v1.FindMultipartUploadCandidateResponse], error)
@@ -577,6 +594,12 @@ func NewFileServiceHandler(svc FileServiceHandler, opts ...connect.HandlerOption
 		connect.WithSchema(fileServiceMethods.ByName("InitiateMultipartUpload")),
 		connect.WithHandlerOptions(opts...),
 	)
+	fileServicePrepareClientMediaUploadHandler := connect.NewUnaryHandler(
+		FileServicePrepareClientMediaUploadProcedure,
+		svc.PrepareClientMediaUpload,
+		connect.WithSchema(fileServiceMethods.ByName("PrepareClientMediaUpload")),
+		connect.WithHandlerOptions(opts...),
+	)
 	fileServiceCompleteMultipartUploadHandler := connect.NewUnaryHandler(
 		FileServiceCompleteMultipartUploadProcedure,
 		svc.CompleteMultipartUpload,
@@ -677,6 +700,8 @@ func NewFileServiceHandler(svc FileServiceHandler, opts ...connect.HandlerOption
 			fileServiceDeleteFileHandler.ServeHTTP(w, r)
 		case FileServiceInitiateMultipartUploadProcedure:
 			fileServiceInitiateMultipartUploadHandler.ServeHTTP(w, r)
+		case FileServicePrepareClientMediaUploadProcedure:
+			fileServicePrepareClientMediaUploadHandler.ServeHTTP(w, r)
 		case FileServiceCompleteMultipartUploadProcedure:
 			fileServiceCompleteMultipartUploadHandler.ServeHTTP(w, r)
 		case FileServiceAbortMultipartUploadProcedure:
@@ -760,6 +785,10 @@ func (UnimplementedFileServiceHandler) DeleteFile(context.Context, *connect.Requ
 
 func (UnimplementedFileServiceHandler) InitiateMultipartUpload(context.Context, *connect.Request[v1.InitiateMultipartUploadRequest]) (*connect.Response[v1.InitiateMultipartUploadResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("api.manage.v1.FileService.InitiateMultipartUpload is not implemented"))
+}
+
+func (UnimplementedFileServiceHandler) PrepareClientMediaUpload(context.Context, *connect.Request[v1.PrepareClientMediaUploadRequest]) (*connect.Response[v1.PrepareClientMediaUploadResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("api.manage.v1.FileService.PrepareClientMediaUpload is not implemented"))
 }
 
 func (UnimplementedFileServiceHandler) CompleteMultipartUpload(context.Context, *connect.Request[v1.CompleteMultipartUploadRequest]) (*connect.Response[v1.CompleteMultipartUploadResponse], error) {

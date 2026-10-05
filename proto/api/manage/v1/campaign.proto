@@ -130,12 +130,14 @@ message UpdateCampaignNameResponse {
 
 // UpdateCampaignConfiguration owns durable delivery targeting. It is separate
 // from collaboration documents so the authenticated Admin is the Audit actor.
+// Optional fields form a sparse patch. target_mode updates the target_mode and
+// segment_id pair; an absent segment_id clears the segment when mode is ALL.
 message UpdateCampaignConfigurationRequest {
   string id = 1;
-  CampaignTargetMode target_mode = 2;
+  optional CampaignTargetMode target_mode = 2;
   optional string segment_id = 3;
   optional string layout_id = 4;
-  CampaignRecipientScope recipient_scope = 5;
+  optional CampaignRecipientScope recipient_scope = 5;
 }
 
 message UpdateCampaignConfigurationResponse {
