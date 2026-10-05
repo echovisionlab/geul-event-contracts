@@ -8,7 +8,6 @@ package managev1
 
 import (
 	v1 "github.com/echovisionlab/geul-event-contracts/gen/api/common/v1"
-	_ "github.com/echovisionlab/geul-event-contracts/gen/api/policy/v1"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
@@ -5565,7 +5564,7 @@ var File_api_manage_v1_events_proto protoreflect.FileDescriptor
 
 const file_api_manage_v1_events_proto_rawDesc = "" +
 	"\n" +
-	"\x1aapi/manage/v1/events.proto\x12\rapi.manage.v1\x1a\x19api/common/v1/media.proto\x1a\x1fapi/manage/v1/translation.proto\x1a\x1aapi/policy/v1/access.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xa4\n" +
+	"\x1aapi/manage/v1/events.proto\x12\rapi.manage.v1\x1a\x19api/common/v1/media.proto\x1a\x1fapi/manage/v1/translation.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xa4\n" +
 	"\n" +
 	"\x0eSendEmailEvent\x12\x1c\n" +
 	"\trecipient\x18\x01 \x01(\tR\trecipient\x12#\n" +

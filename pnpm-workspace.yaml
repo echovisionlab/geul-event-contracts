@@ -4,16 +4,21 @@ packages:
 injectWorkspacePackages: true
 
 overrides:
-  "@asyncapi/cli>@asyncapi/studio": 1.3.0
-  "@asyncapi/generator-react-sdk>@babel/core": 7.29.7
+  "tsup>esbuild": 0.28.2
+  "bundle-require>esbuild": 0.28.2
 
 allowBuilds:
-  "@asyncapi/cli": true
-  "@hyperjump/json-pointer": true
-  "@hyperjump/json-schema": true
-  "@hyperjump/json-schema-core": true
-  "@hyperjump/pact": true
-  "@scarf/scarf": false
   esbuild: true
-  protobufjs: true
-  yarn: true
+
+minimumReleaseAgeExclude:
+  - "@typescript-eslint/eslint-plugin@8.71.1"
+  - "@typescript-eslint/parser@8.71.1"
+  - "@typescript-eslint/project-service@8.71.1"
+  - "@typescript-eslint/scope-manager@8.71.1"
+  - "@typescript-eslint/tsconfig-utils@8.71.1"
+  - "@typescript-eslint/type-utils@8.71.1"
+  - "@typescript-eslint/types@8.71.1"
+  - "@typescript-eslint/typescript-estree@8.71.1"
+  - "@typescript-eslint/utils@8.71.1"
+  - "@typescript-eslint/visitor-keys@8.71.1"
+  - typescript-eslint@8.71.1

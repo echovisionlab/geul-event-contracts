@@ -1748,7 +1748,7 @@ var File_api_open_v1_program_event_proto protoreflect.FileDescriptor
 
 const file_api_open_v1_program_event_proto_rawDesc = "" +
 	"\n" +
-	"\x1fapi/open/v1/program_event.proto\x12\vapi.open.v1\x1a\x1aapi/common/v1/common.proto\x1a\x19api/common/v1/media.proto\x1a\"api/content/v1/block_content.proto\x1a\x1bapi/open/v1/map_place.proto\x1a\x16api/open/v1/page.proto\x1a\x1dapi/open/v1/translation.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xb4\x02\n" +
+	"\x1fapi/open/v1/program_event.proto\x12\vapi.open.v1\x1a\x1aapi/common/v1/common.proto\x1a\x19api/common/v1/media.proto\x1a\"api/content/v1/block_content.proto\x1a\x1bapi/open/v1/map_place.proto\x1a\x1dapi/open/v1/translation.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xb4\x02\n" +
 	"\x10ProgramEventType\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
 	"\x04slug\x18\x02 \x01(\tR\x04slug\x12;\n" +
@@ -2105,7 +2105,6 @@ func file_api_open_v1_program_event_proto_init() {
 		return
 	}
 	file_api_open_v1_map_place_proto_init()
-	file_api_open_v1_page_proto_init()
 	file_api_open_v1_translation_proto_init()
 	file_api_open_v1_program_event_proto_msgTypes[0].OneofWrappers = []any{}
 	file_api_open_v1_program_event_proto_msgTypes[1].OneofWrappers = []any{}

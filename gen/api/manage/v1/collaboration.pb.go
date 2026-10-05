@@ -7,7 +7,6 @@
 package managev1
 
 import (
-	_ "github.com/echovisionlab/geul-event-contracts/gen/api/policy/v1"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -117,7 +116,7 @@ var File_api_manage_v1_collaboration_proto protoreflect.FileDescriptor
 
 const file_api_manage_v1_collaboration_proto_rawDesc = "" +
 	"\n" +
-	"!api/manage/v1/collaboration.proto\x12\rapi.manage.v1\x1a\x1aapi/policy/v1/access.proto*\xed\x05\n" +
+	"!api/manage/v1/collaboration.proto\x12\rapi.manage.v1*\xed\x05\n" +
 	"\x19CollaborativeDocumentType\x12+\n" +
 	"'COLLABORATIVE_DOCUMENT_TYPE_UNSPECIFIED\x10\x00\x12$\n" +
 	" COLLABORATIVE_DOCUMENT_TYPE_POST\x10\x01\x12$\n" +

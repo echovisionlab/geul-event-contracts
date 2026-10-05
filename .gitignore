@@ -4,7 +4,6 @@ coverage/
 .coverage/
 .eslintcache
 *.tsbuildinfo
-asyncapi/templates/**/__transpiled/
 .pnpm-debug.log*
 .DS_Store
 .env
