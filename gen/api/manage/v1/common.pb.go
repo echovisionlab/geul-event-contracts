@@ -7,10 +7,8 @@
 package managev1
 
 import (
-	_ "github.com/echovisionlab/geul-event-contracts/gen/api/policy/v1"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
-	_ "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
@@ -372,7 +370,7 @@ var File_api_manage_v1_common_proto protoreflect.FileDescriptor
 
 const file_api_manage_v1_common_proto_rawDesc = "" +
 	"\n" +
-	"\x1aapi/manage/v1/common.proto\x12\rapi.manage.v1\x1a\x1aapi/policy/v1/access.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"*\n" +
+	"\x1aapi/manage/v1/common.proto\x12\rapi.manage.v1\"*\n" +
 	"\x0eDeleteResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\"\x80\x01\n" +
 	"\x15OgAssetDeleteResponse\x12\x18\n" +

@@ -3,8 +3,6 @@ syntax = "proto3";
 package api.manage.v1;
 
 // Empty response for delete operations
-import "api/policy/v1/access.proto";
-import "google/protobuf/timestamp.proto";
 
 message DeleteResponse {
   bool success = 1;

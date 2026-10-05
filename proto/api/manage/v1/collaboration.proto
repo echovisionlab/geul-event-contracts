@@ -9,7 +9,6 @@ package api.manage.v1;
 // Each type represents an entity that supports real-time collaboration.
 
 // Document types for collaborative editing (Yjs)
-import "api/policy/v1/access.proto";
 
 enum CollaborativeDocumentType {
   COLLABORATIVE_DOCUMENT_TYPE_UNSPECIFIED = 0;

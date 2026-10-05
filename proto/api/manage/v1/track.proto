@@ -5,7 +5,6 @@ package api.manage.v1;
 // Track entity
 import "api/common/v1/common.proto";
 import "api/manage/v1/common.proto";
-import "api/manage/v1/release.proto";
 import "api/policy/v1/access.proto";
 import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";

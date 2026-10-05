@@ -926,7 +926,7 @@ var File_api_manage_v1_track_proto protoreflect.FileDescriptor
 
 const file_api_manage_v1_track_proto_rawDesc = "" +
 	"\n" +
-	"\x19api/manage/v1/track.proto\x12\rapi.manage.v1\x1a\x1aapi/common/v1/common.proto\x1a\x1aapi/manage/v1/common.proto\x1a\x1bapi/manage/v1/release.proto\x1a\x1aapi/policy/v1/access.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xe9\x03\n" +
+	"\x19api/manage/v1/track.proto\x12\rapi.manage.v1\x1a\x1aapi/common/v1/common.proto\x1a\x1aapi/manage/v1/common.proto\x1a\x1aapi/policy/v1/access.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xe9\x03\n" +
 	"\x05Track\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1d\n" +
 	"\n" +
@@ -1113,7 +1113,6 @@ func file_api_manage_v1_track_proto_init() {
 		return
 	}
 	file_api_manage_v1_common_proto_init()
-	file_api_manage_v1_release_proto_init()
 	file_api_manage_v1_track_proto_msgTypes[0].OneofWrappers = []any{}
 	file_api_manage_v1_track_proto_msgTypes[1].OneofWrappers = []any{}
 	file_api_manage_v1_track_proto_msgTypes[3].OneofWrappers = []any{}

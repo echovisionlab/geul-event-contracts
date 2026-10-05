@@ -5,10 +5,8 @@ package api.manage.v1;
 import "api/common/v1/common.proto";
 import "api/content/v1/block_content.proto";
 // Campaign represents an email campaign
-import "api/manage/v1/common.proto";
 import "api/policy/v1/access.proto";
 import "google/protobuf/empty.proto";
-import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
 
 option go_package = "github.com/echovisionlab/geul-event-contracts/gen/api/v1;apiv1";
