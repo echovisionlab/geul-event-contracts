@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.1](https://github.com/echovisionlab/geul-event-contracts/compare/v0.4.0...v0.4.1) (2026-10-05)
+
+
+### Bug Fixes
+
+* **deps:** simplify event generation and refresh contracts ([#17](https://github.com/echovisionlab/geul-event-contracts/issues/17)) ([69eaff0](https://github.com/echovisionlab/geul-event-contracts/commit/69eaff06fe6adab71cf80c190ecb0b277bc74f34))
+
 ## [0.4.0](https://github.com/echovisionlab/geul-event-contracts/compare/v0.3.0...v0.4.0) (2026-10-04)
 
 
