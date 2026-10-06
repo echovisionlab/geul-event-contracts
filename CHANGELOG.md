@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.0](https://github.com/echovisionlab/geul-event-contracts/compare/v0.4.1...v0.5.0) (2026-10-06)
+
+
+### Features
+
+* **page:** add runtime embed and audience contracts ([#19](https://github.com/echovisionlab/geul-event-contracts/issues/19)) ([26fec00](https://github.com/echovisionlab/geul-event-contracts/commit/26fec001da6ed689aa0b6df1304521274f6d996b))
+
 ## [0.4.1](https://github.com/echovisionlab/geul-event-contracts/compare/v0.4.0...v0.4.1) (2026-10-05)
 
 
