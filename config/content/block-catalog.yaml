@@ -786,6 +786,7 @@ page:
       form,
       map,
       mermaid,
+      embed,
     ]
   sections:
     rich-text:
@@ -1539,3 +1540,32 @@ page:
           { type: string, default: "", ownership: locale, translatable: true }
         source:
           { type: string, default: "", max_length: 100000, ownership: source }
+    embed:
+      fields:
+        uri: { type: uri, schemes: [https], required: true, ownership: shared }
+        title:
+          { type: string, default: "", ownership: locale, translatable: true }
+        heightMode:
+          {
+            type: enum,
+            values: [fixed, auto, viewport],
+            default: fixed,
+            ownership: shared,
+          }
+        height:
+          {
+            type: integer,
+            min: 180,
+            max: 2160,
+            default: 640,
+            ownership: shared,
+          }
+        allowScripts: { type: boolean, default: true, ownership: shared }
+        allowSameOrigin: { type: boolean, default: true, ownership: shared }
+        allowForms: { type: boolean, default: false, ownership: shared }
+        allowDownloads: { type: boolean, default: false, ownership: shared }
+        allowPopups: { type: boolean, default: false, ownership: shared }
+        allowMicrophone: { type: boolean, default: false, ownership: shared }
+        allowSpeakerSelection:
+          { type: boolean, default: false, ownership: shared }
+        allowFullscreen: { type: boolean, default: false, ownership: shared }

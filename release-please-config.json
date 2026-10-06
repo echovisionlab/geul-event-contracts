@@ -12,7 +12,12 @@
       "changelog-path": "CHANGELOG.md",
       "extra-files": [
         "packages/proto/package.json",
-        "packages/event/package.json"
+        "packages/event/package.json",
+        {
+          "type": "json",
+          "path": "packages/event/package.json",
+          "jsonpath": "$.peerDependencies['@echovisionlab/geul-proto']"
+        }
       ]
     }
   }

@@ -38,7 +38,7 @@ import {
 } from "./block_content_pb.ts";
 
 export const contentBlockCatalogFingerprint =
-  "e037d77d859734c7c716372434602edfe8872d521e8f0f9b9e28e12827635335" as const;
+  "de190638c6014cc2ac80efce5f747b30d20cc024f3d0820c87ba6c1f1a56e16e" as const;
 export const contentBlockRuntimeForbiddenFields = [
   "_tempUrl",
   "allowOriginalDownload",
@@ -124,6 +124,7 @@ export const pageSectionKinds = [
   "immersive-scene",
   "columns",
   "mermaid",
+  "embed",
 ] as const;
 export type PageSectionKind = (typeof pageSectionKinds)[number];
 export const richTextProfiles = {
@@ -2780,6 +2781,77 @@ export const pageSectionCatalog = {
     richTextProfile: null,
     columns: false,
   },
+  embed: {
+    fields: {
+      uri: {
+        type: "uri",
+        schemes: ["https"],
+        required: true,
+        ownership: "shared",
+      },
+      title: {
+        type: "string",
+        default: "",
+        ownership: "locale",
+        translatable: true,
+      },
+      heightMode: {
+        type: "enum",
+        values: ["fixed", "auto", "viewport"],
+        default: "fixed",
+        ownership: "shared",
+      },
+      height: {
+        type: "integer",
+        min: 180,
+        max: 2160,
+        default: 640,
+        ownership: "shared",
+      },
+      allowScripts: {
+        type: "boolean",
+        default: true,
+        ownership: "shared",
+      },
+      allowSameOrigin: {
+        type: "boolean",
+        default: true,
+        ownership: "shared",
+      },
+      allowForms: {
+        type: "boolean",
+        default: false,
+        ownership: "shared",
+      },
+      allowDownloads: {
+        type: "boolean",
+        default: false,
+        ownership: "shared",
+      },
+      allowPopups: {
+        type: "boolean",
+        default: false,
+        ownership: "shared",
+      },
+      allowMicrophone: {
+        type: "boolean",
+        default: false,
+        ownership: "shared",
+      },
+      allowSpeakerSelection: {
+        type: "boolean",
+        default: false,
+        ownership: "shared",
+      },
+      allowFullscreen: {
+        type: "boolean",
+        default: false,
+        ownership: "shared",
+      },
+    },
+    richTextProfile: null,
+    columns: false,
+  },
 } as const;
 export const pageSectionSettingsCatalog = {
   backgroundColor: {
@@ -3002,6 +3074,7 @@ export const pageColumnChildKinds = [
   "form",
   "map",
   "mermaid",
+  "embed",
 ] as const;
 export const contentBlockFileReferencePolicies = {
   file: {},
@@ -3068,6 +3141,7 @@ export const pageSectionKindByProtoCase = {
   immersiveScene: "immersive-scene",
   columns: "columns",
   mermaid: "mermaid",
+  embed: "embed",
 } as const;
 export const richTextCollaborativeTextCatalog = {
   paragraph: ["content"],
@@ -3116,6 +3190,7 @@ export const pageSectionCollaborativeTextCatalog = {
   ],
   columns: [],
   mermaid: ["props.title", "props.source"],
+  embed: ["props.title"],
 } as const;
 const profileByNumber = {
   "1": "post",

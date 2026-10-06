@@ -1098,3 +1098,54 @@ func cloneStorageRows(rows []contentv1.ContentStorageRow) []contentv1.ContentSto
 	}
 	return result
 }
+
+func TestEmbedPageStorageValidationAndWireRoundTrip(t *testing.T) {
+	t.Parallel()
+	for _, shared := range []string{`{"props":{"uri":"http://example.com"}}`, `{"props":{"uri":"javascript:alert(1)"}}`, `{"props":{"uri":"https://example.com","height":179}}`, `{"props":{"uri":"https://example.com","height":2161}}`, `{"props":{"uri":"https://example.com","sandbox":"allow-scripts"}}`, `{"props":{"uri":"https://example.com","html":"<script>"}}`} {
+		if _, err := contentv1.NormalizeContentStorageBlock("page", "embed", []byte(shared), []byte(`{"props":{}}`)); err == nil {
+			t.Fatalf("accepted invalid embed: %s", shared)
+		}
+	}
+	document := &contentv1.PageDocument{}
+	err := protojson.Unmarshal([]byte(`{"blockCatalogFingerprint":"`+contentv1.ContentBlockCatalogFingerprint+`","sourceLocale":"en","base":{"nodes":[{"section":{"id":"`+blockCatalogSectionID+`","embed":{"props":{"uri":"https://example.com/embed","heightMode":"HEIGHT_MODE_AUTO","height":720,"allowMicrophone":true}}},"placement":{"index":0}}]},"localeOverlays":[{"locale":"en","sections":[{"sectionId":"`+blockCatalogSectionID+`","embed":{"props":{"title":"Embedded"}}}]}]}`), document)
+	if err != nil {
+		t.Fatal(err)
+	}
+	wire, err := proto.Marshal(document)
+	if err != nil {
+		t.Fatal(err)
+	}
+	decoded := &contentv1.PageDocument{}
+	if err := proto.Unmarshal(wire, decoded); err != nil {
+		t.Fatal(err)
+	}
+	if !proto.Equal(document, decoded) {
+		t.Fatal("embed protobuf wire differs")
+	}
+	rows, err := contentv1.FlattenPageDocumentStorage(decoded, contentv1.ContentValidationMode_CONTENT_VALIDATION_MODE_WRITE)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(rows) != 1 || rows[0].Kind != "embed" {
+		t.Fatalf("wrong embed rows: %#v", rows)
+	}
+	rebuilt, err := contentv1.MaterializePageDocumentStorage("en", rows)
+	if err != nil {
+		t.Fatal(err)
+	}
+	rebuiltRows, err := contentv1.FlattenPageDocumentStorage(rebuilt, contentv1.ContentValidationMode_CONTENT_VALIDATION_MODE_WRITE)
+	if err != nil {
+		t.Fatal(err)
+	}
+	originalHash, err := contentv1.ContentStorageCanonicalHash("page", rows)
+	if err != nil {
+		t.Fatal(err)
+	}
+	rebuiltHash, err := contentv1.ContentStorageCanonicalHash("page", rebuiltRows)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if originalHash != rebuiltHash {
+		t.Fatal("embed storage roundtrip hash differs")
+	}
+}

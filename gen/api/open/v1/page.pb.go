@@ -139,7 +139,9 @@ type GetPageResponse struct {
 	Page  *Page                  `protobuf:"bytes,1,opt,name=page,proto3,oneof" json:"page,omitempty"`
 	// Exact Block usage, attachment state, inline delivery and content-audience
 	// download action. File identity alone is never a Page usage key.
-	BlockMedia    []*v1.ContentBlockMediaItem `protobuf:"bytes,2,rep,name=block_media,json=blockMedia,proto3" json:"block_media,omitempty"`
+	BlockMedia []*v1.ContentBlockMediaItem `protobuf:"bytes,2,rep,name=block_media,json=blockMedia,proto3" json:"block_media,omitempty"`
+	// Denied reads return this reason with no Page or block media.
+	AccessReason  v11.PageAccessReason `protobuf:"varint,3,opt,name=access_reason,json=accessReason,proto3,enum=api.common.v1.PageAccessReason" json:"access_reason,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -188,6 +190,13 @@ func (x *GetPageResponse) GetBlockMedia() []*v1.ContentBlockMediaItem {
 	return nil
 }
 
+func (x *GetPageResponse) GetAccessReason() v11.PageAccessReason {
+	if x != nil {
+		return x.AccessReason
+	}
+	return v11.PageAccessReason(0)
+}
+
 type Page struct {
 	state                 protoimpl.MessageState    `protogen:"open.v1"`
 	Id                    string                    `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
@@ -205,6 +214,7 @@ type Page struct {
 	Revision              string                    `protobuf:"bytes,13,opt,name=revision,proto3" json:"revision,omitempty"`
 	DocumentLayout        *v11.DocumentLayout       `protobuf:"bytes,14,opt,name=document_layout,json=documentLayout,proto3" json:"document_layout,omitempty"`
 	FeaturedImageDelivery *v11.MediaDelivery        `protobuf:"bytes,15,opt,name=featured_image_delivery,json=featuredImageDelivery,proto3,oneof" json:"featured_image_delivery,omitempty"`
+	AccessPolicy          *v11.PageAccessPolicy     `protobuf:"bytes,16,opt,name=access_policy,json=accessPolicy,proto3,oneof" json:"access_policy,omitempty"`
 	unknownFields         protoimpl.UnknownFields
 	sizeCache             protoimpl.SizeCache
 }
@@ -344,23 +354,31 @@ func (x *Page) GetFeaturedImageDelivery() *v11.MediaDelivery {
 	return nil
 }
 
+func (x *Page) GetAccessPolicy() *v11.PageAccessPolicy {
+	if x != nil {
+		return x.AccessPolicy
+	}
+	return nil
+}
+
 var File_api_open_v1_page_proto protoreflect.FileDescriptor
 
 const file_api_open_v1_page_proto_rawDesc = "" +
 	"\n" +
-	"\x16api/open/v1/page.proto\x12\vapi.open.v1\x1a\x1aapi/common/v1/common.proto\x1a\x19api/common/v1/media.proto\x1a\"api/content/v1/block_content.proto\x1a\x1dapi/open/v1/translation.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\x99\x01\n" +
+	"\x16api/open/v1/page.proto\x12\vapi.open.v1\x1a\x1aapi/common/v1/common.proto\x1a\x19api/common/v1/media.proto\x1a\x1fapi/common/v1/page_access.proto\x1a\"api/content/v1/block_content.proto\x1a\x1dapi/open/v1/translation.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\x99\x01\n" +
 	"\x0eGetPageRequest\x12\x12\n" +
 	"\x04slug\x18\x01 \x01(\tR\x04slug\x12$\n" +
 	"\vshare_token\x18\x02 \x01(\tH\x00R\n" +
 	"shareToken\x88\x01\x01\x12*\n" +
 	"\x0eshare_password\x18\x03 \x01(\tH\x01R\rsharePassword\x88\x01\x01B\x0e\n" +
 	"\f_share_tokenB\x11\n" +
-	"\x0f_share_password\"\x8e\x01\n" +
+	"\x0f_share_password\"\xd4\x01\n" +
 	"\x0fGetPageResponse\x12*\n" +
 	"\x04page\x18\x01 \x01(\v2\x11.api.open.v1.PageH\x00R\x04page\x88\x01\x01\x12F\n" +
 	"\vblock_media\x18\x02 \x03(\v2%.api.content.v1.ContentBlockMediaItemR\n" +
-	"blockMediaB\a\n" +
-	"\x05_page\"\xdf\x06\n" +
+	"blockMedia\x12D\n" +
+	"\raccess_reason\x18\x03 \x01(\x0e2\x1f.api.common.v1.PageAccessReasonR\faccessReasonB\a\n" +
+	"\x05_page\"\xbc\a\n" +
 	"\x04Page\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x14\n" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x12\x17\n" +
@@ -380,14 +398,16 @@ const file_api_open_v1_page_proto_rawDesc = "" +
 	"\x11localization_info\x18\f \x01(\v2\x1d.api.open.v1.LocalizationInfoH\x04R\x10localizationInfo\x88\x01\x01\x12\x1a\n" +
 	"\brevision\x18\r \x01(\tR\brevision\x12F\n" +
 	"\x0fdocument_layout\x18\x0e \x01(\v2\x1d.api.common.v1.DocumentLayoutR\x0edocumentLayout\x12Y\n" +
-	"\x17featured_image_delivery\x18\x0f \x01(\v2\x1c.api.common.v1.MediaDeliveryH\x05R\x15featuredImageDelivery\x88\x01\x01B\a\n" +
+	"\x17featured_image_delivery\x18\x0f \x01(\v2\x1c.api.common.v1.MediaDeliveryH\x05R\x15featuredImageDelivery\x88\x01\x01\x12I\n" +
+	"\raccess_policy\x18\x10 \x01(\v2\x1f.api.common.v1.PageAccessPolicyH\x06R\faccessPolicy\x88\x01\x01B\a\n" +
 	"\x05_slugB\x0f\n" +
 	"\r_published_atB\v\n" +
 	"\t_og_assetB\n" +
 	"\n" +
 	"\b_summaryB\x14\n" +
 	"\x12_localization_infoB\x1a\n" +
-	"\x18_featured_image_delivery*[\n" +
+	"\x18_featured_image_deliveryB\x10\n" +
+	"\x0e_access_policy*[\n" +
 	"\n" +
 	"PageStatus\x12\x1b\n" +
 	"\x17PAGE_STATUS_UNSPECIFIED\x10\x00\x12\x15\n" +
@@ -417,32 +437,36 @@ var file_api_open_v1_page_proto_goTypes = []any{
 	(*GetPageResponse)(nil),          // 2: api.open.v1.GetPageResponse
 	(*Page)(nil),                     // 3: api.open.v1.Page
 	(*v1.ContentBlockMediaItem)(nil), // 4: api.content.v1.ContentBlockMediaItem
-	(*timestamppb.Timestamp)(nil),    // 5: google.protobuf.Timestamp
-	(*v1.LocalizedPageDocument)(nil), // 6: api.content.v1.LocalizedPageDocument
-	(*v11.AssetRef)(nil),             // 7: api.common.v1.AssetRef
-	(*LocalizationInfo)(nil),         // 8: api.open.v1.LocalizationInfo
-	(*v11.DocumentLayout)(nil),       // 9: api.common.v1.DocumentLayout
-	(*v11.MediaDelivery)(nil),        // 10: api.common.v1.MediaDelivery
+	(v11.PageAccessReason)(0),        // 5: api.common.v1.PageAccessReason
+	(*timestamppb.Timestamp)(nil),    // 6: google.protobuf.Timestamp
+	(*v1.LocalizedPageDocument)(nil), // 7: api.content.v1.LocalizedPageDocument
+	(*v11.AssetRef)(nil),             // 8: api.common.v1.AssetRef
+	(*LocalizationInfo)(nil),         // 9: api.open.v1.LocalizationInfo
+	(*v11.DocumentLayout)(nil),       // 10: api.common.v1.DocumentLayout
+	(*v11.MediaDelivery)(nil),        // 11: api.common.v1.MediaDelivery
+	(*v11.PageAccessPolicy)(nil),     // 12: api.common.v1.PageAccessPolicy
 }
 var file_api_open_v1_page_proto_depIdxs = []int32{
 	3,  // 0: api.open.v1.GetPageResponse.page:type_name -> api.open.v1.Page
 	4,  // 1: api.open.v1.GetPageResponse.block_media:type_name -> api.content.v1.ContentBlockMediaItem
-	0,  // 2: api.open.v1.Page.status:type_name -> api.open.v1.PageStatus
-	5,  // 3: api.open.v1.Page.published_at:type_name -> google.protobuf.Timestamp
-	5,  // 4: api.open.v1.Page.created_at:type_name -> google.protobuf.Timestamp
-	5,  // 5: api.open.v1.Page.updated_at:type_name -> google.protobuf.Timestamp
-	6,  // 6: api.open.v1.Page.document:type_name -> api.content.v1.LocalizedPageDocument
-	7,  // 7: api.open.v1.Page.og_asset:type_name -> api.common.v1.AssetRef
-	8,  // 8: api.open.v1.Page.localization_info:type_name -> api.open.v1.LocalizationInfo
-	9,  // 9: api.open.v1.Page.document_layout:type_name -> api.common.v1.DocumentLayout
-	10, // 10: api.open.v1.Page.featured_image_delivery:type_name -> api.common.v1.MediaDelivery
-	1,  // 11: api.open.v1.PageService.Get:input_type -> api.open.v1.GetPageRequest
-	2,  // 12: api.open.v1.PageService.Get:output_type -> api.open.v1.GetPageResponse
-	12, // [12:13] is the sub-list for method output_type
-	11, // [11:12] is the sub-list for method input_type
-	11, // [11:11] is the sub-list for extension type_name
-	11, // [11:11] is the sub-list for extension extendee
-	0,  // [0:11] is the sub-list for field type_name
+	5,  // 2: api.open.v1.GetPageResponse.access_reason:type_name -> api.common.v1.PageAccessReason
+	0,  // 3: api.open.v1.Page.status:type_name -> api.open.v1.PageStatus
+	6,  // 4: api.open.v1.Page.published_at:type_name -> google.protobuf.Timestamp
+	6,  // 5: api.open.v1.Page.created_at:type_name -> google.protobuf.Timestamp
+	6,  // 6: api.open.v1.Page.updated_at:type_name -> google.protobuf.Timestamp
+	7,  // 7: api.open.v1.Page.document:type_name -> api.content.v1.LocalizedPageDocument
+	8,  // 8: api.open.v1.Page.og_asset:type_name -> api.common.v1.AssetRef
+	9,  // 9: api.open.v1.Page.localization_info:type_name -> api.open.v1.LocalizationInfo
+	10, // 10: api.open.v1.Page.document_layout:type_name -> api.common.v1.DocumentLayout
+	11, // 11: api.open.v1.Page.featured_image_delivery:type_name -> api.common.v1.MediaDelivery
+	12, // 12: api.open.v1.Page.access_policy:type_name -> api.common.v1.PageAccessPolicy
+	1,  // 13: api.open.v1.PageService.Get:input_type -> api.open.v1.GetPageRequest
+	2,  // 14: api.open.v1.PageService.Get:output_type -> api.open.v1.GetPageResponse
+	14, // [14:15] is the sub-list for method output_type
+	13, // [13:14] is the sub-list for method input_type
+	13, // [13:13] is the sub-list for extension type_name
+	13, // [13:13] is the sub-list for extension extendee
+	0,  // [0:13] is the sub-list for field type_name
 }
 
 func init() { file_api_open_v1_page_proto_init() }

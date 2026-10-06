@@ -1,4 +1,10 @@
-import { create, fromJson, toJson } from "@bufbuild/protobuf";
+import {
+  create,
+  fromBinary,
+  fromJson,
+  toBinary,
+  toJson,
+} from "@bufbuild/protobuf";
 import { describe, expect, it } from "vitest";
 
 import {
@@ -17,6 +23,7 @@ import {
   normalizeContentStorageBlock,
   normalizeContentStorageShared,
   pageSectionKinds,
+  pageSectionCatalog,
   richTextBlockKinds,
   richTextBlockCatalog,
   richTextProfiles,
@@ -1011,7 +1018,8 @@ describe("generated storage materializers", () => {
     };
     const validPageShared = (kind: string) => {
       const props: Record<string, unknown> = {};
-      if (kind === "external-video") props.uri = "https://example.com/video";
+      if (kind === "external-video" || kind === "embed")
+        props.uri = "https://example.com/video";
       if (kind === "form") props.formId = BLOCK_ID;
       if (kind === "columns")
         props.columns = [
@@ -1160,5 +1168,104 @@ describe("generated storage materializers", () => {
       ContentValidationMode.RESTORE_SNAPSHOT,
     );
     expect(flattened.baseUpserts[0]?.sharedData).toEqual(restored.sharedData);
+  });
+});
+
+describe("Embed Page contract", () => {
+  it("normalizes typed defaults, rejects unsafe fields, and round-trips wire and storage", () => {
+    const normalized = normalizeContentStorageBlock(
+      "page",
+      "embed",
+      fromJson(PageSectionDataSchema, {
+        embed: { props: { uri: "https://example.com/embed" } },
+      }),
+      fromJson(PageSectionLocaleDataSchema, {
+        embed: { props: { title: "Embedded" } },
+      }),
+    );
+    expect(
+      toJson(PageSectionDataSchema, normalized.sharedData as never),
+    ).toEqual({ embed: { props: { uri: "https://example.com/embed" } } });
+    expect(
+      Object.fromEntries(
+        Object.entries(pageSectionCatalog.embed.fields).map(([name, field]) => [
+          name,
+          "default" in field ? field.default : undefined,
+        ]),
+      ),
+    ).toMatchObject({
+      heightMode: "fixed",
+      height: 640,
+      allowScripts: true,
+      allowSameOrigin: true,
+      allowForms: false,
+      allowDownloads: false,
+      allowPopups: false,
+      allowMicrophone: false,
+      allowSpeakerSelection: false,
+      allowFullscreen: false,
+    });
+    for (const props of [
+      { uri: "http://example.com" },
+      { uri: "javascript:alert(1)" },
+      { uri: "https://example.com", height: 179 },
+      { uri: "https://example.com", height: 2161 },
+      { uri: "https://example.com", sandbox: "allow-scripts" },
+      { uri: "https://example.com", html: "<script>" },
+    ]) {
+      expect(() =>
+        normalizeContentStorageBlock(
+          "page",
+          "embed",
+          fromJson(PageSectionDataSchema, { embed: { props } } as never),
+          fromJson(PageSectionLocaleDataSchema, { embed: { props: {} } }),
+        ),
+      ).toThrow();
+    }
+    const document = fromJson(PageDocumentSchema, {
+      blockCatalogFingerprint: contentBlockCatalogFingerprint,
+      sourceLocale: "en",
+      base: {
+        nodes: [
+          {
+            section: {
+              id: SECTION_ID,
+              embed: {
+                props: {
+                  uri: "https://example.com/embed",
+                  heightMode: "HEIGHT_MODE_VIEWPORT",
+                  height: 800,
+                  allowMicrophone: true,
+                },
+              },
+            },
+            placement: { index: 0 },
+          },
+        ],
+      },
+      localeOverlays: [
+        {
+          locale: "en",
+          sections: [
+            { sectionId: SECTION_ID, embed: { props: { title: "Embedded" } } },
+          ],
+        },
+      ],
+    });
+    const wire = fromBinary(
+      PageDocumentSchema,
+      toBinary(PageDocumentSchema, document),
+    );
+    expect(toJson(PageDocumentSchema, wire)).toEqual(
+      toJson(PageDocumentSchema, document),
+    );
+    const rows = flattenPageDocumentStorage(wire);
+    expect(rows[0]?.kind).toBe("embed");
+    const rebuiltRows = flattenPageDocumentStorage(
+      materializePageDocumentStorage("en", rows),
+    );
+    expect(canonicalStorageDocumentBytes("page", rebuiltRows)).toEqual(
+      canonicalStorageDocumentBytes("page", rows),
+    );
   });
 });

@@ -428,6 +428,7 @@ type ProgramEventArtist struct {
 	Slug          *string                `protobuf:"bytes,3,opt,name=slug,proto3,oneof" json:"slug,omitempty"`
 	Role          *string                `protobuf:"bytes,4,opt,name=role,proto3,oneof" json:"role,omitempty"`
 	SortOrder     int32                  `protobuf:"varint,5,opt,name=sort_order,json=sortOrder,proto3" json:"sort_order,omitempty"`
+	ImageAsset    *v1.AssetRef           `protobuf:"bytes,6,opt,name=image_asset,json=imageAsset,proto3,oneof" json:"image_asset,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -495,6 +496,13 @@ func (x *ProgramEventArtist) GetSortOrder() int32 {
 		return x.SortOrder
 	}
 	return 0
+}
+
+func (x *ProgramEventArtist) GetImageAsset() *v1.AssetRef {
+	if x != nil {
+		return x.ImageAsset
+	}
+	return nil
 }
 
 type ProgramEventLabel struct {
@@ -1771,16 +1779,19 @@ const file_api_open_v1_program_event_proto_rawDesc = "" +
 	"\n" +
 	"\b_summaryB\x0e\n" +
 	"\f_descriptionB\x0f\n" +
-	"\r_poster_asset\"\x9b\x01\n" +
+	"\r_poster_asset\"\xea\x01\n" +
 	"\x12ProgramEventArtist\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x17\n" +
 	"\x04slug\x18\x03 \x01(\tH\x00R\x04slug\x88\x01\x01\x12\x17\n" +
 	"\x04role\x18\x04 \x01(\tH\x01R\x04role\x88\x01\x01\x12\x1d\n" +
 	"\n" +
-	"sort_order\x18\x05 \x01(\x05R\tsortOrderB\a\n" +
+	"sort_order\x18\x05 \x01(\x05R\tsortOrder\x12=\n" +
+	"\vimage_asset\x18\x06 \x01(\v2\x17.api.common.v1.AssetRefH\x02R\n" +
+	"imageAsset\x88\x01\x01B\a\n" +
 	"\x05_slugB\a\n" +
-	"\x05_role\"\x9a\x01\n" +
+	"\x05_roleB\x0e\n" +
+	"\f_image_asset\"\x9a\x01\n" +
 	"\x11ProgramEventLabel\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x17\n" +
@@ -2037,66 +2048,67 @@ var file_api_open_v1_program_event_proto_depIdxs = []int32{
 	3,  // 0: api.open.v1.ProgramEventType.status:type_name -> api.open.v1.ProgramEventTypeStatus
 	1,  // 1: api.open.v1.ProgramEventSeries.status:type_name -> api.open.v1.ProgramEventSeriesStatus
 	22, // 2: api.open.v1.ProgramEventSeries.poster_asset:type_name -> api.common.v1.AssetRef
-	6,  // 3: api.open.v1.ProgramEventCredit.artist:type_name -> api.open.v1.ProgramEventArtist
-	23, // 4: api.open.v1.ProgramEventCredit.member:type_name -> api.common.v1.MemberSummary
-	0,  // 5: api.open.v1.ProgramEvent.status:type_name -> api.open.v1.ProgramEventStatus
-	4,  // 6: api.open.v1.ProgramEvent.type:type_name -> api.open.v1.ProgramEventType
-	5,  // 7: api.open.v1.ProgramEvent.series:type_name -> api.open.v1.ProgramEventSeries
-	24, // 8: api.open.v1.ProgramEvent.starts_at:type_name -> google.protobuf.Timestamp
-	24, // 9: api.open.v1.ProgramEvent.ends_at:type_name -> google.protobuf.Timestamp
-	2,  // 10: api.open.v1.ProgramEvent.location_mode:type_name -> api.open.v1.ProgramEventLocationMode
-	25, // 11: api.open.v1.ProgramEvent.location_place:type_name -> api.open.v1.MapPlaceBasic
-	6,  // 12: api.open.v1.ProgramEvent.artists:type_name -> api.open.v1.ProgramEventArtist
-	7,  // 13: api.open.v1.ProgramEvent.labels:type_name -> api.open.v1.ProgramEventLabel
-	8,  // 14: api.open.v1.ProgramEvent.clients:type_name -> api.open.v1.ProgramEventClient
-	9,  // 15: api.open.v1.ProgramEvent.credits:type_name -> api.open.v1.ProgramEventCredit
-	24, // 16: api.open.v1.ProgramEvent.published_at:type_name -> google.protobuf.Timestamp
-	24, // 17: api.open.v1.ProgramEvent.updated_at:type_name -> google.protobuf.Timestamp
-	26, // 18: api.open.v1.ProgramEvent.localization_info:type_name -> api.open.v1.LocalizationInfo
-	22, // 19: api.open.v1.ProgramEvent.poster_asset:type_name -> api.common.v1.AssetRef
-	27, // 20: api.open.v1.ProgramEvent.document:type_name -> api.content.v1.LocalizedRichTextDocument
-	0,  // 21: api.open.v1.ProgramEventSummary.status:type_name -> api.open.v1.ProgramEventStatus
-	4,  // 22: api.open.v1.ProgramEventSummary.type:type_name -> api.open.v1.ProgramEventType
-	24, // 23: api.open.v1.ProgramEventSummary.starts_at:type_name -> google.protobuf.Timestamp
-	24, // 24: api.open.v1.ProgramEventSummary.ends_at:type_name -> google.protobuf.Timestamp
-	2,  // 25: api.open.v1.ProgramEventSummary.location_mode:type_name -> api.open.v1.ProgramEventLocationMode
-	24, // 26: api.open.v1.ProgramEventSummary.published_at:type_name -> google.protobuf.Timestamp
-	24, // 27: api.open.v1.ProgramEventSummary.updated_at:type_name -> google.protobuf.Timestamp
-	26, // 28: api.open.v1.ProgramEventSummary.localization_info:type_name -> api.open.v1.LocalizationInfo
-	22, // 29: api.open.v1.ProgramEventSummary.poster_asset:type_name -> api.common.v1.AssetRef
-	10, // 30: api.open.v1.GetProgramEventResponse.event:type_name -> api.open.v1.ProgramEvent
-	28, // 31: api.open.v1.GetProgramEventResponse.block_media:type_name -> api.content.v1.ContentBlockMediaItem
-	29, // 32: api.open.v1.ListProgramEventsRequest.pagination:type_name -> api.common.v1.PaginationRequest
-	30, // 33: api.open.v1.ListProgramEventsRequest.filters:type_name -> api.common.v1.FilterSpec
-	31, // 34: api.open.v1.ListProgramEventsRequest.sorts:type_name -> api.common.v1.SortSpec
-	11, // 35: api.open.v1.ListProgramEventsResponse.events:type_name -> api.open.v1.ProgramEventSummary
-	32, // 36: api.open.v1.ListProgramEventsResponse.pagination:type_name -> api.common.v1.PaginationResponse
-	5,  // 37: api.open.v1.GetProgramEventSeriesResponse.series:type_name -> api.open.v1.ProgramEventSeries
-	29, // 38: api.open.v1.ListProgramEventSeriesRequest.pagination:type_name -> api.common.v1.PaginationRequest
-	30, // 39: api.open.v1.ListProgramEventSeriesRequest.filters:type_name -> api.common.v1.FilterSpec
-	31, // 40: api.open.v1.ListProgramEventSeriesRequest.sorts:type_name -> api.common.v1.SortSpec
-	5,  // 41: api.open.v1.ListProgramEventSeriesResponse.series:type_name -> api.open.v1.ProgramEventSeries
-	32, // 42: api.open.v1.ListProgramEventSeriesResponse.pagination:type_name -> api.common.v1.PaginationResponse
-	29, // 43: api.open.v1.ListProgramEventTypesRequest.pagination:type_name -> api.common.v1.PaginationRequest
-	30, // 44: api.open.v1.ListProgramEventTypesRequest.filters:type_name -> api.common.v1.FilterSpec
-	31, // 45: api.open.v1.ListProgramEventTypesRequest.sorts:type_name -> api.common.v1.SortSpec
-	4,  // 46: api.open.v1.ListProgramEventTypesResponse.types:type_name -> api.open.v1.ProgramEventType
-	32, // 47: api.open.v1.ListProgramEventTypesResponse.pagination:type_name -> api.common.v1.PaginationResponse
-	12, // 48: api.open.v1.ProgramEventService.Get:input_type -> api.open.v1.GetProgramEventRequest
-	14, // 49: api.open.v1.ProgramEventService.List:input_type -> api.open.v1.ListProgramEventsRequest
-	16, // 50: api.open.v1.ProgramEventSeriesService.Get:input_type -> api.open.v1.GetProgramEventSeriesRequest
-	18, // 51: api.open.v1.ProgramEventSeriesService.List:input_type -> api.open.v1.ListProgramEventSeriesRequest
-	20, // 52: api.open.v1.ProgramEventTypeService.List:input_type -> api.open.v1.ListProgramEventTypesRequest
-	13, // 53: api.open.v1.ProgramEventService.Get:output_type -> api.open.v1.GetProgramEventResponse
-	15, // 54: api.open.v1.ProgramEventService.List:output_type -> api.open.v1.ListProgramEventsResponse
-	17, // 55: api.open.v1.ProgramEventSeriesService.Get:output_type -> api.open.v1.GetProgramEventSeriesResponse
-	19, // 56: api.open.v1.ProgramEventSeriesService.List:output_type -> api.open.v1.ListProgramEventSeriesResponse
-	21, // 57: api.open.v1.ProgramEventTypeService.List:output_type -> api.open.v1.ListProgramEventTypesResponse
-	53, // [53:58] is the sub-list for method output_type
-	48, // [48:53] is the sub-list for method input_type
-	48, // [48:48] is the sub-list for extension type_name
-	48, // [48:48] is the sub-list for extension extendee
-	0,  // [0:48] is the sub-list for field type_name
+	22, // 3: api.open.v1.ProgramEventArtist.image_asset:type_name -> api.common.v1.AssetRef
+	6,  // 4: api.open.v1.ProgramEventCredit.artist:type_name -> api.open.v1.ProgramEventArtist
+	23, // 5: api.open.v1.ProgramEventCredit.member:type_name -> api.common.v1.MemberSummary
+	0,  // 6: api.open.v1.ProgramEvent.status:type_name -> api.open.v1.ProgramEventStatus
+	4,  // 7: api.open.v1.ProgramEvent.type:type_name -> api.open.v1.ProgramEventType
+	5,  // 8: api.open.v1.ProgramEvent.series:type_name -> api.open.v1.ProgramEventSeries
+	24, // 9: api.open.v1.ProgramEvent.starts_at:type_name -> google.protobuf.Timestamp
+	24, // 10: api.open.v1.ProgramEvent.ends_at:type_name -> google.protobuf.Timestamp
+	2,  // 11: api.open.v1.ProgramEvent.location_mode:type_name -> api.open.v1.ProgramEventLocationMode
+	25, // 12: api.open.v1.ProgramEvent.location_place:type_name -> api.open.v1.MapPlaceBasic
+	6,  // 13: api.open.v1.ProgramEvent.artists:type_name -> api.open.v1.ProgramEventArtist
+	7,  // 14: api.open.v1.ProgramEvent.labels:type_name -> api.open.v1.ProgramEventLabel
+	8,  // 15: api.open.v1.ProgramEvent.clients:type_name -> api.open.v1.ProgramEventClient
+	9,  // 16: api.open.v1.ProgramEvent.credits:type_name -> api.open.v1.ProgramEventCredit
+	24, // 17: api.open.v1.ProgramEvent.published_at:type_name -> google.protobuf.Timestamp
+	24, // 18: api.open.v1.ProgramEvent.updated_at:type_name -> google.protobuf.Timestamp
+	26, // 19: api.open.v1.ProgramEvent.localization_info:type_name -> api.open.v1.LocalizationInfo
+	22, // 20: api.open.v1.ProgramEvent.poster_asset:type_name -> api.common.v1.AssetRef
+	27, // 21: api.open.v1.ProgramEvent.document:type_name -> api.content.v1.LocalizedRichTextDocument
+	0,  // 22: api.open.v1.ProgramEventSummary.status:type_name -> api.open.v1.ProgramEventStatus
+	4,  // 23: api.open.v1.ProgramEventSummary.type:type_name -> api.open.v1.ProgramEventType
+	24, // 24: api.open.v1.ProgramEventSummary.starts_at:type_name -> google.protobuf.Timestamp
+	24, // 25: api.open.v1.ProgramEventSummary.ends_at:type_name -> google.protobuf.Timestamp
+	2,  // 26: api.open.v1.ProgramEventSummary.location_mode:type_name -> api.open.v1.ProgramEventLocationMode
+	24, // 27: api.open.v1.ProgramEventSummary.published_at:type_name -> google.protobuf.Timestamp
+	24, // 28: api.open.v1.ProgramEventSummary.updated_at:type_name -> google.protobuf.Timestamp
+	26, // 29: api.open.v1.ProgramEventSummary.localization_info:type_name -> api.open.v1.LocalizationInfo
+	22, // 30: api.open.v1.ProgramEventSummary.poster_asset:type_name -> api.common.v1.AssetRef
+	10, // 31: api.open.v1.GetProgramEventResponse.event:type_name -> api.open.v1.ProgramEvent
+	28, // 32: api.open.v1.GetProgramEventResponse.block_media:type_name -> api.content.v1.ContentBlockMediaItem
+	29, // 33: api.open.v1.ListProgramEventsRequest.pagination:type_name -> api.common.v1.PaginationRequest
+	30, // 34: api.open.v1.ListProgramEventsRequest.filters:type_name -> api.common.v1.FilterSpec
+	31, // 35: api.open.v1.ListProgramEventsRequest.sorts:type_name -> api.common.v1.SortSpec
+	11, // 36: api.open.v1.ListProgramEventsResponse.events:type_name -> api.open.v1.ProgramEventSummary
+	32, // 37: api.open.v1.ListProgramEventsResponse.pagination:type_name -> api.common.v1.PaginationResponse
+	5,  // 38: api.open.v1.GetProgramEventSeriesResponse.series:type_name -> api.open.v1.ProgramEventSeries
+	29, // 39: api.open.v1.ListProgramEventSeriesRequest.pagination:type_name -> api.common.v1.PaginationRequest
+	30, // 40: api.open.v1.ListProgramEventSeriesRequest.filters:type_name -> api.common.v1.FilterSpec
+	31, // 41: api.open.v1.ListProgramEventSeriesRequest.sorts:type_name -> api.common.v1.SortSpec
+	5,  // 42: api.open.v1.ListProgramEventSeriesResponse.series:type_name -> api.open.v1.ProgramEventSeries
+	32, // 43: api.open.v1.ListProgramEventSeriesResponse.pagination:type_name -> api.common.v1.PaginationResponse
+	29, // 44: api.open.v1.ListProgramEventTypesRequest.pagination:type_name -> api.common.v1.PaginationRequest
+	30, // 45: api.open.v1.ListProgramEventTypesRequest.filters:type_name -> api.common.v1.FilterSpec
+	31, // 46: api.open.v1.ListProgramEventTypesRequest.sorts:type_name -> api.common.v1.SortSpec
+	4,  // 47: api.open.v1.ListProgramEventTypesResponse.types:type_name -> api.open.v1.ProgramEventType
+	32, // 48: api.open.v1.ListProgramEventTypesResponse.pagination:type_name -> api.common.v1.PaginationResponse
+	12, // 49: api.open.v1.ProgramEventService.Get:input_type -> api.open.v1.GetProgramEventRequest
+	14, // 50: api.open.v1.ProgramEventService.List:input_type -> api.open.v1.ListProgramEventsRequest
+	16, // 51: api.open.v1.ProgramEventSeriesService.Get:input_type -> api.open.v1.GetProgramEventSeriesRequest
+	18, // 52: api.open.v1.ProgramEventSeriesService.List:input_type -> api.open.v1.ListProgramEventSeriesRequest
+	20, // 53: api.open.v1.ProgramEventTypeService.List:input_type -> api.open.v1.ListProgramEventTypesRequest
+	13, // 54: api.open.v1.ProgramEventService.Get:output_type -> api.open.v1.GetProgramEventResponse
+	15, // 55: api.open.v1.ProgramEventService.List:output_type -> api.open.v1.ListProgramEventsResponse
+	17, // 56: api.open.v1.ProgramEventSeriesService.Get:output_type -> api.open.v1.GetProgramEventSeriesResponse
+	19, // 57: api.open.v1.ProgramEventSeriesService.List:output_type -> api.open.v1.ListProgramEventSeriesResponse
+	21, // 58: api.open.v1.ProgramEventTypeService.List:output_type -> api.open.v1.ListProgramEventTypesResponse
+	54, // [54:59] is the sub-list for method output_type
+	49, // [49:54] is the sub-list for method input_type
+	49, // [49:49] is the sub-list for extension type_name
+	49, // [49:49] is the sub-list for extension extendee
+	0,  // [0:49] is the sub-list for field type_name
 }
 
 func init() { file_api_open_v1_program_event_proto_init() }
