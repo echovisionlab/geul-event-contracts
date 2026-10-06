@@ -17,6 +17,11 @@ import { file_api_common_v1_common } from "../../common/v1/common_pb.ts";
 import type { AssetRef, MediaDelivery } from "../../common/v1/media_pb.ts";
 import { file_api_common_v1_media } from "../../common/v1/media_pb.ts";
 import type {
+  PageAccessPolicy,
+  PageAccessReason,
+} from "../../common/v1/page_access_pb.ts";
+import { file_api_common_v1_page_access } from "../../common/v1/page_access_pb.ts";
+import type {
   ContentBlockMediaItem,
   LocalizedPageDocument,
 } from "../../content/v1/block_content_pb.ts";
@@ -33,10 +38,11 @@ import type { Message } from "@bufbuild/protobuf";
 export const file_api_open_v1_page: GenFile =
   /*@__PURE__*/
   fileDesc(
-    "ChZhcGkvb3Blbi92MS9wYWdlLnByb3RvEgthcGkub3Blbi52MSJ4Cg5HZXRQYWdlUmVxdWVzdBIMCgRzbHVnGAEgASgJEhgKC3NoYXJlX3Rva2VuGAIgASgJSACIAQESGwoOc2hhcmVfcGFzc3dvcmQYAyABKAlIAYgBAUIOCgxfc2hhcmVfdG9rZW5CEQoPX3NoYXJlX3Bhc3N3b3JkInwKD0dldFBhZ2VSZXNwb25zZRIkCgRwYWdlGAEgASgLMhEuYXBpLm9wZW4udjEuUGFnZUgAiAEBEjoKC2Jsb2NrX21lZGlhGAIgAygLMiUuYXBpLmNvbnRlbnQudjEuQ29udGVudEJsb2NrTWVkaWFJdGVtQgcKBV9wYWdlIrkFCgRQYWdlEgoKAmlkGAEgASgJEg0KBXRpdGxlGAIgASgJEhEKBHNsdWcYAyABKAlIAIgBARISCgpzaG93X3RpdGxlGAQgASgIEicKBnN0YXR1cxgFIAEoDjIXLmFwaS5vcGVuLnYxLlBhZ2VTdGF0dXMSNQoMcHVibGlzaGVkX2F0GAYgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEgBiAEBEi4KCmNyZWF0ZWRfYXQYByABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEi4KCnVwZGF0ZWRfYXQYCCABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEjcKCGRvY3VtZW50GAkgASgLMiUuYXBpLmNvbnRlbnQudjEuTG9jYWxpemVkUGFnZURvY3VtZW50Ei4KCG9nX2Fzc2V0GAogASgLMhcuYXBpLmNvbW1vbi52MS5Bc3NldFJlZkgCiAEBEhQKB3N1bW1hcnkYCyABKAlIA4gBARI9ChFsb2NhbGl6YXRpb25faW5mbxgMIAEoCzIdLmFwaS5vcGVuLnYxLkxvY2FsaXphdGlvbkluZm9IBIgBARIQCghyZXZpc2lvbhgNIAEoCRI2Cg9kb2N1bWVudF9sYXlvdXQYDiABKAsyHS5hcGkuY29tbW9uLnYxLkRvY3VtZW50TGF5b3V0EkIKF2ZlYXR1cmVkX2ltYWdlX2RlbGl2ZXJ5GA8gASgLMhwuYXBpLmNvbW1vbi52MS5NZWRpYURlbGl2ZXJ5SAWIAQFCBwoFX3NsdWdCDwoNX3B1Ymxpc2hlZF9hdEILCglfb2dfYXNzZXRCCgoIX3N1bW1hcnlCFAoSX2xvY2FsaXphdGlvbl9pbmZvQhoKGF9mZWF0dXJlZF9pbWFnZV9kZWxpdmVyeSpbCgpQYWdlU3RhdHVzEhsKF1BBR0VfU1RBVFVTX1VOU1BFQ0lGSUVEEAASFQoRUEFHRV9TVEFUVVNfRFJBRlQQARIZChVQQUdFX1NUQVRVU19QVUJMSVNIRUQQAjJPCgtQYWdlU2VydmljZRJACgNHZXQSGy5hcGkub3Blbi52MS5HZXRQYWdlUmVxdWVzdBocLmFwaS5vcGVuLnYxLkdldFBhZ2VSZXNwb25zZUKwAQoPY29tLmFwaS5vcGVuLnYxQglQYWdlUHJvdG9QAVpEZ2l0aHViLmNvbS9lY2hvdmlzaW9ubGFiL2dldWwtZXZlbnQtY29udHJhY3RzL2dlbi9hcGkvb3Blbi92MTtvcGVudjGiAgNBT1iqAgtBcGkuT3Blbi5WMcoCC0FwaVxPcGVuXFYx4gIXQXBpXE9wZW5cVjFcR1BCTWV0YWRhdGHqAg1BcGk6Ok9wZW46OlYxYgZwcm90bzM",
+    "ChZhcGkvb3Blbi92MS9wYWdlLnByb3RvEgthcGkub3Blbi52MSJ4Cg5HZXRQYWdlUmVxdWVzdBIMCgRzbHVnGAEgASgJEhgKC3NoYXJlX3Rva2VuGAIgASgJSACIAQESGwoOc2hhcmVfcGFzc3dvcmQYAyABKAlIAYgBAUIOCgxfc2hhcmVfdG9rZW5CEQoPX3NoYXJlX3Bhc3N3b3JkIrQBCg9HZXRQYWdlUmVzcG9uc2USJAoEcGFnZRgBIAEoCzIRLmFwaS5vcGVuLnYxLlBhZ2VIAIgBARI6CgtibG9ja19tZWRpYRgCIAMoCzIlLmFwaS5jb250ZW50LnYxLkNvbnRlbnRCbG9ja01lZGlhSXRlbRI2Cg1hY2Nlc3NfcmVhc29uGAMgASgOMh8uYXBpLmNvbW1vbi52MS5QYWdlQWNjZXNzUmVhc29uQgcKBV9wYWdlIogGCgRQYWdlEgoKAmlkGAEgASgJEg0KBXRpdGxlGAIgASgJEhEKBHNsdWcYAyABKAlIAIgBARISCgpzaG93X3RpdGxlGAQgASgIEicKBnN0YXR1cxgFIAEoDjIXLmFwaS5vcGVuLnYxLlBhZ2VTdGF0dXMSNQoMcHVibGlzaGVkX2F0GAYgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEgBiAEBEi4KCmNyZWF0ZWRfYXQYByABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEi4KCnVwZGF0ZWRfYXQYCCABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEjcKCGRvY3VtZW50GAkgASgLMiUuYXBpLmNvbnRlbnQudjEuTG9jYWxpemVkUGFnZURvY3VtZW50Ei4KCG9nX2Fzc2V0GAogASgLMhcuYXBpLmNvbW1vbi52MS5Bc3NldFJlZkgCiAEBEhQKB3N1bW1hcnkYCyABKAlIA4gBARI9ChFsb2NhbGl6YXRpb25faW5mbxgMIAEoCzIdLmFwaS5vcGVuLnYxLkxvY2FsaXphdGlvbkluZm9IBIgBARIQCghyZXZpc2lvbhgNIAEoCRI2Cg9kb2N1bWVudF9sYXlvdXQYDiABKAsyHS5hcGkuY29tbW9uLnYxLkRvY3VtZW50TGF5b3V0EkIKF2ZlYXR1cmVkX2ltYWdlX2RlbGl2ZXJ5GA8gASgLMhwuYXBpLmNvbW1vbi52MS5NZWRpYURlbGl2ZXJ5SAWIAQESOwoNYWNjZXNzX3BvbGljeRgQIAEoCzIfLmFwaS5jb21tb24udjEuUGFnZUFjY2Vzc1BvbGljeUgGiAEBQgcKBV9zbHVnQg8KDV9wdWJsaXNoZWRfYXRCCwoJX29nX2Fzc2V0QgoKCF9zdW1tYXJ5QhQKEl9sb2NhbGl6YXRpb25faW5mb0IaChhfZmVhdHVyZWRfaW1hZ2VfZGVsaXZlcnlCEAoOX2FjY2Vzc19wb2xpY3kqWwoKUGFnZVN0YXR1cxIbChdQQUdFX1NUQVRVU19VTlNQRUNJRklFRBAAEhUKEVBBR0VfU1RBVFVTX0RSQUZUEAESGQoVUEFHRV9TVEFUVVNfUFVCTElTSEVEEAIyTwoLUGFnZVNlcnZpY2USQAoDR2V0EhsuYXBpLm9wZW4udjEuR2V0UGFnZVJlcXVlc3QaHC5hcGkub3Blbi52MS5HZXRQYWdlUmVzcG9uc2VCsAEKD2NvbS5hcGkub3Blbi52MUIJUGFnZVByb3RvUAFaRGdpdGh1Yi5jb20vZWNob3Zpc2lvbmxhYi9nZXVsLWV2ZW50LWNvbnRyYWN0cy9nZW4vYXBpL29wZW4vdjE7b3BlbnYxogIDQU9YqgILQXBpLk9wZW4uVjHKAgtBcGlcT3BlblxWMeICF0FwaVxPcGVuXFYxXEdQQk1ldGFkYXRh6gINQXBpOjpPcGVuOjpWMWIGcHJvdG8z",
     [
       file_api_common_v1_common,
       file_api_common_v1_media,
+      file_api_common_v1_page_access,
       file_api_content_v1_block_content,
       file_api_open_v1_translation,
       file_google_protobuf_timestamp,
@@ -87,6 +93,13 @@ export type GetPageResponse = Message<"api.open.v1.GetPageResponse"> & {
    * @generated from field: repeated api.content.v1.ContentBlockMediaItem block_media = 2;
    */
   blockMedia: ContentBlockMediaItem[];
+
+  /**
+   * Denied reads return this reason with no Page or block media.
+   *
+   * @generated from field: api.common.v1.PageAccessReason access_reason = 3;
+   */
+  accessReason: PageAccessReason;
 };
 
 /**
@@ -175,6 +188,11 @@ export type Page = Message<"api.open.v1.Page"> & {
    * @generated from field: optional api.common.v1.MediaDelivery featured_image_delivery = 15;
    */
   featuredImageDelivery?: MediaDelivery | undefined;
+
+  /**
+   * @generated from field: optional api.common.v1.PageAccessPolicy access_policy = 16;
+   */
+  accessPolicy?: PageAccessPolicy | undefined;
 };
 
 /**

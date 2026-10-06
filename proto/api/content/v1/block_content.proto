@@ -1811,6 +1811,26 @@ message MermaidSectionProps {
   optional string source = 1;
 }
 
+message EmbedSectionProps {
+  enum HeightMode {
+    HEIGHT_MODE_UNSPECIFIED = 0;
+    HEIGHT_MODE_FIXED = 1;
+    HEIGHT_MODE_AUTO = 2;
+    HEIGHT_MODE_VIEWPORT = 3;
+  }
+  string uri = 1;
+  optional HeightMode height_mode = 2;
+  optional int32 height = 3;
+  optional bool allow_scripts = 4;
+  optional bool allow_same_origin = 5;
+  optional bool allow_forms = 6;
+  optional bool allow_downloads = 7;
+  optional bool allow_popups = 8;
+  optional bool allow_microphone = 9;
+  optional bool allow_speaker_selection = 10;
+  optional bool allow_fullscreen = 11;
+}
+
 message RichTextSectionLocaleProps {
 
 }
@@ -1892,6 +1912,10 @@ message ColumnsSectionLocaleProps {
 }
 
 message MermaidSectionLocaleProps {
+  optional string title = 1;
+}
+
+message EmbedSectionLocaleProps {
   optional string title = 1;
 }
 
@@ -1981,6 +2005,10 @@ message MermaidSection {
   MermaidSectionProps props = 1;
 }
 
+message EmbedSection {
+  EmbedSectionProps props = 1;
+}
+
 message RichTextSectionLocale {
   RichTextSectionLocaleProps props = 1;
   RichTextLocaleOverlay blocks = 2;
@@ -2067,6 +2095,10 @@ message MermaidSectionLocale {
   MermaidSectionLocaleProps props = 1;
 }
 
+message EmbedSectionLocale {
+  EmbedSectionLocaleProps props = 1;
+}
+
 message PageSection {
   string id = 1;
   PageSectionSettings settings = 2;
@@ -2092,6 +2124,7 @@ message PageSection {
     ImmersiveSceneSection immersive_scene = 21;
     ColumnsSection columns = 22;
     MermaidSection mermaid = 23;
+    EmbedSection embed = 24;
   }
 }
 
@@ -2119,6 +2152,7 @@ message PageSectionLocale {
     ImmersiveSceneSectionLocale immersive_scene = 20;
     ColumnsSectionLocale columns = 21;
     MermaidSectionLocale mermaid = 22;
+    EmbedSectionLocale embed = 23;
   }
 }
 
@@ -2148,6 +2182,7 @@ message PageSectionData {
     ImmersiveSceneSection immersive_scene = 20;
     ColumnsSection columns = 21;
     MermaidSection mermaid = 22;
+    EmbedSection embed = 23;
   }
 }
 
@@ -2175,6 +2210,7 @@ message PageSectionLocaleData {
     ImmersiveSceneSectionLocale immersive_scene = 19;
     ColumnsSectionLocale columns = 20;
     MermaidSectionLocale mermaid = 21;
+    EmbedSectionLocale embed = 22;
   }
 }
 

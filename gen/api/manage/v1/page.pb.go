@@ -96,6 +96,7 @@ type Page struct {
 	// snapshot, then hydrated with request-scoped delivery and download action.
 	BlockMedia    []*v1.ContentBlockMediaItem `protobuf:"bytes,15,rep,name=block_media,json=blockMedia,proto3" json:"block_media,omitempty"`
 	SourceLocale  string                      `protobuf:"bytes,16,opt,name=source_locale,json=sourceLocale,proto3" json:"source_locale,omitempty"`
+	AccessPolicy  *v11.PageAccessPolicy       `protobuf:"bytes,17,opt,name=access_policy,json=accessPolicy,proto3,oneof" json:"access_policy,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -242,6 +243,13 @@ func (x *Page) GetSourceLocale() string {
 	return ""
 }
 
+func (x *Page) GetAccessPolicy() *v11.PageAccessPolicy {
+	if x != nil {
+		return x.AccessPolicy
+	}
+	return nil
+}
+
 // Page for listing (without content)
 type PageSummary struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -254,6 +262,7 @@ type PageSummary struct {
 	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,7,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	UpdatedAt     *timestamppb.Timestamp `protobuf:"bytes,8,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
 	SourceLocale  string                 `protobuf:"bytes,9,opt,name=source_locale,json=sourceLocale,proto3" json:"source_locale,omitempty"`
+	AccessPolicy  *v11.PageAccessPolicy  `protobuf:"bytes,10,opt,name=access_policy,json=accessPolicy,proto3,oneof" json:"access_policy,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -349,6 +358,13 @@ func (x *PageSummary) GetSourceLocale() string {
 		return x.SourceLocale
 	}
 	return ""
+}
+
+func (x *PageSummary) GetAccessPolicy() *v11.PageAccessPolicy {
+	if x != nil {
+		return x.AccessPolicy
+	}
+	return nil
 }
 
 type GetPageRequest struct {
@@ -654,7 +670,8 @@ type CreatePageRequest struct {
 	ShowTitle *bool                  `protobuf:"varint,3,opt,name=show_title,json=showTitle,proto3,oneof" json:"show_title,omitempty"`
 	Summary   *string                `protobuf:"bytes,4,opt,name=summary,proto3,oneof" json:"summary,omitempty"`
 	// Required initial source locale for the new Page.
-	SourceLocale  string `protobuf:"bytes,5,opt,name=source_locale,json=sourceLocale,proto3" json:"source_locale,omitempty"`
+	SourceLocale  string                `protobuf:"bytes,5,opt,name=source_locale,json=sourceLocale,proto3" json:"source_locale,omitempty"`
+	AccessPolicy  *v11.PageAccessPolicy `protobuf:"bytes,6,opt,name=access_policy,json=accessPolicy,proto3,oneof" json:"access_policy,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -724,11 +741,20 @@ func (x *CreatePageRequest) GetSourceLocale() string {
 	return ""
 }
 
+func (x *CreatePageRequest) GetAccessPolicy() *v11.PageAccessPolicy {
+	if x != nil {
+		return x.AccessPolicy
+	}
+	return nil
+}
+
 type UpdatePageRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Slug          *string                `protobuf:"bytes,2,opt,name=slug,proto3,oneof" json:"slug,omitempty"`
-	ShowTitle     *bool                  `protobuf:"varint,3,opt,name=show_title,json=showTitle,proto3,oneof" json:"show_title,omitempty"`
+	state     protoimpl.MessageState `protogen:"open.v1"`
+	Id        string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Slug      *string                `protobuf:"bytes,2,opt,name=slug,proto3,oneof" json:"slug,omitempty"`
+	ShowTitle *bool                  `protobuf:"varint,3,opt,name=show_title,json=showTitle,proto3,oneof" json:"show_title,omitempty"`
+	// Absence preserves the current policy; PUBLIC explicitly removes restrictions.
+	AccessPolicy  *v11.PageAccessPolicy `protobuf:"bytes,4,opt,name=access_policy,json=accessPolicy,proto3,oneof" json:"access_policy,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -782,6 +808,13 @@ func (x *UpdatePageRequest) GetShowTitle() bool {
 		return *x.ShowTitle
 	}
 	return false
+}
+
+func (x *UpdatePageRequest) GetAccessPolicy() *v11.PageAccessPolicy {
+	if x != nil {
+		return x.AccessPolicy
+	}
+	return nil
 }
 
 type DeletePageRequest struct {
@@ -923,6 +956,7 @@ type UpdatePageResponse struct {
 	Slug          *string                `protobuf:"bytes,3,opt,name=slug,proto3,oneof" json:"slug,omitempty"`
 	ShowTitle     bool                   `protobuf:"varint,4,opt,name=show_title,json=showTitle,proto3" json:"show_title,omitempty"`
 	UpdatedAt     *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	AccessPolicy  *v11.PageAccessPolicy  `protobuf:"bytes,6,opt,name=access_policy,json=accessPolicy,proto3,oneof" json:"access_policy,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -988,6 +1022,13 @@ func (x *UpdatePageResponse) GetShowTitle() bool {
 func (x *UpdatePageResponse) GetUpdatedAt() *timestamppb.Timestamp {
 	if x != nil {
 		return x.UpdatedAt
+	}
+	return nil
+}
+
+func (x *UpdatePageResponse) GetAccessPolicy() *v11.PageAccessPolicy {
+	if x != nil {
+		return x.AccessPolicy
 	}
 	return nil
 }
@@ -1477,7 +1518,7 @@ var File_api_manage_v1_page_proto protoreflect.FileDescriptor
 
 const file_api_manage_v1_page_proto_rawDesc = "" +
 	"\n" +
-	"\x18api/manage/v1/page.proto\x12\rapi.manage.v1\x1a\x1aapi/common/v1/common.proto\x1a\x19api/common/v1/media.proto\x1a\"api/content/v1/block_content.proto\x1a\x1aapi/manage/v1/common.proto\x1a\x1aapi/policy/v1/access.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xde\x06\n" +
+	"\x18api/manage/v1/page.proto\x12\rapi.manage.v1\x1a\x1aapi/common/v1/common.proto\x1a\x19api/common/v1/media.proto\x1a\x1fapi/common/v1/page_access.proto\x1a\"api/content/v1/block_content.proto\x1a\x1aapi/manage/v1/common.proto\x1a\x1aapi/policy/v1/access.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xbb\a\n" +
 	"\x04Page\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x14\n" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x12\x17\n" +
@@ -1499,13 +1540,15 @@ const file_api_manage_v1_page_proto_rawDesc = "" +
 	"\x17featured_image_delivery\x18\x0e \x01(\v2\x1c.api.common.v1.MediaDeliveryH\x04R\x15featuredImageDelivery\x88\x01\x01\x12F\n" +
 	"\vblock_media\x18\x0f \x03(\v2%.api.content.v1.ContentBlockMediaItemR\n" +
 	"blockMedia\x12#\n" +
-	"\rsource_locale\x18\x10 \x01(\tR\fsourceLocaleB\a\n" +
+	"\rsource_locale\x18\x10 \x01(\tR\fsourceLocale\x12I\n" +
+	"\raccess_policy\x18\x11 \x01(\v2\x1f.api.common.v1.PageAccessPolicyH\x05R\faccessPolicy\x88\x01\x01B\a\n" +
 	"\x05_slugB\x0f\n" +
 	"\r_published_atB\v\n" +
 	"\t_og_assetB\n" +
 	"\n" +
 	"\b_summaryB\x1a\n" +
-	"\x18_featured_image_delivery\"\x97\x03\n" +
+	"\x18_featured_image_deliveryB\x10\n" +
+	"\x0e_access_policy\"\xf4\x03\n" +
 	"\vPageSummary\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x14\n" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x12\x17\n" +
@@ -1518,9 +1561,12 @@ const file_api_manage_v1_page_proto_rawDesc = "" +
 	"created_at\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x129\n" +
 	"\n" +
 	"updated_at\x18\b \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\x12#\n" +
-	"\rsource_locale\x18\t \x01(\tR\fsourceLocaleB\a\n" +
+	"\rsource_locale\x18\t \x01(\tR\fsourceLocale\x12I\n" +
+	"\raccess_policy\x18\n" +
+	" \x01(\v2\x1f.api.common.v1.PageAccessPolicyH\x02R\faccessPolicy\x88\x01\x01B\a\n" +
 	"\x05_slugB\x0f\n" +
-	"\r_published_at\" \n" +
+	"\r_published_atB\x10\n" +
+	"\x0e_access_policy\" \n" +
 	"\x0eGetPageRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\"*\n" +
 	"\x14GetPageBySlugRequest\x12\x12\n" +
@@ -1542,31 +1588,35 @@ const file_api_manage_v1_page_proto_rawDesc = "" +
 	"\x05pages\x18\x01 \x03(\v2\x1a.api.manage.v1.PageSummaryR\x05pages\x12A\n" +
 	"\n" +
 	"pagination\x18\x02 \x01(\v2!.api.common.v1.PaginationResponseR\n" +
-	"pagination\"\xce\x01\n" +
+	"pagination\"\xab\x02\n" +
 	"\x11CreatePageRequest\x12\x14\n" +
 	"\x05title\x18\x01 \x01(\tR\x05title\x12\x17\n" +
 	"\x04slug\x18\x02 \x01(\tH\x00R\x04slug\x88\x01\x01\x12\"\n" +
 	"\n" +
 	"show_title\x18\x03 \x01(\bH\x01R\tshowTitle\x88\x01\x01\x12\x1d\n" +
 	"\asummary\x18\x04 \x01(\tH\x02R\asummary\x88\x01\x01\x12#\n" +
-	"\rsource_locale\x18\x05 \x01(\tR\fsourceLocaleB\a\n" +
+	"\rsource_locale\x18\x05 \x01(\tR\fsourceLocale\x12I\n" +
+	"\raccess_policy\x18\x06 \x01(\v2\x1f.api.common.v1.PageAccessPolicyH\x03R\faccessPolicy\x88\x01\x01B\a\n" +
 	"\x05_slugB\r\n" +
 	"\v_show_titleB\n" +
 	"\n" +
-	"\b_summary\"x\n" +
+	"\b_summaryB\x10\n" +
+	"\x0e_access_policy\"\xd5\x01\n" +
 	"\x11UpdatePageRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x17\n" +
 	"\x04slug\x18\x02 \x01(\tH\x00R\x04slug\x88\x01\x01\x12\"\n" +
 	"\n" +
-	"show_title\x18\x03 \x01(\bH\x01R\tshowTitle\x88\x01\x01B\a\n" +
+	"show_title\x18\x03 \x01(\bH\x01R\tshowTitle\x88\x01\x01\x12I\n" +
+	"\raccess_policy\x18\x04 \x01(\v2\x1f.api.common.v1.PageAccessPolicyH\x02R\faccessPolicy\x88\x01\x01B\a\n" +
 	"\x05_slugB\r\n" +
-	"\v_show_title\"#\n" +
+	"\v_show_titleB\x10\n" +
+	"\x0e_access_policy\"#\n" +
 	"\x11DeletePageRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\"$\n" +
 	"\x12PublishPageRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\"&\n" +
 	"\x14UnpublishPageRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\"\xba\x01\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\"\x97\x02\n" +
 	"\x12UpdatePageResponse\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x18\n" +
 	"\achanged\x18\x02 \x01(\bR\achanged\x12\x17\n" +
@@ -1574,8 +1624,10 @@ const file_api_manage_v1_page_proto_rawDesc = "" +
 	"\n" +
 	"show_title\x18\x04 \x01(\bR\tshowTitle\x129\n" +
 	"\n" +
-	"updated_at\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAtB\a\n" +
-	"\x05_slug\"\x8c\x02\n" +
+	"updated_at\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\x12I\n" +
+	"\raccess_policy\x18\x06 \x01(\v2\x1f.api.common.v1.PageAccessPolicyH\x01R\faccessPolicy\x88\x01\x01B\a\n" +
+	"\x05_slugB\x10\n" +
+	"\x0e_access_policy\"\x8c\x02\n" +
 	"\x1dPageLifecycleMutationResponse\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x18\n" +
 	"\achanged\x18\x02 \x01(\bR\achanged\x121\n" +
@@ -1689,13 +1741,14 @@ var file_api_manage_v1_page_proto_goTypes = []any{
 	(*v11.DocumentLayout)(nil),             // 26: api.common.v1.DocumentLayout
 	(*v11.MediaDelivery)(nil),              // 27: api.common.v1.MediaDelivery
 	(*v1.ContentBlockMediaItem)(nil),       // 28: api.content.v1.ContentBlockMediaItem
-	(*v11.PaginationRequest)(nil),          // 29: api.common.v1.PaginationRequest
-	(*v11.FilterSpec)(nil),                 // 30: api.common.v1.FilterSpec
-	(*v11.SortSpec)(nil),                   // 31: api.common.v1.SortSpec
-	(*v11.PaginationResponse)(nil),         // 32: api.common.v1.PaginationResponse
-	(*VersionContributor)(nil),             // 33: api.manage.v1.VersionContributor
-	(*DeleteResponse)(nil),                 // 34: api.manage.v1.DeleteResponse
-	(*OgAssetDeleteResponse)(nil),          // 35: api.manage.v1.OgAssetDeleteResponse
+	(*v11.PageAccessPolicy)(nil),           // 29: api.common.v1.PageAccessPolicy
+	(*v11.PaginationRequest)(nil),          // 30: api.common.v1.PaginationRequest
+	(*v11.FilterSpec)(nil),                 // 31: api.common.v1.FilterSpec
+	(*v11.SortSpec)(nil),                   // 32: api.common.v1.SortSpec
+	(*v11.PaginationResponse)(nil),         // 33: api.common.v1.PaginationResponse
+	(*VersionContributor)(nil),             // 34: api.manage.v1.VersionContributor
+	(*DeleteResponse)(nil),                 // 35: api.manage.v1.DeleteResponse
+	(*OgAssetDeleteResponse)(nil),          // 36: api.manage.v1.OgAssetDeleteResponse
 }
 var file_api_manage_v1_page_proto_depIdxs = []int32{
 	23, // 0: api.manage.v1.Page.document:type_name -> api.content.v1.PageDocument
@@ -1707,56 +1760,61 @@ var file_api_manage_v1_page_proto_depIdxs = []int32{
 	26, // 6: api.manage.v1.Page.document_layout:type_name -> api.common.v1.DocumentLayout
 	27, // 7: api.manage.v1.Page.featured_image_delivery:type_name -> api.common.v1.MediaDelivery
 	28, // 8: api.manage.v1.Page.block_media:type_name -> api.content.v1.ContentBlockMediaItem
-	0,  // 9: api.manage.v1.PageSummary.status:type_name -> api.manage.v1.PageStatus
-	24, // 10: api.manage.v1.PageSummary.published_at:type_name -> google.protobuf.Timestamp
-	24, // 11: api.manage.v1.PageSummary.created_at:type_name -> google.protobuf.Timestamp
-	24, // 12: api.manage.v1.PageSummary.updated_at:type_name -> google.protobuf.Timestamp
-	29, // 13: api.manage.v1.ListPagesAdminRequest.pagination:type_name -> api.common.v1.PaginationRequest
-	30, // 14: api.manage.v1.ListPagesAdminRequest.filters:type_name -> api.common.v1.FilterSpec
-	31, // 15: api.manage.v1.ListPagesAdminRequest.sorts:type_name -> api.common.v1.SortSpec
-	2,  // 16: api.manage.v1.ListPagesAdminResponse.pages:type_name -> api.manage.v1.PageSummary
-	32, // 17: api.manage.v1.ListPagesAdminResponse.pagination:type_name -> api.common.v1.PaginationResponse
-	24, // 18: api.manage.v1.UpdatePageResponse.updated_at:type_name -> google.protobuf.Timestamp
-	0,  // 19: api.manage.v1.PageLifecycleMutationResponse.status:type_name -> api.manage.v1.PageStatus
-	24, // 20: api.manage.v1.PageLifecycleMutationResponse.published_at:type_name -> google.protobuf.Timestamp
-	24, // 21: api.manage.v1.PageLifecycleMutationResponse.updated_at:type_name -> google.protobuf.Timestamp
-	27, // 22: api.manage.v1.SetPageFeaturedImageResponse.image_delivery:type_name -> api.common.v1.MediaDelivery
-	24, // 23: api.manage.v1.PageVersion.created_at:type_name -> google.protobuf.Timestamp
-	33, // 24: api.manage.v1.PageVersion.contributors:type_name -> api.manage.v1.VersionContributor
-	29, // 25: api.manage.v1.ListPageVersionsRequest.pagination:type_name -> api.common.v1.PaginationRequest
-	19, // 26: api.manage.v1.ListPageVersionsResponse.versions:type_name -> api.manage.v1.PageVersion
-	32, // 27: api.manage.v1.ListPageVersionsResponse.pagination:type_name -> api.common.v1.PaginationResponse
-	3,  // 28: api.manage.v1.PageService.GetPage:input_type -> api.manage.v1.GetPageRequest
-	4,  // 29: api.manage.v1.PageService.GetPageBySlug:input_type -> api.manage.v1.GetPageBySlugRequest
-	7,  // 30: api.manage.v1.PageService.ListPagesAdmin:input_type -> api.manage.v1.ListPagesAdminRequest
-	9,  // 31: api.manage.v1.PageService.CreatePage:input_type -> api.manage.v1.CreatePageRequest
-	10, // 32: api.manage.v1.PageService.UpdatePage:input_type -> api.manage.v1.UpdatePageRequest
-	11, // 33: api.manage.v1.PageService.DeletePage:input_type -> api.manage.v1.DeletePageRequest
-	12, // 34: api.manage.v1.PageService.PublishPage:input_type -> api.manage.v1.PublishPageRequest
-	13, // 35: api.manage.v1.PageService.UnpublishPage:input_type -> api.manage.v1.UnpublishPageRequest
-	16, // 36: api.manage.v1.PageService.SetPageFeaturedImage:input_type -> api.manage.v1.SetPageFeaturedImageRequest
-	18, // 37: api.manage.v1.PageService.DeletePageFeaturedImage:input_type -> api.manage.v1.DeletePageFeaturedImageRequest
-	5,  // 38: api.manage.v1.PageService.CheckPageSlugAvailable:input_type -> api.manage.v1.CheckPageSlugAvailableRequest
-	20, // 39: api.manage.v1.PageService.ListPageVersions:input_type -> api.manage.v1.ListPageVersionsRequest
-	22, // 40: api.manage.v1.PageService.RestorePageVersion:input_type -> api.manage.v1.RestorePageVersionRequest
-	1,  // 41: api.manage.v1.PageService.GetPage:output_type -> api.manage.v1.Page
-	1,  // 42: api.manage.v1.PageService.GetPageBySlug:output_type -> api.manage.v1.Page
-	8,  // 43: api.manage.v1.PageService.ListPagesAdmin:output_type -> api.manage.v1.ListPagesAdminResponse
-	1,  // 44: api.manage.v1.PageService.CreatePage:output_type -> api.manage.v1.Page
-	14, // 45: api.manage.v1.PageService.UpdatePage:output_type -> api.manage.v1.UpdatePageResponse
-	34, // 46: api.manage.v1.PageService.DeletePage:output_type -> api.manage.v1.DeleteResponse
-	15, // 47: api.manage.v1.PageService.PublishPage:output_type -> api.manage.v1.PageLifecycleMutationResponse
-	15, // 48: api.manage.v1.PageService.UnpublishPage:output_type -> api.manage.v1.PageLifecycleMutationResponse
-	17, // 49: api.manage.v1.PageService.SetPageFeaturedImage:output_type -> api.manage.v1.SetPageFeaturedImageResponse
-	35, // 50: api.manage.v1.PageService.DeletePageFeaturedImage:output_type -> api.manage.v1.OgAssetDeleteResponse
-	6,  // 51: api.manage.v1.PageService.CheckPageSlugAvailable:output_type -> api.manage.v1.CheckPageSlugAvailableResponse
-	21, // 52: api.manage.v1.PageService.ListPageVersions:output_type -> api.manage.v1.ListPageVersionsResponse
-	1,  // 53: api.manage.v1.PageService.RestorePageVersion:output_type -> api.manage.v1.Page
-	41, // [41:54] is the sub-list for method output_type
-	28, // [28:41] is the sub-list for method input_type
-	28, // [28:28] is the sub-list for extension type_name
-	28, // [28:28] is the sub-list for extension extendee
-	0,  // [0:28] is the sub-list for field type_name
+	29, // 9: api.manage.v1.Page.access_policy:type_name -> api.common.v1.PageAccessPolicy
+	0,  // 10: api.manage.v1.PageSummary.status:type_name -> api.manage.v1.PageStatus
+	24, // 11: api.manage.v1.PageSummary.published_at:type_name -> google.protobuf.Timestamp
+	24, // 12: api.manage.v1.PageSummary.created_at:type_name -> google.protobuf.Timestamp
+	24, // 13: api.manage.v1.PageSummary.updated_at:type_name -> google.protobuf.Timestamp
+	29, // 14: api.manage.v1.PageSummary.access_policy:type_name -> api.common.v1.PageAccessPolicy
+	30, // 15: api.manage.v1.ListPagesAdminRequest.pagination:type_name -> api.common.v1.PaginationRequest
+	31, // 16: api.manage.v1.ListPagesAdminRequest.filters:type_name -> api.common.v1.FilterSpec
+	32, // 17: api.manage.v1.ListPagesAdminRequest.sorts:type_name -> api.common.v1.SortSpec
+	2,  // 18: api.manage.v1.ListPagesAdminResponse.pages:type_name -> api.manage.v1.PageSummary
+	33, // 19: api.manage.v1.ListPagesAdminResponse.pagination:type_name -> api.common.v1.PaginationResponse
+	29, // 20: api.manage.v1.CreatePageRequest.access_policy:type_name -> api.common.v1.PageAccessPolicy
+	29, // 21: api.manage.v1.UpdatePageRequest.access_policy:type_name -> api.common.v1.PageAccessPolicy
+	24, // 22: api.manage.v1.UpdatePageResponse.updated_at:type_name -> google.protobuf.Timestamp
+	29, // 23: api.manage.v1.UpdatePageResponse.access_policy:type_name -> api.common.v1.PageAccessPolicy
+	0,  // 24: api.manage.v1.PageLifecycleMutationResponse.status:type_name -> api.manage.v1.PageStatus
+	24, // 25: api.manage.v1.PageLifecycleMutationResponse.published_at:type_name -> google.protobuf.Timestamp
+	24, // 26: api.manage.v1.PageLifecycleMutationResponse.updated_at:type_name -> google.protobuf.Timestamp
+	27, // 27: api.manage.v1.SetPageFeaturedImageResponse.image_delivery:type_name -> api.common.v1.MediaDelivery
+	24, // 28: api.manage.v1.PageVersion.created_at:type_name -> google.protobuf.Timestamp
+	34, // 29: api.manage.v1.PageVersion.contributors:type_name -> api.manage.v1.VersionContributor
+	30, // 30: api.manage.v1.ListPageVersionsRequest.pagination:type_name -> api.common.v1.PaginationRequest
+	19, // 31: api.manage.v1.ListPageVersionsResponse.versions:type_name -> api.manage.v1.PageVersion
+	33, // 32: api.manage.v1.ListPageVersionsResponse.pagination:type_name -> api.common.v1.PaginationResponse
+	3,  // 33: api.manage.v1.PageService.GetPage:input_type -> api.manage.v1.GetPageRequest
+	4,  // 34: api.manage.v1.PageService.GetPageBySlug:input_type -> api.manage.v1.GetPageBySlugRequest
+	7,  // 35: api.manage.v1.PageService.ListPagesAdmin:input_type -> api.manage.v1.ListPagesAdminRequest
+	9,  // 36: api.manage.v1.PageService.CreatePage:input_type -> api.manage.v1.CreatePageRequest
+	10, // 37: api.manage.v1.PageService.UpdatePage:input_type -> api.manage.v1.UpdatePageRequest
+	11, // 38: api.manage.v1.PageService.DeletePage:input_type -> api.manage.v1.DeletePageRequest
+	12, // 39: api.manage.v1.PageService.PublishPage:input_type -> api.manage.v1.PublishPageRequest
+	13, // 40: api.manage.v1.PageService.UnpublishPage:input_type -> api.manage.v1.UnpublishPageRequest
+	16, // 41: api.manage.v1.PageService.SetPageFeaturedImage:input_type -> api.manage.v1.SetPageFeaturedImageRequest
+	18, // 42: api.manage.v1.PageService.DeletePageFeaturedImage:input_type -> api.manage.v1.DeletePageFeaturedImageRequest
+	5,  // 43: api.manage.v1.PageService.CheckPageSlugAvailable:input_type -> api.manage.v1.CheckPageSlugAvailableRequest
+	20, // 44: api.manage.v1.PageService.ListPageVersions:input_type -> api.manage.v1.ListPageVersionsRequest
+	22, // 45: api.manage.v1.PageService.RestorePageVersion:input_type -> api.manage.v1.RestorePageVersionRequest
+	1,  // 46: api.manage.v1.PageService.GetPage:output_type -> api.manage.v1.Page
+	1,  // 47: api.manage.v1.PageService.GetPageBySlug:output_type -> api.manage.v1.Page
+	8,  // 48: api.manage.v1.PageService.ListPagesAdmin:output_type -> api.manage.v1.ListPagesAdminResponse
+	1,  // 49: api.manage.v1.PageService.CreatePage:output_type -> api.manage.v1.Page
+	14, // 50: api.manage.v1.PageService.UpdatePage:output_type -> api.manage.v1.UpdatePageResponse
+	35, // 51: api.manage.v1.PageService.DeletePage:output_type -> api.manage.v1.DeleteResponse
+	15, // 52: api.manage.v1.PageService.PublishPage:output_type -> api.manage.v1.PageLifecycleMutationResponse
+	15, // 53: api.manage.v1.PageService.UnpublishPage:output_type -> api.manage.v1.PageLifecycleMutationResponse
+	17, // 54: api.manage.v1.PageService.SetPageFeaturedImage:output_type -> api.manage.v1.SetPageFeaturedImageResponse
+	36, // 55: api.manage.v1.PageService.DeletePageFeaturedImage:output_type -> api.manage.v1.OgAssetDeleteResponse
+	6,  // 56: api.manage.v1.PageService.CheckPageSlugAvailable:output_type -> api.manage.v1.CheckPageSlugAvailableResponse
+	21, // 57: api.manage.v1.PageService.ListPageVersions:output_type -> api.manage.v1.ListPageVersionsResponse
+	1,  // 58: api.manage.v1.PageService.RestorePageVersion:output_type -> api.manage.v1.Page
+	46, // [46:59] is the sub-list for method output_type
+	33, // [33:46] is the sub-list for method input_type
+	33, // [33:33] is the sub-list for extension type_name
+	33, // [33:33] is the sub-list for extension extendee
+	0,  // [0:33] is the sub-list for field type_name
 }
 
 func init() { file_api_manage_v1_page_proto_init() }

@@ -79,6 +79,7 @@ message ProgramEventArtist {
   optional string slug = 3;
   optional string role = 4;
   int32 sort_order = 5;
+  optional api.common.v1.AssetRef image_asset = 6;
 }
 
 message ProgramEventLabel {

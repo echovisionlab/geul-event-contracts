@@ -132,7 +132,7 @@ func TestPageCatalogDescriptorExposesLocaleLeafAuthorityAsCallerOwnedCopies(t *t
 	t.Parallel()
 
 	first := contentv1.DescribePageCatalog()
-	if first.Fingerprint != contentv1.ContentBlockCatalogFingerprint || len(first.Sections) != 21 {
+	if first.Fingerprint != contentv1.ContentBlockCatalogFingerprint || len(first.Sections) != 22 {
 		t.Fatalf("unexpected Page descriptor identity: %+v", first)
 	}
 	externalVideo := requirePageSectionDescriptor(t, first, "external-video")
