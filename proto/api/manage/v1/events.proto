@@ -737,7 +737,7 @@ message ContentUpdatedField {
   ContentUpdatedFieldKind kind = 2;
 }
 
-// content.updated PostgreSQL signal
+// content.updated durable PGMQ event and PostgreSQL NOTIFY wake-up
 // Emitted for an accepted content/document mutation.
 message ContentUpdatedEvent {
   ContentEntityType entity_type = 1;
@@ -746,8 +746,8 @@ message ContentUpdatedEvent {
   repeated ContentUpdatedField changed_fields = 4;
   // Current UUID revision of the accepted typed document. A source/shared
   // mutation advances it; a target-only mutation may carry the unchanged
-  // current token and must keep document_state_changed false. Absent for
-  // metadata-only signals outside document authoring.
+  // current token and must keep document_state_changed false. Every producer
+  // carries the resulting authoritative token, including metadata-only writes.
   optional string document_revision = 5;
   // Distinct authenticated Members whose edits produced this persisted update.
   repeated string contributor_member_ids = 6;
@@ -765,6 +765,11 @@ message ContentUpdatedEvent {
   // absent for source-locale writes and target deletion. Target-only mutations
   // must not masquerade as a source document revision change.
   optional string target_revision = 11;
+  // Opaque client write origin, scoped to one browser tab (UUID at the API
+  // boundary). Echoed in entity.changed so a client that adopted the canonical
+  // write response can avoid a redundant read. Never an actor or permission
+  // identity; absent for collaboration-originated persistence.
+  optional string origin = 12;
 }
 
 // ============================================================

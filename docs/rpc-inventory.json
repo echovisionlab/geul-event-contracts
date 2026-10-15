@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "consumerAuditStatus": "complete",
+  "consumerAuditStatus": "in_progress",
   "services": [
     {
       "service": "api.intra.v1.EmailCourierService",
@@ -4675,6 +4675,13 @@
           "providerTests": []
         },
         {
+          "name": "GetPageEditorDocument",
+          "consumerStatus": "pending",
+          "consumers": [],
+          "consumerTests": [],
+          "providerTests": []
+        },
+        {
           "name": "ListPageVersions",
           "consumerStatus": "verified",
           "consumers": [
@@ -4948,6 +4955,13 @@
               "entrypoint": "PostEditor.tsx exports the edited post as Markdown"
             }
           ],
+          "consumerTests": [],
+          "providerTests": []
+        },
+        {
+          "name": "GetPostEditorDocument",
+          "consumerStatus": "pending",
+          "consumers": [],
           "consumerTests": [],
           "providerTests": []
         },

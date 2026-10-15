@@ -35,6 +35,9 @@ const (
 const (
 	// PostServiceGetPostProcedure is the fully-qualified name of the PostService's GetPost RPC.
 	PostServiceGetPostProcedure = "/api.manage.v1.PostService/GetPost"
+	// PostServiceGetPostEditorDocumentProcedure is the fully-qualified name of the PostService's
+	// GetPostEditorDocument RPC.
+	PostServiceGetPostEditorDocumentProcedure = "/api.manage.v1.PostService/GetPostEditorDocument"
 	// PostServiceCreatePostProcedure is the fully-qualified name of the PostService's CreatePost RPC.
 	PostServiceCreatePostProcedure = "/api.manage.v1.PostService/CreatePost"
 	// PostServiceUpdatePostProcedure is the fully-qualified name of the PostService's UpdatePost RPC.
@@ -99,6 +102,10 @@ type PostServiceClient interface {
 	// Authenticated manage read; the API requires exact current view or
 	// view_archived authorization. Public and ShareLink reads use open.v1.
 	GetPost(context.Context, *connect.Request[v1.GetPostRequest]) (*connect.Response[v1.Post], error)
+	// Editor SSR first paint. The API enforces the editor route permission
+	// under the same rule as Collab room bootstrap: exact EDIT, or
+	// view_archived for an archived Post (read-only). Denial is NOT_FOUND.
+	GetPostEditorDocument(context.Context, *connect.Request[v1.GetPostEditorDocumentRequest]) (*connect.Response[v1.GetPostEditorDocumentResponse], error)
 	// Authenticated (author or admin)
 	CreatePost(context.Context, *connect.Request[v1.CreatePostRequest]) (*connect.Response[v1.Post], error)
 	UpdatePost(context.Context, *connect.Request[v1.UpdatePostRequest]) (*connect.Response[v1.UpdatePostResponse], error)
@@ -144,6 +151,12 @@ func NewPostServiceClient(httpClient connect.HTTPClient, baseURL string, opts ..
 			httpClient,
 			baseURL+PostServiceGetPostProcedure,
 			connect.WithSchema(postServiceMethods.ByName("GetPost")),
+			connect.WithClientOptions(opts...),
+		),
+		getPostEditorDocument: connect.NewClient[v1.GetPostEditorDocumentRequest, v1.GetPostEditorDocumentResponse](
+			httpClient,
+			baseURL+PostServiceGetPostEditorDocumentProcedure,
+			connect.WithSchema(postServiceMethods.ByName("GetPostEditorDocument")),
 			connect.WithClientOptions(opts...),
 		),
 		createPost: connect.NewClient[v1.CreatePostRequest, v1.Post](
@@ -278,6 +291,7 @@ func NewPostServiceClient(httpClient connect.HTTPClient, baseURL string, opts ..
 // postServiceClient implements PostServiceClient.
 type postServiceClient struct {
 	getPost                 *connect.Client[v1.GetPostRequest, v1.Post]
+	getPostEditorDocument   *connect.Client[v1.GetPostEditorDocumentRequest, v1.GetPostEditorDocumentResponse]
 	createPost              *connect.Client[v1.CreatePostRequest, v1.Post]
 	updatePost              *connect.Client[v1.UpdatePostRequest, v1.UpdatePostResponse]
 	deletePost              *connect.Client[v1.DeletePostRequest, v1.DeleteResponse]
@@ -304,6 +318,11 @@ type postServiceClient struct {
 // GetPost calls api.manage.v1.PostService.GetPost.
 func (c *postServiceClient) GetPost(ctx context.Context, req *connect.Request[v1.GetPostRequest]) (*connect.Response[v1.Post], error) {
 	return c.getPost.CallUnary(ctx, req)
+}
+
+// GetPostEditorDocument calls api.manage.v1.PostService.GetPostEditorDocument.
+func (c *postServiceClient) GetPostEditorDocument(ctx context.Context, req *connect.Request[v1.GetPostEditorDocumentRequest]) (*connect.Response[v1.GetPostEditorDocumentResponse], error) {
+	return c.getPostEditorDocument.CallUnary(ctx, req)
 }
 
 // CreatePost calls api.manage.v1.PostService.CreatePost.
@@ -416,6 +435,10 @@ type PostServiceHandler interface {
 	// Authenticated manage read; the API requires exact current view or
 	// view_archived authorization. Public and ShareLink reads use open.v1.
 	GetPost(context.Context, *connect.Request[v1.GetPostRequest]) (*connect.Response[v1.Post], error)
+	// Editor SSR first paint. The API enforces the editor route permission
+	// under the same rule as Collab room bootstrap: exact EDIT, or
+	// view_archived for an archived Post (read-only). Denial is NOT_FOUND.
+	GetPostEditorDocument(context.Context, *connect.Request[v1.GetPostEditorDocumentRequest]) (*connect.Response[v1.GetPostEditorDocumentResponse], error)
 	// Authenticated (author or admin)
 	CreatePost(context.Context, *connect.Request[v1.CreatePostRequest]) (*connect.Response[v1.Post], error)
 	UpdatePost(context.Context, *connect.Request[v1.UpdatePostRequest]) (*connect.Response[v1.UpdatePostResponse], error)
@@ -457,6 +480,12 @@ func NewPostServiceHandler(svc PostServiceHandler, opts ...connect.HandlerOption
 		PostServiceGetPostProcedure,
 		svc.GetPost,
 		connect.WithSchema(postServiceMethods.ByName("GetPost")),
+		connect.WithHandlerOptions(opts...),
+	)
+	postServiceGetPostEditorDocumentHandler := connect.NewUnaryHandler(
+		PostServiceGetPostEditorDocumentProcedure,
+		svc.GetPostEditorDocument,
+		connect.WithSchema(postServiceMethods.ByName("GetPostEditorDocument")),
 		connect.WithHandlerOptions(opts...),
 	)
 	postServiceCreatePostHandler := connect.NewUnaryHandler(
@@ -589,6 +618,8 @@ func NewPostServiceHandler(svc PostServiceHandler, opts ...connect.HandlerOption
 		switch r.URL.Path {
 		case PostServiceGetPostProcedure:
 			postServiceGetPostHandler.ServeHTTP(w, r)
+		case PostServiceGetPostEditorDocumentProcedure:
+			postServiceGetPostEditorDocumentHandler.ServeHTTP(w, r)
 		case PostServiceCreatePostProcedure:
 			postServiceCreatePostHandler.ServeHTTP(w, r)
 		case PostServiceUpdatePostProcedure:
@@ -642,6 +673,10 @@ type UnimplementedPostServiceHandler struct{}
 
 func (UnimplementedPostServiceHandler) GetPost(context.Context, *connect.Request[v1.GetPostRequest]) (*connect.Response[v1.Post], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("api.manage.v1.PostService.GetPost is not implemented"))
+}
+
+func (UnimplementedPostServiceHandler) GetPostEditorDocument(context.Context, *connect.Request[v1.GetPostEditorDocumentRequest]) (*connect.Response[v1.GetPostEditorDocumentResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("api.manage.v1.PostService.GetPostEditorDocument is not implemented"))
 }
 
 func (UnimplementedPostServiceHandler) CreatePost(context.Context, *connect.Request[v1.CreatePostRequest]) (*connect.Response[v1.Post], error) {

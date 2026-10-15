@@ -854,6 +854,9 @@ page:
             default: "16:9",
             ownership: shared,
           }
+        # Append to preserve released protobuf field numbers.
+        itemSize: &collection_item_size
+          { type: enum, values: [s, m, l], default: m, ownership: shared }
     post-table:
       fields:
         categoryIds:
@@ -1152,6 +1155,7 @@ page:
             default: "16:9",
             ownership: shared,
           }
+        itemSize: *collection_item_size
     program-event-list:
       field_sets: [page_list]
       fields:
@@ -1188,6 +1192,7 @@ page:
             default: "16:9",
             ownership: shared,
           }
+        itemSize: *collection_item_size
     release-list:
       field_sets: [page_list]
       fields:
@@ -1226,6 +1231,7 @@ page:
             default: "1:1",
             ownership: shared,
           }
+        itemSize: *collection_item_size
     artist-list:
       field_sets: [page_list]
       fields:
@@ -1255,6 +1261,7 @@ page:
             default: "1:1",
             ownership: shared,
           }
+        itemSize: *collection_item_size
     label-list:
       field_sets: [page_list]
       fields:
@@ -1276,6 +1283,7 @@ page:
             default: "1:1",
             ownership: shared,
           }
+        itemSize: *collection_item_size
     author-list:
       fields:
         layout:
@@ -1301,6 +1309,7 @@ page:
             unique: true,
             items: { type: uuid },
           }
+        itemSize: *collection_item_size
     form:
       fields:
         formId: { type: uuid, required: true, ownership: shared }

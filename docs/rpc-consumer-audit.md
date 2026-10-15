@@ -12,3 +12,9 @@ mark them `verified` after reading the caller and its entrypoint.
 `pnpm check:contracts` checks the descriptor-defined procedure set, duplicate
 entries, evidence fields and completion status. It leaves caller verification
 to the maintainer.
+
+The editor first-paint RPCs `GetPostEditorDocument` and
+`GetPageEditorDocument` are implemented by geul-api and await geul-web adoption.
+Their consumer entries intentionally remain pending; restore the audit to
+`complete` only after checking the new SSR callers. See
+[the coordinated launch](../../geul-api/docs/collaboration-durable-launch.md).

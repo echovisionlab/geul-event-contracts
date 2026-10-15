@@ -37,6 +37,7 @@ const (
 	QueueWaveformResult                      = "waveform.result"
 	QueueMeshOptimizationResult              = "mesh.optimization.result"
 	QueueReleaseTrackOriginalAudioProjection = "release.track_original_audio.projection"
+	QueueContentUpdatedOutbox                = "content.updated"
 )
 
 // Signal types for the fileIngest channel.

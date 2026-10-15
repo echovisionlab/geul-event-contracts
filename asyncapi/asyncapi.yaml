@@ -209,13 +209,30 @@ channels:
     messages:
       mailAdapterChangedEvent:
         $ref: "#/components/messages/MailAdapterChangedEvent"
+  contentUpdatedOutbox:
+    address: content.updated
+    x-channel-kind: durable_queue
+    description: >-
+      Collab-owned durable content mutation envelopes committed with domain
+      state. Collab is the sole logical subscriber; this is a competing work
+      queue, not broadcast. Cache/search or other independent subscribers must
+      receive separate queues via transactional producer fan-out or an outbox
+      relay, never consume this queue. contentUpdated NOTIFY carries the same
+      message_id but only wakes the durable consumer. Deduplicate by message_id
+      and acknowledge only after handling; queue delivery is at least once.
+      Process-local collab rooms currently require one active room host; scaling
+      room hosts requires durable fan-out to each host.
+    messages:
+      contentUpdatedEvent:
+        $ref: "#/components/messages/ContentUpdatedEvent"
   contentUpdated:
     address: content.updated
     x-channel-kind: signal
     description: >-
-      Debounced content/document update PostgreSQL signal for downstream
-      consumers. Locale-owned authoring carries an exact locale tuple: locale
-      plus required locale_exists, with target_revision only for an existing
+      Transactional content/document update PostgreSQL wake-up hint for the
+      collab-owned contentUpdatedOutbox queue; not an independent delivery.
+      Locale-owned authoring carries an exact locale tuple: locale plus required
+      locale_exists, with target_revision only for an existing
       non-source target. Non-locale updates omit the tuple; target deletion
       reports locale_exists false without a target token; source-locale writes
       report true without a target token. Target-only updates keep

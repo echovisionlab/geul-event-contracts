@@ -5182,7 +5182,7 @@ func (x *ContentUpdatedField) GetKind() ContentUpdatedFieldKind {
 	return ContentUpdatedFieldKind_CONTENT_UPDATED_FIELD_KIND_UNSPECIFIED
 }
 
-// content.updated PostgreSQL signal
+// content.updated durable PGMQ event and PostgreSQL NOTIFY wake-up
 // Emitted for an accepted content/document mutation.
 type ContentUpdatedEvent struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -5192,8 +5192,8 @@ type ContentUpdatedEvent struct {
 	ChangedFields []*ContentUpdatedField `protobuf:"bytes,4,rep,name=changed_fields,json=changedFields,proto3" json:"changed_fields,omitempty"`
 	// Current UUID revision of the accepted typed document. A source/shared
 	// mutation advances it; a target-only mutation may carry the unchanged
-	// current token and must keep document_state_changed false. Absent for
-	// metadata-only signals outside document authoring.
+	// current token and must keep document_state_changed false. Every producer
+	// carries the resulting authoritative token, including metadata-only writes.
 	DocumentRevision *string `protobuf:"bytes,5,opt,name=document_revision,json=documentRevision,proto3,oneof" json:"document_revision,omitempty"`
 	// Distinct authenticated Members whose edits produced this persisted update.
 	ContributorMemberIds []string `protobuf:"bytes,6,rep,name=contributor_member_ids,json=contributorMemberIds,proto3" json:"contributor_member_ids,omitempty"`
@@ -5211,8 +5211,13 @@ type ContentUpdatedEvent struct {
 	// absent for source-locale writes and target deletion. Target-only mutations
 	// must not masquerade as a source document revision change.
 	TargetRevision *string `protobuf:"bytes,11,opt,name=target_revision,json=targetRevision,proto3,oneof" json:"target_revision,omitempty"`
-	unknownFields  protoimpl.UnknownFields
-	sizeCache      protoimpl.SizeCache
+	// Opaque client write origin, scoped to one browser tab (UUID at the API
+	// boundary). Echoed in entity.changed so a client that adopted the canonical
+	// write response can avoid a redundant read. Never an actor or permission
+	// identity; absent for collaboration-originated persistence.
+	Origin        *string `protobuf:"bytes,12,opt,name=origin,proto3,oneof" json:"origin,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *ContentUpdatedEvent) Reset() {
@@ -5318,6 +5323,13 @@ func (x *ContentUpdatedEvent) GetLocaleExists() bool {
 func (x *ContentUpdatedEvent) GetTargetRevision() string {
 	if x != nil && x.TargetRevision != nil {
 		return *x.TargetRevision
+	}
+	return ""
+}
+
+func (x *ContentUpdatedEvent) GetOrigin() string {
+	if x != nil && x.Origin != nil {
+		return *x.Origin
 	}
 	return ""
 }
@@ -5979,7 +5991,7 @@ const file_api_manage_v1_events_proto_rawDesc = "" +
 	"\ftimestamp_ms\x18\x03 \x01(\x03R\vtimestampMs\"e\n" +
 	"\x13ContentUpdatedField\x12\x12\n" +
 	"\x04path\x18\x01 \x01(\tR\x04path\x12:\n" +
-	"\x04kind\x18\x02 \x01(\x0e2&.api.manage.v1.ContentUpdatedFieldKindR\x04kind\"\xf9\x04\n" +
+	"\x04kind\x18\x02 \x01(\x0e2&.api.manage.v1.ContentUpdatedFieldKindR\x04kind\"\xa1\x05\n" +
 	"\x13ContentUpdatedEvent\x12A\n" +
 	"\ventity_type\x18\x01 \x01(\x0e2 .api.manage.v1.ContentEntityTypeR\n" +
 	"entityType\x12\x1b\n" +
@@ -5993,11 +6005,13 @@ const file_api_manage_v1_events_proto_rawDesc = "" +
 	"\x06locale\x18\t \x01(\tH\x01R\x06locale\x88\x01\x01\x12(\n" +
 	"\rlocale_exists\x18\n" +
 	" \x01(\bH\x02R\flocaleExists\x88\x01\x01\x12,\n" +
-	"\x0ftarget_revision\x18\v \x01(\tH\x03R\x0etargetRevision\x88\x01\x01B\x14\n" +
+	"\x0ftarget_revision\x18\v \x01(\tH\x03R\x0etargetRevision\x88\x01\x01\x12\x1b\n" +
+	"\x06origin\x18\f \x01(\tH\x04R\x06origin\x88\x01\x01B\x14\n" +
 	"\x12_document_revisionB\t\n" +
 	"\a_localeB\x10\n" +
 	"\x0e_locale_existsB\x12\n" +
-	"\x10_target_revision\"1\n" +
+	"\x10_target_revisionB\t\n" +
+	"\a_origin\"1\n" +
 	"\x18TranslationGenerateEvent\x12\x15\n" +
 	"\x06job_id\x18\x01 \x01(\tR\x05jobId\"\xf1\x02\n" +
 	"\x19TranslationLifecycleEvent\x12\x15\n" +

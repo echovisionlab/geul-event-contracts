@@ -38,7 +38,7 @@ import {
 } from "./block_content_pb.ts";
 
 export const contentBlockCatalogFingerprint =
-  "de190638c6014cc2ac80efce5f747b30d20cc024f3d0820c87ba6c1f1a56e16e" as const;
+  "2db3b07d50a139a670f68e3cd045063d20475a102acbee7852066b1929b7172b" as const;
 export const contentBlockRuntimeForbiddenFields = [
   "_tempUrl",
   "allowOriginalDownload",
@@ -1264,6 +1264,12 @@ export const pageSectionCatalog = {
         default: "16:9",
         ownership: "shared",
       },
+      itemSize: {
+        type: "enum",
+        values: ["s", "m", "l"],
+        default: "m",
+        ownership: "shared",
+      },
     },
     richTextProfile: null,
     columns: false,
@@ -1701,6 +1707,12 @@ export const pageSectionCatalog = {
         default: "16:9",
         ownership: "shared",
       },
+      itemSize: {
+        type: "enum",
+        values: ["s", "m", "l"],
+        default: "m",
+        ownership: "shared",
+      },
     },
     richTextProfile: null,
     columns: false,
@@ -1787,6 +1799,12 @@ export const pageSectionCatalog = {
         type: "enum",
         values: ["16:9", "4:3", "1:1", "auto"],
         default: "16:9",
+        ownership: "shared",
+      },
+      itemSize: {
+        type: "enum",
+        values: ["s", "m", "l"],
+        default: "m",
         ownership: "shared",
       },
     },
@@ -1885,6 +1903,12 @@ export const pageSectionCatalog = {
         default: "1:1",
         ownership: "shared",
       },
+      itemSize: {
+        type: "enum",
+        values: ["s", "m", "l"],
+        default: "m",
+        ownership: "shared",
+      },
     },
     richTextProfile: null,
     columns: false,
@@ -1963,6 +1987,12 @@ export const pageSectionCatalog = {
         default: "1:1",
         ownership: "shared",
       },
+      itemSize: {
+        type: "enum",
+        values: ["s", "m", "l"],
+        default: "m",
+        ownership: "shared",
+      },
     },
     richTextProfile: null,
     columns: false,
@@ -2032,6 +2062,12 @@ export const pageSectionCatalog = {
         default: "1:1",
         ownership: "shared",
       },
+      itemSize: {
+        type: "enum",
+        values: ["s", "m", "l"],
+        default: "m",
+        ownership: "shared",
+      },
     },
     richTextProfile: null,
     columns: false,
@@ -2083,6 +2119,12 @@ export const pageSectionCatalog = {
         items: {
           type: "uuid",
         },
+      },
+      itemSize: {
+        type: "enum",
+        values: ["s", "m", "l"],
+        default: "m",
+        ownership: "shared",
       },
     },
     richTextProfile: null,
