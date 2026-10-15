@@ -1028,6 +1028,12 @@ message PostListSectionProps {
     IMAGE_ASPECT_RATIO_X_1_1 = 3;
     IMAGE_ASPECT_RATIO_AUTO = 4;
   }
+  enum ItemSize {
+    ITEM_SIZE_UNSPECIFIED = 0;
+    ITEM_SIZE_S = 1;
+    ITEM_SIZE_M = 2;
+    ITEM_SIZE_L = 3;
+  }
   optional Layout layout = 1;
   optional int32 columns = 2;
   optional SortOrder sort_order = 3;
@@ -1044,6 +1050,7 @@ message PostListSectionProps {
   optional int32 limit = 14;
   optional bool show_featured_image = 15;
   optional ImageAspectRatio image_aspect_ratio = 16;
+  optional ItemSize item_size = 17;
 }
 
 message PostTableSectionProps {
@@ -1271,6 +1278,12 @@ message WorkListSectionProps {
     IMAGE_ASPECT_RATIO_X_1_1 = 3;
     IMAGE_ASPECT_RATIO_AUTO = 4;
   }
+  enum ItemSize {
+    ITEM_SIZE_UNSPECIFIED = 0;
+    ITEM_SIZE_S = 1;
+    ITEM_SIZE_M = 2;
+    ITEM_SIZE_L = 3;
+  }
   optional Layout layout = 1;
   optional int32 columns = 2;
   optional SortOrder sort_order = 3;
@@ -1284,6 +1297,7 @@ message WorkListSectionProps {
   optional SortBy sort_by = 11;
   optional int32 limit = 12;
   optional ImageAspectRatio image_aspect_ratio = 13;
+  optional ItemSize item_size = 14;
 }
 
 message ProgramEventListSectionProps {
@@ -1322,6 +1336,12 @@ message ProgramEventListSectionProps {
     IMAGE_ASPECT_RATIO_X_1_1 = 3;
     IMAGE_ASPECT_RATIO_AUTO = 4;
   }
+  enum ItemSize {
+    ITEM_SIZE_UNSPECIFIED = 0;
+    ITEM_SIZE_S = 1;
+    ITEM_SIZE_M = 2;
+    ITEM_SIZE_L = 3;
+  }
   optional Layout layout = 1;
   optional int32 columns = 2;
   optional SortOrder sort_order = 3;
@@ -1336,6 +1356,7 @@ message ProgramEventListSectionProps {
   optional SortBy sort_by = 12;
   optional int32 limit = 13;
   optional ImageAspectRatio image_aspect_ratio = 14;
+  optional ItemSize item_size = 15;
 }
 
 message ReleaseListSectionProps {
@@ -1372,6 +1393,12 @@ message ReleaseListSectionProps {
     IMAGE_ASPECT_RATIO_X_1_1 = 3;
     IMAGE_ASPECT_RATIO_AUTO = 4;
   }
+  enum ItemSize {
+    ITEM_SIZE_UNSPECIFIED = 0;
+    ITEM_SIZE_S = 1;
+    ITEM_SIZE_M = 2;
+    ITEM_SIZE_L = 3;
+  }
   optional Layout layout = 1;
   optional int32 columns = 2;
   optional SortOrder sort_order = 3;
@@ -1387,6 +1414,7 @@ message ReleaseListSectionProps {
   optional SortBy sort_by = 13;
   optional int32 limit = 14;
   optional ImageAspectRatio image_aspect_ratio = 15;
+  optional ItemSize item_size = 16;
 }
 
 message ArtistListSectionProps {
@@ -1415,6 +1443,12 @@ message ArtistListSectionProps {
     IMAGE_ASPECT_RATIO_X_1_1 = 3;
     IMAGE_ASPECT_RATIO_AUTO = 4;
   }
+  enum ItemSize {
+    ITEM_SIZE_UNSPECIFIED = 0;
+    ITEM_SIZE_S = 1;
+    ITEM_SIZE_M = 2;
+    ITEM_SIZE_L = 3;
+  }
   optional Layout layout = 1;
   optional int32 columns = 2;
   optional SortOrder sort_order = 3;
@@ -1427,6 +1461,7 @@ message ArtistListSectionProps {
   optional SortBy sort_by = 10;
   optional int32 limit = 11;
   optional ImageAspectRatio image_aspect_ratio = 12;
+  optional ItemSize item_size = 13;
 }
 
 message LabelListSectionProps {
@@ -1455,6 +1490,12 @@ message LabelListSectionProps {
     IMAGE_ASPECT_RATIO_X_1_1 = 3;
     IMAGE_ASPECT_RATIO_AUTO = 4;
   }
+  enum ItemSize {
+    ITEM_SIZE_UNSPECIFIED = 0;
+    ITEM_SIZE_S = 1;
+    ITEM_SIZE_M = 2;
+    ITEM_SIZE_L = 3;
+  }
   optional Layout layout = 1;
   optional int32 columns = 2;
   optional SortOrder sort_order = 3;
@@ -1466,6 +1507,7 @@ message LabelListSectionProps {
   optional SortBy sort_by = 9;
   optional int32 limit = 10;
   optional ImageAspectRatio image_aspect_ratio = 11;
+  optional ItemSize item_size = 12;
 }
 
 message AuthorListSectionProps {
@@ -1479,6 +1521,12 @@ message AuthorListSectionProps {
     SOURCE_AUTOMATIC = 1;
     SOURCE_SELECTED = 2;
   }
+  enum ItemSize {
+    ITEM_SIZE_UNSPECIFIED = 0;
+    ITEM_SIZE_S = 1;
+    ITEM_SIZE_M = 2;
+    ITEM_SIZE_L = 3;
+  }
   optional Layout layout = 1;
   optional int32 columns = 2;
   optional int32 limit = 3;
@@ -1486,6 +1534,7 @@ message AuthorListSectionProps {
   optional bool show_avatar = 5;
   optional Source source = 6;
   repeated string author_ids = 7;
+  optional ItemSize item_size = 8;
 }
 
 message FormSectionProps {

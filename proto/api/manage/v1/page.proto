@@ -173,6 +173,37 @@ message RestorePageVersionRequest {
   string page_id = 2;
 }
 
+// Editor first-paint read for one exact edit locale.
+message GetPageEditorDocumentRequest {
+  string page_id = 1;
+  // Exact canonical edit locale. Required; never defaulted.
+  string locale = 2;
+}
+
+// The exact room projection editor-collab bootstraps the requested locale room
+// from (intra LoadPageBlockDocument), read in one transaction with its CAS
+// tokens. Painted read-only until the collaboration room is ready; it must not
+// seed Yjs.
+message GetPageEditorDocumentResponse {
+  api.content.v1.LocalizedPageDocument document = 1;
+  // Persisted content_document.revision of `document` (shared/source CAS).
+  string document_revision = 2;
+  string locale = 3;
+  bool locale_exists = 4;
+  // Present only for an existing non-source locale; same token as the room.
+  optional string target_revision = 5;
+  string source_locale = 6;
+  repeated api.content.v1.ContentBlockMediaItem block_media = 7;
+  // True when the caller holds EDIT. Page editor reads require EDIT, so a
+  // successful response is always editable; kept for parity with Post.
+  bool editable = 8;
+  api.common.v1.DocumentLayout document_layout = 9;
+  // Locale-owned title/summary of the requested locale when it exists,
+  // otherwise of the source locale.
+  optional string title = 10;
+  optional string summary = 11;
+}
+
 // Page Service
 service PageService {
   // Read (authenticated - draft pages require admin)
@@ -180,6 +211,11 @@ service PageService {
     option (api.policy.v1.access) = {role: USER};
   }
   rpc GetPageBySlug(GetPageBySlugRequest) returns (Page) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+  // Editor SSR first paint. The API enforces exact Page EDIT, the same rule
+  // as Collab room bootstrap. Denial is NOT_FOUND.
+  rpc GetPageEditorDocument(GetPageEditorDocumentRequest) returns (GetPageEditorDocumentResponse) {
     option (api.policy.v1.access) = {role: USER};
   }
 

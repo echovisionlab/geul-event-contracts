@@ -40,6 +40,7 @@ export const Queues = {
   meshOptimizationResult: "mesh.optimization.result",
   releaseTrackOriginalAudioProjection:
     "release.track_original_audio.projection",
+  contentUpdatedOutbox: "content.updated",
 } as const;
 
 export const FileIngestSignalTypes = {

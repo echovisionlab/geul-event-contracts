@@ -1,6 +1,7 @@
 import { create, toBinary } from "@bufbuild/protobuf";
 import { describe, expect, it } from "vitest";
 import {
+  ContentUpdatedEventSchema,
   OgGenerationLifecycleEventSchema,
   UserDeleteIdentityCommandSchema,
 } from "@echovisionlab/geul-proto/secure/events_pb.ts";
@@ -13,6 +14,20 @@ import {
 } from "./proto-helpers.ts";
 
 describe("deserializeProto", () => {
+  it.each([undefined, "11111111-1111-4111-8111-111111111111"])(
+    "round-trips optional content.updated origin %s",
+    (origin) => {
+      const source = create(ContentUpdatedEventSchema, {
+        entityId: "post-1",
+        origin,
+      });
+      const decoded = deserializeProto(
+        ContentUpdatedEventSchema,
+        toBinary(ContentUpdatedEventSchema, source),
+      );
+      expect(decoded.origin).toBe(origin);
+    },
+  );
   it("decodes a generated protobuf message", () => {
     const source = create(OgGenerationLifecycleEventSchema, {
       generationId: "generation-1",

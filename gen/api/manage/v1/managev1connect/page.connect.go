@@ -38,6 +38,9 @@ const (
 	// PageServiceGetPageBySlugProcedure is the fully-qualified name of the PageService's GetPageBySlug
 	// RPC.
 	PageServiceGetPageBySlugProcedure = "/api.manage.v1.PageService/GetPageBySlug"
+	// PageServiceGetPageEditorDocumentProcedure is the fully-qualified name of the PageService's
+	// GetPageEditorDocument RPC.
+	PageServiceGetPageEditorDocumentProcedure = "/api.manage.v1.PageService/GetPageEditorDocument"
 	// PageServiceListPagesAdminProcedure is the fully-qualified name of the PageService's
 	// ListPagesAdmin RPC.
 	PageServiceListPagesAdminProcedure = "/api.manage.v1.PageService/ListPagesAdmin"
@@ -74,6 +77,9 @@ type PageServiceClient interface {
 	// Read (authenticated - draft pages require admin)
 	GetPage(context.Context, *connect.Request[v1.GetPageRequest]) (*connect.Response[v1.Page], error)
 	GetPageBySlug(context.Context, *connect.Request[v1.GetPageBySlugRequest]) (*connect.Response[v1.Page], error)
+	// Editor SSR first paint. The API enforces exact Page EDIT, the same rule
+	// as Collab room bootstrap. Denial is NOT_FOUND.
+	GetPageEditorDocument(context.Context, *connect.Request[v1.GetPageEditorDocumentRequest]) (*connect.Response[v1.GetPageEditorDocumentResponse], error)
 	// Admin
 	ListPagesAdmin(context.Context, *connect.Request[v1.ListPagesAdminRequest]) (*connect.Response[v1.ListPagesAdminResponse], error)
 	CreatePage(context.Context, *connect.Request[v1.CreatePageRequest]) (*connect.Response[v1.Page], error)
@@ -113,6 +119,12 @@ func NewPageServiceClient(httpClient connect.HTTPClient, baseURL string, opts ..
 			httpClient,
 			baseURL+PageServiceGetPageBySlugProcedure,
 			connect.WithSchema(pageServiceMethods.ByName("GetPageBySlug")),
+			connect.WithClientOptions(opts...),
+		),
+		getPageEditorDocument: connect.NewClient[v1.GetPageEditorDocumentRequest, v1.GetPageEditorDocumentResponse](
+			httpClient,
+			baseURL+PageServiceGetPageEditorDocumentProcedure,
+			connect.WithSchema(pageServiceMethods.ByName("GetPageEditorDocument")),
 			connect.WithClientOptions(opts...),
 		),
 		listPagesAdmin: connect.NewClient[v1.ListPagesAdminRequest, v1.ListPagesAdminResponse](
@@ -188,6 +200,7 @@ func NewPageServiceClient(httpClient connect.HTTPClient, baseURL string, opts ..
 type pageServiceClient struct {
 	getPage                 *connect.Client[v1.GetPageRequest, v1.Page]
 	getPageBySlug           *connect.Client[v1.GetPageBySlugRequest, v1.Page]
+	getPageEditorDocument   *connect.Client[v1.GetPageEditorDocumentRequest, v1.GetPageEditorDocumentResponse]
 	listPagesAdmin          *connect.Client[v1.ListPagesAdminRequest, v1.ListPagesAdminResponse]
 	createPage              *connect.Client[v1.CreatePageRequest, v1.Page]
 	updatePage              *connect.Client[v1.UpdatePageRequest, v1.UpdatePageResponse]
@@ -209,6 +222,11 @@ func (c *pageServiceClient) GetPage(ctx context.Context, req *connect.Request[v1
 // GetPageBySlug calls api.manage.v1.PageService.GetPageBySlug.
 func (c *pageServiceClient) GetPageBySlug(ctx context.Context, req *connect.Request[v1.GetPageBySlugRequest]) (*connect.Response[v1.Page], error) {
 	return c.getPageBySlug.CallUnary(ctx, req)
+}
+
+// GetPageEditorDocument calls api.manage.v1.PageService.GetPageEditorDocument.
+func (c *pageServiceClient) GetPageEditorDocument(ctx context.Context, req *connect.Request[v1.GetPageEditorDocumentRequest]) (*connect.Response[v1.GetPageEditorDocumentResponse], error) {
+	return c.getPageEditorDocument.CallUnary(ctx, req)
 }
 
 // ListPagesAdmin calls api.manage.v1.PageService.ListPagesAdmin.
@@ -271,6 +289,9 @@ type PageServiceHandler interface {
 	// Read (authenticated - draft pages require admin)
 	GetPage(context.Context, *connect.Request[v1.GetPageRequest]) (*connect.Response[v1.Page], error)
 	GetPageBySlug(context.Context, *connect.Request[v1.GetPageBySlugRequest]) (*connect.Response[v1.Page], error)
+	// Editor SSR first paint. The API enforces exact Page EDIT, the same rule
+	// as Collab room bootstrap. Denial is NOT_FOUND.
+	GetPageEditorDocument(context.Context, *connect.Request[v1.GetPageEditorDocumentRequest]) (*connect.Response[v1.GetPageEditorDocumentResponse], error)
 	// Admin
 	ListPagesAdmin(context.Context, *connect.Request[v1.ListPagesAdminRequest]) (*connect.Response[v1.ListPagesAdminResponse], error)
 	CreatePage(context.Context, *connect.Request[v1.CreatePageRequest]) (*connect.Response[v1.Page], error)
@@ -306,6 +327,12 @@ func NewPageServiceHandler(svc PageServiceHandler, opts ...connect.HandlerOption
 		PageServiceGetPageBySlugProcedure,
 		svc.GetPageBySlug,
 		connect.WithSchema(pageServiceMethods.ByName("GetPageBySlug")),
+		connect.WithHandlerOptions(opts...),
+	)
+	pageServiceGetPageEditorDocumentHandler := connect.NewUnaryHandler(
+		PageServiceGetPageEditorDocumentProcedure,
+		svc.GetPageEditorDocument,
+		connect.WithSchema(pageServiceMethods.ByName("GetPageEditorDocument")),
 		connect.WithHandlerOptions(opts...),
 	)
 	pageServiceListPagesAdminHandler := connect.NewUnaryHandler(
@@ -380,6 +407,8 @@ func NewPageServiceHandler(svc PageServiceHandler, opts ...connect.HandlerOption
 			pageServiceGetPageHandler.ServeHTTP(w, r)
 		case PageServiceGetPageBySlugProcedure:
 			pageServiceGetPageBySlugHandler.ServeHTTP(w, r)
+		case PageServiceGetPageEditorDocumentProcedure:
+			pageServiceGetPageEditorDocumentHandler.ServeHTTP(w, r)
 		case PageServiceListPagesAdminProcedure:
 			pageServiceListPagesAdminHandler.ServeHTTP(w, r)
 		case PageServiceCreatePageProcedure:
@@ -417,6 +446,10 @@ func (UnimplementedPageServiceHandler) GetPage(context.Context, *connect.Request
 
 func (UnimplementedPageServiceHandler) GetPageBySlug(context.Context, *connect.Request[v1.GetPageBySlugRequest]) (*connect.Response[v1.Page], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("api.manage.v1.PageService.GetPageBySlug is not implemented"))
+}
+
+func (UnimplementedPageServiceHandler) GetPageEditorDocument(context.Context, *connect.Request[v1.GetPageEditorDocumentRequest]) (*connect.Response[v1.GetPageEditorDocumentResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("api.manage.v1.PageService.GetPageEditorDocument is not implemented"))
 }
 
 func (UnimplementedPageServiceHandler) ListPagesAdmin(context.Context, *connect.Request[v1.ListPagesAdminRequest]) (*connect.Response[v1.ListPagesAdminResponse], error) {

@@ -1514,6 +1514,194 @@ func (x *RestorePageVersionRequest) GetPageId() string {
 	return ""
 }
 
+// Editor first-paint read for one exact edit locale.
+type GetPageEditorDocumentRequest struct {
+	state  protoimpl.MessageState `protogen:"open.v1"`
+	PageId string                 `protobuf:"bytes,1,opt,name=page_id,json=pageId,proto3" json:"page_id,omitempty"`
+	// Exact canonical edit locale. Required; never defaulted.
+	Locale        string `protobuf:"bytes,2,opt,name=locale,proto3" json:"locale,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetPageEditorDocumentRequest) Reset() {
+	*x = GetPageEditorDocumentRequest{}
+	mi := &file_api_manage_v1_page_proto_msgTypes[22]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetPageEditorDocumentRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetPageEditorDocumentRequest) ProtoMessage() {}
+
+func (x *GetPageEditorDocumentRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_api_manage_v1_page_proto_msgTypes[22]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetPageEditorDocumentRequest.ProtoReflect.Descriptor instead.
+func (*GetPageEditorDocumentRequest) Descriptor() ([]byte, []int) {
+	return file_api_manage_v1_page_proto_rawDescGZIP(), []int{22}
+}
+
+func (x *GetPageEditorDocumentRequest) GetPageId() string {
+	if x != nil {
+		return x.PageId
+	}
+	return ""
+}
+
+func (x *GetPageEditorDocumentRequest) GetLocale() string {
+	if x != nil {
+		return x.Locale
+	}
+	return ""
+}
+
+// The exact room projection editor-collab bootstraps the requested locale room
+// from (intra LoadPageBlockDocument), read in one transaction with its CAS
+// tokens. Painted read-only until the collaboration room is ready; it must not
+// seed Yjs.
+type GetPageEditorDocumentResponse struct {
+	state    protoimpl.MessageState    `protogen:"open.v1"`
+	Document *v1.LocalizedPageDocument `protobuf:"bytes,1,opt,name=document,proto3" json:"document,omitempty"`
+	// Persisted content_document.revision of `document` (shared/source CAS).
+	DocumentRevision string `protobuf:"bytes,2,opt,name=document_revision,json=documentRevision,proto3" json:"document_revision,omitempty"`
+	Locale           string `protobuf:"bytes,3,opt,name=locale,proto3" json:"locale,omitempty"`
+	LocaleExists     bool   `protobuf:"varint,4,opt,name=locale_exists,json=localeExists,proto3" json:"locale_exists,omitempty"`
+	// Present only for an existing non-source locale; same token as the room.
+	TargetRevision *string                     `protobuf:"bytes,5,opt,name=target_revision,json=targetRevision,proto3,oneof" json:"target_revision,omitempty"`
+	SourceLocale   string                      `protobuf:"bytes,6,opt,name=source_locale,json=sourceLocale,proto3" json:"source_locale,omitempty"`
+	BlockMedia     []*v1.ContentBlockMediaItem `protobuf:"bytes,7,rep,name=block_media,json=blockMedia,proto3" json:"block_media,omitempty"`
+	// True when the caller holds EDIT. Page editor reads require EDIT, so a
+	// successful response is always editable; kept for parity with Post.
+	Editable       bool                `protobuf:"varint,8,opt,name=editable,proto3" json:"editable,omitempty"`
+	DocumentLayout *v11.DocumentLayout `protobuf:"bytes,9,opt,name=document_layout,json=documentLayout,proto3" json:"document_layout,omitempty"`
+	// Locale-owned title/summary of the requested locale when it exists,
+	// otherwise of the source locale.
+	Title         *string `protobuf:"bytes,10,opt,name=title,proto3,oneof" json:"title,omitempty"`
+	Summary       *string `protobuf:"bytes,11,opt,name=summary,proto3,oneof" json:"summary,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetPageEditorDocumentResponse) Reset() {
+	*x = GetPageEditorDocumentResponse{}
+	mi := &file_api_manage_v1_page_proto_msgTypes[23]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetPageEditorDocumentResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetPageEditorDocumentResponse) ProtoMessage() {}
+
+func (x *GetPageEditorDocumentResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_api_manage_v1_page_proto_msgTypes[23]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetPageEditorDocumentResponse.ProtoReflect.Descriptor instead.
+func (*GetPageEditorDocumentResponse) Descriptor() ([]byte, []int) {
+	return file_api_manage_v1_page_proto_rawDescGZIP(), []int{23}
+}
+
+func (x *GetPageEditorDocumentResponse) GetDocument() *v1.LocalizedPageDocument {
+	if x != nil {
+		return x.Document
+	}
+	return nil
+}
+
+func (x *GetPageEditorDocumentResponse) GetDocumentRevision() string {
+	if x != nil {
+		return x.DocumentRevision
+	}
+	return ""
+}
+
+func (x *GetPageEditorDocumentResponse) GetLocale() string {
+	if x != nil {
+		return x.Locale
+	}
+	return ""
+}
+
+func (x *GetPageEditorDocumentResponse) GetLocaleExists() bool {
+	if x != nil {
+		return x.LocaleExists
+	}
+	return false
+}
+
+func (x *GetPageEditorDocumentResponse) GetTargetRevision() string {
+	if x != nil && x.TargetRevision != nil {
+		return *x.TargetRevision
+	}
+	return ""
+}
+
+func (x *GetPageEditorDocumentResponse) GetSourceLocale() string {
+	if x != nil {
+		return x.SourceLocale
+	}
+	return ""
+}
+
+func (x *GetPageEditorDocumentResponse) GetBlockMedia() []*v1.ContentBlockMediaItem {
+	if x != nil {
+		return x.BlockMedia
+	}
+	return nil
+}
+
+func (x *GetPageEditorDocumentResponse) GetEditable() bool {
+	if x != nil {
+		return x.Editable
+	}
+	return false
+}
+
+func (x *GetPageEditorDocumentResponse) GetDocumentLayout() *v11.DocumentLayout {
+	if x != nil {
+		return x.DocumentLayout
+	}
+	return nil
+}
+
+func (x *GetPageEditorDocumentResponse) GetTitle() string {
+	if x != nil && x.Title != nil {
+		return *x.Title
+	}
+	return ""
+}
+
+func (x *GetPageEditorDocumentResponse) GetSummary() string {
+	if x != nil && x.Summary != nil {
+		return *x.Summary
+	}
+	return ""
+}
+
 var File_api_manage_v1_page_proto protoreflect.FileDescriptor
 
 const file_api_manage_v1_page_proto_rawDesc = "" +
@@ -1671,16 +1859,37 @@ const file_api_manage_v1_page_proto_rawDesc = "" +
 	"\x19RestorePageVersionRequest\x12\x1d\n" +
 	"\n" +
 	"version_id\x18\x01 \x01(\tR\tversionId\x12\x17\n" +
-	"\apage_id\x18\x02 \x01(\tR\x06pageId*[\n" +
+	"\apage_id\x18\x02 \x01(\tR\x06pageId\"O\n" +
+	"\x1cGetPageEditorDocumentRequest\x12\x17\n" +
+	"\apage_id\x18\x01 \x01(\tR\x06pageId\x12\x16\n" +
+	"\x06locale\x18\x02 \x01(\tR\x06locale\"\xaf\x04\n" +
+	"\x1dGetPageEditorDocumentResponse\x12A\n" +
+	"\bdocument\x18\x01 \x01(\v2%.api.content.v1.LocalizedPageDocumentR\bdocument\x12+\n" +
+	"\x11document_revision\x18\x02 \x01(\tR\x10documentRevision\x12\x16\n" +
+	"\x06locale\x18\x03 \x01(\tR\x06locale\x12#\n" +
+	"\rlocale_exists\x18\x04 \x01(\bR\flocaleExists\x12,\n" +
+	"\x0ftarget_revision\x18\x05 \x01(\tH\x00R\x0etargetRevision\x88\x01\x01\x12#\n" +
+	"\rsource_locale\x18\x06 \x01(\tR\fsourceLocale\x12F\n" +
+	"\vblock_media\x18\a \x03(\v2%.api.content.v1.ContentBlockMediaItemR\n" +
+	"blockMedia\x12\x1a\n" +
+	"\beditable\x18\b \x01(\bR\beditable\x12F\n" +
+	"\x0fdocument_layout\x18\t \x01(\v2\x1d.api.common.v1.DocumentLayoutR\x0edocumentLayout\x12\x19\n" +
+	"\x05title\x18\n" +
+	" \x01(\tH\x01R\x05title\x88\x01\x01\x12\x1d\n" +
+	"\asummary\x18\v \x01(\tH\x02R\asummary\x88\x01\x01B\x12\n" +
+	"\x10_target_revisionB\b\n" +
+	"\x06_titleB\n" +
+	"\n" +
+	"\b_summary*[\n" +
 	"\n" +
 	"PageStatus\x12\x1b\n" +
 	"\x17PAGE_STATUS_UNSPECIFIED\x10\x00\x12\x15\n" +
 	"\x11PAGE_STATUS_DRAFT\x10\x01\x12\x19\n" +
-	"\x15PAGE_STATUS_PUBLISHED\x10\x022\x9b\n" +
-	"\n" +
+	"\x15PAGE_STATUS_PUBLISHED\x10\x022\x97\v\n" +
 	"\vPageService\x12E\n" +
 	"\aGetPage\x12\x1d.api.manage.v1.GetPageRequest\x1a\x13.api.manage.v1.Page\"\x06\xca\xf3\x18\x02\b\x02\x12Q\n" +
-	"\rGetPageBySlug\x12#.api.manage.v1.GetPageBySlugRequest\x1a\x13.api.manage.v1.Page\"\x06\xca\xf3\x18\x02\b\x02\x12e\n" +
+	"\rGetPageBySlug\x12#.api.manage.v1.GetPageBySlugRequest\x1a\x13.api.manage.v1.Page\"\x06\xca\xf3\x18\x02\b\x02\x12z\n" +
+	"\x15GetPageEditorDocument\x12+.api.manage.v1.GetPageEditorDocumentRequest\x1a,.api.manage.v1.GetPageEditorDocumentResponse\"\x06\xca\xf3\x18\x02\b\x02\x12e\n" +
 	"\x0eListPagesAdmin\x12$.api.manage.v1.ListPagesAdminRequest\x1a%.api.manage.v1.ListPagesAdminResponse\"\x06\xca\xf3\x18\x02\b\x04\x12K\n" +
 	"\n" +
 	"CreatePage\x12 .api.manage.v1.CreatePageRequest\x1a\x13.api.manage.v1.Page\"\x06\xca\xf3\x18\x02\b\x04\x12Y\n" +
@@ -1710,7 +1919,7 @@ func file_api_manage_v1_page_proto_rawDescGZIP() []byte {
 }
 
 var file_api_manage_v1_page_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_api_manage_v1_page_proto_msgTypes = make([]protoimpl.MessageInfo, 22)
+var file_api_manage_v1_page_proto_msgTypes = make([]protoimpl.MessageInfo, 24)
 var file_api_manage_v1_page_proto_goTypes = []any{
 	(PageStatus)(0),                        // 0: api.manage.v1.PageStatus
 	(*Page)(nil),                           // 1: api.manage.v1.Page
@@ -1735,86 +1944,94 @@ var file_api_manage_v1_page_proto_goTypes = []any{
 	(*ListPageVersionsRequest)(nil),        // 20: api.manage.v1.ListPageVersionsRequest
 	(*ListPageVersionsResponse)(nil),       // 21: api.manage.v1.ListPageVersionsResponse
 	(*RestorePageVersionRequest)(nil),      // 22: api.manage.v1.RestorePageVersionRequest
-	(*v1.PageDocument)(nil),                // 23: api.content.v1.PageDocument
-	(*timestamppb.Timestamp)(nil),          // 24: google.protobuf.Timestamp
-	(*v11.AssetRef)(nil),                   // 25: api.common.v1.AssetRef
-	(*v11.DocumentLayout)(nil),             // 26: api.common.v1.DocumentLayout
-	(*v11.MediaDelivery)(nil),              // 27: api.common.v1.MediaDelivery
-	(*v1.ContentBlockMediaItem)(nil),       // 28: api.content.v1.ContentBlockMediaItem
-	(*v11.PageAccessPolicy)(nil),           // 29: api.common.v1.PageAccessPolicy
-	(*v11.PaginationRequest)(nil),          // 30: api.common.v1.PaginationRequest
-	(*v11.FilterSpec)(nil),                 // 31: api.common.v1.FilterSpec
-	(*v11.SortSpec)(nil),                   // 32: api.common.v1.SortSpec
-	(*v11.PaginationResponse)(nil),         // 33: api.common.v1.PaginationResponse
-	(*VersionContributor)(nil),             // 34: api.manage.v1.VersionContributor
-	(*DeleteResponse)(nil),                 // 35: api.manage.v1.DeleteResponse
-	(*OgAssetDeleteResponse)(nil),          // 36: api.manage.v1.OgAssetDeleteResponse
+	(*GetPageEditorDocumentRequest)(nil),   // 23: api.manage.v1.GetPageEditorDocumentRequest
+	(*GetPageEditorDocumentResponse)(nil),  // 24: api.manage.v1.GetPageEditorDocumentResponse
+	(*v1.PageDocument)(nil),                // 25: api.content.v1.PageDocument
+	(*timestamppb.Timestamp)(nil),          // 26: google.protobuf.Timestamp
+	(*v11.AssetRef)(nil),                   // 27: api.common.v1.AssetRef
+	(*v11.DocumentLayout)(nil),             // 28: api.common.v1.DocumentLayout
+	(*v11.MediaDelivery)(nil),              // 29: api.common.v1.MediaDelivery
+	(*v1.ContentBlockMediaItem)(nil),       // 30: api.content.v1.ContentBlockMediaItem
+	(*v11.PageAccessPolicy)(nil),           // 31: api.common.v1.PageAccessPolicy
+	(*v11.PaginationRequest)(nil),          // 32: api.common.v1.PaginationRequest
+	(*v11.FilterSpec)(nil),                 // 33: api.common.v1.FilterSpec
+	(*v11.SortSpec)(nil),                   // 34: api.common.v1.SortSpec
+	(*v11.PaginationResponse)(nil),         // 35: api.common.v1.PaginationResponse
+	(*VersionContributor)(nil),             // 36: api.manage.v1.VersionContributor
+	(*v1.LocalizedPageDocument)(nil),       // 37: api.content.v1.LocalizedPageDocument
+	(*DeleteResponse)(nil),                 // 38: api.manage.v1.DeleteResponse
+	(*OgAssetDeleteResponse)(nil),          // 39: api.manage.v1.OgAssetDeleteResponse
 }
 var file_api_manage_v1_page_proto_depIdxs = []int32{
-	23, // 0: api.manage.v1.Page.document:type_name -> api.content.v1.PageDocument
+	25, // 0: api.manage.v1.Page.document:type_name -> api.content.v1.PageDocument
 	0,  // 1: api.manage.v1.Page.status:type_name -> api.manage.v1.PageStatus
-	24, // 2: api.manage.v1.Page.published_at:type_name -> google.protobuf.Timestamp
-	24, // 3: api.manage.v1.Page.created_at:type_name -> google.protobuf.Timestamp
-	24, // 4: api.manage.v1.Page.updated_at:type_name -> google.protobuf.Timestamp
-	25, // 5: api.manage.v1.Page.og_asset:type_name -> api.common.v1.AssetRef
-	26, // 6: api.manage.v1.Page.document_layout:type_name -> api.common.v1.DocumentLayout
-	27, // 7: api.manage.v1.Page.featured_image_delivery:type_name -> api.common.v1.MediaDelivery
-	28, // 8: api.manage.v1.Page.block_media:type_name -> api.content.v1.ContentBlockMediaItem
-	29, // 9: api.manage.v1.Page.access_policy:type_name -> api.common.v1.PageAccessPolicy
+	26, // 2: api.manage.v1.Page.published_at:type_name -> google.protobuf.Timestamp
+	26, // 3: api.manage.v1.Page.created_at:type_name -> google.protobuf.Timestamp
+	26, // 4: api.manage.v1.Page.updated_at:type_name -> google.protobuf.Timestamp
+	27, // 5: api.manage.v1.Page.og_asset:type_name -> api.common.v1.AssetRef
+	28, // 6: api.manage.v1.Page.document_layout:type_name -> api.common.v1.DocumentLayout
+	29, // 7: api.manage.v1.Page.featured_image_delivery:type_name -> api.common.v1.MediaDelivery
+	30, // 8: api.manage.v1.Page.block_media:type_name -> api.content.v1.ContentBlockMediaItem
+	31, // 9: api.manage.v1.Page.access_policy:type_name -> api.common.v1.PageAccessPolicy
 	0,  // 10: api.manage.v1.PageSummary.status:type_name -> api.manage.v1.PageStatus
-	24, // 11: api.manage.v1.PageSummary.published_at:type_name -> google.protobuf.Timestamp
-	24, // 12: api.manage.v1.PageSummary.created_at:type_name -> google.protobuf.Timestamp
-	24, // 13: api.manage.v1.PageSummary.updated_at:type_name -> google.protobuf.Timestamp
-	29, // 14: api.manage.v1.PageSummary.access_policy:type_name -> api.common.v1.PageAccessPolicy
-	30, // 15: api.manage.v1.ListPagesAdminRequest.pagination:type_name -> api.common.v1.PaginationRequest
-	31, // 16: api.manage.v1.ListPagesAdminRequest.filters:type_name -> api.common.v1.FilterSpec
-	32, // 17: api.manage.v1.ListPagesAdminRequest.sorts:type_name -> api.common.v1.SortSpec
+	26, // 11: api.manage.v1.PageSummary.published_at:type_name -> google.protobuf.Timestamp
+	26, // 12: api.manage.v1.PageSummary.created_at:type_name -> google.protobuf.Timestamp
+	26, // 13: api.manage.v1.PageSummary.updated_at:type_name -> google.protobuf.Timestamp
+	31, // 14: api.manage.v1.PageSummary.access_policy:type_name -> api.common.v1.PageAccessPolicy
+	32, // 15: api.manage.v1.ListPagesAdminRequest.pagination:type_name -> api.common.v1.PaginationRequest
+	33, // 16: api.manage.v1.ListPagesAdminRequest.filters:type_name -> api.common.v1.FilterSpec
+	34, // 17: api.manage.v1.ListPagesAdminRequest.sorts:type_name -> api.common.v1.SortSpec
 	2,  // 18: api.manage.v1.ListPagesAdminResponse.pages:type_name -> api.manage.v1.PageSummary
-	33, // 19: api.manage.v1.ListPagesAdminResponse.pagination:type_name -> api.common.v1.PaginationResponse
-	29, // 20: api.manage.v1.CreatePageRequest.access_policy:type_name -> api.common.v1.PageAccessPolicy
-	29, // 21: api.manage.v1.UpdatePageRequest.access_policy:type_name -> api.common.v1.PageAccessPolicy
-	24, // 22: api.manage.v1.UpdatePageResponse.updated_at:type_name -> google.protobuf.Timestamp
-	29, // 23: api.manage.v1.UpdatePageResponse.access_policy:type_name -> api.common.v1.PageAccessPolicy
+	35, // 19: api.manage.v1.ListPagesAdminResponse.pagination:type_name -> api.common.v1.PaginationResponse
+	31, // 20: api.manage.v1.CreatePageRequest.access_policy:type_name -> api.common.v1.PageAccessPolicy
+	31, // 21: api.manage.v1.UpdatePageRequest.access_policy:type_name -> api.common.v1.PageAccessPolicy
+	26, // 22: api.manage.v1.UpdatePageResponse.updated_at:type_name -> google.protobuf.Timestamp
+	31, // 23: api.manage.v1.UpdatePageResponse.access_policy:type_name -> api.common.v1.PageAccessPolicy
 	0,  // 24: api.manage.v1.PageLifecycleMutationResponse.status:type_name -> api.manage.v1.PageStatus
-	24, // 25: api.manage.v1.PageLifecycleMutationResponse.published_at:type_name -> google.protobuf.Timestamp
-	24, // 26: api.manage.v1.PageLifecycleMutationResponse.updated_at:type_name -> google.protobuf.Timestamp
-	27, // 27: api.manage.v1.SetPageFeaturedImageResponse.image_delivery:type_name -> api.common.v1.MediaDelivery
-	24, // 28: api.manage.v1.PageVersion.created_at:type_name -> google.protobuf.Timestamp
-	34, // 29: api.manage.v1.PageVersion.contributors:type_name -> api.manage.v1.VersionContributor
-	30, // 30: api.manage.v1.ListPageVersionsRequest.pagination:type_name -> api.common.v1.PaginationRequest
+	26, // 25: api.manage.v1.PageLifecycleMutationResponse.published_at:type_name -> google.protobuf.Timestamp
+	26, // 26: api.manage.v1.PageLifecycleMutationResponse.updated_at:type_name -> google.protobuf.Timestamp
+	29, // 27: api.manage.v1.SetPageFeaturedImageResponse.image_delivery:type_name -> api.common.v1.MediaDelivery
+	26, // 28: api.manage.v1.PageVersion.created_at:type_name -> google.protobuf.Timestamp
+	36, // 29: api.manage.v1.PageVersion.contributors:type_name -> api.manage.v1.VersionContributor
+	32, // 30: api.manage.v1.ListPageVersionsRequest.pagination:type_name -> api.common.v1.PaginationRequest
 	19, // 31: api.manage.v1.ListPageVersionsResponse.versions:type_name -> api.manage.v1.PageVersion
-	33, // 32: api.manage.v1.ListPageVersionsResponse.pagination:type_name -> api.common.v1.PaginationResponse
-	3,  // 33: api.manage.v1.PageService.GetPage:input_type -> api.manage.v1.GetPageRequest
-	4,  // 34: api.manage.v1.PageService.GetPageBySlug:input_type -> api.manage.v1.GetPageBySlugRequest
-	7,  // 35: api.manage.v1.PageService.ListPagesAdmin:input_type -> api.manage.v1.ListPagesAdminRequest
-	9,  // 36: api.manage.v1.PageService.CreatePage:input_type -> api.manage.v1.CreatePageRequest
-	10, // 37: api.manage.v1.PageService.UpdatePage:input_type -> api.manage.v1.UpdatePageRequest
-	11, // 38: api.manage.v1.PageService.DeletePage:input_type -> api.manage.v1.DeletePageRequest
-	12, // 39: api.manage.v1.PageService.PublishPage:input_type -> api.manage.v1.PublishPageRequest
-	13, // 40: api.manage.v1.PageService.UnpublishPage:input_type -> api.manage.v1.UnpublishPageRequest
-	16, // 41: api.manage.v1.PageService.SetPageFeaturedImage:input_type -> api.manage.v1.SetPageFeaturedImageRequest
-	18, // 42: api.manage.v1.PageService.DeletePageFeaturedImage:input_type -> api.manage.v1.DeletePageFeaturedImageRequest
-	5,  // 43: api.manage.v1.PageService.CheckPageSlugAvailable:input_type -> api.manage.v1.CheckPageSlugAvailableRequest
-	20, // 44: api.manage.v1.PageService.ListPageVersions:input_type -> api.manage.v1.ListPageVersionsRequest
-	22, // 45: api.manage.v1.PageService.RestorePageVersion:input_type -> api.manage.v1.RestorePageVersionRequest
-	1,  // 46: api.manage.v1.PageService.GetPage:output_type -> api.manage.v1.Page
-	1,  // 47: api.manage.v1.PageService.GetPageBySlug:output_type -> api.manage.v1.Page
-	8,  // 48: api.manage.v1.PageService.ListPagesAdmin:output_type -> api.manage.v1.ListPagesAdminResponse
-	1,  // 49: api.manage.v1.PageService.CreatePage:output_type -> api.manage.v1.Page
-	14, // 50: api.manage.v1.PageService.UpdatePage:output_type -> api.manage.v1.UpdatePageResponse
-	35, // 51: api.manage.v1.PageService.DeletePage:output_type -> api.manage.v1.DeleteResponse
-	15, // 52: api.manage.v1.PageService.PublishPage:output_type -> api.manage.v1.PageLifecycleMutationResponse
-	15, // 53: api.manage.v1.PageService.UnpublishPage:output_type -> api.manage.v1.PageLifecycleMutationResponse
-	17, // 54: api.manage.v1.PageService.SetPageFeaturedImage:output_type -> api.manage.v1.SetPageFeaturedImageResponse
-	36, // 55: api.manage.v1.PageService.DeletePageFeaturedImage:output_type -> api.manage.v1.OgAssetDeleteResponse
-	6,  // 56: api.manage.v1.PageService.CheckPageSlugAvailable:output_type -> api.manage.v1.CheckPageSlugAvailableResponse
-	21, // 57: api.manage.v1.PageService.ListPageVersions:output_type -> api.manage.v1.ListPageVersionsResponse
-	1,  // 58: api.manage.v1.PageService.RestorePageVersion:output_type -> api.manage.v1.Page
-	46, // [46:59] is the sub-list for method output_type
-	33, // [33:46] is the sub-list for method input_type
-	33, // [33:33] is the sub-list for extension type_name
-	33, // [33:33] is the sub-list for extension extendee
-	0,  // [0:33] is the sub-list for field type_name
+	35, // 32: api.manage.v1.ListPageVersionsResponse.pagination:type_name -> api.common.v1.PaginationResponse
+	37, // 33: api.manage.v1.GetPageEditorDocumentResponse.document:type_name -> api.content.v1.LocalizedPageDocument
+	30, // 34: api.manage.v1.GetPageEditorDocumentResponse.block_media:type_name -> api.content.v1.ContentBlockMediaItem
+	28, // 35: api.manage.v1.GetPageEditorDocumentResponse.document_layout:type_name -> api.common.v1.DocumentLayout
+	3,  // 36: api.manage.v1.PageService.GetPage:input_type -> api.manage.v1.GetPageRequest
+	4,  // 37: api.manage.v1.PageService.GetPageBySlug:input_type -> api.manage.v1.GetPageBySlugRequest
+	23, // 38: api.manage.v1.PageService.GetPageEditorDocument:input_type -> api.manage.v1.GetPageEditorDocumentRequest
+	7,  // 39: api.manage.v1.PageService.ListPagesAdmin:input_type -> api.manage.v1.ListPagesAdminRequest
+	9,  // 40: api.manage.v1.PageService.CreatePage:input_type -> api.manage.v1.CreatePageRequest
+	10, // 41: api.manage.v1.PageService.UpdatePage:input_type -> api.manage.v1.UpdatePageRequest
+	11, // 42: api.manage.v1.PageService.DeletePage:input_type -> api.manage.v1.DeletePageRequest
+	12, // 43: api.manage.v1.PageService.PublishPage:input_type -> api.manage.v1.PublishPageRequest
+	13, // 44: api.manage.v1.PageService.UnpublishPage:input_type -> api.manage.v1.UnpublishPageRequest
+	16, // 45: api.manage.v1.PageService.SetPageFeaturedImage:input_type -> api.manage.v1.SetPageFeaturedImageRequest
+	18, // 46: api.manage.v1.PageService.DeletePageFeaturedImage:input_type -> api.manage.v1.DeletePageFeaturedImageRequest
+	5,  // 47: api.manage.v1.PageService.CheckPageSlugAvailable:input_type -> api.manage.v1.CheckPageSlugAvailableRequest
+	20, // 48: api.manage.v1.PageService.ListPageVersions:input_type -> api.manage.v1.ListPageVersionsRequest
+	22, // 49: api.manage.v1.PageService.RestorePageVersion:input_type -> api.manage.v1.RestorePageVersionRequest
+	1,  // 50: api.manage.v1.PageService.GetPage:output_type -> api.manage.v1.Page
+	1,  // 51: api.manage.v1.PageService.GetPageBySlug:output_type -> api.manage.v1.Page
+	24, // 52: api.manage.v1.PageService.GetPageEditorDocument:output_type -> api.manage.v1.GetPageEditorDocumentResponse
+	8,  // 53: api.manage.v1.PageService.ListPagesAdmin:output_type -> api.manage.v1.ListPagesAdminResponse
+	1,  // 54: api.manage.v1.PageService.CreatePage:output_type -> api.manage.v1.Page
+	14, // 55: api.manage.v1.PageService.UpdatePage:output_type -> api.manage.v1.UpdatePageResponse
+	38, // 56: api.manage.v1.PageService.DeletePage:output_type -> api.manage.v1.DeleteResponse
+	15, // 57: api.manage.v1.PageService.PublishPage:output_type -> api.manage.v1.PageLifecycleMutationResponse
+	15, // 58: api.manage.v1.PageService.UnpublishPage:output_type -> api.manage.v1.PageLifecycleMutationResponse
+	17, // 59: api.manage.v1.PageService.SetPageFeaturedImage:output_type -> api.manage.v1.SetPageFeaturedImageResponse
+	39, // 60: api.manage.v1.PageService.DeletePageFeaturedImage:output_type -> api.manage.v1.OgAssetDeleteResponse
+	6,  // 61: api.manage.v1.PageService.CheckPageSlugAvailable:output_type -> api.manage.v1.CheckPageSlugAvailableResponse
+	21, // 62: api.manage.v1.PageService.ListPageVersions:output_type -> api.manage.v1.ListPageVersionsResponse
+	1,  // 63: api.manage.v1.PageService.RestorePageVersion:output_type -> api.manage.v1.Page
+	50, // [50:64] is the sub-list for method output_type
+	36, // [36:50] is the sub-list for method input_type
+	36, // [36:36] is the sub-list for extension type_name
+	36, // [36:36] is the sub-list for extension extendee
+	0,  // [0:36] is the sub-list for field type_name
 }
 
 func init() { file_api_manage_v1_page_proto_init() }
@@ -1832,13 +2049,14 @@ func file_api_manage_v1_page_proto_init() {
 	file_api_manage_v1_page_proto_msgTypes[14].OneofWrappers = []any{}
 	file_api_manage_v1_page_proto_msgTypes[16].OneofWrappers = []any{}
 	file_api_manage_v1_page_proto_msgTypes[18].OneofWrappers = []any{}
+	file_api_manage_v1_page_proto_msgTypes[23].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_api_manage_v1_page_proto_rawDesc), len(file_api_manage_v1_page_proto_rawDesc)),
 			NumEnums:      1,
-			NumMessages:   22,
+			NumMessages:   24,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

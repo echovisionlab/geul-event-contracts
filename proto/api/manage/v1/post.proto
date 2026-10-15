@@ -290,11 +290,55 @@ message RestorePostVersionRequest {
   string post_id = 2;
 }
 
+// Editor first-paint read for one exact edit locale.
+message GetPostEditorDocumentRequest {
+  string post_id = 1;
+  // Exact canonical edit locale. Required; the API never derives or falls
+  // back to the source locale.
+  string locale = 2;
+}
+
+// The exact room projection editor-collab bootstraps the requested locale room
+// from (intra LoadPostBlockDocument): the shared/source base plus one complete
+// materialized requested-locale overlay, read in one transaction with its CAS
+// tokens. The Web editor paints it read-only and becomes editable only after
+// the collaboration room for the same locale is ready; it must not seed Yjs
+// from this payload.
+message GetPostEditorDocumentResponse {
+  api.content.v1.LocalizedRichTextDocument document = 1;
+  // Persisted content_document.revision of `document` (shared/source CAS).
+  string document_revision = 2;
+  // Exact canonical locale of `document`.
+  string locale = 3;
+  // Presence of the exact requested locale. A missing target is materialized
+  // from source fallback and stays false until it is explicitly created.
+  bool locale_exists = 4;
+  // Present only for an existing non-source locale; same token as the room.
+  optional string target_revision = 5;
+  // Server-derived current source locale.
+  string source_locale = 6;
+  // Active Block File references of the document, as bootstrapped by Collab.
+  repeated api.content.v1.ContentBlockMediaItem block_media = 7;
+  // True when the caller holds EDIT and the room will accept edits; false for
+  // a read-only room (archived Post with view_archived but no edit_archived).
+  bool editable = 8;
+  // Locale-owned title/summary of the requested locale when it exists,
+  // otherwise of the source locale.
+  optional string title = 9;
+  optional string summary = 10;
+}
+
 // Post Service
 service PostService {
   // Authenticated manage read; the API requires exact current view or
   // view_archived authorization. Public and ShareLink reads use open.v1.
   rpc GetPost(GetPostRequest) returns (Post) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+  // Editor SSR first paint. The API enforces the editor route permission
+  // under the same rule as Collab room bootstrap: exact EDIT, or
+  // view_archived for an archived Post (read-only). Denial is NOT_FOUND.
+  rpc GetPostEditorDocument(GetPostEditorDocumentRequest) returns (GetPostEditorDocumentResponse) {
     option (api.policy.v1.access) = {role: USER};
   }
   // Authenticated (author or admin)

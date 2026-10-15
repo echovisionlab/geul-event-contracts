@@ -392,12 +392,32 @@ func (InteractiveAIDocumentMutationOrigin) EnumDescriptor() ([]byte, []int) {
 
 // Attached as a Connect error detail to a FAILED_PRECONDITION response from a
 // collaboration persistence boundary.
+//
+// The current_* fields report the authoritative state the owning API observed
+// under its lock when it rejected the write. Collab compares them with the
+// revisions it already holds: when they equal a revision the room itself just
+// produced (for example a retried or concurrently acknowledged save) the
+// conflict is a self-echo and the room must not be fenced. Otherwise the room
+// fences and clients reload. Consumers must not derive any other meaning from
+// these opaque tokens.
 // geul-contract-root: connect-error-detail
 type CollaborationConflictDetail struct {
-	state         protoimpl.MessageState      `protogen:"open.v1"`
-	Reason        CollaborationConflictReason `protobuf:"varint,1,opt,name=reason,proto3,enum=api.intra.v1.CollaborationConflictReason" json:"reason,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state  protoimpl.MessageState      `protogen:"open.v1"`
+	Reason CollaborationConflictReason `protobuf:"varint,1,opt,name=reason,proto3,enum=api.intra.v1.CollaborationConflictReason" json:"reason,omitempty"`
+	// Current persisted content_document.revision (shared/source graph CAS).
+	// Always present for DOCUMENT_REVISION_CHANGED. Present for
+	// TARGET_REVISION_CHANGED and LOCALE_OWNERSHIP_CHANGED when the API observed
+	// it. Absent only when the document itself no longer resolves.
+	CurrentDocumentRevision *string `protobuf:"bytes,2,opt,name=current_document_revision,json=currentDocumentRevision,proto3,oneof" json:"current_document_revision,omitempty"`
+	// Current target_revision of the exact non-source room locale. Present only
+	// for TARGET_REVISION_CHANGED when that target still exists; absent for
+	// source conflicts and when the target was deleted.
+	CurrentTargetRevision *string `protobuf:"bytes,3,opt,name=current_target_revision,json=currentTargetRevision,proto3,oneof" json:"current_target_revision,omitempty"`
+	// Exact current existence of the non-source room locale. Present only for
+	// TARGET_REVISION_CHANGED; false means the target was deleted.
+	CurrentTargetExists *bool `protobuf:"varint,4,opt,name=current_target_exists,json=currentTargetExists,proto3,oneof" json:"current_target_exists,omitempty"`
+	unknownFields       protoimpl.UnknownFields
+	sizeCache           protoimpl.SizeCache
 }
 
 func (x *CollaborationConflictDetail) Reset() {
@@ -435,6 +455,27 @@ func (x *CollaborationConflictDetail) GetReason() CollaborationConflictReason {
 		return x.Reason
 	}
 	return CollaborationConflictReason_COLLABORATION_CONFLICT_REASON_UNSPECIFIED
+}
+
+func (x *CollaborationConflictDetail) GetCurrentDocumentRevision() string {
+	if x != nil && x.CurrentDocumentRevision != nil {
+		return *x.CurrentDocumentRevision
+	}
+	return ""
+}
+
+func (x *CollaborationConflictDetail) GetCurrentTargetRevision() string {
+	if x != nil && x.CurrentTargetRevision != nil {
+		return *x.CurrentTargetRevision
+	}
+	return ""
+}
+
+func (x *CollaborationConflictDetail) GetCurrentTargetExists() bool {
+	if x != nil && x.CurrentTargetExists != nil {
+		return *x.CurrentTargetExists
+	}
+	return false
 }
 
 // Attached as a Connect error detail to an INVALID_ARGUMENT response from a
@@ -987,9 +1028,15 @@ var File_api_intra_v1_collaboration_proto protoreflect.FileDescriptor
 
 const file_api_intra_v1_collaboration_proto_rawDesc = "" +
 	"\n" +
-	" api/intra/v1/collaboration.proto\x12\fapi.intra.v1\x1a\x1aapi/common/v1/common.proto\x1a\x16api/manage/v1/ai.proto\"`\n" +
+	" api/intra/v1/collaboration.proto\x12\fapi.intra.v1\x1a\x1aapi/common/v1/common.proto\x1a\x16api/manage/v1/ai.proto\"\xeb\x02\n" +
 	"\x1bCollaborationConflictDetail\x12A\n" +
-	"\x06reason\x18\x01 \x01(\x0e2).api.intra.v1.CollaborationConflictReasonR\x06reason\"r\n" +
+	"\x06reason\x18\x01 \x01(\x0e2).api.intra.v1.CollaborationConflictReasonR\x06reason\x12?\n" +
+	"\x19current_document_revision\x18\x02 \x01(\tH\x00R\x17currentDocumentRevision\x88\x01\x01\x12;\n" +
+	"\x17current_target_revision\x18\x03 \x01(\tH\x01R\x15currentTargetRevision\x88\x01\x01\x127\n" +
+	"\x15current_target_exists\x18\x04 \x01(\bH\x02R\x13currentTargetExists\x88\x01\x01B\x1c\n" +
+	"\x1a_current_document_revisionB\x1a\n" +
+	"\x18_current_target_revisionB\x18\n" +
+	"\x16_current_target_exists\"r\n" +
 	"$CollaborationMutationRejectionDetail\x12J\n" +
 	"\x06reason\x18\x01 \x01(\x0e22.api.intra.v1.CollaborationMutationRejectionReasonR\x06reason\"7\n" +
 	"\x16CollaborationPrincipal\x12\x1d\n" +
@@ -1149,6 +1196,7 @@ func file_api_intra_v1_collaboration_proto_init() {
 	if File_api_intra_v1_collaboration_proto != nil {
 		return
 	}
+	file_api_intra_v1_collaboration_proto_msgTypes[0].OneofWrappers = []any{}
 	file_api_intra_v1_collaboration_proto_msgTypes[3].OneofWrappers = []any{
 		(*NullableStringMutation_Set)(nil),
 		(*NullableStringMutation_Clear)(nil),

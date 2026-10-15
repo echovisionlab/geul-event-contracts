@@ -2386,6 +2386,194 @@ func (x *RestorePostVersionRequest) GetPostId() string {
 	return ""
 }
 
+// Editor first-paint read for one exact edit locale.
+type GetPostEditorDocumentRequest struct {
+	state  protoimpl.MessageState `protogen:"open.v1"`
+	PostId string                 `protobuf:"bytes,1,opt,name=post_id,json=postId,proto3" json:"post_id,omitempty"`
+	// Exact canonical edit locale. Required; the API never derives or falls
+	// back to the source locale.
+	Locale        string `protobuf:"bytes,2,opt,name=locale,proto3" json:"locale,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetPostEditorDocumentRequest) Reset() {
+	*x = GetPostEditorDocumentRequest{}
+	mi := &file_api_manage_v1_post_proto_msgTypes[34]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetPostEditorDocumentRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetPostEditorDocumentRequest) ProtoMessage() {}
+
+func (x *GetPostEditorDocumentRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_api_manage_v1_post_proto_msgTypes[34]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetPostEditorDocumentRequest.ProtoReflect.Descriptor instead.
+func (*GetPostEditorDocumentRequest) Descriptor() ([]byte, []int) {
+	return file_api_manage_v1_post_proto_rawDescGZIP(), []int{34}
+}
+
+func (x *GetPostEditorDocumentRequest) GetPostId() string {
+	if x != nil {
+		return x.PostId
+	}
+	return ""
+}
+
+func (x *GetPostEditorDocumentRequest) GetLocale() string {
+	if x != nil {
+		return x.Locale
+	}
+	return ""
+}
+
+// The exact room projection editor-collab bootstraps the requested locale room
+// from (intra LoadPostBlockDocument): the shared/source base plus one complete
+// materialized requested-locale overlay, read in one transaction with its CAS
+// tokens. The Web editor paints it read-only and becomes editable only after
+// the collaboration room for the same locale is ready; it must not seed Yjs
+// from this payload.
+type GetPostEditorDocumentResponse struct {
+	state    protoimpl.MessageState        `protogen:"open.v1"`
+	Document *v1.LocalizedRichTextDocument `protobuf:"bytes,1,opt,name=document,proto3" json:"document,omitempty"`
+	// Persisted content_document.revision of `document` (shared/source CAS).
+	DocumentRevision string `protobuf:"bytes,2,opt,name=document_revision,json=documentRevision,proto3" json:"document_revision,omitempty"`
+	// Exact canonical locale of `document`.
+	Locale string `protobuf:"bytes,3,opt,name=locale,proto3" json:"locale,omitempty"`
+	// Presence of the exact requested locale. A missing target is materialized
+	// from source fallback and stays false until it is explicitly created.
+	LocaleExists bool `protobuf:"varint,4,opt,name=locale_exists,json=localeExists,proto3" json:"locale_exists,omitempty"`
+	// Present only for an existing non-source locale; same token as the room.
+	TargetRevision *string `protobuf:"bytes,5,opt,name=target_revision,json=targetRevision,proto3,oneof" json:"target_revision,omitempty"`
+	// Server-derived current source locale.
+	SourceLocale string `protobuf:"bytes,6,opt,name=source_locale,json=sourceLocale,proto3" json:"source_locale,omitempty"`
+	// Active Block File references of the document, as bootstrapped by Collab.
+	BlockMedia []*v1.ContentBlockMediaItem `protobuf:"bytes,7,rep,name=block_media,json=blockMedia,proto3" json:"block_media,omitempty"`
+	// True when the caller holds EDIT and the room will accept edits; false for
+	// a read-only room (archived Post with view_archived but no edit_archived).
+	Editable bool `protobuf:"varint,8,opt,name=editable,proto3" json:"editable,omitempty"`
+	// Locale-owned title/summary of the requested locale when it exists,
+	// otherwise of the source locale.
+	Title         *string `protobuf:"bytes,9,opt,name=title,proto3,oneof" json:"title,omitempty"`
+	Summary       *string `protobuf:"bytes,10,opt,name=summary,proto3,oneof" json:"summary,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetPostEditorDocumentResponse) Reset() {
+	*x = GetPostEditorDocumentResponse{}
+	mi := &file_api_manage_v1_post_proto_msgTypes[35]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetPostEditorDocumentResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetPostEditorDocumentResponse) ProtoMessage() {}
+
+func (x *GetPostEditorDocumentResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_api_manage_v1_post_proto_msgTypes[35]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetPostEditorDocumentResponse.ProtoReflect.Descriptor instead.
+func (*GetPostEditorDocumentResponse) Descriptor() ([]byte, []int) {
+	return file_api_manage_v1_post_proto_rawDescGZIP(), []int{35}
+}
+
+func (x *GetPostEditorDocumentResponse) GetDocument() *v1.LocalizedRichTextDocument {
+	if x != nil {
+		return x.Document
+	}
+	return nil
+}
+
+func (x *GetPostEditorDocumentResponse) GetDocumentRevision() string {
+	if x != nil {
+		return x.DocumentRevision
+	}
+	return ""
+}
+
+func (x *GetPostEditorDocumentResponse) GetLocale() string {
+	if x != nil {
+		return x.Locale
+	}
+	return ""
+}
+
+func (x *GetPostEditorDocumentResponse) GetLocaleExists() bool {
+	if x != nil {
+		return x.LocaleExists
+	}
+	return false
+}
+
+func (x *GetPostEditorDocumentResponse) GetTargetRevision() string {
+	if x != nil && x.TargetRevision != nil {
+		return *x.TargetRevision
+	}
+	return ""
+}
+
+func (x *GetPostEditorDocumentResponse) GetSourceLocale() string {
+	if x != nil {
+		return x.SourceLocale
+	}
+	return ""
+}
+
+func (x *GetPostEditorDocumentResponse) GetBlockMedia() []*v1.ContentBlockMediaItem {
+	if x != nil {
+		return x.BlockMedia
+	}
+	return nil
+}
+
+func (x *GetPostEditorDocumentResponse) GetEditable() bool {
+	if x != nil {
+		return x.Editable
+	}
+	return false
+}
+
+func (x *GetPostEditorDocumentResponse) GetTitle() string {
+	if x != nil && x.Title != nil {
+		return *x.Title
+	}
+	return ""
+}
+
+func (x *GetPostEditorDocumentResponse) GetSummary() string {
+	if x != nil && x.Summary != nil {
+		return *x.Summary
+	}
+	return ""
+}
+
 var File_api_manage_v1_post_proto protoreflect.FileDescriptor
 
 const file_api_manage_v1_post_proto_rawDesc = "" +
@@ -2595,7 +2783,27 @@ const file_api_manage_v1_post_proto_rawDesc = "" +
 	"\x19RestorePostVersionRequest\x12\x1d\n" +
 	"\n" +
 	"version_id\x18\x01 \x01(\tR\tversionId\x12\x17\n" +
-	"\apost_id\x18\x02 \x01(\tR\x06postId*\x90\x01\n" +
+	"\apost_id\x18\x02 \x01(\tR\x06postId\"O\n" +
+	"\x1cGetPostEditorDocumentRequest\x12\x17\n" +
+	"\apost_id\x18\x01 \x01(\tR\x06postId\x12\x16\n" +
+	"\x06locale\x18\x02 \x01(\tR\x06locale\"\xeb\x03\n" +
+	"\x1dGetPostEditorDocumentResponse\x12E\n" +
+	"\bdocument\x18\x01 \x01(\v2).api.content.v1.LocalizedRichTextDocumentR\bdocument\x12+\n" +
+	"\x11document_revision\x18\x02 \x01(\tR\x10documentRevision\x12\x16\n" +
+	"\x06locale\x18\x03 \x01(\tR\x06locale\x12#\n" +
+	"\rlocale_exists\x18\x04 \x01(\bR\flocaleExists\x12,\n" +
+	"\x0ftarget_revision\x18\x05 \x01(\tH\x00R\x0etargetRevision\x88\x01\x01\x12#\n" +
+	"\rsource_locale\x18\x06 \x01(\tR\fsourceLocale\x12F\n" +
+	"\vblock_media\x18\a \x03(\v2%.api.content.v1.ContentBlockMediaItemR\n" +
+	"blockMedia\x12\x1a\n" +
+	"\beditable\x18\b \x01(\bR\beditable\x12\x19\n" +
+	"\x05title\x18\t \x01(\tH\x01R\x05title\x88\x01\x01\x12\x1d\n" +
+	"\asummary\x18\n" +
+	" \x01(\tH\x02R\asummary\x88\x01\x01B\x12\n" +
+	"\x10_target_revisionB\b\n" +
+	"\x06_titleB\n" +
+	"\n" +
+	"\b_summary*\x90\x01\n" +
 	"\n" +
 	"PostStatus\x12\x1b\n" +
 	"\x17POST_STATUS_UNSPECIFIED\x10\x00\x12\x15\n" +
@@ -2625,9 +2833,10 @@ const file_api_manage_v1_post_proto_rawDesc = "" +
 	"\x19POST_ACTION_VIEW_VERSIONS\x10\f\x12\x1f\n" +
 	"\x1bPOST_ACTION_RESTORE_VERSION\x10\r\x12\"\n" +
 	"\x1ePOST_ACTION_MANAGE_SHARE_LINKS\x10\x0e\x12!\n" +
-	"\x1dPOST_ACTION_MODERATE_COMMENTS\x10\x0f2\xe1\x11\n" +
+	"\x1dPOST_ACTION_MODERATE_COMMENTS\x10\x0f2\xdd\x12\n" +
 	"\vPostService\x12E\n" +
-	"\aGetPost\x12\x1d.api.manage.v1.GetPostRequest\x1a\x13.api.manage.v1.Post\"\x06\xca\xf3\x18\x02\b\x02\x12K\n" +
+	"\aGetPost\x12\x1d.api.manage.v1.GetPostRequest\x1a\x13.api.manage.v1.Post\"\x06\xca\xf3\x18\x02\b\x02\x12z\n" +
+	"\x15GetPostEditorDocument\x12+.api.manage.v1.GetPostEditorDocumentRequest\x1a,.api.manage.v1.GetPostEditorDocumentResponse\"\x06\xca\xf3\x18\x02\b\x02\x12K\n" +
 	"\n" +
 	"CreatePost\x12 .api.manage.v1.CreatePostRequest\x1a\x13.api.manage.v1.Post\"\x06\xca\xf3\x18\x02\b\x03\x12Y\n" +
 	"\n" +
@@ -2667,7 +2876,7 @@ func file_api_manage_v1_post_proto_rawDescGZIP() []byte {
 }
 
 var file_api_manage_v1_post_proto_enumTypes = make([]protoimpl.EnumInfo, 3)
-var file_api_manage_v1_post_proto_msgTypes = make([]protoimpl.MessageInfo, 34)
+var file_api_manage_v1_post_proto_msgTypes = make([]protoimpl.MessageInfo, 36)
 var file_api_manage_v1_post_proto_goTypes = []any{
 	(PostStatus)(0),                        // 0: api.manage.v1.PostStatus
 	(PostParticipantRole)(0),               // 1: api.manage.v1.PostParticipantRole
@@ -2706,120 +2915,127 @@ var file_api_manage_v1_post_proto_goTypes = []any{
 	(*ListPostVersionsRequest)(nil),        // 34: api.manage.v1.ListPostVersionsRequest
 	(*ListPostVersionsResponse)(nil),       // 35: api.manage.v1.ListPostVersionsResponse
 	(*RestorePostVersionRequest)(nil),      // 36: api.manage.v1.RestorePostVersionRequest
-	(*v1.RichTextDocument)(nil),            // 37: api.content.v1.RichTextDocument
-	(*timestamppb.Timestamp)(nil),          // 38: google.protobuf.Timestamp
-	(*v11.MemberSummary)(nil),              // 39: api.common.v1.MemberSummary
-	(*Category)(nil),                       // 40: api.manage.v1.Category
-	(*Tag)(nil),                            // 41: api.manage.v1.Tag
-	(*Series)(nil),                         // 42: api.manage.v1.Series
-	(*v11.AssetRef)(nil),                   // 43: api.common.v1.AssetRef
-	(*v11.DocumentLayout)(nil),             // 44: api.common.v1.DocumentLayout
-	(*v11.MediaDelivery)(nil),              // 45: api.common.v1.MediaDelivery
-	(*v1.ContentBlockMediaItem)(nil),       // 46: api.content.v1.ContentBlockMediaItem
-	(*v11.PaginationRequest)(nil),          // 47: api.common.v1.PaginationRequest
-	(*v11.FilterSpec)(nil),                 // 48: api.common.v1.FilterSpec
-	(*v11.SortSpec)(nil),                   // 49: api.common.v1.SortSpec
-	(*v11.PaginationResponse)(nil),         // 50: api.common.v1.PaginationResponse
-	(*VersionContributor)(nil),             // 51: api.manage.v1.VersionContributor
-	(*DeleteResponse)(nil),                 // 52: api.manage.v1.DeleteResponse
-	(*OgAssetDeleteResponse)(nil),          // 53: api.manage.v1.OgAssetDeleteResponse
+	(*GetPostEditorDocumentRequest)(nil),   // 37: api.manage.v1.GetPostEditorDocumentRequest
+	(*GetPostEditorDocumentResponse)(nil),  // 38: api.manage.v1.GetPostEditorDocumentResponse
+	(*v1.RichTextDocument)(nil),            // 39: api.content.v1.RichTextDocument
+	(*timestamppb.Timestamp)(nil),          // 40: google.protobuf.Timestamp
+	(*v11.MemberSummary)(nil),              // 41: api.common.v1.MemberSummary
+	(*Category)(nil),                       // 42: api.manage.v1.Category
+	(*Tag)(nil),                            // 43: api.manage.v1.Tag
+	(*Series)(nil),                         // 44: api.manage.v1.Series
+	(*v11.AssetRef)(nil),                   // 45: api.common.v1.AssetRef
+	(*v11.DocumentLayout)(nil),             // 46: api.common.v1.DocumentLayout
+	(*v11.MediaDelivery)(nil),              // 47: api.common.v1.MediaDelivery
+	(*v1.ContentBlockMediaItem)(nil),       // 48: api.content.v1.ContentBlockMediaItem
+	(*v11.PaginationRequest)(nil),          // 49: api.common.v1.PaginationRequest
+	(*v11.FilterSpec)(nil),                 // 50: api.common.v1.FilterSpec
+	(*v11.SortSpec)(nil),                   // 51: api.common.v1.SortSpec
+	(*v11.PaginationResponse)(nil),         // 52: api.common.v1.PaginationResponse
+	(*VersionContributor)(nil),             // 53: api.manage.v1.VersionContributor
+	(*v1.LocalizedRichTextDocument)(nil),   // 54: api.content.v1.LocalizedRichTextDocument
+	(*DeleteResponse)(nil),                 // 55: api.manage.v1.DeleteResponse
+	(*OgAssetDeleteResponse)(nil),          // 56: api.manage.v1.OgAssetDeleteResponse
 }
 var file_api_manage_v1_post_proto_depIdxs = []int32{
-	37, // 0: api.manage.v1.Post.document:type_name -> api.content.v1.RichTextDocument
+	39, // 0: api.manage.v1.Post.document:type_name -> api.content.v1.RichTextDocument
 	0,  // 1: api.manage.v1.Post.status:type_name -> api.manage.v1.PostStatus
-	38, // 2: api.manage.v1.Post.published_at:type_name -> google.protobuf.Timestamp
-	38, // 3: api.manage.v1.Post.created_at:type_name -> google.protobuf.Timestamp
-	38, // 4: api.manage.v1.Post.updated_at:type_name -> google.protobuf.Timestamp
-	39, // 5: api.manage.v1.Post.author_members:type_name -> api.common.v1.MemberSummary
-	40, // 6: api.manage.v1.Post.categories:type_name -> api.manage.v1.Category
-	41, // 7: api.manage.v1.Post.tags:type_name -> api.manage.v1.Tag
-	42, // 8: api.manage.v1.Post.series:type_name -> api.manage.v1.Series
-	43, // 9: api.manage.v1.Post.og_asset:type_name -> api.common.v1.AssetRef
-	44, // 10: api.manage.v1.Post.document_layout:type_name -> api.common.v1.DocumentLayout
-	38, // 11: api.manage.v1.Post.scheduled_at:type_name -> google.protobuf.Timestamp
+	40, // 2: api.manage.v1.Post.published_at:type_name -> google.protobuf.Timestamp
+	40, // 3: api.manage.v1.Post.created_at:type_name -> google.protobuf.Timestamp
+	40, // 4: api.manage.v1.Post.updated_at:type_name -> google.protobuf.Timestamp
+	41, // 5: api.manage.v1.Post.author_members:type_name -> api.common.v1.MemberSummary
+	42, // 6: api.manage.v1.Post.categories:type_name -> api.manage.v1.Category
+	43, // 7: api.manage.v1.Post.tags:type_name -> api.manage.v1.Tag
+	44, // 8: api.manage.v1.Post.series:type_name -> api.manage.v1.Series
+	45, // 9: api.manage.v1.Post.og_asset:type_name -> api.common.v1.AssetRef
+	46, // 10: api.manage.v1.Post.document_layout:type_name -> api.common.v1.DocumentLayout
+	40, // 11: api.manage.v1.Post.scheduled_at:type_name -> google.protobuf.Timestamp
 	2,  // 12: api.manage.v1.Post.allowed_actions:type_name -> api.manage.v1.PostAction
-	45, // 13: api.manage.v1.Post.featured_image_delivery:type_name -> api.common.v1.MediaDelivery
-	46, // 14: api.manage.v1.Post.block_media:type_name -> api.content.v1.ContentBlockMediaItem
+	47, // 13: api.manage.v1.Post.featured_image_delivery:type_name -> api.common.v1.MediaDelivery
+	48, // 14: api.manage.v1.Post.block_media:type_name -> api.content.v1.ContentBlockMediaItem
 	3,  // 15: api.manage.v1.PostWithStats.post:type_name -> api.manage.v1.Post
-	47, // 16: api.manage.v1.ListPostsAdminRequest.pagination:type_name -> api.common.v1.PaginationRequest
-	48, // 17: api.manage.v1.ListPostsAdminRequest.filters:type_name -> api.common.v1.FilterSpec
-	49, // 18: api.manage.v1.ListPostsAdminRequest.sorts:type_name -> api.common.v1.SortSpec
+	49, // 16: api.manage.v1.ListPostsAdminRequest.pagination:type_name -> api.common.v1.PaginationRequest
+	50, // 17: api.manage.v1.ListPostsAdminRequest.filters:type_name -> api.common.v1.FilterSpec
+	51, // 18: api.manage.v1.ListPostsAdminRequest.sorts:type_name -> api.common.v1.SortSpec
 	4,  // 19: api.manage.v1.ListPostsAdminResponse.posts:type_name -> api.manage.v1.PostWithStats
-	50, // 20: api.manage.v1.ListPostsAdminResponse.pagination:type_name -> api.common.v1.PaginationResponse
-	37, // 21: api.manage.v1.CreatePostRequest.document:type_name -> api.content.v1.RichTextDocument
-	44, // 22: api.manage.v1.UpdatePostRequest.document_layout:type_name -> api.common.v1.DocumentLayout
-	38, // 23: api.manage.v1.SchedulePostRequest.scheduled_at:type_name -> google.protobuf.Timestamp
-	44, // 24: api.manage.v1.UpdatePostResponse.document_layout:type_name -> api.common.v1.DocumentLayout
-	38, // 25: api.manage.v1.UpdatePostResponse.updated_at:type_name -> google.protobuf.Timestamp
+	52, // 20: api.manage.v1.ListPostsAdminResponse.pagination:type_name -> api.common.v1.PaginationResponse
+	39, // 21: api.manage.v1.CreatePostRequest.document:type_name -> api.content.v1.RichTextDocument
+	46, // 22: api.manage.v1.UpdatePostRequest.document_layout:type_name -> api.common.v1.DocumentLayout
+	40, // 23: api.manage.v1.SchedulePostRequest.scheduled_at:type_name -> google.protobuf.Timestamp
+	46, // 24: api.manage.v1.UpdatePostResponse.document_layout:type_name -> api.common.v1.DocumentLayout
+	40, // 25: api.manage.v1.UpdatePostResponse.updated_at:type_name -> google.protobuf.Timestamp
 	0,  // 26: api.manage.v1.PostLifecycleMutationResponse.status:type_name -> api.manage.v1.PostStatus
-	38, // 27: api.manage.v1.PostLifecycleMutationResponse.published_at:type_name -> google.protobuf.Timestamp
-	38, // 28: api.manage.v1.PostLifecycleMutationResponse.scheduled_at:type_name -> google.protobuf.Timestamp
-	38, // 29: api.manage.v1.PostLifecycleMutationResponse.updated_at:type_name -> google.protobuf.Timestamp
+	40, // 27: api.manage.v1.PostLifecycleMutationResponse.published_at:type_name -> google.protobuf.Timestamp
+	40, // 28: api.manage.v1.PostLifecycleMutationResponse.scheduled_at:type_name -> google.protobuf.Timestamp
+	40, // 29: api.manage.v1.PostLifecycleMutationResponse.updated_at:type_name -> google.protobuf.Timestamp
 	2,  // 30: api.manage.v1.PostLifecycleMutationResponse.allowed_actions:type_name -> api.manage.v1.PostAction
-	45, // 31: api.manage.v1.SetPostFeaturedImageResponse.image_delivery:type_name -> api.common.v1.MediaDelivery
-	39, // 32: api.manage.v1.PostParticipant.member:type_name -> api.common.v1.MemberSummary
+	47, // 31: api.manage.v1.SetPostFeaturedImageResponse.image_delivery:type_name -> api.common.v1.MediaDelivery
+	41, // 32: api.manage.v1.PostParticipant.member:type_name -> api.common.v1.MemberSummary
 	1,  // 33: api.manage.v1.PostParticipant.role:type_name -> api.manage.v1.PostParticipantRole
-	38, // 34: api.manage.v1.PostParticipant.created_at:type_name -> google.protobuf.Timestamp
+	40, // 34: api.manage.v1.PostParticipant.created_at:type_name -> google.protobuf.Timestamp
 	22, // 35: api.manage.v1.ListPostParticipantsResponse.participants:type_name -> api.manage.v1.PostParticipant
-	47, // 36: api.manage.v1.ListMyPostsRequest.pagination:type_name -> api.common.v1.PaginationRequest
-	48, // 37: api.manage.v1.ListMyPostsRequest.filters:type_name -> api.common.v1.FilterSpec
-	49, // 38: api.manage.v1.ListMyPostsRequest.sorts:type_name -> api.common.v1.SortSpec
+	49, // 36: api.manage.v1.ListMyPostsRequest.pagination:type_name -> api.common.v1.PaginationRequest
+	50, // 37: api.manage.v1.ListMyPostsRequest.filters:type_name -> api.common.v1.FilterSpec
+	51, // 38: api.manage.v1.ListMyPostsRequest.sorts:type_name -> api.common.v1.SortSpec
 	3,  // 39: api.manage.v1.ListMyPostsResponse.posts:type_name -> api.manage.v1.Post
-	50, // 40: api.manage.v1.ListMyPostsResponse.pagination:type_name -> api.common.v1.PaginationResponse
-	38, // 41: api.manage.v1.PostVersion.created_at:type_name -> google.protobuf.Timestamp
-	51, // 42: api.manage.v1.PostVersion.contributors:type_name -> api.manage.v1.VersionContributor
-	47, // 43: api.manage.v1.ListPostVersionsRequest.pagination:type_name -> api.common.v1.PaginationRequest
+	52, // 40: api.manage.v1.ListMyPostsResponse.pagination:type_name -> api.common.v1.PaginationResponse
+	40, // 41: api.manage.v1.PostVersion.created_at:type_name -> google.protobuf.Timestamp
+	53, // 42: api.manage.v1.PostVersion.contributors:type_name -> api.manage.v1.VersionContributor
+	49, // 43: api.manage.v1.ListPostVersionsRequest.pagination:type_name -> api.common.v1.PaginationRequest
 	33, // 44: api.manage.v1.ListPostVersionsResponse.versions:type_name -> api.manage.v1.PostVersion
-	50, // 45: api.manage.v1.ListPostVersionsResponse.pagination:type_name -> api.common.v1.PaginationResponse
-	5,  // 46: api.manage.v1.PostService.GetPost:input_type -> api.manage.v1.GetPostRequest
-	8,  // 47: api.manage.v1.PostService.CreatePost:input_type -> api.manage.v1.CreatePostRequest
-	9,  // 48: api.manage.v1.PostService.UpdatePost:input_type -> api.manage.v1.UpdatePostRequest
-	10, // 49: api.manage.v1.PostService.DeletePost:input_type -> api.manage.v1.DeletePostRequest
-	11, // 50: api.manage.v1.PostService.PublishPost:input_type -> api.manage.v1.PublishPostRequest
-	12, // 51: api.manage.v1.PostService.UnpublishPost:input_type -> api.manage.v1.UnpublishPostRequest
-	13, // 52: api.manage.v1.PostService.ArchivePost:input_type -> api.manage.v1.ArchivePostRequest
-	14, // 53: api.manage.v1.PostService.SchedulePost:input_type -> api.manage.v1.SchedulePostRequest
-	15, // 54: api.manage.v1.PostService.CancelPostSchedule:input_type -> api.manage.v1.CancelPostScheduleRequest
-	16, // 55: api.manage.v1.PostService.RepublishPost:input_type -> api.manage.v1.RepublishPostRequest
-	6,  // 56: api.manage.v1.PostService.ListPostsAdmin:input_type -> api.manage.v1.ListPostsAdminRequest
-	19, // 57: api.manage.v1.PostService.SetPostFeaturedImage:input_type -> api.manage.v1.SetPostFeaturedImageRequest
-	21, // 58: api.manage.v1.PostService.DeletePostFeaturedImage:input_type -> api.manage.v1.DeletePostFeaturedImageRequest
-	23, // 59: api.manage.v1.PostService.ListPostParticipants:input_type -> api.manage.v1.ListPostParticipantsRequest
-	25, // 60: api.manage.v1.PostService.AddPostAuthor:input_type -> api.manage.v1.AddPostAuthorRequest
-	26, // 61: api.manage.v1.PostService.RemovePostAuthor:input_type -> api.manage.v1.RemovePostAuthorRequest
-	27, // 62: api.manage.v1.PostService.AddPostCollaborator:input_type -> api.manage.v1.AddPostCollaboratorRequest
-	28, // 63: api.manage.v1.PostService.RemovePostCollaborator:input_type -> api.manage.v1.RemovePostCollaboratorRequest
-	34, // 64: api.manage.v1.PostService.ListPostVersions:input_type -> api.manage.v1.ListPostVersionsRequest
-	36, // 65: api.manage.v1.PostService.RestorePostVersion:input_type -> api.manage.v1.RestorePostVersionRequest
-	29, // 66: api.manage.v1.PostService.CheckSlugAvailable:input_type -> api.manage.v1.CheckSlugAvailableRequest
-	31, // 67: api.manage.v1.PostService.ListMyPosts:input_type -> api.manage.v1.ListMyPostsRequest
-	3,  // 68: api.manage.v1.PostService.GetPost:output_type -> api.manage.v1.Post
-	3,  // 69: api.manage.v1.PostService.CreatePost:output_type -> api.manage.v1.Post
-	17, // 70: api.manage.v1.PostService.UpdatePost:output_type -> api.manage.v1.UpdatePostResponse
-	52, // 71: api.manage.v1.PostService.DeletePost:output_type -> api.manage.v1.DeleteResponse
-	18, // 72: api.manage.v1.PostService.PublishPost:output_type -> api.manage.v1.PostLifecycleMutationResponse
-	18, // 73: api.manage.v1.PostService.UnpublishPost:output_type -> api.manage.v1.PostLifecycleMutationResponse
-	18, // 74: api.manage.v1.PostService.ArchivePost:output_type -> api.manage.v1.PostLifecycleMutationResponse
-	18, // 75: api.manage.v1.PostService.SchedulePost:output_type -> api.manage.v1.PostLifecycleMutationResponse
-	18, // 76: api.manage.v1.PostService.CancelPostSchedule:output_type -> api.manage.v1.PostLifecycleMutationResponse
-	18, // 77: api.manage.v1.PostService.RepublishPost:output_type -> api.manage.v1.PostLifecycleMutationResponse
-	7,  // 78: api.manage.v1.PostService.ListPostsAdmin:output_type -> api.manage.v1.ListPostsAdminResponse
-	20, // 79: api.manage.v1.PostService.SetPostFeaturedImage:output_type -> api.manage.v1.SetPostFeaturedImageResponse
-	53, // 80: api.manage.v1.PostService.DeletePostFeaturedImage:output_type -> api.manage.v1.OgAssetDeleteResponse
-	24, // 81: api.manage.v1.PostService.ListPostParticipants:output_type -> api.manage.v1.ListPostParticipantsResponse
-	22, // 82: api.manage.v1.PostService.AddPostAuthor:output_type -> api.manage.v1.PostParticipant
-	52, // 83: api.manage.v1.PostService.RemovePostAuthor:output_type -> api.manage.v1.DeleteResponse
-	22, // 84: api.manage.v1.PostService.AddPostCollaborator:output_type -> api.manage.v1.PostParticipant
-	52, // 85: api.manage.v1.PostService.RemovePostCollaborator:output_type -> api.manage.v1.DeleteResponse
-	35, // 86: api.manage.v1.PostService.ListPostVersions:output_type -> api.manage.v1.ListPostVersionsResponse
-	3,  // 87: api.manage.v1.PostService.RestorePostVersion:output_type -> api.manage.v1.Post
-	30, // 88: api.manage.v1.PostService.CheckSlugAvailable:output_type -> api.manage.v1.CheckSlugAvailableResponse
-	32, // 89: api.manage.v1.PostService.ListMyPosts:output_type -> api.manage.v1.ListMyPostsResponse
-	68, // [68:90] is the sub-list for method output_type
-	46, // [46:68] is the sub-list for method input_type
-	46, // [46:46] is the sub-list for extension type_name
-	46, // [46:46] is the sub-list for extension extendee
-	0,  // [0:46] is the sub-list for field type_name
+	52, // 45: api.manage.v1.ListPostVersionsResponse.pagination:type_name -> api.common.v1.PaginationResponse
+	54, // 46: api.manage.v1.GetPostEditorDocumentResponse.document:type_name -> api.content.v1.LocalizedRichTextDocument
+	48, // 47: api.manage.v1.GetPostEditorDocumentResponse.block_media:type_name -> api.content.v1.ContentBlockMediaItem
+	5,  // 48: api.manage.v1.PostService.GetPost:input_type -> api.manage.v1.GetPostRequest
+	37, // 49: api.manage.v1.PostService.GetPostEditorDocument:input_type -> api.manage.v1.GetPostEditorDocumentRequest
+	8,  // 50: api.manage.v1.PostService.CreatePost:input_type -> api.manage.v1.CreatePostRequest
+	9,  // 51: api.manage.v1.PostService.UpdatePost:input_type -> api.manage.v1.UpdatePostRequest
+	10, // 52: api.manage.v1.PostService.DeletePost:input_type -> api.manage.v1.DeletePostRequest
+	11, // 53: api.manage.v1.PostService.PublishPost:input_type -> api.manage.v1.PublishPostRequest
+	12, // 54: api.manage.v1.PostService.UnpublishPost:input_type -> api.manage.v1.UnpublishPostRequest
+	13, // 55: api.manage.v1.PostService.ArchivePost:input_type -> api.manage.v1.ArchivePostRequest
+	14, // 56: api.manage.v1.PostService.SchedulePost:input_type -> api.manage.v1.SchedulePostRequest
+	15, // 57: api.manage.v1.PostService.CancelPostSchedule:input_type -> api.manage.v1.CancelPostScheduleRequest
+	16, // 58: api.manage.v1.PostService.RepublishPost:input_type -> api.manage.v1.RepublishPostRequest
+	6,  // 59: api.manage.v1.PostService.ListPostsAdmin:input_type -> api.manage.v1.ListPostsAdminRequest
+	19, // 60: api.manage.v1.PostService.SetPostFeaturedImage:input_type -> api.manage.v1.SetPostFeaturedImageRequest
+	21, // 61: api.manage.v1.PostService.DeletePostFeaturedImage:input_type -> api.manage.v1.DeletePostFeaturedImageRequest
+	23, // 62: api.manage.v1.PostService.ListPostParticipants:input_type -> api.manage.v1.ListPostParticipantsRequest
+	25, // 63: api.manage.v1.PostService.AddPostAuthor:input_type -> api.manage.v1.AddPostAuthorRequest
+	26, // 64: api.manage.v1.PostService.RemovePostAuthor:input_type -> api.manage.v1.RemovePostAuthorRequest
+	27, // 65: api.manage.v1.PostService.AddPostCollaborator:input_type -> api.manage.v1.AddPostCollaboratorRequest
+	28, // 66: api.manage.v1.PostService.RemovePostCollaborator:input_type -> api.manage.v1.RemovePostCollaboratorRequest
+	34, // 67: api.manage.v1.PostService.ListPostVersions:input_type -> api.manage.v1.ListPostVersionsRequest
+	36, // 68: api.manage.v1.PostService.RestorePostVersion:input_type -> api.manage.v1.RestorePostVersionRequest
+	29, // 69: api.manage.v1.PostService.CheckSlugAvailable:input_type -> api.manage.v1.CheckSlugAvailableRequest
+	31, // 70: api.manage.v1.PostService.ListMyPosts:input_type -> api.manage.v1.ListMyPostsRequest
+	3,  // 71: api.manage.v1.PostService.GetPost:output_type -> api.manage.v1.Post
+	38, // 72: api.manage.v1.PostService.GetPostEditorDocument:output_type -> api.manage.v1.GetPostEditorDocumentResponse
+	3,  // 73: api.manage.v1.PostService.CreatePost:output_type -> api.manage.v1.Post
+	17, // 74: api.manage.v1.PostService.UpdatePost:output_type -> api.manage.v1.UpdatePostResponse
+	55, // 75: api.manage.v1.PostService.DeletePost:output_type -> api.manage.v1.DeleteResponse
+	18, // 76: api.manage.v1.PostService.PublishPost:output_type -> api.manage.v1.PostLifecycleMutationResponse
+	18, // 77: api.manage.v1.PostService.UnpublishPost:output_type -> api.manage.v1.PostLifecycleMutationResponse
+	18, // 78: api.manage.v1.PostService.ArchivePost:output_type -> api.manage.v1.PostLifecycleMutationResponse
+	18, // 79: api.manage.v1.PostService.SchedulePost:output_type -> api.manage.v1.PostLifecycleMutationResponse
+	18, // 80: api.manage.v1.PostService.CancelPostSchedule:output_type -> api.manage.v1.PostLifecycleMutationResponse
+	18, // 81: api.manage.v1.PostService.RepublishPost:output_type -> api.manage.v1.PostLifecycleMutationResponse
+	7,  // 82: api.manage.v1.PostService.ListPostsAdmin:output_type -> api.manage.v1.ListPostsAdminResponse
+	20, // 83: api.manage.v1.PostService.SetPostFeaturedImage:output_type -> api.manage.v1.SetPostFeaturedImageResponse
+	56, // 84: api.manage.v1.PostService.DeletePostFeaturedImage:output_type -> api.manage.v1.OgAssetDeleteResponse
+	24, // 85: api.manage.v1.PostService.ListPostParticipants:output_type -> api.manage.v1.ListPostParticipantsResponse
+	22, // 86: api.manage.v1.PostService.AddPostAuthor:output_type -> api.manage.v1.PostParticipant
+	55, // 87: api.manage.v1.PostService.RemovePostAuthor:output_type -> api.manage.v1.DeleteResponse
+	22, // 88: api.manage.v1.PostService.AddPostCollaborator:output_type -> api.manage.v1.PostParticipant
+	55, // 89: api.manage.v1.PostService.RemovePostCollaborator:output_type -> api.manage.v1.DeleteResponse
+	35, // 90: api.manage.v1.PostService.ListPostVersions:output_type -> api.manage.v1.ListPostVersionsResponse
+	3,  // 91: api.manage.v1.PostService.RestorePostVersion:output_type -> api.manage.v1.Post
+	30, // 92: api.manage.v1.PostService.CheckSlugAvailable:output_type -> api.manage.v1.CheckSlugAvailableResponse
+	32, // 93: api.manage.v1.PostService.ListMyPosts:output_type -> api.manage.v1.ListMyPostsResponse
+	71, // [71:94] is the sub-list for method output_type
+	48, // [48:71] is the sub-list for method input_type
+	48, // [48:48] is the sub-list for extension type_name
+	48, // [48:48] is the sub-list for extension extendee
+	0,  // [0:48] is the sub-list for field type_name
 }
 
 func init() { file_api_manage_v1_post_proto_init() }
@@ -2839,13 +3055,14 @@ func file_api_manage_v1_post_proto_init() {
 	file_api_manage_v1_post_proto_msgTypes[17].OneofWrappers = []any{}
 	file_api_manage_v1_post_proto_msgTypes[26].OneofWrappers = []any{}
 	file_api_manage_v1_post_proto_msgTypes[30].OneofWrappers = []any{}
+	file_api_manage_v1_post_proto_msgTypes[35].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_api_manage_v1_post_proto_rawDesc), len(file_api_manage_v1_post_proto_rawDesc)),
 			NumEnums:      3,
-			NumMessages:   34,
+			NumMessages:   36,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
