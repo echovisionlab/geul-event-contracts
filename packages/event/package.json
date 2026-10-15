@@ -46,6 +46,7 @@
     "url": "https://github.com/echovisionlab/geul-event-contracts/issues"
   },
   "publishConfig": {
-    "access": "public"
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
   }
 }
