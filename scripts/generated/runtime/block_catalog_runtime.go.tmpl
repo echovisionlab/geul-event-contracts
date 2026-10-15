@@ -85,12 +85,19 @@ type ValidatedContentStorageShared struct {
 	FileReferences []ContentStorageFileReference
 }
 
+var SiteVariableKeys = []string{__SITE_VARIABLE_KEYS__}
+
+func IsSiteVariableKey(key string) bool { return containsString(SiteVariableKeys, key) }
+
+var linkedSiteVariableKeys = []string{__SITE_VARIABLE_LINKED_KEYS__}
+
 type runtimeFieldSpec struct {
 	Type          string                      `json:"type"`
 	Ownership     string                      `json:"ownership"`
 	Required      bool                        `json:"required"`
 	Translatable  bool                        `json:"translatable"`
 	AllowEmpty    bool                        `json:"allow_empty"`
+	RootRelative bool `json:"root_relative"`
 	Unique        bool                        `json:"unique"`
 	Default       runtimeOptionalValue        `json:"default"`
 	Min           *float64                    `json:"min"`
@@ -192,6 +199,7 @@ type ContentFieldDescriptor struct {
 	Required      bool
 	Translatable  bool
 	AllowEmpty    bool
+	RootRelative bool
 	Unique        bool
 	HasDefault    bool
 	Default       any
@@ -437,6 +445,7 @@ func describeContentFields(fields map[string]runtimeFieldSpec, inheritedOwnershi
 			Required:      spec.Required,
 			Translatable:  spec.Translatable,
 			AllowEmpty:    spec.AllowEmpty,
+			RootRelative: spec.RootRelative,
 			Unique:        spec.Unique,
 			HasDefault:    spec.Default.Present,
 			Default:       cloneDescriptorValue(spec.Default.Value),
@@ -738,7 +747,8 @@ func validateAndNormalizeFields(record map[string]any, fields map[string]runtime
 				return contentValidationError(fieldPath, "type", "expected URI string")
 			}
 			parsed, err := url.Parse(text)
-			if err != nil || parsed.Scheme == "" || !containsString(spec.Schemes, strings.ToLower(parsed.Scheme)) {
+			rootRelative := spec.RootRelative && strings.HasPrefix(text, "/") && !strings.HasPrefix(text, "//") && !strings.Contains(text, "\\") && strings.IndexFunc(text, func(r rune) bool { return r <= 32 || r == 127 }) < 0
+			if err != nil || (!rootRelative && (parsed.Scheme == "" || !containsString(spec.Schemes, strings.ToLower(parsed.Scheme)))) {
 				return contentValidationError(fieldPath, "uri", "invalid or forbidden URI")
 			}
 		case "editor_color":
@@ -1002,6 +1012,13 @@ func validateRichContent(value map[string]any, profile, path string, mode Conten
 					return err
 				}
 			}
+			if raw, present := typed["siteVariable"]; present {
+                variable, ok := raw.(map[string]any)
+                if !ok { return contentValidationError(currentPath+".siteVariable", "type", "expected site variable") }
+                key, _ := variable["key"].(string)
+                if !IsSiteVariableKey(key) { return contentValidationError(currentPath+".siteVariable.key", "site_variable_key", "unknown site variable key") }
+                if variable["linked"] == true && !containsString(linkedSiteVariableKeys, key) { return contentValidationError(currentPath+".siteVariable.linked", "site_variable_linked", "site variable cannot be linked") }
+            }
 			if _, present := typed["mathInline"]; present && !profileDescriptor.InlineMath {
 				return contentValidationError(currentPath+".mathInline", "profile", "inline math is forbidden")
 			}

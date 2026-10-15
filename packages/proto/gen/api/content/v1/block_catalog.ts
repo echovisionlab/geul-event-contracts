@@ -38,7 +38,7 @@ import {
 } from "./block_content_pb.ts";
 
 export const contentBlockCatalogFingerprint =
-  "2db3b07d50a139a670f68e3cd045063d20475a102acbee7852066b1929b7172b" as const;
+  "7ee996e5a23685d3b981268c3dd6608d8f006f5b62dbec5fb35e1b4d0532cf49" as const;
 export const contentBlockRuntimeForbiddenFields = [
   "_tempUrl",
   "allowOriginalDownload",
@@ -127,6 +127,24 @@ export const pageSectionKinds = [
   "embed",
 ] as const;
 export type PageSectionKind = (typeof pageSectionKinds)[number];
+export const siteVariableKeys = [
+  "site.title",
+  "site.url",
+  "site.companyName",
+  "contact.legalEmail",
+  "contact.supportEmail",
+  "contact.privacyEmail",
+] as const;
+export type SiteVariableKey = (typeof siteVariableKeys)[number];
+export function isSiteVariableKey(key: string): key is SiteVariableKey {
+  return (siteVariableKeys as readonly string[]).includes(key);
+}
+const linkedSiteVariableKeys: readonly string[] = [
+  "site.url",
+  "contact.legalEmail",
+  "contact.supportEmail",
+  "contact.privacyEmail",
+];
 export const richTextProfiles = {
   post: {
     blocks: [
@@ -1129,6 +1147,7 @@ const richTextLinkFieldCatalog = {
   href: {
     type: "uri",
     schemes: ["http", "https", "mailto", "tel"],
+    root_relative: true,
     required: true,
     ownership: "locale",
   },
@@ -3431,7 +3450,18 @@ function validateFields(
       requireUuid(String(fieldValue), path + "." + name);
     else if (spec.type === "uri") {
       try {
-        const parsed = new URL(String(fieldValue));
+        const uri = String(fieldValue);
+        if (
+          spec.root_relative === true &&
+          uri.startsWith("/") &&
+          !uri.startsWith("//") &&
+          !uri.includes("\\") &&
+          !/[\u0000-\u0020\u007f]/.test(uri)
+        ) {
+          new URL(uri, "https://example.invalid");
+          continue;
+        }
+        const parsed = new URL(uri);
         const allowed = (spec.schemes as readonly string[] | undefined) ?? [];
         if (!allowed.includes(parsed.protocol.slice(0, -1)))
           fail(path + "." + name, "uri_scheme", "URI scheme is forbidden");
@@ -3579,6 +3609,28 @@ function validateInline(
         itemPath + ".text.styles",
         mode,
       );
+    if (node.value.case === "siteVariable") {
+      const variable = node.value.value;
+      if (!isSiteVariableKey(variable.key))
+        fail(
+          itemPath + ".siteVariable.key",
+          "site_variable_key",
+          "unknown site variable key",
+        );
+      if (variable.linked && !linkedSiteVariableKeys.includes(variable.key))
+        fail(
+          itemPath + ".siteVariable.linked",
+          "site_variable_linked",
+          "site variable cannot be linked",
+        );
+      if (variable.styles)
+        validateInlineStyles(
+          variable.styles,
+          profile,
+          itemPath + ".siteVariable.styles",
+          mode,
+        );
+    }
     if (node.value.case === "link") {
       validateFields(
         node.value.value,

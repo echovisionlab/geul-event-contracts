@@ -343,7 +343,7 @@ func (x RichTextTableCellProps_TextAlignment) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use RichTextTableCellProps_TextAlignment.Descriptor instead.
 func (RichTextTableCellProps_TextAlignment) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{8, 0}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{9, 0}
 }
 
 type ParagraphProps_TextAlignment int32
@@ -395,7 +395,7 @@ func (x ParagraphProps_TextAlignment) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ParagraphProps_TextAlignment.Descriptor instead.
 func (ParagraphProps_TextAlignment) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{15, 0}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{16, 0}
 }
 
 type ParagraphProps_AspectRatio int32
@@ -453,7 +453,7 @@ func (x ParagraphProps_AspectRatio) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ParagraphProps_AspectRatio.Descriptor instead.
 func (ParagraphProps_AspectRatio) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{15, 1}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{16, 1}
 }
 
 type HeadingProps_TextAlignment int32
@@ -505,7 +505,7 @@ func (x HeadingProps_TextAlignment) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use HeadingProps_TextAlignment.Descriptor instead.
 func (HeadingProps_TextAlignment) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{16, 0}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{17, 0}
 }
 
 type HeadingProps_Level int32
@@ -557,7 +557,7 @@ func (x HeadingProps_Level) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use HeadingProps_Level.Descriptor instead.
 func (HeadingProps_Level) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{16, 1}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{17, 1}
 }
 
 type BulletListItemProps_TextAlignment int32
@@ -609,7 +609,7 @@ func (x BulletListItemProps_TextAlignment) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use BulletListItemProps_TextAlignment.Descriptor instead.
 func (BulletListItemProps_TextAlignment) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{17, 0}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{18, 0}
 }
 
 type NumberedListItemProps_TextAlignment int32
@@ -661,7 +661,7 @@ func (x NumberedListItemProps_TextAlignment) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use NumberedListItemProps_TextAlignment.Descriptor instead.
 func (NumberedListItemProps_TextAlignment) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{18, 0}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{19, 0}
 }
 
 type CheckListItemProps_TextAlignment int32
@@ -713,7 +713,7 @@ func (x CheckListItemProps_TextAlignment) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use CheckListItemProps_TextAlignment.Descriptor instead.
 func (CheckListItemProps_TextAlignment) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{19, 0}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{20, 0}
 }
 
 type CodeBlockProps_Language int32
@@ -903,7 +903,7 @@ func (x CodeBlockProps_Language) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use CodeBlockProps_Language.Descriptor instead.
 func (CodeBlockProps_Language) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{21, 0}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{22, 0}
 }
 
 type CodeBlockProps_TextAlignment int32
@@ -955,7 +955,7 @@ func (x CodeBlockProps_TextAlignment) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use CodeBlockProps_TextAlignment.Descriptor instead.
 func (CodeBlockProps_TextAlignment) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{21, 1}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{22, 1}
 }
 
 type TableProps_TextAlignment int32
@@ -1007,7 +1007,7 @@ func (x TableProps_TextAlignment) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use TableProps_TextAlignment.Descriptor instead.
 func (TableProps_TextAlignment) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{23, 0}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{24, 0}
 }
 
 type P5SketchProps_Mode int32
@@ -1059,7 +1059,7 @@ func (x P5SketchProps_Mode) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use P5SketchProps_Mode.Descriptor instead.
 func (P5SketchProps_Mode) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{24, 0}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{25, 0}
 }
 
 type P5SketchProps_TextAlignment int32
@@ -1111,7 +1111,7 @@ func (x P5SketchProps_TextAlignment) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use P5SketchProps_TextAlignment.Descriptor instead.
 func (P5SketchProps_TextAlignment) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{24, 1}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{25, 1}
 }
 
 type P5SketchProps_CapabilitiesItem int32
@@ -1178,7 +1178,7 @@ func (x P5SketchProps_CapabilitiesItem) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use P5SketchProps_CapabilitiesItem.Descriptor instead.
 func (P5SketchProps_CapabilitiesItem) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{24, 2}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{25, 2}
 }
 
 type ThreeSceneProps_Mode int32
@@ -1230,7 +1230,7 @@ func (x ThreeSceneProps_Mode) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ThreeSceneProps_Mode.Descriptor instead.
 func (ThreeSceneProps_Mode) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{25, 0}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{26, 0}
 }
 
 type ThreeSceneProps_TextAlignment int32
@@ -1282,7 +1282,7 @@ func (x ThreeSceneProps_TextAlignment) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ThreeSceneProps_TextAlignment.Descriptor instead.
 func (ThreeSceneProps_TextAlignment) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{25, 1}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{26, 1}
 }
 
 type ThreeSceneProps_Language int32
@@ -1331,7 +1331,7 @@ func (x ThreeSceneProps_Language) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ThreeSceneProps_Language.Descriptor instead.
 func (ThreeSceneProps_Language) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{25, 2}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{26, 2}
 }
 
 type ShaderProps_Mode int32
@@ -1383,7 +1383,7 @@ func (x ShaderProps_Mode) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ShaderProps_Mode.Descriptor instead.
 func (ShaderProps_Mode) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{26, 0}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{27, 0}
 }
 
 type ShaderProps_TextAlignment int32
@@ -1435,7 +1435,7 @@ func (x ShaderProps_TextAlignment) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ShaderProps_TextAlignment.Descriptor instead.
 func (ShaderProps_TextAlignment) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{26, 1}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{27, 1}
 }
 
 type ShaderProps_StagesItem_Kind int32
@@ -1505,7 +1505,7 @@ func (x ShaderProps_StagesItem_Kind) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ShaderProps_StagesItem_Kind.Descriptor instead.
 func (ShaderProps_StagesItem_Kind) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{26, 0, 0}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{27, 0, 0}
 }
 
 type ShaderProps_StagesItem_ChannelsItem_Kind int32
@@ -1566,7 +1566,7 @@ func (x ShaderProps_StagesItem_ChannelsItem_Kind) Number() protoreflect.EnumNumb
 
 // Deprecated: Use ShaderProps_StagesItem_ChannelsItem_Kind.Descriptor instead.
 func (ShaderProps_StagesItem_ChannelsItem_Kind) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{26, 0, 0, 0}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{27, 0, 0, 0}
 }
 
 type ShaderProps_StagesItem_ChannelsItem_Buffer int32
@@ -1621,7 +1621,7 @@ func (x ShaderProps_StagesItem_ChannelsItem_Buffer) Number() protoreflect.EnumNu
 
 // Deprecated: Use ShaderProps_StagesItem_ChannelsItem_Buffer.Descriptor instead.
 func (ShaderProps_StagesItem_ChannelsItem_Buffer) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{26, 0, 0, 1}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{27, 0, 0, 1}
 }
 
 type ShaderProps_StagesItem_ChannelsItem_SamplerValue_Filter int32
@@ -1670,7 +1670,7 @@ func (x ShaderProps_StagesItem_ChannelsItem_SamplerValue_Filter) Number() protor
 
 // Deprecated: Use ShaderProps_StagesItem_ChannelsItem_SamplerValue_Filter.Descriptor instead.
 func (ShaderProps_StagesItem_ChannelsItem_SamplerValue_Filter) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{26, 0, 0, 0, 0}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{27, 0, 0, 0, 0}
 }
 
 type ShaderProps_StagesItem_ChannelsItem_SamplerValue_Wrap int32
@@ -1719,7 +1719,7 @@ func (x ShaderProps_StagesItem_ChannelsItem_SamplerValue_Wrap) Number() protoref
 
 // Deprecated: Use ShaderProps_StagesItem_ChannelsItem_SamplerValue_Wrap.Descriptor instead.
 func (ShaderProps_StagesItem_ChannelsItem_SamplerValue_Wrap) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{26, 0, 0, 0, 1}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{27, 0, 0, 0, 1}
 }
 
 type MapProps_AspectRatio int32
@@ -1771,7 +1771,7 @@ func (x MapProps_AspectRatio) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use MapProps_AspectRatio.Descriptor instead.
 func (MapProps_AspectRatio) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{28, 0}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{29, 0}
 }
 
 type MapProps_TextAlignment int32
@@ -1823,7 +1823,7 @@ func (x MapProps_TextAlignment) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use MapProps_TextAlignment.Descriptor instead.
 func (MapProps_TextAlignment) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{28, 1}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{29, 1}
 }
 
 type MapProps_Variant int32
@@ -1869,7 +1869,7 @@ func (x MapProps_Variant) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use MapProps_Variant.Descriptor instead.
 func (MapProps_Variant) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{28, 2}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{29, 2}
 }
 
 type MapProps_PreferredScheme int32
@@ -1921,7 +1921,7 @@ func (x MapProps_PreferredScheme) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use MapProps_PreferredScheme.Descriptor instead.
 func (MapProps_PreferredScheme) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{28, 3}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{29, 3}
 }
 
 type MapProps_AreaLabelsMode int32
@@ -1973,7 +1973,7 @@ func (x MapProps_AreaLabelsMode) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use MapProps_AreaLabelsMode.Descriptor instead.
 func (MapProps_AreaLabelsMode) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{28, 4}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{29, 4}
 }
 
 type MapProps_PoiLabelsMode int32
@@ -2025,7 +2025,7 @@ func (x MapProps_PoiLabelsMode) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use MapProps_PoiLabelsMode.Descriptor instead.
 func (MapProps_PoiLabelsMode) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{28, 5}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{29, 5}
 }
 
 type FileProps_TextAlignment int32
@@ -2077,7 +2077,7 @@ func (x FileProps_TextAlignment) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use FileProps_TextAlignment.Descriptor instead.
 func (FileProps_TextAlignment) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{29, 0}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{30, 0}
 }
 
 type PageSectionSettings_MaxWidth int32
@@ -2129,7 +2129,7 @@ func (x PageSectionSettings_MaxWidth) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use PageSectionSettings_MaxWidth.Descriptor instead.
 func (PageSectionSettings_MaxWidth) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{102, 0}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{103, 0}
 }
 
 type PageImmersiveUnitProps_Mesh int32
@@ -2184,7 +2184,7 @@ func (x PageImmersiveUnitProps_Mesh) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use PageImmersiveUnitProps_Mesh.Descriptor instead.
 func (PageImmersiveUnitProps_Mesh) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{103, 0}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{104, 0}
 }
 
 type PageImmersiveUnitProps_MeshSource int32
@@ -2233,7 +2233,7 @@ func (x PageImmersiveUnitProps_MeshSource) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use PageImmersiveUnitProps_MeshSource.Descriptor instead.
 func (PageImmersiveUnitProps_MeshSource) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{103, 1}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{104, 1}
 }
 
 type PageImmersiveUnitProps_TextureSource int32
@@ -2282,7 +2282,7 @@ func (x PageImmersiveUnitProps_TextureSource) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use PageImmersiveUnitProps_TextureSource.Descriptor instead.
 func (PageImmersiveUnitProps_TextureSource) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{103, 2}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{104, 2}
 }
 
 type PageImmersiveUnitProps_DarkTextureSource int32
@@ -2331,7 +2331,7 @@ func (x PageImmersiveUnitProps_DarkTextureSource) Number() protoreflect.EnumNumb
 
 // Deprecated: Use PageImmersiveUnitProps_DarkTextureSource.Descriptor instead.
 func (PageImmersiveUnitProps_DarkTextureSource) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{103, 3}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{104, 3}
 }
 
 type ExternalVideoSectionProps_AspectRatio int32
@@ -2389,7 +2389,7 @@ func (x ExternalVideoSectionProps_AspectRatio) Number() protoreflect.EnumNumber 
 
 // Deprecated: Use ExternalVideoSectionProps_AspectRatio.Descriptor instead.
 func (ExternalVideoSectionProps_AspectRatio) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{108, 0}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{109, 0}
 }
 
 type PostListSectionProps_Layout int32
@@ -2447,7 +2447,7 @@ func (x PostListSectionProps_Layout) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use PostListSectionProps_Layout.Descriptor instead.
 func (PostListSectionProps_Layout) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{109, 0}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{110, 0}
 }
 
 type PostListSectionProps_SortOrder int32
@@ -2496,7 +2496,7 @@ func (x PostListSectionProps_SortOrder) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use PostListSectionProps_SortOrder.Descriptor instead.
 func (PostListSectionProps_SortOrder) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{109, 1}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{110, 1}
 }
 
 type PostListSectionProps_SortBy int32
@@ -2548,7 +2548,7 @@ func (x PostListSectionProps_SortBy) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use PostListSectionProps_SortBy.Descriptor instead.
 func (PostListSectionProps_SortBy) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{109, 2}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{110, 2}
 }
 
 type PostListSectionProps_ImageAspectRatio int32
@@ -2603,7 +2603,7 @@ func (x PostListSectionProps_ImageAspectRatio) Number() protoreflect.EnumNumber 
 
 // Deprecated: Use PostListSectionProps_ImageAspectRatio.Descriptor instead.
 func (PostListSectionProps_ImageAspectRatio) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{109, 3}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{110, 3}
 }
 
 type PostListSectionProps_ItemSize int32
@@ -2655,7 +2655,7 @@ func (x PostListSectionProps_ItemSize) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use PostListSectionProps_ItemSize.Descriptor instead.
 func (PostListSectionProps_ItemSize) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{109, 4}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{110, 4}
 }
 
 type PostTableSectionProps_StatusesItem int32
@@ -2704,7 +2704,7 @@ func (x PostTableSectionProps_StatusesItem) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use PostTableSectionProps_StatusesItem.Descriptor instead.
 func (PostTableSectionProps_StatusesItem) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{110, 0}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{111, 0}
 }
 
 type PostTableSectionProps_FilterFieldsItem int32
@@ -2765,7 +2765,7 @@ func (x PostTableSectionProps_FilterFieldsItem) Number() protoreflect.EnumNumber
 
 // Deprecated: Use PostTableSectionProps_FilterFieldsItem.Descriptor instead.
 func (PostTableSectionProps_FilterFieldsItem) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{110, 1}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{111, 1}
 }
 
 type PostTableSectionProps_SortFieldsItem int32
@@ -2814,7 +2814,7 @@ func (x PostTableSectionProps_SortFieldsItem) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use PostTableSectionProps_SortFieldsItem.Descriptor instead.
 func (PostTableSectionProps_SortFieldsItem) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{110, 2}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{111, 2}
 }
 
 type PostMapSectionProps_SortBy int32
@@ -2866,7 +2866,7 @@ func (x PostMapSectionProps_SortBy) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use PostMapSectionProps_SortBy.Descriptor instead.
 func (PostMapSectionProps_SortBy) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{111, 0}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{112, 0}
 }
 
 type PostMapSectionProps_SortOrder int32
@@ -2915,7 +2915,7 @@ func (x PostMapSectionProps_SortOrder) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use PostMapSectionProps_SortOrder.Descriptor instead.
 func (PostMapSectionProps_SortOrder) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{111, 1}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{112, 1}
 }
 
 type PostMapSectionProps_AspectRatio int32
@@ -2967,7 +2967,7 @@ func (x PostMapSectionProps_AspectRatio) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use PostMapSectionProps_AspectRatio.Descriptor instead.
 func (PostMapSectionProps_AspectRatio) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{111, 2}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{112, 2}
 }
 
 type PostMapSectionProps_PrimaryLabel int32
@@ -3016,7 +3016,7 @@ func (x PostMapSectionProps_PrimaryLabel) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use PostMapSectionProps_PrimaryLabel.Descriptor instead.
 func (PostMapSectionProps_PrimaryLabel) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{111, 3}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{112, 3}
 }
 
 type PostMapSectionProps_PreferredScheme int32
@@ -3068,7 +3068,7 @@ func (x PostMapSectionProps_PreferredScheme) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use PostMapSectionProps_PreferredScheme.Descriptor instead.
 func (PostMapSectionProps_PreferredScheme) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{111, 4}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{112, 4}
 }
 
 type PostMapSectionProps_AreaLabelsMode int32
@@ -3120,7 +3120,7 @@ func (x PostMapSectionProps_AreaLabelsMode) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use PostMapSectionProps_AreaLabelsMode.Descriptor instead.
 func (PostMapSectionProps_AreaLabelsMode) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{111, 5}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{112, 5}
 }
 
 type PostMapSectionProps_PoiLabelsMode int32
@@ -3172,7 +3172,7 @@ func (x PostMapSectionProps_PoiLabelsMode) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use PostMapSectionProps_PoiLabelsMode.Descriptor instead.
 func (PostMapSectionProps_PoiLabelsMode) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{111, 6}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{112, 6}
 }
 
 type WorkMapSectionProps_WorkTypesItem int32
@@ -3227,7 +3227,7 @@ func (x WorkMapSectionProps_WorkTypesItem) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use WorkMapSectionProps_WorkTypesItem.Descriptor instead.
 func (WorkMapSectionProps_WorkTypesItem) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{112, 0}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{113, 0}
 }
 
 type WorkMapSectionProps_SortBy int32
@@ -3279,7 +3279,7 @@ func (x WorkMapSectionProps_SortBy) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use WorkMapSectionProps_SortBy.Descriptor instead.
 func (WorkMapSectionProps_SortBy) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{112, 1}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{113, 1}
 }
 
 type WorkMapSectionProps_SortOrder int32
@@ -3328,7 +3328,7 @@ func (x WorkMapSectionProps_SortOrder) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use WorkMapSectionProps_SortOrder.Descriptor instead.
 func (WorkMapSectionProps_SortOrder) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{112, 2}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{113, 2}
 }
 
 type WorkMapSectionProps_AspectRatio int32
@@ -3380,7 +3380,7 @@ func (x WorkMapSectionProps_AspectRatio) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use WorkMapSectionProps_AspectRatio.Descriptor instead.
 func (WorkMapSectionProps_AspectRatio) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{112, 3}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{113, 3}
 }
 
 type WorkMapSectionProps_PrimaryLabel int32
@@ -3429,7 +3429,7 @@ func (x WorkMapSectionProps_PrimaryLabel) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use WorkMapSectionProps_PrimaryLabel.Descriptor instead.
 func (WorkMapSectionProps_PrimaryLabel) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{112, 4}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{113, 4}
 }
 
 type WorkMapSectionProps_PreferredScheme int32
@@ -3481,7 +3481,7 @@ func (x WorkMapSectionProps_PreferredScheme) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use WorkMapSectionProps_PreferredScheme.Descriptor instead.
 func (WorkMapSectionProps_PreferredScheme) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{112, 5}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{113, 5}
 }
 
 type WorkMapSectionProps_AreaLabelsMode int32
@@ -3533,7 +3533,7 @@ func (x WorkMapSectionProps_AreaLabelsMode) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use WorkMapSectionProps_AreaLabelsMode.Descriptor instead.
 func (WorkMapSectionProps_AreaLabelsMode) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{112, 6}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{113, 6}
 }
 
 type WorkMapSectionProps_PoiLabelsMode int32
@@ -3585,7 +3585,7 @@ func (x WorkMapSectionProps_PoiLabelsMode) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use WorkMapSectionProps_PoiLabelsMode.Descriptor instead.
 func (WorkMapSectionProps_PoiLabelsMode) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{112, 7}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{113, 7}
 }
 
 type WorkTableSectionProps_WorkTypesItem int32
@@ -3640,7 +3640,7 @@ func (x WorkTableSectionProps_WorkTypesItem) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use WorkTableSectionProps_WorkTypesItem.Descriptor instead.
 func (WorkTableSectionProps_WorkTypesItem) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{113, 0}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{114, 0}
 }
 
 type WorkTableSectionProps_StatusesItem int32
@@ -3689,7 +3689,7 @@ func (x WorkTableSectionProps_StatusesItem) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use WorkTableSectionProps_StatusesItem.Descriptor instead.
 func (WorkTableSectionProps_StatusesItem) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{113, 1}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{114, 1}
 }
 
 type WorkTableSectionProps_FilterFieldsItem int32
@@ -3759,7 +3759,7 @@ func (x WorkTableSectionProps_FilterFieldsItem) Number() protoreflect.EnumNumber
 
 // Deprecated: Use WorkTableSectionProps_FilterFieldsItem.Descriptor instead.
 func (WorkTableSectionProps_FilterFieldsItem) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{113, 2}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{114, 2}
 }
 
 type WorkTableSectionProps_SortFieldsItem int32
@@ -3811,7 +3811,7 @@ func (x WorkTableSectionProps_SortFieldsItem) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use WorkTableSectionProps_SortFieldsItem.Descriptor instead.
 func (WorkTableSectionProps_SortFieldsItem) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{113, 3}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{114, 3}
 }
 
 type WorkListSectionProps_Layout int32
@@ -3869,7 +3869,7 @@ func (x WorkListSectionProps_Layout) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use WorkListSectionProps_Layout.Descriptor instead.
 func (WorkListSectionProps_Layout) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{114, 0}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{115, 0}
 }
 
 type WorkListSectionProps_SortOrder int32
@@ -3918,7 +3918,7 @@ func (x WorkListSectionProps_SortOrder) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use WorkListSectionProps_SortOrder.Descriptor instead.
 func (WorkListSectionProps_SortOrder) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{114, 1}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{115, 1}
 }
 
 type WorkListSectionProps_WorkTypesItem int32
@@ -3973,7 +3973,7 @@ func (x WorkListSectionProps_WorkTypesItem) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use WorkListSectionProps_WorkTypesItem.Descriptor instead.
 func (WorkListSectionProps_WorkTypesItem) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{114, 2}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{115, 2}
 }
 
 type WorkListSectionProps_SortBy int32
@@ -4025,7 +4025,7 @@ func (x WorkListSectionProps_SortBy) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use WorkListSectionProps_SortBy.Descriptor instead.
 func (WorkListSectionProps_SortBy) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{114, 3}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{115, 3}
 }
 
 type WorkListSectionProps_ImageAspectRatio int32
@@ -4080,7 +4080,7 @@ func (x WorkListSectionProps_ImageAspectRatio) Number() protoreflect.EnumNumber 
 
 // Deprecated: Use WorkListSectionProps_ImageAspectRatio.Descriptor instead.
 func (WorkListSectionProps_ImageAspectRatio) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{114, 4}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{115, 4}
 }
 
 type WorkListSectionProps_ItemSize int32
@@ -4132,7 +4132,7 @@ func (x WorkListSectionProps_ItemSize) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use WorkListSectionProps_ItemSize.Descriptor instead.
 func (WorkListSectionProps_ItemSize) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{114, 5}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{115, 5}
 }
 
 type ProgramEventListSectionProps_Layout int32
@@ -4190,7 +4190,7 @@ func (x ProgramEventListSectionProps_Layout) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ProgramEventListSectionProps_Layout.Descriptor instead.
 func (ProgramEventListSectionProps_Layout) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{115, 0}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{116, 0}
 }
 
 type ProgramEventListSectionProps_SortOrder int32
@@ -4239,7 +4239,7 @@ func (x ProgramEventListSectionProps_SortOrder) Number() protoreflect.EnumNumber
 
 // Deprecated: Use ProgramEventListSectionProps_SortOrder.Descriptor instead.
 func (ProgramEventListSectionProps_SortOrder) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{115, 1}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{116, 1}
 }
 
 type ProgramEventListSectionProps_TimeWindow int32
@@ -4294,7 +4294,7 @@ func (x ProgramEventListSectionProps_TimeWindow) Number() protoreflect.EnumNumbe
 
 // Deprecated: Use ProgramEventListSectionProps_TimeWindow.Descriptor instead.
 func (ProgramEventListSectionProps_TimeWindow) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{115, 2}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{116, 2}
 }
 
 type ProgramEventListSectionProps_SortBy int32
@@ -4352,7 +4352,7 @@ func (x ProgramEventListSectionProps_SortBy) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ProgramEventListSectionProps_SortBy.Descriptor instead.
 func (ProgramEventListSectionProps_SortBy) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{115, 3}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{116, 3}
 }
 
 type ProgramEventListSectionProps_ImageAspectRatio int32
@@ -4407,7 +4407,7 @@ func (x ProgramEventListSectionProps_ImageAspectRatio) Number() protoreflect.Enu
 
 // Deprecated: Use ProgramEventListSectionProps_ImageAspectRatio.Descriptor instead.
 func (ProgramEventListSectionProps_ImageAspectRatio) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{115, 4}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{116, 4}
 }
 
 type ProgramEventListSectionProps_ItemSize int32
@@ -4459,7 +4459,7 @@ func (x ProgramEventListSectionProps_ItemSize) Number() protoreflect.EnumNumber 
 
 // Deprecated: Use ProgramEventListSectionProps_ItemSize.Descriptor instead.
 func (ProgramEventListSectionProps_ItemSize) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{115, 5}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{116, 5}
 }
 
 type ReleaseListSectionProps_Layout int32
@@ -4517,7 +4517,7 @@ func (x ReleaseListSectionProps_Layout) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ReleaseListSectionProps_Layout.Descriptor instead.
 func (ReleaseListSectionProps_Layout) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{116, 0}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{117, 0}
 }
 
 type ReleaseListSectionProps_SortOrder int32
@@ -4566,7 +4566,7 @@ func (x ReleaseListSectionProps_SortOrder) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ReleaseListSectionProps_SortOrder.Descriptor instead.
 func (ReleaseListSectionProps_SortOrder) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{116, 1}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{117, 1}
 }
 
 type ReleaseListSectionProps_TypesItem int32
@@ -4621,7 +4621,7 @@ func (x ReleaseListSectionProps_TypesItem) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ReleaseListSectionProps_TypesItem.Descriptor instead.
 func (ReleaseListSectionProps_TypesItem) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{116, 2}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{117, 2}
 }
 
 type ReleaseListSectionProps_SortBy int32
@@ -4673,7 +4673,7 @@ func (x ReleaseListSectionProps_SortBy) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ReleaseListSectionProps_SortBy.Descriptor instead.
 func (ReleaseListSectionProps_SortBy) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{116, 3}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{117, 3}
 }
 
 type ReleaseListSectionProps_ImageAspectRatio int32
@@ -4728,7 +4728,7 @@ func (x ReleaseListSectionProps_ImageAspectRatio) Number() protoreflect.EnumNumb
 
 // Deprecated: Use ReleaseListSectionProps_ImageAspectRatio.Descriptor instead.
 func (ReleaseListSectionProps_ImageAspectRatio) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{116, 4}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{117, 4}
 }
 
 type ReleaseListSectionProps_ItemSize int32
@@ -4780,7 +4780,7 @@ func (x ReleaseListSectionProps_ItemSize) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ReleaseListSectionProps_ItemSize.Descriptor instead.
 func (ReleaseListSectionProps_ItemSize) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{116, 5}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{117, 5}
 }
 
 type ArtistListSectionProps_Layout int32
@@ -4838,7 +4838,7 @@ func (x ArtistListSectionProps_Layout) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ArtistListSectionProps_Layout.Descriptor instead.
 func (ArtistListSectionProps_Layout) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{117, 0}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{118, 0}
 }
 
 type ArtistListSectionProps_SortOrder int32
@@ -4887,7 +4887,7 @@ func (x ArtistListSectionProps_SortOrder) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ArtistListSectionProps_SortOrder.Descriptor instead.
 func (ArtistListSectionProps_SortOrder) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{117, 1}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{118, 1}
 }
 
 type ArtistListSectionProps_SortBy int32
@@ -4936,7 +4936,7 @@ func (x ArtistListSectionProps_SortBy) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ArtistListSectionProps_SortBy.Descriptor instead.
 func (ArtistListSectionProps_SortBy) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{117, 2}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{118, 2}
 }
 
 type ArtistListSectionProps_ImageAspectRatio int32
@@ -4991,7 +4991,7 @@ func (x ArtistListSectionProps_ImageAspectRatio) Number() protoreflect.EnumNumbe
 
 // Deprecated: Use ArtistListSectionProps_ImageAspectRatio.Descriptor instead.
 func (ArtistListSectionProps_ImageAspectRatio) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{117, 3}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{118, 3}
 }
 
 type ArtistListSectionProps_ItemSize int32
@@ -5043,7 +5043,7 @@ func (x ArtistListSectionProps_ItemSize) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ArtistListSectionProps_ItemSize.Descriptor instead.
 func (ArtistListSectionProps_ItemSize) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{117, 4}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{118, 4}
 }
 
 type LabelListSectionProps_Layout int32
@@ -5101,7 +5101,7 @@ func (x LabelListSectionProps_Layout) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use LabelListSectionProps_Layout.Descriptor instead.
 func (LabelListSectionProps_Layout) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{118, 0}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{119, 0}
 }
 
 type LabelListSectionProps_SortOrder int32
@@ -5150,7 +5150,7 @@ func (x LabelListSectionProps_SortOrder) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use LabelListSectionProps_SortOrder.Descriptor instead.
 func (LabelListSectionProps_SortOrder) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{118, 1}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{119, 1}
 }
 
 type LabelListSectionProps_SortBy int32
@@ -5199,7 +5199,7 @@ func (x LabelListSectionProps_SortBy) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use LabelListSectionProps_SortBy.Descriptor instead.
 func (LabelListSectionProps_SortBy) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{118, 2}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{119, 2}
 }
 
 type LabelListSectionProps_ImageAspectRatio int32
@@ -5254,7 +5254,7 @@ func (x LabelListSectionProps_ImageAspectRatio) Number() protoreflect.EnumNumber
 
 // Deprecated: Use LabelListSectionProps_ImageAspectRatio.Descriptor instead.
 func (LabelListSectionProps_ImageAspectRatio) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{118, 3}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{119, 3}
 }
 
 type LabelListSectionProps_ItemSize int32
@@ -5306,7 +5306,7 @@ func (x LabelListSectionProps_ItemSize) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use LabelListSectionProps_ItemSize.Descriptor instead.
 func (LabelListSectionProps_ItemSize) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{118, 4}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{119, 4}
 }
 
 type AuthorListSectionProps_Layout int32
@@ -5355,7 +5355,7 @@ func (x AuthorListSectionProps_Layout) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use AuthorListSectionProps_Layout.Descriptor instead.
 func (AuthorListSectionProps_Layout) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{119, 0}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{120, 0}
 }
 
 type AuthorListSectionProps_Source int32
@@ -5404,7 +5404,7 @@ func (x AuthorListSectionProps_Source) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use AuthorListSectionProps_Source.Descriptor instead.
 func (AuthorListSectionProps_Source) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{119, 1}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{120, 1}
 }
 
 type AuthorListSectionProps_ItemSize int32
@@ -5456,7 +5456,7 @@ func (x AuthorListSectionProps_ItemSize) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use AuthorListSectionProps_ItemSize.Descriptor instead.
 func (AuthorListSectionProps_ItemSize) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{119, 2}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{120, 2}
 }
 
 type TextMarqueeSectionProps_Direction int32
@@ -5505,7 +5505,7 @@ func (x TextMarqueeSectionProps_Direction) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use TextMarqueeSectionProps_Direction.Descriptor instead.
 func (TextMarqueeSectionProps_Direction) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{121, 0}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{122, 0}
 }
 
 type TextMarqueeSectionProps_Speed int32
@@ -5557,7 +5557,7 @@ func (x TextMarqueeSectionProps_Speed) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use TextMarqueeSectionProps_Speed.Descriptor instead.
 func (TextMarqueeSectionProps_Speed) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{121, 1}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{122, 1}
 }
 
 type TextMarqueeSectionProps_ItemHeight int32
@@ -5612,7 +5612,7 @@ func (x TextMarqueeSectionProps_ItemHeight) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use TextMarqueeSectionProps_ItemHeight.Descriptor instead.
 func (TextMarqueeSectionProps_ItemHeight) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{121, 2}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{122, 2}
 }
 
 type TextMarqueeSectionProps_Gap int32
@@ -5667,7 +5667,7 @@ func (x TextMarqueeSectionProps_Gap) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use TextMarqueeSectionProps_Gap.Descriptor instead.
 func (TextMarqueeSectionProps_Gap) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{121, 3}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{122, 3}
 }
 
 type TextMarqueeSectionProps_LinkTarget int32
@@ -5716,7 +5716,7 @@ func (x TextMarqueeSectionProps_LinkTarget) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use TextMarqueeSectionProps_LinkTarget.Descriptor instead.
 func (TextMarqueeSectionProps_LinkTarget) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{121, 4}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{122, 4}
 }
 
 type ClientMarqueeSectionProps_Direction int32
@@ -5765,7 +5765,7 @@ func (x ClientMarqueeSectionProps_Direction) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ClientMarqueeSectionProps_Direction.Descriptor instead.
 func (ClientMarqueeSectionProps_Direction) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{122, 0}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{123, 0}
 }
 
 type ClientMarqueeSectionProps_Speed int32
@@ -5817,7 +5817,7 @@ func (x ClientMarqueeSectionProps_Speed) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ClientMarqueeSectionProps_Speed.Descriptor instead.
 func (ClientMarqueeSectionProps_Speed) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{122, 1}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{123, 1}
 }
 
 type ClientMarqueeSectionProps_ItemHeight int32
@@ -5872,7 +5872,7 @@ func (x ClientMarqueeSectionProps_ItemHeight) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ClientMarqueeSectionProps_ItemHeight.Descriptor instead.
 func (ClientMarqueeSectionProps_ItemHeight) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{122, 2}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{123, 2}
 }
 
 type ClientMarqueeSectionProps_Gap int32
@@ -5927,7 +5927,7 @@ func (x ClientMarqueeSectionProps_Gap) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ClientMarqueeSectionProps_Gap.Descriptor instead.
 func (ClientMarqueeSectionProps_Gap) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{122, 3}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{123, 3}
 }
 
 type ClientMarqueeSectionProps_LinkTarget int32
@@ -5976,7 +5976,7 @@ func (x ClientMarqueeSectionProps_LinkTarget) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ClientMarqueeSectionProps_LinkTarget.Descriptor instead.
 func (ClientMarqueeSectionProps_LinkTarget) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{122, 4}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{123, 4}
 }
 
 type ClientMarqueeSectionProps_Source int32
@@ -6025,7 +6025,7 @@ func (x ClientMarqueeSectionProps_Source) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ClientMarqueeSectionProps_Source.Descriptor instead.
 func (ClientMarqueeSectionProps_Source) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{122, 5}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{123, 5}
 }
 
 type ClientMarqueeSectionProps_LinkMode int32
@@ -6074,7 +6074,7 @@ func (x ClientMarqueeSectionProps_LinkMode) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ClientMarqueeSectionProps_LinkMode.Descriptor instead.
 func (ClientMarqueeSectionProps_LinkMode) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{122, 6}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{123, 6}
 }
 
 type ClientMarqueeSectionProps_LogoScale int32
@@ -6123,7 +6123,7 @@ func (x ClientMarqueeSectionProps_LogoScale) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ClientMarqueeSectionProps_LogoScale.Descriptor instead.
 func (ClientMarqueeSectionProps_LogoScale) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{122, 7}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{123, 7}
 }
 
 type ClientMarqueeSectionProps_FallbackMode int32
@@ -6172,7 +6172,7 @@ func (x ClientMarqueeSectionProps_FallbackMode) Number() protoreflect.EnumNumber
 
 // Deprecated: Use ClientMarqueeSectionProps_FallbackMode.Descriptor instead.
 func (ClientMarqueeSectionProps_FallbackMode) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{122, 8}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{123, 8}
 }
 
 type LabelMarqueeSectionProps_Direction int32
@@ -6221,7 +6221,7 @@ func (x LabelMarqueeSectionProps_Direction) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use LabelMarqueeSectionProps_Direction.Descriptor instead.
 func (LabelMarqueeSectionProps_Direction) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{123, 0}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{124, 0}
 }
 
 type LabelMarqueeSectionProps_Speed int32
@@ -6273,7 +6273,7 @@ func (x LabelMarqueeSectionProps_Speed) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use LabelMarqueeSectionProps_Speed.Descriptor instead.
 func (LabelMarqueeSectionProps_Speed) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{123, 1}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{124, 1}
 }
 
 type LabelMarqueeSectionProps_ItemHeight int32
@@ -6328,7 +6328,7 @@ func (x LabelMarqueeSectionProps_ItemHeight) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use LabelMarqueeSectionProps_ItemHeight.Descriptor instead.
 func (LabelMarqueeSectionProps_ItemHeight) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{123, 2}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{124, 2}
 }
 
 type LabelMarqueeSectionProps_Gap int32
@@ -6383,7 +6383,7 @@ func (x LabelMarqueeSectionProps_Gap) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use LabelMarqueeSectionProps_Gap.Descriptor instead.
 func (LabelMarqueeSectionProps_Gap) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{123, 3}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{124, 3}
 }
 
 type LabelMarqueeSectionProps_LinkTarget int32
@@ -6432,7 +6432,7 @@ func (x LabelMarqueeSectionProps_LinkTarget) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use LabelMarqueeSectionProps_LinkTarget.Descriptor instead.
 func (LabelMarqueeSectionProps_LinkTarget) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{123, 4}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{124, 4}
 }
 
 type LabelMarqueeSectionProps_Source int32
@@ -6481,7 +6481,7 @@ func (x LabelMarqueeSectionProps_Source) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use LabelMarqueeSectionProps_Source.Descriptor instead.
 func (LabelMarqueeSectionProps_Source) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{123, 5}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{124, 5}
 }
 
 type LabelMarqueeSectionProps_LinkMode int32
@@ -6530,7 +6530,7 @@ func (x LabelMarqueeSectionProps_LinkMode) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use LabelMarqueeSectionProps_LinkMode.Descriptor instead.
 func (LabelMarqueeSectionProps_LinkMode) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{123, 6}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{124, 6}
 }
 
 type LabelMarqueeSectionProps_LogoScale int32
@@ -6579,7 +6579,7 @@ func (x LabelMarqueeSectionProps_LogoScale) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use LabelMarqueeSectionProps_LogoScale.Descriptor instead.
 func (LabelMarqueeSectionProps_LogoScale) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{123, 7}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{124, 7}
 }
 
 type LabelMarqueeSectionProps_FallbackMode int32
@@ -6628,7 +6628,7 @@ func (x LabelMarqueeSectionProps_FallbackMode) Number() protoreflect.EnumNumber 
 
 // Deprecated: Use LabelMarqueeSectionProps_FallbackMode.Descriptor instead.
 func (LabelMarqueeSectionProps_FallbackMode) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{123, 8}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{124, 8}
 }
 
 type MapSectionProps_AspectRatio int32
@@ -6680,7 +6680,7 @@ func (x MapSectionProps_AspectRatio) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use MapSectionProps_AspectRatio.Descriptor instead.
 func (MapSectionProps_AspectRatio) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{124, 0}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{125, 0}
 }
 
 type MapSectionProps_Variant int32
@@ -6726,7 +6726,7 @@ func (x MapSectionProps_Variant) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use MapSectionProps_Variant.Descriptor instead.
 func (MapSectionProps_Variant) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{124, 1}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{125, 1}
 }
 
 type MapSectionProps_PreferredScheme int32
@@ -6778,7 +6778,7 @@ func (x MapSectionProps_PreferredScheme) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use MapSectionProps_PreferredScheme.Descriptor instead.
 func (MapSectionProps_PreferredScheme) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{124, 2}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{125, 2}
 }
 
 type MapSectionProps_AreaLabelsMode int32
@@ -6830,7 +6830,7 @@ func (x MapSectionProps_AreaLabelsMode) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use MapSectionProps_AreaLabelsMode.Descriptor instead.
 func (MapSectionProps_AreaLabelsMode) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{124, 3}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{125, 3}
 }
 
 type MapSectionProps_PoiLabelsMode int32
@@ -6882,7 +6882,7 @@ func (x MapSectionProps_PoiLabelsMode) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use MapSectionProps_PoiLabelsMode.Descriptor instead.
 func (MapSectionProps_PoiLabelsMode) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{124, 4}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{125, 4}
 }
 
 type ImmersiveSceneSectionProps_Playback int32
@@ -6931,7 +6931,7 @@ func (x ImmersiveSceneSectionProps_Playback) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ImmersiveSceneSectionProps_Playback.Descriptor instead.
 func (ImmersiveSceneSectionProps_Playback) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{125, 0}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{126, 0}
 }
 
 type ImmersiveSceneSectionProps_Transition int32
@@ -6980,7 +6980,7 @@ func (x ImmersiveSceneSectionProps_Transition) Number() protoreflect.EnumNumber 
 
 // Deprecated: Use ImmersiveSceneSectionProps_Transition.Descriptor instead.
 func (ImmersiveSceneSectionProps_Transition) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{125, 1}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{126, 1}
 }
 
 type ImmersiveSceneSectionProps_TextureSize int32
@@ -7035,7 +7035,7 @@ func (x ImmersiveSceneSectionProps_TextureSize) Number() protoreflect.EnumNumber
 
 // Deprecated: Use ImmersiveSceneSectionProps_TextureSize.Descriptor instead.
 func (ImmersiveSceneSectionProps_TextureSize) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{125, 2}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{126, 2}
 }
 
 type ImmersiveSceneSectionProps_PreferredScheme int32
@@ -7087,7 +7087,7 @@ func (x ImmersiveSceneSectionProps_PreferredScheme) Number() protoreflect.EnumNu
 
 // Deprecated: Use ImmersiveSceneSectionProps_PreferredScheme.Descriptor instead.
 func (ImmersiveSceneSectionProps_PreferredScheme) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{125, 3}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{126, 3}
 }
 
 type ImmersiveSceneSectionProps_TextColorSource int32
@@ -7136,7 +7136,7 @@ func (x ImmersiveSceneSectionProps_TextColorSource) Number() protoreflect.EnumNu
 
 // Deprecated: Use ImmersiveSceneSectionProps_TextColorSource.Descriptor instead.
 func (ImmersiveSceneSectionProps_TextColorSource) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{125, 4}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{126, 4}
 }
 
 type ImmersiveSceneSectionProps_DarkTextColorSource int32
@@ -7185,7 +7185,7 @@ func (x ImmersiveSceneSectionProps_DarkTextColorSource) Number() protoreflect.En
 
 // Deprecated: Use ImmersiveSceneSectionProps_DarkTextColorSource.Descriptor instead.
 func (ImmersiveSceneSectionProps_DarkTextColorSource) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{125, 5}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{126, 5}
 }
 
 type EmbedSectionProps_HeightMode int32
@@ -7237,7 +7237,7 @@ func (x EmbedSectionProps_HeightMode) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use EmbedSectionProps_HeightMode.Descriptor instead.
 func (EmbedSectionProps_HeightMode) EnumDescriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{128, 0}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{129, 0}
 }
 
 type MissingAttachment struct {
@@ -7650,6 +7650,66 @@ func (x *RichTextInlineMath) GetSource() string {
 	return ""
 }
 
+type RichTextSiteVariable struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Key           string                 `protobuf:"bytes,1,opt,name=key,proto3" json:"key,omitempty"`
+	Styles        *RichTextStyle         `protobuf:"bytes,2,opt,name=styles,proto3" json:"styles,omitempty"`
+	Linked        bool                   `protobuf:"varint,3,opt,name=linked,proto3" json:"linked,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *RichTextSiteVariable) Reset() {
+	*x = RichTextSiteVariable{}
+	mi := &file_api_content_v1_block_content_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *RichTextSiteVariable) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RichTextSiteVariable) ProtoMessage() {}
+
+func (x *RichTextSiteVariable) ProtoReflect() protoreflect.Message {
+	mi := &file_api_content_v1_block_content_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RichTextSiteVariable.ProtoReflect.Descriptor instead.
+func (*RichTextSiteVariable) Descriptor() ([]byte, []int) {
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *RichTextSiteVariable) GetKey() string {
+	if x != nil {
+		return x.Key
+	}
+	return ""
+}
+
+func (x *RichTextSiteVariable) GetStyles() *RichTextStyle {
+	if x != nil {
+		return x.Styles
+	}
+	return nil
+}
+
+func (x *RichTextSiteVariable) GetLinked() bool {
+	if x != nil {
+		return x.Linked
+	}
+	return false
+}
+
 type RichTextInline struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Types that are valid to be assigned to Value:
@@ -7658,6 +7718,7 @@ type RichTextInline struct {
 	//	*RichTextInline_HardBreak
 	//	*RichTextInline_Link
 	//	*RichTextInline_MathInline
+	//	*RichTextInline_SiteVariable
 	Value         isRichTextInline_Value `protobuf_oneof:"value"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -7665,7 +7726,7 @@ type RichTextInline struct {
 
 func (x *RichTextInline) Reset() {
 	*x = RichTextInline{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[7]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7677,7 +7738,7 @@ func (x *RichTextInline) String() string {
 func (*RichTextInline) ProtoMessage() {}
 
 func (x *RichTextInline) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[7]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7690,7 +7751,7 @@ func (x *RichTextInline) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RichTextInline.ProtoReflect.Descriptor instead.
 func (*RichTextInline) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{7}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *RichTextInline) GetValue() isRichTextInline_Value {
@@ -7736,6 +7797,15 @@ func (x *RichTextInline) GetMathInline() *RichTextInlineMath {
 	return nil
 }
 
+func (x *RichTextInline) GetSiteVariable() *RichTextSiteVariable {
+	if x != nil {
+		if x, ok := x.Value.(*RichTextInline_SiteVariable); ok {
+			return x.SiteVariable
+		}
+	}
+	return nil
+}
+
 type isRichTextInline_Value interface {
 	isRichTextInline_Value()
 }
@@ -7756,6 +7826,10 @@ type RichTextInline_MathInline struct {
 	MathInline *RichTextInlineMath `protobuf:"bytes,4,opt,name=math_inline,json=mathInline,proto3,oneof"`
 }
 
+type RichTextInline_SiteVariable struct {
+	SiteVariable *RichTextSiteVariable `protobuf:"bytes,5,opt,name=site_variable,json=siteVariable,proto3,oneof"`
+}
+
 func (*RichTextInline_Text) isRichTextInline_Value() {}
 
 func (*RichTextInline_HardBreak) isRichTextInline_Value() {}
@@ -7763,6 +7837,8 @@ func (*RichTextInline_HardBreak) isRichTextInline_Value() {}
 func (*RichTextInline_Link) isRichTextInline_Value() {}
 
 func (*RichTextInline_MathInline) isRichTextInline_Value() {}
+
+func (*RichTextInline_SiteVariable) isRichTextInline_Value() {}
 
 type RichTextTableCellProps struct {
 	state           protoimpl.MessageState                `protogen:"open.v1"`
@@ -7777,7 +7853,7 @@ type RichTextTableCellProps struct {
 
 func (x *RichTextTableCellProps) Reset() {
 	*x = RichTextTableCellProps{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[8]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7789,7 +7865,7 @@ func (x *RichTextTableCellProps) String() string {
 func (*RichTextTableCellProps) ProtoMessage() {}
 
 func (x *RichTextTableCellProps) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[8]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7802,7 +7878,7 @@ func (x *RichTextTableCellProps) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RichTextTableCellProps.ProtoReflect.Descriptor instead.
 func (*RichTextTableCellProps) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{8}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *RichTextTableCellProps) GetColspan() int32 {
@@ -7853,7 +7929,7 @@ type RichTextTableCellBase struct {
 
 func (x *RichTextTableCellBase) Reset() {
 	*x = RichTextTableCellBase{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[9]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7865,7 +7941,7 @@ func (x *RichTextTableCellBase) String() string {
 func (*RichTextTableCellBase) ProtoMessage() {}
 
 func (x *RichTextTableCellBase) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[9]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7878,7 +7954,7 @@ func (x *RichTextTableCellBase) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RichTextTableCellBase.ProtoReflect.Descriptor instead.
 func (*RichTextTableCellBase) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{9}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *RichTextTableCellBase) GetId() string {
@@ -7914,7 +7990,7 @@ type RichTextTableRowBase struct {
 
 func (x *RichTextTableRowBase) Reset() {
 	*x = RichTextTableRowBase{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[10]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7926,7 +8002,7 @@ func (x *RichTextTableRowBase) String() string {
 func (*RichTextTableRowBase) ProtoMessage() {}
 
 func (x *RichTextTableRowBase) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[10]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7939,7 +8015,7 @@ func (x *RichTextTableRowBase) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RichTextTableRowBase.ProtoReflect.Descriptor instead.
 func (*RichTextTableRowBase) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{10}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *RichTextTableRowBase) GetId() string {
@@ -7968,7 +8044,7 @@ type RichTextTableBase struct {
 
 func (x *RichTextTableBase) Reset() {
 	*x = RichTextTableBase{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[11]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7980,7 +8056,7 @@ func (x *RichTextTableBase) String() string {
 func (*RichTextTableBase) ProtoMessage() {}
 
 func (x *RichTextTableBase) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[11]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7993,7 +8069,7 @@ func (x *RichTextTableBase) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RichTextTableBase.ProtoReflect.Descriptor instead.
 func (*RichTextTableBase) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{11}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *RichTextTableBase) GetColumnWidths() []float64 {
@@ -8034,7 +8110,7 @@ type RichTextTableCellLocale struct {
 
 func (x *RichTextTableCellLocale) Reset() {
 	*x = RichTextTableCellLocale{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[12]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8046,7 +8122,7 @@ func (x *RichTextTableCellLocale) String() string {
 func (*RichTextTableCellLocale) ProtoMessage() {}
 
 func (x *RichTextTableCellLocale) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[12]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8059,7 +8135,7 @@ func (x *RichTextTableCellLocale) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RichTextTableCellLocale.ProtoReflect.Descriptor instead.
 func (*RichTextTableCellLocale) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{12}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *RichTextTableCellLocale) GetCellId() string {
@@ -8086,7 +8162,7 @@ type RichTextTableRowLocale struct {
 
 func (x *RichTextTableRowLocale) Reset() {
 	*x = RichTextTableRowLocale{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[13]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8098,7 +8174,7 @@ func (x *RichTextTableRowLocale) String() string {
 func (*RichTextTableRowLocale) ProtoMessage() {}
 
 func (x *RichTextTableRowLocale) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[13]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8111,7 +8187,7 @@ func (x *RichTextTableRowLocale) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RichTextTableRowLocale.ProtoReflect.Descriptor instead.
 func (*RichTextTableRowLocale) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{13}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *RichTextTableRowLocale) GetRowId() string {
@@ -8137,7 +8213,7 @@ type RichTextTableLocale struct {
 
 func (x *RichTextTableLocale) Reset() {
 	*x = RichTextTableLocale{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[14]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8149,7 +8225,7 @@ func (x *RichTextTableLocale) String() string {
 func (*RichTextTableLocale) ProtoMessage() {}
 
 func (x *RichTextTableLocale) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[14]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8162,7 +8238,7 @@ func (x *RichTextTableLocale) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RichTextTableLocale.ProtoReflect.Descriptor instead.
 func (*RichTextTableLocale) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{14}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *RichTextTableLocale) GetRows() []*RichTextTableRowLocale {
@@ -8185,7 +8261,7 @@ type ParagraphProps struct {
 
 func (x *ParagraphProps) Reset() {
 	*x = ParagraphProps{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[15]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8197,7 +8273,7 @@ func (x *ParagraphProps) String() string {
 func (*ParagraphProps) ProtoMessage() {}
 
 func (x *ParagraphProps) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[15]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8210,7 +8286,7 @@ func (x *ParagraphProps) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ParagraphProps.ProtoReflect.Descriptor instead.
 func (*ParagraphProps) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{15}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *ParagraphProps) GetBackgroundColor() string {
@@ -8260,7 +8336,7 @@ type HeadingProps struct {
 
 func (x *HeadingProps) Reset() {
 	*x = HeadingProps{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[16]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8272,7 +8348,7 @@ func (x *HeadingProps) String() string {
 func (*HeadingProps) ProtoMessage() {}
 
 func (x *HeadingProps) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[16]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8285,7 +8361,7 @@ func (x *HeadingProps) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use HeadingProps.ProtoReflect.Descriptor instead.
 func (*HeadingProps) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{16}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *HeadingProps) GetBackgroundColor() string {
@@ -8327,7 +8403,7 @@ type BulletListItemProps struct {
 
 func (x *BulletListItemProps) Reset() {
 	*x = BulletListItemProps{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[17]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8339,7 +8415,7 @@ func (x *BulletListItemProps) String() string {
 func (*BulletListItemProps) ProtoMessage() {}
 
 func (x *BulletListItemProps) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[17]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8352,7 +8428,7 @@ func (x *BulletListItemProps) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BulletListItemProps.ProtoReflect.Descriptor instead.
 func (*BulletListItemProps) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{17}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *BulletListItemProps) GetBackgroundColor() string {
@@ -8388,7 +8464,7 @@ type NumberedListItemProps struct {
 
 func (x *NumberedListItemProps) Reset() {
 	*x = NumberedListItemProps{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[18]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[19]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8400,7 +8476,7 @@ func (x *NumberedListItemProps) String() string {
 func (*NumberedListItemProps) ProtoMessage() {}
 
 func (x *NumberedListItemProps) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[18]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[19]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8413,7 +8489,7 @@ func (x *NumberedListItemProps) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use NumberedListItemProps.ProtoReflect.Descriptor instead.
 func (*NumberedListItemProps) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{18}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{19}
 }
 
 func (x *NumberedListItemProps) GetBackgroundColor() string {
@@ -8456,7 +8532,7 @@ type CheckListItemProps struct {
 
 func (x *CheckListItemProps) Reset() {
 	*x = CheckListItemProps{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[19]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[20]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8468,7 +8544,7 @@ func (x *CheckListItemProps) String() string {
 func (*CheckListItemProps) ProtoMessage() {}
 
 func (x *CheckListItemProps) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[19]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[20]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8481,7 +8557,7 @@ func (x *CheckListItemProps) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CheckListItemProps.ProtoReflect.Descriptor instead.
 func (*CheckListItemProps) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{19}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{20}
 }
 
 func (x *CheckListItemProps) GetBackgroundColor() string {
@@ -8522,7 +8598,7 @@ type QuoteProps struct {
 
 func (x *QuoteProps) Reset() {
 	*x = QuoteProps{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[20]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[21]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8534,7 +8610,7 @@ func (x *QuoteProps) String() string {
 func (*QuoteProps) ProtoMessage() {}
 
 func (x *QuoteProps) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[20]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[21]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8547,7 +8623,7 @@ func (x *QuoteProps) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use QuoteProps.ProtoReflect.Descriptor instead.
 func (*QuoteProps) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{20}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{21}
 }
 
 func (x *QuoteProps) GetBackgroundColor() string {
@@ -8575,7 +8651,7 @@ type CodeBlockProps struct {
 
 func (x *CodeBlockProps) Reset() {
 	*x = CodeBlockProps{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[21]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[22]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8587,7 +8663,7 @@ func (x *CodeBlockProps) String() string {
 func (*CodeBlockProps) ProtoMessage() {}
 
 func (x *CodeBlockProps) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[21]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[22]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8600,7 +8676,7 @@ func (x *CodeBlockProps) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CodeBlockProps.ProtoReflect.Descriptor instead.
 func (*CodeBlockProps) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{21}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{22}
 }
 
 func (x *CodeBlockProps) GetLanguage() CodeBlockProps_Language {
@@ -8632,7 +8708,7 @@ type DividerProps struct {
 
 func (x *DividerProps) Reset() {
 	*x = DividerProps{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[22]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[23]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8644,7 +8720,7 @@ func (x *DividerProps) String() string {
 func (*DividerProps) ProtoMessage() {}
 
 func (x *DividerProps) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[22]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[23]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8657,7 +8733,7 @@ func (x *DividerProps) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DividerProps.ProtoReflect.Descriptor instead.
 func (*DividerProps) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{22}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{23}
 }
 
 type TableProps struct {
@@ -8671,7 +8747,7 @@ type TableProps struct {
 
 func (x *TableProps) Reset() {
 	*x = TableProps{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[23]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[24]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8683,7 +8759,7 @@ func (x *TableProps) String() string {
 func (*TableProps) ProtoMessage() {}
 
 func (x *TableProps) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[23]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[24]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8696,7 +8772,7 @@ func (x *TableProps) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TableProps.ProtoReflect.Descriptor instead.
 func (*TableProps) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{23}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{24}
 }
 
 func (x *TableProps) GetTextColor() string {
@@ -8734,7 +8810,7 @@ type P5SketchProps struct {
 
 func (x *P5SketchProps) Reset() {
 	*x = P5SketchProps{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[24]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[25]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8746,7 +8822,7 @@ func (x *P5SketchProps) String() string {
 func (*P5SketchProps) ProtoMessage() {}
 
 func (x *P5SketchProps) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[24]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[25]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8759,7 +8835,7 @@ func (x *P5SketchProps) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use P5SketchProps.ProtoReflect.Descriptor instead.
 func (*P5SketchProps) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{24}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{25}
 }
 
 func (x *P5SketchProps) GetMode() P5SketchProps_Mode {
@@ -8818,7 +8894,7 @@ type ThreeSceneProps struct {
 
 func (x *ThreeSceneProps) Reset() {
 	*x = ThreeSceneProps{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[25]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[26]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8830,7 +8906,7 @@ func (x *ThreeSceneProps) String() string {
 func (*ThreeSceneProps) ProtoMessage() {}
 
 func (x *ThreeSceneProps) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[25]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[26]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8843,7 +8919,7 @@ func (x *ThreeSceneProps) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ThreeSceneProps.ProtoReflect.Descriptor instead.
 func (*ThreeSceneProps) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{25}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{26}
 }
 
 func (x *ThreeSceneProps) GetMode() ThreeSceneProps_Mode {
@@ -8901,7 +8977,7 @@ type ShaderProps struct {
 
 func (x *ShaderProps) Reset() {
 	*x = ShaderProps{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[26]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[27]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8913,7 +8989,7 @@ func (x *ShaderProps) String() string {
 func (*ShaderProps) ProtoMessage() {}
 
 func (x *ShaderProps) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[26]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[27]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8926,7 +9002,7 @@ func (x *ShaderProps) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ShaderProps.ProtoReflect.Descriptor instead.
 func (*ShaderProps) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{26}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{27}
 }
 
 func (x *ShaderProps) GetMode() ShaderProps_Mode {
@@ -8973,7 +9049,7 @@ type MathProps struct {
 
 func (x *MathProps) Reset() {
 	*x = MathProps{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[27]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[28]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8985,7 +9061,7 @@ func (x *MathProps) String() string {
 func (*MathProps) ProtoMessage() {}
 
 func (x *MathProps) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[27]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[28]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8998,7 +9074,7 @@ func (x *MathProps) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MathProps.ProtoReflect.Descriptor instead.
 func (*MathProps) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{27}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{28}
 }
 
 func (x *MathProps) GetLatex() string {
@@ -9041,7 +9117,7 @@ type MapProps struct {
 
 func (x *MapProps) Reset() {
 	*x = MapProps{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[28]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[29]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9053,7 +9129,7 @@ func (x *MapProps) String() string {
 func (*MapProps) ProtoMessage() {}
 
 func (x *MapProps) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[28]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[29]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9066,7 +9142,7 @@ func (x *MapProps) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MapProps.ProtoReflect.Descriptor instead.
 func (*MapProps) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{28}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{29}
 }
 
 func (x *MapProps) GetMapPlaceIds() []string {
@@ -9258,7 +9334,7 @@ type FileProps struct {
 
 func (x *FileProps) Reset() {
 	*x = FileProps{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[29]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[30]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9270,7 +9346,7 @@ func (x *FileProps) String() string {
 func (*FileProps) ProtoMessage() {}
 
 func (x *FileProps) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[29]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[30]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9283,7 +9359,7 @@ func (x *FileProps) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FileProps.ProtoReflect.Descriptor instead.
 func (*FileProps) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{29}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{30}
 }
 
 func (x *FileProps) GetAttachment() *FileAttachment {
@@ -9339,7 +9415,7 @@ type CalloutProps struct {
 
 func (x *CalloutProps) Reset() {
 	*x = CalloutProps{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[30]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[31]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9351,7 +9427,7 @@ func (x *CalloutProps) String() string {
 func (*CalloutProps) ProtoMessage() {}
 
 func (x *CalloutProps) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[30]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[31]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9364,7 +9440,7 @@ func (x *CalloutProps) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CalloutProps.ProtoReflect.Descriptor instead.
 func (*CalloutProps) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{30}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{31}
 }
 
 func (x *CalloutProps) GetIcon() string {
@@ -9397,7 +9473,7 @@ type MermaidProps struct {
 
 func (x *MermaidProps) Reset() {
 	*x = MermaidProps{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[31]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[32]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9409,7 +9485,7 @@ func (x *MermaidProps) String() string {
 func (*MermaidProps) ProtoMessage() {}
 
 func (x *MermaidProps) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[31]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[32]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9422,7 +9498,7 @@ func (x *MermaidProps) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MermaidProps.ProtoReflect.Descriptor instead.
 func (*MermaidProps) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{31}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{32}
 }
 
 func (x *MermaidProps) GetSource() string {
@@ -9440,7 +9516,7 @@ type ParagraphLocaleProps struct {
 
 func (x *ParagraphLocaleProps) Reset() {
 	*x = ParagraphLocaleProps{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[32]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[33]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9452,7 +9528,7 @@ func (x *ParagraphLocaleProps) String() string {
 func (*ParagraphLocaleProps) ProtoMessage() {}
 
 func (x *ParagraphLocaleProps) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[32]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[33]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9465,7 +9541,7 @@ func (x *ParagraphLocaleProps) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ParagraphLocaleProps.ProtoReflect.Descriptor instead.
 func (*ParagraphLocaleProps) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{32}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{33}
 }
 
 type HeadingLocaleProps struct {
@@ -9476,7 +9552,7 @@ type HeadingLocaleProps struct {
 
 func (x *HeadingLocaleProps) Reset() {
 	*x = HeadingLocaleProps{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[33]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[34]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9488,7 +9564,7 @@ func (x *HeadingLocaleProps) String() string {
 func (*HeadingLocaleProps) ProtoMessage() {}
 
 func (x *HeadingLocaleProps) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[33]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[34]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9501,7 +9577,7 @@ func (x *HeadingLocaleProps) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use HeadingLocaleProps.ProtoReflect.Descriptor instead.
 func (*HeadingLocaleProps) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{33}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{34}
 }
 
 type BulletListItemLocaleProps struct {
@@ -9512,7 +9588,7 @@ type BulletListItemLocaleProps struct {
 
 func (x *BulletListItemLocaleProps) Reset() {
 	*x = BulletListItemLocaleProps{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[34]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[35]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9524,7 +9600,7 @@ func (x *BulletListItemLocaleProps) String() string {
 func (*BulletListItemLocaleProps) ProtoMessage() {}
 
 func (x *BulletListItemLocaleProps) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[34]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[35]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9537,7 +9613,7 @@ func (x *BulletListItemLocaleProps) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BulletListItemLocaleProps.ProtoReflect.Descriptor instead.
 func (*BulletListItemLocaleProps) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{34}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{35}
 }
 
 type NumberedListItemLocaleProps struct {
@@ -9548,7 +9624,7 @@ type NumberedListItemLocaleProps struct {
 
 func (x *NumberedListItemLocaleProps) Reset() {
 	*x = NumberedListItemLocaleProps{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[35]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[36]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9560,7 +9636,7 @@ func (x *NumberedListItemLocaleProps) String() string {
 func (*NumberedListItemLocaleProps) ProtoMessage() {}
 
 func (x *NumberedListItemLocaleProps) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[35]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[36]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9573,7 +9649,7 @@ func (x *NumberedListItemLocaleProps) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use NumberedListItemLocaleProps.ProtoReflect.Descriptor instead.
 func (*NumberedListItemLocaleProps) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{35}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{36}
 }
 
 type CheckListItemLocaleProps struct {
@@ -9584,7 +9660,7 @@ type CheckListItemLocaleProps struct {
 
 func (x *CheckListItemLocaleProps) Reset() {
 	*x = CheckListItemLocaleProps{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[36]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[37]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9596,7 +9672,7 @@ func (x *CheckListItemLocaleProps) String() string {
 func (*CheckListItemLocaleProps) ProtoMessage() {}
 
 func (x *CheckListItemLocaleProps) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[36]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[37]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9609,7 +9685,7 @@ func (x *CheckListItemLocaleProps) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CheckListItemLocaleProps.ProtoReflect.Descriptor instead.
 func (*CheckListItemLocaleProps) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{36}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{37}
 }
 
 type QuoteLocaleProps struct {
@@ -9620,7 +9696,7 @@ type QuoteLocaleProps struct {
 
 func (x *QuoteLocaleProps) Reset() {
 	*x = QuoteLocaleProps{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[37]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[38]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9632,7 +9708,7 @@ func (x *QuoteLocaleProps) String() string {
 func (*QuoteLocaleProps) ProtoMessage() {}
 
 func (x *QuoteLocaleProps) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[37]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[38]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9645,7 +9721,7 @@ func (x *QuoteLocaleProps) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use QuoteLocaleProps.ProtoReflect.Descriptor instead.
 func (*QuoteLocaleProps) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{37}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{38}
 }
 
 type CodeBlockLocaleProps struct {
@@ -9657,7 +9733,7 @@ type CodeBlockLocaleProps struct {
 
 func (x *CodeBlockLocaleProps) Reset() {
 	*x = CodeBlockLocaleProps{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[38]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[39]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9669,7 +9745,7 @@ func (x *CodeBlockLocaleProps) String() string {
 func (*CodeBlockLocaleProps) ProtoMessage() {}
 
 func (x *CodeBlockLocaleProps) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[38]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[39]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9682,7 +9758,7 @@ func (x *CodeBlockLocaleProps) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CodeBlockLocaleProps.ProtoReflect.Descriptor instead.
 func (*CodeBlockLocaleProps) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{38}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{39}
 }
 
 func (x *CodeBlockLocaleProps) GetTitle() string {
@@ -9700,7 +9776,7 @@ type DividerLocaleProps struct {
 
 func (x *DividerLocaleProps) Reset() {
 	*x = DividerLocaleProps{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[39]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[40]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9712,7 +9788,7 @@ func (x *DividerLocaleProps) String() string {
 func (*DividerLocaleProps) ProtoMessage() {}
 
 func (x *DividerLocaleProps) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[39]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[40]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9725,7 +9801,7 @@ func (x *DividerLocaleProps) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DividerLocaleProps.ProtoReflect.Descriptor instead.
 func (*DividerLocaleProps) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{39}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{40}
 }
 
 type TableLocaleProps struct {
@@ -9736,7 +9812,7 @@ type TableLocaleProps struct {
 
 func (x *TableLocaleProps) Reset() {
 	*x = TableLocaleProps{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[40]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[41]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9748,7 +9824,7 @@ func (x *TableLocaleProps) String() string {
 func (*TableLocaleProps) ProtoMessage() {}
 
 func (x *TableLocaleProps) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[40]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[41]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9761,7 +9837,7 @@ func (x *TableLocaleProps) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TableLocaleProps.ProtoReflect.Descriptor instead.
 func (*TableLocaleProps) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{40}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{41}
 }
 
 type P5SketchLocaleProps struct {
@@ -9773,7 +9849,7 @@ type P5SketchLocaleProps struct {
 
 func (x *P5SketchLocaleProps) Reset() {
 	*x = P5SketchLocaleProps{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[41]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[42]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9785,7 +9861,7 @@ func (x *P5SketchLocaleProps) String() string {
 func (*P5SketchLocaleProps) ProtoMessage() {}
 
 func (x *P5SketchLocaleProps) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[41]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[42]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9798,7 +9874,7 @@ func (x *P5SketchLocaleProps) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use P5SketchLocaleProps.ProtoReflect.Descriptor instead.
 func (*P5SketchLocaleProps) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{41}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{42}
 }
 
 func (x *P5SketchLocaleProps) GetTitle() string {
@@ -9817,7 +9893,7 @@ type ThreeSceneLocaleProps struct {
 
 func (x *ThreeSceneLocaleProps) Reset() {
 	*x = ThreeSceneLocaleProps{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[42]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[43]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9829,7 +9905,7 @@ func (x *ThreeSceneLocaleProps) String() string {
 func (*ThreeSceneLocaleProps) ProtoMessage() {}
 
 func (x *ThreeSceneLocaleProps) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[42]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[43]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9842,7 +9918,7 @@ func (x *ThreeSceneLocaleProps) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ThreeSceneLocaleProps.ProtoReflect.Descriptor instead.
 func (*ThreeSceneLocaleProps) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{42}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{43}
 }
 
 func (x *ThreeSceneLocaleProps) GetTitle() string {
@@ -9861,7 +9937,7 @@ type ShaderLocaleProps struct {
 
 func (x *ShaderLocaleProps) Reset() {
 	*x = ShaderLocaleProps{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[43]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[44]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9873,7 +9949,7 @@ func (x *ShaderLocaleProps) String() string {
 func (*ShaderLocaleProps) ProtoMessage() {}
 
 func (x *ShaderLocaleProps) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[43]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[44]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9886,7 +9962,7 @@ func (x *ShaderLocaleProps) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ShaderLocaleProps.ProtoReflect.Descriptor instead.
 func (*ShaderLocaleProps) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{43}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{44}
 }
 
 func (x *ShaderLocaleProps) GetTitle() string {
@@ -9904,7 +9980,7 @@ type MathLocaleProps struct {
 
 func (x *MathLocaleProps) Reset() {
 	*x = MathLocaleProps{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[44]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[45]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9916,7 +9992,7 @@ func (x *MathLocaleProps) String() string {
 func (*MathLocaleProps) ProtoMessage() {}
 
 func (x *MathLocaleProps) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[44]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[45]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9929,7 +10005,7 @@ func (x *MathLocaleProps) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MathLocaleProps.ProtoReflect.Descriptor instead.
 func (*MathLocaleProps) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{44}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{45}
 }
 
 type MapLocaleProps struct {
@@ -9941,7 +10017,7 @@ type MapLocaleProps struct {
 
 func (x *MapLocaleProps) Reset() {
 	*x = MapLocaleProps{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[45]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[46]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9953,7 +10029,7 @@ func (x *MapLocaleProps) String() string {
 func (*MapLocaleProps) ProtoMessage() {}
 
 func (x *MapLocaleProps) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[45]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[46]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9966,7 +10042,7 @@ func (x *MapLocaleProps) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MapLocaleProps.ProtoReflect.Descriptor instead.
 func (*MapLocaleProps) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{45}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{46}
 }
 
 func (x *MapLocaleProps) GetCaption() string {
@@ -9986,7 +10062,7 @@ type FileLocaleProps struct {
 
 func (x *FileLocaleProps) Reset() {
 	*x = FileLocaleProps{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[46]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[47]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9998,7 +10074,7 @@ func (x *FileLocaleProps) String() string {
 func (*FileLocaleProps) ProtoMessage() {}
 
 func (x *FileLocaleProps) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[46]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[47]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10011,7 +10087,7 @@ func (x *FileLocaleProps) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FileLocaleProps.ProtoReflect.Descriptor instead.
 func (*FileLocaleProps) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{46}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{47}
 }
 
 func (x *FileLocaleProps) GetAlt() string {
@@ -10036,7 +10112,7 @@ type CalloutLocaleProps struct {
 
 func (x *CalloutLocaleProps) Reset() {
 	*x = CalloutLocaleProps{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[47]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[48]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10048,7 +10124,7 @@ func (x *CalloutLocaleProps) String() string {
 func (*CalloutLocaleProps) ProtoMessage() {}
 
 func (x *CalloutLocaleProps) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[47]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[48]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10061,7 +10137,7 @@ func (x *CalloutLocaleProps) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CalloutLocaleProps.ProtoReflect.Descriptor instead.
 func (*CalloutLocaleProps) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{47}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{48}
 }
 
 type MermaidLocaleProps struct {
@@ -10073,7 +10149,7 @@ type MermaidLocaleProps struct {
 
 func (x *MermaidLocaleProps) Reset() {
 	*x = MermaidLocaleProps{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[48]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[49]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10085,7 +10161,7 @@ func (x *MermaidLocaleProps) String() string {
 func (*MermaidLocaleProps) ProtoMessage() {}
 
 func (x *MermaidLocaleProps) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[48]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[49]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10098,7 +10174,7 @@ func (x *MermaidLocaleProps) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MermaidLocaleProps.ProtoReflect.Descriptor instead.
 func (*MermaidLocaleProps) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{48}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{49}
 }
 
 func (x *MermaidLocaleProps) GetTitle() string {
@@ -10117,7 +10193,7 @@ type ParagraphBlock struct {
 
 func (x *ParagraphBlock) Reset() {
 	*x = ParagraphBlock{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[49]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[50]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10129,7 +10205,7 @@ func (x *ParagraphBlock) String() string {
 func (*ParagraphBlock) ProtoMessage() {}
 
 func (x *ParagraphBlock) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[49]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[50]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10142,7 +10218,7 @@ func (x *ParagraphBlock) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ParagraphBlock.ProtoReflect.Descriptor instead.
 func (*ParagraphBlock) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{49}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{50}
 }
 
 func (x *ParagraphBlock) GetProps() *ParagraphProps {
@@ -10161,7 +10237,7 @@ type HeadingBlock struct {
 
 func (x *HeadingBlock) Reset() {
 	*x = HeadingBlock{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[50]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[51]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10173,7 +10249,7 @@ func (x *HeadingBlock) String() string {
 func (*HeadingBlock) ProtoMessage() {}
 
 func (x *HeadingBlock) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[50]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[51]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10186,7 +10262,7 @@ func (x *HeadingBlock) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use HeadingBlock.ProtoReflect.Descriptor instead.
 func (*HeadingBlock) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{50}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{51}
 }
 
 func (x *HeadingBlock) GetProps() *HeadingProps {
@@ -10205,7 +10281,7 @@ type BulletListItemBlock struct {
 
 func (x *BulletListItemBlock) Reset() {
 	*x = BulletListItemBlock{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[51]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[52]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10217,7 +10293,7 @@ func (x *BulletListItemBlock) String() string {
 func (*BulletListItemBlock) ProtoMessage() {}
 
 func (x *BulletListItemBlock) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[51]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[52]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10230,7 +10306,7 @@ func (x *BulletListItemBlock) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BulletListItemBlock.ProtoReflect.Descriptor instead.
 func (*BulletListItemBlock) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{51}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{52}
 }
 
 func (x *BulletListItemBlock) GetProps() *BulletListItemProps {
@@ -10249,7 +10325,7 @@ type NumberedListItemBlock struct {
 
 func (x *NumberedListItemBlock) Reset() {
 	*x = NumberedListItemBlock{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[52]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[53]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10261,7 +10337,7 @@ func (x *NumberedListItemBlock) String() string {
 func (*NumberedListItemBlock) ProtoMessage() {}
 
 func (x *NumberedListItemBlock) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[52]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[53]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10274,7 +10350,7 @@ func (x *NumberedListItemBlock) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use NumberedListItemBlock.ProtoReflect.Descriptor instead.
 func (*NumberedListItemBlock) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{52}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{53}
 }
 
 func (x *NumberedListItemBlock) GetProps() *NumberedListItemProps {
@@ -10293,7 +10369,7 @@ type CheckListItemBlock struct {
 
 func (x *CheckListItemBlock) Reset() {
 	*x = CheckListItemBlock{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[53]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[54]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10305,7 +10381,7 @@ func (x *CheckListItemBlock) String() string {
 func (*CheckListItemBlock) ProtoMessage() {}
 
 func (x *CheckListItemBlock) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[53]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[54]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10318,7 +10394,7 @@ func (x *CheckListItemBlock) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CheckListItemBlock.ProtoReflect.Descriptor instead.
 func (*CheckListItemBlock) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{53}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{54}
 }
 
 func (x *CheckListItemBlock) GetProps() *CheckListItemProps {
@@ -10337,7 +10413,7 @@ type QuoteBlock struct {
 
 func (x *QuoteBlock) Reset() {
 	*x = QuoteBlock{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[54]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[55]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10349,7 +10425,7 @@ func (x *QuoteBlock) String() string {
 func (*QuoteBlock) ProtoMessage() {}
 
 func (x *QuoteBlock) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[54]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[55]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10362,7 +10438,7 @@ func (x *QuoteBlock) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use QuoteBlock.ProtoReflect.Descriptor instead.
 func (*QuoteBlock) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{54}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{55}
 }
 
 func (x *QuoteBlock) GetProps() *QuoteProps {
@@ -10381,7 +10457,7 @@ type CodeBlockBlock struct {
 
 func (x *CodeBlockBlock) Reset() {
 	*x = CodeBlockBlock{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[55]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[56]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10393,7 +10469,7 @@ func (x *CodeBlockBlock) String() string {
 func (*CodeBlockBlock) ProtoMessage() {}
 
 func (x *CodeBlockBlock) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[55]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[56]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10406,7 +10482,7 @@ func (x *CodeBlockBlock) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CodeBlockBlock.ProtoReflect.Descriptor instead.
 func (*CodeBlockBlock) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{55}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{56}
 }
 
 func (x *CodeBlockBlock) GetProps() *CodeBlockProps {
@@ -10425,7 +10501,7 @@ type DividerBlock struct {
 
 func (x *DividerBlock) Reset() {
 	*x = DividerBlock{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[56]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[57]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10437,7 +10513,7 @@ func (x *DividerBlock) String() string {
 func (*DividerBlock) ProtoMessage() {}
 
 func (x *DividerBlock) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[56]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[57]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10450,7 +10526,7 @@ func (x *DividerBlock) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DividerBlock.ProtoReflect.Descriptor instead.
 func (*DividerBlock) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{56}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{57}
 }
 
 func (x *DividerBlock) GetProps() *DividerProps {
@@ -10470,7 +10546,7 @@ type TableBlock struct {
 
 func (x *TableBlock) Reset() {
 	*x = TableBlock{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[57]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[58]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10482,7 +10558,7 @@ func (x *TableBlock) String() string {
 func (*TableBlock) ProtoMessage() {}
 
 func (x *TableBlock) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[57]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[58]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10495,7 +10571,7 @@ func (x *TableBlock) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TableBlock.ProtoReflect.Descriptor instead.
 func (*TableBlock) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{57}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{58}
 }
 
 func (x *TableBlock) GetProps() *TableProps {
@@ -10521,7 +10597,7 @@ type P5SketchBlock struct {
 
 func (x *P5SketchBlock) Reset() {
 	*x = P5SketchBlock{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[58]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[59]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10533,7 +10609,7 @@ func (x *P5SketchBlock) String() string {
 func (*P5SketchBlock) ProtoMessage() {}
 
 func (x *P5SketchBlock) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[58]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[59]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10546,7 +10622,7 @@ func (x *P5SketchBlock) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use P5SketchBlock.ProtoReflect.Descriptor instead.
 func (*P5SketchBlock) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{58}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{59}
 }
 
 func (x *P5SketchBlock) GetProps() *P5SketchProps {
@@ -10565,7 +10641,7 @@ type ThreeSceneBlock struct {
 
 func (x *ThreeSceneBlock) Reset() {
 	*x = ThreeSceneBlock{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[59]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[60]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10577,7 +10653,7 @@ func (x *ThreeSceneBlock) String() string {
 func (*ThreeSceneBlock) ProtoMessage() {}
 
 func (x *ThreeSceneBlock) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[59]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[60]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10590,7 +10666,7 @@ func (x *ThreeSceneBlock) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ThreeSceneBlock.ProtoReflect.Descriptor instead.
 func (*ThreeSceneBlock) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{59}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{60}
 }
 
 func (x *ThreeSceneBlock) GetProps() *ThreeSceneProps {
@@ -10609,7 +10685,7 @@ type ShaderBlock struct {
 
 func (x *ShaderBlock) Reset() {
 	*x = ShaderBlock{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[60]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[61]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10621,7 +10697,7 @@ func (x *ShaderBlock) String() string {
 func (*ShaderBlock) ProtoMessage() {}
 
 func (x *ShaderBlock) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[60]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[61]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10634,7 +10710,7 @@ func (x *ShaderBlock) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ShaderBlock.ProtoReflect.Descriptor instead.
 func (*ShaderBlock) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{60}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{61}
 }
 
 func (x *ShaderBlock) GetProps() *ShaderProps {
@@ -10653,7 +10729,7 @@ type MathBlock struct {
 
 func (x *MathBlock) Reset() {
 	*x = MathBlock{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[61]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[62]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10665,7 +10741,7 @@ func (x *MathBlock) String() string {
 func (*MathBlock) ProtoMessage() {}
 
 func (x *MathBlock) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[61]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[62]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10678,7 +10754,7 @@ func (x *MathBlock) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MathBlock.ProtoReflect.Descriptor instead.
 func (*MathBlock) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{61}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{62}
 }
 
 func (x *MathBlock) GetProps() *MathProps {
@@ -10697,7 +10773,7 @@ type MapBlock struct {
 
 func (x *MapBlock) Reset() {
 	*x = MapBlock{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[62]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[63]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10709,7 +10785,7 @@ func (x *MapBlock) String() string {
 func (*MapBlock) ProtoMessage() {}
 
 func (x *MapBlock) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[62]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[63]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10722,7 +10798,7 @@ func (x *MapBlock) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MapBlock.ProtoReflect.Descriptor instead.
 func (*MapBlock) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{62}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{63}
 }
 
 func (x *MapBlock) GetProps() *MapProps {
@@ -10741,7 +10817,7 @@ type FileBlock struct {
 
 func (x *FileBlock) Reset() {
 	*x = FileBlock{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[63]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[64]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10753,7 +10829,7 @@ func (x *FileBlock) String() string {
 func (*FileBlock) ProtoMessage() {}
 
 func (x *FileBlock) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[63]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[64]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10766,7 +10842,7 @@ func (x *FileBlock) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FileBlock.ProtoReflect.Descriptor instead.
 func (*FileBlock) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{63}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{64}
 }
 
 func (x *FileBlock) GetProps() *FileProps {
@@ -10785,7 +10861,7 @@ type CalloutBlock struct {
 
 func (x *CalloutBlock) Reset() {
 	*x = CalloutBlock{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[64]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[65]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10797,7 +10873,7 @@ func (x *CalloutBlock) String() string {
 func (*CalloutBlock) ProtoMessage() {}
 
 func (x *CalloutBlock) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[64]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[65]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10810,7 +10886,7 @@ func (x *CalloutBlock) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CalloutBlock.ProtoReflect.Descriptor instead.
 func (*CalloutBlock) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{64}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{65}
 }
 
 func (x *CalloutBlock) GetProps() *CalloutProps {
@@ -10829,7 +10905,7 @@ type MermaidBlock struct {
 
 func (x *MermaidBlock) Reset() {
 	*x = MermaidBlock{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[65]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[66]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10841,7 +10917,7 @@ func (x *MermaidBlock) String() string {
 func (*MermaidBlock) ProtoMessage() {}
 
 func (x *MermaidBlock) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[65]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[66]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10854,7 +10930,7 @@ func (x *MermaidBlock) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MermaidBlock.ProtoReflect.Descriptor instead.
 func (*MermaidBlock) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{65}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{66}
 }
 
 func (x *MermaidBlock) GetProps() *MermaidProps {
@@ -10874,7 +10950,7 @@ type ParagraphBlockLocale struct {
 
 func (x *ParagraphBlockLocale) Reset() {
 	*x = ParagraphBlockLocale{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[66]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[67]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10886,7 +10962,7 @@ func (x *ParagraphBlockLocale) String() string {
 func (*ParagraphBlockLocale) ProtoMessage() {}
 
 func (x *ParagraphBlockLocale) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[66]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[67]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10899,7 +10975,7 @@ func (x *ParagraphBlockLocale) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ParagraphBlockLocale.ProtoReflect.Descriptor instead.
 func (*ParagraphBlockLocale) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{66}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{67}
 }
 
 func (x *ParagraphBlockLocale) GetProps() *ParagraphLocaleProps {
@@ -10926,7 +11002,7 @@ type HeadingBlockLocale struct {
 
 func (x *HeadingBlockLocale) Reset() {
 	*x = HeadingBlockLocale{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[67]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[68]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10938,7 +11014,7 @@ func (x *HeadingBlockLocale) String() string {
 func (*HeadingBlockLocale) ProtoMessage() {}
 
 func (x *HeadingBlockLocale) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[67]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[68]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10951,7 +11027,7 @@ func (x *HeadingBlockLocale) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use HeadingBlockLocale.ProtoReflect.Descriptor instead.
 func (*HeadingBlockLocale) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{67}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{68}
 }
 
 func (x *HeadingBlockLocale) GetProps() *HeadingLocaleProps {
@@ -10978,7 +11054,7 @@ type BulletListItemBlockLocale struct {
 
 func (x *BulletListItemBlockLocale) Reset() {
 	*x = BulletListItemBlockLocale{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[68]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[69]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10990,7 +11066,7 @@ func (x *BulletListItemBlockLocale) String() string {
 func (*BulletListItemBlockLocale) ProtoMessage() {}
 
 func (x *BulletListItemBlockLocale) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[68]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[69]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11003,7 +11079,7 @@ func (x *BulletListItemBlockLocale) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BulletListItemBlockLocale.ProtoReflect.Descriptor instead.
 func (*BulletListItemBlockLocale) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{68}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{69}
 }
 
 func (x *BulletListItemBlockLocale) GetProps() *BulletListItemLocaleProps {
@@ -11030,7 +11106,7 @@ type NumberedListItemBlockLocale struct {
 
 func (x *NumberedListItemBlockLocale) Reset() {
 	*x = NumberedListItemBlockLocale{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[69]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[70]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11042,7 +11118,7 @@ func (x *NumberedListItemBlockLocale) String() string {
 func (*NumberedListItemBlockLocale) ProtoMessage() {}
 
 func (x *NumberedListItemBlockLocale) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[69]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[70]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11055,7 +11131,7 @@ func (x *NumberedListItemBlockLocale) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use NumberedListItemBlockLocale.ProtoReflect.Descriptor instead.
 func (*NumberedListItemBlockLocale) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{69}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{70}
 }
 
 func (x *NumberedListItemBlockLocale) GetProps() *NumberedListItemLocaleProps {
@@ -11082,7 +11158,7 @@ type CheckListItemBlockLocale struct {
 
 func (x *CheckListItemBlockLocale) Reset() {
 	*x = CheckListItemBlockLocale{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[70]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[71]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11094,7 +11170,7 @@ func (x *CheckListItemBlockLocale) String() string {
 func (*CheckListItemBlockLocale) ProtoMessage() {}
 
 func (x *CheckListItemBlockLocale) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[70]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[71]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11107,7 +11183,7 @@ func (x *CheckListItemBlockLocale) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CheckListItemBlockLocale.ProtoReflect.Descriptor instead.
 func (*CheckListItemBlockLocale) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{70}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{71}
 }
 
 func (x *CheckListItemBlockLocale) GetProps() *CheckListItemLocaleProps {
@@ -11134,7 +11210,7 @@ type QuoteBlockLocale struct {
 
 func (x *QuoteBlockLocale) Reset() {
 	*x = QuoteBlockLocale{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[71]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[72]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11146,7 +11222,7 @@ func (x *QuoteBlockLocale) String() string {
 func (*QuoteBlockLocale) ProtoMessage() {}
 
 func (x *QuoteBlockLocale) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[71]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[72]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11159,7 +11235,7 @@ func (x *QuoteBlockLocale) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use QuoteBlockLocale.ProtoReflect.Descriptor instead.
 func (*QuoteBlockLocale) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{71}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{72}
 }
 
 func (x *QuoteBlockLocale) GetProps() *QuoteLocaleProps {
@@ -11186,7 +11262,7 @@ type CodeBlockBlockLocale struct {
 
 func (x *CodeBlockBlockLocale) Reset() {
 	*x = CodeBlockBlockLocale{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[72]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[73]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11198,7 +11274,7 @@ func (x *CodeBlockBlockLocale) String() string {
 func (*CodeBlockBlockLocale) ProtoMessage() {}
 
 func (x *CodeBlockBlockLocale) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[72]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[73]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11211,7 +11287,7 @@ func (x *CodeBlockBlockLocale) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CodeBlockBlockLocale.ProtoReflect.Descriptor instead.
 func (*CodeBlockBlockLocale) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{72}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{73}
 }
 
 func (x *CodeBlockBlockLocale) GetProps() *CodeBlockLocaleProps {
@@ -11237,7 +11313,7 @@ type DividerBlockLocale struct {
 
 func (x *DividerBlockLocale) Reset() {
 	*x = DividerBlockLocale{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[73]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[74]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11249,7 +11325,7 @@ func (x *DividerBlockLocale) String() string {
 func (*DividerBlockLocale) ProtoMessage() {}
 
 func (x *DividerBlockLocale) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[73]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[74]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11262,7 +11338,7 @@ func (x *DividerBlockLocale) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DividerBlockLocale.ProtoReflect.Descriptor instead.
 func (*DividerBlockLocale) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{73}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{74}
 }
 
 func (x *DividerBlockLocale) GetProps() *DividerLocaleProps {
@@ -11282,7 +11358,7 @@ type TableBlockLocale struct {
 
 func (x *TableBlockLocale) Reset() {
 	*x = TableBlockLocale{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[74]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[75]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11294,7 +11370,7 @@ func (x *TableBlockLocale) String() string {
 func (*TableBlockLocale) ProtoMessage() {}
 
 func (x *TableBlockLocale) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[74]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[75]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11307,7 +11383,7 @@ func (x *TableBlockLocale) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TableBlockLocale.ProtoReflect.Descriptor instead.
 func (*TableBlockLocale) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{74}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{75}
 }
 
 func (x *TableBlockLocale) GetProps() *TableLocaleProps {
@@ -11333,7 +11409,7 @@ type P5SketchBlockLocale struct {
 
 func (x *P5SketchBlockLocale) Reset() {
 	*x = P5SketchBlockLocale{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[75]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[76]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11345,7 +11421,7 @@ func (x *P5SketchBlockLocale) String() string {
 func (*P5SketchBlockLocale) ProtoMessage() {}
 
 func (x *P5SketchBlockLocale) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[75]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[76]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11358,7 +11434,7 @@ func (x *P5SketchBlockLocale) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use P5SketchBlockLocale.ProtoReflect.Descriptor instead.
 func (*P5SketchBlockLocale) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{75}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{76}
 }
 
 func (x *P5SketchBlockLocale) GetProps() *P5SketchLocaleProps {
@@ -11377,7 +11453,7 @@ type ThreeSceneBlockLocale struct {
 
 func (x *ThreeSceneBlockLocale) Reset() {
 	*x = ThreeSceneBlockLocale{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[76]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[77]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11389,7 +11465,7 @@ func (x *ThreeSceneBlockLocale) String() string {
 func (*ThreeSceneBlockLocale) ProtoMessage() {}
 
 func (x *ThreeSceneBlockLocale) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[76]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[77]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11402,7 +11478,7 @@ func (x *ThreeSceneBlockLocale) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ThreeSceneBlockLocale.ProtoReflect.Descriptor instead.
 func (*ThreeSceneBlockLocale) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{76}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{77}
 }
 
 func (x *ThreeSceneBlockLocale) GetProps() *ThreeSceneLocaleProps {
@@ -11421,7 +11497,7 @@ type ShaderBlockLocale struct {
 
 func (x *ShaderBlockLocale) Reset() {
 	*x = ShaderBlockLocale{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[77]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[78]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11433,7 +11509,7 @@ func (x *ShaderBlockLocale) String() string {
 func (*ShaderBlockLocale) ProtoMessage() {}
 
 func (x *ShaderBlockLocale) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[77]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[78]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11446,7 +11522,7 @@ func (x *ShaderBlockLocale) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ShaderBlockLocale.ProtoReflect.Descriptor instead.
 func (*ShaderBlockLocale) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{77}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{78}
 }
 
 func (x *ShaderBlockLocale) GetProps() *ShaderLocaleProps {
@@ -11465,7 +11541,7 @@ type MathBlockLocale struct {
 
 func (x *MathBlockLocale) Reset() {
 	*x = MathBlockLocale{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[78]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[79]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11477,7 +11553,7 @@ func (x *MathBlockLocale) String() string {
 func (*MathBlockLocale) ProtoMessage() {}
 
 func (x *MathBlockLocale) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[78]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[79]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11490,7 +11566,7 @@ func (x *MathBlockLocale) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MathBlockLocale.ProtoReflect.Descriptor instead.
 func (*MathBlockLocale) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{78}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{79}
 }
 
 func (x *MathBlockLocale) GetProps() *MathLocaleProps {
@@ -11509,7 +11585,7 @@ type MapBlockLocale struct {
 
 func (x *MapBlockLocale) Reset() {
 	*x = MapBlockLocale{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[79]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[80]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11521,7 +11597,7 @@ func (x *MapBlockLocale) String() string {
 func (*MapBlockLocale) ProtoMessage() {}
 
 func (x *MapBlockLocale) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[79]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[80]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11534,7 +11610,7 @@ func (x *MapBlockLocale) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MapBlockLocale.ProtoReflect.Descriptor instead.
 func (*MapBlockLocale) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{79}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{80}
 }
 
 func (x *MapBlockLocale) GetProps() *MapLocaleProps {
@@ -11553,7 +11629,7 @@ type FileBlockLocale struct {
 
 func (x *FileBlockLocale) Reset() {
 	*x = FileBlockLocale{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[80]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[81]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11565,7 +11641,7 @@ func (x *FileBlockLocale) String() string {
 func (*FileBlockLocale) ProtoMessage() {}
 
 func (x *FileBlockLocale) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[80]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[81]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11578,7 +11654,7 @@ func (x *FileBlockLocale) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FileBlockLocale.ProtoReflect.Descriptor instead.
 func (*FileBlockLocale) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{80}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{81}
 }
 
 func (x *FileBlockLocale) GetProps() *FileLocaleProps {
@@ -11598,7 +11674,7 @@ type CalloutBlockLocale struct {
 
 func (x *CalloutBlockLocale) Reset() {
 	*x = CalloutBlockLocale{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[81]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[82]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11610,7 +11686,7 @@ func (x *CalloutBlockLocale) String() string {
 func (*CalloutBlockLocale) ProtoMessage() {}
 
 func (x *CalloutBlockLocale) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[81]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[82]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11623,7 +11699,7 @@ func (x *CalloutBlockLocale) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CalloutBlockLocale.ProtoReflect.Descriptor instead.
 func (*CalloutBlockLocale) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{81}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{82}
 }
 
 func (x *CalloutBlockLocale) GetProps() *CalloutLocaleProps {
@@ -11649,7 +11725,7 @@ type MermaidBlockLocale struct {
 
 func (x *MermaidBlockLocale) Reset() {
 	*x = MermaidBlockLocale{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[82]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[83]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11661,7 +11737,7 @@ func (x *MermaidBlockLocale) String() string {
 func (*MermaidBlockLocale) ProtoMessage() {}
 
 func (x *MermaidBlockLocale) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[82]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[83]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11674,7 +11750,7 @@ func (x *MermaidBlockLocale) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MermaidBlockLocale.ProtoReflect.Descriptor instead.
 func (*MermaidBlockLocale) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{82}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{83}
 }
 
 func (x *MermaidBlockLocale) GetProps() *MermaidLocaleProps {
@@ -11713,7 +11789,7 @@ type RichTextBlock struct {
 
 func (x *RichTextBlock) Reset() {
 	*x = RichTextBlock{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[83]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[84]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11725,7 +11801,7 @@ func (x *RichTextBlock) String() string {
 func (*RichTextBlock) ProtoMessage() {}
 
 func (x *RichTextBlock) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[83]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[84]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11738,7 +11814,7 @@ func (x *RichTextBlock) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RichTextBlock.ProtoReflect.Descriptor instead.
 func (*RichTextBlock) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{83}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{84}
 }
 
 func (x *RichTextBlock) GetId() string {
@@ -12043,7 +12119,7 @@ type RichTextBlockLocale struct {
 
 func (x *RichTextBlockLocale) Reset() {
 	*x = RichTextBlockLocale{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[84]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[85]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12055,7 +12131,7 @@ func (x *RichTextBlockLocale) String() string {
 func (*RichTextBlockLocale) ProtoMessage() {}
 
 func (x *RichTextBlockLocale) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[84]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[85]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12068,7 +12144,7 @@ func (x *RichTextBlockLocale) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RichTextBlockLocale.ProtoReflect.Descriptor instead.
 func (*RichTextBlockLocale) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{84}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{85}
 }
 
 func (x *RichTextBlockLocale) GetBlockId() string {
@@ -12374,7 +12450,7 @@ type RichTextBlockData struct {
 
 func (x *RichTextBlockData) Reset() {
 	*x = RichTextBlockData{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[85]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[86]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12386,7 +12462,7 @@ func (x *RichTextBlockData) String() string {
 func (*RichTextBlockData) ProtoMessage() {}
 
 func (x *RichTextBlockData) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[85]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[86]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12399,7 +12475,7 @@ func (x *RichTextBlockData) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RichTextBlockData.ProtoReflect.Descriptor instead.
 func (*RichTextBlockData) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{85}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{86}
 }
 
 func (x *RichTextBlockData) GetValue() isRichTextBlockData_Value {
@@ -12697,7 +12773,7 @@ type RichTextBlockLocaleData struct {
 
 func (x *RichTextBlockLocaleData) Reset() {
 	*x = RichTextBlockLocaleData{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[86]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[87]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12709,7 +12785,7 @@ func (x *RichTextBlockLocaleData) String() string {
 func (*RichTextBlockLocaleData) ProtoMessage() {}
 
 func (x *RichTextBlockLocaleData) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[86]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[87]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12722,7 +12798,7 @@ func (x *RichTextBlockLocaleData) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RichTextBlockLocaleData.ProtoReflect.Descriptor instead.
 func (*RichTextBlockLocaleData) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{86}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{87}
 }
 
 func (x *RichTextBlockLocaleData) GetValue() isRichTextBlockLocaleData_Value {
@@ -13001,7 +13077,7 @@ type ContentBlockPlacement struct {
 
 func (x *ContentBlockPlacement) Reset() {
 	*x = ContentBlockPlacement{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[87]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[88]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -13013,7 +13089,7 @@ func (x *ContentBlockPlacement) String() string {
 func (*ContentBlockPlacement) ProtoMessage() {}
 
 func (x *ContentBlockPlacement) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[87]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[88]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -13026,7 +13102,7 @@ func (x *ContentBlockPlacement) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ContentBlockPlacement.ProtoReflect.Descriptor instead.
 func (*ContentBlockPlacement) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{87}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{88}
 }
 
 func (x *ContentBlockPlacement) GetParentBlockId() string {
@@ -13053,7 +13129,7 @@ type RichTextBlockNode struct {
 
 func (x *RichTextBlockNode) Reset() {
 	*x = RichTextBlockNode{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[88]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[89]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -13065,7 +13141,7 @@ func (x *RichTextBlockNode) String() string {
 func (*RichTextBlockNode) ProtoMessage() {}
 
 func (x *RichTextBlockNode) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[88]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[89]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -13078,7 +13154,7 @@ func (x *RichTextBlockNode) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RichTextBlockNode.ProtoReflect.Descriptor instead.
 func (*RichTextBlockNode) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{88}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{89}
 }
 
 func (x *RichTextBlockNode) GetBlock() *RichTextBlock {
@@ -13104,7 +13180,7 @@ type RichTextBlockGraph struct {
 
 func (x *RichTextBlockGraph) Reset() {
 	*x = RichTextBlockGraph{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[89]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[90]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -13116,7 +13192,7 @@ func (x *RichTextBlockGraph) String() string {
 func (*RichTextBlockGraph) ProtoMessage() {}
 
 func (x *RichTextBlockGraph) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[89]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[90]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -13129,7 +13205,7 @@ func (x *RichTextBlockGraph) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RichTextBlockGraph.ProtoReflect.Descriptor instead.
 func (*RichTextBlockGraph) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{89}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{90}
 }
 
 func (x *RichTextBlockGraph) GetNodes() []*RichTextBlockNode {
@@ -13149,7 +13225,7 @@ type RichTextLocaleOverlay struct {
 
 func (x *RichTextLocaleOverlay) Reset() {
 	*x = RichTextLocaleOverlay{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[90]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[91]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -13161,7 +13237,7 @@ func (x *RichTextLocaleOverlay) String() string {
 func (*RichTextLocaleOverlay) ProtoMessage() {}
 
 func (x *RichTextLocaleOverlay) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[90]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[91]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -13174,7 +13250,7 @@ func (x *RichTextLocaleOverlay) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RichTextLocaleOverlay.ProtoReflect.Descriptor instead.
 func (*RichTextLocaleOverlay) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{90}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{91}
 }
 
 func (x *RichTextLocaleOverlay) GetLocale() string {
@@ -13204,7 +13280,7 @@ type RichTextDocument struct {
 
 func (x *RichTextDocument) Reset() {
 	*x = RichTextDocument{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[91]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[92]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -13216,7 +13292,7 @@ func (x *RichTextDocument) String() string {
 func (*RichTextDocument) ProtoMessage() {}
 
 func (x *RichTextDocument) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[91]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[92]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -13229,7 +13305,7 @@ func (x *RichTextDocument) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RichTextDocument.ProtoReflect.Descriptor instead.
 func (*RichTextDocument) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{91}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{92}
 }
 
 func (x *RichTextDocument) GetBlockCatalogFingerprint() string {
@@ -13280,7 +13356,7 @@ type LocalizedRichTextDocument struct {
 
 func (x *LocalizedRichTextDocument) Reset() {
 	*x = LocalizedRichTextDocument{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[92]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[93]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -13292,7 +13368,7 @@ func (x *LocalizedRichTextDocument) String() string {
 func (*LocalizedRichTextDocument) ProtoMessage() {}
 
 func (x *LocalizedRichTextDocument) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[92]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[93]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -13305,7 +13381,7 @@ func (x *LocalizedRichTextDocument) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LocalizedRichTextDocument.ProtoReflect.Descriptor instead.
 func (*LocalizedRichTextDocument) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{92}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{93}
 }
 
 func (x *LocalizedRichTextDocument) GetBlockCatalogFingerprint() string {
@@ -13352,7 +13428,7 @@ type UpsertRichTextBlock struct {
 
 func (x *UpsertRichTextBlock) Reset() {
 	*x = UpsertRichTextBlock{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[93]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[94]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -13364,7 +13440,7 @@ func (x *UpsertRichTextBlock) String() string {
 func (*UpsertRichTextBlock) ProtoMessage() {}
 
 func (x *UpsertRichTextBlock) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[93]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[94]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -13377,7 +13453,7 @@ func (x *UpsertRichTextBlock) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpsertRichTextBlock.ProtoReflect.Descriptor instead.
 func (*UpsertRichTextBlock) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{93}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{94}
 }
 
 func (x *UpsertRichTextBlock) GetNode() *RichTextBlockNode {
@@ -13396,7 +13472,7 @@ type DeleteRichTextBlock struct {
 
 func (x *DeleteRichTextBlock) Reset() {
 	*x = DeleteRichTextBlock{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[94]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[95]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -13408,7 +13484,7 @@ func (x *DeleteRichTextBlock) String() string {
 func (*DeleteRichTextBlock) ProtoMessage() {}
 
 func (x *DeleteRichTextBlock) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[94]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[95]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -13421,7 +13497,7 @@ func (x *DeleteRichTextBlock) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteRichTextBlock.ProtoReflect.Descriptor instead.
 func (*DeleteRichTextBlock) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{94}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{95}
 }
 
 func (x *DeleteRichTextBlock) GetBlockId() string {
@@ -13441,7 +13517,7 @@ type MoveRichTextBlock struct {
 
 func (x *MoveRichTextBlock) Reset() {
 	*x = MoveRichTextBlock{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[95]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[96]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -13453,7 +13529,7 @@ func (x *MoveRichTextBlock) String() string {
 func (*MoveRichTextBlock) ProtoMessage() {}
 
 func (x *MoveRichTextBlock) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[95]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[96]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -13466,7 +13542,7 @@ func (x *MoveRichTextBlock) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MoveRichTextBlock.ProtoReflect.Descriptor instead.
 func (*MoveRichTextBlock) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{95}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{96}
 }
 
 func (x *MoveRichTextBlock) GetBlockId() string {
@@ -13497,7 +13573,7 @@ type RichTextBlockMutation struct {
 
 func (x *RichTextBlockMutation) Reset() {
 	*x = RichTextBlockMutation{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[96]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[97]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -13509,7 +13585,7 @@ func (x *RichTextBlockMutation) String() string {
 func (*RichTextBlockMutation) ProtoMessage() {}
 
 func (x *RichTextBlockMutation) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[96]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[97]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -13522,7 +13598,7 @@ func (x *RichTextBlockMutation) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RichTextBlockMutation.ProtoReflect.Descriptor instead.
 func (*RichTextBlockMutation) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{96}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{97}
 }
 
 func (x *RichTextBlockMutation) GetOperation() isRichTextBlockMutation_Operation {
@@ -13590,7 +13666,7 @@ type UpsertRichTextBlockLocale struct {
 
 func (x *UpsertRichTextBlockLocale) Reset() {
 	*x = UpsertRichTextBlockLocale{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[97]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[98]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -13602,7 +13678,7 @@ func (x *UpsertRichTextBlockLocale) String() string {
 func (*UpsertRichTextBlockLocale) ProtoMessage() {}
 
 func (x *UpsertRichTextBlockLocale) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[97]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[98]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -13615,7 +13691,7 @@ func (x *UpsertRichTextBlockLocale) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpsertRichTextBlockLocale.ProtoReflect.Descriptor instead.
 func (*UpsertRichTextBlockLocale) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{97}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{98}
 }
 
 func (x *UpsertRichTextBlockLocale) GetBlock() *RichTextBlockLocale {
@@ -13634,7 +13710,7 @@ type DeleteRichTextBlockLocale struct {
 
 func (x *DeleteRichTextBlockLocale) Reset() {
 	*x = DeleteRichTextBlockLocale{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[98]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[99]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -13646,7 +13722,7 @@ func (x *DeleteRichTextBlockLocale) String() string {
 func (*DeleteRichTextBlockLocale) ProtoMessage() {}
 
 func (x *DeleteRichTextBlockLocale) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[98]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[99]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -13659,7 +13735,7 @@ func (x *DeleteRichTextBlockLocale) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteRichTextBlockLocale.ProtoReflect.Descriptor instead.
 func (*DeleteRichTextBlockLocale) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{98}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{99}
 }
 
 func (x *DeleteRichTextBlockLocale) GetBlockId() string {
@@ -13682,7 +13758,7 @@ type RichTextBlockLocaleMutation struct {
 
 func (x *RichTextBlockLocaleMutation) Reset() {
 	*x = RichTextBlockLocaleMutation{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[99]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[100]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -13694,7 +13770,7 @@ func (x *RichTextBlockLocaleMutation) String() string {
 func (*RichTextBlockLocaleMutation) ProtoMessage() {}
 
 func (x *RichTextBlockLocaleMutation) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[99]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[100]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -13707,7 +13783,7 @@ func (x *RichTextBlockLocaleMutation) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RichTextBlockLocaleMutation.ProtoReflect.Descriptor instead.
 func (*RichTextBlockLocaleMutation) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{99}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{100}
 }
 
 func (x *RichTextBlockLocaleMutation) GetOperation() isRichTextBlockLocaleMutation_Operation {
@@ -13761,7 +13837,7 @@ type RichTextLocaleMutationGroup struct {
 
 func (x *RichTextLocaleMutationGroup) Reset() {
 	*x = RichTextLocaleMutationGroup{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[100]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[101]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -13773,7 +13849,7 @@ func (x *RichTextLocaleMutationGroup) String() string {
 func (*RichTextLocaleMutationGroup) ProtoMessage() {}
 
 func (x *RichTextLocaleMutationGroup) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[100]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[101]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -13786,7 +13862,7 @@ func (x *RichTextLocaleMutationGroup) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RichTextLocaleMutationGroup.ProtoReflect.Descriptor instead.
 func (*RichTextLocaleMutationGroup) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{100}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{101}
 }
 
 func (x *RichTextLocaleMutationGroup) GetLocale() string {
@@ -13817,7 +13893,7 @@ type RichTextBlockMutationBatch struct {
 
 func (x *RichTextBlockMutationBatch) Reset() {
 	*x = RichTextBlockMutationBatch{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[101]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[102]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -13829,7 +13905,7 @@ func (x *RichTextBlockMutationBatch) String() string {
 func (*RichTextBlockMutationBatch) ProtoMessage() {}
 
 func (x *RichTextBlockMutationBatch) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[101]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[102]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -13842,7 +13918,7 @@ func (x *RichTextBlockMutationBatch) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RichTextBlockMutationBatch.ProtoReflect.Descriptor instead.
 func (*RichTextBlockMutationBatch) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{101}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{102}
 }
 
 func (x *RichTextBlockMutationBatch) GetBlockCatalogFingerprint() string {
@@ -13901,7 +13977,7 @@ type PageSectionSettings struct {
 
 func (x *PageSectionSettings) Reset() {
 	*x = PageSectionSettings{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[102]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[103]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -13913,7 +13989,7 @@ func (x *PageSectionSettings) String() string {
 func (*PageSectionSettings) ProtoMessage() {}
 
 func (x *PageSectionSettings) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[102]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[103]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -13926,7 +14002,7 @@ func (x *PageSectionSettings) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PageSectionSettings.ProtoReflect.Descriptor instead.
 func (*PageSectionSettings) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{102}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{103}
 }
 
 func (x *PageSectionSettings) GetBackgroundColor() string {
@@ -14007,7 +14083,7 @@ type PageImmersiveUnitProps struct {
 
 func (x *PageImmersiveUnitProps) Reset() {
 	*x = PageImmersiveUnitProps{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[103]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[104]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -14019,7 +14095,7 @@ func (x *PageImmersiveUnitProps) String() string {
 func (*PageImmersiveUnitProps) ProtoMessage() {}
 
 func (x *PageImmersiveUnitProps) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[103]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[104]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -14032,7 +14108,7 @@ func (x *PageImmersiveUnitProps) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PageImmersiveUnitProps.ProtoReflect.Descriptor instead.
 func (*PageImmersiveUnitProps) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{103}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{104}
 }
 
 func (x *PageImmersiveUnitProps) GetName() string {
@@ -14241,7 +14317,7 @@ type PageImmersiveUnitLocaleProps struct {
 
 func (x *PageImmersiveUnitLocaleProps) Reset() {
 	*x = PageImmersiveUnitLocaleProps{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[104]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[105]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -14253,7 +14329,7 @@ func (x *PageImmersiveUnitLocaleProps) String() string {
 func (*PageImmersiveUnitLocaleProps) ProtoMessage() {}
 
 func (x *PageImmersiveUnitLocaleProps) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[104]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[105]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -14266,7 +14342,7 @@ func (x *PageImmersiveUnitLocaleProps) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PageImmersiveUnitLocaleProps.ProtoReflect.Descriptor instead.
 func (*PageImmersiveUnitLocaleProps) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{104}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{105}
 }
 
 func (x *PageImmersiveUnitLocaleProps) GetTitle() string {
@@ -14293,7 +14369,7 @@ type PageImmersiveUnit struct {
 
 func (x *PageImmersiveUnit) Reset() {
 	*x = PageImmersiveUnit{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[105]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[106]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -14305,7 +14381,7 @@ func (x *PageImmersiveUnit) String() string {
 func (*PageImmersiveUnit) ProtoMessage() {}
 
 func (x *PageImmersiveUnit) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[105]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[106]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -14318,7 +14394,7 @@ func (x *PageImmersiveUnit) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PageImmersiveUnit.ProtoReflect.Descriptor instead.
 func (*PageImmersiveUnit) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{105}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{106}
 }
 
 func (x *PageImmersiveUnit) GetId() string {
@@ -14345,7 +14421,7 @@ type PageImmersiveUnitLocale struct {
 
 func (x *PageImmersiveUnitLocale) Reset() {
 	*x = PageImmersiveUnitLocale{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[106]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[107]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -14357,7 +14433,7 @@ func (x *PageImmersiveUnitLocale) String() string {
 func (*PageImmersiveUnitLocale) ProtoMessage() {}
 
 func (x *PageImmersiveUnitLocale) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[106]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[107]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -14370,7 +14446,7 @@ func (x *PageImmersiveUnitLocale) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PageImmersiveUnitLocale.ProtoReflect.Descriptor instead.
 func (*PageImmersiveUnitLocale) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{106}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{107}
 }
 
 func (x *PageImmersiveUnitLocale) GetUnitId() string {
@@ -14395,7 +14471,7 @@ type RichTextSectionProps struct {
 
 func (x *RichTextSectionProps) Reset() {
 	*x = RichTextSectionProps{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[107]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[108]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -14407,7 +14483,7 @@ func (x *RichTextSectionProps) String() string {
 func (*RichTextSectionProps) ProtoMessage() {}
 
 func (x *RichTextSectionProps) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[107]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[108]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -14420,7 +14496,7 @@ func (x *RichTextSectionProps) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RichTextSectionProps.ProtoReflect.Descriptor instead.
 func (*RichTextSectionProps) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{107}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{108}
 }
 
 type ExternalVideoSectionProps struct {
@@ -14433,7 +14509,7 @@ type ExternalVideoSectionProps struct {
 
 func (x *ExternalVideoSectionProps) Reset() {
 	*x = ExternalVideoSectionProps{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[108]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[109]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -14445,7 +14521,7 @@ func (x *ExternalVideoSectionProps) String() string {
 func (*ExternalVideoSectionProps) ProtoMessage() {}
 
 func (x *ExternalVideoSectionProps) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[108]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[109]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -14458,7 +14534,7 @@ func (x *ExternalVideoSectionProps) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ExternalVideoSectionProps.ProtoReflect.Descriptor instead.
 func (*ExternalVideoSectionProps) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{108}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{109}
 }
 
 func (x *ExternalVideoSectionProps) GetUri() string {
@@ -14500,7 +14576,7 @@ type PostListSectionProps struct {
 
 func (x *PostListSectionProps) Reset() {
 	*x = PostListSectionProps{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[109]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[110]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -14512,7 +14588,7 @@ func (x *PostListSectionProps) String() string {
 func (*PostListSectionProps) ProtoMessage() {}
 
 func (x *PostListSectionProps) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[109]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[110]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -14525,7 +14601,7 @@ func (x *PostListSectionProps) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PostListSectionProps.ProtoReflect.Descriptor instead.
 func (*PostListSectionProps) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{109}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{110}
 }
 
 func (x *PostListSectionProps) GetLayout() PostListSectionProps_Layout {
@@ -14663,7 +14739,7 @@ type PostTableSectionProps struct {
 
 func (x *PostTableSectionProps) Reset() {
 	*x = PostTableSectionProps{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[110]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[111]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -14675,7 +14751,7 @@ func (x *PostTableSectionProps) String() string {
 func (*PostTableSectionProps) ProtoMessage() {}
 
 func (x *PostTableSectionProps) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[110]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[111]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -14688,7 +14764,7 @@ func (x *PostTableSectionProps) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PostTableSectionProps.ProtoReflect.Descriptor instead.
 func (*PostTableSectionProps) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{110}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{111}
 }
 
 func (x *PostTableSectionProps) GetCategoryIds() []string {
@@ -14771,7 +14847,7 @@ type PostMapSectionProps struct {
 
 func (x *PostMapSectionProps) Reset() {
 	*x = PostMapSectionProps{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[111]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[112]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -14783,7 +14859,7 @@ func (x *PostMapSectionProps) String() string {
 func (*PostMapSectionProps) ProtoMessage() {}
 
 func (x *PostMapSectionProps) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[111]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[112]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -14796,7 +14872,7 @@ func (x *PostMapSectionProps) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PostMapSectionProps.ProtoReflect.Descriptor instead.
 func (*PostMapSectionProps) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{111}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{112}
 }
 
 func (x *PostMapSectionProps) GetCategoryIds() []string {
@@ -14932,7 +15008,7 @@ type WorkMapSectionProps struct {
 
 func (x *WorkMapSectionProps) Reset() {
 	*x = WorkMapSectionProps{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[112]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[113]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -14944,7 +15020,7 @@ func (x *WorkMapSectionProps) String() string {
 func (*WorkMapSectionProps) ProtoMessage() {}
 
 func (x *WorkMapSectionProps) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[112]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[113]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -14957,7 +15033,7 @@ func (x *WorkMapSectionProps) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WorkMapSectionProps.ProtoReflect.Descriptor instead.
 func (*WorkMapSectionProps) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{112}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{113}
 }
 
 func (x *WorkMapSectionProps) GetWorkTypes() []WorkMapSectionProps_WorkTypesItem {
@@ -15065,7 +15141,7 @@ type WorkTableSectionProps struct {
 
 func (x *WorkTableSectionProps) Reset() {
 	*x = WorkTableSectionProps{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[113]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[114]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -15077,7 +15153,7 @@ func (x *WorkTableSectionProps) String() string {
 func (*WorkTableSectionProps) ProtoMessage() {}
 
 func (x *WorkTableSectionProps) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[113]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[114]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -15090,7 +15166,7 @@ func (x *WorkTableSectionProps) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WorkTableSectionProps.ProtoReflect.Descriptor instead.
 func (*WorkTableSectionProps) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{113}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{114}
 }
 
 func (x *WorkTableSectionProps) GetWorkTypes() []WorkTableSectionProps_WorkTypesItem {
@@ -15157,7 +15233,7 @@ type WorkListSectionProps struct {
 
 func (x *WorkListSectionProps) Reset() {
 	*x = WorkListSectionProps{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[114]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[115]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -15169,7 +15245,7 @@ func (x *WorkListSectionProps) String() string {
 func (*WorkListSectionProps) ProtoMessage() {}
 
 func (x *WorkListSectionProps) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[114]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[115]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -15182,7 +15258,7 @@ func (x *WorkListSectionProps) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WorkListSectionProps.ProtoReflect.Descriptor instead.
 func (*WorkListSectionProps) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{114}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{115}
 }
 
 func (x *WorkListSectionProps) GetLayout() WorkListSectionProps_Layout {
@@ -15306,7 +15382,7 @@ type ProgramEventListSectionProps struct {
 
 func (x *ProgramEventListSectionProps) Reset() {
 	*x = ProgramEventListSectionProps{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[115]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[116]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -15318,7 +15394,7 @@ func (x *ProgramEventListSectionProps) String() string {
 func (*ProgramEventListSectionProps) ProtoMessage() {}
 
 func (x *ProgramEventListSectionProps) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[115]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[116]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -15331,7 +15407,7 @@ func (x *ProgramEventListSectionProps) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProgramEventListSectionProps.ProtoReflect.Descriptor instead.
 func (*ProgramEventListSectionProps) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{115}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{116}
 }
 
 func (x *ProgramEventListSectionProps) GetLayout() ProgramEventListSectionProps_Layout {
@@ -15463,7 +15539,7 @@ type ReleaseListSectionProps struct {
 
 func (x *ReleaseListSectionProps) Reset() {
 	*x = ReleaseListSectionProps{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[116]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[117]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -15475,7 +15551,7 @@ func (x *ReleaseListSectionProps) String() string {
 func (*ReleaseListSectionProps) ProtoMessage() {}
 
 func (x *ReleaseListSectionProps) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[116]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[117]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -15488,7 +15564,7 @@ func (x *ReleaseListSectionProps) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ReleaseListSectionProps.ProtoReflect.Descriptor instead.
 func (*ReleaseListSectionProps) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{116}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{117}
 }
 
 func (x *ReleaseListSectionProps) GetLayout() ReleaseListSectionProps_Layout {
@@ -15624,7 +15700,7 @@ type ArtistListSectionProps struct {
 
 func (x *ArtistListSectionProps) Reset() {
 	*x = ArtistListSectionProps{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[117]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[118]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -15636,7 +15712,7 @@ func (x *ArtistListSectionProps) String() string {
 func (*ArtistListSectionProps) ProtoMessage() {}
 
 func (x *ArtistListSectionProps) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[117]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[118]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -15649,7 +15725,7 @@ func (x *ArtistListSectionProps) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ArtistListSectionProps.ProtoReflect.Descriptor instead.
 func (*ArtistListSectionProps) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{117}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{118}
 }
 
 func (x *ArtistListSectionProps) GetLayout() ArtistListSectionProps_Layout {
@@ -15763,7 +15839,7 @@ type LabelListSectionProps struct {
 
 func (x *LabelListSectionProps) Reset() {
 	*x = LabelListSectionProps{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[118]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[119]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -15775,7 +15851,7 @@ func (x *LabelListSectionProps) String() string {
 func (*LabelListSectionProps) ProtoMessage() {}
 
 func (x *LabelListSectionProps) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[118]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[119]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -15788,7 +15864,7 @@ func (x *LabelListSectionProps) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LabelListSectionProps.ProtoReflect.Descriptor instead.
 func (*LabelListSectionProps) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{118}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{119}
 }
 
 func (x *LabelListSectionProps) GetLayout() LabelListSectionProps_Layout {
@@ -15891,7 +15967,7 @@ type AuthorListSectionProps struct {
 
 func (x *AuthorListSectionProps) Reset() {
 	*x = AuthorListSectionProps{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[119]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[120]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -15903,7 +15979,7 @@ func (x *AuthorListSectionProps) String() string {
 func (*AuthorListSectionProps) ProtoMessage() {}
 
 func (x *AuthorListSectionProps) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[119]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[120]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -15916,7 +15992,7 @@ func (x *AuthorListSectionProps) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AuthorListSectionProps.ProtoReflect.Descriptor instead.
 func (*AuthorListSectionProps) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{119}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{120}
 }
 
 func (x *AuthorListSectionProps) GetLayout() AuthorListSectionProps_Layout {
@@ -15985,7 +16061,7 @@ type FormSectionProps struct {
 
 func (x *FormSectionProps) Reset() {
 	*x = FormSectionProps{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[120]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[121]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -15997,7 +16073,7 @@ func (x *FormSectionProps) String() string {
 func (*FormSectionProps) ProtoMessage() {}
 
 func (x *FormSectionProps) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[120]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[121]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -16010,7 +16086,7 @@ func (x *FormSectionProps) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FormSectionProps.ProtoReflect.Descriptor instead.
 func (*FormSectionProps) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{120}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{121}
 }
 
 func (x *FormSectionProps) GetFormId() string {
@@ -16044,7 +16120,7 @@ type TextMarqueeSectionProps struct {
 
 func (x *TextMarqueeSectionProps) Reset() {
 	*x = TextMarqueeSectionProps{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[121]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[122]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -16056,7 +16132,7 @@ func (x *TextMarqueeSectionProps) String() string {
 func (*TextMarqueeSectionProps) ProtoMessage() {}
 
 func (x *TextMarqueeSectionProps) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[121]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[122]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -16069,7 +16145,7 @@ func (x *TextMarqueeSectionProps) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TextMarqueeSectionProps.ProtoReflect.Descriptor instead.
 func (*TextMarqueeSectionProps) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{121}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{122}
 }
 
 func (x *TextMarqueeSectionProps) GetDirection() TextMarqueeSectionProps_Direction {
@@ -16157,7 +16233,7 @@ type ClientMarqueeSectionProps struct {
 
 func (x *ClientMarqueeSectionProps) Reset() {
 	*x = ClientMarqueeSectionProps{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[122]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[123]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -16169,7 +16245,7 @@ func (x *ClientMarqueeSectionProps) String() string {
 func (*ClientMarqueeSectionProps) ProtoMessage() {}
 
 func (x *ClientMarqueeSectionProps) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[122]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[123]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -16182,7 +16258,7 @@ func (x *ClientMarqueeSectionProps) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ClientMarqueeSectionProps.ProtoReflect.Descriptor instead.
 func (*ClientMarqueeSectionProps) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{122}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{123}
 }
 
 func (x *ClientMarqueeSectionProps) GetDirection() ClientMarqueeSectionProps_Direction {
@@ -16305,7 +16381,7 @@ type LabelMarqueeSectionProps struct {
 
 func (x *LabelMarqueeSectionProps) Reset() {
 	*x = LabelMarqueeSectionProps{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[123]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[124]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -16317,7 +16393,7 @@ func (x *LabelMarqueeSectionProps) String() string {
 func (*LabelMarqueeSectionProps) ProtoMessage() {}
 
 func (x *LabelMarqueeSectionProps) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[123]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[124]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -16330,7 +16406,7 @@ func (x *LabelMarqueeSectionProps) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LabelMarqueeSectionProps.ProtoReflect.Descriptor instead.
 func (*LabelMarqueeSectionProps) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{123}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{124}
 }
 
 func (x *LabelMarqueeSectionProps) GetDirection() LabelMarqueeSectionProps_Direction {
@@ -16463,7 +16539,7 @@ type MapSectionProps struct {
 
 func (x *MapSectionProps) Reset() {
 	*x = MapSectionProps{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[124]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[125]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -16475,7 +16551,7 @@ func (x *MapSectionProps) String() string {
 func (*MapSectionProps) ProtoMessage() {}
 
 func (x *MapSectionProps) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[124]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[125]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -16488,7 +16564,7 @@ func (x *MapSectionProps) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MapSectionProps.ProtoReflect.Descriptor instead.
 func (*MapSectionProps) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{124}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{125}
 }
 
 func (x *MapSectionProps) GetMapPlaceIds() []string {
@@ -16700,7 +16776,7 @@ type ImmersiveSceneSectionProps struct {
 
 func (x *ImmersiveSceneSectionProps) Reset() {
 	*x = ImmersiveSceneSectionProps{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[125]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[126]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -16712,7 +16788,7 @@ func (x *ImmersiveSceneSectionProps) String() string {
 func (*ImmersiveSceneSectionProps) ProtoMessage() {}
 
 func (x *ImmersiveSceneSectionProps) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[125]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[126]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -16725,7 +16801,7 @@ func (x *ImmersiveSceneSectionProps) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ImmersiveSceneSectionProps.ProtoReflect.Descriptor instead.
 func (*ImmersiveSceneSectionProps) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{125}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{126}
 }
 
 func (x *ImmersiveSceneSectionProps) GetPlayback() ImmersiveSceneSectionProps_Playback {
@@ -16970,7 +17046,7 @@ type ColumnsSectionProps struct {
 
 func (x *ColumnsSectionProps) Reset() {
 	*x = ColumnsSectionProps{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[126]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[127]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -16982,7 +17058,7 @@ func (x *ColumnsSectionProps) String() string {
 func (*ColumnsSectionProps) ProtoMessage() {}
 
 func (x *ColumnsSectionProps) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[126]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[127]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -16995,7 +17071,7 @@ func (x *ColumnsSectionProps) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ColumnsSectionProps.ProtoReflect.Descriptor instead.
 func (*ColumnsSectionProps) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{126}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{127}
 }
 
 func (x *ColumnsSectionProps) GetColumns() []*ColumnsSectionProps_ColumnsItem {
@@ -17028,7 +17104,7 @@ type MermaidSectionProps struct {
 
 func (x *MermaidSectionProps) Reset() {
 	*x = MermaidSectionProps{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[127]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[128]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -17040,7 +17116,7 @@ func (x *MermaidSectionProps) String() string {
 func (*MermaidSectionProps) ProtoMessage() {}
 
 func (x *MermaidSectionProps) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[127]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[128]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -17053,7 +17129,7 @@ func (x *MermaidSectionProps) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MermaidSectionProps.ProtoReflect.Descriptor instead.
 func (*MermaidSectionProps) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{127}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{128}
 }
 
 func (x *MermaidSectionProps) GetSource() string {
@@ -17082,7 +17158,7 @@ type EmbedSectionProps struct {
 
 func (x *EmbedSectionProps) Reset() {
 	*x = EmbedSectionProps{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[128]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[129]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -17094,7 +17170,7 @@ func (x *EmbedSectionProps) String() string {
 func (*EmbedSectionProps) ProtoMessage() {}
 
 func (x *EmbedSectionProps) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[128]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[129]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -17107,7 +17183,7 @@ func (x *EmbedSectionProps) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use EmbedSectionProps.ProtoReflect.Descriptor instead.
 func (*EmbedSectionProps) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{128}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{129}
 }
 
 func (x *EmbedSectionProps) GetUri() string {
@@ -17195,7 +17271,7 @@ type RichTextSectionLocaleProps struct {
 
 func (x *RichTextSectionLocaleProps) Reset() {
 	*x = RichTextSectionLocaleProps{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[129]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[130]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -17207,7 +17283,7 @@ func (x *RichTextSectionLocaleProps) String() string {
 func (*RichTextSectionLocaleProps) ProtoMessage() {}
 
 func (x *RichTextSectionLocaleProps) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[129]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[130]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -17220,7 +17296,7 @@ func (x *RichTextSectionLocaleProps) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RichTextSectionLocaleProps.ProtoReflect.Descriptor instead.
 func (*RichTextSectionLocaleProps) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{129}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{130}
 }
 
 type ExternalVideoSectionLocaleProps struct {
@@ -17232,7 +17308,7 @@ type ExternalVideoSectionLocaleProps struct {
 
 func (x *ExternalVideoSectionLocaleProps) Reset() {
 	*x = ExternalVideoSectionLocaleProps{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[130]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[131]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -17244,7 +17320,7 @@ func (x *ExternalVideoSectionLocaleProps) String() string {
 func (*ExternalVideoSectionLocaleProps) ProtoMessage() {}
 
 func (x *ExternalVideoSectionLocaleProps) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[130]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[131]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -17257,7 +17333,7 @@ func (x *ExternalVideoSectionLocaleProps) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ExternalVideoSectionLocaleProps.ProtoReflect.Descriptor instead.
 func (*ExternalVideoSectionLocaleProps) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{130}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{131}
 }
 
 func (x *ExternalVideoSectionLocaleProps) GetCaption() string {
@@ -17275,7 +17351,7 @@ type PostListSectionLocaleProps struct {
 
 func (x *PostListSectionLocaleProps) Reset() {
 	*x = PostListSectionLocaleProps{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[131]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[132]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -17287,7 +17363,7 @@ func (x *PostListSectionLocaleProps) String() string {
 func (*PostListSectionLocaleProps) ProtoMessage() {}
 
 func (x *PostListSectionLocaleProps) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[131]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[132]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -17300,7 +17376,7 @@ func (x *PostListSectionLocaleProps) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PostListSectionLocaleProps.ProtoReflect.Descriptor instead.
 func (*PostListSectionLocaleProps) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{131}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{132}
 }
 
 type PostTableSectionLocaleProps struct {
@@ -17311,7 +17387,7 @@ type PostTableSectionLocaleProps struct {
 
 func (x *PostTableSectionLocaleProps) Reset() {
 	*x = PostTableSectionLocaleProps{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[132]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[133]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -17323,7 +17399,7 @@ func (x *PostTableSectionLocaleProps) String() string {
 func (*PostTableSectionLocaleProps) ProtoMessage() {}
 
 func (x *PostTableSectionLocaleProps) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[132]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[133]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -17336,7 +17412,7 @@ func (x *PostTableSectionLocaleProps) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PostTableSectionLocaleProps.ProtoReflect.Descriptor instead.
 func (*PostTableSectionLocaleProps) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{132}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{133}
 }
 
 type PostMapSectionLocaleProps struct {
@@ -17347,7 +17423,7 @@ type PostMapSectionLocaleProps struct {
 
 func (x *PostMapSectionLocaleProps) Reset() {
 	*x = PostMapSectionLocaleProps{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[133]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[134]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -17359,7 +17435,7 @@ func (x *PostMapSectionLocaleProps) String() string {
 func (*PostMapSectionLocaleProps) ProtoMessage() {}
 
 func (x *PostMapSectionLocaleProps) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[133]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[134]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -17372,7 +17448,7 @@ func (x *PostMapSectionLocaleProps) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PostMapSectionLocaleProps.ProtoReflect.Descriptor instead.
 func (*PostMapSectionLocaleProps) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{133}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{134}
 }
 
 type WorkMapSectionLocaleProps struct {
@@ -17383,7 +17459,7 @@ type WorkMapSectionLocaleProps struct {
 
 func (x *WorkMapSectionLocaleProps) Reset() {
 	*x = WorkMapSectionLocaleProps{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[134]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[135]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -17395,7 +17471,7 @@ func (x *WorkMapSectionLocaleProps) String() string {
 func (*WorkMapSectionLocaleProps) ProtoMessage() {}
 
 func (x *WorkMapSectionLocaleProps) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[134]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[135]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -17408,7 +17484,7 @@ func (x *WorkMapSectionLocaleProps) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WorkMapSectionLocaleProps.ProtoReflect.Descriptor instead.
 func (*WorkMapSectionLocaleProps) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{134}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{135}
 }
 
 type WorkTableSectionLocaleProps struct {
@@ -17419,7 +17495,7 @@ type WorkTableSectionLocaleProps struct {
 
 func (x *WorkTableSectionLocaleProps) Reset() {
 	*x = WorkTableSectionLocaleProps{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[135]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[136]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -17431,7 +17507,7 @@ func (x *WorkTableSectionLocaleProps) String() string {
 func (*WorkTableSectionLocaleProps) ProtoMessage() {}
 
 func (x *WorkTableSectionLocaleProps) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[135]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[136]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -17444,7 +17520,7 @@ func (x *WorkTableSectionLocaleProps) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WorkTableSectionLocaleProps.ProtoReflect.Descriptor instead.
 func (*WorkTableSectionLocaleProps) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{135}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{136}
 }
 
 type WorkListSectionLocaleProps struct {
@@ -17455,7 +17531,7 @@ type WorkListSectionLocaleProps struct {
 
 func (x *WorkListSectionLocaleProps) Reset() {
 	*x = WorkListSectionLocaleProps{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[136]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[137]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -17467,7 +17543,7 @@ func (x *WorkListSectionLocaleProps) String() string {
 func (*WorkListSectionLocaleProps) ProtoMessage() {}
 
 func (x *WorkListSectionLocaleProps) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[136]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[137]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -17480,7 +17556,7 @@ func (x *WorkListSectionLocaleProps) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WorkListSectionLocaleProps.ProtoReflect.Descriptor instead.
 func (*WorkListSectionLocaleProps) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{136}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{137}
 }
 
 type ProgramEventListSectionLocaleProps struct {
@@ -17491,7 +17567,7 @@ type ProgramEventListSectionLocaleProps struct {
 
 func (x *ProgramEventListSectionLocaleProps) Reset() {
 	*x = ProgramEventListSectionLocaleProps{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[137]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[138]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -17503,7 +17579,7 @@ func (x *ProgramEventListSectionLocaleProps) String() string {
 func (*ProgramEventListSectionLocaleProps) ProtoMessage() {}
 
 func (x *ProgramEventListSectionLocaleProps) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[137]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[138]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -17516,7 +17592,7 @@ func (x *ProgramEventListSectionLocaleProps) ProtoReflect() protoreflect.Message
 
 // Deprecated: Use ProgramEventListSectionLocaleProps.ProtoReflect.Descriptor instead.
 func (*ProgramEventListSectionLocaleProps) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{137}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{138}
 }
 
 type ReleaseListSectionLocaleProps struct {
@@ -17527,7 +17603,7 @@ type ReleaseListSectionLocaleProps struct {
 
 func (x *ReleaseListSectionLocaleProps) Reset() {
 	*x = ReleaseListSectionLocaleProps{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[138]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[139]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -17539,7 +17615,7 @@ func (x *ReleaseListSectionLocaleProps) String() string {
 func (*ReleaseListSectionLocaleProps) ProtoMessage() {}
 
 func (x *ReleaseListSectionLocaleProps) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[138]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[139]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -17552,7 +17628,7 @@ func (x *ReleaseListSectionLocaleProps) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ReleaseListSectionLocaleProps.ProtoReflect.Descriptor instead.
 func (*ReleaseListSectionLocaleProps) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{138}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{139}
 }
 
 type ArtistListSectionLocaleProps struct {
@@ -17563,7 +17639,7 @@ type ArtistListSectionLocaleProps struct {
 
 func (x *ArtistListSectionLocaleProps) Reset() {
 	*x = ArtistListSectionLocaleProps{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[139]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[140]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -17575,7 +17651,7 @@ func (x *ArtistListSectionLocaleProps) String() string {
 func (*ArtistListSectionLocaleProps) ProtoMessage() {}
 
 func (x *ArtistListSectionLocaleProps) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[139]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[140]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -17588,7 +17664,7 @@ func (x *ArtistListSectionLocaleProps) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ArtistListSectionLocaleProps.ProtoReflect.Descriptor instead.
 func (*ArtistListSectionLocaleProps) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{139}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{140}
 }
 
 type LabelListSectionLocaleProps struct {
@@ -17599,7 +17675,7 @@ type LabelListSectionLocaleProps struct {
 
 func (x *LabelListSectionLocaleProps) Reset() {
 	*x = LabelListSectionLocaleProps{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[140]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[141]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -17611,7 +17687,7 @@ func (x *LabelListSectionLocaleProps) String() string {
 func (*LabelListSectionLocaleProps) ProtoMessage() {}
 
 func (x *LabelListSectionLocaleProps) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[140]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[141]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -17624,7 +17700,7 @@ func (x *LabelListSectionLocaleProps) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LabelListSectionLocaleProps.ProtoReflect.Descriptor instead.
 func (*LabelListSectionLocaleProps) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{140}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{141}
 }
 
 type AuthorListSectionLocaleProps struct {
@@ -17635,7 +17711,7 @@ type AuthorListSectionLocaleProps struct {
 
 func (x *AuthorListSectionLocaleProps) Reset() {
 	*x = AuthorListSectionLocaleProps{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[141]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[142]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -17647,7 +17723,7 @@ func (x *AuthorListSectionLocaleProps) String() string {
 func (*AuthorListSectionLocaleProps) ProtoMessage() {}
 
 func (x *AuthorListSectionLocaleProps) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[141]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[142]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -17660,7 +17736,7 @@ func (x *AuthorListSectionLocaleProps) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AuthorListSectionLocaleProps.ProtoReflect.Descriptor instead.
 func (*AuthorListSectionLocaleProps) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{141}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{142}
 }
 
 type FormSectionLocaleProps struct {
@@ -17671,7 +17747,7 @@ type FormSectionLocaleProps struct {
 
 func (x *FormSectionLocaleProps) Reset() {
 	*x = FormSectionLocaleProps{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[142]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[143]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -17683,7 +17759,7 @@ func (x *FormSectionLocaleProps) String() string {
 func (*FormSectionLocaleProps) ProtoMessage() {}
 
 func (x *FormSectionLocaleProps) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[142]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[143]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -17696,7 +17772,7 @@ func (x *FormSectionLocaleProps) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FormSectionLocaleProps.ProtoReflect.Descriptor instead.
 func (*FormSectionLocaleProps) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{142}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{143}
 }
 
 type TextMarqueeSectionLocaleProps struct {
@@ -17707,7 +17783,7 @@ type TextMarqueeSectionLocaleProps struct {
 
 func (x *TextMarqueeSectionLocaleProps) Reset() {
 	*x = TextMarqueeSectionLocaleProps{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[143]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[144]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -17719,7 +17795,7 @@ func (x *TextMarqueeSectionLocaleProps) String() string {
 func (*TextMarqueeSectionLocaleProps) ProtoMessage() {}
 
 func (x *TextMarqueeSectionLocaleProps) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[143]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[144]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -17732,7 +17808,7 @@ func (x *TextMarqueeSectionLocaleProps) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TextMarqueeSectionLocaleProps.ProtoReflect.Descriptor instead.
 func (*TextMarqueeSectionLocaleProps) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{143}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{144}
 }
 
 type ClientMarqueeSectionLocaleProps struct {
@@ -17743,7 +17819,7 @@ type ClientMarqueeSectionLocaleProps struct {
 
 func (x *ClientMarqueeSectionLocaleProps) Reset() {
 	*x = ClientMarqueeSectionLocaleProps{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[144]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[145]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -17755,7 +17831,7 @@ func (x *ClientMarqueeSectionLocaleProps) String() string {
 func (*ClientMarqueeSectionLocaleProps) ProtoMessage() {}
 
 func (x *ClientMarqueeSectionLocaleProps) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[144]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[145]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -17768,7 +17844,7 @@ func (x *ClientMarqueeSectionLocaleProps) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ClientMarqueeSectionLocaleProps.ProtoReflect.Descriptor instead.
 func (*ClientMarqueeSectionLocaleProps) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{144}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{145}
 }
 
 type LabelMarqueeSectionLocaleProps struct {
@@ -17779,7 +17855,7 @@ type LabelMarqueeSectionLocaleProps struct {
 
 func (x *LabelMarqueeSectionLocaleProps) Reset() {
 	*x = LabelMarqueeSectionLocaleProps{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[145]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[146]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -17791,7 +17867,7 @@ func (x *LabelMarqueeSectionLocaleProps) String() string {
 func (*LabelMarqueeSectionLocaleProps) ProtoMessage() {}
 
 func (x *LabelMarqueeSectionLocaleProps) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[145]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[146]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -17804,7 +17880,7 @@ func (x *LabelMarqueeSectionLocaleProps) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LabelMarqueeSectionLocaleProps.ProtoReflect.Descriptor instead.
 func (*LabelMarqueeSectionLocaleProps) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{145}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{146}
 }
 
 type MapSectionLocaleProps struct {
@@ -17816,7 +17892,7 @@ type MapSectionLocaleProps struct {
 
 func (x *MapSectionLocaleProps) Reset() {
 	*x = MapSectionLocaleProps{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[146]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[147]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -17828,7 +17904,7 @@ func (x *MapSectionLocaleProps) String() string {
 func (*MapSectionLocaleProps) ProtoMessage() {}
 
 func (x *MapSectionLocaleProps) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[146]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[147]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -17841,7 +17917,7 @@ func (x *MapSectionLocaleProps) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MapSectionLocaleProps.ProtoReflect.Descriptor instead.
 func (*MapSectionLocaleProps) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{146}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{147}
 }
 
 func (x *MapSectionLocaleProps) GetCaption() string {
@@ -17859,7 +17935,7 @@ type ImmersiveSceneSectionLocaleProps struct {
 
 func (x *ImmersiveSceneSectionLocaleProps) Reset() {
 	*x = ImmersiveSceneSectionLocaleProps{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[147]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[148]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -17871,7 +17947,7 @@ func (x *ImmersiveSceneSectionLocaleProps) String() string {
 func (*ImmersiveSceneSectionLocaleProps) ProtoMessage() {}
 
 func (x *ImmersiveSceneSectionLocaleProps) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[147]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[148]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -17884,7 +17960,7 @@ func (x *ImmersiveSceneSectionLocaleProps) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ImmersiveSceneSectionLocaleProps.ProtoReflect.Descriptor instead.
 func (*ImmersiveSceneSectionLocaleProps) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{147}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{148}
 }
 
 type ColumnsSectionLocaleProps struct {
@@ -17895,7 +17971,7 @@ type ColumnsSectionLocaleProps struct {
 
 func (x *ColumnsSectionLocaleProps) Reset() {
 	*x = ColumnsSectionLocaleProps{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[148]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[149]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -17907,7 +17983,7 @@ func (x *ColumnsSectionLocaleProps) String() string {
 func (*ColumnsSectionLocaleProps) ProtoMessage() {}
 
 func (x *ColumnsSectionLocaleProps) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[148]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[149]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -17920,7 +17996,7 @@ func (x *ColumnsSectionLocaleProps) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ColumnsSectionLocaleProps.ProtoReflect.Descriptor instead.
 func (*ColumnsSectionLocaleProps) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{148}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{149}
 }
 
 type MermaidSectionLocaleProps struct {
@@ -17932,7 +18008,7 @@ type MermaidSectionLocaleProps struct {
 
 func (x *MermaidSectionLocaleProps) Reset() {
 	*x = MermaidSectionLocaleProps{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[149]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[150]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -17944,7 +18020,7 @@ func (x *MermaidSectionLocaleProps) String() string {
 func (*MermaidSectionLocaleProps) ProtoMessage() {}
 
 func (x *MermaidSectionLocaleProps) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[149]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[150]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -17957,7 +18033,7 @@ func (x *MermaidSectionLocaleProps) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MermaidSectionLocaleProps.ProtoReflect.Descriptor instead.
 func (*MermaidSectionLocaleProps) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{149}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{150}
 }
 
 func (x *MermaidSectionLocaleProps) GetTitle() string {
@@ -17976,7 +18052,7 @@ type EmbedSectionLocaleProps struct {
 
 func (x *EmbedSectionLocaleProps) Reset() {
 	*x = EmbedSectionLocaleProps{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[150]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[151]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -17988,7 +18064,7 @@ func (x *EmbedSectionLocaleProps) String() string {
 func (*EmbedSectionLocaleProps) ProtoMessage() {}
 
 func (x *EmbedSectionLocaleProps) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[150]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[151]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -18001,7 +18077,7 @@ func (x *EmbedSectionLocaleProps) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use EmbedSectionLocaleProps.ProtoReflect.Descriptor instead.
 func (*EmbedSectionLocaleProps) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{150}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{151}
 }
 
 func (x *EmbedSectionLocaleProps) GetTitle() string {
@@ -18021,7 +18097,7 @@ type RichTextSection struct {
 
 func (x *RichTextSection) Reset() {
 	*x = RichTextSection{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[151]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[152]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -18033,7 +18109,7 @@ func (x *RichTextSection) String() string {
 func (*RichTextSection) ProtoMessage() {}
 
 func (x *RichTextSection) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[151]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[152]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -18046,7 +18122,7 @@ func (x *RichTextSection) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RichTextSection.ProtoReflect.Descriptor instead.
 func (*RichTextSection) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{151}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{152}
 }
 
 func (x *RichTextSection) GetProps() *RichTextSectionProps {
@@ -18072,7 +18148,7 @@ type ExternalVideoSection struct {
 
 func (x *ExternalVideoSection) Reset() {
 	*x = ExternalVideoSection{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[152]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[153]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -18084,7 +18160,7 @@ func (x *ExternalVideoSection) String() string {
 func (*ExternalVideoSection) ProtoMessage() {}
 
 func (x *ExternalVideoSection) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[152]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[153]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -18097,7 +18173,7 @@ func (x *ExternalVideoSection) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ExternalVideoSection.ProtoReflect.Descriptor instead.
 func (*ExternalVideoSection) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{152}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{153}
 }
 
 func (x *ExternalVideoSection) GetProps() *ExternalVideoSectionProps {
@@ -18116,7 +18192,7 @@ type PostListSection struct {
 
 func (x *PostListSection) Reset() {
 	*x = PostListSection{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[153]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[154]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -18128,7 +18204,7 @@ func (x *PostListSection) String() string {
 func (*PostListSection) ProtoMessage() {}
 
 func (x *PostListSection) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[153]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[154]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -18141,7 +18217,7 @@ func (x *PostListSection) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PostListSection.ProtoReflect.Descriptor instead.
 func (*PostListSection) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{153}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{154}
 }
 
 func (x *PostListSection) GetProps() *PostListSectionProps {
@@ -18160,7 +18236,7 @@ type PostTableSection struct {
 
 func (x *PostTableSection) Reset() {
 	*x = PostTableSection{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[154]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[155]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -18172,7 +18248,7 @@ func (x *PostTableSection) String() string {
 func (*PostTableSection) ProtoMessage() {}
 
 func (x *PostTableSection) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[154]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[155]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -18185,7 +18261,7 @@ func (x *PostTableSection) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PostTableSection.ProtoReflect.Descriptor instead.
 func (*PostTableSection) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{154}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{155}
 }
 
 func (x *PostTableSection) GetProps() *PostTableSectionProps {
@@ -18204,7 +18280,7 @@ type PostMapSection struct {
 
 func (x *PostMapSection) Reset() {
 	*x = PostMapSection{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[155]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[156]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -18216,7 +18292,7 @@ func (x *PostMapSection) String() string {
 func (*PostMapSection) ProtoMessage() {}
 
 func (x *PostMapSection) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[155]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[156]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -18229,7 +18305,7 @@ func (x *PostMapSection) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PostMapSection.ProtoReflect.Descriptor instead.
 func (*PostMapSection) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{155}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{156}
 }
 
 func (x *PostMapSection) GetProps() *PostMapSectionProps {
@@ -18248,7 +18324,7 @@ type WorkMapSection struct {
 
 func (x *WorkMapSection) Reset() {
 	*x = WorkMapSection{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[156]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[157]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -18260,7 +18336,7 @@ func (x *WorkMapSection) String() string {
 func (*WorkMapSection) ProtoMessage() {}
 
 func (x *WorkMapSection) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[156]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[157]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -18273,7 +18349,7 @@ func (x *WorkMapSection) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WorkMapSection.ProtoReflect.Descriptor instead.
 func (*WorkMapSection) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{156}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{157}
 }
 
 func (x *WorkMapSection) GetProps() *WorkMapSectionProps {
@@ -18292,7 +18368,7 @@ type WorkTableSection struct {
 
 func (x *WorkTableSection) Reset() {
 	*x = WorkTableSection{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[157]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[158]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -18304,7 +18380,7 @@ func (x *WorkTableSection) String() string {
 func (*WorkTableSection) ProtoMessage() {}
 
 func (x *WorkTableSection) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[157]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[158]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -18317,7 +18393,7 @@ func (x *WorkTableSection) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WorkTableSection.ProtoReflect.Descriptor instead.
 func (*WorkTableSection) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{157}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{158}
 }
 
 func (x *WorkTableSection) GetProps() *WorkTableSectionProps {
@@ -18336,7 +18412,7 @@ type WorkListSection struct {
 
 func (x *WorkListSection) Reset() {
 	*x = WorkListSection{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[158]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[159]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -18348,7 +18424,7 @@ func (x *WorkListSection) String() string {
 func (*WorkListSection) ProtoMessage() {}
 
 func (x *WorkListSection) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[158]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[159]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -18361,7 +18437,7 @@ func (x *WorkListSection) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WorkListSection.ProtoReflect.Descriptor instead.
 func (*WorkListSection) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{158}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{159}
 }
 
 func (x *WorkListSection) GetProps() *WorkListSectionProps {
@@ -18380,7 +18456,7 @@ type ProgramEventListSection struct {
 
 func (x *ProgramEventListSection) Reset() {
 	*x = ProgramEventListSection{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[159]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[160]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -18392,7 +18468,7 @@ func (x *ProgramEventListSection) String() string {
 func (*ProgramEventListSection) ProtoMessage() {}
 
 func (x *ProgramEventListSection) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[159]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[160]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -18405,7 +18481,7 @@ func (x *ProgramEventListSection) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProgramEventListSection.ProtoReflect.Descriptor instead.
 func (*ProgramEventListSection) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{159}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{160}
 }
 
 func (x *ProgramEventListSection) GetProps() *ProgramEventListSectionProps {
@@ -18424,7 +18500,7 @@ type ReleaseListSection struct {
 
 func (x *ReleaseListSection) Reset() {
 	*x = ReleaseListSection{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[160]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[161]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -18436,7 +18512,7 @@ func (x *ReleaseListSection) String() string {
 func (*ReleaseListSection) ProtoMessage() {}
 
 func (x *ReleaseListSection) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[160]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[161]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -18449,7 +18525,7 @@ func (x *ReleaseListSection) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ReleaseListSection.ProtoReflect.Descriptor instead.
 func (*ReleaseListSection) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{160}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{161}
 }
 
 func (x *ReleaseListSection) GetProps() *ReleaseListSectionProps {
@@ -18468,7 +18544,7 @@ type ArtistListSection struct {
 
 func (x *ArtistListSection) Reset() {
 	*x = ArtistListSection{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[161]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[162]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -18480,7 +18556,7 @@ func (x *ArtistListSection) String() string {
 func (*ArtistListSection) ProtoMessage() {}
 
 func (x *ArtistListSection) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[161]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[162]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -18493,7 +18569,7 @@ func (x *ArtistListSection) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ArtistListSection.ProtoReflect.Descriptor instead.
 func (*ArtistListSection) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{161}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{162}
 }
 
 func (x *ArtistListSection) GetProps() *ArtistListSectionProps {
@@ -18512,7 +18588,7 @@ type LabelListSection struct {
 
 func (x *LabelListSection) Reset() {
 	*x = LabelListSection{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[162]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[163]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -18524,7 +18600,7 @@ func (x *LabelListSection) String() string {
 func (*LabelListSection) ProtoMessage() {}
 
 func (x *LabelListSection) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[162]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[163]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -18537,7 +18613,7 @@ func (x *LabelListSection) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LabelListSection.ProtoReflect.Descriptor instead.
 func (*LabelListSection) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{162}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{163}
 }
 
 func (x *LabelListSection) GetProps() *LabelListSectionProps {
@@ -18556,7 +18632,7 @@ type AuthorListSection struct {
 
 func (x *AuthorListSection) Reset() {
 	*x = AuthorListSection{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[163]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[164]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -18568,7 +18644,7 @@ func (x *AuthorListSection) String() string {
 func (*AuthorListSection) ProtoMessage() {}
 
 func (x *AuthorListSection) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[163]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[164]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -18581,7 +18657,7 @@ func (x *AuthorListSection) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AuthorListSection.ProtoReflect.Descriptor instead.
 func (*AuthorListSection) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{163}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{164}
 }
 
 func (x *AuthorListSection) GetProps() *AuthorListSectionProps {
@@ -18600,7 +18676,7 @@ type FormSection struct {
 
 func (x *FormSection) Reset() {
 	*x = FormSection{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[164]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[165]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -18612,7 +18688,7 @@ func (x *FormSection) String() string {
 func (*FormSection) ProtoMessage() {}
 
 func (x *FormSection) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[164]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[165]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -18625,7 +18701,7 @@ func (x *FormSection) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FormSection.ProtoReflect.Descriptor instead.
 func (*FormSection) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{164}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{165}
 }
 
 func (x *FormSection) GetProps() *FormSectionProps {
@@ -18644,7 +18720,7 @@ type TextMarqueeSection struct {
 
 func (x *TextMarqueeSection) Reset() {
 	*x = TextMarqueeSection{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[165]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[166]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -18656,7 +18732,7 @@ func (x *TextMarqueeSection) String() string {
 func (*TextMarqueeSection) ProtoMessage() {}
 
 func (x *TextMarqueeSection) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[165]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[166]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -18669,7 +18745,7 @@ func (x *TextMarqueeSection) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TextMarqueeSection.ProtoReflect.Descriptor instead.
 func (*TextMarqueeSection) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{165}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{166}
 }
 
 func (x *TextMarqueeSection) GetProps() *TextMarqueeSectionProps {
@@ -18688,7 +18764,7 @@ type ClientMarqueeSection struct {
 
 func (x *ClientMarqueeSection) Reset() {
 	*x = ClientMarqueeSection{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[166]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[167]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -18700,7 +18776,7 @@ func (x *ClientMarqueeSection) String() string {
 func (*ClientMarqueeSection) ProtoMessage() {}
 
 func (x *ClientMarqueeSection) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[166]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[167]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -18713,7 +18789,7 @@ func (x *ClientMarqueeSection) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ClientMarqueeSection.ProtoReflect.Descriptor instead.
 func (*ClientMarqueeSection) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{166}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{167}
 }
 
 func (x *ClientMarqueeSection) GetProps() *ClientMarqueeSectionProps {
@@ -18732,7 +18808,7 @@ type LabelMarqueeSection struct {
 
 func (x *LabelMarqueeSection) Reset() {
 	*x = LabelMarqueeSection{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[167]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[168]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -18744,7 +18820,7 @@ func (x *LabelMarqueeSection) String() string {
 func (*LabelMarqueeSection) ProtoMessage() {}
 
 func (x *LabelMarqueeSection) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[167]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[168]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -18757,7 +18833,7 @@ func (x *LabelMarqueeSection) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LabelMarqueeSection.ProtoReflect.Descriptor instead.
 func (*LabelMarqueeSection) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{167}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{168}
 }
 
 func (x *LabelMarqueeSection) GetProps() *LabelMarqueeSectionProps {
@@ -18776,7 +18852,7 @@ type MapSection struct {
 
 func (x *MapSection) Reset() {
 	*x = MapSection{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[168]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[169]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -18788,7 +18864,7 @@ func (x *MapSection) String() string {
 func (*MapSection) ProtoMessage() {}
 
 func (x *MapSection) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[168]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[169]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -18801,7 +18877,7 @@ func (x *MapSection) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MapSection.ProtoReflect.Descriptor instead.
 func (*MapSection) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{168}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{169}
 }
 
 func (x *MapSection) GetProps() *MapSectionProps {
@@ -18821,7 +18897,7 @@ type ImmersiveSceneSection struct {
 
 func (x *ImmersiveSceneSection) Reset() {
 	*x = ImmersiveSceneSection{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[169]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[170]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -18833,7 +18909,7 @@ func (x *ImmersiveSceneSection) String() string {
 func (*ImmersiveSceneSection) ProtoMessage() {}
 
 func (x *ImmersiveSceneSection) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[169]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[170]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -18846,7 +18922,7 @@ func (x *ImmersiveSceneSection) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ImmersiveSceneSection.ProtoReflect.Descriptor instead.
 func (*ImmersiveSceneSection) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{169}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{170}
 }
 
 func (x *ImmersiveSceneSection) GetProps() *ImmersiveSceneSectionProps {
@@ -18872,7 +18948,7 @@ type ColumnsSection struct {
 
 func (x *ColumnsSection) Reset() {
 	*x = ColumnsSection{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[170]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[171]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -18884,7 +18960,7 @@ func (x *ColumnsSection) String() string {
 func (*ColumnsSection) ProtoMessage() {}
 
 func (x *ColumnsSection) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[170]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[171]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -18897,7 +18973,7 @@ func (x *ColumnsSection) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ColumnsSection.ProtoReflect.Descriptor instead.
 func (*ColumnsSection) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{170}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{171}
 }
 
 func (x *ColumnsSection) GetProps() *ColumnsSectionProps {
@@ -18916,7 +18992,7 @@ type MermaidSection struct {
 
 func (x *MermaidSection) Reset() {
 	*x = MermaidSection{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[171]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[172]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -18928,7 +19004,7 @@ func (x *MermaidSection) String() string {
 func (*MermaidSection) ProtoMessage() {}
 
 func (x *MermaidSection) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[171]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[172]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -18941,7 +19017,7 @@ func (x *MermaidSection) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MermaidSection.ProtoReflect.Descriptor instead.
 func (*MermaidSection) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{171}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{172}
 }
 
 func (x *MermaidSection) GetProps() *MermaidSectionProps {
@@ -18960,7 +19036,7 @@ type EmbedSection struct {
 
 func (x *EmbedSection) Reset() {
 	*x = EmbedSection{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[172]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[173]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -18972,7 +19048,7 @@ func (x *EmbedSection) String() string {
 func (*EmbedSection) ProtoMessage() {}
 
 func (x *EmbedSection) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[172]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[173]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -18985,7 +19061,7 @@ func (x *EmbedSection) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use EmbedSection.ProtoReflect.Descriptor instead.
 func (*EmbedSection) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{172}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{173}
 }
 
 func (x *EmbedSection) GetProps() *EmbedSectionProps {
@@ -19005,7 +19081,7 @@ type RichTextSectionLocale struct {
 
 func (x *RichTextSectionLocale) Reset() {
 	*x = RichTextSectionLocale{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[173]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[174]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -19017,7 +19093,7 @@ func (x *RichTextSectionLocale) String() string {
 func (*RichTextSectionLocale) ProtoMessage() {}
 
 func (x *RichTextSectionLocale) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[173]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[174]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -19030,7 +19106,7 @@ func (x *RichTextSectionLocale) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RichTextSectionLocale.ProtoReflect.Descriptor instead.
 func (*RichTextSectionLocale) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{173}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{174}
 }
 
 func (x *RichTextSectionLocale) GetProps() *RichTextSectionLocaleProps {
@@ -19056,7 +19132,7 @@ type ExternalVideoSectionLocale struct {
 
 func (x *ExternalVideoSectionLocale) Reset() {
 	*x = ExternalVideoSectionLocale{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[174]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[175]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -19068,7 +19144,7 @@ func (x *ExternalVideoSectionLocale) String() string {
 func (*ExternalVideoSectionLocale) ProtoMessage() {}
 
 func (x *ExternalVideoSectionLocale) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[174]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[175]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -19081,7 +19157,7 @@ func (x *ExternalVideoSectionLocale) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ExternalVideoSectionLocale.ProtoReflect.Descriptor instead.
 func (*ExternalVideoSectionLocale) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{174}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{175}
 }
 
 func (x *ExternalVideoSectionLocale) GetProps() *ExternalVideoSectionLocaleProps {
@@ -19100,7 +19176,7 @@ type PostListSectionLocale struct {
 
 func (x *PostListSectionLocale) Reset() {
 	*x = PostListSectionLocale{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[175]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[176]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -19112,7 +19188,7 @@ func (x *PostListSectionLocale) String() string {
 func (*PostListSectionLocale) ProtoMessage() {}
 
 func (x *PostListSectionLocale) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[175]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[176]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -19125,7 +19201,7 @@ func (x *PostListSectionLocale) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PostListSectionLocale.ProtoReflect.Descriptor instead.
 func (*PostListSectionLocale) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{175}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{176}
 }
 
 func (x *PostListSectionLocale) GetProps() *PostListSectionLocaleProps {
@@ -19144,7 +19220,7 @@ type PostTableSectionLocale struct {
 
 func (x *PostTableSectionLocale) Reset() {
 	*x = PostTableSectionLocale{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[176]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[177]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -19156,7 +19232,7 @@ func (x *PostTableSectionLocale) String() string {
 func (*PostTableSectionLocale) ProtoMessage() {}
 
 func (x *PostTableSectionLocale) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[176]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[177]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -19169,7 +19245,7 @@ func (x *PostTableSectionLocale) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PostTableSectionLocale.ProtoReflect.Descriptor instead.
 func (*PostTableSectionLocale) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{176}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{177}
 }
 
 func (x *PostTableSectionLocale) GetProps() *PostTableSectionLocaleProps {
@@ -19188,7 +19264,7 @@ type PostMapSectionLocale struct {
 
 func (x *PostMapSectionLocale) Reset() {
 	*x = PostMapSectionLocale{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[177]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[178]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -19200,7 +19276,7 @@ func (x *PostMapSectionLocale) String() string {
 func (*PostMapSectionLocale) ProtoMessage() {}
 
 func (x *PostMapSectionLocale) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[177]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[178]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -19213,7 +19289,7 @@ func (x *PostMapSectionLocale) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PostMapSectionLocale.ProtoReflect.Descriptor instead.
 func (*PostMapSectionLocale) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{177}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{178}
 }
 
 func (x *PostMapSectionLocale) GetProps() *PostMapSectionLocaleProps {
@@ -19232,7 +19308,7 @@ type WorkMapSectionLocale struct {
 
 func (x *WorkMapSectionLocale) Reset() {
 	*x = WorkMapSectionLocale{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[178]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[179]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -19244,7 +19320,7 @@ func (x *WorkMapSectionLocale) String() string {
 func (*WorkMapSectionLocale) ProtoMessage() {}
 
 func (x *WorkMapSectionLocale) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[178]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[179]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -19257,7 +19333,7 @@ func (x *WorkMapSectionLocale) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WorkMapSectionLocale.ProtoReflect.Descriptor instead.
 func (*WorkMapSectionLocale) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{178}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{179}
 }
 
 func (x *WorkMapSectionLocale) GetProps() *WorkMapSectionLocaleProps {
@@ -19276,7 +19352,7 @@ type WorkTableSectionLocale struct {
 
 func (x *WorkTableSectionLocale) Reset() {
 	*x = WorkTableSectionLocale{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[179]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[180]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -19288,7 +19364,7 @@ func (x *WorkTableSectionLocale) String() string {
 func (*WorkTableSectionLocale) ProtoMessage() {}
 
 func (x *WorkTableSectionLocale) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[179]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[180]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -19301,7 +19377,7 @@ func (x *WorkTableSectionLocale) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WorkTableSectionLocale.ProtoReflect.Descriptor instead.
 func (*WorkTableSectionLocale) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{179}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{180}
 }
 
 func (x *WorkTableSectionLocale) GetProps() *WorkTableSectionLocaleProps {
@@ -19320,7 +19396,7 @@ type WorkListSectionLocale struct {
 
 func (x *WorkListSectionLocale) Reset() {
 	*x = WorkListSectionLocale{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[180]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[181]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -19332,7 +19408,7 @@ func (x *WorkListSectionLocale) String() string {
 func (*WorkListSectionLocale) ProtoMessage() {}
 
 func (x *WorkListSectionLocale) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[180]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[181]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -19345,7 +19421,7 @@ func (x *WorkListSectionLocale) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WorkListSectionLocale.ProtoReflect.Descriptor instead.
 func (*WorkListSectionLocale) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{180}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{181}
 }
 
 func (x *WorkListSectionLocale) GetProps() *WorkListSectionLocaleProps {
@@ -19364,7 +19440,7 @@ type ProgramEventListSectionLocale struct {
 
 func (x *ProgramEventListSectionLocale) Reset() {
 	*x = ProgramEventListSectionLocale{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[181]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[182]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -19376,7 +19452,7 @@ func (x *ProgramEventListSectionLocale) String() string {
 func (*ProgramEventListSectionLocale) ProtoMessage() {}
 
 func (x *ProgramEventListSectionLocale) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[181]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[182]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -19389,7 +19465,7 @@ func (x *ProgramEventListSectionLocale) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProgramEventListSectionLocale.ProtoReflect.Descriptor instead.
 func (*ProgramEventListSectionLocale) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{181}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{182}
 }
 
 func (x *ProgramEventListSectionLocale) GetProps() *ProgramEventListSectionLocaleProps {
@@ -19408,7 +19484,7 @@ type ReleaseListSectionLocale struct {
 
 func (x *ReleaseListSectionLocale) Reset() {
 	*x = ReleaseListSectionLocale{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[182]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[183]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -19420,7 +19496,7 @@ func (x *ReleaseListSectionLocale) String() string {
 func (*ReleaseListSectionLocale) ProtoMessage() {}
 
 func (x *ReleaseListSectionLocale) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[182]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[183]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -19433,7 +19509,7 @@ func (x *ReleaseListSectionLocale) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ReleaseListSectionLocale.ProtoReflect.Descriptor instead.
 func (*ReleaseListSectionLocale) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{182}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{183}
 }
 
 func (x *ReleaseListSectionLocale) GetProps() *ReleaseListSectionLocaleProps {
@@ -19452,7 +19528,7 @@ type ArtistListSectionLocale struct {
 
 func (x *ArtistListSectionLocale) Reset() {
 	*x = ArtistListSectionLocale{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[183]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[184]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -19464,7 +19540,7 @@ func (x *ArtistListSectionLocale) String() string {
 func (*ArtistListSectionLocale) ProtoMessage() {}
 
 func (x *ArtistListSectionLocale) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[183]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[184]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -19477,7 +19553,7 @@ func (x *ArtistListSectionLocale) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ArtistListSectionLocale.ProtoReflect.Descriptor instead.
 func (*ArtistListSectionLocale) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{183}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{184}
 }
 
 func (x *ArtistListSectionLocale) GetProps() *ArtistListSectionLocaleProps {
@@ -19496,7 +19572,7 @@ type LabelListSectionLocale struct {
 
 func (x *LabelListSectionLocale) Reset() {
 	*x = LabelListSectionLocale{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[184]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[185]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -19508,7 +19584,7 @@ func (x *LabelListSectionLocale) String() string {
 func (*LabelListSectionLocale) ProtoMessage() {}
 
 func (x *LabelListSectionLocale) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[184]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[185]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -19521,7 +19597,7 @@ func (x *LabelListSectionLocale) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LabelListSectionLocale.ProtoReflect.Descriptor instead.
 func (*LabelListSectionLocale) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{184}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{185}
 }
 
 func (x *LabelListSectionLocale) GetProps() *LabelListSectionLocaleProps {
@@ -19540,7 +19616,7 @@ type AuthorListSectionLocale struct {
 
 func (x *AuthorListSectionLocale) Reset() {
 	*x = AuthorListSectionLocale{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[185]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[186]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -19552,7 +19628,7 @@ func (x *AuthorListSectionLocale) String() string {
 func (*AuthorListSectionLocale) ProtoMessage() {}
 
 func (x *AuthorListSectionLocale) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[185]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[186]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -19565,7 +19641,7 @@ func (x *AuthorListSectionLocale) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AuthorListSectionLocale.ProtoReflect.Descriptor instead.
 func (*AuthorListSectionLocale) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{185}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{186}
 }
 
 func (x *AuthorListSectionLocale) GetProps() *AuthorListSectionLocaleProps {
@@ -19584,7 +19660,7 @@ type FormSectionLocale struct {
 
 func (x *FormSectionLocale) Reset() {
 	*x = FormSectionLocale{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[186]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[187]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -19596,7 +19672,7 @@ func (x *FormSectionLocale) String() string {
 func (*FormSectionLocale) ProtoMessage() {}
 
 func (x *FormSectionLocale) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[186]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[187]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -19609,7 +19685,7 @@ func (x *FormSectionLocale) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FormSectionLocale.ProtoReflect.Descriptor instead.
 func (*FormSectionLocale) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{186}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{187}
 }
 
 func (x *FormSectionLocale) GetProps() *FormSectionLocaleProps {
@@ -19628,7 +19704,7 @@ type TextMarqueeSectionLocale struct {
 
 func (x *TextMarqueeSectionLocale) Reset() {
 	*x = TextMarqueeSectionLocale{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[187]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[188]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -19640,7 +19716,7 @@ func (x *TextMarqueeSectionLocale) String() string {
 func (*TextMarqueeSectionLocale) ProtoMessage() {}
 
 func (x *TextMarqueeSectionLocale) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[187]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[188]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -19653,7 +19729,7 @@ func (x *TextMarqueeSectionLocale) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TextMarqueeSectionLocale.ProtoReflect.Descriptor instead.
 func (*TextMarqueeSectionLocale) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{187}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{188}
 }
 
 func (x *TextMarqueeSectionLocale) GetProps() *TextMarqueeSectionLocaleProps {
@@ -19672,7 +19748,7 @@ type ClientMarqueeSectionLocale struct {
 
 func (x *ClientMarqueeSectionLocale) Reset() {
 	*x = ClientMarqueeSectionLocale{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[188]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[189]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -19684,7 +19760,7 @@ func (x *ClientMarqueeSectionLocale) String() string {
 func (*ClientMarqueeSectionLocale) ProtoMessage() {}
 
 func (x *ClientMarqueeSectionLocale) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[188]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[189]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -19697,7 +19773,7 @@ func (x *ClientMarqueeSectionLocale) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ClientMarqueeSectionLocale.ProtoReflect.Descriptor instead.
 func (*ClientMarqueeSectionLocale) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{188}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{189}
 }
 
 func (x *ClientMarqueeSectionLocale) GetProps() *ClientMarqueeSectionLocaleProps {
@@ -19716,7 +19792,7 @@ type LabelMarqueeSectionLocale struct {
 
 func (x *LabelMarqueeSectionLocale) Reset() {
 	*x = LabelMarqueeSectionLocale{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[189]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[190]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -19728,7 +19804,7 @@ func (x *LabelMarqueeSectionLocale) String() string {
 func (*LabelMarqueeSectionLocale) ProtoMessage() {}
 
 func (x *LabelMarqueeSectionLocale) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[189]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[190]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -19741,7 +19817,7 @@ func (x *LabelMarqueeSectionLocale) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LabelMarqueeSectionLocale.ProtoReflect.Descriptor instead.
 func (*LabelMarqueeSectionLocale) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{189}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{190}
 }
 
 func (x *LabelMarqueeSectionLocale) GetProps() *LabelMarqueeSectionLocaleProps {
@@ -19760,7 +19836,7 @@ type MapSectionLocale struct {
 
 func (x *MapSectionLocale) Reset() {
 	*x = MapSectionLocale{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[190]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[191]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -19772,7 +19848,7 @@ func (x *MapSectionLocale) String() string {
 func (*MapSectionLocale) ProtoMessage() {}
 
 func (x *MapSectionLocale) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[190]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[191]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -19785,7 +19861,7 @@ func (x *MapSectionLocale) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MapSectionLocale.ProtoReflect.Descriptor instead.
 func (*MapSectionLocale) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{190}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{191}
 }
 
 func (x *MapSectionLocale) GetProps() *MapSectionLocaleProps {
@@ -19805,7 +19881,7 @@ type ImmersiveSceneSectionLocale struct {
 
 func (x *ImmersiveSceneSectionLocale) Reset() {
 	*x = ImmersiveSceneSectionLocale{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[191]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[192]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -19817,7 +19893,7 @@ func (x *ImmersiveSceneSectionLocale) String() string {
 func (*ImmersiveSceneSectionLocale) ProtoMessage() {}
 
 func (x *ImmersiveSceneSectionLocale) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[191]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[192]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -19830,7 +19906,7 @@ func (x *ImmersiveSceneSectionLocale) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ImmersiveSceneSectionLocale.ProtoReflect.Descriptor instead.
 func (*ImmersiveSceneSectionLocale) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{191}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{192}
 }
 
 func (x *ImmersiveSceneSectionLocale) GetProps() *ImmersiveSceneSectionLocaleProps {
@@ -19856,7 +19932,7 @@ type ColumnsSectionLocale struct {
 
 func (x *ColumnsSectionLocale) Reset() {
 	*x = ColumnsSectionLocale{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[192]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[193]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -19868,7 +19944,7 @@ func (x *ColumnsSectionLocale) String() string {
 func (*ColumnsSectionLocale) ProtoMessage() {}
 
 func (x *ColumnsSectionLocale) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[192]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[193]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -19881,7 +19957,7 @@ func (x *ColumnsSectionLocale) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ColumnsSectionLocale.ProtoReflect.Descriptor instead.
 func (*ColumnsSectionLocale) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{192}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{193}
 }
 
 func (x *ColumnsSectionLocale) GetProps() *ColumnsSectionLocaleProps {
@@ -19900,7 +19976,7 @@ type MermaidSectionLocale struct {
 
 func (x *MermaidSectionLocale) Reset() {
 	*x = MermaidSectionLocale{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[193]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[194]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -19912,7 +19988,7 @@ func (x *MermaidSectionLocale) String() string {
 func (*MermaidSectionLocale) ProtoMessage() {}
 
 func (x *MermaidSectionLocale) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[193]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[194]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -19925,7 +20001,7 @@ func (x *MermaidSectionLocale) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MermaidSectionLocale.ProtoReflect.Descriptor instead.
 func (*MermaidSectionLocale) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{193}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{194}
 }
 
 func (x *MermaidSectionLocale) GetProps() *MermaidSectionLocaleProps {
@@ -19944,7 +20020,7 @@ type EmbedSectionLocale struct {
 
 func (x *EmbedSectionLocale) Reset() {
 	*x = EmbedSectionLocale{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[194]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[195]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -19956,7 +20032,7 @@ func (x *EmbedSectionLocale) String() string {
 func (*EmbedSectionLocale) ProtoMessage() {}
 
 func (x *EmbedSectionLocale) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[194]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[195]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -19969,7 +20045,7 @@ func (x *EmbedSectionLocale) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use EmbedSectionLocale.ProtoReflect.Descriptor instead.
 func (*EmbedSectionLocale) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{194}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{195}
 }
 
 func (x *EmbedSectionLocale) GetProps() *EmbedSectionLocaleProps {
@@ -20014,7 +20090,7 @@ type PageSection struct {
 
 func (x *PageSection) Reset() {
 	*x = PageSection{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[195]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[196]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -20026,7 +20102,7 @@ func (x *PageSection) String() string {
 func (*PageSection) ProtoMessage() {}
 
 func (x *PageSection) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[195]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[196]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -20039,7 +20115,7 @@ func (x *PageSection) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PageSection.ProtoReflect.Descriptor instead.
 func (*PageSection) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{195}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{196}
 }
 
 func (x *PageSection) GetId() string {
@@ -20431,7 +20507,7 @@ type PageSectionLocale struct {
 
 func (x *PageSectionLocale) Reset() {
 	*x = PageSectionLocale{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[196]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[197]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -20443,7 +20519,7 @@ func (x *PageSectionLocale) String() string {
 func (*PageSectionLocale) ProtoMessage() {}
 
 func (x *PageSectionLocale) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[196]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[197]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -20456,7 +20532,7 @@ func (x *PageSectionLocale) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PageSectionLocale.ProtoReflect.Descriptor instead.
 func (*PageSectionLocale) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{196}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{197}
 }
 
 func (x *PageSectionLocale) GetSectionId() string {
@@ -20843,7 +20919,7 @@ type PageSectionData struct {
 
 func (x *PageSectionData) Reset() {
 	*x = PageSectionData{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[197]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[198]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -20855,7 +20931,7 @@ func (x *PageSectionData) String() string {
 func (*PageSectionData) ProtoMessage() {}
 
 func (x *PageSectionData) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[197]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[198]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -20868,7 +20944,7 @@ func (x *PageSectionData) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PageSectionData.ProtoReflect.Descriptor instead.
 func (*PageSectionData) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{197}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{198}
 }
 
 func (x *PageSectionData) GetSettings() *PageSectionSettings {
@@ -21253,7 +21329,7 @@ type PageSectionLocaleData struct {
 
 func (x *PageSectionLocaleData) Reset() {
 	*x = PageSectionLocaleData{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[198]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[199]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -21265,7 +21341,7 @@ func (x *PageSectionLocaleData) String() string {
 func (*PageSectionLocaleData) ProtoMessage() {}
 
 func (x *PageSectionLocaleData) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[198]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[199]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -21278,7 +21354,7 @@ func (x *PageSectionLocaleData) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PageSectionLocaleData.ProtoReflect.Descriptor instead.
 func (*PageSectionLocaleData) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{198}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{199}
 }
 
 func (x *PageSectionLocaleData) GetValue() isPageSectionLocaleData_Value {
@@ -21633,7 +21709,7 @@ type PageSectionPlacement struct {
 
 func (x *PageSectionPlacement) Reset() {
 	*x = PageSectionPlacement{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[199]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[200]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -21645,7 +21721,7 @@ func (x *PageSectionPlacement) String() string {
 func (*PageSectionPlacement) ProtoMessage() {}
 
 func (x *PageSectionPlacement) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[199]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[200]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -21658,7 +21734,7 @@ func (x *PageSectionPlacement) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PageSectionPlacement.ProtoReflect.Descriptor instead.
 func (*PageSectionPlacement) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{199}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{200}
 }
 
 func (x *PageSectionPlacement) GetParentSectionId() string {
@@ -21692,7 +21768,7 @@ type PageSectionNode struct {
 
 func (x *PageSectionNode) Reset() {
 	*x = PageSectionNode{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[200]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[201]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -21704,7 +21780,7 @@ func (x *PageSectionNode) String() string {
 func (*PageSectionNode) ProtoMessage() {}
 
 func (x *PageSectionNode) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[200]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[201]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -21717,7 +21793,7 @@ func (x *PageSectionNode) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PageSectionNode.ProtoReflect.Descriptor instead.
 func (*PageSectionNode) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{200}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{201}
 }
 
 func (x *PageSectionNode) GetSection() *PageSection {
@@ -21743,7 +21819,7 @@ type PageSectionGraph struct {
 
 func (x *PageSectionGraph) Reset() {
 	*x = PageSectionGraph{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[201]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[202]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -21755,7 +21831,7 @@ func (x *PageSectionGraph) String() string {
 func (*PageSectionGraph) ProtoMessage() {}
 
 func (x *PageSectionGraph) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[201]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[202]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -21768,7 +21844,7 @@ func (x *PageSectionGraph) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PageSectionGraph.ProtoReflect.Descriptor instead.
 func (*PageSectionGraph) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{201}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{202}
 }
 
 func (x *PageSectionGraph) GetNodes() []*PageSectionNode {
@@ -21788,7 +21864,7 @@ type PageLocaleOverlay struct {
 
 func (x *PageLocaleOverlay) Reset() {
 	*x = PageLocaleOverlay{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[202]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[203]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -21800,7 +21876,7 @@ func (x *PageLocaleOverlay) String() string {
 func (*PageLocaleOverlay) ProtoMessage() {}
 
 func (x *PageLocaleOverlay) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[202]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[203]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -21813,7 +21889,7 @@ func (x *PageLocaleOverlay) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PageLocaleOverlay.ProtoReflect.Descriptor instead.
 func (*PageLocaleOverlay) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{202}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{203}
 }
 
 func (x *PageLocaleOverlay) GetLocale() string {
@@ -21842,7 +21918,7 @@ type PageDocument struct {
 
 func (x *PageDocument) Reset() {
 	*x = PageDocument{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[203]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[204]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -21854,7 +21930,7 @@ func (x *PageDocument) String() string {
 func (*PageDocument) ProtoMessage() {}
 
 func (x *PageDocument) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[203]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[204]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -21867,7 +21943,7 @@ func (x *PageDocument) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PageDocument.ProtoReflect.Descriptor instead.
 func (*PageDocument) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{203}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{204}
 }
 
 func (x *PageDocument) GetBlockCatalogFingerprint() string {
@@ -21910,7 +21986,7 @@ type LocalizedPageDocument struct {
 
 func (x *LocalizedPageDocument) Reset() {
 	*x = LocalizedPageDocument{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[204]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[205]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -21922,7 +21998,7 @@ func (x *LocalizedPageDocument) String() string {
 func (*LocalizedPageDocument) ProtoMessage() {}
 
 func (x *LocalizedPageDocument) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[204]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[205]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -21935,7 +22011,7 @@ func (x *LocalizedPageDocument) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LocalizedPageDocument.ProtoReflect.Descriptor instead.
 func (*LocalizedPageDocument) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{204}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{205}
 }
 
 func (x *LocalizedPageDocument) GetBlockCatalogFingerprint() string {
@@ -21975,7 +22051,7 @@ type UpsertPageSection struct {
 
 func (x *UpsertPageSection) Reset() {
 	*x = UpsertPageSection{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[205]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[206]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -21987,7 +22063,7 @@ func (x *UpsertPageSection) String() string {
 func (*UpsertPageSection) ProtoMessage() {}
 
 func (x *UpsertPageSection) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[205]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[206]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -22000,7 +22076,7 @@ func (x *UpsertPageSection) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpsertPageSection.ProtoReflect.Descriptor instead.
 func (*UpsertPageSection) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{205}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{206}
 }
 
 func (x *UpsertPageSection) GetNode() *PageSectionNode {
@@ -22019,7 +22095,7 @@ type DeletePageSection struct {
 
 func (x *DeletePageSection) Reset() {
 	*x = DeletePageSection{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[206]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[207]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -22031,7 +22107,7 @@ func (x *DeletePageSection) String() string {
 func (*DeletePageSection) ProtoMessage() {}
 
 func (x *DeletePageSection) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[206]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[207]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -22044,7 +22120,7 @@ func (x *DeletePageSection) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeletePageSection.ProtoReflect.Descriptor instead.
 func (*DeletePageSection) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{206}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{207}
 }
 
 func (x *DeletePageSection) GetSectionId() string {
@@ -22064,7 +22140,7 @@ type MovePageSection struct {
 
 func (x *MovePageSection) Reset() {
 	*x = MovePageSection{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[207]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[208]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -22076,7 +22152,7 @@ func (x *MovePageSection) String() string {
 func (*MovePageSection) ProtoMessage() {}
 
 func (x *MovePageSection) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[207]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[208]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -22089,7 +22165,7 @@ func (x *MovePageSection) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MovePageSection.ProtoReflect.Descriptor instead.
 func (*MovePageSection) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{207}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{208}
 }
 
 func (x *MovePageSection) GetSectionId() string {
@@ -22116,7 +22192,7 @@ type MutatePageRichTextBlock struct {
 
 func (x *MutatePageRichTextBlock) Reset() {
 	*x = MutatePageRichTextBlock{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[208]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[209]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -22128,7 +22204,7 @@ func (x *MutatePageRichTextBlock) String() string {
 func (*MutatePageRichTextBlock) ProtoMessage() {}
 
 func (x *MutatePageRichTextBlock) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[208]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[209]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -22141,7 +22217,7 @@ func (x *MutatePageRichTextBlock) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MutatePageRichTextBlock.ProtoReflect.Descriptor instead.
 func (*MutatePageRichTextBlock) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{208}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{209}
 }
 
 func (x *MutatePageRichTextBlock) GetSectionId() string {
@@ -22173,7 +22249,7 @@ type PageSectionMutation struct {
 
 func (x *PageSectionMutation) Reset() {
 	*x = PageSectionMutation{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[209]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[210]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -22185,7 +22261,7 @@ func (x *PageSectionMutation) String() string {
 func (*PageSectionMutation) ProtoMessage() {}
 
 func (x *PageSectionMutation) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[209]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[210]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -22198,7 +22274,7 @@ func (x *PageSectionMutation) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PageSectionMutation.ProtoReflect.Descriptor instead.
 func (*PageSectionMutation) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{209}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{210}
 }
 
 func (x *PageSectionMutation) GetOperation() isPageSectionMutation_Operation {
@@ -22281,7 +22357,7 @@ type UpsertPageSectionLocale struct {
 
 func (x *UpsertPageSectionLocale) Reset() {
 	*x = UpsertPageSectionLocale{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[210]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[211]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -22293,7 +22369,7 @@ func (x *UpsertPageSectionLocale) String() string {
 func (*UpsertPageSectionLocale) ProtoMessage() {}
 
 func (x *UpsertPageSectionLocale) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[210]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[211]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -22306,7 +22382,7 @@ func (x *UpsertPageSectionLocale) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpsertPageSectionLocale.ProtoReflect.Descriptor instead.
 func (*UpsertPageSectionLocale) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{210}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{211}
 }
 
 func (x *UpsertPageSectionLocale) GetSection() *PageSectionLocale {
@@ -22325,7 +22401,7 @@ type DeletePageSectionLocale struct {
 
 func (x *DeletePageSectionLocale) Reset() {
 	*x = DeletePageSectionLocale{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[211]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[212]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -22337,7 +22413,7 @@ func (x *DeletePageSectionLocale) String() string {
 func (*DeletePageSectionLocale) ProtoMessage() {}
 
 func (x *DeletePageSectionLocale) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[211]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[212]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -22350,7 +22426,7 @@ func (x *DeletePageSectionLocale) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeletePageSectionLocale.ProtoReflect.Descriptor instead.
 func (*DeletePageSectionLocale) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{211}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{212}
 }
 
 func (x *DeletePageSectionLocale) GetSectionId() string {
@@ -22370,7 +22446,7 @@ type MutatePageRichTextBlockLocale struct {
 
 func (x *MutatePageRichTextBlockLocale) Reset() {
 	*x = MutatePageRichTextBlockLocale{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[212]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[213]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -22382,7 +22458,7 @@ func (x *MutatePageRichTextBlockLocale) String() string {
 func (*MutatePageRichTextBlockLocale) ProtoMessage() {}
 
 func (x *MutatePageRichTextBlockLocale) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[212]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[213]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -22395,7 +22471,7 @@ func (x *MutatePageRichTextBlockLocale) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MutatePageRichTextBlockLocale.ProtoReflect.Descriptor instead.
 func (*MutatePageRichTextBlockLocale) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{212}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{213}
 }
 
 func (x *MutatePageRichTextBlockLocale) GetSectionId() string {
@@ -22426,7 +22502,7 @@ type PageSectionLocaleMutation struct {
 
 func (x *PageSectionLocaleMutation) Reset() {
 	*x = PageSectionLocaleMutation{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[213]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[214]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -22438,7 +22514,7 @@ func (x *PageSectionLocaleMutation) String() string {
 func (*PageSectionLocaleMutation) ProtoMessage() {}
 
 func (x *PageSectionLocaleMutation) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[213]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[214]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -22451,7 +22527,7 @@ func (x *PageSectionLocaleMutation) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PageSectionLocaleMutation.ProtoReflect.Descriptor instead.
 func (*PageSectionLocaleMutation) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{213}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{214}
 }
 
 func (x *PageSectionLocaleMutation) GetOperation() isPageSectionLocaleMutation_Operation {
@@ -22520,7 +22596,7 @@ type PageLocaleMutationGroup struct {
 
 func (x *PageLocaleMutationGroup) Reset() {
 	*x = PageLocaleMutationGroup{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[214]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[215]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -22532,7 +22608,7 @@ func (x *PageLocaleMutationGroup) String() string {
 func (*PageLocaleMutationGroup) ProtoMessage() {}
 
 func (x *PageLocaleMutationGroup) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[214]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[215]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -22545,7 +22621,7 @@ func (x *PageLocaleMutationGroup) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PageLocaleMutationGroup.ProtoReflect.Descriptor instead.
 func (*PageLocaleMutationGroup) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{214}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{215}
 }
 
 func (x *PageLocaleMutationGroup) GetLocale() string {
@@ -22575,7 +22651,7 @@ type PageSectionMutationBatch struct {
 
 func (x *PageSectionMutationBatch) Reset() {
 	*x = PageSectionMutationBatch{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[215]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[216]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -22587,7 +22663,7 @@ func (x *PageSectionMutationBatch) String() string {
 func (*PageSectionMutationBatch) ProtoMessage() {}
 
 func (x *PageSectionMutationBatch) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[215]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[216]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -22600,7 +22676,7 @@ func (x *PageSectionMutationBatch) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PageSectionMutationBatch.ProtoReflect.Descriptor instead.
 func (*PageSectionMutationBatch) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{215}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{216}
 }
 
 func (x *PageSectionMutationBatch) GetBlockCatalogFingerprint() string {
@@ -22648,7 +22724,7 @@ type ContentBlockMediaSelector struct {
 
 func (x *ContentBlockMediaSelector) Reset() {
 	*x = ContentBlockMediaSelector{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[216]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[217]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -22660,7 +22736,7 @@ func (x *ContentBlockMediaSelector) String() string {
 func (*ContentBlockMediaSelector) ProtoMessage() {}
 
 func (x *ContentBlockMediaSelector) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[216]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[217]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -22673,7 +22749,7 @@ func (x *ContentBlockMediaSelector) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ContentBlockMediaSelector.ProtoReflect.Descriptor instead.
 func (*ContentBlockMediaSelector) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{216}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{217}
 }
 
 func (x *ContentBlockMediaSelector) GetBlockId() string {
@@ -22702,7 +22778,7 @@ type ContentBlockMediaReference struct {
 
 func (x *ContentBlockMediaReference) Reset() {
 	*x = ContentBlockMediaReference{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[217]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[218]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -22714,7 +22790,7 @@ func (x *ContentBlockMediaReference) String() string {
 func (*ContentBlockMediaReference) ProtoMessage() {}
 
 func (x *ContentBlockMediaReference) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[217]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[218]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -22727,7 +22803,7 @@ func (x *ContentBlockMediaReference) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ContentBlockMediaReference.ProtoReflect.Descriptor instead.
 func (*ContentBlockMediaReference) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{217}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{218}
 }
 
 func (x *ContentBlockMediaReference) GetBlockId() string {
@@ -22764,7 +22840,7 @@ type ContentBlockMediaItem struct {
 
 func (x *ContentBlockMediaItem) Reset() {
 	*x = ContentBlockMediaItem{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[218]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[219]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -22776,7 +22852,7 @@ func (x *ContentBlockMediaItem) String() string {
 func (*ContentBlockMediaItem) ProtoMessage() {}
 
 func (x *ContentBlockMediaItem) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[218]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[219]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -22789,7 +22865,7 @@ func (x *ContentBlockMediaItem) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ContentBlockMediaItem.ProtoReflect.Descriptor instead.
 func (*ContentBlockMediaItem) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{218}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{219}
 }
 
 func (x *ContentBlockMediaItem) GetSelector() *ContentBlockMediaSelector {
@@ -22838,7 +22914,7 @@ type ShaderProps_StagesItem struct {
 
 func (x *ShaderProps_StagesItem) Reset() {
 	*x = ShaderProps_StagesItem{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[219]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[220]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -22850,7 +22926,7 @@ func (x *ShaderProps_StagesItem) String() string {
 func (*ShaderProps_StagesItem) ProtoMessage() {}
 
 func (x *ShaderProps_StagesItem) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[219]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[220]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -22863,7 +22939,7 @@ func (x *ShaderProps_StagesItem) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ShaderProps_StagesItem.ProtoReflect.Descriptor instead.
 func (*ShaderProps_StagesItem) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{26, 0}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{27, 0}
 }
 
 func (x *ShaderProps_StagesItem) GetKind() ShaderProps_StagesItem_Kind {
@@ -22900,7 +22976,7 @@ type ShaderProps_StagesItem_ChannelsItem struct {
 
 func (x *ShaderProps_StagesItem_ChannelsItem) Reset() {
 	*x = ShaderProps_StagesItem_ChannelsItem{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[220]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[221]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -22912,7 +22988,7 @@ func (x *ShaderProps_StagesItem_ChannelsItem) String() string {
 func (*ShaderProps_StagesItem_ChannelsItem) ProtoMessage() {}
 
 func (x *ShaderProps_StagesItem_ChannelsItem) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[220]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[221]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -22925,7 +23001,7 @@ func (x *ShaderProps_StagesItem_ChannelsItem) ProtoReflect() protoreflect.Messag
 
 // Deprecated: Use ShaderProps_StagesItem_ChannelsItem.ProtoReflect.Descriptor instead.
 func (*ShaderProps_StagesItem_ChannelsItem) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{26, 0, 0}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{27, 0, 0}
 }
 
 func (x *ShaderProps_StagesItem_ChannelsItem) GetKind() ShaderProps_StagesItem_ChannelsItem_Kind {
@@ -22974,7 +23050,7 @@ type ShaderProps_StagesItem_ChannelsItem_SamplerValue struct {
 
 func (x *ShaderProps_StagesItem_ChannelsItem_SamplerValue) Reset() {
 	*x = ShaderProps_StagesItem_ChannelsItem_SamplerValue{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[221]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[222]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -22986,7 +23062,7 @@ func (x *ShaderProps_StagesItem_ChannelsItem_SamplerValue) String() string {
 func (*ShaderProps_StagesItem_ChannelsItem_SamplerValue) ProtoMessage() {}
 
 func (x *ShaderProps_StagesItem_ChannelsItem_SamplerValue) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[221]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[222]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -22999,7 +23075,7 @@ func (x *ShaderProps_StagesItem_ChannelsItem_SamplerValue) ProtoReflect() protor
 
 // Deprecated: Use ShaderProps_StagesItem_ChannelsItem_SamplerValue.ProtoReflect.Descriptor instead.
 func (*ShaderProps_StagesItem_ChannelsItem_SamplerValue) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{26, 0, 0, 0}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{27, 0, 0, 0}
 }
 
 func (x *ShaderProps_StagesItem_ChannelsItem_SamplerValue) GetFilter() ShaderProps_StagesItem_ChannelsItem_SamplerValue_Filter {
@@ -23033,7 +23109,7 @@ type TextMarqueeSectionProps_ItemsItem struct {
 
 func (x *TextMarqueeSectionProps_ItemsItem) Reset() {
 	*x = TextMarqueeSectionProps_ItemsItem{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[222]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[223]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -23045,7 +23121,7 @@ func (x *TextMarqueeSectionProps_ItemsItem) String() string {
 func (*TextMarqueeSectionProps_ItemsItem) ProtoMessage() {}
 
 func (x *TextMarqueeSectionProps_ItemsItem) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[222]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[223]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -23058,7 +23134,7 @@ func (x *TextMarqueeSectionProps_ItemsItem) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use TextMarqueeSectionProps_ItemsItem.ProtoReflect.Descriptor instead.
 func (*TextMarqueeSectionProps_ItemsItem) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{121, 0}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{122, 0}
 }
 
 func (x *TextMarqueeSectionProps_ItemsItem) GetText() string {
@@ -23085,7 +23161,7 @@ type ColumnsSectionProps_ColumnsItem struct {
 
 func (x *ColumnsSectionProps_ColumnsItem) Reset() {
 	*x = ColumnsSectionProps_ColumnsItem{}
-	mi := &file_api_content_v1_block_content_proto_msgTypes[223]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[224]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -23097,7 +23173,7 @@ func (x *ColumnsSectionProps_ColumnsItem) String() string {
 func (*ColumnsSectionProps_ColumnsItem) ProtoMessage() {}
 
 func (x *ColumnsSectionProps_ColumnsItem) ProtoReflect() protoreflect.Message {
-	mi := &file_api_content_v1_block_content_proto_msgTypes[223]
+	mi := &file_api_content_v1_block_content_proto_msgTypes[224]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -23110,7 +23186,7 @@ func (x *ColumnsSectionProps_ColumnsItem) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ColumnsSectionProps_ColumnsItem.ProtoReflect.Descriptor instead.
 func (*ColumnsSectionProps_ColumnsItem) Descriptor() ([]byte, []int) {
-	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{126, 0}
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{127, 0}
 }
 
 func (x *ColumnsSectionProps_ColumnsItem) GetId() string {
@@ -23165,14 +23241,19 @@ const file_api_content_v1_block_content_proto_rawDesc = "" +
 	"\x04href\x18\x01 \x01(\tR\x04href\x12<\n" +
 	"\acontent\x18\x02 \x03(\v2\".api.content.v1.RichTextStyledTextR\acontent\",\n" +
 	"\x12RichTextInlineMath\x12\x16\n" +
-	"\x06source\x18\x01 \x01(\tR\x06source\"\x92\x02\n" +
+	"\x06source\x18\x01 \x01(\tR\x06source\"w\n" +
+	"\x14RichTextSiteVariable\x12\x10\n" +
+	"\x03key\x18\x01 \x01(\tR\x03key\x125\n" +
+	"\x06styles\x18\x02 \x01(\v2\x1d.api.content.v1.RichTextStyleR\x06styles\x12\x16\n" +
+	"\x06linked\x18\x03 \x01(\bR\x06linked\"\xdf\x02\n" +
 	"\x0eRichTextInline\x128\n" +
 	"\x04text\x18\x01 \x01(\v2\".api.content.v1.RichTextStyledTextH\x00R\x04text\x12B\n" +
 	"\n" +
 	"hard_break\x18\x02 \x01(\v2!.api.content.v1.RichTextHardBreakH\x00R\thardBreak\x122\n" +
 	"\x04link\x18\x03 \x01(\v2\x1c.api.content.v1.RichTextLinkH\x00R\x04link\x12E\n" +
 	"\vmath_inline\x18\x04 \x01(\v2\".api.content.v1.RichTextInlineMathH\x00R\n" +
-	"mathInlineB\a\n" +
+	"mathInline\x12K\n" +
+	"\rsite_variable\x18\x05 \x01(\v2$.api.content.v1.RichTextSiteVariableH\x00R\fsiteVariableB\a\n" +
 	"\x05value\"\xda\x03\n" +
 	"\x16RichTextTableCellProps\x12\x1d\n" +
 	"\acolspan\x18\x01 \x01(\x05H\x00R\acolspan\x88\x01\x01\x12\x1d\n" +
@@ -25511,7 +25592,7 @@ func file_api_content_v1_block_content_proto_rawDescGZIP() []byte {
 }
 
 var file_api_content_v1_block_content_proto_enumTypes = make([]protoimpl.EnumInfo, 135)
-var file_api_content_v1_block_content_proto_msgTypes = make([]protoimpl.MessageInfo, 224)
+var file_api_content_v1_block_content_proto_msgTypes = make([]protoimpl.MessageInfo, 225)
 var file_api_content_v1_block_content_proto_goTypes = []any{
 	(RichTextProfile)(0),                                         // 0: api.content.v1.RichTextProfile
 	(ContentValidationMode)(0),                                   // 1: api.content.v1.ContentValidationMode
@@ -25655,689 +25736,692 @@ var file_api_content_v1_block_content_proto_goTypes = []any{
 	(*RichTextHardBreak)(nil),                                    // 139: api.content.v1.RichTextHardBreak
 	(*RichTextLink)(nil),                                         // 140: api.content.v1.RichTextLink
 	(*RichTextInlineMath)(nil),                                   // 141: api.content.v1.RichTextInlineMath
-	(*RichTextInline)(nil),                                       // 142: api.content.v1.RichTextInline
-	(*RichTextTableCellProps)(nil),                               // 143: api.content.v1.RichTextTableCellProps
-	(*RichTextTableCellBase)(nil),                                // 144: api.content.v1.RichTextTableCellBase
-	(*RichTextTableRowBase)(nil),                                 // 145: api.content.v1.RichTextTableRowBase
-	(*RichTextTableBase)(nil),                                    // 146: api.content.v1.RichTextTableBase
-	(*RichTextTableCellLocale)(nil),                              // 147: api.content.v1.RichTextTableCellLocale
-	(*RichTextTableRowLocale)(nil),                               // 148: api.content.v1.RichTextTableRowLocale
-	(*RichTextTableLocale)(nil),                                  // 149: api.content.v1.RichTextTableLocale
-	(*ParagraphProps)(nil),                                       // 150: api.content.v1.ParagraphProps
-	(*HeadingProps)(nil),                                         // 151: api.content.v1.HeadingProps
-	(*BulletListItemProps)(nil),                                  // 152: api.content.v1.BulletListItemProps
-	(*NumberedListItemProps)(nil),                                // 153: api.content.v1.NumberedListItemProps
-	(*CheckListItemProps)(nil),                                   // 154: api.content.v1.CheckListItemProps
-	(*QuoteProps)(nil),                                           // 155: api.content.v1.QuoteProps
-	(*CodeBlockProps)(nil),                                       // 156: api.content.v1.CodeBlockProps
-	(*DividerProps)(nil),                                         // 157: api.content.v1.DividerProps
-	(*TableProps)(nil),                                           // 158: api.content.v1.TableProps
-	(*P5SketchProps)(nil),                                        // 159: api.content.v1.P5SketchProps
-	(*ThreeSceneProps)(nil),                                      // 160: api.content.v1.ThreeSceneProps
-	(*ShaderProps)(nil),                                          // 161: api.content.v1.ShaderProps
-	(*MathProps)(nil),                                            // 162: api.content.v1.MathProps
-	(*MapProps)(nil),                                             // 163: api.content.v1.MapProps
-	(*FileProps)(nil),                                            // 164: api.content.v1.FileProps
-	(*CalloutProps)(nil),                                         // 165: api.content.v1.CalloutProps
-	(*MermaidProps)(nil),                                         // 166: api.content.v1.MermaidProps
-	(*ParagraphLocaleProps)(nil),                                 // 167: api.content.v1.ParagraphLocaleProps
-	(*HeadingLocaleProps)(nil),                                   // 168: api.content.v1.HeadingLocaleProps
-	(*BulletListItemLocaleProps)(nil),                            // 169: api.content.v1.BulletListItemLocaleProps
-	(*NumberedListItemLocaleProps)(nil),                          // 170: api.content.v1.NumberedListItemLocaleProps
-	(*CheckListItemLocaleProps)(nil),                             // 171: api.content.v1.CheckListItemLocaleProps
-	(*QuoteLocaleProps)(nil),                                     // 172: api.content.v1.QuoteLocaleProps
-	(*CodeBlockLocaleProps)(nil),                                 // 173: api.content.v1.CodeBlockLocaleProps
-	(*DividerLocaleProps)(nil),                                   // 174: api.content.v1.DividerLocaleProps
-	(*TableLocaleProps)(nil),                                     // 175: api.content.v1.TableLocaleProps
-	(*P5SketchLocaleProps)(nil),                                  // 176: api.content.v1.P5SketchLocaleProps
-	(*ThreeSceneLocaleProps)(nil),                                // 177: api.content.v1.ThreeSceneLocaleProps
-	(*ShaderLocaleProps)(nil),                                    // 178: api.content.v1.ShaderLocaleProps
-	(*MathLocaleProps)(nil),                                      // 179: api.content.v1.MathLocaleProps
-	(*MapLocaleProps)(nil),                                       // 180: api.content.v1.MapLocaleProps
-	(*FileLocaleProps)(nil),                                      // 181: api.content.v1.FileLocaleProps
-	(*CalloutLocaleProps)(nil),                                   // 182: api.content.v1.CalloutLocaleProps
-	(*MermaidLocaleProps)(nil),                                   // 183: api.content.v1.MermaidLocaleProps
-	(*ParagraphBlock)(nil),                                       // 184: api.content.v1.ParagraphBlock
-	(*HeadingBlock)(nil),                                         // 185: api.content.v1.HeadingBlock
-	(*BulletListItemBlock)(nil),                                  // 186: api.content.v1.BulletListItemBlock
-	(*NumberedListItemBlock)(nil),                                // 187: api.content.v1.NumberedListItemBlock
-	(*CheckListItemBlock)(nil),                                   // 188: api.content.v1.CheckListItemBlock
-	(*QuoteBlock)(nil),                                           // 189: api.content.v1.QuoteBlock
-	(*CodeBlockBlock)(nil),                                       // 190: api.content.v1.CodeBlockBlock
-	(*DividerBlock)(nil),                                         // 191: api.content.v1.DividerBlock
-	(*TableBlock)(nil),                                           // 192: api.content.v1.TableBlock
-	(*P5SketchBlock)(nil),                                        // 193: api.content.v1.P5SketchBlock
-	(*ThreeSceneBlock)(nil),                                      // 194: api.content.v1.ThreeSceneBlock
-	(*ShaderBlock)(nil),                                          // 195: api.content.v1.ShaderBlock
-	(*MathBlock)(nil),                                            // 196: api.content.v1.MathBlock
-	(*MapBlock)(nil),                                             // 197: api.content.v1.MapBlock
-	(*FileBlock)(nil),                                            // 198: api.content.v1.FileBlock
-	(*CalloutBlock)(nil),                                         // 199: api.content.v1.CalloutBlock
-	(*MermaidBlock)(nil),                                         // 200: api.content.v1.MermaidBlock
-	(*ParagraphBlockLocale)(nil),                                 // 201: api.content.v1.ParagraphBlockLocale
-	(*HeadingBlockLocale)(nil),                                   // 202: api.content.v1.HeadingBlockLocale
-	(*BulletListItemBlockLocale)(nil),                            // 203: api.content.v1.BulletListItemBlockLocale
-	(*NumberedListItemBlockLocale)(nil),                          // 204: api.content.v1.NumberedListItemBlockLocale
-	(*CheckListItemBlockLocale)(nil),                             // 205: api.content.v1.CheckListItemBlockLocale
-	(*QuoteBlockLocale)(nil),                                     // 206: api.content.v1.QuoteBlockLocale
-	(*CodeBlockBlockLocale)(nil),                                 // 207: api.content.v1.CodeBlockBlockLocale
-	(*DividerBlockLocale)(nil),                                   // 208: api.content.v1.DividerBlockLocale
-	(*TableBlockLocale)(nil),                                     // 209: api.content.v1.TableBlockLocale
-	(*P5SketchBlockLocale)(nil),                                  // 210: api.content.v1.P5SketchBlockLocale
-	(*ThreeSceneBlockLocale)(nil),                                // 211: api.content.v1.ThreeSceneBlockLocale
-	(*ShaderBlockLocale)(nil),                                    // 212: api.content.v1.ShaderBlockLocale
-	(*MathBlockLocale)(nil),                                      // 213: api.content.v1.MathBlockLocale
-	(*MapBlockLocale)(nil),                                       // 214: api.content.v1.MapBlockLocale
-	(*FileBlockLocale)(nil),                                      // 215: api.content.v1.FileBlockLocale
-	(*CalloutBlockLocale)(nil),                                   // 216: api.content.v1.CalloutBlockLocale
-	(*MermaidBlockLocale)(nil),                                   // 217: api.content.v1.MermaidBlockLocale
-	(*RichTextBlock)(nil),                                        // 218: api.content.v1.RichTextBlock
-	(*RichTextBlockLocale)(nil),                                  // 219: api.content.v1.RichTextBlockLocale
-	(*RichTextBlockData)(nil),                                    // 220: api.content.v1.RichTextBlockData
-	(*RichTextBlockLocaleData)(nil),                              // 221: api.content.v1.RichTextBlockLocaleData
-	(*ContentBlockPlacement)(nil),                                // 222: api.content.v1.ContentBlockPlacement
-	(*RichTextBlockNode)(nil),                                    // 223: api.content.v1.RichTextBlockNode
-	(*RichTextBlockGraph)(nil),                                   // 224: api.content.v1.RichTextBlockGraph
-	(*RichTextLocaleOverlay)(nil),                                // 225: api.content.v1.RichTextLocaleOverlay
-	(*RichTextDocument)(nil),                                     // 226: api.content.v1.RichTextDocument
-	(*LocalizedRichTextDocument)(nil),                            // 227: api.content.v1.LocalizedRichTextDocument
-	(*UpsertRichTextBlock)(nil),                                  // 228: api.content.v1.UpsertRichTextBlock
-	(*DeleteRichTextBlock)(nil),                                  // 229: api.content.v1.DeleteRichTextBlock
-	(*MoveRichTextBlock)(nil),                                    // 230: api.content.v1.MoveRichTextBlock
-	(*RichTextBlockMutation)(nil),                                // 231: api.content.v1.RichTextBlockMutation
-	(*UpsertRichTextBlockLocale)(nil),                            // 232: api.content.v1.UpsertRichTextBlockLocale
-	(*DeleteRichTextBlockLocale)(nil),                            // 233: api.content.v1.DeleteRichTextBlockLocale
-	(*RichTextBlockLocaleMutation)(nil),                          // 234: api.content.v1.RichTextBlockLocaleMutation
-	(*RichTextLocaleMutationGroup)(nil),                          // 235: api.content.v1.RichTextLocaleMutationGroup
-	(*RichTextBlockMutationBatch)(nil),                           // 236: api.content.v1.RichTextBlockMutationBatch
-	(*PageSectionSettings)(nil),                                  // 237: api.content.v1.PageSectionSettings
-	(*PageImmersiveUnitProps)(nil),                               // 238: api.content.v1.PageImmersiveUnitProps
-	(*PageImmersiveUnitLocaleProps)(nil),                         // 239: api.content.v1.PageImmersiveUnitLocaleProps
-	(*PageImmersiveUnit)(nil),                                    // 240: api.content.v1.PageImmersiveUnit
-	(*PageImmersiveUnitLocale)(nil),                              // 241: api.content.v1.PageImmersiveUnitLocale
-	(*RichTextSectionProps)(nil),                                 // 242: api.content.v1.RichTextSectionProps
-	(*ExternalVideoSectionProps)(nil),                            // 243: api.content.v1.ExternalVideoSectionProps
-	(*PostListSectionProps)(nil),                                 // 244: api.content.v1.PostListSectionProps
-	(*PostTableSectionProps)(nil),                                // 245: api.content.v1.PostTableSectionProps
-	(*PostMapSectionProps)(nil),                                  // 246: api.content.v1.PostMapSectionProps
-	(*WorkMapSectionProps)(nil),                                  // 247: api.content.v1.WorkMapSectionProps
-	(*WorkTableSectionProps)(nil),                                // 248: api.content.v1.WorkTableSectionProps
-	(*WorkListSectionProps)(nil),                                 // 249: api.content.v1.WorkListSectionProps
-	(*ProgramEventListSectionProps)(nil),                         // 250: api.content.v1.ProgramEventListSectionProps
-	(*ReleaseListSectionProps)(nil),                              // 251: api.content.v1.ReleaseListSectionProps
-	(*ArtistListSectionProps)(nil),                               // 252: api.content.v1.ArtistListSectionProps
-	(*LabelListSectionProps)(nil),                                // 253: api.content.v1.LabelListSectionProps
-	(*AuthorListSectionProps)(nil),                               // 254: api.content.v1.AuthorListSectionProps
-	(*FormSectionProps)(nil),                                     // 255: api.content.v1.FormSectionProps
-	(*TextMarqueeSectionProps)(nil),                              // 256: api.content.v1.TextMarqueeSectionProps
-	(*ClientMarqueeSectionProps)(nil),                            // 257: api.content.v1.ClientMarqueeSectionProps
-	(*LabelMarqueeSectionProps)(nil),                             // 258: api.content.v1.LabelMarqueeSectionProps
-	(*MapSectionProps)(nil),                                      // 259: api.content.v1.MapSectionProps
-	(*ImmersiveSceneSectionProps)(nil),                           // 260: api.content.v1.ImmersiveSceneSectionProps
-	(*ColumnsSectionProps)(nil),                                  // 261: api.content.v1.ColumnsSectionProps
-	(*MermaidSectionProps)(nil),                                  // 262: api.content.v1.MermaidSectionProps
-	(*EmbedSectionProps)(nil),                                    // 263: api.content.v1.EmbedSectionProps
-	(*RichTextSectionLocaleProps)(nil),                           // 264: api.content.v1.RichTextSectionLocaleProps
-	(*ExternalVideoSectionLocaleProps)(nil),                      // 265: api.content.v1.ExternalVideoSectionLocaleProps
-	(*PostListSectionLocaleProps)(nil),                           // 266: api.content.v1.PostListSectionLocaleProps
-	(*PostTableSectionLocaleProps)(nil),                          // 267: api.content.v1.PostTableSectionLocaleProps
-	(*PostMapSectionLocaleProps)(nil),                            // 268: api.content.v1.PostMapSectionLocaleProps
-	(*WorkMapSectionLocaleProps)(nil),                            // 269: api.content.v1.WorkMapSectionLocaleProps
-	(*WorkTableSectionLocaleProps)(nil),                          // 270: api.content.v1.WorkTableSectionLocaleProps
-	(*WorkListSectionLocaleProps)(nil),                           // 271: api.content.v1.WorkListSectionLocaleProps
-	(*ProgramEventListSectionLocaleProps)(nil),                   // 272: api.content.v1.ProgramEventListSectionLocaleProps
-	(*ReleaseListSectionLocaleProps)(nil),                        // 273: api.content.v1.ReleaseListSectionLocaleProps
-	(*ArtistListSectionLocaleProps)(nil),                         // 274: api.content.v1.ArtistListSectionLocaleProps
-	(*LabelListSectionLocaleProps)(nil),                          // 275: api.content.v1.LabelListSectionLocaleProps
-	(*AuthorListSectionLocaleProps)(nil),                         // 276: api.content.v1.AuthorListSectionLocaleProps
-	(*FormSectionLocaleProps)(nil),                               // 277: api.content.v1.FormSectionLocaleProps
-	(*TextMarqueeSectionLocaleProps)(nil),                        // 278: api.content.v1.TextMarqueeSectionLocaleProps
-	(*ClientMarqueeSectionLocaleProps)(nil),                      // 279: api.content.v1.ClientMarqueeSectionLocaleProps
-	(*LabelMarqueeSectionLocaleProps)(nil),                       // 280: api.content.v1.LabelMarqueeSectionLocaleProps
-	(*MapSectionLocaleProps)(nil),                                // 281: api.content.v1.MapSectionLocaleProps
-	(*ImmersiveSceneSectionLocaleProps)(nil),                     // 282: api.content.v1.ImmersiveSceneSectionLocaleProps
-	(*ColumnsSectionLocaleProps)(nil),                            // 283: api.content.v1.ColumnsSectionLocaleProps
-	(*MermaidSectionLocaleProps)(nil),                            // 284: api.content.v1.MermaidSectionLocaleProps
-	(*EmbedSectionLocaleProps)(nil),                              // 285: api.content.v1.EmbedSectionLocaleProps
-	(*RichTextSection)(nil),                                      // 286: api.content.v1.RichTextSection
-	(*ExternalVideoSection)(nil),                                 // 287: api.content.v1.ExternalVideoSection
-	(*PostListSection)(nil),                                      // 288: api.content.v1.PostListSection
-	(*PostTableSection)(nil),                                     // 289: api.content.v1.PostTableSection
-	(*PostMapSection)(nil),                                       // 290: api.content.v1.PostMapSection
-	(*WorkMapSection)(nil),                                       // 291: api.content.v1.WorkMapSection
-	(*WorkTableSection)(nil),                                     // 292: api.content.v1.WorkTableSection
-	(*WorkListSection)(nil),                                      // 293: api.content.v1.WorkListSection
-	(*ProgramEventListSection)(nil),                              // 294: api.content.v1.ProgramEventListSection
-	(*ReleaseListSection)(nil),                                   // 295: api.content.v1.ReleaseListSection
-	(*ArtistListSection)(nil),                                    // 296: api.content.v1.ArtistListSection
-	(*LabelListSection)(nil),                                     // 297: api.content.v1.LabelListSection
-	(*AuthorListSection)(nil),                                    // 298: api.content.v1.AuthorListSection
-	(*FormSection)(nil),                                          // 299: api.content.v1.FormSection
-	(*TextMarqueeSection)(nil),                                   // 300: api.content.v1.TextMarqueeSection
-	(*ClientMarqueeSection)(nil),                                 // 301: api.content.v1.ClientMarqueeSection
-	(*LabelMarqueeSection)(nil),                                  // 302: api.content.v1.LabelMarqueeSection
-	(*MapSection)(nil),                                           // 303: api.content.v1.MapSection
-	(*ImmersiveSceneSection)(nil),                                // 304: api.content.v1.ImmersiveSceneSection
-	(*ColumnsSection)(nil),                                       // 305: api.content.v1.ColumnsSection
-	(*MermaidSection)(nil),                                       // 306: api.content.v1.MermaidSection
-	(*EmbedSection)(nil),                                         // 307: api.content.v1.EmbedSection
-	(*RichTextSectionLocale)(nil),                                // 308: api.content.v1.RichTextSectionLocale
-	(*ExternalVideoSectionLocale)(nil),                           // 309: api.content.v1.ExternalVideoSectionLocale
-	(*PostListSectionLocale)(nil),                                // 310: api.content.v1.PostListSectionLocale
-	(*PostTableSectionLocale)(nil),                               // 311: api.content.v1.PostTableSectionLocale
-	(*PostMapSectionLocale)(nil),                                 // 312: api.content.v1.PostMapSectionLocale
-	(*WorkMapSectionLocale)(nil),                                 // 313: api.content.v1.WorkMapSectionLocale
-	(*WorkTableSectionLocale)(nil),                               // 314: api.content.v1.WorkTableSectionLocale
-	(*WorkListSectionLocale)(nil),                                // 315: api.content.v1.WorkListSectionLocale
-	(*ProgramEventListSectionLocale)(nil),                        // 316: api.content.v1.ProgramEventListSectionLocale
-	(*ReleaseListSectionLocale)(nil),                             // 317: api.content.v1.ReleaseListSectionLocale
-	(*ArtistListSectionLocale)(nil),                              // 318: api.content.v1.ArtistListSectionLocale
-	(*LabelListSectionLocale)(nil),                               // 319: api.content.v1.LabelListSectionLocale
-	(*AuthorListSectionLocale)(nil),                              // 320: api.content.v1.AuthorListSectionLocale
-	(*FormSectionLocale)(nil),                                    // 321: api.content.v1.FormSectionLocale
-	(*TextMarqueeSectionLocale)(nil),                             // 322: api.content.v1.TextMarqueeSectionLocale
-	(*ClientMarqueeSectionLocale)(nil),                           // 323: api.content.v1.ClientMarqueeSectionLocale
-	(*LabelMarqueeSectionLocale)(nil),                            // 324: api.content.v1.LabelMarqueeSectionLocale
-	(*MapSectionLocale)(nil),                                     // 325: api.content.v1.MapSectionLocale
-	(*ImmersiveSceneSectionLocale)(nil),                          // 326: api.content.v1.ImmersiveSceneSectionLocale
-	(*ColumnsSectionLocale)(nil),                                 // 327: api.content.v1.ColumnsSectionLocale
-	(*MermaidSectionLocale)(nil),                                 // 328: api.content.v1.MermaidSectionLocale
-	(*EmbedSectionLocale)(nil),                                   // 329: api.content.v1.EmbedSectionLocale
-	(*PageSection)(nil),                                          // 330: api.content.v1.PageSection
-	(*PageSectionLocale)(nil),                                    // 331: api.content.v1.PageSectionLocale
-	(*PageSectionData)(nil),                                      // 332: api.content.v1.PageSectionData
-	(*PageSectionLocaleData)(nil),                                // 333: api.content.v1.PageSectionLocaleData
-	(*PageSectionPlacement)(nil),                                 // 334: api.content.v1.PageSectionPlacement
-	(*PageSectionNode)(nil),                                      // 335: api.content.v1.PageSectionNode
-	(*PageSectionGraph)(nil),                                     // 336: api.content.v1.PageSectionGraph
-	(*PageLocaleOverlay)(nil),                                    // 337: api.content.v1.PageLocaleOverlay
-	(*PageDocument)(nil),                                         // 338: api.content.v1.PageDocument
-	(*LocalizedPageDocument)(nil),                                // 339: api.content.v1.LocalizedPageDocument
-	(*UpsertPageSection)(nil),                                    // 340: api.content.v1.UpsertPageSection
-	(*DeletePageSection)(nil),                                    // 341: api.content.v1.DeletePageSection
-	(*MovePageSection)(nil),                                      // 342: api.content.v1.MovePageSection
-	(*MutatePageRichTextBlock)(nil),                              // 343: api.content.v1.MutatePageRichTextBlock
-	(*PageSectionMutation)(nil),                                  // 344: api.content.v1.PageSectionMutation
-	(*UpsertPageSectionLocale)(nil),                              // 345: api.content.v1.UpsertPageSectionLocale
-	(*DeletePageSectionLocale)(nil),                              // 346: api.content.v1.DeletePageSectionLocale
-	(*MutatePageRichTextBlockLocale)(nil),                        // 347: api.content.v1.MutatePageRichTextBlockLocale
-	(*PageSectionLocaleMutation)(nil),                            // 348: api.content.v1.PageSectionLocaleMutation
-	(*PageLocaleMutationGroup)(nil),                              // 349: api.content.v1.PageLocaleMutationGroup
-	(*PageSectionMutationBatch)(nil),                             // 350: api.content.v1.PageSectionMutationBatch
-	(*ContentBlockMediaSelector)(nil),                            // 351: api.content.v1.ContentBlockMediaSelector
-	(*ContentBlockMediaReference)(nil),                           // 352: api.content.v1.ContentBlockMediaReference
-	(*ContentBlockMediaItem)(nil),                                // 353: api.content.v1.ContentBlockMediaItem
-	(*ShaderProps_StagesItem)(nil),                               // 354: api.content.v1.ShaderProps.StagesItem
-	(*ShaderProps_StagesItem_ChannelsItem)(nil),                  // 355: api.content.v1.ShaderProps.StagesItem.ChannelsItem
-	(*ShaderProps_StagesItem_ChannelsItem_SamplerValue)(nil),     // 356: api.content.v1.ShaderProps.StagesItem.ChannelsItem.SamplerValue
-	(*TextMarqueeSectionProps_ItemsItem)(nil),                    // 357: api.content.v1.TextMarqueeSectionProps.ItemsItem
-	(*ColumnsSectionProps_ColumnsItem)(nil),                      // 358: api.content.v1.ColumnsSectionProps.ColumnsItem
-	(*v1.MediaDelivery)(nil),                                     // 359: api.common.v1.MediaDelivery
+	(*RichTextSiteVariable)(nil),                                 // 142: api.content.v1.RichTextSiteVariable
+	(*RichTextInline)(nil),                                       // 143: api.content.v1.RichTextInline
+	(*RichTextTableCellProps)(nil),                               // 144: api.content.v1.RichTextTableCellProps
+	(*RichTextTableCellBase)(nil),                                // 145: api.content.v1.RichTextTableCellBase
+	(*RichTextTableRowBase)(nil),                                 // 146: api.content.v1.RichTextTableRowBase
+	(*RichTextTableBase)(nil),                                    // 147: api.content.v1.RichTextTableBase
+	(*RichTextTableCellLocale)(nil),                              // 148: api.content.v1.RichTextTableCellLocale
+	(*RichTextTableRowLocale)(nil),                               // 149: api.content.v1.RichTextTableRowLocale
+	(*RichTextTableLocale)(nil),                                  // 150: api.content.v1.RichTextTableLocale
+	(*ParagraphProps)(nil),                                       // 151: api.content.v1.ParagraphProps
+	(*HeadingProps)(nil),                                         // 152: api.content.v1.HeadingProps
+	(*BulletListItemProps)(nil),                                  // 153: api.content.v1.BulletListItemProps
+	(*NumberedListItemProps)(nil),                                // 154: api.content.v1.NumberedListItemProps
+	(*CheckListItemProps)(nil),                                   // 155: api.content.v1.CheckListItemProps
+	(*QuoteProps)(nil),                                           // 156: api.content.v1.QuoteProps
+	(*CodeBlockProps)(nil),                                       // 157: api.content.v1.CodeBlockProps
+	(*DividerProps)(nil),                                         // 158: api.content.v1.DividerProps
+	(*TableProps)(nil),                                           // 159: api.content.v1.TableProps
+	(*P5SketchProps)(nil),                                        // 160: api.content.v1.P5SketchProps
+	(*ThreeSceneProps)(nil),                                      // 161: api.content.v1.ThreeSceneProps
+	(*ShaderProps)(nil),                                          // 162: api.content.v1.ShaderProps
+	(*MathProps)(nil),                                            // 163: api.content.v1.MathProps
+	(*MapProps)(nil),                                             // 164: api.content.v1.MapProps
+	(*FileProps)(nil),                                            // 165: api.content.v1.FileProps
+	(*CalloutProps)(nil),                                         // 166: api.content.v1.CalloutProps
+	(*MermaidProps)(nil),                                         // 167: api.content.v1.MermaidProps
+	(*ParagraphLocaleProps)(nil),                                 // 168: api.content.v1.ParagraphLocaleProps
+	(*HeadingLocaleProps)(nil),                                   // 169: api.content.v1.HeadingLocaleProps
+	(*BulletListItemLocaleProps)(nil),                            // 170: api.content.v1.BulletListItemLocaleProps
+	(*NumberedListItemLocaleProps)(nil),                          // 171: api.content.v1.NumberedListItemLocaleProps
+	(*CheckListItemLocaleProps)(nil),                             // 172: api.content.v1.CheckListItemLocaleProps
+	(*QuoteLocaleProps)(nil),                                     // 173: api.content.v1.QuoteLocaleProps
+	(*CodeBlockLocaleProps)(nil),                                 // 174: api.content.v1.CodeBlockLocaleProps
+	(*DividerLocaleProps)(nil),                                   // 175: api.content.v1.DividerLocaleProps
+	(*TableLocaleProps)(nil),                                     // 176: api.content.v1.TableLocaleProps
+	(*P5SketchLocaleProps)(nil),                                  // 177: api.content.v1.P5SketchLocaleProps
+	(*ThreeSceneLocaleProps)(nil),                                // 178: api.content.v1.ThreeSceneLocaleProps
+	(*ShaderLocaleProps)(nil),                                    // 179: api.content.v1.ShaderLocaleProps
+	(*MathLocaleProps)(nil),                                      // 180: api.content.v1.MathLocaleProps
+	(*MapLocaleProps)(nil),                                       // 181: api.content.v1.MapLocaleProps
+	(*FileLocaleProps)(nil),                                      // 182: api.content.v1.FileLocaleProps
+	(*CalloutLocaleProps)(nil),                                   // 183: api.content.v1.CalloutLocaleProps
+	(*MermaidLocaleProps)(nil),                                   // 184: api.content.v1.MermaidLocaleProps
+	(*ParagraphBlock)(nil),                                       // 185: api.content.v1.ParagraphBlock
+	(*HeadingBlock)(nil),                                         // 186: api.content.v1.HeadingBlock
+	(*BulletListItemBlock)(nil),                                  // 187: api.content.v1.BulletListItemBlock
+	(*NumberedListItemBlock)(nil),                                // 188: api.content.v1.NumberedListItemBlock
+	(*CheckListItemBlock)(nil),                                   // 189: api.content.v1.CheckListItemBlock
+	(*QuoteBlock)(nil),                                           // 190: api.content.v1.QuoteBlock
+	(*CodeBlockBlock)(nil),                                       // 191: api.content.v1.CodeBlockBlock
+	(*DividerBlock)(nil),                                         // 192: api.content.v1.DividerBlock
+	(*TableBlock)(nil),                                           // 193: api.content.v1.TableBlock
+	(*P5SketchBlock)(nil),                                        // 194: api.content.v1.P5SketchBlock
+	(*ThreeSceneBlock)(nil),                                      // 195: api.content.v1.ThreeSceneBlock
+	(*ShaderBlock)(nil),                                          // 196: api.content.v1.ShaderBlock
+	(*MathBlock)(nil),                                            // 197: api.content.v1.MathBlock
+	(*MapBlock)(nil),                                             // 198: api.content.v1.MapBlock
+	(*FileBlock)(nil),                                            // 199: api.content.v1.FileBlock
+	(*CalloutBlock)(nil),                                         // 200: api.content.v1.CalloutBlock
+	(*MermaidBlock)(nil),                                         // 201: api.content.v1.MermaidBlock
+	(*ParagraphBlockLocale)(nil),                                 // 202: api.content.v1.ParagraphBlockLocale
+	(*HeadingBlockLocale)(nil),                                   // 203: api.content.v1.HeadingBlockLocale
+	(*BulletListItemBlockLocale)(nil),                            // 204: api.content.v1.BulletListItemBlockLocale
+	(*NumberedListItemBlockLocale)(nil),                          // 205: api.content.v1.NumberedListItemBlockLocale
+	(*CheckListItemBlockLocale)(nil),                             // 206: api.content.v1.CheckListItemBlockLocale
+	(*QuoteBlockLocale)(nil),                                     // 207: api.content.v1.QuoteBlockLocale
+	(*CodeBlockBlockLocale)(nil),                                 // 208: api.content.v1.CodeBlockBlockLocale
+	(*DividerBlockLocale)(nil),                                   // 209: api.content.v1.DividerBlockLocale
+	(*TableBlockLocale)(nil),                                     // 210: api.content.v1.TableBlockLocale
+	(*P5SketchBlockLocale)(nil),                                  // 211: api.content.v1.P5SketchBlockLocale
+	(*ThreeSceneBlockLocale)(nil),                                // 212: api.content.v1.ThreeSceneBlockLocale
+	(*ShaderBlockLocale)(nil),                                    // 213: api.content.v1.ShaderBlockLocale
+	(*MathBlockLocale)(nil),                                      // 214: api.content.v1.MathBlockLocale
+	(*MapBlockLocale)(nil),                                       // 215: api.content.v1.MapBlockLocale
+	(*FileBlockLocale)(nil),                                      // 216: api.content.v1.FileBlockLocale
+	(*CalloutBlockLocale)(nil),                                   // 217: api.content.v1.CalloutBlockLocale
+	(*MermaidBlockLocale)(nil),                                   // 218: api.content.v1.MermaidBlockLocale
+	(*RichTextBlock)(nil),                                        // 219: api.content.v1.RichTextBlock
+	(*RichTextBlockLocale)(nil),                                  // 220: api.content.v1.RichTextBlockLocale
+	(*RichTextBlockData)(nil),                                    // 221: api.content.v1.RichTextBlockData
+	(*RichTextBlockLocaleData)(nil),                              // 222: api.content.v1.RichTextBlockLocaleData
+	(*ContentBlockPlacement)(nil),                                // 223: api.content.v1.ContentBlockPlacement
+	(*RichTextBlockNode)(nil),                                    // 224: api.content.v1.RichTextBlockNode
+	(*RichTextBlockGraph)(nil),                                   // 225: api.content.v1.RichTextBlockGraph
+	(*RichTextLocaleOverlay)(nil),                                // 226: api.content.v1.RichTextLocaleOverlay
+	(*RichTextDocument)(nil),                                     // 227: api.content.v1.RichTextDocument
+	(*LocalizedRichTextDocument)(nil),                            // 228: api.content.v1.LocalizedRichTextDocument
+	(*UpsertRichTextBlock)(nil),                                  // 229: api.content.v1.UpsertRichTextBlock
+	(*DeleteRichTextBlock)(nil),                                  // 230: api.content.v1.DeleteRichTextBlock
+	(*MoveRichTextBlock)(nil),                                    // 231: api.content.v1.MoveRichTextBlock
+	(*RichTextBlockMutation)(nil),                                // 232: api.content.v1.RichTextBlockMutation
+	(*UpsertRichTextBlockLocale)(nil),                            // 233: api.content.v1.UpsertRichTextBlockLocale
+	(*DeleteRichTextBlockLocale)(nil),                            // 234: api.content.v1.DeleteRichTextBlockLocale
+	(*RichTextBlockLocaleMutation)(nil),                          // 235: api.content.v1.RichTextBlockLocaleMutation
+	(*RichTextLocaleMutationGroup)(nil),                          // 236: api.content.v1.RichTextLocaleMutationGroup
+	(*RichTextBlockMutationBatch)(nil),                           // 237: api.content.v1.RichTextBlockMutationBatch
+	(*PageSectionSettings)(nil),                                  // 238: api.content.v1.PageSectionSettings
+	(*PageImmersiveUnitProps)(nil),                               // 239: api.content.v1.PageImmersiveUnitProps
+	(*PageImmersiveUnitLocaleProps)(nil),                         // 240: api.content.v1.PageImmersiveUnitLocaleProps
+	(*PageImmersiveUnit)(nil),                                    // 241: api.content.v1.PageImmersiveUnit
+	(*PageImmersiveUnitLocale)(nil),                              // 242: api.content.v1.PageImmersiveUnitLocale
+	(*RichTextSectionProps)(nil),                                 // 243: api.content.v1.RichTextSectionProps
+	(*ExternalVideoSectionProps)(nil),                            // 244: api.content.v1.ExternalVideoSectionProps
+	(*PostListSectionProps)(nil),                                 // 245: api.content.v1.PostListSectionProps
+	(*PostTableSectionProps)(nil),                                // 246: api.content.v1.PostTableSectionProps
+	(*PostMapSectionProps)(nil),                                  // 247: api.content.v1.PostMapSectionProps
+	(*WorkMapSectionProps)(nil),                                  // 248: api.content.v1.WorkMapSectionProps
+	(*WorkTableSectionProps)(nil),                                // 249: api.content.v1.WorkTableSectionProps
+	(*WorkListSectionProps)(nil),                                 // 250: api.content.v1.WorkListSectionProps
+	(*ProgramEventListSectionProps)(nil),                         // 251: api.content.v1.ProgramEventListSectionProps
+	(*ReleaseListSectionProps)(nil),                              // 252: api.content.v1.ReleaseListSectionProps
+	(*ArtistListSectionProps)(nil),                               // 253: api.content.v1.ArtistListSectionProps
+	(*LabelListSectionProps)(nil),                                // 254: api.content.v1.LabelListSectionProps
+	(*AuthorListSectionProps)(nil),                               // 255: api.content.v1.AuthorListSectionProps
+	(*FormSectionProps)(nil),                                     // 256: api.content.v1.FormSectionProps
+	(*TextMarqueeSectionProps)(nil),                              // 257: api.content.v1.TextMarqueeSectionProps
+	(*ClientMarqueeSectionProps)(nil),                            // 258: api.content.v1.ClientMarqueeSectionProps
+	(*LabelMarqueeSectionProps)(nil),                             // 259: api.content.v1.LabelMarqueeSectionProps
+	(*MapSectionProps)(nil),                                      // 260: api.content.v1.MapSectionProps
+	(*ImmersiveSceneSectionProps)(nil),                           // 261: api.content.v1.ImmersiveSceneSectionProps
+	(*ColumnsSectionProps)(nil),                                  // 262: api.content.v1.ColumnsSectionProps
+	(*MermaidSectionProps)(nil),                                  // 263: api.content.v1.MermaidSectionProps
+	(*EmbedSectionProps)(nil),                                    // 264: api.content.v1.EmbedSectionProps
+	(*RichTextSectionLocaleProps)(nil),                           // 265: api.content.v1.RichTextSectionLocaleProps
+	(*ExternalVideoSectionLocaleProps)(nil),                      // 266: api.content.v1.ExternalVideoSectionLocaleProps
+	(*PostListSectionLocaleProps)(nil),                           // 267: api.content.v1.PostListSectionLocaleProps
+	(*PostTableSectionLocaleProps)(nil),                          // 268: api.content.v1.PostTableSectionLocaleProps
+	(*PostMapSectionLocaleProps)(nil),                            // 269: api.content.v1.PostMapSectionLocaleProps
+	(*WorkMapSectionLocaleProps)(nil),                            // 270: api.content.v1.WorkMapSectionLocaleProps
+	(*WorkTableSectionLocaleProps)(nil),                          // 271: api.content.v1.WorkTableSectionLocaleProps
+	(*WorkListSectionLocaleProps)(nil),                           // 272: api.content.v1.WorkListSectionLocaleProps
+	(*ProgramEventListSectionLocaleProps)(nil),                   // 273: api.content.v1.ProgramEventListSectionLocaleProps
+	(*ReleaseListSectionLocaleProps)(nil),                        // 274: api.content.v1.ReleaseListSectionLocaleProps
+	(*ArtistListSectionLocaleProps)(nil),                         // 275: api.content.v1.ArtistListSectionLocaleProps
+	(*LabelListSectionLocaleProps)(nil),                          // 276: api.content.v1.LabelListSectionLocaleProps
+	(*AuthorListSectionLocaleProps)(nil),                         // 277: api.content.v1.AuthorListSectionLocaleProps
+	(*FormSectionLocaleProps)(nil),                               // 278: api.content.v1.FormSectionLocaleProps
+	(*TextMarqueeSectionLocaleProps)(nil),                        // 279: api.content.v1.TextMarqueeSectionLocaleProps
+	(*ClientMarqueeSectionLocaleProps)(nil),                      // 280: api.content.v1.ClientMarqueeSectionLocaleProps
+	(*LabelMarqueeSectionLocaleProps)(nil),                       // 281: api.content.v1.LabelMarqueeSectionLocaleProps
+	(*MapSectionLocaleProps)(nil),                                // 282: api.content.v1.MapSectionLocaleProps
+	(*ImmersiveSceneSectionLocaleProps)(nil),                     // 283: api.content.v1.ImmersiveSceneSectionLocaleProps
+	(*ColumnsSectionLocaleProps)(nil),                            // 284: api.content.v1.ColumnsSectionLocaleProps
+	(*MermaidSectionLocaleProps)(nil),                            // 285: api.content.v1.MermaidSectionLocaleProps
+	(*EmbedSectionLocaleProps)(nil),                              // 286: api.content.v1.EmbedSectionLocaleProps
+	(*RichTextSection)(nil),                                      // 287: api.content.v1.RichTextSection
+	(*ExternalVideoSection)(nil),                                 // 288: api.content.v1.ExternalVideoSection
+	(*PostListSection)(nil),                                      // 289: api.content.v1.PostListSection
+	(*PostTableSection)(nil),                                     // 290: api.content.v1.PostTableSection
+	(*PostMapSection)(nil),                                       // 291: api.content.v1.PostMapSection
+	(*WorkMapSection)(nil),                                       // 292: api.content.v1.WorkMapSection
+	(*WorkTableSection)(nil),                                     // 293: api.content.v1.WorkTableSection
+	(*WorkListSection)(nil),                                      // 294: api.content.v1.WorkListSection
+	(*ProgramEventListSection)(nil),                              // 295: api.content.v1.ProgramEventListSection
+	(*ReleaseListSection)(nil),                                   // 296: api.content.v1.ReleaseListSection
+	(*ArtistListSection)(nil),                                    // 297: api.content.v1.ArtistListSection
+	(*LabelListSection)(nil),                                     // 298: api.content.v1.LabelListSection
+	(*AuthorListSection)(nil),                                    // 299: api.content.v1.AuthorListSection
+	(*FormSection)(nil),                                          // 300: api.content.v1.FormSection
+	(*TextMarqueeSection)(nil),                                   // 301: api.content.v1.TextMarqueeSection
+	(*ClientMarqueeSection)(nil),                                 // 302: api.content.v1.ClientMarqueeSection
+	(*LabelMarqueeSection)(nil),                                  // 303: api.content.v1.LabelMarqueeSection
+	(*MapSection)(nil),                                           // 304: api.content.v1.MapSection
+	(*ImmersiveSceneSection)(nil),                                // 305: api.content.v1.ImmersiveSceneSection
+	(*ColumnsSection)(nil),                                       // 306: api.content.v1.ColumnsSection
+	(*MermaidSection)(nil),                                       // 307: api.content.v1.MermaidSection
+	(*EmbedSection)(nil),                                         // 308: api.content.v1.EmbedSection
+	(*RichTextSectionLocale)(nil),                                // 309: api.content.v1.RichTextSectionLocale
+	(*ExternalVideoSectionLocale)(nil),                           // 310: api.content.v1.ExternalVideoSectionLocale
+	(*PostListSectionLocale)(nil),                                // 311: api.content.v1.PostListSectionLocale
+	(*PostTableSectionLocale)(nil),                               // 312: api.content.v1.PostTableSectionLocale
+	(*PostMapSectionLocale)(nil),                                 // 313: api.content.v1.PostMapSectionLocale
+	(*WorkMapSectionLocale)(nil),                                 // 314: api.content.v1.WorkMapSectionLocale
+	(*WorkTableSectionLocale)(nil),                               // 315: api.content.v1.WorkTableSectionLocale
+	(*WorkListSectionLocale)(nil),                                // 316: api.content.v1.WorkListSectionLocale
+	(*ProgramEventListSectionLocale)(nil),                        // 317: api.content.v1.ProgramEventListSectionLocale
+	(*ReleaseListSectionLocale)(nil),                             // 318: api.content.v1.ReleaseListSectionLocale
+	(*ArtistListSectionLocale)(nil),                              // 319: api.content.v1.ArtistListSectionLocale
+	(*LabelListSectionLocale)(nil),                               // 320: api.content.v1.LabelListSectionLocale
+	(*AuthorListSectionLocale)(nil),                              // 321: api.content.v1.AuthorListSectionLocale
+	(*FormSectionLocale)(nil),                                    // 322: api.content.v1.FormSectionLocale
+	(*TextMarqueeSectionLocale)(nil),                             // 323: api.content.v1.TextMarqueeSectionLocale
+	(*ClientMarqueeSectionLocale)(nil),                           // 324: api.content.v1.ClientMarqueeSectionLocale
+	(*LabelMarqueeSectionLocale)(nil),                            // 325: api.content.v1.LabelMarqueeSectionLocale
+	(*MapSectionLocale)(nil),                                     // 326: api.content.v1.MapSectionLocale
+	(*ImmersiveSceneSectionLocale)(nil),                          // 327: api.content.v1.ImmersiveSceneSectionLocale
+	(*ColumnsSectionLocale)(nil),                                 // 328: api.content.v1.ColumnsSectionLocale
+	(*MermaidSectionLocale)(nil),                                 // 329: api.content.v1.MermaidSectionLocale
+	(*EmbedSectionLocale)(nil),                                   // 330: api.content.v1.EmbedSectionLocale
+	(*PageSection)(nil),                                          // 331: api.content.v1.PageSection
+	(*PageSectionLocale)(nil),                                    // 332: api.content.v1.PageSectionLocale
+	(*PageSectionData)(nil),                                      // 333: api.content.v1.PageSectionData
+	(*PageSectionLocaleData)(nil),                                // 334: api.content.v1.PageSectionLocaleData
+	(*PageSectionPlacement)(nil),                                 // 335: api.content.v1.PageSectionPlacement
+	(*PageSectionNode)(nil),                                      // 336: api.content.v1.PageSectionNode
+	(*PageSectionGraph)(nil),                                     // 337: api.content.v1.PageSectionGraph
+	(*PageLocaleOverlay)(nil),                                    // 338: api.content.v1.PageLocaleOverlay
+	(*PageDocument)(nil),                                         // 339: api.content.v1.PageDocument
+	(*LocalizedPageDocument)(nil),                                // 340: api.content.v1.LocalizedPageDocument
+	(*UpsertPageSection)(nil),                                    // 341: api.content.v1.UpsertPageSection
+	(*DeletePageSection)(nil),                                    // 342: api.content.v1.DeletePageSection
+	(*MovePageSection)(nil),                                      // 343: api.content.v1.MovePageSection
+	(*MutatePageRichTextBlock)(nil),                              // 344: api.content.v1.MutatePageRichTextBlock
+	(*PageSectionMutation)(nil),                                  // 345: api.content.v1.PageSectionMutation
+	(*UpsertPageSectionLocale)(nil),                              // 346: api.content.v1.UpsertPageSectionLocale
+	(*DeletePageSectionLocale)(nil),                              // 347: api.content.v1.DeletePageSectionLocale
+	(*MutatePageRichTextBlockLocale)(nil),                        // 348: api.content.v1.MutatePageRichTextBlockLocale
+	(*PageSectionLocaleMutation)(nil),                            // 349: api.content.v1.PageSectionLocaleMutation
+	(*PageLocaleMutationGroup)(nil),                              // 350: api.content.v1.PageLocaleMutationGroup
+	(*PageSectionMutationBatch)(nil),                             // 351: api.content.v1.PageSectionMutationBatch
+	(*ContentBlockMediaSelector)(nil),                            // 352: api.content.v1.ContentBlockMediaSelector
+	(*ContentBlockMediaReference)(nil),                           // 353: api.content.v1.ContentBlockMediaReference
+	(*ContentBlockMediaItem)(nil),                                // 354: api.content.v1.ContentBlockMediaItem
+	(*ShaderProps_StagesItem)(nil),                               // 355: api.content.v1.ShaderProps.StagesItem
+	(*ShaderProps_StagesItem_ChannelsItem)(nil),                  // 356: api.content.v1.ShaderProps.StagesItem.ChannelsItem
+	(*ShaderProps_StagesItem_ChannelsItem_SamplerValue)(nil),     // 357: api.content.v1.ShaderProps.StagesItem.ChannelsItem.SamplerValue
+	(*TextMarqueeSectionProps_ItemsItem)(nil),                    // 358: api.content.v1.TextMarqueeSectionProps.ItemsItem
+	(*ColumnsSectionProps_ColumnsItem)(nil),                      // 359: api.content.v1.ColumnsSectionProps.ColumnsItem
+	(*v1.MediaDelivery)(nil),                                     // 360: api.common.v1.MediaDelivery
 }
 var file_api_content_v1_block_content_proto_depIdxs = []int32{
 	2,   // 0: api.content.v1.MissingAttachment.media_kind:type_name -> api.content.v1.MissingAttachmentMediaKind
 	135, // 1: api.content.v1.FileAttachment.missing_attachment:type_name -> api.content.v1.MissingAttachment
 	137, // 2: api.content.v1.RichTextStyledText.styles:type_name -> api.content.v1.RichTextStyle
 	138, // 3: api.content.v1.RichTextLink.content:type_name -> api.content.v1.RichTextStyledText
-	138, // 4: api.content.v1.RichTextInline.text:type_name -> api.content.v1.RichTextStyledText
-	139, // 5: api.content.v1.RichTextInline.hard_break:type_name -> api.content.v1.RichTextHardBreak
-	140, // 6: api.content.v1.RichTextInline.link:type_name -> api.content.v1.RichTextLink
-	141, // 7: api.content.v1.RichTextInline.math_inline:type_name -> api.content.v1.RichTextInlineMath
-	5,   // 8: api.content.v1.RichTextTableCellProps.text_alignment:type_name -> api.content.v1.RichTextTableCellProps.TextAlignment
-	143, // 9: api.content.v1.RichTextTableCellBase.props:type_name -> api.content.v1.RichTextTableCellProps
-	144, // 10: api.content.v1.RichTextTableRowBase.cells:type_name -> api.content.v1.RichTextTableCellBase
-	145, // 11: api.content.v1.RichTextTableBase.rows:type_name -> api.content.v1.RichTextTableRowBase
-	142, // 12: api.content.v1.RichTextTableCellLocale.content:type_name -> api.content.v1.RichTextInline
-	147, // 13: api.content.v1.RichTextTableRowLocale.cells:type_name -> api.content.v1.RichTextTableCellLocale
-	148, // 14: api.content.v1.RichTextTableLocale.rows:type_name -> api.content.v1.RichTextTableRowLocale
-	6,   // 15: api.content.v1.ParagraphProps.text_alignment:type_name -> api.content.v1.ParagraphProps.TextAlignment
-	7,   // 16: api.content.v1.ParagraphProps.aspect_ratio:type_name -> api.content.v1.ParagraphProps.AspectRatio
-	8,   // 17: api.content.v1.HeadingProps.text_alignment:type_name -> api.content.v1.HeadingProps.TextAlignment
-	9,   // 18: api.content.v1.HeadingProps.level:type_name -> api.content.v1.HeadingProps.Level
-	10,  // 19: api.content.v1.BulletListItemProps.text_alignment:type_name -> api.content.v1.BulletListItemProps.TextAlignment
-	11,  // 20: api.content.v1.NumberedListItemProps.text_alignment:type_name -> api.content.v1.NumberedListItemProps.TextAlignment
-	12,  // 21: api.content.v1.CheckListItemProps.text_alignment:type_name -> api.content.v1.CheckListItemProps.TextAlignment
-	13,  // 22: api.content.v1.CodeBlockProps.language:type_name -> api.content.v1.CodeBlockProps.Language
-	14,  // 23: api.content.v1.CodeBlockProps.text_alignment:type_name -> api.content.v1.CodeBlockProps.TextAlignment
-	15,  // 24: api.content.v1.TableProps.text_alignment:type_name -> api.content.v1.TableProps.TextAlignment
-	16,  // 25: api.content.v1.P5SketchProps.mode:type_name -> api.content.v1.P5SketchProps.Mode
-	17,  // 26: api.content.v1.P5SketchProps.text_alignment:type_name -> api.content.v1.P5SketchProps.TextAlignment
-	18,  // 27: api.content.v1.P5SketchProps.capabilities:type_name -> api.content.v1.P5SketchProps.CapabilitiesItem
-	19,  // 28: api.content.v1.ThreeSceneProps.mode:type_name -> api.content.v1.ThreeSceneProps.Mode
-	20,  // 29: api.content.v1.ThreeSceneProps.text_alignment:type_name -> api.content.v1.ThreeSceneProps.TextAlignment
-	21,  // 30: api.content.v1.ThreeSceneProps.language:type_name -> api.content.v1.ThreeSceneProps.Language
-	22,  // 31: api.content.v1.ShaderProps.mode:type_name -> api.content.v1.ShaderProps.Mode
-	23,  // 32: api.content.v1.ShaderProps.text_alignment:type_name -> api.content.v1.ShaderProps.TextAlignment
-	354, // 33: api.content.v1.ShaderProps.stages:type_name -> api.content.v1.ShaderProps.StagesItem
-	29,  // 34: api.content.v1.MapProps.aspect_ratio:type_name -> api.content.v1.MapProps.AspectRatio
-	30,  // 35: api.content.v1.MapProps.text_alignment:type_name -> api.content.v1.MapProps.TextAlignment
-	31,  // 36: api.content.v1.MapProps.variant:type_name -> api.content.v1.MapProps.Variant
-	32,  // 37: api.content.v1.MapProps.preferred_scheme:type_name -> api.content.v1.MapProps.PreferredScheme
-	33,  // 38: api.content.v1.MapProps.area_labels_mode:type_name -> api.content.v1.MapProps.AreaLabelsMode
-	34,  // 39: api.content.v1.MapProps.poi_labels_mode:type_name -> api.content.v1.MapProps.PoiLabelsMode
-	136, // 40: api.content.v1.FileProps.attachment:type_name -> api.content.v1.FileAttachment
-	35,  // 41: api.content.v1.FileProps.text_alignment:type_name -> api.content.v1.FileProps.TextAlignment
-	150, // 42: api.content.v1.ParagraphBlock.props:type_name -> api.content.v1.ParagraphProps
-	151, // 43: api.content.v1.HeadingBlock.props:type_name -> api.content.v1.HeadingProps
-	152, // 44: api.content.v1.BulletListItemBlock.props:type_name -> api.content.v1.BulletListItemProps
-	153, // 45: api.content.v1.NumberedListItemBlock.props:type_name -> api.content.v1.NumberedListItemProps
-	154, // 46: api.content.v1.CheckListItemBlock.props:type_name -> api.content.v1.CheckListItemProps
-	155, // 47: api.content.v1.QuoteBlock.props:type_name -> api.content.v1.QuoteProps
-	156, // 48: api.content.v1.CodeBlockBlock.props:type_name -> api.content.v1.CodeBlockProps
-	157, // 49: api.content.v1.DividerBlock.props:type_name -> api.content.v1.DividerProps
-	158, // 50: api.content.v1.TableBlock.props:type_name -> api.content.v1.TableProps
-	146, // 51: api.content.v1.TableBlock.content:type_name -> api.content.v1.RichTextTableBase
-	159, // 52: api.content.v1.P5SketchBlock.props:type_name -> api.content.v1.P5SketchProps
-	160, // 53: api.content.v1.ThreeSceneBlock.props:type_name -> api.content.v1.ThreeSceneProps
-	161, // 54: api.content.v1.ShaderBlock.props:type_name -> api.content.v1.ShaderProps
-	162, // 55: api.content.v1.MathBlock.props:type_name -> api.content.v1.MathProps
-	163, // 56: api.content.v1.MapBlock.props:type_name -> api.content.v1.MapProps
-	164, // 57: api.content.v1.FileBlock.props:type_name -> api.content.v1.FileProps
-	165, // 58: api.content.v1.CalloutBlock.props:type_name -> api.content.v1.CalloutProps
-	166, // 59: api.content.v1.MermaidBlock.props:type_name -> api.content.v1.MermaidProps
-	167, // 60: api.content.v1.ParagraphBlockLocale.props:type_name -> api.content.v1.ParagraphLocaleProps
-	142, // 61: api.content.v1.ParagraphBlockLocale.content:type_name -> api.content.v1.RichTextInline
-	168, // 62: api.content.v1.HeadingBlockLocale.props:type_name -> api.content.v1.HeadingLocaleProps
-	142, // 63: api.content.v1.HeadingBlockLocale.content:type_name -> api.content.v1.RichTextInline
-	169, // 64: api.content.v1.BulletListItemBlockLocale.props:type_name -> api.content.v1.BulletListItemLocaleProps
-	142, // 65: api.content.v1.BulletListItemBlockLocale.content:type_name -> api.content.v1.RichTextInline
-	170, // 66: api.content.v1.NumberedListItemBlockLocale.props:type_name -> api.content.v1.NumberedListItemLocaleProps
-	142, // 67: api.content.v1.NumberedListItemBlockLocale.content:type_name -> api.content.v1.RichTextInline
-	171, // 68: api.content.v1.CheckListItemBlockLocale.props:type_name -> api.content.v1.CheckListItemLocaleProps
-	142, // 69: api.content.v1.CheckListItemBlockLocale.content:type_name -> api.content.v1.RichTextInline
-	172, // 70: api.content.v1.QuoteBlockLocale.props:type_name -> api.content.v1.QuoteLocaleProps
-	142, // 71: api.content.v1.QuoteBlockLocale.content:type_name -> api.content.v1.RichTextInline
-	173, // 72: api.content.v1.CodeBlockBlockLocale.props:type_name -> api.content.v1.CodeBlockLocaleProps
-	174, // 73: api.content.v1.DividerBlockLocale.props:type_name -> api.content.v1.DividerLocaleProps
-	175, // 74: api.content.v1.TableBlockLocale.props:type_name -> api.content.v1.TableLocaleProps
-	149, // 75: api.content.v1.TableBlockLocale.content:type_name -> api.content.v1.RichTextTableLocale
-	176, // 76: api.content.v1.P5SketchBlockLocale.props:type_name -> api.content.v1.P5SketchLocaleProps
-	177, // 77: api.content.v1.ThreeSceneBlockLocale.props:type_name -> api.content.v1.ThreeSceneLocaleProps
-	178, // 78: api.content.v1.ShaderBlockLocale.props:type_name -> api.content.v1.ShaderLocaleProps
-	179, // 79: api.content.v1.MathBlockLocale.props:type_name -> api.content.v1.MathLocaleProps
-	180, // 80: api.content.v1.MapBlockLocale.props:type_name -> api.content.v1.MapLocaleProps
-	181, // 81: api.content.v1.FileBlockLocale.props:type_name -> api.content.v1.FileLocaleProps
-	182, // 82: api.content.v1.CalloutBlockLocale.props:type_name -> api.content.v1.CalloutLocaleProps
-	142, // 83: api.content.v1.CalloutBlockLocale.content:type_name -> api.content.v1.RichTextInline
-	183, // 84: api.content.v1.MermaidBlockLocale.props:type_name -> api.content.v1.MermaidLocaleProps
-	184, // 85: api.content.v1.RichTextBlock.paragraph:type_name -> api.content.v1.ParagraphBlock
-	185, // 86: api.content.v1.RichTextBlock.heading:type_name -> api.content.v1.HeadingBlock
-	186, // 87: api.content.v1.RichTextBlock.bullet_list_item:type_name -> api.content.v1.BulletListItemBlock
-	187, // 88: api.content.v1.RichTextBlock.numbered_list_item:type_name -> api.content.v1.NumberedListItemBlock
-	188, // 89: api.content.v1.RichTextBlock.check_list_item:type_name -> api.content.v1.CheckListItemBlock
-	189, // 90: api.content.v1.RichTextBlock.quote:type_name -> api.content.v1.QuoteBlock
-	190, // 91: api.content.v1.RichTextBlock.code_block:type_name -> api.content.v1.CodeBlockBlock
-	191, // 92: api.content.v1.RichTextBlock.divider:type_name -> api.content.v1.DividerBlock
-	192, // 93: api.content.v1.RichTextBlock.table:type_name -> api.content.v1.TableBlock
-	193, // 94: api.content.v1.RichTextBlock.p5_sketch:type_name -> api.content.v1.P5SketchBlock
-	194, // 95: api.content.v1.RichTextBlock.three_scene:type_name -> api.content.v1.ThreeSceneBlock
-	195, // 96: api.content.v1.RichTextBlock.shader:type_name -> api.content.v1.ShaderBlock
-	196, // 97: api.content.v1.RichTextBlock.math:type_name -> api.content.v1.MathBlock
-	197, // 98: api.content.v1.RichTextBlock.map:type_name -> api.content.v1.MapBlock
-	198, // 99: api.content.v1.RichTextBlock.file:type_name -> api.content.v1.FileBlock
-	199, // 100: api.content.v1.RichTextBlock.callout:type_name -> api.content.v1.CalloutBlock
-	200, // 101: api.content.v1.RichTextBlock.mermaid:type_name -> api.content.v1.MermaidBlock
-	201, // 102: api.content.v1.RichTextBlockLocale.paragraph:type_name -> api.content.v1.ParagraphBlockLocale
-	202, // 103: api.content.v1.RichTextBlockLocale.heading:type_name -> api.content.v1.HeadingBlockLocale
-	203, // 104: api.content.v1.RichTextBlockLocale.bullet_list_item:type_name -> api.content.v1.BulletListItemBlockLocale
-	204, // 105: api.content.v1.RichTextBlockLocale.numbered_list_item:type_name -> api.content.v1.NumberedListItemBlockLocale
-	205, // 106: api.content.v1.RichTextBlockLocale.check_list_item:type_name -> api.content.v1.CheckListItemBlockLocale
-	206, // 107: api.content.v1.RichTextBlockLocale.quote:type_name -> api.content.v1.QuoteBlockLocale
-	207, // 108: api.content.v1.RichTextBlockLocale.code_block:type_name -> api.content.v1.CodeBlockBlockLocale
-	208, // 109: api.content.v1.RichTextBlockLocale.divider:type_name -> api.content.v1.DividerBlockLocale
-	209, // 110: api.content.v1.RichTextBlockLocale.table:type_name -> api.content.v1.TableBlockLocale
-	210, // 111: api.content.v1.RichTextBlockLocale.p5_sketch:type_name -> api.content.v1.P5SketchBlockLocale
-	211, // 112: api.content.v1.RichTextBlockLocale.three_scene:type_name -> api.content.v1.ThreeSceneBlockLocale
-	212, // 113: api.content.v1.RichTextBlockLocale.shader:type_name -> api.content.v1.ShaderBlockLocale
-	213, // 114: api.content.v1.RichTextBlockLocale.math:type_name -> api.content.v1.MathBlockLocale
-	214, // 115: api.content.v1.RichTextBlockLocale.map:type_name -> api.content.v1.MapBlockLocale
-	215, // 116: api.content.v1.RichTextBlockLocale.file:type_name -> api.content.v1.FileBlockLocale
-	216, // 117: api.content.v1.RichTextBlockLocale.callout:type_name -> api.content.v1.CalloutBlockLocale
-	217, // 118: api.content.v1.RichTextBlockLocale.mermaid:type_name -> api.content.v1.MermaidBlockLocale
-	184, // 119: api.content.v1.RichTextBlockData.paragraph:type_name -> api.content.v1.ParagraphBlock
-	185, // 120: api.content.v1.RichTextBlockData.heading:type_name -> api.content.v1.HeadingBlock
-	186, // 121: api.content.v1.RichTextBlockData.bullet_list_item:type_name -> api.content.v1.BulletListItemBlock
-	187, // 122: api.content.v1.RichTextBlockData.numbered_list_item:type_name -> api.content.v1.NumberedListItemBlock
-	188, // 123: api.content.v1.RichTextBlockData.check_list_item:type_name -> api.content.v1.CheckListItemBlock
-	189, // 124: api.content.v1.RichTextBlockData.quote:type_name -> api.content.v1.QuoteBlock
-	190, // 125: api.content.v1.RichTextBlockData.code_block:type_name -> api.content.v1.CodeBlockBlock
-	191, // 126: api.content.v1.RichTextBlockData.divider:type_name -> api.content.v1.DividerBlock
-	192, // 127: api.content.v1.RichTextBlockData.table:type_name -> api.content.v1.TableBlock
-	193, // 128: api.content.v1.RichTextBlockData.p5_sketch:type_name -> api.content.v1.P5SketchBlock
-	194, // 129: api.content.v1.RichTextBlockData.three_scene:type_name -> api.content.v1.ThreeSceneBlock
-	195, // 130: api.content.v1.RichTextBlockData.shader:type_name -> api.content.v1.ShaderBlock
-	196, // 131: api.content.v1.RichTextBlockData.math:type_name -> api.content.v1.MathBlock
-	197, // 132: api.content.v1.RichTextBlockData.map:type_name -> api.content.v1.MapBlock
-	198, // 133: api.content.v1.RichTextBlockData.file:type_name -> api.content.v1.FileBlock
-	199, // 134: api.content.v1.RichTextBlockData.callout:type_name -> api.content.v1.CalloutBlock
-	200, // 135: api.content.v1.RichTextBlockData.mermaid:type_name -> api.content.v1.MermaidBlock
-	201, // 136: api.content.v1.RichTextBlockLocaleData.paragraph:type_name -> api.content.v1.ParagraphBlockLocale
-	202, // 137: api.content.v1.RichTextBlockLocaleData.heading:type_name -> api.content.v1.HeadingBlockLocale
-	203, // 138: api.content.v1.RichTextBlockLocaleData.bullet_list_item:type_name -> api.content.v1.BulletListItemBlockLocale
-	204, // 139: api.content.v1.RichTextBlockLocaleData.numbered_list_item:type_name -> api.content.v1.NumberedListItemBlockLocale
-	205, // 140: api.content.v1.RichTextBlockLocaleData.check_list_item:type_name -> api.content.v1.CheckListItemBlockLocale
-	206, // 141: api.content.v1.RichTextBlockLocaleData.quote:type_name -> api.content.v1.QuoteBlockLocale
-	207, // 142: api.content.v1.RichTextBlockLocaleData.code_block:type_name -> api.content.v1.CodeBlockBlockLocale
-	208, // 143: api.content.v1.RichTextBlockLocaleData.divider:type_name -> api.content.v1.DividerBlockLocale
-	209, // 144: api.content.v1.RichTextBlockLocaleData.table:type_name -> api.content.v1.TableBlockLocale
-	210, // 145: api.content.v1.RichTextBlockLocaleData.p5_sketch:type_name -> api.content.v1.P5SketchBlockLocale
-	211, // 146: api.content.v1.RichTextBlockLocaleData.three_scene:type_name -> api.content.v1.ThreeSceneBlockLocale
-	212, // 147: api.content.v1.RichTextBlockLocaleData.shader:type_name -> api.content.v1.ShaderBlockLocale
-	213, // 148: api.content.v1.RichTextBlockLocaleData.math:type_name -> api.content.v1.MathBlockLocale
-	214, // 149: api.content.v1.RichTextBlockLocaleData.map:type_name -> api.content.v1.MapBlockLocale
-	215, // 150: api.content.v1.RichTextBlockLocaleData.file:type_name -> api.content.v1.FileBlockLocale
-	216, // 151: api.content.v1.RichTextBlockLocaleData.callout:type_name -> api.content.v1.CalloutBlockLocale
-	217, // 152: api.content.v1.RichTextBlockLocaleData.mermaid:type_name -> api.content.v1.MermaidBlockLocale
-	218, // 153: api.content.v1.RichTextBlockNode.block:type_name -> api.content.v1.RichTextBlock
-	222, // 154: api.content.v1.RichTextBlockNode.placement:type_name -> api.content.v1.ContentBlockPlacement
-	223, // 155: api.content.v1.RichTextBlockGraph.nodes:type_name -> api.content.v1.RichTextBlockNode
-	219, // 156: api.content.v1.RichTextLocaleOverlay.blocks:type_name -> api.content.v1.RichTextBlockLocale
-	0,   // 157: api.content.v1.RichTextDocument.profile:type_name -> api.content.v1.RichTextProfile
-	224, // 158: api.content.v1.RichTextDocument.base:type_name -> api.content.v1.RichTextBlockGraph
-	225, // 159: api.content.v1.RichTextDocument.locale_overlays:type_name -> api.content.v1.RichTextLocaleOverlay
-	0,   // 160: api.content.v1.LocalizedRichTextDocument.profile:type_name -> api.content.v1.RichTextProfile
-	224, // 161: api.content.v1.LocalizedRichTextDocument.base:type_name -> api.content.v1.RichTextBlockGraph
-	225, // 162: api.content.v1.LocalizedRichTextDocument.locale_overlay:type_name -> api.content.v1.RichTextLocaleOverlay
-	223, // 163: api.content.v1.UpsertRichTextBlock.node:type_name -> api.content.v1.RichTextBlockNode
-	222, // 164: api.content.v1.MoveRichTextBlock.placement:type_name -> api.content.v1.ContentBlockPlacement
-	228, // 165: api.content.v1.RichTextBlockMutation.upsert:type_name -> api.content.v1.UpsertRichTextBlock
-	229, // 166: api.content.v1.RichTextBlockMutation.delete:type_name -> api.content.v1.DeleteRichTextBlock
-	230, // 167: api.content.v1.RichTextBlockMutation.move:type_name -> api.content.v1.MoveRichTextBlock
-	219, // 168: api.content.v1.UpsertRichTextBlockLocale.block:type_name -> api.content.v1.RichTextBlockLocale
-	232, // 169: api.content.v1.RichTextBlockLocaleMutation.upsert:type_name -> api.content.v1.UpsertRichTextBlockLocale
-	233, // 170: api.content.v1.RichTextBlockLocaleMutation.delete:type_name -> api.content.v1.DeleteRichTextBlockLocale
-	234, // 171: api.content.v1.RichTextLocaleMutationGroup.mutations:type_name -> api.content.v1.RichTextBlockLocaleMutation
-	0,   // 172: api.content.v1.RichTextBlockMutationBatch.profile:type_name -> api.content.v1.RichTextProfile
-	231, // 173: api.content.v1.RichTextBlockMutationBatch.base_mutations:type_name -> api.content.v1.RichTextBlockMutation
-	235, // 174: api.content.v1.RichTextBlockMutationBatch.locale_mutation_groups:type_name -> api.content.v1.RichTextLocaleMutationGroup
-	36,  // 175: api.content.v1.PageSectionSettings.max_width:type_name -> api.content.v1.PageSectionSettings.MaxWidth
-	37,  // 176: api.content.v1.PageImmersiveUnitProps.mesh:type_name -> api.content.v1.PageImmersiveUnitProps.Mesh
-	38,  // 177: api.content.v1.PageImmersiveUnitProps.mesh_source:type_name -> api.content.v1.PageImmersiveUnitProps.MeshSource
-	136, // 178: api.content.v1.PageImmersiveUnitProps.mesh_file:type_name -> api.content.v1.FileAttachment
-	136, // 179: api.content.v1.PageImmersiveUnitProps.mesh_optimization_source_file:type_name -> api.content.v1.FileAttachment
-	136, // 180: api.content.v1.PageImmersiveUnitProps.mesh_optimization_file:type_name -> api.content.v1.FileAttachment
-	39,  // 181: api.content.v1.PageImmersiveUnitProps.texture_source:type_name -> api.content.v1.PageImmersiveUnitProps.TextureSource
-	136, // 182: api.content.v1.PageImmersiveUnitProps.texture_file:type_name -> api.content.v1.FileAttachment
-	40,  // 183: api.content.v1.PageImmersiveUnitProps.dark_texture_source:type_name -> api.content.v1.PageImmersiveUnitProps.DarkTextureSource
-	136, // 184: api.content.v1.PageImmersiveUnitProps.dark_texture_file:type_name -> api.content.v1.FileAttachment
-	238, // 185: api.content.v1.PageImmersiveUnit.props:type_name -> api.content.v1.PageImmersiveUnitProps
-	239, // 186: api.content.v1.PageImmersiveUnitLocale.props:type_name -> api.content.v1.PageImmersiveUnitLocaleProps
-	41,  // 187: api.content.v1.ExternalVideoSectionProps.aspect_ratio:type_name -> api.content.v1.ExternalVideoSectionProps.AspectRatio
-	42,  // 188: api.content.v1.PostListSectionProps.layout:type_name -> api.content.v1.PostListSectionProps.Layout
-	43,  // 189: api.content.v1.PostListSectionProps.sort_order:type_name -> api.content.v1.PostListSectionProps.SortOrder
-	44,  // 190: api.content.v1.PostListSectionProps.sort_by:type_name -> api.content.v1.PostListSectionProps.SortBy
-	45,  // 191: api.content.v1.PostListSectionProps.image_aspect_ratio:type_name -> api.content.v1.PostListSectionProps.ImageAspectRatio
-	46,  // 192: api.content.v1.PostListSectionProps.item_size:type_name -> api.content.v1.PostListSectionProps.ItemSize
-	47,  // 193: api.content.v1.PostTableSectionProps.statuses:type_name -> api.content.v1.PostTableSectionProps.StatusesItem
-	48,  // 194: api.content.v1.PostTableSectionProps.filter_fields:type_name -> api.content.v1.PostTableSectionProps.FilterFieldsItem
-	49,  // 195: api.content.v1.PostTableSectionProps.sort_fields:type_name -> api.content.v1.PostTableSectionProps.SortFieldsItem
-	50,  // 196: api.content.v1.PostMapSectionProps.sort_by:type_name -> api.content.v1.PostMapSectionProps.SortBy
-	51,  // 197: api.content.v1.PostMapSectionProps.sort_order:type_name -> api.content.v1.PostMapSectionProps.SortOrder
-	52,  // 198: api.content.v1.PostMapSectionProps.aspect_ratio:type_name -> api.content.v1.PostMapSectionProps.AspectRatio
-	53,  // 199: api.content.v1.PostMapSectionProps.primary_label:type_name -> api.content.v1.PostMapSectionProps.PrimaryLabel
-	54,  // 200: api.content.v1.PostMapSectionProps.preferred_scheme:type_name -> api.content.v1.PostMapSectionProps.PreferredScheme
-	55,  // 201: api.content.v1.PostMapSectionProps.area_labels_mode:type_name -> api.content.v1.PostMapSectionProps.AreaLabelsMode
-	56,  // 202: api.content.v1.PostMapSectionProps.poi_labels_mode:type_name -> api.content.v1.PostMapSectionProps.PoiLabelsMode
-	57,  // 203: api.content.v1.WorkMapSectionProps.work_types:type_name -> api.content.v1.WorkMapSectionProps.WorkTypesItem
-	58,  // 204: api.content.v1.WorkMapSectionProps.sort_by:type_name -> api.content.v1.WorkMapSectionProps.SortBy
-	59,  // 205: api.content.v1.WorkMapSectionProps.sort_order:type_name -> api.content.v1.WorkMapSectionProps.SortOrder
-	60,  // 206: api.content.v1.WorkMapSectionProps.aspect_ratio:type_name -> api.content.v1.WorkMapSectionProps.AspectRatio
-	61,  // 207: api.content.v1.WorkMapSectionProps.primary_label:type_name -> api.content.v1.WorkMapSectionProps.PrimaryLabel
-	62,  // 208: api.content.v1.WorkMapSectionProps.preferred_scheme:type_name -> api.content.v1.WorkMapSectionProps.PreferredScheme
-	63,  // 209: api.content.v1.WorkMapSectionProps.area_labels_mode:type_name -> api.content.v1.WorkMapSectionProps.AreaLabelsMode
-	64,  // 210: api.content.v1.WorkMapSectionProps.poi_labels_mode:type_name -> api.content.v1.WorkMapSectionProps.PoiLabelsMode
-	65,  // 211: api.content.v1.WorkTableSectionProps.work_types:type_name -> api.content.v1.WorkTableSectionProps.WorkTypesItem
-	66,  // 212: api.content.v1.WorkTableSectionProps.statuses:type_name -> api.content.v1.WorkTableSectionProps.StatusesItem
-	67,  // 213: api.content.v1.WorkTableSectionProps.filter_fields:type_name -> api.content.v1.WorkTableSectionProps.FilterFieldsItem
-	68,  // 214: api.content.v1.WorkTableSectionProps.sort_fields:type_name -> api.content.v1.WorkTableSectionProps.SortFieldsItem
-	69,  // 215: api.content.v1.WorkListSectionProps.layout:type_name -> api.content.v1.WorkListSectionProps.Layout
-	70,  // 216: api.content.v1.WorkListSectionProps.sort_order:type_name -> api.content.v1.WorkListSectionProps.SortOrder
-	71,  // 217: api.content.v1.WorkListSectionProps.work_types:type_name -> api.content.v1.WorkListSectionProps.WorkTypesItem
-	72,  // 218: api.content.v1.WorkListSectionProps.sort_by:type_name -> api.content.v1.WorkListSectionProps.SortBy
-	73,  // 219: api.content.v1.WorkListSectionProps.image_aspect_ratio:type_name -> api.content.v1.WorkListSectionProps.ImageAspectRatio
-	74,  // 220: api.content.v1.WorkListSectionProps.item_size:type_name -> api.content.v1.WorkListSectionProps.ItemSize
-	75,  // 221: api.content.v1.ProgramEventListSectionProps.layout:type_name -> api.content.v1.ProgramEventListSectionProps.Layout
-	76,  // 222: api.content.v1.ProgramEventListSectionProps.sort_order:type_name -> api.content.v1.ProgramEventListSectionProps.SortOrder
-	77,  // 223: api.content.v1.ProgramEventListSectionProps.time_window:type_name -> api.content.v1.ProgramEventListSectionProps.TimeWindow
-	78,  // 224: api.content.v1.ProgramEventListSectionProps.sort_by:type_name -> api.content.v1.ProgramEventListSectionProps.SortBy
-	79,  // 225: api.content.v1.ProgramEventListSectionProps.image_aspect_ratio:type_name -> api.content.v1.ProgramEventListSectionProps.ImageAspectRatio
-	80,  // 226: api.content.v1.ProgramEventListSectionProps.item_size:type_name -> api.content.v1.ProgramEventListSectionProps.ItemSize
-	81,  // 227: api.content.v1.ReleaseListSectionProps.layout:type_name -> api.content.v1.ReleaseListSectionProps.Layout
-	82,  // 228: api.content.v1.ReleaseListSectionProps.sort_order:type_name -> api.content.v1.ReleaseListSectionProps.SortOrder
-	83,  // 229: api.content.v1.ReleaseListSectionProps.types:type_name -> api.content.v1.ReleaseListSectionProps.TypesItem
-	84,  // 230: api.content.v1.ReleaseListSectionProps.sort_by:type_name -> api.content.v1.ReleaseListSectionProps.SortBy
-	85,  // 231: api.content.v1.ReleaseListSectionProps.image_aspect_ratio:type_name -> api.content.v1.ReleaseListSectionProps.ImageAspectRatio
-	86,  // 232: api.content.v1.ReleaseListSectionProps.item_size:type_name -> api.content.v1.ReleaseListSectionProps.ItemSize
-	87,  // 233: api.content.v1.ArtistListSectionProps.layout:type_name -> api.content.v1.ArtistListSectionProps.Layout
-	88,  // 234: api.content.v1.ArtistListSectionProps.sort_order:type_name -> api.content.v1.ArtistListSectionProps.SortOrder
-	89,  // 235: api.content.v1.ArtistListSectionProps.sort_by:type_name -> api.content.v1.ArtistListSectionProps.SortBy
-	90,  // 236: api.content.v1.ArtistListSectionProps.image_aspect_ratio:type_name -> api.content.v1.ArtistListSectionProps.ImageAspectRatio
-	91,  // 237: api.content.v1.ArtistListSectionProps.item_size:type_name -> api.content.v1.ArtistListSectionProps.ItemSize
-	92,  // 238: api.content.v1.LabelListSectionProps.layout:type_name -> api.content.v1.LabelListSectionProps.Layout
-	93,  // 239: api.content.v1.LabelListSectionProps.sort_order:type_name -> api.content.v1.LabelListSectionProps.SortOrder
-	94,  // 240: api.content.v1.LabelListSectionProps.sort_by:type_name -> api.content.v1.LabelListSectionProps.SortBy
-	95,  // 241: api.content.v1.LabelListSectionProps.image_aspect_ratio:type_name -> api.content.v1.LabelListSectionProps.ImageAspectRatio
-	96,  // 242: api.content.v1.LabelListSectionProps.item_size:type_name -> api.content.v1.LabelListSectionProps.ItemSize
-	97,  // 243: api.content.v1.AuthorListSectionProps.layout:type_name -> api.content.v1.AuthorListSectionProps.Layout
-	98,  // 244: api.content.v1.AuthorListSectionProps.source:type_name -> api.content.v1.AuthorListSectionProps.Source
-	99,  // 245: api.content.v1.AuthorListSectionProps.item_size:type_name -> api.content.v1.AuthorListSectionProps.ItemSize
-	100, // 246: api.content.v1.TextMarqueeSectionProps.direction:type_name -> api.content.v1.TextMarqueeSectionProps.Direction
-	101, // 247: api.content.v1.TextMarqueeSectionProps.speed:type_name -> api.content.v1.TextMarqueeSectionProps.Speed
-	102, // 248: api.content.v1.TextMarqueeSectionProps.item_height:type_name -> api.content.v1.TextMarqueeSectionProps.ItemHeight
-	103, // 249: api.content.v1.TextMarqueeSectionProps.gap:type_name -> api.content.v1.TextMarqueeSectionProps.Gap
-	104, // 250: api.content.v1.TextMarqueeSectionProps.link_target:type_name -> api.content.v1.TextMarqueeSectionProps.LinkTarget
-	357, // 251: api.content.v1.TextMarqueeSectionProps.items:type_name -> api.content.v1.TextMarqueeSectionProps.ItemsItem
-	105, // 252: api.content.v1.ClientMarqueeSectionProps.direction:type_name -> api.content.v1.ClientMarqueeSectionProps.Direction
-	106, // 253: api.content.v1.ClientMarqueeSectionProps.speed:type_name -> api.content.v1.ClientMarqueeSectionProps.Speed
-	107, // 254: api.content.v1.ClientMarqueeSectionProps.item_height:type_name -> api.content.v1.ClientMarqueeSectionProps.ItemHeight
-	108, // 255: api.content.v1.ClientMarqueeSectionProps.gap:type_name -> api.content.v1.ClientMarqueeSectionProps.Gap
-	109, // 256: api.content.v1.ClientMarqueeSectionProps.link_target:type_name -> api.content.v1.ClientMarqueeSectionProps.LinkTarget
-	110, // 257: api.content.v1.ClientMarqueeSectionProps.source:type_name -> api.content.v1.ClientMarqueeSectionProps.Source
-	111, // 258: api.content.v1.ClientMarqueeSectionProps.link_mode:type_name -> api.content.v1.ClientMarqueeSectionProps.LinkMode
-	112, // 259: api.content.v1.ClientMarqueeSectionProps.logo_scale:type_name -> api.content.v1.ClientMarqueeSectionProps.LogoScale
-	113, // 260: api.content.v1.ClientMarqueeSectionProps.fallback_mode:type_name -> api.content.v1.ClientMarqueeSectionProps.FallbackMode
-	114, // 261: api.content.v1.LabelMarqueeSectionProps.direction:type_name -> api.content.v1.LabelMarqueeSectionProps.Direction
-	115, // 262: api.content.v1.LabelMarqueeSectionProps.speed:type_name -> api.content.v1.LabelMarqueeSectionProps.Speed
-	116, // 263: api.content.v1.LabelMarqueeSectionProps.item_height:type_name -> api.content.v1.LabelMarqueeSectionProps.ItemHeight
-	117, // 264: api.content.v1.LabelMarqueeSectionProps.gap:type_name -> api.content.v1.LabelMarqueeSectionProps.Gap
-	118, // 265: api.content.v1.LabelMarqueeSectionProps.link_target:type_name -> api.content.v1.LabelMarqueeSectionProps.LinkTarget
-	119, // 266: api.content.v1.LabelMarqueeSectionProps.source:type_name -> api.content.v1.LabelMarqueeSectionProps.Source
-	120, // 267: api.content.v1.LabelMarqueeSectionProps.link_mode:type_name -> api.content.v1.LabelMarqueeSectionProps.LinkMode
-	121, // 268: api.content.v1.LabelMarqueeSectionProps.logo_scale:type_name -> api.content.v1.LabelMarqueeSectionProps.LogoScale
-	122, // 269: api.content.v1.LabelMarqueeSectionProps.fallback_mode:type_name -> api.content.v1.LabelMarqueeSectionProps.FallbackMode
-	123, // 270: api.content.v1.MapSectionProps.aspect_ratio:type_name -> api.content.v1.MapSectionProps.AspectRatio
-	124, // 271: api.content.v1.MapSectionProps.variant:type_name -> api.content.v1.MapSectionProps.Variant
-	125, // 272: api.content.v1.MapSectionProps.preferred_scheme:type_name -> api.content.v1.MapSectionProps.PreferredScheme
-	126, // 273: api.content.v1.MapSectionProps.area_labels_mode:type_name -> api.content.v1.MapSectionProps.AreaLabelsMode
-	127, // 274: api.content.v1.MapSectionProps.poi_labels_mode:type_name -> api.content.v1.MapSectionProps.PoiLabelsMode
-	128, // 275: api.content.v1.ImmersiveSceneSectionProps.playback:type_name -> api.content.v1.ImmersiveSceneSectionProps.Playback
-	129, // 276: api.content.v1.ImmersiveSceneSectionProps.transition:type_name -> api.content.v1.ImmersiveSceneSectionProps.Transition
-	130, // 277: api.content.v1.ImmersiveSceneSectionProps.texture_size:type_name -> api.content.v1.ImmersiveSceneSectionProps.TextureSize
-	131, // 278: api.content.v1.ImmersiveSceneSectionProps.preferred_scheme:type_name -> api.content.v1.ImmersiveSceneSectionProps.PreferredScheme
-	132, // 279: api.content.v1.ImmersiveSceneSectionProps.text_color_source:type_name -> api.content.v1.ImmersiveSceneSectionProps.TextColorSource
-	133, // 280: api.content.v1.ImmersiveSceneSectionProps.dark_text_color_source:type_name -> api.content.v1.ImmersiveSceneSectionProps.DarkTextColorSource
-	358, // 281: api.content.v1.ColumnsSectionProps.columns:type_name -> api.content.v1.ColumnsSectionProps.ColumnsItem
-	134, // 282: api.content.v1.EmbedSectionProps.height_mode:type_name -> api.content.v1.EmbedSectionProps.HeightMode
-	242, // 283: api.content.v1.RichTextSection.props:type_name -> api.content.v1.RichTextSectionProps
-	224, // 284: api.content.v1.RichTextSection.blocks:type_name -> api.content.v1.RichTextBlockGraph
-	243, // 285: api.content.v1.ExternalVideoSection.props:type_name -> api.content.v1.ExternalVideoSectionProps
-	244, // 286: api.content.v1.PostListSection.props:type_name -> api.content.v1.PostListSectionProps
-	245, // 287: api.content.v1.PostTableSection.props:type_name -> api.content.v1.PostTableSectionProps
-	246, // 288: api.content.v1.PostMapSection.props:type_name -> api.content.v1.PostMapSectionProps
-	247, // 289: api.content.v1.WorkMapSection.props:type_name -> api.content.v1.WorkMapSectionProps
-	248, // 290: api.content.v1.WorkTableSection.props:type_name -> api.content.v1.WorkTableSectionProps
-	249, // 291: api.content.v1.WorkListSection.props:type_name -> api.content.v1.WorkListSectionProps
-	250, // 292: api.content.v1.ProgramEventListSection.props:type_name -> api.content.v1.ProgramEventListSectionProps
-	251, // 293: api.content.v1.ReleaseListSection.props:type_name -> api.content.v1.ReleaseListSectionProps
-	252, // 294: api.content.v1.ArtistListSection.props:type_name -> api.content.v1.ArtistListSectionProps
-	253, // 295: api.content.v1.LabelListSection.props:type_name -> api.content.v1.LabelListSectionProps
-	254, // 296: api.content.v1.AuthorListSection.props:type_name -> api.content.v1.AuthorListSectionProps
-	255, // 297: api.content.v1.FormSection.props:type_name -> api.content.v1.FormSectionProps
-	256, // 298: api.content.v1.TextMarqueeSection.props:type_name -> api.content.v1.TextMarqueeSectionProps
-	257, // 299: api.content.v1.ClientMarqueeSection.props:type_name -> api.content.v1.ClientMarqueeSectionProps
-	258, // 300: api.content.v1.LabelMarqueeSection.props:type_name -> api.content.v1.LabelMarqueeSectionProps
-	259, // 301: api.content.v1.MapSection.props:type_name -> api.content.v1.MapSectionProps
-	260, // 302: api.content.v1.ImmersiveSceneSection.props:type_name -> api.content.v1.ImmersiveSceneSectionProps
-	240, // 303: api.content.v1.ImmersiveSceneSection.units:type_name -> api.content.v1.PageImmersiveUnit
-	261, // 304: api.content.v1.ColumnsSection.props:type_name -> api.content.v1.ColumnsSectionProps
-	262, // 305: api.content.v1.MermaidSection.props:type_name -> api.content.v1.MermaidSectionProps
-	263, // 306: api.content.v1.EmbedSection.props:type_name -> api.content.v1.EmbedSectionProps
-	264, // 307: api.content.v1.RichTextSectionLocale.props:type_name -> api.content.v1.RichTextSectionLocaleProps
-	225, // 308: api.content.v1.RichTextSectionLocale.blocks:type_name -> api.content.v1.RichTextLocaleOverlay
-	265, // 309: api.content.v1.ExternalVideoSectionLocale.props:type_name -> api.content.v1.ExternalVideoSectionLocaleProps
-	266, // 310: api.content.v1.PostListSectionLocale.props:type_name -> api.content.v1.PostListSectionLocaleProps
-	267, // 311: api.content.v1.PostTableSectionLocale.props:type_name -> api.content.v1.PostTableSectionLocaleProps
-	268, // 312: api.content.v1.PostMapSectionLocale.props:type_name -> api.content.v1.PostMapSectionLocaleProps
-	269, // 313: api.content.v1.WorkMapSectionLocale.props:type_name -> api.content.v1.WorkMapSectionLocaleProps
-	270, // 314: api.content.v1.WorkTableSectionLocale.props:type_name -> api.content.v1.WorkTableSectionLocaleProps
-	271, // 315: api.content.v1.WorkListSectionLocale.props:type_name -> api.content.v1.WorkListSectionLocaleProps
-	272, // 316: api.content.v1.ProgramEventListSectionLocale.props:type_name -> api.content.v1.ProgramEventListSectionLocaleProps
-	273, // 317: api.content.v1.ReleaseListSectionLocale.props:type_name -> api.content.v1.ReleaseListSectionLocaleProps
-	274, // 318: api.content.v1.ArtistListSectionLocale.props:type_name -> api.content.v1.ArtistListSectionLocaleProps
-	275, // 319: api.content.v1.LabelListSectionLocale.props:type_name -> api.content.v1.LabelListSectionLocaleProps
-	276, // 320: api.content.v1.AuthorListSectionLocale.props:type_name -> api.content.v1.AuthorListSectionLocaleProps
-	277, // 321: api.content.v1.FormSectionLocale.props:type_name -> api.content.v1.FormSectionLocaleProps
-	278, // 322: api.content.v1.TextMarqueeSectionLocale.props:type_name -> api.content.v1.TextMarqueeSectionLocaleProps
-	279, // 323: api.content.v1.ClientMarqueeSectionLocale.props:type_name -> api.content.v1.ClientMarqueeSectionLocaleProps
-	280, // 324: api.content.v1.LabelMarqueeSectionLocale.props:type_name -> api.content.v1.LabelMarqueeSectionLocaleProps
-	281, // 325: api.content.v1.MapSectionLocale.props:type_name -> api.content.v1.MapSectionLocaleProps
-	282, // 326: api.content.v1.ImmersiveSceneSectionLocale.props:type_name -> api.content.v1.ImmersiveSceneSectionLocaleProps
-	241, // 327: api.content.v1.ImmersiveSceneSectionLocale.units:type_name -> api.content.v1.PageImmersiveUnitLocale
-	283, // 328: api.content.v1.ColumnsSectionLocale.props:type_name -> api.content.v1.ColumnsSectionLocaleProps
-	284, // 329: api.content.v1.MermaidSectionLocale.props:type_name -> api.content.v1.MermaidSectionLocaleProps
-	285, // 330: api.content.v1.EmbedSectionLocale.props:type_name -> api.content.v1.EmbedSectionLocaleProps
-	237, // 331: api.content.v1.PageSection.settings:type_name -> api.content.v1.PageSectionSettings
-	286, // 332: api.content.v1.PageSection.rich_text:type_name -> api.content.v1.RichTextSection
-	287, // 333: api.content.v1.PageSection.external_video:type_name -> api.content.v1.ExternalVideoSection
-	288, // 334: api.content.v1.PageSection.post_list:type_name -> api.content.v1.PostListSection
-	289, // 335: api.content.v1.PageSection.post_table:type_name -> api.content.v1.PostTableSection
-	290, // 336: api.content.v1.PageSection.post_map:type_name -> api.content.v1.PostMapSection
-	291, // 337: api.content.v1.PageSection.work_map:type_name -> api.content.v1.WorkMapSection
-	292, // 338: api.content.v1.PageSection.work_table:type_name -> api.content.v1.WorkTableSection
-	293, // 339: api.content.v1.PageSection.work_list:type_name -> api.content.v1.WorkListSection
-	294, // 340: api.content.v1.PageSection.program_event_list:type_name -> api.content.v1.ProgramEventListSection
-	295, // 341: api.content.v1.PageSection.release_list:type_name -> api.content.v1.ReleaseListSection
-	296, // 342: api.content.v1.PageSection.artist_list:type_name -> api.content.v1.ArtistListSection
-	297, // 343: api.content.v1.PageSection.label_list:type_name -> api.content.v1.LabelListSection
-	298, // 344: api.content.v1.PageSection.author_list:type_name -> api.content.v1.AuthorListSection
-	299, // 345: api.content.v1.PageSection.form:type_name -> api.content.v1.FormSection
-	300, // 346: api.content.v1.PageSection.text_marquee:type_name -> api.content.v1.TextMarqueeSection
-	301, // 347: api.content.v1.PageSection.client_marquee:type_name -> api.content.v1.ClientMarqueeSection
-	302, // 348: api.content.v1.PageSection.label_marquee:type_name -> api.content.v1.LabelMarqueeSection
-	303, // 349: api.content.v1.PageSection.map:type_name -> api.content.v1.MapSection
-	304, // 350: api.content.v1.PageSection.immersive_scene:type_name -> api.content.v1.ImmersiveSceneSection
-	305, // 351: api.content.v1.PageSection.columns:type_name -> api.content.v1.ColumnsSection
-	306, // 352: api.content.v1.PageSection.mermaid:type_name -> api.content.v1.MermaidSection
-	307, // 353: api.content.v1.PageSection.embed:type_name -> api.content.v1.EmbedSection
-	308, // 354: api.content.v1.PageSectionLocale.rich_text:type_name -> api.content.v1.RichTextSectionLocale
-	309, // 355: api.content.v1.PageSectionLocale.external_video:type_name -> api.content.v1.ExternalVideoSectionLocale
-	310, // 356: api.content.v1.PageSectionLocale.post_list:type_name -> api.content.v1.PostListSectionLocale
-	311, // 357: api.content.v1.PageSectionLocale.post_table:type_name -> api.content.v1.PostTableSectionLocale
-	312, // 358: api.content.v1.PageSectionLocale.post_map:type_name -> api.content.v1.PostMapSectionLocale
-	313, // 359: api.content.v1.PageSectionLocale.work_map:type_name -> api.content.v1.WorkMapSectionLocale
-	314, // 360: api.content.v1.PageSectionLocale.work_table:type_name -> api.content.v1.WorkTableSectionLocale
-	315, // 361: api.content.v1.PageSectionLocale.work_list:type_name -> api.content.v1.WorkListSectionLocale
-	316, // 362: api.content.v1.PageSectionLocale.program_event_list:type_name -> api.content.v1.ProgramEventListSectionLocale
-	317, // 363: api.content.v1.PageSectionLocale.release_list:type_name -> api.content.v1.ReleaseListSectionLocale
-	318, // 364: api.content.v1.PageSectionLocale.artist_list:type_name -> api.content.v1.ArtistListSectionLocale
-	319, // 365: api.content.v1.PageSectionLocale.label_list:type_name -> api.content.v1.LabelListSectionLocale
-	320, // 366: api.content.v1.PageSectionLocale.author_list:type_name -> api.content.v1.AuthorListSectionLocale
-	321, // 367: api.content.v1.PageSectionLocale.form:type_name -> api.content.v1.FormSectionLocale
-	322, // 368: api.content.v1.PageSectionLocale.text_marquee:type_name -> api.content.v1.TextMarqueeSectionLocale
-	323, // 369: api.content.v1.PageSectionLocale.client_marquee:type_name -> api.content.v1.ClientMarqueeSectionLocale
-	324, // 370: api.content.v1.PageSectionLocale.label_marquee:type_name -> api.content.v1.LabelMarqueeSectionLocale
-	325, // 371: api.content.v1.PageSectionLocale.map:type_name -> api.content.v1.MapSectionLocale
-	326, // 372: api.content.v1.PageSectionLocale.immersive_scene:type_name -> api.content.v1.ImmersiveSceneSectionLocale
-	327, // 373: api.content.v1.PageSectionLocale.columns:type_name -> api.content.v1.ColumnsSectionLocale
-	328, // 374: api.content.v1.PageSectionLocale.mermaid:type_name -> api.content.v1.MermaidSectionLocale
-	329, // 375: api.content.v1.PageSectionLocale.embed:type_name -> api.content.v1.EmbedSectionLocale
-	237, // 376: api.content.v1.PageSectionData.settings:type_name -> api.content.v1.PageSectionSettings
-	286, // 377: api.content.v1.PageSectionData.rich_text:type_name -> api.content.v1.RichTextSection
-	287, // 378: api.content.v1.PageSectionData.external_video:type_name -> api.content.v1.ExternalVideoSection
-	288, // 379: api.content.v1.PageSectionData.post_list:type_name -> api.content.v1.PostListSection
-	289, // 380: api.content.v1.PageSectionData.post_table:type_name -> api.content.v1.PostTableSection
-	290, // 381: api.content.v1.PageSectionData.post_map:type_name -> api.content.v1.PostMapSection
-	291, // 382: api.content.v1.PageSectionData.work_map:type_name -> api.content.v1.WorkMapSection
-	292, // 383: api.content.v1.PageSectionData.work_table:type_name -> api.content.v1.WorkTableSection
-	293, // 384: api.content.v1.PageSectionData.work_list:type_name -> api.content.v1.WorkListSection
-	294, // 385: api.content.v1.PageSectionData.program_event_list:type_name -> api.content.v1.ProgramEventListSection
-	295, // 386: api.content.v1.PageSectionData.release_list:type_name -> api.content.v1.ReleaseListSection
-	296, // 387: api.content.v1.PageSectionData.artist_list:type_name -> api.content.v1.ArtistListSection
-	297, // 388: api.content.v1.PageSectionData.label_list:type_name -> api.content.v1.LabelListSection
-	298, // 389: api.content.v1.PageSectionData.author_list:type_name -> api.content.v1.AuthorListSection
-	299, // 390: api.content.v1.PageSectionData.form:type_name -> api.content.v1.FormSection
-	300, // 391: api.content.v1.PageSectionData.text_marquee:type_name -> api.content.v1.TextMarqueeSection
-	301, // 392: api.content.v1.PageSectionData.client_marquee:type_name -> api.content.v1.ClientMarqueeSection
-	302, // 393: api.content.v1.PageSectionData.label_marquee:type_name -> api.content.v1.LabelMarqueeSection
-	303, // 394: api.content.v1.PageSectionData.map:type_name -> api.content.v1.MapSection
-	304, // 395: api.content.v1.PageSectionData.immersive_scene:type_name -> api.content.v1.ImmersiveSceneSection
-	305, // 396: api.content.v1.PageSectionData.columns:type_name -> api.content.v1.ColumnsSection
-	306, // 397: api.content.v1.PageSectionData.mermaid:type_name -> api.content.v1.MermaidSection
-	307, // 398: api.content.v1.PageSectionData.embed:type_name -> api.content.v1.EmbedSection
-	308, // 399: api.content.v1.PageSectionLocaleData.rich_text:type_name -> api.content.v1.RichTextSectionLocale
-	309, // 400: api.content.v1.PageSectionLocaleData.external_video:type_name -> api.content.v1.ExternalVideoSectionLocale
-	310, // 401: api.content.v1.PageSectionLocaleData.post_list:type_name -> api.content.v1.PostListSectionLocale
-	311, // 402: api.content.v1.PageSectionLocaleData.post_table:type_name -> api.content.v1.PostTableSectionLocale
-	312, // 403: api.content.v1.PageSectionLocaleData.post_map:type_name -> api.content.v1.PostMapSectionLocale
-	313, // 404: api.content.v1.PageSectionLocaleData.work_map:type_name -> api.content.v1.WorkMapSectionLocale
-	314, // 405: api.content.v1.PageSectionLocaleData.work_table:type_name -> api.content.v1.WorkTableSectionLocale
-	315, // 406: api.content.v1.PageSectionLocaleData.work_list:type_name -> api.content.v1.WorkListSectionLocale
-	316, // 407: api.content.v1.PageSectionLocaleData.program_event_list:type_name -> api.content.v1.ProgramEventListSectionLocale
-	317, // 408: api.content.v1.PageSectionLocaleData.release_list:type_name -> api.content.v1.ReleaseListSectionLocale
-	318, // 409: api.content.v1.PageSectionLocaleData.artist_list:type_name -> api.content.v1.ArtistListSectionLocale
-	319, // 410: api.content.v1.PageSectionLocaleData.label_list:type_name -> api.content.v1.LabelListSectionLocale
-	320, // 411: api.content.v1.PageSectionLocaleData.author_list:type_name -> api.content.v1.AuthorListSectionLocale
-	321, // 412: api.content.v1.PageSectionLocaleData.form:type_name -> api.content.v1.FormSectionLocale
-	322, // 413: api.content.v1.PageSectionLocaleData.text_marquee:type_name -> api.content.v1.TextMarqueeSectionLocale
-	323, // 414: api.content.v1.PageSectionLocaleData.client_marquee:type_name -> api.content.v1.ClientMarqueeSectionLocale
-	324, // 415: api.content.v1.PageSectionLocaleData.label_marquee:type_name -> api.content.v1.LabelMarqueeSectionLocale
-	325, // 416: api.content.v1.PageSectionLocaleData.map:type_name -> api.content.v1.MapSectionLocale
-	326, // 417: api.content.v1.PageSectionLocaleData.immersive_scene:type_name -> api.content.v1.ImmersiveSceneSectionLocale
-	327, // 418: api.content.v1.PageSectionLocaleData.columns:type_name -> api.content.v1.ColumnsSectionLocale
-	328, // 419: api.content.v1.PageSectionLocaleData.mermaid:type_name -> api.content.v1.MermaidSectionLocale
-	329, // 420: api.content.v1.PageSectionLocaleData.embed:type_name -> api.content.v1.EmbedSectionLocale
-	330, // 421: api.content.v1.PageSectionNode.section:type_name -> api.content.v1.PageSection
-	334, // 422: api.content.v1.PageSectionNode.placement:type_name -> api.content.v1.PageSectionPlacement
-	335, // 423: api.content.v1.PageSectionGraph.nodes:type_name -> api.content.v1.PageSectionNode
-	331, // 424: api.content.v1.PageLocaleOverlay.sections:type_name -> api.content.v1.PageSectionLocale
-	336, // 425: api.content.v1.PageDocument.base:type_name -> api.content.v1.PageSectionGraph
-	337, // 426: api.content.v1.PageDocument.locale_overlays:type_name -> api.content.v1.PageLocaleOverlay
-	336, // 427: api.content.v1.LocalizedPageDocument.base:type_name -> api.content.v1.PageSectionGraph
-	337, // 428: api.content.v1.LocalizedPageDocument.locale_overlay:type_name -> api.content.v1.PageLocaleOverlay
-	335, // 429: api.content.v1.UpsertPageSection.node:type_name -> api.content.v1.PageSectionNode
-	334, // 430: api.content.v1.MovePageSection.placement:type_name -> api.content.v1.PageSectionPlacement
-	231, // 431: api.content.v1.MutatePageRichTextBlock.mutation:type_name -> api.content.v1.RichTextBlockMutation
-	340, // 432: api.content.v1.PageSectionMutation.upsert:type_name -> api.content.v1.UpsertPageSection
-	341, // 433: api.content.v1.PageSectionMutation.delete:type_name -> api.content.v1.DeletePageSection
-	342, // 434: api.content.v1.PageSectionMutation.move:type_name -> api.content.v1.MovePageSection
-	343, // 435: api.content.v1.PageSectionMutation.mutate_rich_text_block:type_name -> api.content.v1.MutatePageRichTextBlock
-	331, // 436: api.content.v1.UpsertPageSectionLocale.section:type_name -> api.content.v1.PageSectionLocale
-	234, // 437: api.content.v1.MutatePageRichTextBlockLocale.mutation:type_name -> api.content.v1.RichTextBlockLocaleMutation
-	345, // 438: api.content.v1.PageSectionLocaleMutation.upsert:type_name -> api.content.v1.UpsertPageSectionLocale
-	346, // 439: api.content.v1.PageSectionLocaleMutation.delete:type_name -> api.content.v1.DeletePageSectionLocale
-	347, // 440: api.content.v1.PageSectionLocaleMutation.mutate_rich_text_block:type_name -> api.content.v1.MutatePageRichTextBlockLocale
-	348, // 441: api.content.v1.PageLocaleMutationGroup.mutations:type_name -> api.content.v1.PageSectionLocaleMutation
-	344, // 442: api.content.v1.PageSectionMutationBatch.base_mutations:type_name -> api.content.v1.PageSectionMutation
-	349, // 443: api.content.v1.PageSectionMutationBatch.locale_mutation_groups:type_name -> api.content.v1.PageLocaleMutationGroup
-	351, // 444: api.content.v1.ContentBlockMediaItem.selector:type_name -> api.content.v1.ContentBlockMediaSelector
-	136, // 445: api.content.v1.ContentBlockMediaItem.attachment:type_name -> api.content.v1.FileAttachment
-	359, // 446: api.content.v1.ContentBlockMediaItem.delivery:type_name -> api.common.v1.MediaDelivery
-	3,   // 447: api.content.v1.ContentBlockMediaItem.download_availability:type_name -> api.content.v1.ContentBlockDownloadAvailability
-	4,   // 448: api.content.v1.ContentBlockMediaItem.download_action:type_name -> api.content.v1.ContentBlockDownloadAction
-	24,  // 449: api.content.v1.ShaderProps.StagesItem.kind:type_name -> api.content.v1.ShaderProps.StagesItem.Kind
-	355, // 450: api.content.v1.ShaderProps.StagesItem.channels:type_name -> api.content.v1.ShaderProps.StagesItem.ChannelsItem
-	25,  // 451: api.content.v1.ShaderProps.StagesItem.ChannelsItem.kind:type_name -> api.content.v1.ShaderProps.StagesItem.ChannelsItem.Kind
-	26,  // 452: api.content.v1.ShaderProps.StagesItem.ChannelsItem.buffer:type_name -> api.content.v1.ShaderProps.StagesItem.ChannelsItem.Buffer
-	136, // 453: api.content.v1.ShaderProps.StagesItem.ChannelsItem.file:type_name -> api.content.v1.FileAttachment
-	136, // 454: api.content.v1.ShaderProps.StagesItem.ChannelsItem.faces:type_name -> api.content.v1.FileAttachment
-	356, // 455: api.content.v1.ShaderProps.StagesItem.ChannelsItem.sampler:type_name -> api.content.v1.ShaderProps.StagesItem.ChannelsItem.SamplerValue
-	27,  // 456: api.content.v1.ShaderProps.StagesItem.ChannelsItem.SamplerValue.filter:type_name -> api.content.v1.ShaderProps.StagesItem.ChannelsItem.SamplerValue.Filter
-	28,  // 457: api.content.v1.ShaderProps.StagesItem.ChannelsItem.SamplerValue.wrap:type_name -> api.content.v1.ShaderProps.StagesItem.ChannelsItem.SamplerValue.Wrap
-	458, // [458:458] is the sub-list for method output_type
-	458, // [458:458] is the sub-list for method input_type
-	458, // [458:458] is the sub-list for extension type_name
-	458, // [458:458] is the sub-list for extension extendee
-	0,   // [0:458] is the sub-list for field type_name
+	137, // 4: api.content.v1.RichTextSiteVariable.styles:type_name -> api.content.v1.RichTextStyle
+	138, // 5: api.content.v1.RichTextInline.text:type_name -> api.content.v1.RichTextStyledText
+	139, // 6: api.content.v1.RichTextInline.hard_break:type_name -> api.content.v1.RichTextHardBreak
+	140, // 7: api.content.v1.RichTextInline.link:type_name -> api.content.v1.RichTextLink
+	141, // 8: api.content.v1.RichTextInline.math_inline:type_name -> api.content.v1.RichTextInlineMath
+	142, // 9: api.content.v1.RichTextInline.site_variable:type_name -> api.content.v1.RichTextSiteVariable
+	5,   // 10: api.content.v1.RichTextTableCellProps.text_alignment:type_name -> api.content.v1.RichTextTableCellProps.TextAlignment
+	144, // 11: api.content.v1.RichTextTableCellBase.props:type_name -> api.content.v1.RichTextTableCellProps
+	145, // 12: api.content.v1.RichTextTableRowBase.cells:type_name -> api.content.v1.RichTextTableCellBase
+	146, // 13: api.content.v1.RichTextTableBase.rows:type_name -> api.content.v1.RichTextTableRowBase
+	143, // 14: api.content.v1.RichTextTableCellLocale.content:type_name -> api.content.v1.RichTextInline
+	148, // 15: api.content.v1.RichTextTableRowLocale.cells:type_name -> api.content.v1.RichTextTableCellLocale
+	149, // 16: api.content.v1.RichTextTableLocale.rows:type_name -> api.content.v1.RichTextTableRowLocale
+	6,   // 17: api.content.v1.ParagraphProps.text_alignment:type_name -> api.content.v1.ParagraphProps.TextAlignment
+	7,   // 18: api.content.v1.ParagraphProps.aspect_ratio:type_name -> api.content.v1.ParagraphProps.AspectRatio
+	8,   // 19: api.content.v1.HeadingProps.text_alignment:type_name -> api.content.v1.HeadingProps.TextAlignment
+	9,   // 20: api.content.v1.HeadingProps.level:type_name -> api.content.v1.HeadingProps.Level
+	10,  // 21: api.content.v1.BulletListItemProps.text_alignment:type_name -> api.content.v1.BulletListItemProps.TextAlignment
+	11,  // 22: api.content.v1.NumberedListItemProps.text_alignment:type_name -> api.content.v1.NumberedListItemProps.TextAlignment
+	12,  // 23: api.content.v1.CheckListItemProps.text_alignment:type_name -> api.content.v1.CheckListItemProps.TextAlignment
+	13,  // 24: api.content.v1.CodeBlockProps.language:type_name -> api.content.v1.CodeBlockProps.Language
+	14,  // 25: api.content.v1.CodeBlockProps.text_alignment:type_name -> api.content.v1.CodeBlockProps.TextAlignment
+	15,  // 26: api.content.v1.TableProps.text_alignment:type_name -> api.content.v1.TableProps.TextAlignment
+	16,  // 27: api.content.v1.P5SketchProps.mode:type_name -> api.content.v1.P5SketchProps.Mode
+	17,  // 28: api.content.v1.P5SketchProps.text_alignment:type_name -> api.content.v1.P5SketchProps.TextAlignment
+	18,  // 29: api.content.v1.P5SketchProps.capabilities:type_name -> api.content.v1.P5SketchProps.CapabilitiesItem
+	19,  // 30: api.content.v1.ThreeSceneProps.mode:type_name -> api.content.v1.ThreeSceneProps.Mode
+	20,  // 31: api.content.v1.ThreeSceneProps.text_alignment:type_name -> api.content.v1.ThreeSceneProps.TextAlignment
+	21,  // 32: api.content.v1.ThreeSceneProps.language:type_name -> api.content.v1.ThreeSceneProps.Language
+	22,  // 33: api.content.v1.ShaderProps.mode:type_name -> api.content.v1.ShaderProps.Mode
+	23,  // 34: api.content.v1.ShaderProps.text_alignment:type_name -> api.content.v1.ShaderProps.TextAlignment
+	355, // 35: api.content.v1.ShaderProps.stages:type_name -> api.content.v1.ShaderProps.StagesItem
+	29,  // 36: api.content.v1.MapProps.aspect_ratio:type_name -> api.content.v1.MapProps.AspectRatio
+	30,  // 37: api.content.v1.MapProps.text_alignment:type_name -> api.content.v1.MapProps.TextAlignment
+	31,  // 38: api.content.v1.MapProps.variant:type_name -> api.content.v1.MapProps.Variant
+	32,  // 39: api.content.v1.MapProps.preferred_scheme:type_name -> api.content.v1.MapProps.PreferredScheme
+	33,  // 40: api.content.v1.MapProps.area_labels_mode:type_name -> api.content.v1.MapProps.AreaLabelsMode
+	34,  // 41: api.content.v1.MapProps.poi_labels_mode:type_name -> api.content.v1.MapProps.PoiLabelsMode
+	136, // 42: api.content.v1.FileProps.attachment:type_name -> api.content.v1.FileAttachment
+	35,  // 43: api.content.v1.FileProps.text_alignment:type_name -> api.content.v1.FileProps.TextAlignment
+	151, // 44: api.content.v1.ParagraphBlock.props:type_name -> api.content.v1.ParagraphProps
+	152, // 45: api.content.v1.HeadingBlock.props:type_name -> api.content.v1.HeadingProps
+	153, // 46: api.content.v1.BulletListItemBlock.props:type_name -> api.content.v1.BulletListItemProps
+	154, // 47: api.content.v1.NumberedListItemBlock.props:type_name -> api.content.v1.NumberedListItemProps
+	155, // 48: api.content.v1.CheckListItemBlock.props:type_name -> api.content.v1.CheckListItemProps
+	156, // 49: api.content.v1.QuoteBlock.props:type_name -> api.content.v1.QuoteProps
+	157, // 50: api.content.v1.CodeBlockBlock.props:type_name -> api.content.v1.CodeBlockProps
+	158, // 51: api.content.v1.DividerBlock.props:type_name -> api.content.v1.DividerProps
+	159, // 52: api.content.v1.TableBlock.props:type_name -> api.content.v1.TableProps
+	147, // 53: api.content.v1.TableBlock.content:type_name -> api.content.v1.RichTextTableBase
+	160, // 54: api.content.v1.P5SketchBlock.props:type_name -> api.content.v1.P5SketchProps
+	161, // 55: api.content.v1.ThreeSceneBlock.props:type_name -> api.content.v1.ThreeSceneProps
+	162, // 56: api.content.v1.ShaderBlock.props:type_name -> api.content.v1.ShaderProps
+	163, // 57: api.content.v1.MathBlock.props:type_name -> api.content.v1.MathProps
+	164, // 58: api.content.v1.MapBlock.props:type_name -> api.content.v1.MapProps
+	165, // 59: api.content.v1.FileBlock.props:type_name -> api.content.v1.FileProps
+	166, // 60: api.content.v1.CalloutBlock.props:type_name -> api.content.v1.CalloutProps
+	167, // 61: api.content.v1.MermaidBlock.props:type_name -> api.content.v1.MermaidProps
+	168, // 62: api.content.v1.ParagraphBlockLocale.props:type_name -> api.content.v1.ParagraphLocaleProps
+	143, // 63: api.content.v1.ParagraphBlockLocale.content:type_name -> api.content.v1.RichTextInline
+	169, // 64: api.content.v1.HeadingBlockLocale.props:type_name -> api.content.v1.HeadingLocaleProps
+	143, // 65: api.content.v1.HeadingBlockLocale.content:type_name -> api.content.v1.RichTextInline
+	170, // 66: api.content.v1.BulletListItemBlockLocale.props:type_name -> api.content.v1.BulletListItemLocaleProps
+	143, // 67: api.content.v1.BulletListItemBlockLocale.content:type_name -> api.content.v1.RichTextInline
+	171, // 68: api.content.v1.NumberedListItemBlockLocale.props:type_name -> api.content.v1.NumberedListItemLocaleProps
+	143, // 69: api.content.v1.NumberedListItemBlockLocale.content:type_name -> api.content.v1.RichTextInline
+	172, // 70: api.content.v1.CheckListItemBlockLocale.props:type_name -> api.content.v1.CheckListItemLocaleProps
+	143, // 71: api.content.v1.CheckListItemBlockLocale.content:type_name -> api.content.v1.RichTextInline
+	173, // 72: api.content.v1.QuoteBlockLocale.props:type_name -> api.content.v1.QuoteLocaleProps
+	143, // 73: api.content.v1.QuoteBlockLocale.content:type_name -> api.content.v1.RichTextInline
+	174, // 74: api.content.v1.CodeBlockBlockLocale.props:type_name -> api.content.v1.CodeBlockLocaleProps
+	175, // 75: api.content.v1.DividerBlockLocale.props:type_name -> api.content.v1.DividerLocaleProps
+	176, // 76: api.content.v1.TableBlockLocale.props:type_name -> api.content.v1.TableLocaleProps
+	150, // 77: api.content.v1.TableBlockLocale.content:type_name -> api.content.v1.RichTextTableLocale
+	177, // 78: api.content.v1.P5SketchBlockLocale.props:type_name -> api.content.v1.P5SketchLocaleProps
+	178, // 79: api.content.v1.ThreeSceneBlockLocale.props:type_name -> api.content.v1.ThreeSceneLocaleProps
+	179, // 80: api.content.v1.ShaderBlockLocale.props:type_name -> api.content.v1.ShaderLocaleProps
+	180, // 81: api.content.v1.MathBlockLocale.props:type_name -> api.content.v1.MathLocaleProps
+	181, // 82: api.content.v1.MapBlockLocale.props:type_name -> api.content.v1.MapLocaleProps
+	182, // 83: api.content.v1.FileBlockLocale.props:type_name -> api.content.v1.FileLocaleProps
+	183, // 84: api.content.v1.CalloutBlockLocale.props:type_name -> api.content.v1.CalloutLocaleProps
+	143, // 85: api.content.v1.CalloutBlockLocale.content:type_name -> api.content.v1.RichTextInline
+	184, // 86: api.content.v1.MermaidBlockLocale.props:type_name -> api.content.v1.MermaidLocaleProps
+	185, // 87: api.content.v1.RichTextBlock.paragraph:type_name -> api.content.v1.ParagraphBlock
+	186, // 88: api.content.v1.RichTextBlock.heading:type_name -> api.content.v1.HeadingBlock
+	187, // 89: api.content.v1.RichTextBlock.bullet_list_item:type_name -> api.content.v1.BulletListItemBlock
+	188, // 90: api.content.v1.RichTextBlock.numbered_list_item:type_name -> api.content.v1.NumberedListItemBlock
+	189, // 91: api.content.v1.RichTextBlock.check_list_item:type_name -> api.content.v1.CheckListItemBlock
+	190, // 92: api.content.v1.RichTextBlock.quote:type_name -> api.content.v1.QuoteBlock
+	191, // 93: api.content.v1.RichTextBlock.code_block:type_name -> api.content.v1.CodeBlockBlock
+	192, // 94: api.content.v1.RichTextBlock.divider:type_name -> api.content.v1.DividerBlock
+	193, // 95: api.content.v1.RichTextBlock.table:type_name -> api.content.v1.TableBlock
+	194, // 96: api.content.v1.RichTextBlock.p5_sketch:type_name -> api.content.v1.P5SketchBlock
+	195, // 97: api.content.v1.RichTextBlock.three_scene:type_name -> api.content.v1.ThreeSceneBlock
+	196, // 98: api.content.v1.RichTextBlock.shader:type_name -> api.content.v1.ShaderBlock
+	197, // 99: api.content.v1.RichTextBlock.math:type_name -> api.content.v1.MathBlock
+	198, // 100: api.content.v1.RichTextBlock.map:type_name -> api.content.v1.MapBlock
+	199, // 101: api.content.v1.RichTextBlock.file:type_name -> api.content.v1.FileBlock
+	200, // 102: api.content.v1.RichTextBlock.callout:type_name -> api.content.v1.CalloutBlock
+	201, // 103: api.content.v1.RichTextBlock.mermaid:type_name -> api.content.v1.MermaidBlock
+	202, // 104: api.content.v1.RichTextBlockLocale.paragraph:type_name -> api.content.v1.ParagraphBlockLocale
+	203, // 105: api.content.v1.RichTextBlockLocale.heading:type_name -> api.content.v1.HeadingBlockLocale
+	204, // 106: api.content.v1.RichTextBlockLocale.bullet_list_item:type_name -> api.content.v1.BulletListItemBlockLocale
+	205, // 107: api.content.v1.RichTextBlockLocale.numbered_list_item:type_name -> api.content.v1.NumberedListItemBlockLocale
+	206, // 108: api.content.v1.RichTextBlockLocale.check_list_item:type_name -> api.content.v1.CheckListItemBlockLocale
+	207, // 109: api.content.v1.RichTextBlockLocale.quote:type_name -> api.content.v1.QuoteBlockLocale
+	208, // 110: api.content.v1.RichTextBlockLocale.code_block:type_name -> api.content.v1.CodeBlockBlockLocale
+	209, // 111: api.content.v1.RichTextBlockLocale.divider:type_name -> api.content.v1.DividerBlockLocale
+	210, // 112: api.content.v1.RichTextBlockLocale.table:type_name -> api.content.v1.TableBlockLocale
+	211, // 113: api.content.v1.RichTextBlockLocale.p5_sketch:type_name -> api.content.v1.P5SketchBlockLocale
+	212, // 114: api.content.v1.RichTextBlockLocale.three_scene:type_name -> api.content.v1.ThreeSceneBlockLocale
+	213, // 115: api.content.v1.RichTextBlockLocale.shader:type_name -> api.content.v1.ShaderBlockLocale
+	214, // 116: api.content.v1.RichTextBlockLocale.math:type_name -> api.content.v1.MathBlockLocale
+	215, // 117: api.content.v1.RichTextBlockLocale.map:type_name -> api.content.v1.MapBlockLocale
+	216, // 118: api.content.v1.RichTextBlockLocale.file:type_name -> api.content.v1.FileBlockLocale
+	217, // 119: api.content.v1.RichTextBlockLocale.callout:type_name -> api.content.v1.CalloutBlockLocale
+	218, // 120: api.content.v1.RichTextBlockLocale.mermaid:type_name -> api.content.v1.MermaidBlockLocale
+	185, // 121: api.content.v1.RichTextBlockData.paragraph:type_name -> api.content.v1.ParagraphBlock
+	186, // 122: api.content.v1.RichTextBlockData.heading:type_name -> api.content.v1.HeadingBlock
+	187, // 123: api.content.v1.RichTextBlockData.bullet_list_item:type_name -> api.content.v1.BulletListItemBlock
+	188, // 124: api.content.v1.RichTextBlockData.numbered_list_item:type_name -> api.content.v1.NumberedListItemBlock
+	189, // 125: api.content.v1.RichTextBlockData.check_list_item:type_name -> api.content.v1.CheckListItemBlock
+	190, // 126: api.content.v1.RichTextBlockData.quote:type_name -> api.content.v1.QuoteBlock
+	191, // 127: api.content.v1.RichTextBlockData.code_block:type_name -> api.content.v1.CodeBlockBlock
+	192, // 128: api.content.v1.RichTextBlockData.divider:type_name -> api.content.v1.DividerBlock
+	193, // 129: api.content.v1.RichTextBlockData.table:type_name -> api.content.v1.TableBlock
+	194, // 130: api.content.v1.RichTextBlockData.p5_sketch:type_name -> api.content.v1.P5SketchBlock
+	195, // 131: api.content.v1.RichTextBlockData.three_scene:type_name -> api.content.v1.ThreeSceneBlock
+	196, // 132: api.content.v1.RichTextBlockData.shader:type_name -> api.content.v1.ShaderBlock
+	197, // 133: api.content.v1.RichTextBlockData.math:type_name -> api.content.v1.MathBlock
+	198, // 134: api.content.v1.RichTextBlockData.map:type_name -> api.content.v1.MapBlock
+	199, // 135: api.content.v1.RichTextBlockData.file:type_name -> api.content.v1.FileBlock
+	200, // 136: api.content.v1.RichTextBlockData.callout:type_name -> api.content.v1.CalloutBlock
+	201, // 137: api.content.v1.RichTextBlockData.mermaid:type_name -> api.content.v1.MermaidBlock
+	202, // 138: api.content.v1.RichTextBlockLocaleData.paragraph:type_name -> api.content.v1.ParagraphBlockLocale
+	203, // 139: api.content.v1.RichTextBlockLocaleData.heading:type_name -> api.content.v1.HeadingBlockLocale
+	204, // 140: api.content.v1.RichTextBlockLocaleData.bullet_list_item:type_name -> api.content.v1.BulletListItemBlockLocale
+	205, // 141: api.content.v1.RichTextBlockLocaleData.numbered_list_item:type_name -> api.content.v1.NumberedListItemBlockLocale
+	206, // 142: api.content.v1.RichTextBlockLocaleData.check_list_item:type_name -> api.content.v1.CheckListItemBlockLocale
+	207, // 143: api.content.v1.RichTextBlockLocaleData.quote:type_name -> api.content.v1.QuoteBlockLocale
+	208, // 144: api.content.v1.RichTextBlockLocaleData.code_block:type_name -> api.content.v1.CodeBlockBlockLocale
+	209, // 145: api.content.v1.RichTextBlockLocaleData.divider:type_name -> api.content.v1.DividerBlockLocale
+	210, // 146: api.content.v1.RichTextBlockLocaleData.table:type_name -> api.content.v1.TableBlockLocale
+	211, // 147: api.content.v1.RichTextBlockLocaleData.p5_sketch:type_name -> api.content.v1.P5SketchBlockLocale
+	212, // 148: api.content.v1.RichTextBlockLocaleData.three_scene:type_name -> api.content.v1.ThreeSceneBlockLocale
+	213, // 149: api.content.v1.RichTextBlockLocaleData.shader:type_name -> api.content.v1.ShaderBlockLocale
+	214, // 150: api.content.v1.RichTextBlockLocaleData.math:type_name -> api.content.v1.MathBlockLocale
+	215, // 151: api.content.v1.RichTextBlockLocaleData.map:type_name -> api.content.v1.MapBlockLocale
+	216, // 152: api.content.v1.RichTextBlockLocaleData.file:type_name -> api.content.v1.FileBlockLocale
+	217, // 153: api.content.v1.RichTextBlockLocaleData.callout:type_name -> api.content.v1.CalloutBlockLocale
+	218, // 154: api.content.v1.RichTextBlockLocaleData.mermaid:type_name -> api.content.v1.MermaidBlockLocale
+	219, // 155: api.content.v1.RichTextBlockNode.block:type_name -> api.content.v1.RichTextBlock
+	223, // 156: api.content.v1.RichTextBlockNode.placement:type_name -> api.content.v1.ContentBlockPlacement
+	224, // 157: api.content.v1.RichTextBlockGraph.nodes:type_name -> api.content.v1.RichTextBlockNode
+	220, // 158: api.content.v1.RichTextLocaleOverlay.blocks:type_name -> api.content.v1.RichTextBlockLocale
+	0,   // 159: api.content.v1.RichTextDocument.profile:type_name -> api.content.v1.RichTextProfile
+	225, // 160: api.content.v1.RichTextDocument.base:type_name -> api.content.v1.RichTextBlockGraph
+	226, // 161: api.content.v1.RichTextDocument.locale_overlays:type_name -> api.content.v1.RichTextLocaleOverlay
+	0,   // 162: api.content.v1.LocalizedRichTextDocument.profile:type_name -> api.content.v1.RichTextProfile
+	225, // 163: api.content.v1.LocalizedRichTextDocument.base:type_name -> api.content.v1.RichTextBlockGraph
+	226, // 164: api.content.v1.LocalizedRichTextDocument.locale_overlay:type_name -> api.content.v1.RichTextLocaleOverlay
+	224, // 165: api.content.v1.UpsertRichTextBlock.node:type_name -> api.content.v1.RichTextBlockNode
+	223, // 166: api.content.v1.MoveRichTextBlock.placement:type_name -> api.content.v1.ContentBlockPlacement
+	229, // 167: api.content.v1.RichTextBlockMutation.upsert:type_name -> api.content.v1.UpsertRichTextBlock
+	230, // 168: api.content.v1.RichTextBlockMutation.delete:type_name -> api.content.v1.DeleteRichTextBlock
+	231, // 169: api.content.v1.RichTextBlockMutation.move:type_name -> api.content.v1.MoveRichTextBlock
+	220, // 170: api.content.v1.UpsertRichTextBlockLocale.block:type_name -> api.content.v1.RichTextBlockLocale
+	233, // 171: api.content.v1.RichTextBlockLocaleMutation.upsert:type_name -> api.content.v1.UpsertRichTextBlockLocale
+	234, // 172: api.content.v1.RichTextBlockLocaleMutation.delete:type_name -> api.content.v1.DeleteRichTextBlockLocale
+	235, // 173: api.content.v1.RichTextLocaleMutationGroup.mutations:type_name -> api.content.v1.RichTextBlockLocaleMutation
+	0,   // 174: api.content.v1.RichTextBlockMutationBatch.profile:type_name -> api.content.v1.RichTextProfile
+	232, // 175: api.content.v1.RichTextBlockMutationBatch.base_mutations:type_name -> api.content.v1.RichTextBlockMutation
+	236, // 176: api.content.v1.RichTextBlockMutationBatch.locale_mutation_groups:type_name -> api.content.v1.RichTextLocaleMutationGroup
+	36,  // 177: api.content.v1.PageSectionSettings.max_width:type_name -> api.content.v1.PageSectionSettings.MaxWidth
+	37,  // 178: api.content.v1.PageImmersiveUnitProps.mesh:type_name -> api.content.v1.PageImmersiveUnitProps.Mesh
+	38,  // 179: api.content.v1.PageImmersiveUnitProps.mesh_source:type_name -> api.content.v1.PageImmersiveUnitProps.MeshSource
+	136, // 180: api.content.v1.PageImmersiveUnitProps.mesh_file:type_name -> api.content.v1.FileAttachment
+	136, // 181: api.content.v1.PageImmersiveUnitProps.mesh_optimization_source_file:type_name -> api.content.v1.FileAttachment
+	136, // 182: api.content.v1.PageImmersiveUnitProps.mesh_optimization_file:type_name -> api.content.v1.FileAttachment
+	39,  // 183: api.content.v1.PageImmersiveUnitProps.texture_source:type_name -> api.content.v1.PageImmersiveUnitProps.TextureSource
+	136, // 184: api.content.v1.PageImmersiveUnitProps.texture_file:type_name -> api.content.v1.FileAttachment
+	40,  // 185: api.content.v1.PageImmersiveUnitProps.dark_texture_source:type_name -> api.content.v1.PageImmersiveUnitProps.DarkTextureSource
+	136, // 186: api.content.v1.PageImmersiveUnitProps.dark_texture_file:type_name -> api.content.v1.FileAttachment
+	239, // 187: api.content.v1.PageImmersiveUnit.props:type_name -> api.content.v1.PageImmersiveUnitProps
+	240, // 188: api.content.v1.PageImmersiveUnitLocale.props:type_name -> api.content.v1.PageImmersiveUnitLocaleProps
+	41,  // 189: api.content.v1.ExternalVideoSectionProps.aspect_ratio:type_name -> api.content.v1.ExternalVideoSectionProps.AspectRatio
+	42,  // 190: api.content.v1.PostListSectionProps.layout:type_name -> api.content.v1.PostListSectionProps.Layout
+	43,  // 191: api.content.v1.PostListSectionProps.sort_order:type_name -> api.content.v1.PostListSectionProps.SortOrder
+	44,  // 192: api.content.v1.PostListSectionProps.sort_by:type_name -> api.content.v1.PostListSectionProps.SortBy
+	45,  // 193: api.content.v1.PostListSectionProps.image_aspect_ratio:type_name -> api.content.v1.PostListSectionProps.ImageAspectRatio
+	46,  // 194: api.content.v1.PostListSectionProps.item_size:type_name -> api.content.v1.PostListSectionProps.ItemSize
+	47,  // 195: api.content.v1.PostTableSectionProps.statuses:type_name -> api.content.v1.PostTableSectionProps.StatusesItem
+	48,  // 196: api.content.v1.PostTableSectionProps.filter_fields:type_name -> api.content.v1.PostTableSectionProps.FilterFieldsItem
+	49,  // 197: api.content.v1.PostTableSectionProps.sort_fields:type_name -> api.content.v1.PostTableSectionProps.SortFieldsItem
+	50,  // 198: api.content.v1.PostMapSectionProps.sort_by:type_name -> api.content.v1.PostMapSectionProps.SortBy
+	51,  // 199: api.content.v1.PostMapSectionProps.sort_order:type_name -> api.content.v1.PostMapSectionProps.SortOrder
+	52,  // 200: api.content.v1.PostMapSectionProps.aspect_ratio:type_name -> api.content.v1.PostMapSectionProps.AspectRatio
+	53,  // 201: api.content.v1.PostMapSectionProps.primary_label:type_name -> api.content.v1.PostMapSectionProps.PrimaryLabel
+	54,  // 202: api.content.v1.PostMapSectionProps.preferred_scheme:type_name -> api.content.v1.PostMapSectionProps.PreferredScheme
+	55,  // 203: api.content.v1.PostMapSectionProps.area_labels_mode:type_name -> api.content.v1.PostMapSectionProps.AreaLabelsMode
+	56,  // 204: api.content.v1.PostMapSectionProps.poi_labels_mode:type_name -> api.content.v1.PostMapSectionProps.PoiLabelsMode
+	57,  // 205: api.content.v1.WorkMapSectionProps.work_types:type_name -> api.content.v1.WorkMapSectionProps.WorkTypesItem
+	58,  // 206: api.content.v1.WorkMapSectionProps.sort_by:type_name -> api.content.v1.WorkMapSectionProps.SortBy
+	59,  // 207: api.content.v1.WorkMapSectionProps.sort_order:type_name -> api.content.v1.WorkMapSectionProps.SortOrder
+	60,  // 208: api.content.v1.WorkMapSectionProps.aspect_ratio:type_name -> api.content.v1.WorkMapSectionProps.AspectRatio
+	61,  // 209: api.content.v1.WorkMapSectionProps.primary_label:type_name -> api.content.v1.WorkMapSectionProps.PrimaryLabel
+	62,  // 210: api.content.v1.WorkMapSectionProps.preferred_scheme:type_name -> api.content.v1.WorkMapSectionProps.PreferredScheme
+	63,  // 211: api.content.v1.WorkMapSectionProps.area_labels_mode:type_name -> api.content.v1.WorkMapSectionProps.AreaLabelsMode
+	64,  // 212: api.content.v1.WorkMapSectionProps.poi_labels_mode:type_name -> api.content.v1.WorkMapSectionProps.PoiLabelsMode
+	65,  // 213: api.content.v1.WorkTableSectionProps.work_types:type_name -> api.content.v1.WorkTableSectionProps.WorkTypesItem
+	66,  // 214: api.content.v1.WorkTableSectionProps.statuses:type_name -> api.content.v1.WorkTableSectionProps.StatusesItem
+	67,  // 215: api.content.v1.WorkTableSectionProps.filter_fields:type_name -> api.content.v1.WorkTableSectionProps.FilterFieldsItem
+	68,  // 216: api.content.v1.WorkTableSectionProps.sort_fields:type_name -> api.content.v1.WorkTableSectionProps.SortFieldsItem
+	69,  // 217: api.content.v1.WorkListSectionProps.layout:type_name -> api.content.v1.WorkListSectionProps.Layout
+	70,  // 218: api.content.v1.WorkListSectionProps.sort_order:type_name -> api.content.v1.WorkListSectionProps.SortOrder
+	71,  // 219: api.content.v1.WorkListSectionProps.work_types:type_name -> api.content.v1.WorkListSectionProps.WorkTypesItem
+	72,  // 220: api.content.v1.WorkListSectionProps.sort_by:type_name -> api.content.v1.WorkListSectionProps.SortBy
+	73,  // 221: api.content.v1.WorkListSectionProps.image_aspect_ratio:type_name -> api.content.v1.WorkListSectionProps.ImageAspectRatio
+	74,  // 222: api.content.v1.WorkListSectionProps.item_size:type_name -> api.content.v1.WorkListSectionProps.ItemSize
+	75,  // 223: api.content.v1.ProgramEventListSectionProps.layout:type_name -> api.content.v1.ProgramEventListSectionProps.Layout
+	76,  // 224: api.content.v1.ProgramEventListSectionProps.sort_order:type_name -> api.content.v1.ProgramEventListSectionProps.SortOrder
+	77,  // 225: api.content.v1.ProgramEventListSectionProps.time_window:type_name -> api.content.v1.ProgramEventListSectionProps.TimeWindow
+	78,  // 226: api.content.v1.ProgramEventListSectionProps.sort_by:type_name -> api.content.v1.ProgramEventListSectionProps.SortBy
+	79,  // 227: api.content.v1.ProgramEventListSectionProps.image_aspect_ratio:type_name -> api.content.v1.ProgramEventListSectionProps.ImageAspectRatio
+	80,  // 228: api.content.v1.ProgramEventListSectionProps.item_size:type_name -> api.content.v1.ProgramEventListSectionProps.ItemSize
+	81,  // 229: api.content.v1.ReleaseListSectionProps.layout:type_name -> api.content.v1.ReleaseListSectionProps.Layout
+	82,  // 230: api.content.v1.ReleaseListSectionProps.sort_order:type_name -> api.content.v1.ReleaseListSectionProps.SortOrder
+	83,  // 231: api.content.v1.ReleaseListSectionProps.types:type_name -> api.content.v1.ReleaseListSectionProps.TypesItem
+	84,  // 232: api.content.v1.ReleaseListSectionProps.sort_by:type_name -> api.content.v1.ReleaseListSectionProps.SortBy
+	85,  // 233: api.content.v1.ReleaseListSectionProps.image_aspect_ratio:type_name -> api.content.v1.ReleaseListSectionProps.ImageAspectRatio
+	86,  // 234: api.content.v1.ReleaseListSectionProps.item_size:type_name -> api.content.v1.ReleaseListSectionProps.ItemSize
+	87,  // 235: api.content.v1.ArtistListSectionProps.layout:type_name -> api.content.v1.ArtistListSectionProps.Layout
+	88,  // 236: api.content.v1.ArtistListSectionProps.sort_order:type_name -> api.content.v1.ArtistListSectionProps.SortOrder
+	89,  // 237: api.content.v1.ArtistListSectionProps.sort_by:type_name -> api.content.v1.ArtistListSectionProps.SortBy
+	90,  // 238: api.content.v1.ArtistListSectionProps.image_aspect_ratio:type_name -> api.content.v1.ArtistListSectionProps.ImageAspectRatio
+	91,  // 239: api.content.v1.ArtistListSectionProps.item_size:type_name -> api.content.v1.ArtistListSectionProps.ItemSize
+	92,  // 240: api.content.v1.LabelListSectionProps.layout:type_name -> api.content.v1.LabelListSectionProps.Layout
+	93,  // 241: api.content.v1.LabelListSectionProps.sort_order:type_name -> api.content.v1.LabelListSectionProps.SortOrder
+	94,  // 242: api.content.v1.LabelListSectionProps.sort_by:type_name -> api.content.v1.LabelListSectionProps.SortBy
+	95,  // 243: api.content.v1.LabelListSectionProps.image_aspect_ratio:type_name -> api.content.v1.LabelListSectionProps.ImageAspectRatio
+	96,  // 244: api.content.v1.LabelListSectionProps.item_size:type_name -> api.content.v1.LabelListSectionProps.ItemSize
+	97,  // 245: api.content.v1.AuthorListSectionProps.layout:type_name -> api.content.v1.AuthorListSectionProps.Layout
+	98,  // 246: api.content.v1.AuthorListSectionProps.source:type_name -> api.content.v1.AuthorListSectionProps.Source
+	99,  // 247: api.content.v1.AuthorListSectionProps.item_size:type_name -> api.content.v1.AuthorListSectionProps.ItemSize
+	100, // 248: api.content.v1.TextMarqueeSectionProps.direction:type_name -> api.content.v1.TextMarqueeSectionProps.Direction
+	101, // 249: api.content.v1.TextMarqueeSectionProps.speed:type_name -> api.content.v1.TextMarqueeSectionProps.Speed
+	102, // 250: api.content.v1.TextMarqueeSectionProps.item_height:type_name -> api.content.v1.TextMarqueeSectionProps.ItemHeight
+	103, // 251: api.content.v1.TextMarqueeSectionProps.gap:type_name -> api.content.v1.TextMarqueeSectionProps.Gap
+	104, // 252: api.content.v1.TextMarqueeSectionProps.link_target:type_name -> api.content.v1.TextMarqueeSectionProps.LinkTarget
+	358, // 253: api.content.v1.TextMarqueeSectionProps.items:type_name -> api.content.v1.TextMarqueeSectionProps.ItemsItem
+	105, // 254: api.content.v1.ClientMarqueeSectionProps.direction:type_name -> api.content.v1.ClientMarqueeSectionProps.Direction
+	106, // 255: api.content.v1.ClientMarqueeSectionProps.speed:type_name -> api.content.v1.ClientMarqueeSectionProps.Speed
+	107, // 256: api.content.v1.ClientMarqueeSectionProps.item_height:type_name -> api.content.v1.ClientMarqueeSectionProps.ItemHeight
+	108, // 257: api.content.v1.ClientMarqueeSectionProps.gap:type_name -> api.content.v1.ClientMarqueeSectionProps.Gap
+	109, // 258: api.content.v1.ClientMarqueeSectionProps.link_target:type_name -> api.content.v1.ClientMarqueeSectionProps.LinkTarget
+	110, // 259: api.content.v1.ClientMarqueeSectionProps.source:type_name -> api.content.v1.ClientMarqueeSectionProps.Source
+	111, // 260: api.content.v1.ClientMarqueeSectionProps.link_mode:type_name -> api.content.v1.ClientMarqueeSectionProps.LinkMode
+	112, // 261: api.content.v1.ClientMarqueeSectionProps.logo_scale:type_name -> api.content.v1.ClientMarqueeSectionProps.LogoScale
+	113, // 262: api.content.v1.ClientMarqueeSectionProps.fallback_mode:type_name -> api.content.v1.ClientMarqueeSectionProps.FallbackMode
+	114, // 263: api.content.v1.LabelMarqueeSectionProps.direction:type_name -> api.content.v1.LabelMarqueeSectionProps.Direction
+	115, // 264: api.content.v1.LabelMarqueeSectionProps.speed:type_name -> api.content.v1.LabelMarqueeSectionProps.Speed
+	116, // 265: api.content.v1.LabelMarqueeSectionProps.item_height:type_name -> api.content.v1.LabelMarqueeSectionProps.ItemHeight
+	117, // 266: api.content.v1.LabelMarqueeSectionProps.gap:type_name -> api.content.v1.LabelMarqueeSectionProps.Gap
+	118, // 267: api.content.v1.LabelMarqueeSectionProps.link_target:type_name -> api.content.v1.LabelMarqueeSectionProps.LinkTarget
+	119, // 268: api.content.v1.LabelMarqueeSectionProps.source:type_name -> api.content.v1.LabelMarqueeSectionProps.Source
+	120, // 269: api.content.v1.LabelMarqueeSectionProps.link_mode:type_name -> api.content.v1.LabelMarqueeSectionProps.LinkMode
+	121, // 270: api.content.v1.LabelMarqueeSectionProps.logo_scale:type_name -> api.content.v1.LabelMarqueeSectionProps.LogoScale
+	122, // 271: api.content.v1.LabelMarqueeSectionProps.fallback_mode:type_name -> api.content.v1.LabelMarqueeSectionProps.FallbackMode
+	123, // 272: api.content.v1.MapSectionProps.aspect_ratio:type_name -> api.content.v1.MapSectionProps.AspectRatio
+	124, // 273: api.content.v1.MapSectionProps.variant:type_name -> api.content.v1.MapSectionProps.Variant
+	125, // 274: api.content.v1.MapSectionProps.preferred_scheme:type_name -> api.content.v1.MapSectionProps.PreferredScheme
+	126, // 275: api.content.v1.MapSectionProps.area_labels_mode:type_name -> api.content.v1.MapSectionProps.AreaLabelsMode
+	127, // 276: api.content.v1.MapSectionProps.poi_labels_mode:type_name -> api.content.v1.MapSectionProps.PoiLabelsMode
+	128, // 277: api.content.v1.ImmersiveSceneSectionProps.playback:type_name -> api.content.v1.ImmersiveSceneSectionProps.Playback
+	129, // 278: api.content.v1.ImmersiveSceneSectionProps.transition:type_name -> api.content.v1.ImmersiveSceneSectionProps.Transition
+	130, // 279: api.content.v1.ImmersiveSceneSectionProps.texture_size:type_name -> api.content.v1.ImmersiveSceneSectionProps.TextureSize
+	131, // 280: api.content.v1.ImmersiveSceneSectionProps.preferred_scheme:type_name -> api.content.v1.ImmersiveSceneSectionProps.PreferredScheme
+	132, // 281: api.content.v1.ImmersiveSceneSectionProps.text_color_source:type_name -> api.content.v1.ImmersiveSceneSectionProps.TextColorSource
+	133, // 282: api.content.v1.ImmersiveSceneSectionProps.dark_text_color_source:type_name -> api.content.v1.ImmersiveSceneSectionProps.DarkTextColorSource
+	359, // 283: api.content.v1.ColumnsSectionProps.columns:type_name -> api.content.v1.ColumnsSectionProps.ColumnsItem
+	134, // 284: api.content.v1.EmbedSectionProps.height_mode:type_name -> api.content.v1.EmbedSectionProps.HeightMode
+	243, // 285: api.content.v1.RichTextSection.props:type_name -> api.content.v1.RichTextSectionProps
+	225, // 286: api.content.v1.RichTextSection.blocks:type_name -> api.content.v1.RichTextBlockGraph
+	244, // 287: api.content.v1.ExternalVideoSection.props:type_name -> api.content.v1.ExternalVideoSectionProps
+	245, // 288: api.content.v1.PostListSection.props:type_name -> api.content.v1.PostListSectionProps
+	246, // 289: api.content.v1.PostTableSection.props:type_name -> api.content.v1.PostTableSectionProps
+	247, // 290: api.content.v1.PostMapSection.props:type_name -> api.content.v1.PostMapSectionProps
+	248, // 291: api.content.v1.WorkMapSection.props:type_name -> api.content.v1.WorkMapSectionProps
+	249, // 292: api.content.v1.WorkTableSection.props:type_name -> api.content.v1.WorkTableSectionProps
+	250, // 293: api.content.v1.WorkListSection.props:type_name -> api.content.v1.WorkListSectionProps
+	251, // 294: api.content.v1.ProgramEventListSection.props:type_name -> api.content.v1.ProgramEventListSectionProps
+	252, // 295: api.content.v1.ReleaseListSection.props:type_name -> api.content.v1.ReleaseListSectionProps
+	253, // 296: api.content.v1.ArtistListSection.props:type_name -> api.content.v1.ArtistListSectionProps
+	254, // 297: api.content.v1.LabelListSection.props:type_name -> api.content.v1.LabelListSectionProps
+	255, // 298: api.content.v1.AuthorListSection.props:type_name -> api.content.v1.AuthorListSectionProps
+	256, // 299: api.content.v1.FormSection.props:type_name -> api.content.v1.FormSectionProps
+	257, // 300: api.content.v1.TextMarqueeSection.props:type_name -> api.content.v1.TextMarqueeSectionProps
+	258, // 301: api.content.v1.ClientMarqueeSection.props:type_name -> api.content.v1.ClientMarqueeSectionProps
+	259, // 302: api.content.v1.LabelMarqueeSection.props:type_name -> api.content.v1.LabelMarqueeSectionProps
+	260, // 303: api.content.v1.MapSection.props:type_name -> api.content.v1.MapSectionProps
+	261, // 304: api.content.v1.ImmersiveSceneSection.props:type_name -> api.content.v1.ImmersiveSceneSectionProps
+	241, // 305: api.content.v1.ImmersiveSceneSection.units:type_name -> api.content.v1.PageImmersiveUnit
+	262, // 306: api.content.v1.ColumnsSection.props:type_name -> api.content.v1.ColumnsSectionProps
+	263, // 307: api.content.v1.MermaidSection.props:type_name -> api.content.v1.MermaidSectionProps
+	264, // 308: api.content.v1.EmbedSection.props:type_name -> api.content.v1.EmbedSectionProps
+	265, // 309: api.content.v1.RichTextSectionLocale.props:type_name -> api.content.v1.RichTextSectionLocaleProps
+	226, // 310: api.content.v1.RichTextSectionLocale.blocks:type_name -> api.content.v1.RichTextLocaleOverlay
+	266, // 311: api.content.v1.ExternalVideoSectionLocale.props:type_name -> api.content.v1.ExternalVideoSectionLocaleProps
+	267, // 312: api.content.v1.PostListSectionLocale.props:type_name -> api.content.v1.PostListSectionLocaleProps
+	268, // 313: api.content.v1.PostTableSectionLocale.props:type_name -> api.content.v1.PostTableSectionLocaleProps
+	269, // 314: api.content.v1.PostMapSectionLocale.props:type_name -> api.content.v1.PostMapSectionLocaleProps
+	270, // 315: api.content.v1.WorkMapSectionLocale.props:type_name -> api.content.v1.WorkMapSectionLocaleProps
+	271, // 316: api.content.v1.WorkTableSectionLocale.props:type_name -> api.content.v1.WorkTableSectionLocaleProps
+	272, // 317: api.content.v1.WorkListSectionLocale.props:type_name -> api.content.v1.WorkListSectionLocaleProps
+	273, // 318: api.content.v1.ProgramEventListSectionLocale.props:type_name -> api.content.v1.ProgramEventListSectionLocaleProps
+	274, // 319: api.content.v1.ReleaseListSectionLocale.props:type_name -> api.content.v1.ReleaseListSectionLocaleProps
+	275, // 320: api.content.v1.ArtistListSectionLocale.props:type_name -> api.content.v1.ArtistListSectionLocaleProps
+	276, // 321: api.content.v1.LabelListSectionLocale.props:type_name -> api.content.v1.LabelListSectionLocaleProps
+	277, // 322: api.content.v1.AuthorListSectionLocale.props:type_name -> api.content.v1.AuthorListSectionLocaleProps
+	278, // 323: api.content.v1.FormSectionLocale.props:type_name -> api.content.v1.FormSectionLocaleProps
+	279, // 324: api.content.v1.TextMarqueeSectionLocale.props:type_name -> api.content.v1.TextMarqueeSectionLocaleProps
+	280, // 325: api.content.v1.ClientMarqueeSectionLocale.props:type_name -> api.content.v1.ClientMarqueeSectionLocaleProps
+	281, // 326: api.content.v1.LabelMarqueeSectionLocale.props:type_name -> api.content.v1.LabelMarqueeSectionLocaleProps
+	282, // 327: api.content.v1.MapSectionLocale.props:type_name -> api.content.v1.MapSectionLocaleProps
+	283, // 328: api.content.v1.ImmersiveSceneSectionLocale.props:type_name -> api.content.v1.ImmersiveSceneSectionLocaleProps
+	242, // 329: api.content.v1.ImmersiveSceneSectionLocale.units:type_name -> api.content.v1.PageImmersiveUnitLocale
+	284, // 330: api.content.v1.ColumnsSectionLocale.props:type_name -> api.content.v1.ColumnsSectionLocaleProps
+	285, // 331: api.content.v1.MermaidSectionLocale.props:type_name -> api.content.v1.MermaidSectionLocaleProps
+	286, // 332: api.content.v1.EmbedSectionLocale.props:type_name -> api.content.v1.EmbedSectionLocaleProps
+	238, // 333: api.content.v1.PageSection.settings:type_name -> api.content.v1.PageSectionSettings
+	287, // 334: api.content.v1.PageSection.rich_text:type_name -> api.content.v1.RichTextSection
+	288, // 335: api.content.v1.PageSection.external_video:type_name -> api.content.v1.ExternalVideoSection
+	289, // 336: api.content.v1.PageSection.post_list:type_name -> api.content.v1.PostListSection
+	290, // 337: api.content.v1.PageSection.post_table:type_name -> api.content.v1.PostTableSection
+	291, // 338: api.content.v1.PageSection.post_map:type_name -> api.content.v1.PostMapSection
+	292, // 339: api.content.v1.PageSection.work_map:type_name -> api.content.v1.WorkMapSection
+	293, // 340: api.content.v1.PageSection.work_table:type_name -> api.content.v1.WorkTableSection
+	294, // 341: api.content.v1.PageSection.work_list:type_name -> api.content.v1.WorkListSection
+	295, // 342: api.content.v1.PageSection.program_event_list:type_name -> api.content.v1.ProgramEventListSection
+	296, // 343: api.content.v1.PageSection.release_list:type_name -> api.content.v1.ReleaseListSection
+	297, // 344: api.content.v1.PageSection.artist_list:type_name -> api.content.v1.ArtistListSection
+	298, // 345: api.content.v1.PageSection.label_list:type_name -> api.content.v1.LabelListSection
+	299, // 346: api.content.v1.PageSection.author_list:type_name -> api.content.v1.AuthorListSection
+	300, // 347: api.content.v1.PageSection.form:type_name -> api.content.v1.FormSection
+	301, // 348: api.content.v1.PageSection.text_marquee:type_name -> api.content.v1.TextMarqueeSection
+	302, // 349: api.content.v1.PageSection.client_marquee:type_name -> api.content.v1.ClientMarqueeSection
+	303, // 350: api.content.v1.PageSection.label_marquee:type_name -> api.content.v1.LabelMarqueeSection
+	304, // 351: api.content.v1.PageSection.map:type_name -> api.content.v1.MapSection
+	305, // 352: api.content.v1.PageSection.immersive_scene:type_name -> api.content.v1.ImmersiveSceneSection
+	306, // 353: api.content.v1.PageSection.columns:type_name -> api.content.v1.ColumnsSection
+	307, // 354: api.content.v1.PageSection.mermaid:type_name -> api.content.v1.MermaidSection
+	308, // 355: api.content.v1.PageSection.embed:type_name -> api.content.v1.EmbedSection
+	309, // 356: api.content.v1.PageSectionLocale.rich_text:type_name -> api.content.v1.RichTextSectionLocale
+	310, // 357: api.content.v1.PageSectionLocale.external_video:type_name -> api.content.v1.ExternalVideoSectionLocale
+	311, // 358: api.content.v1.PageSectionLocale.post_list:type_name -> api.content.v1.PostListSectionLocale
+	312, // 359: api.content.v1.PageSectionLocale.post_table:type_name -> api.content.v1.PostTableSectionLocale
+	313, // 360: api.content.v1.PageSectionLocale.post_map:type_name -> api.content.v1.PostMapSectionLocale
+	314, // 361: api.content.v1.PageSectionLocale.work_map:type_name -> api.content.v1.WorkMapSectionLocale
+	315, // 362: api.content.v1.PageSectionLocale.work_table:type_name -> api.content.v1.WorkTableSectionLocale
+	316, // 363: api.content.v1.PageSectionLocale.work_list:type_name -> api.content.v1.WorkListSectionLocale
+	317, // 364: api.content.v1.PageSectionLocale.program_event_list:type_name -> api.content.v1.ProgramEventListSectionLocale
+	318, // 365: api.content.v1.PageSectionLocale.release_list:type_name -> api.content.v1.ReleaseListSectionLocale
+	319, // 366: api.content.v1.PageSectionLocale.artist_list:type_name -> api.content.v1.ArtistListSectionLocale
+	320, // 367: api.content.v1.PageSectionLocale.label_list:type_name -> api.content.v1.LabelListSectionLocale
+	321, // 368: api.content.v1.PageSectionLocale.author_list:type_name -> api.content.v1.AuthorListSectionLocale
+	322, // 369: api.content.v1.PageSectionLocale.form:type_name -> api.content.v1.FormSectionLocale
+	323, // 370: api.content.v1.PageSectionLocale.text_marquee:type_name -> api.content.v1.TextMarqueeSectionLocale
+	324, // 371: api.content.v1.PageSectionLocale.client_marquee:type_name -> api.content.v1.ClientMarqueeSectionLocale
+	325, // 372: api.content.v1.PageSectionLocale.label_marquee:type_name -> api.content.v1.LabelMarqueeSectionLocale
+	326, // 373: api.content.v1.PageSectionLocale.map:type_name -> api.content.v1.MapSectionLocale
+	327, // 374: api.content.v1.PageSectionLocale.immersive_scene:type_name -> api.content.v1.ImmersiveSceneSectionLocale
+	328, // 375: api.content.v1.PageSectionLocale.columns:type_name -> api.content.v1.ColumnsSectionLocale
+	329, // 376: api.content.v1.PageSectionLocale.mermaid:type_name -> api.content.v1.MermaidSectionLocale
+	330, // 377: api.content.v1.PageSectionLocale.embed:type_name -> api.content.v1.EmbedSectionLocale
+	238, // 378: api.content.v1.PageSectionData.settings:type_name -> api.content.v1.PageSectionSettings
+	287, // 379: api.content.v1.PageSectionData.rich_text:type_name -> api.content.v1.RichTextSection
+	288, // 380: api.content.v1.PageSectionData.external_video:type_name -> api.content.v1.ExternalVideoSection
+	289, // 381: api.content.v1.PageSectionData.post_list:type_name -> api.content.v1.PostListSection
+	290, // 382: api.content.v1.PageSectionData.post_table:type_name -> api.content.v1.PostTableSection
+	291, // 383: api.content.v1.PageSectionData.post_map:type_name -> api.content.v1.PostMapSection
+	292, // 384: api.content.v1.PageSectionData.work_map:type_name -> api.content.v1.WorkMapSection
+	293, // 385: api.content.v1.PageSectionData.work_table:type_name -> api.content.v1.WorkTableSection
+	294, // 386: api.content.v1.PageSectionData.work_list:type_name -> api.content.v1.WorkListSection
+	295, // 387: api.content.v1.PageSectionData.program_event_list:type_name -> api.content.v1.ProgramEventListSection
+	296, // 388: api.content.v1.PageSectionData.release_list:type_name -> api.content.v1.ReleaseListSection
+	297, // 389: api.content.v1.PageSectionData.artist_list:type_name -> api.content.v1.ArtistListSection
+	298, // 390: api.content.v1.PageSectionData.label_list:type_name -> api.content.v1.LabelListSection
+	299, // 391: api.content.v1.PageSectionData.author_list:type_name -> api.content.v1.AuthorListSection
+	300, // 392: api.content.v1.PageSectionData.form:type_name -> api.content.v1.FormSection
+	301, // 393: api.content.v1.PageSectionData.text_marquee:type_name -> api.content.v1.TextMarqueeSection
+	302, // 394: api.content.v1.PageSectionData.client_marquee:type_name -> api.content.v1.ClientMarqueeSection
+	303, // 395: api.content.v1.PageSectionData.label_marquee:type_name -> api.content.v1.LabelMarqueeSection
+	304, // 396: api.content.v1.PageSectionData.map:type_name -> api.content.v1.MapSection
+	305, // 397: api.content.v1.PageSectionData.immersive_scene:type_name -> api.content.v1.ImmersiveSceneSection
+	306, // 398: api.content.v1.PageSectionData.columns:type_name -> api.content.v1.ColumnsSection
+	307, // 399: api.content.v1.PageSectionData.mermaid:type_name -> api.content.v1.MermaidSection
+	308, // 400: api.content.v1.PageSectionData.embed:type_name -> api.content.v1.EmbedSection
+	309, // 401: api.content.v1.PageSectionLocaleData.rich_text:type_name -> api.content.v1.RichTextSectionLocale
+	310, // 402: api.content.v1.PageSectionLocaleData.external_video:type_name -> api.content.v1.ExternalVideoSectionLocale
+	311, // 403: api.content.v1.PageSectionLocaleData.post_list:type_name -> api.content.v1.PostListSectionLocale
+	312, // 404: api.content.v1.PageSectionLocaleData.post_table:type_name -> api.content.v1.PostTableSectionLocale
+	313, // 405: api.content.v1.PageSectionLocaleData.post_map:type_name -> api.content.v1.PostMapSectionLocale
+	314, // 406: api.content.v1.PageSectionLocaleData.work_map:type_name -> api.content.v1.WorkMapSectionLocale
+	315, // 407: api.content.v1.PageSectionLocaleData.work_table:type_name -> api.content.v1.WorkTableSectionLocale
+	316, // 408: api.content.v1.PageSectionLocaleData.work_list:type_name -> api.content.v1.WorkListSectionLocale
+	317, // 409: api.content.v1.PageSectionLocaleData.program_event_list:type_name -> api.content.v1.ProgramEventListSectionLocale
+	318, // 410: api.content.v1.PageSectionLocaleData.release_list:type_name -> api.content.v1.ReleaseListSectionLocale
+	319, // 411: api.content.v1.PageSectionLocaleData.artist_list:type_name -> api.content.v1.ArtistListSectionLocale
+	320, // 412: api.content.v1.PageSectionLocaleData.label_list:type_name -> api.content.v1.LabelListSectionLocale
+	321, // 413: api.content.v1.PageSectionLocaleData.author_list:type_name -> api.content.v1.AuthorListSectionLocale
+	322, // 414: api.content.v1.PageSectionLocaleData.form:type_name -> api.content.v1.FormSectionLocale
+	323, // 415: api.content.v1.PageSectionLocaleData.text_marquee:type_name -> api.content.v1.TextMarqueeSectionLocale
+	324, // 416: api.content.v1.PageSectionLocaleData.client_marquee:type_name -> api.content.v1.ClientMarqueeSectionLocale
+	325, // 417: api.content.v1.PageSectionLocaleData.label_marquee:type_name -> api.content.v1.LabelMarqueeSectionLocale
+	326, // 418: api.content.v1.PageSectionLocaleData.map:type_name -> api.content.v1.MapSectionLocale
+	327, // 419: api.content.v1.PageSectionLocaleData.immersive_scene:type_name -> api.content.v1.ImmersiveSceneSectionLocale
+	328, // 420: api.content.v1.PageSectionLocaleData.columns:type_name -> api.content.v1.ColumnsSectionLocale
+	329, // 421: api.content.v1.PageSectionLocaleData.mermaid:type_name -> api.content.v1.MermaidSectionLocale
+	330, // 422: api.content.v1.PageSectionLocaleData.embed:type_name -> api.content.v1.EmbedSectionLocale
+	331, // 423: api.content.v1.PageSectionNode.section:type_name -> api.content.v1.PageSection
+	335, // 424: api.content.v1.PageSectionNode.placement:type_name -> api.content.v1.PageSectionPlacement
+	336, // 425: api.content.v1.PageSectionGraph.nodes:type_name -> api.content.v1.PageSectionNode
+	332, // 426: api.content.v1.PageLocaleOverlay.sections:type_name -> api.content.v1.PageSectionLocale
+	337, // 427: api.content.v1.PageDocument.base:type_name -> api.content.v1.PageSectionGraph
+	338, // 428: api.content.v1.PageDocument.locale_overlays:type_name -> api.content.v1.PageLocaleOverlay
+	337, // 429: api.content.v1.LocalizedPageDocument.base:type_name -> api.content.v1.PageSectionGraph
+	338, // 430: api.content.v1.LocalizedPageDocument.locale_overlay:type_name -> api.content.v1.PageLocaleOverlay
+	336, // 431: api.content.v1.UpsertPageSection.node:type_name -> api.content.v1.PageSectionNode
+	335, // 432: api.content.v1.MovePageSection.placement:type_name -> api.content.v1.PageSectionPlacement
+	232, // 433: api.content.v1.MutatePageRichTextBlock.mutation:type_name -> api.content.v1.RichTextBlockMutation
+	341, // 434: api.content.v1.PageSectionMutation.upsert:type_name -> api.content.v1.UpsertPageSection
+	342, // 435: api.content.v1.PageSectionMutation.delete:type_name -> api.content.v1.DeletePageSection
+	343, // 436: api.content.v1.PageSectionMutation.move:type_name -> api.content.v1.MovePageSection
+	344, // 437: api.content.v1.PageSectionMutation.mutate_rich_text_block:type_name -> api.content.v1.MutatePageRichTextBlock
+	332, // 438: api.content.v1.UpsertPageSectionLocale.section:type_name -> api.content.v1.PageSectionLocale
+	235, // 439: api.content.v1.MutatePageRichTextBlockLocale.mutation:type_name -> api.content.v1.RichTextBlockLocaleMutation
+	346, // 440: api.content.v1.PageSectionLocaleMutation.upsert:type_name -> api.content.v1.UpsertPageSectionLocale
+	347, // 441: api.content.v1.PageSectionLocaleMutation.delete:type_name -> api.content.v1.DeletePageSectionLocale
+	348, // 442: api.content.v1.PageSectionLocaleMutation.mutate_rich_text_block:type_name -> api.content.v1.MutatePageRichTextBlockLocale
+	349, // 443: api.content.v1.PageLocaleMutationGroup.mutations:type_name -> api.content.v1.PageSectionLocaleMutation
+	345, // 444: api.content.v1.PageSectionMutationBatch.base_mutations:type_name -> api.content.v1.PageSectionMutation
+	350, // 445: api.content.v1.PageSectionMutationBatch.locale_mutation_groups:type_name -> api.content.v1.PageLocaleMutationGroup
+	352, // 446: api.content.v1.ContentBlockMediaItem.selector:type_name -> api.content.v1.ContentBlockMediaSelector
+	136, // 447: api.content.v1.ContentBlockMediaItem.attachment:type_name -> api.content.v1.FileAttachment
+	360, // 448: api.content.v1.ContentBlockMediaItem.delivery:type_name -> api.common.v1.MediaDelivery
+	3,   // 449: api.content.v1.ContentBlockMediaItem.download_availability:type_name -> api.content.v1.ContentBlockDownloadAvailability
+	4,   // 450: api.content.v1.ContentBlockMediaItem.download_action:type_name -> api.content.v1.ContentBlockDownloadAction
+	24,  // 451: api.content.v1.ShaderProps.StagesItem.kind:type_name -> api.content.v1.ShaderProps.StagesItem.Kind
+	356, // 452: api.content.v1.ShaderProps.StagesItem.channels:type_name -> api.content.v1.ShaderProps.StagesItem.ChannelsItem
+	25,  // 453: api.content.v1.ShaderProps.StagesItem.ChannelsItem.kind:type_name -> api.content.v1.ShaderProps.StagesItem.ChannelsItem.Kind
+	26,  // 454: api.content.v1.ShaderProps.StagesItem.ChannelsItem.buffer:type_name -> api.content.v1.ShaderProps.StagesItem.ChannelsItem.Buffer
+	136, // 455: api.content.v1.ShaderProps.StagesItem.ChannelsItem.file:type_name -> api.content.v1.FileAttachment
+	136, // 456: api.content.v1.ShaderProps.StagesItem.ChannelsItem.faces:type_name -> api.content.v1.FileAttachment
+	357, // 457: api.content.v1.ShaderProps.StagesItem.ChannelsItem.sampler:type_name -> api.content.v1.ShaderProps.StagesItem.ChannelsItem.SamplerValue
+	27,  // 458: api.content.v1.ShaderProps.StagesItem.ChannelsItem.SamplerValue.filter:type_name -> api.content.v1.ShaderProps.StagesItem.ChannelsItem.SamplerValue.Filter
+	28,  // 459: api.content.v1.ShaderProps.StagesItem.ChannelsItem.SamplerValue.wrap:type_name -> api.content.v1.ShaderProps.StagesItem.ChannelsItem.SamplerValue.Wrap
+	460, // [460:460] is the sub-list for method output_type
+	460, // [460:460] is the sub-list for method input_type
+	460, // [460:460] is the sub-list for extension type_name
+	460, // [460:460] is the sub-list for extension extendee
+	0,   // [0:460] is the sub-list for field type_name
 }
 
 func init() { file_api_content_v1_block_content_proto_init() }
@@ -26350,22 +26434,22 @@ func file_api_content_v1_block_content_proto_init() {
 		(*FileAttachment_MissingAttachment)(nil),
 	}
 	file_api_content_v1_block_content_proto_msgTypes[2].OneofWrappers = []any{}
-	file_api_content_v1_block_content_proto_msgTypes[7].OneofWrappers = []any{
+	file_api_content_v1_block_content_proto_msgTypes[8].OneofWrappers = []any{
 		(*RichTextInline_Text)(nil),
 		(*RichTextInline_HardBreak)(nil),
 		(*RichTextInline_Link)(nil),
 		(*RichTextInline_MathInline)(nil),
+		(*RichTextInline_SiteVariable)(nil),
 	}
-	file_api_content_v1_block_content_proto_msgTypes[8].OneofWrappers = []any{}
-	file_api_content_v1_block_content_proto_msgTypes[11].OneofWrappers = []any{}
-	file_api_content_v1_block_content_proto_msgTypes[15].OneofWrappers = []any{}
+	file_api_content_v1_block_content_proto_msgTypes[9].OneofWrappers = []any{}
+	file_api_content_v1_block_content_proto_msgTypes[12].OneofWrappers = []any{}
 	file_api_content_v1_block_content_proto_msgTypes[16].OneofWrappers = []any{}
 	file_api_content_v1_block_content_proto_msgTypes[17].OneofWrappers = []any{}
 	file_api_content_v1_block_content_proto_msgTypes[18].OneofWrappers = []any{}
 	file_api_content_v1_block_content_proto_msgTypes[19].OneofWrappers = []any{}
 	file_api_content_v1_block_content_proto_msgTypes[20].OneofWrappers = []any{}
 	file_api_content_v1_block_content_proto_msgTypes[21].OneofWrappers = []any{}
-	file_api_content_v1_block_content_proto_msgTypes[23].OneofWrappers = []any{}
+	file_api_content_v1_block_content_proto_msgTypes[22].OneofWrappers = []any{}
 	file_api_content_v1_block_content_proto_msgTypes[24].OneofWrappers = []any{}
 	file_api_content_v1_block_content_proto_msgTypes[25].OneofWrappers = []any{}
 	file_api_content_v1_block_content_proto_msgTypes[26].OneofWrappers = []any{}
@@ -26374,14 +26458,15 @@ func file_api_content_v1_block_content_proto_init() {
 	file_api_content_v1_block_content_proto_msgTypes[29].OneofWrappers = []any{}
 	file_api_content_v1_block_content_proto_msgTypes[30].OneofWrappers = []any{}
 	file_api_content_v1_block_content_proto_msgTypes[31].OneofWrappers = []any{}
-	file_api_content_v1_block_content_proto_msgTypes[38].OneofWrappers = []any{}
-	file_api_content_v1_block_content_proto_msgTypes[41].OneofWrappers = []any{}
+	file_api_content_v1_block_content_proto_msgTypes[32].OneofWrappers = []any{}
+	file_api_content_v1_block_content_proto_msgTypes[39].OneofWrappers = []any{}
 	file_api_content_v1_block_content_proto_msgTypes[42].OneofWrappers = []any{}
 	file_api_content_v1_block_content_proto_msgTypes[43].OneofWrappers = []any{}
-	file_api_content_v1_block_content_proto_msgTypes[45].OneofWrappers = []any{}
+	file_api_content_v1_block_content_proto_msgTypes[44].OneofWrappers = []any{}
 	file_api_content_v1_block_content_proto_msgTypes[46].OneofWrappers = []any{}
-	file_api_content_v1_block_content_proto_msgTypes[48].OneofWrappers = []any{}
-	file_api_content_v1_block_content_proto_msgTypes[83].OneofWrappers = []any{
+	file_api_content_v1_block_content_proto_msgTypes[47].OneofWrappers = []any{}
+	file_api_content_v1_block_content_proto_msgTypes[49].OneofWrappers = []any{}
+	file_api_content_v1_block_content_proto_msgTypes[84].OneofWrappers = []any{
 		(*RichTextBlock_Paragraph)(nil),
 		(*RichTextBlock_Heading)(nil),
 		(*RichTextBlock_BulletListItem)(nil),
@@ -26400,7 +26485,7 @@ func file_api_content_v1_block_content_proto_init() {
 		(*RichTextBlock_Callout)(nil),
 		(*RichTextBlock_Mermaid)(nil),
 	}
-	file_api_content_v1_block_content_proto_msgTypes[84].OneofWrappers = []any{
+	file_api_content_v1_block_content_proto_msgTypes[85].OneofWrappers = []any{
 		(*RichTextBlockLocale_Paragraph)(nil),
 		(*RichTextBlockLocale_Heading)(nil),
 		(*RichTextBlockLocale_BulletListItem)(nil),
@@ -26419,7 +26504,7 @@ func file_api_content_v1_block_content_proto_init() {
 		(*RichTextBlockLocale_Callout)(nil),
 		(*RichTextBlockLocale_Mermaid)(nil),
 	}
-	file_api_content_v1_block_content_proto_msgTypes[85].OneofWrappers = []any{
+	file_api_content_v1_block_content_proto_msgTypes[86].OneofWrappers = []any{
 		(*RichTextBlockData_Paragraph)(nil),
 		(*RichTextBlockData_Heading)(nil),
 		(*RichTextBlockData_BulletListItem)(nil),
@@ -26438,7 +26523,7 @@ func file_api_content_v1_block_content_proto_init() {
 		(*RichTextBlockData_Callout)(nil),
 		(*RichTextBlockData_Mermaid)(nil),
 	}
-	file_api_content_v1_block_content_proto_msgTypes[86].OneofWrappers = []any{
+	file_api_content_v1_block_content_proto_msgTypes[87].OneofWrappers = []any{
 		(*RichTextBlockLocaleData_Paragraph)(nil),
 		(*RichTextBlockLocaleData_Heading)(nil),
 		(*RichTextBlockLocaleData_BulletListItem)(nil),
@@ -26457,20 +26542,19 @@ func file_api_content_v1_block_content_proto_init() {
 		(*RichTextBlockLocaleData_Callout)(nil),
 		(*RichTextBlockLocaleData_Mermaid)(nil),
 	}
-	file_api_content_v1_block_content_proto_msgTypes[87].OneofWrappers = []any{}
-	file_api_content_v1_block_content_proto_msgTypes[96].OneofWrappers = []any{
+	file_api_content_v1_block_content_proto_msgTypes[88].OneofWrappers = []any{}
+	file_api_content_v1_block_content_proto_msgTypes[97].OneofWrappers = []any{
 		(*RichTextBlockMutation_Upsert)(nil),
 		(*RichTextBlockMutation_Delete)(nil),
 		(*RichTextBlockMutation_Move)(nil),
 	}
-	file_api_content_v1_block_content_proto_msgTypes[99].OneofWrappers = []any{
+	file_api_content_v1_block_content_proto_msgTypes[100].OneofWrappers = []any{
 		(*RichTextBlockLocaleMutation_Upsert)(nil),
 		(*RichTextBlockLocaleMutation_Delete)(nil),
 	}
-	file_api_content_v1_block_content_proto_msgTypes[102].OneofWrappers = []any{}
 	file_api_content_v1_block_content_proto_msgTypes[103].OneofWrappers = []any{}
 	file_api_content_v1_block_content_proto_msgTypes[104].OneofWrappers = []any{}
-	file_api_content_v1_block_content_proto_msgTypes[108].OneofWrappers = []any{}
+	file_api_content_v1_block_content_proto_msgTypes[105].OneofWrappers = []any{}
 	file_api_content_v1_block_content_proto_msgTypes[109].OneofWrappers = []any{}
 	file_api_content_v1_block_content_proto_msgTypes[110].OneofWrappers = []any{}
 	file_api_content_v1_block_content_proto_msgTypes[111].OneofWrappers = []any{}
@@ -26491,11 +26575,12 @@ func file_api_content_v1_block_content_proto_init() {
 	file_api_content_v1_block_content_proto_msgTypes[126].OneofWrappers = []any{}
 	file_api_content_v1_block_content_proto_msgTypes[127].OneofWrappers = []any{}
 	file_api_content_v1_block_content_proto_msgTypes[128].OneofWrappers = []any{}
-	file_api_content_v1_block_content_proto_msgTypes[130].OneofWrappers = []any{}
-	file_api_content_v1_block_content_proto_msgTypes[146].OneofWrappers = []any{}
-	file_api_content_v1_block_content_proto_msgTypes[149].OneofWrappers = []any{}
+	file_api_content_v1_block_content_proto_msgTypes[129].OneofWrappers = []any{}
+	file_api_content_v1_block_content_proto_msgTypes[131].OneofWrappers = []any{}
+	file_api_content_v1_block_content_proto_msgTypes[147].OneofWrappers = []any{}
 	file_api_content_v1_block_content_proto_msgTypes[150].OneofWrappers = []any{}
-	file_api_content_v1_block_content_proto_msgTypes[195].OneofWrappers = []any{
+	file_api_content_v1_block_content_proto_msgTypes[151].OneofWrappers = []any{}
+	file_api_content_v1_block_content_proto_msgTypes[196].OneofWrappers = []any{
 		(*PageSection_RichText)(nil),
 		(*PageSection_ExternalVideo)(nil),
 		(*PageSection_PostList)(nil),
@@ -26519,7 +26604,7 @@ func file_api_content_v1_block_content_proto_init() {
 		(*PageSection_Mermaid)(nil),
 		(*PageSection_Embed)(nil),
 	}
-	file_api_content_v1_block_content_proto_msgTypes[196].OneofWrappers = []any{
+	file_api_content_v1_block_content_proto_msgTypes[197].OneofWrappers = []any{
 		(*PageSectionLocale_RichText)(nil),
 		(*PageSectionLocale_ExternalVideo)(nil),
 		(*PageSectionLocale_PostList)(nil),
@@ -26543,7 +26628,7 @@ func file_api_content_v1_block_content_proto_init() {
 		(*PageSectionLocale_Mermaid)(nil),
 		(*PageSectionLocale_Embed)(nil),
 	}
-	file_api_content_v1_block_content_proto_msgTypes[197].OneofWrappers = []any{
+	file_api_content_v1_block_content_proto_msgTypes[198].OneofWrappers = []any{
 		(*PageSectionData_RichText)(nil),
 		(*PageSectionData_ExternalVideo)(nil),
 		(*PageSectionData_PostList)(nil),
@@ -26567,7 +26652,7 @@ func file_api_content_v1_block_content_proto_init() {
 		(*PageSectionData_Mermaid)(nil),
 		(*PageSectionData_Embed)(nil),
 	}
-	file_api_content_v1_block_content_proto_msgTypes[198].OneofWrappers = []any{
+	file_api_content_v1_block_content_proto_msgTypes[199].OneofWrappers = []any{
 		(*PageSectionLocaleData_RichText)(nil),
 		(*PageSectionLocaleData_ExternalVideo)(nil),
 		(*PageSectionLocaleData_PostList)(nil),
@@ -26591,29 +26676,29 @@ func file_api_content_v1_block_content_proto_init() {
 		(*PageSectionLocaleData_Mermaid)(nil),
 		(*PageSectionLocaleData_Embed)(nil),
 	}
-	file_api_content_v1_block_content_proto_msgTypes[199].OneofWrappers = []any{}
-	file_api_content_v1_block_content_proto_msgTypes[209].OneofWrappers = []any{
+	file_api_content_v1_block_content_proto_msgTypes[200].OneofWrappers = []any{}
+	file_api_content_v1_block_content_proto_msgTypes[210].OneofWrappers = []any{
 		(*PageSectionMutation_Upsert)(nil),
 		(*PageSectionMutation_Delete)(nil),
 		(*PageSectionMutation_Move)(nil),
 		(*PageSectionMutation_MutateRichTextBlock)(nil),
 	}
-	file_api_content_v1_block_content_proto_msgTypes[213].OneofWrappers = []any{
+	file_api_content_v1_block_content_proto_msgTypes[214].OneofWrappers = []any{
 		(*PageSectionLocaleMutation_Upsert)(nil),
 		(*PageSectionLocaleMutation_Delete)(nil),
 		(*PageSectionLocaleMutation_MutateRichTextBlock)(nil),
 	}
-	file_api_content_v1_block_content_proto_msgTypes[218].OneofWrappers = []any{}
-	file_api_content_v1_block_content_proto_msgTypes[220].OneofWrappers = []any{}
+	file_api_content_v1_block_content_proto_msgTypes[219].OneofWrappers = []any{}
 	file_api_content_v1_block_content_proto_msgTypes[221].OneofWrappers = []any{}
 	file_api_content_v1_block_content_proto_msgTypes[222].OneofWrappers = []any{}
+	file_api_content_v1_block_content_proto_msgTypes[223].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_api_content_v1_block_content_proto_rawDesc), len(file_api_content_v1_block_content_proto_rawDesc)),
 			NumEnums:      135,
-			NumMessages:   224,
+			NumMessages:   225,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

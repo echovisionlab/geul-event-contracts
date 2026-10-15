@@ -38,7 +38,7 @@ func TestPostRichTextCatalogDescriptorExposesClosedRecursiveAuthority(t *testing
 		}
 	}
 	link := requireMarkDescriptor(t, descriptor, "link")
-	if link.Parameter == nil || link.Parameter.Name != "href" || link.Parameter.Type != "uri" {
+	if link.Parameter == nil || link.Parameter.Name != "href" || link.Parameter.Type != "uri" || !link.Parameter.RootRelative {
 		t.Fatalf("link parameter is incomplete: %+v", link)
 	}
 
@@ -49,8 +49,20 @@ func TestPostRichTextCatalogDescriptorExposesClosedRecursiveAuthority(t *testing
 	if descriptor.Table.RowIdentity.Name != "id" || descriptor.Table.RowIdentity.Type != "uuid" || !descriptor.Table.RowIdentity.Required || descriptor.Table.CellIdentity.Name != "id" || descriptor.Table.CellIdentity.Type != "uuid" || !descriptor.Table.CellIdentity.Required {
 		t.Fatalf("stable table identities are incomplete: %+v", descriptor.Table)
 	}
-	if requireFieldDescriptor(t, descriptor.Table.CellFields, "backgroundColor").Type != "editor_color" || len(descriptor.Table.CellContent.Kinds) != 4 {
+	if requireFieldDescriptor(t, descriptor.Table.CellFields, "backgroundColor").Type != "editor_color" || len(descriptor.Table.CellContent.Kinds) != 5 {
 		t.Fatalf("table cell schema is incomplete: %+v", descriptor.Table)
+	}
+
+	variable := descriptor.Inline.Kinds[3]
+	if variable.Kind != "siteVariable" {
+		t.Fatalf("missing site variable descriptor: %+v", variable)
+	}
+	key := requireFieldDescriptor(t, variable.Fields, "key")
+	if key.Translatable || !key.Required || len(key.Values) != 6 {
+		t.Fatalf("site variable key descriptor: %+v", key)
+	}
+	if requireFieldDescriptor(t, variable.Fields, "linked").Type != "boolean" {
+		t.Fatal("missing linked scalar")
 	}
 
 	shader := requireBlockDescriptor(t, descriptor, "shader")
