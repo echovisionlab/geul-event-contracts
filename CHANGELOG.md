@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.7.1](https://github.com/echovisionlab/geul-event-contracts/compare/v0.7.0...v0.7.1) (2026-10-15)
+
+
+### Bug Fixes
+
+* publish packages to GitHub Packages ([#27](https://github.com/echovisionlab/geul-event-contracts/issues/27)) ([13cb675](https://github.com/echovisionlab/geul-event-contracts/commit/13cb675beb40eef696d084be04da4dc026dc83a1))
+
 ## [0.7.0](https://github.com/echovisionlab/geul-event-contracts/compare/v0.6.0...v0.7.0) (2026-10-15)
 
 
