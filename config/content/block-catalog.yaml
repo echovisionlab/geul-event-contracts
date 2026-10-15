@@ -855,8 +855,13 @@ page:
             ownership: shared,
           }
         # Append to preserve released protobuf field numbers.
-        itemSize: &collection_item_size
-          { type: enum, values: [s, m, l], default: m, ownership: shared }
+        itemSize:
+          &collection_item_size {
+            type: enum,
+            values: [s, m, l],
+            default: m,
+            ownership: shared,
+          }
     post-table:
       fields:
         categoryIds:
