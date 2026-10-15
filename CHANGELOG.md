@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.7.0](https://github.com/echovisionlab/geul-event-contracts/compare/v0.6.0...v0.7.0) (2026-10-15)
+
+
+### Features
+
+* **content:** site variables in rich text ([#24](https://github.com/echovisionlab/geul-event-contracts/issues/24)) ([cb2755f](https://github.com/echovisionlab/geul-event-contracts/commit/cb2755facdb9c5d2a287fd12a35fbc966a95008f))
+
 ## [0.6.0](https://github.com/echovisionlab/geul-event-contracts/compare/v0.5.0...v0.6.0) (2026-10-15)
 
 
