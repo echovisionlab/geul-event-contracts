@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.0](https://github.com/echovisionlab/geul-event-contracts/compare/v0.5.0...v0.6.0) (2026-10-15)
+
+
+### Features
+
+* **collaboration:** durable collaboration contracts for protocol v3 ([#22](https://github.com/echovisionlab/geul-event-contracts/issues/22)) ([cdae513](https://github.com/echovisionlab/geul-event-contracts/commit/cdae513f16389277e2dd8fc08ee6fde1b91e0925))
+
 ## [0.5.0](https://github.com/echovisionlab/geul-event-contracts/compare/v0.4.1...v0.5.0) (2026-10-06)
 
 
