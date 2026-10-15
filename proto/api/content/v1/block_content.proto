@@ -72,12 +72,19 @@ message RichTextInlineMath {
   string source = 1;
 }
 
+message RichTextSiteVariable {
+  string key = 1;
+  RichTextStyle styles = 2;
+  bool linked = 3;
+}
+
 message RichTextInline {
   oneof value {
     RichTextStyledText text = 1;
     RichTextHardBreak hard_break = 2;
     RichTextLink link = 3;
     RichTextInlineMath math_inline = 4;
+    RichTextSiteVariable site_variable = 5;
   }
 }
 

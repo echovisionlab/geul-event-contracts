@@ -167,10 +167,34 @@ rich_text:
             {
               type: uri,
               schemes: [http, https, mailto, tel],
+              root_relative: true,
               required: true,
               ownership: locale,
             }
         content: text
+      siteVariable:
+        fields:
+          key:
+            type: string
+            required: true
+            ownership: locale
+            values:
+              [
+                site.title,
+                site.url,
+                site.companyName,
+                contact.legalEmail,
+                contact.supportEmail,
+                contact.privacyEmail,
+              ]
+          linked: { type: boolean, ownership: locale }
+        linked_keys:
+          [
+            site.url,
+            contact.legalEmail,
+            contact.supportEmail,
+            contact.privacyEmail,
+          ]
       mathInline:
         fields:
           source: { type: string, required: true, ownership: locale }
