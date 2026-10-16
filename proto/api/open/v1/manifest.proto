@@ -39,9 +39,8 @@ message SiteSettings {
   repeated api.common.v1.AssetRef loader_assets = 15;
   optional api.common.v1.FaviconAssetSet favicon_asset_set = 16;
   string legal_email = 17;
-  // Legacy read aliases of contact_email; retained for older clients.
-  string support_email = 18 [deprecated = true];
-  string privacy_email = 19 [deprecated = true];
+  reserved 18, 19;
+  reserved "support_email", "privacy_email";
   string contact_email = 20;
 }
 

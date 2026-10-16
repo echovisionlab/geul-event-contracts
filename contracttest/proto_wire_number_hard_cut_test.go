@@ -307,9 +307,14 @@ func checkDenseMessageNumbers(t *testing.T, message protoreflect.MessageDescript
 		if message.Options().(*descriptorpb.MessageOptions).GetDeprecated() {
 			t.Error("deprecated message option is forbidden")
 		}
-		if message.FullName() == "api.intra.v1.ProgramEventLocaleMetadata" {
+		switch message.FullName() {
+		case "api.intra.v1.ProgramEventLocaleMetadata":
 			assertProgramEventSourceMetadataReservations(t, message)
-		} else {
+		case "api.manage.v1.PublicSettings":
+			assertContactSettingsReservations(t, message, 6, 7)
+		case "api.open.v1.SiteSettings":
+			assertContactSettingsReservations(t, message, 18, 19)
+		default:
 			if message.ReservedRanges().Len() != 0 {
 				t.Errorf("reserved ranges = %v, want none", message.ReservedRanges())
 			}
@@ -318,12 +323,17 @@ func checkDenseMessageNumbers(t *testing.T, message protoreflect.MessageDescript
 			}
 		}
 
+		want := protoreflect.FieldNumber(1)
 		for i := 0; i < message.Fields().Len(); i++ {
 			field := message.Fields().Get(i)
 			checkFieldIsNotDeprecated(t, field)
-			if want := protoreflect.FieldNumber(i + 1); field.Number() != want {
+			for message.ReservedRanges().Has(want) {
+				want++
+			}
+			if field.Number() != want {
 				t.Errorf("field %s is declaration %d with number %d, want %d", field.FullName(), i, field.Number(), want)
 			}
+			want++
 		}
 		for i := 0; i < message.Extensions().Len(); i++ {
 			checkFieldIsNotDeprecated(t, message.Extensions().Get(i))
@@ -336,6 +346,18 @@ func checkDenseMessageNumbers(t *testing.T, message protoreflect.MessageDescript
 			checkDenseMessageNumbers(t, message.Messages().Get(i))
 		}
 	})
+}
+
+func assertContactSettingsReservations(t *testing.T, message protoreflect.MessageDescriptor, support, privacy protoreflect.FieldNumber) {
+	t.Helper()
+	count := protoreflect.FieldNumber(0)
+	for i := 0; i < message.ReservedRanges().Len(); i++ {
+		r := message.ReservedRanges().Get(i)
+		count += r[1] - r[0]
+	}
+	if count != 2 || !message.ReservedRanges().Has(support) || !message.ReservedRanges().Has(privacy) || message.ReservedNames().Len() != 2 || !message.ReservedNames().Has("support_email") || !message.ReservedNames().Has("privacy_email") {
+		t.Fatalf("%s must reserve exactly the removed contact fields", message.FullName())
+	}
 }
 
 func checkDenseEnumNumbers(t *testing.T, enum protoreflect.EnumDescriptor) {
@@ -402,13 +424,6 @@ func assertCollaborationConflictReasonHardCut(t *testing.T, enum protoreflect.En
 
 func checkFieldIsNotDeprecated(t *testing.T, field protoreflect.FieldDescriptor) {
 	t.Helper()
-	// Public contact aliases preserve existing clients and persisted content.
-	// Their numbers and deprecation state are pinned by the contact contract test.
-	switch field.FullName() {
-	case "api.manage.v1.PublicSettings.support_email", "api.manage.v1.PublicSettings.privacy_email",
-		"api.open.v1.SiteSettings.support_email", "api.open.v1.SiteSettings.privacy_email":
-		return
-	}
 	if field.Options().(*descriptorpb.FieldOptions).GetDeprecated() {
 		t.Errorf("field %s has a deprecated option", field.FullName())
 	}

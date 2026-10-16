@@ -29,12 +29,16 @@ describe("site variable contracts", () => {
       "site.companyName",
       "contact.legalEmail",
       "contact.email",
-      "contact.supportEmail",
-      "contact.privacyEmail",
     ]);
     for (const key of siteVariableKeys)
       expect(isSiteVariableKey(key)).toBe(true);
-    for (const key of ["", "site.Title", "contact.otherEmail"])
+    for (const key of [
+      "",
+      "site.Title",
+      "contact.otherEmail",
+      "contact.supportEmail",
+      "contact.privacyEmail",
+    ])
       expect(isSiteVariableKey(key)).toBe(false);
   });
   it("preserves distinct atoms, styles and binary/JSON across every prose profile", () => {
@@ -70,7 +74,13 @@ describe("site variable contracts", () => {
         expect(linked).toThrow(/cannot be linked/);
       else expect(linked).not.toThrow();
     }
-    for (const key of ["", "site.Title", "other"])
+    for (const key of [
+      "",
+      "site.Title",
+      "other",
+      "contact.supportEmail",
+      "contact.privacyEmail",
+    ])
       expect(() => normalize([{ siteVariable: { key } }])).toThrow(
         /unknown site variable key/,
       );

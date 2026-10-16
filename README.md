@@ -100,19 +100,19 @@ reload; they are not accepted through a compatibility bypass.
 
 ## Public contact variables
 
-New content uses `contact.email`; `contact.legalEmail` remains independent.
-The catalog still accepts `contact.supportEmail` and `contact.privacyEmail` so
-existing documents, snapshots, and restores remain valid. Consumers offer only
-the canonical contact key for new authoring and resolve legacy aliases through
-the unified address. Management `PublicSettings.contact_email` is field 28;
-public manifest `SiteSettings.contact_email` is field 20. The deprecated support
-and privacy fields retain their original wire numbers as read aliases.
+Content uses `contact.email`; `contact.legalEmail` remains independent. The
+catalog accepts exactly five keys and rejects the removed support/privacy keys.
+Management `PublicSettings.contact_email` is field 28; public manifest
+`SiteSettings.contact_email` is field 20. The removed support/privacy field names
+and numbers are reserved and cannot be reused. There are no deprecated read
+aliases or runtime fallbacks.
 
 Deploy the schema's `contact-email-v1` migration before API consumers of the new
-column, then update API, Web, and Collab to the same catalog fingerprint before
-authoring the new atom. Updating generated bindings alone does not migrate
-stored content or settings. The API's explicit contact migration retains owner
-backups and document revisions; historical content continues to read old keys.
+column. Before the canonical-only API, Web and Collab start, migrate stored live
+content and historical snapshots to the canonical keys and catalog identity
+under the API migration's backup, writer shutdown and revision contract.
+Updating generated bindings alone does not migrate stored content or settings.
+All consumers must use the same catalog fingerprint; older clients must reload.
 
 ## Release
 
