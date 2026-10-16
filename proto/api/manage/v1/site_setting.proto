@@ -27,9 +27,8 @@ message PublicSettings {
   string company_address = 3;
   string tax_id = 4;
   string legal_email = 5;
-  // Legacy read aliases of contact_email; retained for older clients.
-  string support_email = 6 [deprecated = true];
-  string privacy_email = 7 [deprecated = true];
+  reserved 6, 7;
+  reserved "support_email", "privacy_email";
   // social_links as JSON object
   google.protobuf.Struct social_links = 8;
 

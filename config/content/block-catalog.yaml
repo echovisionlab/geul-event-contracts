@@ -185,18 +185,9 @@ rich_text:
                 site.companyName,
                 contact.legalEmail,
                 contact.email,
-                contact.supportEmail,
-                contact.privacyEmail,
               ]
           linked: { type: boolean, ownership: locale }
-        linked_keys:
-          [
-            site.url,
-            contact.legalEmail,
-            contact.email,
-            contact.supportEmail,
-            contact.privacyEmail,
-          ]
+        linked_keys: [site.url, contact.legalEmail, contact.email]
       mathInline:
         fields:
           source: { type: string, required: true, ownership: locale }
