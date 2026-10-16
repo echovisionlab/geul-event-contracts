@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.9.0](https://github.com/echovisionlab/geul-event-contracts/compare/v0.8.0...v0.9.0) (2026-10-16)
+
+
+### ⚠ BREAKING CHANGES
+
+* require canonical public contact fields ([#35](https://github.com/echovisionlab/geul-event-contracts/issues/35))
+
+### Features
+
+* require canonical public contact fields ([#35](https://github.com/echovisionlab/geul-event-contracts/issues/35)) ([b2dd8f2](https://github.com/echovisionlab/geul-event-contracts/commit/b2dd8f2356a1fd2cd4937f4569f4da90626da928))
+
 ## [0.8.0](https://github.com/echovisionlab/geul-event-contracts/compare/v0.7.1...v0.8.0) (2026-10-16)
 
 
