@@ -28,6 +28,7 @@ describe("site variable contracts", () => {
       "site.url",
       "site.companyName",
       "contact.legalEmail",
+      "contact.email",
       "contact.supportEmail",
       "contact.privacyEmail",
     ]);

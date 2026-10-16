@@ -191,10 +191,15 @@ type SiteSettings struct {
 	LoaderAssets    []*v1.AssetRef      `protobuf:"bytes,15,rep,name=loader_assets,json=loaderAssets,proto3" json:"loader_assets,omitempty"`
 	FaviconAssetSet *v1.FaviconAssetSet `protobuf:"bytes,16,opt,name=favicon_asset_set,json=faviconAssetSet,proto3,oneof" json:"favicon_asset_set,omitempty"`
 	LegalEmail      string              `protobuf:"bytes,17,opt,name=legal_email,json=legalEmail,proto3" json:"legal_email,omitempty"`
-	SupportEmail    string              `protobuf:"bytes,18,opt,name=support_email,json=supportEmail,proto3" json:"support_email,omitempty"`
-	PrivacyEmail    string              `protobuf:"bytes,19,opt,name=privacy_email,json=privacyEmail,proto3" json:"privacy_email,omitempty"`
-	unknownFields   protoimpl.UnknownFields
-	sizeCache       protoimpl.SizeCache
+	// Legacy read aliases of contact_email; retained for older clients.
+	//
+	// Deprecated: Marked as deprecated in api/open/v1/manifest.proto.
+	SupportEmail string `protobuf:"bytes,18,opt,name=support_email,json=supportEmail,proto3" json:"support_email,omitempty"`
+	// Deprecated: Marked as deprecated in api/open/v1/manifest.proto.
+	PrivacyEmail  string `protobuf:"bytes,19,opt,name=privacy_email,json=privacyEmail,proto3" json:"privacy_email,omitempty"`
+	ContactEmail  string `protobuf:"bytes,20,opt,name=contact_email,json=contactEmail,proto3" json:"contact_email,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *SiteSettings) Reset() {
@@ -346,6 +351,7 @@ func (x *SiteSettings) GetLegalEmail() string {
 	return ""
 }
 
+// Deprecated: Marked as deprecated in api/open/v1/manifest.proto.
 func (x *SiteSettings) GetSupportEmail() string {
 	if x != nil {
 		return x.SupportEmail
@@ -353,9 +359,17 @@ func (x *SiteSettings) GetSupportEmail() string {
 	return ""
 }
 
+// Deprecated: Marked as deprecated in api/open/v1/manifest.proto.
 func (x *SiteSettings) GetPrivacyEmail() string {
 	if x != nil {
 		return x.PrivacyEmail
+	}
+	return ""
+}
+
+func (x *SiteSettings) GetContactEmail() string {
+	if x != nil {
+		return x.ContactEmail
 	}
 	return ""
 }
@@ -539,7 +553,7 @@ const file_api_open_v1_manifest_proto_rawDesc = "" +
 	"GetRequest\"n\n" +
 	"\vGetResponse\x125\n" +
 	"\bsettings\x18\x01 \x01(\v2\x19.api.open.v1.SiteSettingsR\bsettings\x12(\n" +
-	"\x05menus\x18\x02 \x01(\v2\x12.api.open.v1.MenusR\x05menus\"\x87\t\n" +
+	"\x05menus\x18\x02 \x01(\v2\x12.api.open.v1.MenusR\x05menus\"\xb4\t\n" +
 	"\fSiteSettings\x12\x1d\n" +
 	"\n" +
 	"site_title\x18\x01 \x01(\tR\tsiteTitle\x12)\n" +
@@ -561,9 +575,10 @@ const file_api_open_v1_manifest_proto_rawDesc = "" +
 	"\rloader_assets\x18\x0f \x03(\v2\x17.api.common.v1.AssetRefR\floaderAssets\x12O\n" +
 	"\x11favicon_asset_set\x18\x10 \x01(\v2\x1e.api.common.v1.FaviconAssetSetH\x05R\x0ffaviconAssetSet\x88\x01\x01\x12\x1f\n" +
 	"\vlegal_email\x18\x11 \x01(\tR\n" +
-	"legalEmail\x12#\n" +
-	"\rsupport_email\x18\x12 \x01(\tR\fsupportEmail\x12#\n" +
-	"\rprivacy_email\x18\x13 \x01(\tR\fprivacyEmail\x1a>\n" +
+	"legalEmail\x12'\n" +
+	"\rsupport_email\x18\x12 \x01(\tB\x02\x18\x01R\fsupportEmail\x12'\n" +
+	"\rprivacy_email\x18\x13 \x01(\tB\x02\x18\x01R\fprivacyEmail\x12#\n" +
+	"\rcontact_email\x18\x14 \x01(\tR\fcontactEmail\x1a>\n" +
 	"\x10SocialLinksEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
 	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01B\x16\n" +

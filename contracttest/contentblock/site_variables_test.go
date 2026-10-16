@@ -8,7 +8,7 @@ import (
 )
 
 func TestSiteVariableContracts(t *testing.T) {
-	keys := []string{"site.title", "site.url", "site.companyName", "contact.legalEmail", "contact.supportEmail", "contact.privacyEmail"}
+	keys := []string{"site.title", "site.url", "site.companyName", "contact.legalEmail", "contact.email", "contact.supportEmail", "contact.privacyEmail"}
 	if !reflect.DeepEqual(contentv1.SiteVariableKeys, keys) {
 		t.Fatal(contentv1.SiteVariableKeys)
 	}

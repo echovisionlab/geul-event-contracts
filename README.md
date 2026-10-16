@@ -98,6 +98,22 @@ before an API that reads this field, then deploy the revision-aware Web editor.
 An older editor's unversioned settings writes are rejected safely and require a
 reload; they are not accepted through a compatibility bypass.
 
+## Public contact variables
+
+New content uses `contact.email`; `contact.legalEmail` remains independent.
+The catalog still accepts `contact.supportEmail` and `contact.privacyEmail` so
+existing documents, snapshots, and restores remain valid. Consumers offer only
+the canonical contact key for new authoring and resolve legacy aliases through
+the unified address. Management `PublicSettings.contact_email` is field 28;
+public manifest `SiteSettings.contact_email` is field 20. The deprecated support
+and privacy fields retain their original wire numbers as read aliases.
+
+Deploy the schema's `contact-email-v1` migration before API consumers of the new
+column, then update API, Web, and Collab to the same catalog fingerprint before
+authoring the new atom. Updating generated bindings alone does not migrate
+stored content or settings. The API's explicit contact migration retains owner
+backups and document revisions; historical content continues to read old keys.
+
 ## Release
 
 Release Please versions both npm packages together and creates the Go module's

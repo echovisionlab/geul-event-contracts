@@ -137,8 +137,12 @@ type PublicSettings struct {
 	CompanyAddress string                 `protobuf:"bytes,3,opt,name=company_address,json=companyAddress,proto3" json:"company_address,omitempty"`
 	TaxId          string                 `protobuf:"bytes,4,opt,name=tax_id,json=taxId,proto3" json:"tax_id,omitempty"`
 	LegalEmail     string                 `protobuf:"bytes,5,opt,name=legal_email,json=legalEmail,proto3" json:"legal_email,omitempty"`
-	SupportEmail   string                 `protobuf:"bytes,6,opt,name=support_email,json=supportEmail,proto3" json:"support_email,omitempty"`
-	PrivacyEmail   string                 `protobuf:"bytes,7,opt,name=privacy_email,json=privacyEmail,proto3" json:"privacy_email,omitempty"`
+	// Legacy read aliases of contact_email; retained for older clients.
+	//
+	// Deprecated: Marked as deprecated in api/manage/v1/site_setting.proto.
+	SupportEmail string `protobuf:"bytes,6,opt,name=support_email,json=supportEmail,proto3" json:"support_email,omitempty"`
+	// Deprecated: Marked as deprecated in api/manage/v1/site_setting.proto.
+	PrivacyEmail string `protobuf:"bytes,7,opt,name=privacy_email,json=privacyEmail,proto3" json:"privacy_email,omitempty"`
 	// social_links as JSON object
 	SocialLinks  *structpb.Struct `protobuf:"bytes,8,opt,name=social_links,json=socialLinks,proto3" json:"social_links,omitempty"`
 	PrimaryColor string           `protobuf:"bytes,9,opt,name=primary_color,json=primaryColor,proto3" json:"primary_color,omitempty"`
@@ -166,8 +170,10 @@ type PublicSettings struct {
 	FaviconAssetSet          *v1.FaviconAssetSet `protobuf:"bytes,26,opt,name=favicon_asset_set,json=faviconAssetSet,proto3,oneof" json:"favicon_asset_set,omitempty"`
 	// Read projection only. MapThemeService.SetDefaultMapTheme owns mutation.
 	DefaultMapThemeId string `protobuf:"bytes,27,opt,name=default_map_theme_id,json=defaultMapThemeId,proto3" json:"default_map_theme_id,omitempty"`
-	unknownFields     protoimpl.UnknownFields
-	sizeCache         protoimpl.SizeCache
+	// Unified public contact address. legal_email remains a separate contact.
+	ContactEmail  string `protobuf:"bytes,28,opt,name=contact_email,json=contactEmail,proto3" json:"contact_email,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *PublicSettings) Reset() {
@@ -235,6 +241,7 @@ func (x *PublicSettings) GetLegalEmail() string {
 	return ""
 }
 
+// Deprecated: Marked as deprecated in api/manage/v1/site_setting.proto.
 func (x *PublicSettings) GetSupportEmail() string {
 	if x != nil {
 		return x.SupportEmail
@@ -242,6 +249,7 @@ func (x *PublicSettings) GetSupportEmail() string {
 	return ""
 }
 
+// Deprecated: Marked as deprecated in api/manage/v1/site_setting.proto.
 func (x *PublicSettings) GetPrivacyEmail() string {
 	if x != nil {
 		return x.PrivacyEmail
@@ -385,6 +393,13 @@ func (x *PublicSettings) GetFaviconAssetSet() *v1.FaviconAssetSet {
 func (x *PublicSettings) GetDefaultMapThemeId() string {
 	if x != nil {
 		return x.DefaultMapThemeId
+	}
+	return ""
+}
+
+func (x *PublicSettings) GetContactEmail() string {
+	if x != nil {
+		return x.ContactEmail
 	}
 	return ""
 }
@@ -1069,7 +1084,7 @@ const file_api_manage_v1_site_setting_proto_rawDesc = "" +
 	"\x05value\x18\x02 \x01(\v2\x16.google.protobuf.ValueR\x05value\"Y\n" +
 	"\x0fSiteLoaderAsset\x12\x17\n" +
 	"\afile_id\x18\x01 \x01(\tR\x06fileId\x12-\n" +
-	"\x05asset\x18\x02 \x01(\v2\x17.api.common.v1.AssetRefR\x05asset\"\x9d\x0e\n" +
+	"\x05asset\x18\x02 \x01(\v2\x17.api.common.v1.AssetRefR\x05asset\"\xca\x0e\n" +
 	"\x0ePublicSettings\x12\x1d\n" +
 	"\n" +
 	"site_title\x18\x01 \x01(\tR\tsiteTitle\x12!\n" +
@@ -1077,9 +1092,9 @@ const file_api_manage_v1_site_setting_proto_rawDesc = "" +
 	"\x0fcompany_address\x18\x03 \x01(\tR\x0ecompanyAddress\x12\x15\n" +
 	"\x06tax_id\x18\x04 \x01(\tR\x05taxId\x12\x1f\n" +
 	"\vlegal_email\x18\x05 \x01(\tR\n" +
-	"legalEmail\x12#\n" +
-	"\rsupport_email\x18\x06 \x01(\tR\fsupportEmail\x12#\n" +
-	"\rprivacy_email\x18\a \x01(\tR\fprivacyEmail\x12:\n" +
+	"legalEmail\x12'\n" +
+	"\rsupport_email\x18\x06 \x01(\tB\x02\x18\x01R\fsupportEmail\x12'\n" +
+	"\rprivacy_email\x18\a \x01(\tB\x02\x18\x01R\fprivacyEmail\x12:\n" +
 	"\fsocial_links\x18\b \x01(\v2\x17.google.protobuf.StructR\vsocialLinks\x12#\n" +
 	"\rprimary_color\x18\t \x01(\tR\fprimaryColor\x128\n" +
 	"\x18default_comments_enabled\x18\n" +
@@ -1101,7 +1116,8 @@ const file_api_manage_v1_site_setting_proto_rawDesc = "" +
 	"\x1bprivacy_og_background_asset\x18\x18 \x01(\v2\x17.api.common.v1.AssetRefH\vR\x18privacyOgBackgroundAsset\x88\x01\x01\x12W\n" +
 	"\x19terms_og_background_asset\x18\x19 \x01(\v2\x17.api.common.v1.AssetRefH\fR\x16termsOgBackgroundAsset\x88\x01\x01\x12O\n" +
 	"\x11favicon_asset_set\x18\x1a \x01(\v2\x1e.api.common.v1.FaviconAssetSetH\rR\x0ffaviconAssetSet\x88\x01\x01\x12/\n" +
-	"\x14default_map_theme_id\x18\x1b \x01(\tR\x11defaultMapThemeIdB\x13\n" +
+	"\x14default_map_theme_id\x18\x1b \x01(\tR\x11defaultMapThemeId\x12#\n" +
+	"\rcontact_email\x18\x1c \x01(\tR\fcontactEmailB\x13\n" +
 	"\x11_homepage_page_idB\x11\n" +
 	"\x0f_menu_header_idB\x14\n" +
 	"\x12_menu_secondary_idB\x11\n" +
