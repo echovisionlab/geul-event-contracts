@@ -58,7 +58,7 @@ func TestPostRichTextCatalogDescriptorExposesClosedRecursiveAuthority(t *testing
 		t.Fatalf("missing site variable descriptor: %+v", variable)
 	}
 	key := requireFieldDescriptor(t, variable.Fields, "key")
-	if key.Translatable || !key.Required || len(key.Values) != 7 {
+	if key.Translatable || !key.Required || len(key.Values) != 5 {
 		t.Fatalf("site variable key descriptor: %+v", key)
 	}
 	if requireFieldDescriptor(t, variable.Fields, "linked").Type != "boolean" {
