@@ -84,3 +84,8 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: pnpm publish --no-git-checks
+
+      - name: Verify published packages
+        run: node .github/scripts/verify-published-package.cjs packages/proto packages/event
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
