@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.8.0](https://github.com/echovisionlab/geul-event-contracts/compare/v0.7.1...v0.8.0) (2026-10-16)
+
+
+### Features
+
+* unify public contact email with compatible aliases ([#32](https://github.com/echovisionlab/geul-event-contracts/issues/32)) ([3004be1](https://github.com/echovisionlab/geul-event-contracts/commit/3004be129e4bc9a7477742523d0c224c45db5d98))
+
 ## [0.7.1](https://github.com/echovisionlab/geul-event-contracts/compare/v0.7.0...v0.7.1) (2026-10-15)
 
 
