@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "consumerAuditStatus": "in_progress",
+  "consumerAuditStatus": "complete",
   "services": [
     {
       "service": "api.intra.v1.EmailCourierService",
@@ -4676,10 +4676,23 @@
         },
         {
           "name": "GetPageEditorDocument",
-          "consumerStatus": "pending",
-          "consumers": [],
-          "consumerTests": [],
-          "providerTests": []
+          "consumerStatus": "verified",
+          "consumers": [
+            {
+              "repository": "web",
+              "file": "lib/queries/page.ts",
+              "symbol": "getPageEditorSnapshot",
+              "call": "createPageClient().getPageEditorDocument({ pageId, locale })",
+              "entrypoint": "app/(general)/[...slug]/page.tsx edit route loads the authorized locale snapshot and document layout into LazyPageEditor initialSnapshot"
+            }
+          ],
+          "consumerTests": [
+            "web/lib/queries/page.test.ts",
+            "web/app/(general)/[...slug]/page.test.tsx"
+          ],
+          "providerTests": [
+            "api/internal/page/internal_service_block_integration_test.go"
+          ]
         },
         {
           "name": "ListPageVersions",
@@ -4960,10 +4973,24 @@
         },
         {
           "name": "GetPostEditorDocument",
-          "consumerStatus": "pending",
-          "consumers": [],
-          "consumerTests": [],
-          "providerTests": []
+          "consumerStatus": "verified",
+          "consumers": [
+            {
+              "repository": "web",
+              "file": "lib/queries/post.ts",
+              "symbol": "getPostEditorSnapshot",
+              "call": "createPostClient().getPostEditorDocument({ postId, locale })",
+              "entrypoint": "app/(general)/posts/[idOrSlug]/PostEditRoute.tsx loads the authorized locale snapshot into LazyPostEditor initialSnapshot"
+            }
+          ],
+          "consumerTests": [
+            "web/lib/queries/post.test.ts",
+            "web/app/(general)/posts/[idOrSlug]/PostEditRoute.test.tsx"
+          ],
+          "providerTests": [
+            "api/internal/post/target_locale_collaboration_integration_test.go",
+            "api/internal/post/archived_admin_integration_test.go"
+          ]
         },
         {
           "name": "ListMyPosts",
