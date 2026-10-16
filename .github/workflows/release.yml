@@ -30,6 +30,8 @@ jobs:
           token: ${{ github.token }}
           config-file: release-please-config.json
           manifest-file: .release-please-manifest.json
+          # The existing deployment bot maintains release PRs; this job owns releases only.
+          skip-github-pull-request: true
 
   publish-packages:
     name: Publish GitHub Packages
