@@ -9,6 +9,7 @@ on:
 
 permissions:
   contents: read
+  packages: read
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
@@ -31,3 +32,16 @@ jobs:
           if [ -f release-please-config.json ]; then
             jq empty release-please-config.json
           fi
+      - name: Set up package registry
+        if: github.event.pull_request.head.repo.full_name == github.repository
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version-file: .nvmrc
+          package-manager-cache: false
+          registry-url: https://npm.pkg.github.com
+          scope: "@echovisionlab"
+      - name: Read published package metadata
+        if: github.event.pull_request.head.repo.full_name == github.repository
+        run: node .github/scripts/verify-published-package.cjs packages/proto packages/event
+        env:
+          NODE_AUTH_TOKEN: ${{ github.token }}
