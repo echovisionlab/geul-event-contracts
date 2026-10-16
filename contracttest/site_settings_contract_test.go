@@ -6,6 +6,7 @@ import (
 	managev1 "github.com/echovisionlab/geul-event-contracts/gen/api/manage/v1"
 	openv1 "github.com/echovisionlab/geul-event-contracts/gen/api/open/v1"
 	"google.golang.org/protobuf/reflect/protoreflect"
+	"google.golang.org/protobuf/types/descriptorpb"
 )
 
 func TestSiteOriginIsRuntimeOnlyAndRemainsPubliclyProjected(t *testing.T) {
@@ -53,10 +54,35 @@ func TestPublicSiteSettingsProjectContactEmails(t *testing.T) {
 		"legal_email":   17,
 		"support_email": 18,
 		"privacy_email": 19,
+		"contact_email": 20,
 	} {
 		field := open.Fields().ByName(name)
 		if field == nil || field.Number() != number || field.Kind() != protoreflect.StringKind {
 			t.Errorf("api.open.v1.SiteSettings.%s must be public string field %d", name, number)
+		}
+	}
+}
+
+func TestContactEmailKeepsLegacyWireAliasesAndLegalContact(t *testing.T) {
+	for _, contract := range []struct {
+		descriptor                         protoreflect.MessageDescriptor
+		canonical, legal, support, privacy protoreflect.FieldNumber
+	}{
+		{(&managev1.PublicSettings{}).ProtoReflect().Descriptor(), 28, 5, 6, 7},
+		{(&openv1.SiteSettings{}).ProtoReflect().Descriptor(), 20, 17, 18, 19},
+	} {
+		for name, number := range map[protoreflect.Name]protoreflect.FieldNumber{
+			"contact_email": contract.canonical, "legal_email": contract.legal,
+			"support_email": contract.support, "privacy_email": contract.privacy,
+		} {
+			field := contract.descriptor.Fields().ByName(name)
+			if field == nil || field.Number() != number || field.Kind() != protoreflect.StringKind {
+				t.Fatalf("%s.%s must retain string field %d", contract.descriptor.FullName(), name, number)
+			}
+			legacy := name == "support_email" || name == "privacy_email"
+			if field.Options().(*descriptorpb.FieldOptions).GetDeprecated() != legacy {
+				t.Errorf("%s.%s deprecated must be %t", contract.descriptor.FullName(), name, legacy)
+			}
 		}
 	}
 }

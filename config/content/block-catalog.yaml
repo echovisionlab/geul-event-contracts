@@ -184,6 +184,7 @@ rich_text:
                 site.url,
                 site.companyName,
                 contact.legalEmail,
+                contact.email,
                 contact.supportEmail,
                 contact.privacyEmail,
               ]
@@ -192,6 +193,7 @@ rich_text:
           [
             site.url,
             contact.legalEmail,
+            contact.email,
             contact.supportEmail,
             contact.privacyEmail,
           ]

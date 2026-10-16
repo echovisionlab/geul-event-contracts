@@ -38,7 +38,7 @@ import {
 } from "./block_content_pb.ts";
 
 export const contentBlockCatalogFingerprint =
-  "7ee996e5a23685d3b981268c3dd6608d8f006f5b62dbec5fb35e1b4d0532cf49" as const;
+  "ffc51f7192e406fe25fcb5383428be94e74a52db83c666b550ca38d4db88dc85" as const;
 export const contentBlockRuntimeForbiddenFields = [
   "_tempUrl",
   "allowOriginalDownload",
@@ -132,6 +132,7 @@ export const siteVariableKeys = [
   "site.url",
   "site.companyName",
   "contact.legalEmail",
+  "contact.email",
   "contact.supportEmail",
   "contact.privacyEmail",
 ] as const;
@@ -142,6 +143,7 @@ export function isSiteVariableKey(key: string): key is SiteVariableKey {
 const linkedSiteVariableKeys: readonly string[] = [
   "site.url",
   "contact.legalEmail",
+  "contact.email",
   "contact.supportEmail",
   "contact.privacyEmail",
 ];

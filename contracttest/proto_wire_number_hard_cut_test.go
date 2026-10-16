@@ -402,6 +402,13 @@ func assertCollaborationConflictReasonHardCut(t *testing.T, enum protoreflect.En
 
 func checkFieldIsNotDeprecated(t *testing.T, field protoreflect.FieldDescriptor) {
 	t.Helper()
+	// Public contact aliases preserve existing clients and persisted content.
+	// Their numbers and deprecation state are pinned by the contact contract test.
+	switch field.FullName() {
+	case "api.manage.v1.PublicSettings.support_email", "api.manage.v1.PublicSettings.privacy_email",
+		"api.open.v1.SiteSettings.support_email", "api.open.v1.SiteSettings.privacy_email":
+		return
+	}
 	if field.Options().(*descriptorpb.FieldOptions).GetDeprecated() {
 		t.Errorf("field %s has a deprecated option", field.FullName())
 	}

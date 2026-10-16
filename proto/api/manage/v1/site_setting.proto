@@ -27,8 +27,9 @@ message PublicSettings {
   string company_address = 3;
   string tax_id = 4;
   string legal_email = 5;
-  string support_email = 6;
-  string privacy_email = 7;
+  // Legacy read aliases of contact_email; retained for older clients.
+  string support_email = 6 [deprecated = true];
+  string privacy_email = 7 [deprecated = true];
   // social_links as JSON object
   google.protobuf.Struct social_links = 8;
 
@@ -61,6 +62,8 @@ message PublicSettings {
   optional api.common.v1.FaviconAssetSet favicon_asset_set = 26;
   // Read projection only. MapThemeService.SetDefaultMapTheme owns mutation.
   string default_map_theme_id = 27;
+  // Unified public contact address. legal_email remains a separate contact.
+  string contact_email = 28;
 }
 
 // RuntimeSettings is a read-only projection of deployment configuration.
