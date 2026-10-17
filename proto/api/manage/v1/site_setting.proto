@@ -27,42 +27,45 @@ message PublicSettings {
   string company_address = 3;
   string tax_id = 4;
   string legal_email = 5;
-  reserved 6, 7;
-  reserved "support_email", "privacy_email";
   // social_links as JSON object
-  google.protobuf.Struct social_links = 8;
+  google.protobuf.Struct social_links = 6;
 
-  string primary_color = 9;
+  string primary_color = 7;
 
   // Reading
-  bool default_comments_enabled = 10;
-  optional string homepage_page_id = 11;
+  bool default_comments_enabled = 8;
+  optional string homepage_page_id = 9;
 
   // Navigation Menus
-  optional string menu_header_id = 12;
-  optional string menu_secondary_id = 13;
-  optional string menu_footer_id = 14;
-  optional string menu_avatar_dropdown_id = 15;
+  optional string menu_header_id = 10;
+  optional string menu_secondary_id = 11;
+  optional string menu_footer_id = 12;
+  optional string menu_avatar_dropdown_id = 13;
 
   // SEO
-  string meta_description = 16;
-  optional string google_analytics_id = 17;
+  string meta_description = 14;
+  optional string google_analytics_id = 15;
 
-  repeated SiteLoaderAsset loader_assets = 18;
-  optional api.common.v1.AssetRef logo_light_asset = 19;
-  optional api.common.v1.AssetRef logo_dark_asset = 20;
-  optional api.common.v1.AssetRef logo_email_asset = 21;
+  repeated SiteLoaderAsset loader_assets = 16;
+  // Stored logo slots exactly as configured (no fallback). Full and symbol logos
+  // are SVG or PNG; email logos are PNG.
+  optional api.common.v1.AssetRef logo_full_light_asset = 17;
+  optional api.common.v1.AssetRef logo_full_dark_asset = 18;
+  optional api.common.v1.AssetRef logo_email_light_asset = 19;
   // When favicon_asset_set is present, this MUST be that set's icon_png_32
   // from the same active source. When absent, this may be a legacy original.
-  optional api.common.v1.AssetRef favicon_asset = 22;
-  optional api.common.v1.AssetRef site_og_background_asset = 23;
-  optional api.common.v1.AssetRef privacy_og_background_asset = 24;
-  optional api.common.v1.AssetRef terms_og_background_asset = 25;
-  optional api.common.v1.FaviconAssetSet favicon_asset_set = 26;
+  optional api.common.v1.AssetRef favicon_asset = 20;
+  optional api.common.v1.AssetRef site_og_background_asset = 21;
+  optional api.common.v1.AssetRef privacy_og_background_asset = 22;
+  optional api.common.v1.AssetRef terms_og_background_asset = 23;
+  optional api.common.v1.FaviconAssetSet favicon_asset_set = 24;
   // Read projection only. MapThemeService.SetDefaultMapTheme owns mutation.
-  string default_map_theme_id = 27;
+  string default_map_theme_id = 25;
   // Unified public contact address. legal_email remains a separate contact.
-  string contact_email = 28;
+  string contact_email = 26;
+  optional api.common.v1.AssetRef logo_symbol_light_asset = 27;
+  optional api.common.v1.AssetRef logo_symbol_dark_asset = 28;
+  optional api.common.v1.AssetRef logo_email_dark_asset = 29;
 }
 
 // RuntimeSettings is a read-only projection of deployment configuration.

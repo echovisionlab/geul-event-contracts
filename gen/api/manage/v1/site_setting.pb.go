@@ -138,36 +138,41 @@ type PublicSettings struct {
 	TaxId          string                 `protobuf:"bytes,4,opt,name=tax_id,json=taxId,proto3" json:"tax_id,omitempty"`
 	LegalEmail     string                 `protobuf:"bytes,5,opt,name=legal_email,json=legalEmail,proto3" json:"legal_email,omitempty"`
 	// social_links as JSON object
-	SocialLinks  *structpb.Struct `protobuf:"bytes,8,opt,name=social_links,json=socialLinks,proto3" json:"social_links,omitempty"`
-	PrimaryColor string           `protobuf:"bytes,9,opt,name=primary_color,json=primaryColor,proto3" json:"primary_color,omitempty"`
+	SocialLinks  *structpb.Struct `protobuf:"bytes,6,opt,name=social_links,json=socialLinks,proto3" json:"social_links,omitempty"`
+	PrimaryColor string           `protobuf:"bytes,7,opt,name=primary_color,json=primaryColor,proto3" json:"primary_color,omitempty"`
 	// Reading
-	DefaultCommentsEnabled bool    `protobuf:"varint,10,opt,name=default_comments_enabled,json=defaultCommentsEnabled,proto3" json:"default_comments_enabled,omitempty"`
-	HomepagePageId         *string `protobuf:"bytes,11,opt,name=homepage_page_id,json=homepagePageId,proto3,oneof" json:"homepage_page_id,omitempty"`
+	DefaultCommentsEnabled bool    `protobuf:"varint,8,opt,name=default_comments_enabled,json=defaultCommentsEnabled,proto3" json:"default_comments_enabled,omitempty"`
+	HomepagePageId         *string `protobuf:"bytes,9,opt,name=homepage_page_id,json=homepagePageId,proto3,oneof" json:"homepage_page_id,omitempty"`
 	// Navigation Menus
-	MenuHeaderId         *string `protobuf:"bytes,12,opt,name=menu_header_id,json=menuHeaderId,proto3,oneof" json:"menu_header_id,omitempty"`
-	MenuSecondaryId      *string `protobuf:"bytes,13,opt,name=menu_secondary_id,json=menuSecondaryId,proto3,oneof" json:"menu_secondary_id,omitempty"`
-	MenuFooterId         *string `protobuf:"bytes,14,opt,name=menu_footer_id,json=menuFooterId,proto3,oneof" json:"menu_footer_id,omitempty"`
-	MenuAvatarDropdownId *string `protobuf:"bytes,15,opt,name=menu_avatar_dropdown_id,json=menuAvatarDropdownId,proto3,oneof" json:"menu_avatar_dropdown_id,omitempty"`
+	MenuHeaderId         *string `protobuf:"bytes,10,opt,name=menu_header_id,json=menuHeaderId,proto3,oneof" json:"menu_header_id,omitempty"`
+	MenuSecondaryId      *string `protobuf:"bytes,11,opt,name=menu_secondary_id,json=menuSecondaryId,proto3,oneof" json:"menu_secondary_id,omitempty"`
+	MenuFooterId         *string `protobuf:"bytes,12,opt,name=menu_footer_id,json=menuFooterId,proto3,oneof" json:"menu_footer_id,omitempty"`
+	MenuAvatarDropdownId *string `protobuf:"bytes,13,opt,name=menu_avatar_dropdown_id,json=menuAvatarDropdownId,proto3,oneof" json:"menu_avatar_dropdown_id,omitempty"`
 	// SEO
-	MetaDescription   string             `protobuf:"bytes,16,opt,name=meta_description,json=metaDescription,proto3" json:"meta_description,omitempty"`
-	GoogleAnalyticsId *string            `protobuf:"bytes,17,opt,name=google_analytics_id,json=googleAnalyticsId,proto3,oneof" json:"google_analytics_id,omitempty"`
-	LoaderAssets      []*SiteLoaderAsset `protobuf:"bytes,18,rep,name=loader_assets,json=loaderAssets,proto3" json:"loader_assets,omitempty"`
-	LogoLightAsset    *v1.AssetRef       `protobuf:"bytes,19,opt,name=logo_light_asset,json=logoLightAsset,proto3,oneof" json:"logo_light_asset,omitempty"`
-	LogoDarkAsset     *v1.AssetRef       `protobuf:"bytes,20,opt,name=logo_dark_asset,json=logoDarkAsset,proto3,oneof" json:"logo_dark_asset,omitempty"`
-	LogoEmailAsset    *v1.AssetRef       `protobuf:"bytes,21,opt,name=logo_email_asset,json=logoEmailAsset,proto3,oneof" json:"logo_email_asset,omitempty"`
+	MetaDescription   string             `protobuf:"bytes,14,opt,name=meta_description,json=metaDescription,proto3" json:"meta_description,omitempty"`
+	GoogleAnalyticsId *string            `protobuf:"bytes,15,opt,name=google_analytics_id,json=googleAnalyticsId,proto3,oneof" json:"google_analytics_id,omitempty"`
+	LoaderAssets      []*SiteLoaderAsset `protobuf:"bytes,16,rep,name=loader_assets,json=loaderAssets,proto3" json:"loader_assets,omitempty"`
+	// Stored logo slots exactly as configured (no fallback). Full and symbol logos
+	// are SVG or PNG; email logos are PNG.
+	LogoFullLightAsset  *v1.AssetRef `protobuf:"bytes,17,opt,name=logo_full_light_asset,json=logoFullLightAsset,proto3,oneof" json:"logo_full_light_asset,omitempty"`
+	LogoFullDarkAsset   *v1.AssetRef `protobuf:"bytes,18,opt,name=logo_full_dark_asset,json=logoFullDarkAsset,proto3,oneof" json:"logo_full_dark_asset,omitempty"`
+	LogoEmailLightAsset *v1.AssetRef `protobuf:"bytes,19,opt,name=logo_email_light_asset,json=logoEmailLightAsset,proto3,oneof" json:"logo_email_light_asset,omitempty"`
 	// When favicon_asset_set is present, this MUST be that set's icon_png_32
 	// from the same active source. When absent, this may be a legacy original.
-	FaviconAsset             *v1.AssetRef        `protobuf:"bytes,22,opt,name=favicon_asset,json=faviconAsset,proto3,oneof" json:"favicon_asset,omitempty"`
-	SiteOgBackgroundAsset    *v1.AssetRef        `protobuf:"bytes,23,opt,name=site_og_background_asset,json=siteOgBackgroundAsset,proto3,oneof" json:"site_og_background_asset,omitempty"`
-	PrivacyOgBackgroundAsset *v1.AssetRef        `protobuf:"bytes,24,opt,name=privacy_og_background_asset,json=privacyOgBackgroundAsset,proto3,oneof" json:"privacy_og_background_asset,omitempty"`
-	TermsOgBackgroundAsset   *v1.AssetRef        `protobuf:"bytes,25,opt,name=terms_og_background_asset,json=termsOgBackgroundAsset,proto3,oneof" json:"terms_og_background_asset,omitempty"`
-	FaviconAssetSet          *v1.FaviconAssetSet `protobuf:"bytes,26,opt,name=favicon_asset_set,json=faviconAssetSet,proto3,oneof" json:"favicon_asset_set,omitempty"`
+	FaviconAsset             *v1.AssetRef        `protobuf:"bytes,20,opt,name=favicon_asset,json=faviconAsset,proto3,oneof" json:"favicon_asset,omitempty"`
+	SiteOgBackgroundAsset    *v1.AssetRef        `protobuf:"bytes,21,opt,name=site_og_background_asset,json=siteOgBackgroundAsset,proto3,oneof" json:"site_og_background_asset,omitempty"`
+	PrivacyOgBackgroundAsset *v1.AssetRef        `protobuf:"bytes,22,opt,name=privacy_og_background_asset,json=privacyOgBackgroundAsset,proto3,oneof" json:"privacy_og_background_asset,omitempty"`
+	TermsOgBackgroundAsset   *v1.AssetRef        `protobuf:"bytes,23,opt,name=terms_og_background_asset,json=termsOgBackgroundAsset,proto3,oneof" json:"terms_og_background_asset,omitempty"`
+	FaviconAssetSet          *v1.FaviconAssetSet `protobuf:"bytes,24,opt,name=favicon_asset_set,json=faviconAssetSet,proto3,oneof" json:"favicon_asset_set,omitempty"`
 	// Read projection only. MapThemeService.SetDefaultMapTheme owns mutation.
-	DefaultMapThemeId string `protobuf:"bytes,27,opt,name=default_map_theme_id,json=defaultMapThemeId,proto3" json:"default_map_theme_id,omitempty"`
+	DefaultMapThemeId string `protobuf:"bytes,25,opt,name=default_map_theme_id,json=defaultMapThemeId,proto3" json:"default_map_theme_id,omitempty"`
 	// Unified public contact address. legal_email remains a separate contact.
-	ContactEmail  string `protobuf:"bytes,28,opt,name=contact_email,json=contactEmail,proto3" json:"contact_email,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	ContactEmail         string       `protobuf:"bytes,26,opt,name=contact_email,json=contactEmail,proto3" json:"contact_email,omitempty"`
+	LogoSymbolLightAsset *v1.AssetRef `protobuf:"bytes,27,opt,name=logo_symbol_light_asset,json=logoSymbolLightAsset,proto3,oneof" json:"logo_symbol_light_asset,omitempty"`
+	LogoSymbolDarkAsset  *v1.AssetRef `protobuf:"bytes,28,opt,name=logo_symbol_dark_asset,json=logoSymbolDarkAsset,proto3,oneof" json:"logo_symbol_dark_asset,omitempty"`
+	LogoEmailDarkAsset   *v1.AssetRef `protobuf:"bytes,29,opt,name=logo_email_dark_asset,json=logoEmailDarkAsset,proto3,oneof" json:"logo_email_dark_asset,omitempty"`
+	unknownFields        protoimpl.UnknownFields
+	sizeCache            protoimpl.SizeCache
 }
 
 func (x *PublicSettings) Reset() {
@@ -312,23 +317,23 @@ func (x *PublicSettings) GetLoaderAssets() []*SiteLoaderAsset {
 	return nil
 }
 
-func (x *PublicSettings) GetLogoLightAsset() *v1.AssetRef {
+func (x *PublicSettings) GetLogoFullLightAsset() *v1.AssetRef {
 	if x != nil {
-		return x.LogoLightAsset
+		return x.LogoFullLightAsset
 	}
 	return nil
 }
 
-func (x *PublicSettings) GetLogoDarkAsset() *v1.AssetRef {
+func (x *PublicSettings) GetLogoFullDarkAsset() *v1.AssetRef {
 	if x != nil {
-		return x.LogoDarkAsset
+		return x.LogoFullDarkAsset
 	}
 	return nil
 }
 
-func (x *PublicSettings) GetLogoEmailAsset() *v1.AssetRef {
+func (x *PublicSettings) GetLogoEmailLightAsset() *v1.AssetRef {
 	if x != nil {
-		return x.LogoEmailAsset
+		return x.LogoEmailLightAsset
 	}
 	return nil
 }
@@ -380,6 +385,27 @@ func (x *PublicSettings) GetContactEmail() string {
 		return x.ContactEmail
 	}
 	return ""
+}
+
+func (x *PublicSettings) GetLogoSymbolLightAsset() *v1.AssetRef {
+	if x != nil {
+		return x.LogoSymbolLightAsset
+	}
+	return nil
+}
+
+func (x *PublicSettings) GetLogoSymbolDarkAsset() *v1.AssetRef {
+	if x != nil {
+		return x.LogoSymbolDarkAsset
+	}
+	return nil
+}
+
+func (x *PublicSettings) GetLogoEmailDarkAsset() *v1.AssetRef {
+	if x != nil {
+		return x.LogoEmailDarkAsset
+	}
+	return nil
 }
 
 // RuntimeSettings is a read-only projection of deployment configuration.
@@ -1062,7 +1088,7 @@ const file_api_manage_v1_site_setting_proto_rawDesc = "" +
 	"\x05value\x18\x02 \x01(\v2\x16.google.protobuf.ValueR\x05value\"Y\n" +
 	"\x0fSiteLoaderAsset\x12\x17\n" +
 	"\afile_id\x18\x01 \x01(\tR\x06fileId\x12-\n" +
-	"\x05asset\x18\x02 \x01(\v2\x17.api.common.v1.AssetRefR\x05asset\"\xa2\x0e\n" +
+	"\x05asset\x18\x02 \x01(\v2\x17.api.common.v1.AssetRefR\x05asset\"\xef\x10\n" +
 	"\x0ePublicSettings\x12\x1d\n" +
 	"\n" +
 	"site_title\x18\x01 \x01(\tR\tsiteTitle\x12!\n" +
@@ -1071,43 +1097,49 @@ const file_api_manage_v1_site_setting_proto_rawDesc = "" +
 	"\x06tax_id\x18\x04 \x01(\tR\x05taxId\x12\x1f\n" +
 	"\vlegal_email\x18\x05 \x01(\tR\n" +
 	"legalEmail\x12:\n" +
-	"\fsocial_links\x18\b \x01(\v2\x17.google.protobuf.StructR\vsocialLinks\x12#\n" +
-	"\rprimary_color\x18\t \x01(\tR\fprimaryColor\x128\n" +
-	"\x18default_comments_enabled\x18\n" +
-	" \x01(\bR\x16defaultCommentsEnabled\x12-\n" +
-	"\x10homepage_page_id\x18\v \x01(\tH\x00R\x0ehomepagePageId\x88\x01\x01\x12)\n" +
-	"\x0emenu_header_id\x18\f \x01(\tH\x01R\fmenuHeaderId\x88\x01\x01\x12/\n" +
-	"\x11menu_secondary_id\x18\r \x01(\tH\x02R\x0fmenuSecondaryId\x88\x01\x01\x12)\n" +
-	"\x0emenu_footer_id\x18\x0e \x01(\tH\x03R\fmenuFooterId\x88\x01\x01\x12:\n" +
-	"\x17menu_avatar_dropdown_id\x18\x0f \x01(\tH\x04R\x14menuAvatarDropdownId\x88\x01\x01\x12)\n" +
-	"\x10meta_description\x18\x10 \x01(\tR\x0fmetaDescription\x123\n" +
-	"\x13google_analytics_id\x18\x11 \x01(\tH\x05R\x11googleAnalyticsId\x88\x01\x01\x12C\n" +
-	"\rloader_assets\x18\x12 \x03(\v2\x1e.api.manage.v1.SiteLoaderAssetR\floaderAssets\x12F\n" +
-	"\x10logo_light_asset\x18\x13 \x01(\v2\x17.api.common.v1.AssetRefH\x06R\x0elogoLightAsset\x88\x01\x01\x12D\n" +
-	"\x0flogo_dark_asset\x18\x14 \x01(\v2\x17.api.common.v1.AssetRefH\aR\rlogoDarkAsset\x88\x01\x01\x12F\n" +
-	"\x10logo_email_asset\x18\x15 \x01(\v2\x17.api.common.v1.AssetRefH\bR\x0elogoEmailAsset\x88\x01\x01\x12A\n" +
-	"\rfavicon_asset\x18\x16 \x01(\v2\x17.api.common.v1.AssetRefH\tR\ffaviconAsset\x88\x01\x01\x12U\n" +
-	"\x18site_og_background_asset\x18\x17 \x01(\v2\x17.api.common.v1.AssetRefH\n" +
+	"\fsocial_links\x18\x06 \x01(\v2\x17.google.protobuf.StructR\vsocialLinks\x12#\n" +
+	"\rprimary_color\x18\a \x01(\tR\fprimaryColor\x128\n" +
+	"\x18default_comments_enabled\x18\b \x01(\bR\x16defaultCommentsEnabled\x12-\n" +
+	"\x10homepage_page_id\x18\t \x01(\tH\x00R\x0ehomepagePageId\x88\x01\x01\x12)\n" +
+	"\x0emenu_header_id\x18\n" +
+	" \x01(\tH\x01R\fmenuHeaderId\x88\x01\x01\x12/\n" +
+	"\x11menu_secondary_id\x18\v \x01(\tH\x02R\x0fmenuSecondaryId\x88\x01\x01\x12)\n" +
+	"\x0emenu_footer_id\x18\f \x01(\tH\x03R\fmenuFooterId\x88\x01\x01\x12:\n" +
+	"\x17menu_avatar_dropdown_id\x18\r \x01(\tH\x04R\x14menuAvatarDropdownId\x88\x01\x01\x12)\n" +
+	"\x10meta_description\x18\x0e \x01(\tR\x0fmetaDescription\x123\n" +
+	"\x13google_analytics_id\x18\x0f \x01(\tH\x05R\x11googleAnalyticsId\x88\x01\x01\x12C\n" +
+	"\rloader_assets\x18\x10 \x03(\v2\x1e.api.manage.v1.SiteLoaderAssetR\floaderAssets\x12O\n" +
+	"\x15logo_full_light_asset\x18\x11 \x01(\v2\x17.api.common.v1.AssetRefH\x06R\x12logoFullLightAsset\x88\x01\x01\x12M\n" +
+	"\x14logo_full_dark_asset\x18\x12 \x01(\v2\x17.api.common.v1.AssetRefH\aR\x11logoFullDarkAsset\x88\x01\x01\x12Q\n" +
+	"\x16logo_email_light_asset\x18\x13 \x01(\v2\x17.api.common.v1.AssetRefH\bR\x13logoEmailLightAsset\x88\x01\x01\x12A\n" +
+	"\rfavicon_asset\x18\x14 \x01(\v2\x17.api.common.v1.AssetRefH\tR\ffaviconAsset\x88\x01\x01\x12U\n" +
+	"\x18site_og_background_asset\x18\x15 \x01(\v2\x17.api.common.v1.AssetRefH\n" +
 	"R\x15siteOgBackgroundAsset\x88\x01\x01\x12[\n" +
-	"\x1bprivacy_og_background_asset\x18\x18 \x01(\v2\x17.api.common.v1.AssetRefH\vR\x18privacyOgBackgroundAsset\x88\x01\x01\x12W\n" +
-	"\x19terms_og_background_asset\x18\x19 \x01(\v2\x17.api.common.v1.AssetRefH\fR\x16termsOgBackgroundAsset\x88\x01\x01\x12O\n" +
-	"\x11favicon_asset_set\x18\x1a \x01(\v2\x1e.api.common.v1.FaviconAssetSetH\rR\x0ffaviconAssetSet\x88\x01\x01\x12/\n" +
-	"\x14default_map_theme_id\x18\x1b \x01(\tR\x11defaultMapThemeId\x12#\n" +
-	"\rcontact_email\x18\x1c \x01(\tR\fcontactEmailB\x13\n" +
+	"\x1bprivacy_og_background_asset\x18\x16 \x01(\v2\x17.api.common.v1.AssetRefH\vR\x18privacyOgBackgroundAsset\x88\x01\x01\x12W\n" +
+	"\x19terms_og_background_asset\x18\x17 \x01(\v2\x17.api.common.v1.AssetRefH\fR\x16termsOgBackgroundAsset\x88\x01\x01\x12O\n" +
+	"\x11favicon_asset_set\x18\x18 \x01(\v2\x1e.api.common.v1.FaviconAssetSetH\rR\x0ffaviconAssetSet\x88\x01\x01\x12/\n" +
+	"\x14default_map_theme_id\x18\x19 \x01(\tR\x11defaultMapThemeId\x12#\n" +
+	"\rcontact_email\x18\x1a \x01(\tR\fcontactEmail\x12S\n" +
+	"\x17logo_symbol_light_asset\x18\x1b \x01(\v2\x17.api.common.v1.AssetRefH\x0eR\x14logoSymbolLightAsset\x88\x01\x01\x12Q\n" +
+	"\x16logo_symbol_dark_asset\x18\x1c \x01(\v2\x17.api.common.v1.AssetRefH\x0fR\x13logoSymbolDarkAsset\x88\x01\x01\x12O\n" +
+	"\x15logo_email_dark_asset\x18\x1d \x01(\v2\x17.api.common.v1.AssetRefH\x10R\x12logoEmailDarkAsset\x88\x01\x01B\x13\n" +
 	"\x11_homepage_page_idB\x11\n" +
 	"\x0f_menu_header_idB\x14\n" +
 	"\x12_menu_secondary_idB\x11\n" +
 	"\x0f_menu_footer_idB\x1a\n" +
 	"\x18_menu_avatar_dropdown_idB\x16\n" +
-	"\x14_google_analytics_idB\x13\n" +
-	"\x11_logo_light_assetB\x12\n" +
-	"\x10_logo_dark_assetB\x13\n" +
-	"\x11_logo_email_assetB\x10\n" +
+	"\x14_google_analytics_idB\x18\n" +
+	"\x16_logo_full_light_assetB\x17\n" +
+	"\x15_logo_full_dark_assetB\x19\n" +
+	"\x17_logo_email_light_assetB\x10\n" +
 	"\x0e_favicon_assetB\x1b\n" +
 	"\x19_site_og_background_assetB\x1e\n" +
 	"\x1c_privacy_og_background_assetB\x1c\n" +
 	"\x1a_terms_og_background_assetB\x14\n" +
-	"\x12_favicon_asset_setJ\x04\b\x06\x10\aJ\x04\b\a\x10\bR\rsupport_emailR\rprivacy_email\"2\n" +
+	"\x12_favicon_asset_setB\x1a\n" +
+	"\x18_logo_symbol_light_assetB\x19\n" +
+	"\x17_logo_symbol_dark_assetB\x18\n" +
+	"\x16_logo_email_dark_asset\"2\n" +
 	"\x0fRuntimeSettings\x12\x1f\n" +
 	"\vsite_origin\x18\x01 \x01(\tR\n" +
 	"siteOrigin\"\xd8\x01\n" +
@@ -1196,38 +1228,41 @@ var file_api_manage_v1_site_setting_proto_depIdxs = []int32{
 	18, // 1: api.manage.v1.SiteLoaderAsset.asset:type_name -> api.common.v1.AssetRef
 	19, // 2: api.manage.v1.PublicSettings.social_links:type_name -> google.protobuf.Struct
 	1,  // 3: api.manage.v1.PublicSettings.loader_assets:type_name -> api.manage.v1.SiteLoaderAsset
-	18, // 4: api.manage.v1.PublicSettings.logo_light_asset:type_name -> api.common.v1.AssetRef
-	18, // 5: api.manage.v1.PublicSettings.logo_dark_asset:type_name -> api.common.v1.AssetRef
-	18, // 6: api.manage.v1.PublicSettings.logo_email_asset:type_name -> api.common.v1.AssetRef
+	18, // 4: api.manage.v1.PublicSettings.logo_full_light_asset:type_name -> api.common.v1.AssetRef
+	18, // 5: api.manage.v1.PublicSettings.logo_full_dark_asset:type_name -> api.common.v1.AssetRef
+	18, // 6: api.manage.v1.PublicSettings.logo_email_light_asset:type_name -> api.common.v1.AssetRef
 	18, // 7: api.manage.v1.PublicSettings.favicon_asset:type_name -> api.common.v1.AssetRef
 	18, // 8: api.manage.v1.PublicSettings.site_og_background_asset:type_name -> api.common.v1.AssetRef
 	18, // 9: api.manage.v1.PublicSettings.privacy_og_background_asset:type_name -> api.common.v1.AssetRef
 	18, // 10: api.manage.v1.PublicSettings.terms_og_background_asset:type_name -> api.common.v1.AssetRef
 	20, // 11: api.manage.v1.PublicSettings.favicon_asset_set:type_name -> api.common.v1.FaviconAssetSet
-	2,  // 12: api.manage.v1.AllSettings.public:type_name -> api.manage.v1.PublicSettings
-	19, // 13: api.manage.v1.AllSettings.og_image_config:type_name -> google.protobuf.Struct
-	3,  // 14: api.manage.v1.AllSettings.runtime:type_name -> api.manage.v1.RuntimeSettings
-	4,  // 15: api.manage.v1.GetSettingsResponse.settings:type_name -> api.manage.v1.AllSettings
-	0,  // 16: api.manage.v1.GetSettingResponse.setting:type_name -> api.manage.v1.SiteSetting
-	17, // 17: api.manage.v1.SetSettingRequest.value:type_name -> google.protobuf.Value
-	0,  // 18: api.manage.v1.SetManySettingsRequest.settings:type_name -> api.manage.v1.SiteSetting
-	5,  // 19: api.manage.v1.SiteSettingService.GetSettings:input_type -> api.manage.v1.GetSettingsRequest
-	7,  // 20: api.manage.v1.SiteSettingService.GetSetting:input_type -> api.manage.v1.GetSettingRequest
-	9,  // 21: api.manage.v1.SiteSettingService.SetSetting:input_type -> api.manage.v1.SetSettingRequest
-	11, // 22: api.manage.v1.SiteSettingService.SetManySettings:input_type -> api.manage.v1.SetManySettingsRequest
-	13, // 23: api.manage.v1.SiteSettingService.AddSiteLoaderAsset:input_type -> api.manage.v1.AddSiteLoaderAssetRequest
-	15, // 24: api.manage.v1.SiteSettingService.RemoveSiteLoaderAsset:input_type -> api.manage.v1.RemoveSiteLoaderAssetRequest
-	6,  // 25: api.manage.v1.SiteSettingService.GetSettings:output_type -> api.manage.v1.GetSettingsResponse
-	8,  // 26: api.manage.v1.SiteSettingService.GetSetting:output_type -> api.manage.v1.GetSettingResponse
-	10, // 27: api.manage.v1.SiteSettingService.SetSetting:output_type -> api.manage.v1.SetSettingResponse
-	12, // 28: api.manage.v1.SiteSettingService.SetManySettings:output_type -> api.manage.v1.SetManySettingsResponse
-	14, // 29: api.manage.v1.SiteSettingService.AddSiteLoaderAsset:output_type -> api.manage.v1.AddSiteLoaderAssetResponse
-	16, // 30: api.manage.v1.SiteSettingService.RemoveSiteLoaderAsset:output_type -> api.manage.v1.RemoveSiteLoaderAssetResponse
-	25, // [25:31] is the sub-list for method output_type
-	19, // [19:25] is the sub-list for method input_type
-	19, // [19:19] is the sub-list for extension type_name
-	19, // [19:19] is the sub-list for extension extendee
-	0,  // [0:19] is the sub-list for field type_name
+	18, // 12: api.manage.v1.PublicSettings.logo_symbol_light_asset:type_name -> api.common.v1.AssetRef
+	18, // 13: api.manage.v1.PublicSettings.logo_symbol_dark_asset:type_name -> api.common.v1.AssetRef
+	18, // 14: api.manage.v1.PublicSettings.logo_email_dark_asset:type_name -> api.common.v1.AssetRef
+	2,  // 15: api.manage.v1.AllSettings.public:type_name -> api.manage.v1.PublicSettings
+	19, // 16: api.manage.v1.AllSettings.og_image_config:type_name -> google.protobuf.Struct
+	3,  // 17: api.manage.v1.AllSettings.runtime:type_name -> api.manage.v1.RuntimeSettings
+	4,  // 18: api.manage.v1.GetSettingsResponse.settings:type_name -> api.manage.v1.AllSettings
+	0,  // 19: api.manage.v1.GetSettingResponse.setting:type_name -> api.manage.v1.SiteSetting
+	17, // 20: api.manage.v1.SetSettingRequest.value:type_name -> google.protobuf.Value
+	0,  // 21: api.manage.v1.SetManySettingsRequest.settings:type_name -> api.manage.v1.SiteSetting
+	5,  // 22: api.manage.v1.SiteSettingService.GetSettings:input_type -> api.manage.v1.GetSettingsRequest
+	7,  // 23: api.manage.v1.SiteSettingService.GetSetting:input_type -> api.manage.v1.GetSettingRequest
+	9,  // 24: api.manage.v1.SiteSettingService.SetSetting:input_type -> api.manage.v1.SetSettingRequest
+	11, // 25: api.manage.v1.SiteSettingService.SetManySettings:input_type -> api.manage.v1.SetManySettingsRequest
+	13, // 26: api.manage.v1.SiteSettingService.AddSiteLoaderAsset:input_type -> api.manage.v1.AddSiteLoaderAssetRequest
+	15, // 27: api.manage.v1.SiteSettingService.RemoveSiteLoaderAsset:input_type -> api.manage.v1.RemoveSiteLoaderAssetRequest
+	6,  // 28: api.manage.v1.SiteSettingService.GetSettings:output_type -> api.manage.v1.GetSettingsResponse
+	8,  // 29: api.manage.v1.SiteSettingService.GetSetting:output_type -> api.manage.v1.GetSettingResponse
+	10, // 30: api.manage.v1.SiteSettingService.SetSetting:output_type -> api.manage.v1.SetSettingResponse
+	12, // 31: api.manage.v1.SiteSettingService.SetManySettings:output_type -> api.manage.v1.SetManySettingsResponse
+	14, // 32: api.manage.v1.SiteSettingService.AddSiteLoaderAsset:output_type -> api.manage.v1.AddSiteLoaderAssetResponse
+	16, // 33: api.manage.v1.SiteSettingService.RemoveSiteLoaderAsset:output_type -> api.manage.v1.RemoveSiteLoaderAssetResponse
+	28, // [28:34] is the sub-list for method output_type
+	22, // [22:28] is the sub-list for method input_type
+	22, // [22:22] is the sub-list for extension type_name
+	22, // [22:22] is the sub-list for extension extendee
+	0,  // [0:22] is the sub-list for field type_name
 }
 
 func init() { file_api_manage_v1_site_setting_proto_init() }

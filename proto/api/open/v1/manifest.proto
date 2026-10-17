@@ -31,17 +31,20 @@ message SiteSettings {
   bool default_comments_enabled = 9;
   optional api.common.v1.AssetRef site_og_asset = 10;
   string site_origin = 11;
-  optional api.common.v1.AssetRef logo_light_asset = 12;
-  optional api.common.v1.AssetRef logo_dark_asset = 13;
+  // Display logos, resolved by the API: a missing theme uses the other theme of
+  // the same form, and a missing form uses the other form (full <-> symbol).
+  // Absent only when no full or symbol logo is configured.
+  optional api.common.v1.AssetRef logo_full_light_asset = 12;
+  optional api.common.v1.AssetRef logo_full_dark_asset = 13;
   // When favicon_asset_set is present, this MUST be that set's icon_png_32
   // from the same active source. When absent, this may be a legacy original.
   optional api.common.v1.AssetRef favicon_asset = 14;
   repeated api.common.v1.AssetRef loader_assets = 15;
   optional api.common.v1.FaviconAssetSet favicon_asset_set = 16;
   string legal_email = 17;
-  reserved 18, 19;
-  reserved "support_email", "privacy_email";
-  string contact_email = 20;
+  string contact_email = 18;
+  optional api.common.v1.AssetRef logo_symbol_light_asset = 19;
+  optional api.common.v1.AssetRef logo_symbol_dark_asset = 20;
 }
 
 // Menus contains all navigation menus (pre-filtered by user role)

@@ -23,7 +23,7 @@ import type { JsonObject, Message } from "@bufbuild/protobuf";
 export const file_api_manage_v1_site_setting: GenFile =
   /*@__PURE__*/
   fileDesc(
-    "CiBhcGkvbWFuYWdlL3YxL3NpdGVfc2V0dGluZy5wcm90bxINYXBpLm1hbmFnZS52MSJBCgtTaXRlU2V0dGluZxILCgNrZXkYASABKAkSJQoFdmFsdWUYAiABKAsyFi5nb29nbGUucHJvdG9idWYuVmFsdWUiSgoPU2l0ZUxvYWRlckFzc2V0Eg8KB2ZpbGVfaWQYASABKAkSJgoFYXNzZXQYAiABKAsyFy5hcGkuY29tbW9uLnYxLkFzc2V0UmVmIvcKCg5QdWJsaWNTZXR0aW5ncxISCgpzaXRlX3RpdGxlGAEgASgJEhQKDGNvbXBhbnlfbmFtZRgCIAEoCRIXCg9jb21wYW55X2FkZHJlc3MYAyABKAkSDgoGdGF4X2lkGAQgASgJEhMKC2xlZ2FsX2VtYWlsGAUgASgJEi0KDHNvY2lhbF9saW5rcxgIIAEoCzIXLmdvb2dsZS5wcm90b2J1Zi5TdHJ1Y3QSFQoNcHJpbWFyeV9jb2xvchgJIAEoCRIgChhkZWZhdWx0X2NvbW1lbnRzX2VuYWJsZWQYCiABKAgSHQoQaG9tZXBhZ2VfcGFnZV9pZBgLIAEoCUgAiAEBEhsKDm1lbnVfaGVhZGVyX2lkGAwgASgJSAGIAQESHgoRbWVudV9zZWNvbmRhcnlfaWQYDSABKAlIAogBARIbCg5tZW51X2Zvb3Rlcl9pZBgOIAEoCUgDiAEBEiQKF21lbnVfYXZhdGFyX2Ryb3Bkb3duX2lkGA8gASgJSASIAQESGAoQbWV0YV9kZXNjcmlwdGlvbhgQIAEoCRIgChNnb29nbGVfYW5hbHl0aWNzX2lkGBEgASgJSAWIAQESNQoNbG9hZGVyX2Fzc2V0cxgSIAMoCzIeLmFwaS5tYW5hZ2UudjEuU2l0ZUxvYWRlckFzc2V0EjYKEGxvZ29fbGlnaHRfYXNzZXQYEyABKAsyFy5hcGkuY29tbW9uLnYxLkFzc2V0UmVmSAaIAQESNQoPbG9nb19kYXJrX2Fzc2V0GBQgASgLMhcuYXBpLmNvbW1vbi52MS5Bc3NldFJlZkgHiAEBEjYKEGxvZ29fZW1haWxfYXNzZXQYFSABKAsyFy5hcGkuY29tbW9uLnYxLkFzc2V0UmVmSAiIAQESMwoNZmF2aWNvbl9hc3NldBgWIAEoCzIXLmFwaS5jb21tb24udjEuQXNzZXRSZWZICYgBARI+ChhzaXRlX29nX2JhY2tncm91bmRfYXNzZXQYFyABKAsyFy5hcGkuY29tbW9uLnYxLkFzc2V0UmVmSAqIAQESQQobcHJpdmFjeV9vZ19iYWNrZ3JvdW5kX2Fzc2V0GBggASgLMhcuYXBpLmNvbW1vbi52MS5Bc3NldFJlZkgLiAEBEj8KGXRlcm1zX29nX2JhY2tncm91bmRfYXNzZXQYGSABKAsyFy5hcGkuY29tbW9uLnYxLkFzc2V0UmVmSAyIAQESPgoRZmF2aWNvbl9hc3NldF9zZXQYGiABKAsyHi5hcGkuY29tbW9uLnYxLkZhdmljb25Bc3NldFNldEgNiAEBEhwKFGRlZmF1bHRfbWFwX3RoZW1lX2lkGBsgASgJEhUKDWNvbnRhY3RfZW1haWwYHCABKAlCEwoRX2hvbWVwYWdlX3BhZ2VfaWRCEQoPX21lbnVfaGVhZGVyX2lkQhQKEl9tZW51X3NlY29uZGFyeV9pZEIRCg9fbWVudV9mb290ZXJfaWRCGgoYX21lbnVfYXZhdGFyX2Ryb3Bkb3duX2lkQhYKFF9nb29nbGVfYW5hbHl0aWNzX2lkQhMKEV9sb2dvX2xpZ2h0X2Fzc2V0QhIKEF9sb2dvX2RhcmtfYXNzZXRCEwoRX2xvZ29fZW1haWxfYXNzZXRCEAoOX2Zhdmljb25fYXNzZXRCGwoZX3NpdGVfb2dfYmFja2dyb3VuZF9hc3NldEIeChxfcHJpdmFjeV9vZ19iYWNrZ3JvdW5kX2Fzc2V0QhwKGl90ZXJtc19vZ19iYWNrZ3JvdW5kX2Fzc2V0QhQKEl9mYXZpY29uX2Fzc2V0X3NldEoECAYQB0oECAcQCFINc3VwcG9ydF9lbWFpbFINcHJpdmFjeV9lbWFpbCImCg9SdW50aW1lU2V0dGluZ3MSEwoLc2l0ZV9vcmlnaW4YASABKAkiuAEKC0FsbFNldHRpbmdzEi0KBnB1YmxpYxgBIAEoCzIdLmFwaS5tYW5hZ2UudjEuUHVibGljU2V0dGluZ3MSNQoPb2dfaW1hZ2VfY29uZmlnGAIgASgLMhcuZ29vZ2xlLnByb3RvYnVmLlN0cnVjdEgAiAEBEi8KB3J1bnRpbWUYAyABKAsyHi5hcGkubWFuYWdlLnYxLlJ1bnRpbWVTZXR0aW5nc0ISChBfb2dfaW1hZ2VfY29uZmlnIhQKEkdldFNldHRpbmdzUmVxdWVzdCJDChNHZXRTZXR0aW5nc1Jlc3BvbnNlEiwKCHNldHRpbmdzGAEgASgLMhouYXBpLm1hbmFnZS52MS5BbGxTZXR0aW5ncyIgChFHZXRTZXR0aW5nUmVxdWVzdBILCgNrZXkYASABKAkiQQoSR2V0U2V0dGluZ1Jlc3BvbnNlEisKB3NldHRpbmcYASABKAsyGi5hcGkubWFuYWdlLnYxLlNpdGVTZXR0aW5nIkcKEVNldFNldHRpbmdSZXF1ZXN0EgsKA2tleRgBIAEoCRIlCgV2YWx1ZRgCIAEoCzIWLmdvb2dsZS5wcm90b2J1Zi5WYWx1ZSJhChJTZXRTZXR0aW5nUmVzcG9uc2USDwoHc3VjY2VzcxgBIAEoCBIhChRvZ19nZW5lcmF0aW9uX3J1bl9pZBgCIAEoCUgAiAEBQhcKFV9vZ19nZW5lcmF0aW9uX3J1bl9pZCJGChZTZXRNYW55U2V0dGluZ3NSZXF1ZXN0EiwKCHNldHRpbmdzGAEgAygLMhouYXBpLm1hbmFnZS52MS5TaXRlU2V0dGluZyJmChdTZXRNYW55U2V0dGluZ3NSZXNwb25zZRIPCgdzdWNjZXNzGAEgASgIEiEKFG9nX2dlbmVyYXRpb25fcnVuX2lkGAIgASgJSACIAQFCFwoVX29nX2dlbmVyYXRpb25fcnVuX2lkIiwKGUFkZFNpdGVMb2FkZXJBc3NldFJlcXVlc3QSDwoHZmlsZV9pZBgBIAEoCSItChpBZGRTaXRlTG9hZGVyQXNzZXRSZXNwb25zZRIPCgdzdWNjZXNzGAEgASgIIi8KHFJlbW92ZVNpdGVMb2FkZXJBc3NldFJlcXVlc3QSDwoHZmlsZV9pZBgBIAEoCSIwCh1SZW1vdmVTaXRlTG9hZGVyQXNzZXRSZXNwb25zZRIPCgdzdWNjZXNzGAEgASgIMoEFChJTaXRlU2V0dGluZ1NlcnZpY2USXAoLR2V0U2V0dGluZ3MSIS5hcGkubWFuYWdlLnYxLkdldFNldHRpbmdzUmVxdWVzdBoiLmFwaS5tYW5hZ2UudjEuR2V0U2V0dGluZ3NSZXNwb25zZSIGyvMYAggEElkKCkdldFNldHRpbmcSIC5hcGkubWFuYWdlLnYxLkdldFNldHRpbmdSZXF1ZXN0GiEuYXBpLm1hbmFnZS52MS5HZXRTZXR0aW5nUmVzcG9uc2UiBsrzGAIIBBJZCgpTZXRTZXR0aW5nEiAuYXBpLm1hbmFnZS52MS5TZXRTZXR0aW5nUmVxdWVzdBohLmFwaS5tYW5hZ2UudjEuU2V0U2V0dGluZ1Jlc3BvbnNlIgbK8xgCCAQSaAoPU2V0TWFueVNldHRpbmdzEiUuYXBpLm1hbmFnZS52MS5TZXRNYW55U2V0dGluZ3NSZXF1ZXN0GiYuYXBpLm1hbmFnZS52MS5TZXRNYW55U2V0dGluZ3NSZXNwb25zZSIGyvMYAggEEnEKEkFkZFNpdGVMb2FkZXJBc3NldBIoLmFwaS5tYW5hZ2UudjEuQWRkU2l0ZUxvYWRlckFzc2V0UmVxdWVzdBopLmFwaS5tYW5hZ2UudjEuQWRkU2l0ZUxvYWRlckFzc2V0UmVzcG9uc2UiBsrzGAIIBBJ6ChVSZW1vdmVTaXRlTG9hZGVyQXNzZXQSKy5hcGkubWFuYWdlLnYxLlJlbW92ZVNpdGVMb2FkZXJBc3NldFJlcXVlc3QaLC5hcGkubWFuYWdlLnYxLlJlbW92ZVNpdGVMb2FkZXJBc3NldFJlc3BvbnNlIgbK8xgCCARCxQEKEWNvbS5hcGkubWFuYWdlLnYxQhBTaXRlU2V0dGluZ1Byb3RvUAFaSGdpdGh1Yi5jb20vZWNob3Zpc2lvbmxhYi9nZXVsLWV2ZW50LWNvbnRyYWN0cy9nZW4vYXBpL21hbmFnZS92MTttYW5hZ2V2MaICA0FNWKoCDUFwaS5NYW5hZ2UuVjHKAg1BcGlcTWFuYWdlXFYx4gIZQXBpXE1hbmFnZVxWMVxHUEJNZXRhZGF0YeoCD0FwaTo6TWFuYWdlOjpWMWIGcHJvdG8z",
+    "CiBhcGkvbWFuYWdlL3YxL3NpdGVfc2V0dGluZy5wcm90bxINYXBpLm1hbmFnZS52MSJBCgtTaXRlU2V0dGluZxILCgNrZXkYASABKAkSJQoFdmFsdWUYAiABKAsyFi5nb29nbGUucHJvdG9idWYuVmFsdWUiSgoPU2l0ZUxvYWRlckFzc2V0Eg8KB2ZpbGVfaWQYASABKAkSJgoFYXNzZXQYAiABKAsyFy5hcGkuY29tbW9uLnYxLkFzc2V0UmVmIvgMCg5QdWJsaWNTZXR0aW5ncxISCgpzaXRlX3RpdGxlGAEgASgJEhQKDGNvbXBhbnlfbmFtZRgCIAEoCRIXCg9jb21wYW55X2FkZHJlc3MYAyABKAkSDgoGdGF4X2lkGAQgASgJEhMKC2xlZ2FsX2VtYWlsGAUgASgJEi0KDHNvY2lhbF9saW5rcxgGIAEoCzIXLmdvb2dsZS5wcm90b2J1Zi5TdHJ1Y3QSFQoNcHJpbWFyeV9jb2xvchgHIAEoCRIgChhkZWZhdWx0X2NvbW1lbnRzX2VuYWJsZWQYCCABKAgSHQoQaG9tZXBhZ2VfcGFnZV9pZBgJIAEoCUgAiAEBEhsKDm1lbnVfaGVhZGVyX2lkGAogASgJSAGIAQESHgoRbWVudV9zZWNvbmRhcnlfaWQYCyABKAlIAogBARIbCg5tZW51X2Zvb3Rlcl9pZBgMIAEoCUgDiAEBEiQKF21lbnVfYXZhdGFyX2Ryb3Bkb3duX2lkGA0gASgJSASIAQESGAoQbWV0YV9kZXNjcmlwdGlvbhgOIAEoCRIgChNnb29nbGVfYW5hbHl0aWNzX2lkGA8gASgJSAWIAQESNQoNbG9hZGVyX2Fzc2V0cxgQIAMoCzIeLmFwaS5tYW5hZ2UudjEuU2l0ZUxvYWRlckFzc2V0EjsKFWxvZ29fZnVsbF9saWdodF9hc3NldBgRIAEoCzIXLmFwaS5jb21tb24udjEuQXNzZXRSZWZIBogBARI6ChRsb2dvX2Z1bGxfZGFya19hc3NldBgSIAEoCzIXLmFwaS5jb21tb24udjEuQXNzZXRSZWZIB4gBARI8ChZsb2dvX2VtYWlsX2xpZ2h0X2Fzc2V0GBMgASgLMhcuYXBpLmNvbW1vbi52MS5Bc3NldFJlZkgIiAEBEjMKDWZhdmljb25fYXNzZXQYFCABKAsyFy5hcGkuY29tbW9uLnYxLkFzc2V0UmVmSAmIAQESPgoYc2l0ZV9vZ19iYWNrZ3JvdW5kX2Fzc2V0GBUgASgLMhcuYXBpLmNvbW1vbi52MS5Bc3NldFJlZkgKiAEBEkEKG3ByaXZhY3lfb2dfYmFja2dyb3VuZF9hc3NldBgWIAEoCzIXLmFwaS5jb21tb24udjEuQXNzZXRSZWZIC4gBARI/Chl0ZXJtc19vZ19iYWNrZ3JvdW5kX2Fzc2V0GBcgASgLMhcuYXBpLmNvbW1vbi52MS5Bc3NldFJlZkgMiAEBEj4KEWZhdmljb25fYXNzZXRfc2V0GBggASgLMh4uYXBpLmNvbW1vbi52MS5GYXZpY29uQXNzZXRTZXRIDYgBARIcChRkZWZhdWx0X21hcF90aGVtZV9pZBgZIAEoCRIVCg1jb250YWN0X2VtYWlsGBogASgJEj0KF2xvZ29fc3ltYm9sX2xpZ2h0X2Fzc2V0GBsgASgLMhcuYXBpLmNvbW1vbi52MS5Bc3NldFJlZkgOiAEBEjwKFmxvZ29fc3ltYm9sX2RhcmtfYXNzZXQYHCABKAsyFy5hcGkuY29tbW9uLnYxLkFzc2V0UmVmSA+IAQESOwoVbG9nb19lbWFpbF9kYXJrX2Fzc2V0GB0gASgLMhcuYXBpLmNvbW1vbi52MS5Bc3NldFJlZkgQiAEBQhMKEV9ob21lcGFnZV9wYWdlX2lkQhEKD19tZW51X2hlYWRlcl9pZEIUChJfbWVudV9zZWNvbmRhcnlfaWRCEQoPX21lbnVfZm9vdGVyX2lkQhoKGF9tZW51X2F2YXRhcl9kcm9wZG93bl9pZEIWChRfZ29vZ2xlX2FuYWx5dGljc19pZEIYChZfbG9nb19mdWxsX2xpZ2h0X2Fzc2V0QhcKFV9sb2dvX2Z1bGxfZGFya19hc3NldEIZChdfbG9nb19lbWFpbF9saWdodF9hc3NldEIQCg5fZmF2aWNvbl9hc3NldEIbChlfc2l0ZV9vZ19iYWNrZ3JvdW5kX2Fzc2V0Qh4KHF9wcml2YWN5X29nX2JhY2tncm91bmRfYXNzZXRCHAoaX3Rlcm1zX29nX2JhY2tncm91bmRfYXNzZXRCFAoSX2Zhdmljb25fYXNzZXRfc2V0QhoKGF9sb2dvX3N5bWJvbF9saWdodF9hc3NldEIZChdfbG9nb19zeW1ib2xfZGFya19hc3NldEIYChZfbG9nb19lbWFpbF9kYXJrX2Fzc2V0IiYKD1J1bnRpbWVTZXR0aW5ncxITCgtzaXRlX29yaWdpbhgBIAEoCSK4AQoLQWxsU2V0dGluZ3MSLQoGcHVibGljGAEgASgLMh0uYXBpLm1hbmFnZS52MS5QdWJsaWNTZXR0aW5ncxI1Cg9vZ19pbWFnZV9jb25maWcYAiABKAsyFy5nb29nbGUucHJvdG9idWYuU3RydWN0SACIAQESLwoHcnVudGltZRgDIAEoCzIeLmFwaS5tYW5hZ2UudjEuUnVudGltZVNldHRpbmdzQhIKEF9vZ19pbWFnZV9jb25maWciFAoSR2V0U2V0dGluZ3NSZXF1ZXN0IkMKE0dldFNldHRpbmdzUmVzcG9uc2USLAoIc2V0dGluZ3MYASABKAsyGi5hcGkubWFuYWdlLnYxLkFsbFNldHRpbmdzIiAKEUdldFNldHRpbmdSZXF1ZXN0EgsKA2tleRgBIAEoCSJBChJHZXRTZXR0aW5nUmVzcG9uc2USKwoHc2V0dGluZxgBIAEoCzIaLmFwaS5tYW5hZ2UudjEuU2l0ZVNldHRpbmciRwoRU2V0U2V0dGluZ1JlcXVlc3QSCwoDa2V5GAEgASgJEiUKBXZhbHVlGAIgASgLMhYuZ29vZ2xlLnByb3RvYnVmLlZhbHVlImEKElNldFNldHRpbmdSZXNwb25zZRIPCgdzdWNjZXNzGAEgASgIEiEKFG9nX2dlbmVyYXRpb25fcnVuX2lkGAIgASgJSACIAQFCFwoVX29nX2dlbmVyYXRpb25fcnVuX2lkIkYKFlNldE1hbnlTZXR0aW5nc1JlcXVlc3QSLAoIc2V0dGluZ3MYASADKAsyGi5hcGkubWFuYWdlLnYxLlNpdGVTZXR0aW5nImYKF1NldE1hbnlTZXR0aW5nc1Jlc3BvbnNlEg8KB3N1Y2Nlc3MYASABKAgSIQoUb2dfZ2VuZXJhdGlvbl9ydW5faWQYAiABKAlIAIgBAUIXChVfb2dfZ2VuZXJhdGlvbl9ydW5faWQiLAoZQWRkU2l0ZUxvYWRlckFzc2V0UmVxdWVzdBIPCgdmaWxlX2lkGAEgASgJIi0KGkFkZFNpdGVMb2FkZXJBc3NldFJlc3BvbnNlEg8KB3N1Y2Nlc3MYASABKAgiLwocUmVtb3ZlU2l0ZUxvYWRlckFzc2V0UmVxdWVzdBIPCgdmaWxlX2lkGAEgASgJIjAKHVJlbW92ZVNpdGVMb2FkZXJBc3NldFJlc3BvbnNlEg8KB3N1Y2Nlc3MYASABKAgygQUKElNpdGVTZXR0aW5nU2VydmljZRJcCgtHZXRTZXR0aW5ncxIhLmFwaS5tYW5hZ2UudjEuR2V0U2V0dGluZ3NSZXF1ZXN0GiIuYXBpLm1hbmFnZS52MS5HZXRTZXR0aW5nc1Jlc3BvbnNlIgbK8xgCCAQSWQoKR2V0U2V0dGluZxIgLmFwaS5tYW5hZ2UudjEuR2V0U2V0dGluZ1JlcXVlc3QaIS5hcGkubWFuYWdlLnYxLkdldFNldHRpbmdSZXNwb25zZSIGyvMYAggEElkKClNldFNldHRpbmcSIC5hcGkubWFuYWdlLnYxLlNldFNldHRpbmdSZXF1ZXN0GiEuYXBpLm1hbmFnZS52MS5TZXRTZXR0aW5nUmVzcG9uc2UiBsrzGAIIBBJoCg9TZXRNYW55U2V0dGluZ3MSJS5hcGkubWFuYWdlLnYxLlNldE1hbnlTZXR0aW5nc1JlcXVlc3QaJi5hcGkubWFuYWdlLnYxLlNldE1hbnlTZXR0aW5nc1Jlc3BvbnNlIgbK8xgCCAQScQoSQWRkU2l0ZUxvYWRlckFzc2V0EiguYXBpLm1hbmFnZS52MS5BZGRTaXRlTG9hZGVyQXNzZXRSZXF1ZXN0GikuYXBpLm1hbmFnZS52MS5BZGRTaXRlTG9hZGVyQXNzZXRSZXNwb25zZSIGyvMYAggEEnoKFVJlbW92ZVNpdGVMb2FkZXJBc3NldBIrLmFwaS5tYW5hZ2UudjEuUmVtb3ZlU2l0ZUxvYWRlckFzc2V0UmVxdWVzdBosLmFwaS5tYW5hZ2UudjEuUmVtb3ZlU2l0ZUxvYWRlckFzc2V0UmVzcG9uc2UiBsrzGAIIBELFAQoRY29tLmFwaS5tYW5hZ2UudjFCEFNpdGVTZXR0aW5nUHJvdG9QAVpIZ2l0aHViLmNvbS9lY2hvdmlzaW9ubGFiL2dldWwtZXZlbnQtY29udHJhY3RzL2dlbi9hcGkvbWFuYWdlL3YxO21hbmFnZXYxogIDQU1YqgINQXBpLk1hbmFnZS5WMcoCDUFwaVxNYW5hZ2VcVjHiAhlBcGlcTWFuYWdlXFYxXEdQQk1ldGFkYXRh6gIPQXBpOjpNYW5hZ2U6OlYxYgZwcm90bzM",
     [
       file_api_common_v1_media,
       file_api_policy_v1_access,
@@ -113,122 +113,140 @@ export type PublicSettings = Message<"api.manage.v1.PublicSettings"> & {
   /**
    * social_links as JSON object
    *
-   * @generated from field: google.protobuf.Struct social_links = 8;
+   * @generated from field: google.protobuf.Struct social_links = 6;
    */
   socialLinks?: JsonObject | undefined;
 
   /**
-   * @generated from field: string primary_color = 9;
+   * @generated from field: string primary_color = 7;
    */
   primaryColor: string;
 
   /**
    * Reading
    *
-   * @generated from field: bool default_comments_enabled = 10;
+   * @generated from field: bool default_comments_enabled = 8;
    */
   defaultCommentsEnabled: boolean;
 
   /**
-   * @generated from field: optional string homepage_page_id = 11;
+   * @generated from field: optional string homepage_page_id = 9;
    */
   homepagePageId?: string | undefined;
 
   /**
    * Navigation Menus
    *
-   * @generated from field: optional string menu_header_id = 12;
+   * @generated from field: optional string menu_header_id = 10;
    */
   menuHeaderId?: string | undefined;
 
   /**
-   * @generated from field: optional string menu_secondary_id = 13;
+   * @generated from field: optional string menu_secondary_id = 11;
    */
   menuSecondaryId?: string | undefined;
 
   /**
-   * @generated from field: optional string menu_footer_id = 14;
+   * @generated from field: optional string menu_footer_id = 12;
    */
   menuFooterId?: string | undefined;
 
   /**
-   * @generated from field: optional string menu_avatar_dropdown_id = 15;
+   * @generated from field: optional string menu_avatar_dropdown_id = 13;
    */
   menuAvatarDropdownId?: string | undefined;
 
   /**
    * SEO
    *
-   * @generated from field: string meta_description = 16;
+   * @generated from field: string meta_description = 14;
    */
   metaDescription: string;
 
   /**
-   * @generated from field: optional string google_analytics_id = 17;
+   * @generated from field: optional string google_analytics_id = 15;
    */
   googleAnalyticsId?: string | undefined;
 
   /**
-   * @generated from field: repeated api.manage.v1.SiteLoaderAsset loader_assets = 18;
+   * @generated from field: repeated api.manage.v1.SiteLoaderAsset loader_assets = 16;
    */
   loaderAssets: SiteLoaderAsset[];
 
   /**
-   * @generated from field: optional api.common.v1.AssetRef logo_light_asset = 19;
+   * Stored logo slots exactly as configured (no fallback). Full and symbol logos
+   * are SVG or PNG; email logos are PNG.
+   *
+   * @generated from field: optional api.common.v1.AssetRef logo_full_light_asset = 17;
    */
-  logoLightAsset?: AssetRef | undefined;
+  logoFullLightAsset?: AssetRef | undefined;
 
   /**
-   * @generated from field: optional api.common.v1.AssetRef logo_dark_asset = 20;
+   * @generated from field: optional api.common.v1.AssetRef logo_full_dark_asset = 18;
    */
-  logoDarkAsset?: AssetRef | undefined;
+  logoFullDarkAsset?: AssetRef | undefined;
 
   /**
-   * @generated from field: optional api.common.v1.AssetRef logo_email_asset = 21;
+   * @generated from field: optional api.common.v1.AssetRef logo_email_light_asset = 19;
    */
-  logoEmailAsset?: AssetRef | undefined;
+  logoEmailLightAsset?: AssetRef | undefined;
 
   /**
    * When favicon_asset_set is present, this MUST be that set's icon_png_32
    * from the same active source. When absent, this may be a legacy original.
    *
-   * @generated from field: optional api.common.v1.AssetRef favicon_asset = 22;
+   * @generated from field: optional api.common.v1.AssetRef favicon_asset = 20;
    */
   faviconAsset?: AssetRef | undefined;
 
   /**
-   * @generated from field: optional api.common.v1.AssetRef site_og_background_asset = 23;
+   * @generated from field: optional api.common.v1.AssetRef site_og_background_asset = 21;
    */
   siteOgBackgroundAsset?: AssetRef | undefined;
 
   /**
-   * @generated from field: optional api.common.v1.AssetRef privacy_og_background_asset = 24;
+   * @generated from field: optional api.common.v1.AssetRef privacy_og_background_asset = 22;
    */
   privacyOgBackgroundAsset?: AssetRef | undefined;
 
   /**
-   * @generated from field: optional api.common.v1.AssetRef terms_og_background_asset = 25;
+   * @generated from field: optional api.common.v1.AssetRef terms_og_background_asset = 23;
    */
   termsOgBackgroundAsset?: AssetRef | undefined;
 
   /**
-   * @generated from field: optional api.common.v1.FaviconAssetSet favicon_asset_set = 26;
+   * @generated from field: optional api.common.v1.FaviconAssetSet favicon_asset_set = 24;
    */
   faviconAssetSet?: FaviconAssetSet | undefined;
 
   /**
    * Read projection only. MapThemeService.SetDefaultMapTheme owns mutation.
    *
-   * @generated from field: string default_map_theme_id = 27;
+   * @generated from field: string default_map_theme_id = 25;
    */
   defaultMapThemeId: string;
 
   /**
    * Unified public contact address. legal_email remains a separate contact.
    *
-   * @generated from field: string contact_email = 28;
+   * @generated from field: string contact_email = 26;
    */
   contactEmail: string;
+
+  /**
+   * @generated from field: optional api.common.v1.AssetRef logo_symbol_light_asset = 27;
+   */
+  logoSymbolLightAsset?: AssetRef | undefined;
+
+  /**
+   * @generated from field: optional api.common.v1.AssetRef logo_symbol_dark_asset = 28;
+   */
+  logoSymbolDarkAsset?: AssetRef | undefined;
+
+  /**
+   * @generated from field: optional api.common.v1.AssetRef logo_email_dark_asset = 29;
+   */
+  logoEmailDarkAsset?: AssetRef | undefined;
 };
 
 /**

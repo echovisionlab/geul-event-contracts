@@ -36,7 +36,7 @@ func TestMapThemeDefaultAndCollaborationUseDedicatedCASContracts(t *testing.T) {
 	list := (&managev1.ListMapThemesResponse{}).ProtoReflect().Descriptor()
 	requireMessageField(t, list, "default_map_theme_id", 2, protoreflect.StringKind, "")
 	publicSettings := (&managev1.PublicSettings{}).ProtoReflect().Descriptor()
-	requireMessageField(t, publicSettings, "default_map_theme_id", 27, protoreflect.StringKind, "")
+	requireMessageField(t, publicSettings, "default_map_theme_id", 25, protoreflect.StringKind, "")
 
 	manageFile := managev1.File_api_manage_v1_map_theme_proto
 	manageService := manageFile.Services().ByName("MapThemeService")

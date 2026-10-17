@@ -204,12 +204,18 @@ func TestCollaborationMutationRejectionsAreTyped(t *testing.T) {
 	}
 	detail := (&intrav1.CollaborationMutationRejectionDetail{}).ProtoReflect().Descriptor()
 	requireMessageField(t, detail, "reason", 1, protoreflect.EnumKind, "api.intra.v1.CollaborationMutationRejectionReason")
-	if got := intrav1.CollaborationConflictReason_name[6]; got != "COLLABORATION_CONFLICT_REASON_TARGET_REVISION_CHANGED" {
-		t.Errorf("CollaborationConflictReason 6 = %q", got)
+	conflictReasons := map[int32]string{
+		0: "COLLABORATION_CONFLICT_REASON_UNSPECIFIED",
+		1: "COLLABORATION_CONFLICT_REASON_LOCALE_OWNERSHIP_CHANGED",
+		2: "COLLABORATION_CONFLICT_REASON_DOCUMENT_REVISION_CHANGED",
+		3: "COLLABORATION_CONFLICT_REASON_TARGET_REVISION_CHANGED",
 	}
-	for _, removed := range []int32{2, 3, 4} {
-		if _, exists := intrav1.CollaborationConflictReason_name[removed]; exists {
-			t.Errorf("legacy CollaborationConflictReason %d must be reserved", removed)
+	if len(intrav1.CollaborationConflictReason_name) != len(conflictReasons) {
+		t.Fatalf("CollaborationConflictReason values = %v", intrav1.CollaborationConflictReason_name)
+	}
+	for number, name := range conflictReasons {
+		if got := intrav1.CollaborationConflictReason_name[number]; got != name {
+			t.Errorf("CollaborationConflictReason %d = %q, want %q", number, got, name)
 		}
 	}
 }
