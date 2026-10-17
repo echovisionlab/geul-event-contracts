@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.10.0](https://github.com/echovisionlab/geul-event-contracts/compare/v0.9.0...v0.10.0) (2026-10-17)
+
+
+### ⚠ BREAKING CHANGES
+
+* site logo variants and dense wire numbers without reservations ([#38](https://github.com/echovisionlab/geul-event-contracts/issues/38))
+
+### Features
+
+* site logo variants and dense wire numbers without reservations ([#38](https://github.com/echovisionlab/geul-event-contracts/issues/38)) ([5478dca](https://github.com/echovisionlab/geul-event-contracts/commit/5478dca2865745c3fc29f235d69e708629931813))
+
 ## [0.9.0](https://github.com/echovisionlab/geul-event-contracts/compare/v0.8.0...v0.9.0) (2026-10-16)
 
 
