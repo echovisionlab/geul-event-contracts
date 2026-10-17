@@ -49,7 +49,7 @@ func TestFaviconAssetSetIsProjectedToSiteSettings(t *testing.T) {
 		descriptor protoreflect.MessageDescriptor
 		number     protoreflect.FieldNumber
 	}{
-		{name: "manage", descriptor: (&managev1.PublicSettings{}).ProtoReflect().Descriptor(), number: 26},
+		{name: "manage", descriptor: (&managev1.PublicSettings{}).ProtoReflect().Descriptor(), number: 24},
 		{name: "open", descriptor: (&openv1.SiteSettings{}).ProtoReflect().Descriptor(), number: 16},
 	}
 

@@ -51,7 +51,7 @@ func TestPublicSiteSettingsProjectContactEmails(t *testing.T) {
 	open := (&openv1.SiteSettings{}).ProtoReflect().Descriptor()
 	for name, number := range map[protoreflect.Name]protoreflect.FieldNumber{
 		"legal_email":   17,
-		"contact_email": 20,
+		"contact_email": 18,
 	} {
 		field := open.Fields().ByName(name)
 		if field == nil || field.Number() != number || field.Kind() != protoreflect.StringKind {
@@ -60,13 +60,13 @@ func TestPublicSiteSettingsProjectContactEmails(t *testing.T) {
 	}
 }
 
-func TestContactEmailRemovesLegacyFieldsAndReservesTheirWireIdentity(t *testing.T) {
+func TestContactEmailRemovesLegacyFields(t *testing.T) {
 	for _, contract := range []struct {
-		descriptor                         protoreflect.MessageDescriptor
-		canonical, legal, support, privacy protoreflect.FieldNumber
+		descriptor       protoreflect.MessageDescriptor
+		canonical, legal protoreflect.FieldNumber
 	}{
-		{(&managev1.PublicSettings{}).ProtoReflect().Descriptor(), 28, 5, 6, 7},
-		{(&openv1.SiteSettings{}).ProtoReflect().Descriptor(), 20, 17, 18, 19},
+		{(&managev1.PublicSettings{}).ProtoReflect().Descriptor(), 26, 5},
+		{(&openv1.SiteSettings{}).ProtoReflect().Descriptor(), 18, 17},
 	} {
 		for name, number := range map[protoreflect.Name]protoreflect.FieldNumber{
 			"contact_email": contract.canonical, "legal_email": contract.legal,
@@ -76,10 +76,51 @@ func TestContactEmailRemovesLegacyFieldsAndReservesTheirWireIdentity(t *testing.
 				t.Fatalf("%s.%s must retain string field %d", contract.descriptor.FullName(), name, number)
 			}
 		}
-		for name, number := range map[protoreflect.Name]protoreflect.FieldNumber{"support_email": contract.support, "privacy_email": contract.privacy} {
-			if contract.descriptor.Fields().ByName(name) != nil || !contract.descriptor.ReservedNames().Has(name) || !contract.descriptor.ReservedRanges().Has(number) {
-				t.Errorf("%s.%s must be removed and its name/number reserved", contract.descriptor.FullName(), name)
+		for _, name := range []protoreflect.Name{"support_email", "privacy_email"} {
+			if contract.descriptor.Fields().ByName(name) != nil || contract.descriptor.ReservedNames().Has(name) {
+				t.Errorf("%s.%s must be removed without a reservation", contract.descriptor.FullName(), name)
 			}
 		}
+	}
+}
+
+func TestSiteLogoVariantsReplaceLegacyLogoFields(t *testing.T) {
+	for _, contract := range []struct {
+		descriptor protoreflect.MessageDescriptor
+		slots      map[protoreflect.Name]protoreflect.FieldNumber
+		removed    []protoreflect.Name
+	}{
+		{
+			(&managev1.PublicSettings{}).ProtoReflect().Descriptor(),
+			map[protoreflect.Name]protoreflect.FieldNumber{
+				"logo_full_light_asset": 17, "logo_full_dark_asset": 18, "logo_email_light_asset": 19,
+				"logo_symbol_light_asset": 27, "logo_symbol_dark_asset": 28, "logo_email_dark_asset": 29,
+			},
+			[]protoreflect.Name{"logo_light_asset", "logo_dark_asset", "logo_email_asset"},
+		},
+		{
+			(&openv1.SiteSettings{}).ProtoReflect().Descriptor(),
+			map[protoreflect.Name]protoreflect.FieldNumber{
+				"logo_full_light_asset": 12, "logo_full_dark_asset": 13,
+				"logo_symbol_light_asset": 19, "logo_symbol_dark_asset": 20,
+			},
+			[]protoreflect.Name{"logo_light_asset", "logo_dark_asset"},
+		},
+	} {
+		for name, number := range contract.slots {
+			field := contract.descriptor.Fields().ByName(name)
+			if field == nil || field.Number() != number || field.Kind() != protoreflect.MessageKind ||
+				field.Message().FullName() != "api.common.v1.AssetRef" || !field.HasPresence() {
+				t.Errorf("%s.%s must be optional AssetRef field %d", contract.descriptor.FullName(), name, number)
+			}
+		}
+		for _, name := range contract.removed {
+			if contract.descriptor.Fields().ByName(name) != nil || contract.descriptor.ReservedNames().Has(name) {
+				t.Errorf("%s.%s must be removed without a reservation", contract.descriptor.FullName(), name)
+			}
+		}
+	}
+	if (&openv1.SiteSettings{}).ProtoReflect().Descriptor().Fields().ByName("logo_email_light_asset") != nil {
+		t.Error("email logos are rendered by the API and must not be public manifest fields")
 	}
 }

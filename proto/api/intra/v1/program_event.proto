@@ -69,9 +69,6 @@ message LoadProgramEventBlockDocumentRequest {
 }
 
 message ProgramEventLocaleMetadata {
-  reserved 4 to 5;
-  reserved "content_html", "content_text";
-
   string locale = 1;
   optional string title = 2;
   optional string summary = 3;

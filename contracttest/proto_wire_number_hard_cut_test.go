@@ -307,29 +307,17 @@ func checkDenseMessageNumbers(t *testing.T, message protoreflect.MessageDescript
 		if message.Options().(*descriptorpb.MessageOptions).GetDeprecated() {
 			t.Error("deprecated message option is forbidden")
 		}
-		switch message.FullName() {
-		case "api.intra.v1.ProgramEventLocaleMetadata":
-			assertProgramEventSourceMetadataReservations(t, message)
-		case "api.manage.v1.PublicSettings":
-			assertContactSettingsReservations(t, message, 6, 7)
-		case "api.open.v1.SiteSettings":
-			assertContactSettingsReservations(t, message, 18, 19)
-		default:
-			if message.ReservedRanges().Len() != 0 {
-				t.Errorf("reserved ranges = %v, want none", message.ReservedRanges())
-			}
-			if message.ReservedNames().Len() != 0 {
-				t.Errorf("reserved names = %v, want none", message.ReservedNames())
-			}
+		if message.ReservedRanges().Len() != 0 {
+			t.Errorf("reserved ranges = %v, want none", message.ReservedRanges())
+		}
+		if message.ReservedNames().Len() != 0 {
+			t.Errorf("reserved names = %v, want none", message.ReservedNames())
 		}
 
 		want := protoreflect.FieldNumber(1)
 		for i := 0; i < message.Fields().Len(); i++ {
 			field := message.Fields().Get(i)
 			checkFieldIsNotDeprecated(t, field)
-			for message.ReservedRanges().Has(want) {
-				want++
-			}
 			if field.Number() != want {
 				t.Errorf("field %s is declaration %d with number %d, want %d", field.FullName(), i, field.Number(), want)
 			}
@@ -348,27 +336,11 @@ func checkDenseMessageNumbers(t *testing.T, message protoreflect.MessageDescript
 	})
 }
 
-func assertContactSettingsReservations(t *testing.T, message protoreflect.MessageDescriptor, support, privacy protoreflect.FieldNumber) {
-	t.Helper()
-	count := protoreflect.FieldNumber(0)
-	for i := 0; i < message.ReservedRanges().Len(); i++ {
-		r := message.ReservedRanges().Get(i)
-		count += r[1] - r[0]
-	}
-	if count != 2 || !message.ReservedRanges().Has(support) || !message.ReservedRanges().Has(privacy) || message.ReservedNames().Len() != 2 || !message.ReservedNames().Has("support_email") || !message.ReservedNames().Has("privacy_email") {
-		t.Fatalf("%s must reserve exactly the removed contact fields", message.FullName())
-	}
-}
-
 func checkDenseEnumNumbers(t *testing.T, enum protoreflect.EnumDescriptor) {
 	t.Helper()
 	t.Run(string(enum.FullName()), func(t *testing.T) {
 		if enum.Options().(*descriptorpb.EnumOptions).GetDeprecated() {
 			t.Error("deprecated enum option is forbidden")
-		}
-		if enum.FullName() == "api.intra.v1.CollaborationConflictReason" {
-			assertCollaborationConflictReasonHardCut(t, enum)
-			return
 		}
 		if enum.ReservedRanges().Len() != 0 {
 			t.Errorf("reserved ranges = %v, want none", enum.ReservedRanges())
@@ -387,39 +359,6 @@ func checkDenseEnumNumbers(t *testing.T, enum protoreflect.EnumDescriptor) {
 			}
 		}
 	})
-}
-
-func assertCollaborationConflictReasonHardCut(t *testing.T, enum protoreflect.EnumDescriptor) {
-	t.Helper()
-	ranges := enum.ReservedRanges()
-	if ranges.Len() != 3 {
-		t.Fatalf("CollaborationConflictReason reserved ranges = %v, want 2, 3, 4", ranges)
-	}
-	for index, want := range []protoreflect.EnumNumber{2, 3, 4} {
-		if ranges.Get(index)[0] != want || ranges.Get(index)[1] != want {
-			t.Fatalf("CollaborationConflictReason reserved ranges = %v, want 2, 3, 4", ranges)
-		}
-	}
-	wantNames := []protoreflect.Name{
-		"COLLABORATION_CONFLICT_REASON_SOURCE_REVISION_CHANGED",
-		"COLLABORATION_CONFLICT_REASON_SHARED_STRUCTURE_CHANGED",
-		"COLLABORATION_CONFLICT_REASON_SHARED_MATERIALIZATION_CHANGED",
-	}
-	if enum.ReservedNames().Len() != len(wantNames) {
-		t.Fatalf("CollaborationConflictReason reserved names = %v", enum.ReservedNames())
-	}
-	for index, want := range wantNames {
-		if enum.ReservedNames().Get(index) != want {
-			t.Fatalf("CollaborationConflictReason reserved name %d = %s, want %s", index, enum.ReservedNames().Get(index), want)
-		}
-	}
-	wantNumbers := []protoreflect.EnumNumber{0, 1, 5, 6}
-	for index, want := range wantNumbers {
-		value := enum.Values().Get(index)
-		if value.Number() != want {
-			t.Fatalf("CollaborationConflictReason value %s = %d, want %d", value.Name(), value.Number(), want)
-		}
-	}
 }
 
 func checkFieldIsNotDeprecated(t *testing.T, field protoreflect.FieldDescriptor) {

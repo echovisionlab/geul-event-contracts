@@ -52,7 +52,9 @@ func TestInternalProgramEventServiceOwnsSharedDocument(t *testing.T) {
 	requireMessageField(t, metadata, "title", 2, protoreflect.StringKind, "")
 	requireMessageField(t, metadata, "summary", 3, protoreflect.StringKind, "")
 
-	assertProgramEventSourceMetadataReservations(t, metadata)
+	if metadata.ReservedRanges().Len() != 0 || metadata.ReservedNames().Len() != 0 {
+		t.Fatal("ProgramEventLocaleMetadata must not keep reservations")
+	}
 
 	manageLocale := (&managev1.ProgramEventLocale{}).ProtoReflect().Descriptor()
 	requireMessageField(t, manageLocale, "content_html", 3, protoreflect.StringKind, "")
@@ -60,19 +62,6 @@ func TestInternalProgramEventServiceOwnsSharedDocument(t *testing.T) {
 	openEvent := (&openv1.ProgramEvent{}).ProtoReflect().Descriptor()
 	requireMessageField(t, openEvent, "content_html", 6, protoreflect.StringKind, "")
 	requireMessageField(t, openEvent, "content_text", 7, protoreflect.StringKind, "")
-}
-
-func assertProgramEventSourceMetadataReservations(t *testing.T, metadata protoreflect.MessageDescriptor) {
-	t.Helper()
-
-	ranges := metadata.ReservedRanges()
-	if ranges.Len() != 1 || ranges.Get(0)[0] != 4 || ranges.Get(0)[1] != 6 {
-		t.Fatalf("ProgramEventLocaleMetadata reserved ranges = %v, want [4, 6)", ranges)
-	}
-	names := metadata.ReservedNames()
-	if names.Len() != 2 || names.Get(0) != "content_html" || names.Get(1) != "content_text" {
-		t.Fatalf("ProgramEventLocaleMetadata reserved names = %v, want content_html and content_text", names)
-	}
 }
 
 func TestProgramEventSharedDocumentRoundTrip(t *testing.T) {

@@ -646,14 +646,14 @@ const file_api_intra_v1_program_event_proto_rawDesc = "" +
 	"$LoadProgramEventBlockDocumentRequest\x12\x19\n" +
 	"\bevent_id\x18\x01 \x01(\tR\aeventId\x12B\n" +
 	"\tprincipal\x18\x02 \x01(\v2$.api.intra.v1.CollaborationPrincipalR\tprincipal\x12\x16\n" +
-	"\x06locale\x18\x03 \x01(\tR\x06locale\"\xa6\x01\n" +
+	"\x06locale\x18\x03 \x01(\tR\x06locale\"\x84\x01\n" +
 	"\x1aProgramEventLocaleMetadata\x12\x16\n" +
 	"\x06locale\x18\x01 \x01(\tR\x06locale\x12\x19\n" +
 	"\x05title\x18\x02 \x01(\tH\x00R\x05title\x88\x01\x01\x12\x1d\n" +
 	"\asummary\x18\x03 \x01(\tH\x01R\asummary\x88\x01\x01B\b\n" +
 	"\x06_titleB\n" +
 	"\n" +
-	"\b_summaryJ\x04\b\x04\x10\x06R\fcontent_htmlR\fcontent_text\"\xfb\x04\n" +
+	"\b_summary\"\xfb\x04\n" +
 	"%LoadProgramEventBlockDocumentResponse\x12E\n" +
 	"\bdocument\x18\x01 \x01(\v2).api.content.v1.LocalizedRichTextDocumentR\bdocument\x12+\n" +
 	"\x11document_revision\x18\x02 \x01(\tR\x10documentRevision\x12F\n" +

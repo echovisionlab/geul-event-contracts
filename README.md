@@ -102,10 +102,9 @@ reload; they are not accepted through a compatibility bypass.
 
 Content uses `contact.email`; `contact.legalEmail` remains independent. The
 catalog accepts exactly five keys and rejects the removed support/privacy keys.
-Management `PublicSettings.contact_email` is field 28; public manifest
-`SiteSettings.contact_email` is field 20. The removed support/privacy field names
-and numbers are reserved and cannot be reused. There are no deprecated read
-aliases or runtime fallbacks.
+Management `PublicSettings.contact_email` is field 26; public manifest
+`SiteSettings.contact_email` is field 18. The support/privacy fields are removed.
+There are no deprecated read aliases or runtime fallbacks.
 
 Deploy the schema's `contact-email-v1` migration before API consumers of the new
 column. Before the canonical-only API, Web and Collab start, migrate stored live
@@ -113,6 +112,28 @@ content and historical snapshots to the canonical keys and catalog identity
 under the API migration's backup, writer shutdown and revision contract.
 Updating generated bindings alone does not migrate stored content or settings.
 All consumers must use the same catalog fingerprint; older clients must reload.
+
+## Wire numbers
+
+Every message and enum is numbered densely from 1 (enums from 0) in declaration
+order, with no `reserved` ranges or names. Removing a field or value renumbers
+the remaining ones; the change is breaking and every consumer of the affected
+message upgrades in lockstep. Web and API exchange settings and manifests as
+Connect JSON (field names), so their numbers are not persisted. The API sends
+`CollaborationConflictReason` to Collab as a binary error detail, so API and
+Collab deploy together whenever that enum changes.
+
+## Site logos
+
+Management `PublicSettings` stores six logo slots exactly as configured:
+`logo_full_light_asset` (17), `logo_full_dark_asset` (18),
+`logo_email_light_asset` (19), `logo_symbol_light_asset` (27),
+`logo_symbol_dark_asset` (28) and `logo_email_dark_asset` (29). Full and symbol
+logos are SVG or PNG; email logos are PNG. The public manifest `SiteSettings`
+exposes display logos resolved by the API: `logo_full_light_asset` (12),
+`logo_full_dark_asset` (13), `logo_symbol_light_asset` (19) and
+`logo_symbol_dark_asset` (20). A missing theme uses the other theme of the same
+form and a missing form uses the other form. Email logos stay server-side.
 
 ## Release
 
