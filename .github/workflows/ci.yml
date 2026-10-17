@@ -87,6 +87,11 @@ jobs:
               head_package = read_json(head_sha, path)
               base_versions.append(base_package.pop("version", None))
               head_versions.append(head_package.pop("version", None))
+              if path == "packages/event/package.json":
+                  for package, version in ((base_package, base_versions[-1]), (head_package, head_versions[-1])):
+                      peer_version = package.get("peerDependencies", {}).pop("@echovisionlab/geul-proto", None)
+                      if peer_version not in (version, f"^{version}", f"~{version}"):
+                          raise SystemExit(1)
               if not isinstance(base_versions[-1], str) or not isinstance(head_versions[-1], str):
                   raise SystemExit(1)
               if base_package != head_package:
@@ -98,6 +103,8 @@ jobs:
           base_manifest = read_json(base_sha, ".release-please-manifest.json")
           head_manifest = read_json(head_sha, ".release-please-manifest.json")
           if set(base_manifest) != set(head_manifest) or set(head_manifest) != {"."}:
+              raise SystemExit(1)
+          if base_manifest["."] != base_versions[0] or head_manifest["."] != head_versions[0]:
               raise SystemExit(1)
           PY
             then
