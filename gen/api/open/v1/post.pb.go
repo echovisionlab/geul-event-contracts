@@ -1402,6 +1402,374 @@ func (x *PostSeries) GetSlug() string {
 	return ""
 }
 
+type PostCommentNode struct {
+	state           protoimpl.MessageState `protogen:"open.v1"`
+	Id              string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	PostId          string                 `protobuf:"bytes,2,opt,name=post_id,json=postId,proto3" json:"post_id,omitempty"`
+	ParentId        *string                `protobuf:"bytes,3,opt,name=parent_id,json=parentId,proto3,oneof" json:"parent_id,omitempty"`
+	Content         string                 `protobuf:"bytes,4,opt,name=content,proto3" json:"content,omitempty"`
+	IsDeleted       bool                   `protobuf:"varint,5,opt,name=is_deleted,json=isDeleted,proto3" json:"is_deleted,omitempty"`
+	CreatedAt       *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	UpdatedAt       *timestamppb.Timestamp `protobuf:"bytes,7,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	Replies         []*PostCommentNode     `protobuf:"bytes,8,rep,name=replies,proto3" json:"replies,omitempty"`
+	HasMoreReplies  bool                   `protobuf:"varint,9,opt,name=has_more_replies,json=hasMoreReplies,proto3" json:"has_more_replies,omitempty"`
+	TotalReplyCount int32                  `protobuf:"varint,10,opt,name=total_reply_count,json=totalReplyCount,proto3" json:"total_reply_count,omitempty"`
+	MemberId        *string                `protobuf:"bytes,11,opt,name=member_id,json=memberId,proto3,oneof" json:"member_id,omitempty"`
+	Author          *v11.MemberSummary     `protobuf:"bytes,12,opt,name=author,proto3,oneof" json:"author,omitempty"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
+}
+
+func (x *PostCommentNode) Reset() {
+	*x = PostCommentNode{}
+	mi := &file_api_open_v1_post_proto_msgTypes[17]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PostCommentNode) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PostCommentNode) ProtoMessage() {}
+
+func (x *PostCommentNode) ProtoReflect() protoreflect.Message {
+	mi := &file_api_open_v1_post_proto_msgTypes[17]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PostCommentNode.ProtoReflect.Descriptor instead.
+func (*PostCommentNode) Descriptor() ([]byte, []int) {
+	return file_api_open_v1_post_proto_rawDescGZIP(), []int{17}
+}
+
+func (x *PostCommentNode) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *PostCommentNode) GetPostId() string {
+	if x != nil {
+		return x.PostId
+	}
+	return ""
+}
+
+func (x *PostCommentNode) GetParentId() string {
+	if x != nil && x.ParentId != nil {
+		return *x.ParentId
+	}
+	return ""
+}
+
+func (x *PostCommentNode) GetContent() string {
+	if x != nil {
+		return x.Content
+	}
+	return ""
+}
+
+func (x *PostCommentNode) GetIsDeleted() bool {
+	if x != nil {
+		return x.IsDeleted
+	}
+	return false
+}
+
+func (x *PostCommentNode) GetCreatedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.CreatedAt
+	}
+	return nil
+}
+
+func (x *PostCommentNode) GetUpdatedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.UpdatedAt
+	}
+	return nil
+}
+
+func (x *PostCommentNode) GetReplies() []*PostCommentNode {
+	if x != nil {
+		return x.Replies
+	}
+	return nil
+}
+
+func (x *PostCommentNode) GetHasMoreReplies() bool {
+	if x != nil {
+		return x.HasMoreReplies
+	}
+	return false
+}
+
+func (x *PostCommentNode) GetTotalReplyCount() int32 {
+	if x != nil {
+		return x.TotalReplyCount
+	}
+	return 0
+}
+
+func (x *PostCommentNode) GetMemberId() string {
+	if x != nil && x.MemberId != nil {
+		return *x.MemberId
+	}
+	return ""
+}
+
+func (x *PostCommentNode) GetAuthor() *v11.MemberSummary {
+	if x != nil {
+		return x.Author
+	}
+	return nil
+}
+
+type ListPostCommentsRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	PostId        string                 `protobuf:"bytes,1,opt,name=post_id,json=postId,proto3" json:"post_id,omitempty"`
+	Limit         int32                  `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`
+	Cursor        *string                `protobuf:"bytes,3,opt,name=cursor,proto3,oneof" json:"cursor,omitempty"`
+	ReplyLimit    int32                  `protobuf:"varint,4,opt,name=reply_limit,json=replyLimit,proto3" json:"reply_limit,omitempty"`
+	ShareToken    *string                `protobuf:"bytes,5,opt,name=share_token,json=shareToken,proto3,oneof" json:"share_token,omitempty"`
+	SharePassword *string                `protobuf:"bytes,6,opt,name=share_password,json=sharePassword,proto3,oneof" json:"share_password,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListPostCommentsRequest) Reset() {
+	*x = ListPostCommentsRequest{}
+	mi := &file_api_open_v1_post_proto_msgTypes[18]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListPostCommentsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListPostCommentsRequest) ProtoMessage() {}
+
+func (x *ListPostCommentsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_api_open_v1_post_proto_msgTypes[18]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListPostCommentsRequest.ProtoReflect.Descriptor instead.
+func (*ListPostCommentsRequest) Descriptor() ([]byte, []int) {
+	return file_api_open_v1_post_proto_rawDescGZIP(), []int{18}
+}
+
+func (x *ListPostCommentsRequest) GetPostId() string {
+	if x != nil {
+		return x.PostId
+	}
+	return ""
+}
+
+func (x *ListPostCommentsRequest) GetLimit() int32 {
+	if x != nil {
+		return x.Limit
+	}
+	return 0
+}
+
+func (x *ListPostCommentsRequest) GetCursor() string {
+	if x != nil && x.Cursor != nil {
+		return *x.Cursor
+	}
+	return ""
+}
+
+func (x *ListPostCommentsRequest) GetReplyLimit() int32 {
+	if x != nil {
+		return x.ReplyLimit
+	}
+	return 0
+}
+
+func (x *ListPostCommentsRequest) GetShareToken() string {
+	if x != nil && x.ShareToken != nil {
+		return *x.ShareToken
+	}
+	return ""
+}
+
+func (x *ListPostCommentsRequest) GetSharePassword() string {
+	if x != nil && x.SharePassword != nil {
+		return *x.SharePassword
+	}
+	return ""
+}
+
+type LoadMorePostCommentRepliesRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	PostId        string                 `protobuf:"bytes,1,opt,name=post_id,json=postId,proto3" json:"post_id,omitempty"`
+	CommentId     string                 `protobuf:"bytes,2,opt,name=comment_id,json=commentId,proto3" json:"comment_id,omitempty"`
+	Limit         int32                  `protobuf:"varint,3,opt,name=limit,proto3" json:"limit,omitempty"`
+	Cursor        *string                `protobuf:"bytes,4,opt,name=cursor,proto3,oneof" json:"cursor,omitempty"`
+	ShareToken    *string                `protobuf:"bytes,5,opt,name=share_token,json=shareToken,proto3,oneof" json:"share_token,omitempty"`
+	SharePassword *string                `protobuf:"bytes,6,opt,name=share_password,json=sharePassword,proto3,oneof" json:"share_password,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *LoadMorePostCommentRepliesRequest) Reset() {
+	*x = LoadMorePostCommentRepliesRequest{}
+	mi := &file_api_open_v1_post_proto_msgTypes[19]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *LoadMorePostCommentRepliesRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*LoadMorePostCommentRepliesRequest) ProtoMessage() {}
+
+func (x *LoadMorePostCommentRepliesRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_api_open_v1_post_proto_msgTypes[19]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use LoadMorePostCommentRepliesRequest.ProtoReflect.Descriptor instead.
+func (*LoadMorePostCommentRepliesRequest) Descriptor() ([]byte, []int) {
+	return file_api_open_v1_post_proto_rawDescGZIP(), []int{19}
+}
+
+func (x *LoadMorePostCommentRepliesRequest) GetPostId() string {
+	if x != nil {
+		return x.PostId
+	}
+	return ""
+}
+
+func (x *LoadMorePostCommentRepliesRequest) GetCommentId() string {
+	if x != nil {
+		return x.CommentId
+	}
+	return ""
+}
+
+func (x *LoadMorePostCommentRepliesRequest) GetLimit() int32 {
+	if x != nil {
+		return x.Limit
+	}
+	return 0
+}
+
+func (x *LoadMorePostCommentRepliesRequest) GetCursor() string {
+	if x != nil && x.Cursor != nil {
+		return *x.Cursor
+	}
+	return ""
+}
+
+func (x *LoadMorePostCommentRepliesRequest) GetShareToken() string {
+	if x != nil && x.ShareToken != nil {
+		return *x.ShareToken
+	}
+	return ""
+}
+
+func (x *LoadMorePostCommentRepliesRequest) GetSharePassword() string {
+	if x != nil && x.SharePassword != nil {
+		return *x.SharePassword
+	}
+	return ""
+}
+
+type ListPostCommentsResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Comments      []*PostCommentNode     `protobuf:"bytes,1,rep,name=comments,proto3" json:"comments,omitempty"`
+	NextCursor    *string                `protobuf:"bytes,2,opt,name=next_cursor,json=nextCursor,proto3,oneof" json:"next_cursor,omitempty"`
+	HasMore       bool                   `protobuf:"varint,3,opt,name=has_more,json=hasMore,proto3" json:"has_more,omitempty"`
+	TotalCount    int32                  `protobuf:"varint,4,opt,name=total_count,json=totalCount,proto3" json:"total_count,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListPostCommentsResponse) Reset() {
+	*x = ListPostCommentsResponse{}
+	mi := &file_api_open_v1_post_proto_msgTypes[20]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListPostCommentsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListPostCommentsResponse) ProtoMessage() {}
+
+func (x *ListPostCommentsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_api_open_v1_post_proto_msgTypes[20]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListPostCommentsResponse.ProtoReflect.Descriptor instead.
+func (*ListPostCommentsResponse) Descriptor() ([]byte, []int) {
+	return file_api_open_v1_post_proto_rawDescGZIP(), []int{20}
+}
+
+func (x *ListPostCommentsResponse) GetComments() []*PostCommentNode {
+	if x != nil {
+		return x.Comments
+	}
+	return nil
+}
+
+func (x *ListPostCommentsResponse) GetNextCursor() string {
+	if x != nil && x.NextCursor != nil {
+		return *x.NextCursor
+	}
+	return ""
+}
+
+func (x *ListPostCommentsResponse) GetHasMore() bool {
+	if x != nil {
+		return x.HasMore
+	}
+	return false
+}
+
+func (x *ListPostCommentsResponse) GetTotalCount() int32 {
+	if x != nil {
+		return x.TotalCount
+	}
+	return 0
+}
+
 var File_api_open_v1_post_proto protoreflect.FileDescriptor
 
 const file_api_open_v1_post_proto_rawDesc = "" +
@@ -1559,16 +1927,72 @@ const file_api_open_v1_post_proto_rawDesc = "" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x14\n" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x12\x17\n" +
 	"\x04slug\x18\x03 \x01(\tH\x00R\x04slug\x88\x01\x01B\a\n" +
-	"\x05_slug*\x90\x01\n" +
+	"\x05_slug\"\x9d\x04\n" +
+	"\x0fPostCommentNode\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x17\n" +
+	"\apost_id\x18\x02 \x01(\tR\x06postId\x12 \n" +
+	"\tparent_id\x18\x03 \x01(\tH\x00R\bparentId\x88\x01\x01\x12\x18\n" +
+	"\acontent\x18\x04 \x01(\tR\acontent\x12\x1d\n" +
+	"\n" +
+	"is_deleted\x18\x05 \x01(\bR\tisDeleted\x129\n" +
+	"\n" +
+	"created_at\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x129\n" +
+	"\n" +
+	"updated_at\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\x126\n" +
+	"\areplies\x18\b \x03(\v2\x1c.api.open.v1.PostCommentNodeR\areplies\x12(\n" +
+	"\x10has_more_replies\x18\t \x01(\bR\x0ehasMoreReplies\x12*\n" +
+	"\x11total_reply_count\x18\n" +
+	" \x01(\x05R\x0ftotalReplyCount\x12 \n" +
+	"\tmember_id\x18\v \x01(\tH\x01R\bmemberId\x88\x01\x01\x129\n" +
+	"\x06author\x18\f \x01(\v2\x1c.api.common.v1.MemberSummaryH\x02R\x06author\x88\x01\x01B\f\n" +
+	"\n" +
+	"_parent_idB\f\n" +
+	"\n" +
+	"_member_idB\t\n" +
+	"\a_author\"\x86\x02\n" +
+	"\x17ListPostCommentsRequest\x12\x17\n" +
+	"\apost_id\x18\x01 \x01(\tR\x06postId\x12\x14\n" +
+	"\x05limit\x18\x02 \x01(\x05R\x05limit\x12\x1b\n" +
+	"\x06cursor\x18\x03 \x01(\tH\x00R\x06cursor\x88\x01\x01\x12\x1f\n" +
+	"\vreply_limit\x18\x04 \x01(\x05R\n" +
+	"replyLimit\x12$\n" +
+	"\vshare_token\x18\x05 \x01(\tH\x01R\n" +
+	"shareToken\x88\x01\x01\x12*\n" +
+	"\x0eshare_password\x18\x06 \x01(\tH\x02R\rsharePassword\x88\x01\x01B\t\n" +
+	"\a_cursorB\x0e\n" +
+	"\f_share_tokenB\x11\n" +
+	"\x0f_share_password\"\x8e\x02\n" +
+	"!LoadMorePostCommentRepliesRequest\x12\x17\n" +
+	"\apost_id\x18\x01 \x01(\tR\x06postId\x12\x1d\n" +
+	"\n" +
+	"comment_id\x18\x02 \x01(\tR\tcommentId\x12\x14\n" +
+	"\x05limit\x18\x03 \x01(\x05R\x05limit\x12\x1b\n" +
+	"\x06cursor\x18\x04 \x01(\tH\x00R\x06cursor\x88\x01\x01\x12$\n" +
+	"\vshare_token\x18\x05 \x01(\tH\x01R\n" +
+	"shareToken\x88\x01\x01\x12*\n" +
+	"\x0eshare_password\x18\x06 \x01(\tH\x02R\rsharePassword\x88\x01\x01B\t\n" +
+	"\a_cursorB\x0e\n" +
+	"\f_share_tokenB\x11\n" +
+	"\x0f_share_password\"\xc6\x01\n" +
+	"\x18ListPostCommentsResponse\x128\n" +
+	"\bcomments\x18\x01 \x03(\v2\x1c.api.open.v1.PostCommentNodeR\bcomments\x12$\n" +
+	"\vnext_cursor\x18\x02 \x01(\tH\x00R\n" +
+	"nextCursor\x88\x01\x01\x12\x19\n" +
+	"\bhas_more\x18\x03 \x01(\bR\ahasMore\x12\x1f\n" +
+	"\vtotal_count\x18\x04 \x01(\x05R\n" +
+	"totalCountB\x0e\n" +
+	"\f_next_cursor*\x90\x01\n" +
 	"\n" +
 	"PostStatus\x12\x1b\n" +
 	"\x17POST_STATUS_UNSPECIFIED\x10\x00\x12\x15\n" +
 	"\x11POST_STATUS_DRAFT\x10\x01\x12\x19\n" +
 	"\x15POST_STATUS_PUBLISHED\x10\x02\x12\x18\n" +
 	"\x14POST_STATUS_ARCHIVED\x10\x03\x12\x19\n" +
-	"\x15POST_STATUS_SCHEDULED\x10\x042\xc9\x02\n" +
+	"\x15POST_STATUS_SCHEDULED\x10\x042\x97\x04\n" +
 	"\vPostService\x12@\n" +
-	"\x03Get\x12\x1b.api.open.v1.GetPostRequest\x1a\x1c.api.open.v1.GetPostResponse\x12E\n" +
+	"\x03Get\x12\x1b.api.open.v1.GetPostRequest\x1a\x1c.api.open.v1.GetPostResponse\x12[\n" +
+	"\fListComments\x12$.api.open.v1.ListPostCommentsRequest\x1a%.api.open.v1.ListPostCommentsResponse\x12o\n" +
+	"\x16LoadMoreCommentReplies\x12..api.open.v1.LoadMorePostCommentRepliesRequest\x1a%.api.open.v1.ListPostCommentsResponse\x12E\n" +
 	"\x04List\x12\x1d.api.open.v1.ListPostsRequest\x1a\x1e.api.open.v1.ListPostsResponse\x12d\n" +
 	"\x0fListMapFeatures\x12'.api.open.v1.ListPostMapFeaturesRequest\x1a(.api.open.v1.ListPostMapFeaturesResponse\x12K\n" +
 	"\x06Search\x12\x1f.api.open.v1.SearchPostsRequest\x1a .api.open.v1.SearchPostsResponseB\xb0\x01\n" +
@@ -1587,89 +2011,102 @@ func file_api_open_v1_post_proto_rawDescGZIP() []byte {
 }
 
 var file_api_open_v1_post_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_api_open_v1_post_proto_msgTypes = make([]protoimpl.MessageInfo, 17)
+var file_api_open_v1_post_proto_msgTypes = make([]protoimpl.MessageInfo, 21)
 var file_api_open_v1_post_proto_goTypes = []any{
-	(PostStatus)(0),                      // 0: api.open.v1.PostStatus
-	(*GetPostRequest)(nil),               // 1: api.open.v1.GetPostRequest
-	(*GetPostResponse)(nil),              // 2: api.open.v1.GetPostResponse
-	(*Post)(nil),                         // 3: api.open.v1.Post
-	(*ListPostsRequest)(nil),             // 4: api.open.v1.ListPostsRequest
-	(*ListPostsResponse)(nil),            // 5: api.open.v1.ListPostsResponse
-	(*MapBounds)(nil),                    // 6: api.open.v1.MapBounds
-	(*PostMapViewport)(nil),              // 7: api.open.v1.PostMapViewport
-	(*ListPostMapFeaturesRequest)(nil),   // 8: api.open.v1.ListPostMapFeaturesRequest
-	(*PostMapCluster)(nil),               // 9: api.open.v1.PostMapCluster
-	(*PostMapItem)(nil),                  // 10: api.open.v1.PostMapItem
-	(*ListPostMapFeaturesResponse)(nil),  // 11: api.open.v1.ListPostMapFeaturesResponse
-	(*PostSummary)(nil),                  // 12: api.open.v1.PostSummary
-	(*SearchPostsRequest)(nil),           // 13: api.open.v1.SearchPostsRequest
-	(*SearchPostsResponse)(nil),          // 14: api.open.v1.SearchPostsResponse
-	(*PostCategory)(nil),                 // 15: api.open.v1.PostCategory
-	(*PostTag)(nil),                      // 16: api.open.v1.PostTag
-	(*PostSeries)(nil),                   // 17: api.open.v1.PostSeries
-	(*v1.ContentBlockMediaItem)(nil),     // 18: api.content.v1.ContentBlockMediaItem
-	(*timestamppb.Timestamp)(nil),        // 19: google.protobuf.Timestamp
-	(*v11.MemberSummary)(nil),            // 20: api.common.v1.MemberSummary
-	(*v1.LocalizedRichTextDocument)(nil), // 21: api.content.v1.LocalizedRichTextDocument
-	(*v11.AssetRef)(nil),                 // 22: api.common.v1.AssetRef
-	(*MapPlaceBasic)(nil),                // 23: api.open.v1.MapPlaceBasic
-	(*LocalizationInfo)(nil),             // 24: api.open.v1.LocalizationInfo
-	(*v11.DocumentLayout)(nil),           // 25: api.common.v1.DocumentLayout
-	(*v11.MediaDelivery)(nil),            // 26: api.common.v1.MediaDelivery
-	(*v11.PaginationRequest)(nil),        // 27: api.common.v1.PaginationRequest
-	(*v11.FilterSpec)(nil),               // 28: api.common.v1.FilterSpec
-	(*v11.SortSpec)(nil),                 // 29: api.common.v1.SortSpec
-	(*v11.PaginationResponse)(nil),       // 30: api.common.v1.PaginationResponse
+	(PostStatus)(0),                           // 0: api.open.v1.PostStatus
+	(*GetPostRequest)(nil),                    // 1: api.open.v1.GetPostRequest
+	(*GetPostResponse)(nil),                   // 2: api.open.v1.GetPostResponse
+	(*Post)(nil),                              // 3: api.open.v1.Post
+	(*ListPostsRequest)(nil),                  // 4: api.open.v1.ListPostsRequest
+	(*ListPostsResponse)(nil),                 // 5: api.open.v1.ListPostsResponse
+	(*MapBounds)(nil),                         // 6: api.open.v1.MapBounds
+	(*PostMapViewport)(nil),                   // 7: api.open.v1.PostMapViewport
+	(*ListPostMapFeaturesRequest)(nil),        // 8: api.open.v1.ListPostMapFeaturesRequest
+	(*PostMapCluster)(nil),                    // 9: api.open.v1.PostMapCluster
+	(*PostMapItem)(nil),                       // 10: api.open.v1.PostMapItem
+	(*ListPostMapFeaturesResponse)(nil),       // 11: api.open.v1.ListPostMapFeaturesResponse
+	(*PostSummary)(nil),                       // 12: api.open.v1.PostSummary
+	(*SearchPostsRequest)(nil),                // 13: api.open.v1.SearchPostsRequest
+	(*SearchPostsResponse)(nil),               // 14: api.open.v1.SearchPostsResponse
+	(*PostCategory)(nil),                      // 15: api.open.v1.PostCategory
+	(*PostTag)(nil),                           // 16: api.open.v1.PostTag
+	(*PostSeries)(nil),                        // 17: api.open.v1.PostSeries
+	(*PostCommentNode)(nil),                   // 18: api.open.v1.PostCommentNode
+	(*ListPostCommentsRequest)(nil),           // 19: api.open.v1.ListPostCommentsRequest
+	(*LoadMorePostCommentRepliesRequest)(nil), // 20: api.open.v1.LoadMorePostCommentRepliesRequest
+	(*ListPostCommentsResponse)(nil),          // 21: api.open.v1.ListPostCommentsResponse
+	(*v1.ContentBlockMediaItem)(nil),          // 22: api.content.v1.ContentBlockMediaItem
+	(*timestamppb.Timestamp)(nil),             // 23: google.protobuf.Timestamp
+	(*v11.MemberSummary)(nil),                 // 24: api.common.v1.MemberSummary
+	(*v1.LocalizedRichTextDocument)(nil),      // 25: api.content.v1.LocalizedRichTextDocument
+	(*v11.AssetRef)(nil),                      // 26: api.common.v1.AssetRef
+	(*MapPlaceBasic)(nil),                     // 27: api.open.v1.MapPlaceBasic
+	(*LocalizationInfo)(nil),                  // 28: api.open.v1.LocalizationInfo
+	(*v11.DocumentLayout)(nil),                // 29: api.common.v1.DocumentLayout
+	(*v11.MediaDelivery)(nil),                 // 30: api.common.v1.MediaDelivery
+	(*v11.PaginationRequest)(nil),             // 31: api.common.v1.PaginationRequest
+	(*v11.FilterSpec)(nil),                    // 32: api.common.v1.FilterSpec
+	(*v11.SortSpec)(nil),                      // 33: api.common.v1.SortSpec
+	(*v11.PaginationResponse)(nil),            // 34: api.common.v1.PaginationResponse
 }
 var file_api_open_v1_post_proto_depIdxs = []int32{
 	3,  // 0: api.open.v1.GetPostResponse.post:type_name -> api.open.v1.Post
-	18, // 1: api.open.v1.GetPostResponse.block_media:type_name -> api.content.v1.ContentBlockMediaItem
+	22, // 1: api.open.v1.GetPostResponse.block_media:type_name -> api.content.v1.ContentBlockMediaItem
 	0,  // 2: api.open.v1.Post.status:type_name -> api.open.v1.PostStatus
-	19, // 3: api.open.v1.Post.created_at:type_name -> google.protobuf.Timestamp
-	19, // 4: api.open.v1.Post.updated_at:type_name -> google.protobuf.Timestamp
-	19, // 5: api.open.v1.Post.published_at:type_name -> google.protobuf.Timestamp
-	20, // 6: api.open.v1.Post.author_members:type_name -> api.common.v1.MemberSummary
+	23, // 3: api.open.v1.Post.created_at:type_name -> google.protobuf.Timestamp
+	23, // 4: api.open.v1.Post.updated_at:type_name -> google.protobuf.Timestamp
+	23, // 5: api.open.v1.Post.published_at:type_name -> google.protobuf.Timestamp
+	24, // 6: api.open.v1.Post.author_members:type_name -> api.common.v1.MemberSummary
 	15, // 7: api.open.v1.Post.categories:type_name -> api.open.v1.PostCategory
 	16, // 8: api.open.v1.Post.tags:type_name -> api.open.v1.PostTag
 	17, // 9: api.open.v1.Post.series:type_name -> api.open.v1.PostSeries
-	21, // 10: api.open.v1.Post.document:type_name -> api.content.v1.LocalizedRichTextDocument
-	22, // 11: api.open.v1.Post.og_asset:type_name -> api.common.v1.AssetRef
-	23, // 12: api.open.v1.Post.location_place:type_name -> api.open.v1.MapPlaceBasic
-	24, // 13: api.open.v1.Post.localization_info:type_name -> api.open.v1.LocalizationInfo
-	25, // 14: api.open.v1.Post.document_layout:type_name -> api.common.v1.DocumentLayout
-	19, // 15: api.open.v1.Post.scheduled_at:type_name -> google.protobuf.Timestamp
-	26, // 16: api.open.v1.Post.featured_image_delivery:type_name -> api.common.v1.MediaDelivery
-	27, // 17: api.open.v1.ListPostsRequest.pagination:type_name -> api.common.v1.PaginationRequest
-	28, // 18: api.open.v1.ListPostsRequest.filters:type_name -> api.common.v1.FilterSpec
-	29, // 19: api.open.v1.ListPostsRequest.sorts:type_name -> api.common.v1.SortSpec
+	25, // 10: api.open.v1.Post.document:type_name -> api.content.v1.LocalizedRichTextDocument
+	26, // 11: api.open.v1.Post.og_asset:type_name -> api.common.v1.AssetRef
+	27, // 12: api.open.v1.Post.location_place:type_name -> api.open.v1.MapPlaceBasic
+	28, // 13: api.open.v1.Post.localization_info:type_name -> api.open.v1.LocalizationInfo
+	29, // 14: api.open.v1.Post.document_layout:type_name -> api.common.v1.DocumentLayout
+	23, // 15: api.open.v1.Post.scheduled_at:type_name -> google.protobuf.Timestamp
+	30, // 16: api.open.v1.Post.featured_image_delivery:type_name -> api.common.v1.MediaDelivery
+	31, // 17: api.open.v1.ListPostsRequest.pagination:type_name -> api.common.v1.PaginationRequest
+	32, // 18: api.open.v1.ListPostsRequest.filters:type_name -> api.common.v1.FilterSpec
+	33, // 19: api.open.v1.ListPostsRequest.sorts:type_name -> api.common.v1.SortSpec
 	12, // 20: api.open.v1.ListPostsResponse.posts:type_name -> api.open.v1.PostSummary
-	30, // 21: api.open.v1.ListPostsResponse.pagination:type_name -> api.common.v1.PaginationResponse
+	34, // 21: api.open.v1.ListPostsResponse.pagination:type_name -> api.common.v1.PaginationResponse
 	6,  // 22: api.open.v1.PostMapViewport.bounds:type_name -> api.open.v1.MapBounds
 	7,  // 23: api.open.v1.ListPostMapFeaturesRequest.viewport:type_name -> api.open.v1.PostMapViewport
-	28, // 24: api.open.v1.ListPostMapFeaturesRequest.filters:type_name -> api.common.v1.FilterSpec
-	29, // 25: api.open.v1.ListPostMapFeaturesRequest.sorts:type_name -> api.common.v1.SortSpec
+	32, // 24: api.open.v1.ListPostMapFeaturesRequest.filters:type_name -> api.common.v1.FilterSpec
+	33, // 25: api.open.v1.ListPostMapFeaturesRequest.sorts:type_name -> api.common.v1.SortSpec
 	6,  // 26: api.open.v1.PostMapCluster.bounds:type_name -> api.open.v1.MapBounds
 	9,  // 27: api.open.v1.ListPostMapFeaturesResponse.clusters:type_name -> api.open.v1.PostMapCluster
 	10, // 28: api.open.v1.ListPostMapFeaturesResponse.items:type_name -> api.open.v1.PostMapItem
-	19, // 29: api.open.v1.PostSummary.published_at:type_name -> google.protobuf.Timestamp
-	20, // 30: api.open.v1.PostSummary.author_members:type_name -> api.common.v1.MemberSummary
+	23, // 29: api.open.v1.PostSummary.published_at:type_name -> google.protobuf.Timestamp
+	24, // 30: api.open.v1.PostSummary.author_members:type_name -> api.common.v1.MemberSummary
 	15, // 31: api.open.v1.PostSummary.categories:type_name -> api.open.v1.PostCategory
 	16, // 32: api.open.v1.PostSummary.tags:type_name -> api.open.v1.PostTag
-	26, // 33: api.open.v1.PostSummary.featured_image_delivery:type_name -> api.common.v1.MediaDelivery
+	30, // 33: api.open.v1.PostSummary.featured_image_delivery:type_name -> api.common.v1.MediaDelivery
 	12, // 34: api.open.v1.SearchPostsResponse.posts:type_name -> api.open.v1.PostSummary
-	1,  // 35: api.open.v1.PostService.Get:input_type -> api.open.v1.GetPostRequest
-	4,  // 36: api.open.v1.PostService.List:input_type -> api.open.v1.ListPostsRequest
-	8,  // 37: api.open.v1.PostService.ListMapFeatures:input_type -> api.open.v1.ListPostMapFeaturesRequest
-	13, // 38: api.open.v1.PostService.Search:input_type -> api.open.v1.SearchPostsRequest
-	2,  // 39: api.open.v1.PostService.Get:output_type -> api.open.v1.GetPostResponse
-	5,  // 40: api.open.v1.PostService.List:output_type -> api.open.v1.ListPostsResponse
-	11, // 41: api.open.v1.PostService.ListMapFeatures:output_type -> api.open.v1.ListPostMapFeaturesResponse
-	14, // 42: api.open.v1.PostService.Search:output_type -> api.open.v1.SearchPostsResponse
-	39, // [39:43] is the sub-list for method output_type
-	35, // [35:39] is the sub-list for method input_type
-	35, // [35:35] is the sub-list for extension type_name
-	35, // [35:35] is the sub-list for extension extendee
-	0,  // [0:35] is the sub-list for field type_name
+	23, // 35: api.open.v1.PostCommentNode.created_at:type_name -> google.protobuf.Timestamp
+	23, // 36: api.open.v1.PostCommentNode.updated_at:type_name -> google.protobuf.Timestamp
+	18, // 37: api.open.v1.PostCommentNode.replies:type_name -> api.open.v1.PostCommentNode
+	24, // 38: api.open.v1.PostCommentNode.author:type_name -> api.common.v1.MemberSummary
+	18, // 39: api.open.v1.ListPostCommentsResponse.comments:type_name -> api.open.v1.PostCommentNode
+	1,  // 40: api.open.v1.PostService.Get:input_type -> api.open.v1.GetPostRequest
+	19, // 41: api.open.v1.PostService.ListComments:input_type -> api.open.v1.ListPostCommentsRequest
+	20, // 42: api.open.v1.PostService.LoadMoreCommentReplies:input_type -> api.open.v1.LoadMorePostCommentRepliesRequest
+	4,  // 43: api.open.v1.PostService.List:input_type -> api.open.v1.ListPostsRequest
+	8,  // 44: api.open.v1.PostService.ListMapFeatures:input_type -> api.open.v1.ListPostMapFeaturesRequest
+	13, // 45: api.open.v1.PostService.Search:input_type -> api.open.v1.SearchPostsRequest
+	2,  // 46: api.open.v1.PostService.Get:output_type -> api.open.v1.GetPostResponse
+	21, // 47: api.open.v1.PostService.ListComments:output_type -> api.open.v1.ListPostCommentsResponse
+	21, // 48: api.open.v1.PostService.LoadMoreCommentReplies:output_type -> api.open.v1.ListPostCommentsResponse
+	5,  // 49: api.open.v1.PostService.List:output_type -> api.open.v1.ListPostsResponse
+	11, // 50: api.open.v1.PostService.ListMapFeatures:output_type -> api.open.v1.ListPostMapFeaturesResponse
+	14, // 51: api.open.v1.PostService.Search:output_type -> api.open.v1.SearchPostsResponse
+	46, // [46:52] is the sub-list for method output_type
+	40, // [40:46] is the sub-list for method input_type
+	40, // [40:40] is the sub-list for extension type_name
+	40, // [40:40] is the sub-list for extension extendee
+	0,  // [0:40] is the sub-list for field type_name
 }
 
 func init() { file_api_open_v1_post_proto_init() }
@@ -1688,13 +2125,17 @@ func file_api_open_v1_post_proto_init() {
 	file_api_open_v1_post_proto_msgTypes[14].OneofWrappers = []any{}
 	file_api_open_v1_post_proto_msgTypes[15].OneofWrappers = []any{}
 	file_api_open_v1_post_proto_msgTypes[16].OneofWrappers = []any{}
+	file_api_open_v1_post_proto_msgTypes[17].OneofWrappers = []any{}
+	file_api_open_v1_post_proto_msgTypes[18].OneofWrappers = []any{}
+	file_api_open_v1_post_proto_msgTypes[19].OneofWrappers = []any{}
+	file_api_open_v1_post_proto_msgTypes[20].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_api_open_v1_post_proto_rawDesc), len(file_api_open_v1_post_proto_rawDesc)),
 			NumEnums:      1,
-			NumMessages:   17,
+			NumMessages:   21,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

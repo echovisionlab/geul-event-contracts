@@ -25,6 +25,7 @@ message DocumentLayout {
   DocumentContentHeight content_height = 1;
   DocumentRegionPlacement page_chrome = 2;
   DocumentRegionPlacement footer = 3;
+  bool hide_table_of_contents = 4;
 }
 
 // Pagination request parameters

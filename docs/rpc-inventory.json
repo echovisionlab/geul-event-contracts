@@ -2476,7 +2476,7 @@
               "file": "lib/actions/comment.ts",
               "symbol": "listCommentsAction",
               "call": "createCommentClient().listCommentsByPost({ postId, limit, cursor, replyLimit })",
-              "entrypoint": "CommentSection.tsx under app/(general)/posts/[idOrSlug]/PostViewContent.tsx paginates comments"
+              "entrypoint": "Deployed web v0.16.0 compatibility during rollout; new web reads use api.open.v1.PostService."
             }
           ],
           "consumerTests": [],
@@ -2491,7 +2491,7 @@
               "file": "lib/actions/comment.ts",
               "symbol": "loadMoreRepliesAction",
               "call": "createCommentClient().loadMoreReplies({ commentId, limit, cursor })",
-              "entrypoint": "features/post/Comment/CommentItem.tsx expands paginated reply threads"
+              "entrypoint": "Deployed web v0.16.0 compatibility during rollout; new web reads use api.open.v1.PostService."
             }
           ],
           "consumerTests": [],
@@ -8126,6 +8126,21 @@
           "providerTests": []
         },
         {
+          "name": "ListComments",
+          "consumerStatus": "verified",
+          "consumers": [
+            {
+              "repository": "web",
+              "file": "lib/actions/comment.ts",
+              "symbol": "listCommentsAction",
+              "call": "createPublicPostClientWithAuth().listComments({ postId, limit, cursor, replyLimit, shareToken, sharePassword })",
+              "entrypoint": "features/post/Comment/CommentSection.tsx"
+            }
+          ],
+          "consumerTests": [],
+          "providerTests": []
+        },
+        {
           "name": "ListMapFeatures",
           "consumerStatus": "verified",
           "consumers": [
@@ -8142,6 +8157,21 @@
               "symbol": "listPostMapFeatures",
               "call": "createPublicPostClient[WithLocale](...).listMapFeatures({ viewport, filters, sorts })",
               "entrypoint": "features/page/blocks/post-map/ViewClient.tsx reloads features after viewport changes"
+            }
+          ],
+          "consumerTests": [],
+          "providerTests": []
+        },
+        {
+          "name": "LoadMoreCommentReplies",
+          "consumerStatus": "verified",
+          "consumers": [
+            {
+              "repository": "web",
+              "file": "lib/actions/comment.ts",
+              "symbol": "loadMoreRepliesAction",
+              "call": "createPublicPostClientWithAuth().loadMoreCommentReplies({ postId, commentId, limit, cursor, shareToken, sharePassword })",
+              "entrypoint": "features/post/Comment/CommentItem.tsx"
             }
           ],
           "consumerTests": [],

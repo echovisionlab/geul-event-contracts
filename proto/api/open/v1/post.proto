@@ -18,6 +18,12 @@ service PostService {
   // - share_token allows access to draft posts
   rpc Get(GetPostRequest) returns (GetPostResponse);
 
+  // ListComments reads a thread using the same public/draft access as Get.
+  rpc ListComments(ListPostCommentsRequest) returns (ListPostCommentsResponse);
+
+  // LoadMoreCommentReplies retains the owning Post and ShareLink access fence.
+  rpc LoadMoreCommentReplies(LoadMorePostCommentRepliesRequest) returns (ListPostCommentsResponse);
+
   // List returns published and archived Posts for public list/table blocks.
   // - Filters by category, tag, author, series
   rpc List(ListPostsRequest) returns (ListPostsResponse);
@@ -193,4 +199,44 @@ message PostSeries {
   string id = 1;
   string title = 2;
   optional string slug = 3;
+}
+
+message PostCommentNode {
+  string id = 1;
+  string post_id = 2;
+  optional string parent_id = 3;
+  string content = 4;
+  bool is_deleted = 5;
+  google.protobuf.Timestamp created_at = 6;
+  google.protobuf.Timestamp updated_at = 7;
+  repeated PostCommentNode replies = 8;
+  bool has_more_replies = 9;
+  int32 total_reply_count = 10;
+  optional string member_id = 11;
+  optional api.common.v1.MemberSummary author = 12;
+}
+
+message ListPostCommentsRequest {
+  string post_id = 1;
+  int32 limit = 2;
+  optional string cursor = 3;
+  int32 reply_limit = 4;
+  optional string share_token = 5;
+  optional string share_password = 6;
+}
+
+message LoadMorePostCommentRepliesRequest {
+  string post_id = 1;
+  string comment_id = 2;
+  int32 limit = 3;
+  optional string cursor = 4;
+  optional string share_token = 5;
+  optional string share_password = 6;
+}
+
+message ListPostCommentsResponse {
+  repeated PostCommentNode comments = 1;
+  optional string next_cursor = 2;
+  bool has_more = 3;
+  int32 total_count = 4;
 }
