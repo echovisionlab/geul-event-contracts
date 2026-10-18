@@ -35,6 +35,12 @@ const (
 const (
 	// PostServiceGetProcedure is the fully-qualified name of the PostService's Get RPC.
 	PostServiceGetProcedure = "/api.open.v1.PostService/Get"
+	// PostServiceListCommentsProcedure is the fully-qualified name of the PostService's ListComments
+	// RPC.
+	PostServiceListCommentsProcedure = "/api.open.v1.PostService/ListComments"
+	// PostServiceLoadMoreCommentRepliesProcedure is the fully-qualified name of the PostService's
+	// LoadMoreCommentReplies RPC.
+	PostServiceLoadMoreCommentRepliesProcedure = "/api.open.v1.PostService/LoadMoreCommentReplies"
 	// PostServiceListProcedure is the fully-qualified name of the PostService's List RPC.
 	PostServiceListProcedure = "/api.open.v1.PostService/List"
 	// PostServiceListMapFeaturesProcedure is the fully-qualified name of the PostService's
@@ -50,6 +56,10 @@ type PostServiceClient interface {
 	// - Server tries slug first, then ID (same as Page pattern)
 	// - share_token allows access to draft posts
 	Get(context.Context, *connect.Request[v1.GetPostRequest]) (*connect.Response[v1.GetPostResponse], error)
+	// ListComments reads a thread using the same public/draft access as Get.
+	ListComments(context.Context, *connect.Request[v1.ListPostCommentsRequest]) (*connect.Response[v1.ListPostCommentsResponse], error)
+	// LoadMoreCommentReplies retains the owning Post and ShareLink access fence.
+	LoadMoreCommentReplies(context.Context, *connect.Request[v1.LoadMorePostCommentRepliesRequest]) (*connect.Response[v1.ListPostCommentsResponse], error)
 	// List returns published and archived Posts for public list/table blocks.
 	// - Filters by category, tag, author, series
 	List(context.Context, *connect.Request[v1.ListPostsRequest]) (*connect.Response[v1.ListPostsResponse], error)
@@ -78,6 +88,18 @@ func NewPostServiceClient(httpClient connect.HTTPClient, baseURL string, opts ..
 			connect.WithSchema(postServiceMethods.ByName("Get")),
 			connect.WithClientOptions(opts...),
 		),
+		listComments: connect.NewClient[v1.ListPostCommentsRequest, v1.ListPostCommentsResponse](
+			httpClient,
+			baseURL+PostServiceListCommentsProcedure,
+			connect.WithSchema(postServiceMethods.ByName("ListComments")),
+			connect.WithClientOptions(opts...),
+		),
+		loadMoreCommentReplies: connect.NewClient[v1.LoadMorePostCommentRepliesRequest, v1.ListPostCommentsResponse](
+			httpClient,
+			baseURL+PostServiceLoadMoreCommentRepliesProcedure,
+			connect.WithSchema(postServiceMethods.ByName("LoadMoreCommentReplies")),
+			connect.WithClientOptions(opts...),
+		),
 		list: connect.NewClient[v1.ListPostsRequest, v1.ListPostsResponse](
 			httpClient,
 			baseURL+PostServiceListProcedure,
@@ -101,15 +123,27 @@ func NewPostServiceClient(httpClient connect.HTTPClient, baseURL string, opts ..
 
 // postServiceClient implements PostServiceClient.
 type postServiceClient struct {
-	get             *connect.Client[v1.GetPostRequest, v1.GetPostResponse]
-	list            *connect.Client[v1.ListPostsRequest, v1.ListPostsResponse]
-	listMapFeatures *connect.Client[v1.ListPostMapFeaturesRequest, v1.ListPostMapFeaturesResponse]
-	search          *connect.Client[v1.SearchPostsRequest, v1.SearchPostsResponse]
+	get                    *connect.Client[v1.GetPostRequest, v1.GetPostResponse]
+	listComments           *connect.Client[v1.ListPostCommentsRequest, v1.ListPostCommentsResponse]
+	loadMoreCommentReplies *connect.Client[v1.LoadMorePostCommentRepliesRequest, v1.ListPostCommentsResponse]
+	list                   *connect.Client[v1.ListPostsRequest, v1.ListPostsResponse]
+	listMapFeatures        *connect.Client[v1.ListPostMapFeaturesRequest, v1.ListPostMapFeaturesResponse]
+	search                 *connect.Client[v1.SearchPostsRequest, v1.SearchPostsResponse]
 }
 
 // Get calls api.open.v1.PostService.Get.
 func (c *postServiceClient) Get(ctx context.Context, req *connect.Request[v1.GetPostRequest]) (*connect.Response[v1.GetPostResponse], error) {
 	return c.get.CallUnary(ctx, req)
+}
+
+// ListComments calls api.open.v1.PostService.ListComments.
+func (c *postServiceClient) ListComments(ctx context.Context, req *connect.Request[v1.ListPostCommentsRequest]) (*connect.Response[v1.ListPostCommentsResponse], error) {
+	return c.listComments.CallUnary(ctx, req)
+}
+
+// LoadMoreCommentReplies calls api.open.v1.PostService.LoadMoreCommentReplies.
+func (c *postServiceClient) LoadMoreCommentReplies(ctx context.Context, req *connect.Request[v1.LoadMorePostCommentRepliesRequest]) (*connect.Response[v1.ListPostCommentsResponse], error) {
+	return c.loadMoreCommentReplies.CallUnary(ctx, req)
 }
 
 // List calls api.open.v1.PostService.List.
@@ -133,6 +167,10 @@ type PostServiceHandler interface {
 	// - Server tries slug first, then ID (same as Page pattern)
 	// - share_token allows access to draft posts
 	Get(context.Context, *connect.Request[v1.GetPostRequest]) (*connect.Response[v1.GetPostResponse], error)
+	// ListComments reads a thread using the same public/draft access as Get.
+	ListComments(context.Context, *connect.Request[v1.ListPostCommentsRequest]) (*connect.Response[v1.ListPostCommentsResponse], error)
+	// LoadMoreCommentReplies retains the owning Post and ShareLink access fence.
+	LoadMoreCommentReplies(context.Context, *connect.Request[v1.LoadMorePostCommentRepliesRequest]) (*connect.Response[v1.ListPostCommentsResponse], error)
 	// List returns published and archived Posts for public list/table blocks.
 	// - Filters by category, tag, author, series
 	List(context.Context, *connect.Request[v1.ListPostsRequest]) (*connect.Response[v1.ListPostsResponse], error)
@@ -157,6 +195,18 @@ func NewPostServiceHandler(svc PostServiceHandler, opts ...connect.HandlerOption
 		connect.WithSchema(postServiceMethods.ByName("Get")),
 		connect.WithHandlerOptions(opts...),
 	)
+	postServiceListCommentsHandler := connect.NewUnaryHandler(
+		PostServiceListCommentsProcedure,
+		svc.ListComments,
+		connect.WithSchema(postServiceMethods.ByName("ListComments")),
+		connect.WithHandlerOptions(opts...),
+	)
+	postServiceLoadMoreCommentRepliesHandler := connect.NewUnaryHandler(
+		PostServiceLoadMoreCommentRepliesProcedure,
+		svc.LoadMoreCommentReplies,
+		connect.WithSchema(postServiceMethods.ByName("LoadMoreCommentReplies")),
+		connect.WithHandlerOptions(opts...),
+	)
 	postServiceListHandler := connect.NewUnaryHandler(
 		PostServiceListProcedure,
 		svc.List,
@@ -179,6 +229,10 @@ func NewPostServiceHandler(svc PostServiceHandler, opts ...connect.HandlerOption
 		switch r.URL.Path {
 		case PostServiceGetProcedure:
 			postServiceGetHandler.ServeHTTP(w, r)
+		case PostServiceListCommentsProcedure:
+			postServiceListCommentsHandler.ServeHTTP(w, r)
+		case PostServiceLoadMoreCommentRepliesProcedure:
+			postServiceLoadMoreCommentRepliesHandler.ServeHTTP(w, r)
 		case PostServiceListProcedure:
 			postServiceListHandler.ServeHTTP(w, r)
 		case PostServiceListMapFeaturesProcedure:
@@ -196,6 +250,14 @@ type UnimplementedPostServiceHandler struct{}
 
 func (UnimplementedPostServiceHandler) Get(context.Context, *connect.Request[v1.GetPostRequest]) (*connect.Response[v1.GetPostResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("api.open.v1.PostService.Get is not implemented"))
+}
+
+func (UnimplementedPostServiceHandler) ListComments(context.Context, *connect.Request[v1.ListPostCommentsRequest]) (*connect.Response[v1.ListPostCommentsResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("api.open.v1.PostService.ListComments is not implemented"))
+}
+
+func (UnimplementedPostServiceHandler) LoadMoreCommentReplies(context.Context, *connect.Request[v1.LoadMorePostCommentRepliesRequest]) (*connect.Response[v1.ListPostCommentsResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("api.open.v1.PostService.LoadMoreCommentReplies is not implemented"))
 }
 
 func (UnimplementedPostServiceHandler) List(context.Context, *connect.Request[v1.ListPostsRequest]) (*connect.Response[v1.ListPostsResponse], error) {

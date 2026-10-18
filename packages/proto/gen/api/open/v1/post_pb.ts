@@ -42,7 +42,7 @@ import type { Message } from "@bufbuild/protobuf";
 export const file_api_open_v1_post: GenFile =
   /*@__PURE__*/
   fileDesc(
-    "ChZhcGkvb3Blbi92MS9wb3N0LnByb3RvEgthcGkub3Blbi52MSJ4Cg5HZXRQb3N0UmVxdWVzdBIMCgRzbHVnGAEgASgJEhgKC3NoYXJlX3Rva2VuGAIgASgJSACIAQESGwoOc2hhcmVfcGFzc3dvcmQYAyABKAlIAYgBAUIOCgxfc2hhcmVfdG9rZW5CEQoPX3NoYXJlX3Bhc3N3b3JkInwKD0dldFBvc3RSZXNwb25zZRIkCgRwb3N0GAEgASgLMhEuYXBpLm9wZW4udjEuUG9zdEgAiAEBEjoKC2Jsb2NrX21lZGlhGAIgAygLMiUuYXBpLmNvbnRlbnQudjEuQ29udGVudEJsb2NrTWVkaWFJdGVtQgcKBV9wb3N0IqsJCgRQb3N0EgoKAmlkGAEgASgJEg0KBXRpdGxlGAIgASgJEhEKBHNsdWcYAyABKAlIAIgBARIUCgdzdW1tYXJ5GAQgASgJSAGIAQESJwoGc3RhdHVzGAUgASgOMhcuYXBpLm9wZW4udjEuUG9zdFN0YXR1cxIYChBjb21tZW50c19lbmFibGVkGAYgASgIEi4KCmNyZWF0ZWRfYXQYByABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEi4KCnVwZGF0ZWRfYXQYCCABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEjUKDHB1Ymxpc2hlZF9hdBgJIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBIAogBARI0Cg5hdXRob3JfbWVtYmVycxgKIAMoCzIcLmFwaS5jb21tb24udjEuTWVtYmVyU3VtbWFyeRItCgpjYXRlZ29yaWVzGAsgAygLMhkuYXBpLm9wZW4udjEuUG9zdENhdGVnb3J5EiIKBHRhZ3MYDCADKAsyFC5hcGkub3Blbi52MS5Qb3N0VGFnEiwKBnNlcmllcxgNIAEoCzIXLmFwaS5vcGVuLnYxLlBvc3RTZXJpZXNIA4gBARIZCgxzZXJpZXNfb3JkZXIYDiABKAVIBIgBARI7Cghkb2N1bWVudBgPIAEoCzIpLmFwaS5jb250ZW50LnYxLkxvY2FsaXplZFJpY2hUZXh0RG9jdW1lbnQSLgoIb2dfYXNzZXQYECABKAsyFy5hcGkuY29tbW9uLnYxLkFzc2V0UmVmSAWIAQESGQoMbWFwX3BsYWNlX2lkGBEgASgJSAaIAQESNwoObG9jYXRpb25fcGxhY2UYEiABKAsyGi5hcGkub3Blbi52MS5NYXBQbGFjZUJhc2ljSAeIAQESPQoRbG9jYWxpemF0aW9uX2luZm8YEyABKAsyHS5hcGkub3Blbi52MS5Mb2NhbGl6YXRpb25JbmZvSAiIAQESNgoPZG9jdW1lbnRfbGF5b3V0GBQgASgLMh0uYXBpLmNvbW1vbi52MS5Eb2N1bWVudExheW91dBI1CgxzY2hlZHVsZWRfYXQYFSABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wSAmIAQESIAoTc2NoZWR1bGVkX3RpbWVfem9uZRgWIAEoCUgKiAEBEkIKF2ZlYXR1cmVkX2ltYWdlX2RlbGl2ZXJ5GBcgASgLMhwuYXBpLmNvbW1vbi52MS5NZWRpYURlbGl2ZXJ5SAuIAQESEAoIcmV2aXNpb24YGCABKAlCBwoFX3NsdWdCCgoIX3N1bW1hcnlCDwoNX3B1Ymxpc2hlZF9hdEIJCgdfc2VyaWVzQg8KDV9zZXJpZXNfb3JkZXJCCwoJX29nX2Fzc2V0Qg8KDV9tYXBfcGxhY2VfaWRCEQoPX2xvY2F0aW9uX3BsYWNlQhQKEl9sb2NhbGl6YXRpb25faW5mb0IPCg1fc2NoZWR1bGVkX2F0QhYKFF9zY2hlZHVsZWRfdGltZV96b25lQhoKGF9mZWF0dXJlZF9pbWFnZV9kZWxpdmVyeSKcAQoQTGlzdFBvc3RzUmVxdWVzdBI0CgpwYWdpbmF0aW9uGAEgASgLMiAuYXBpLmNvbW1vbi52MS5QYWdpbmF0aW9uUmVxdWVzdBIqCgdmaWx0ZXJzGAIgAygLMhkuYXBpLmNvbW1vbi52MS5GaWx0ZXJTcGVjEiYKBXNvcnRzGAMgAygLMhcuYXBpLmNvbW1vbi52MS5Tb3J0U3BlYyJzChFMaXN0UG9zdHNSZXNwb25zZRInCgVwb3N0cxgBIAMoCzIYLmFwaS5vcGVuLnYxLlBvc3RTdW1tYXJ5EjUKCnBhZ2luYXRpb24YAiABKAsyIS5hcGkuY29tbW9uLnYxLlBhZ2luYXRpb25SZXNwb25zZSJFCglNYXBCb3VuZHMSDAoEd2VzdBgBIAEoARINCgVzb3V0aBgCIAEoARIMCgRlYXN0GAMgASgBEg0KBW5vcnRoGAQgASgBIqMBCg9Qb3N0TWFwVmlld3BvcnQSJgoGYm91bmRzGAEgASgLMhYuYXBpLm9wZW4udjEuTWFwQm91bmRzEgwKBHpvb20YAiABKAESEAoId2lkdGhfcHgYAyABKAUSEQoJaGVpZ2h0X3B4GAQgASgFEhkKEWNsdXN0ZXJfcmFkaXVzX3B4GAUgASgFEhoKEm1pbl9jbHVzdGVyX3BvaW50cxgGIAEoBSKgAQoaTGlzdFBvc3RNYXBGZWF0dXJlc1JlcXVlc3QSLgoIdmlld3BvcnQYASABKAsyHC5hcGkub3Blbi52MS5Qb3N0TWFwVmlld3BvcnQSKgoHZmlsdGVycxgCIAMoCzIZLmFwaS5jb21tb24udjEuRmlsdGVyU3BlYxImCgVzb3J0cxgDIAMoCzIXLmFwaS5jb21tb24udjEuU29ydFNwZWMivQEKDlBvc3RNYXBDbHVzdGVyEgoKAmlkGAEgASgJEgsKA2xhdBgCIAEoARILCgNsbmcYAyABKAESEwoLcGxhY2VfY291bnQYBCABKAUSEgoKcG9zdF9jb3VudBgFIAEoBRImCgZib3VuZHMYBiABKAsyFi5hcGkub3Blbi52MS5NYXBCb3VuZHMSHgoRbWluX2JyZWFrb3V0X3pvb20YByABKAFIAIgBAUIUChJfbWluX2JyZWFrb3V0X3pvb20i1wEKC1Bvc3RNYXBJdGVtEhAKCHBsYWNlX2lkGAEgASgJEgwKBG5hbWUYAiABKAkSDwoHYWRkcmVzcxgDIAEoCRILCgNsYXQYBCABKAESCwoDbG5nGAUgASgBEhIKCnBvc3RfY291bnQYBiABKAUSFwoPcHJpbWFyeV9wb3N0X2lkGAcgASgJEh4KEXByaW1hcnlfcG9zdF9zbHVnGAggASgJSACIAQESGgoScHJpbWFyeV9wb3N0X3RpdGxlGAkgASgJQhQKEl9wcmltYXJ5X3Bvc3Rfc2x1ZyJ1ChtMaXN0UG9zdE1hcEZlYXR1cmVzUmVzcG9uc2USLQoIY2x1c3RlcnMYASADKAsyGy5hcGkub3Blbi52MS5Qb3N0TWFwQ2x1c3RlchInCgVpdGVtcxgCIAMoCzIYLmFwaS5vcGVuLnYxLlBvc3RNYXBJdGVtItkDCgtQb3N0U3VtbWFyeRIKCgJpZBgBIAEoCRINCgV0aXRsZRgCIAEoCRIRCgRzbHVnGAMgASgJSACIAQESFAoHc3VtbWFyeRgEIAEoCUgBiAEBEjAKDHB1Ymxpc2hlZF9hdBgFIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASNAoOYXV0aG9yX21lbWJlcnMYBiADKAsyHC5hcGkuY29tbW9uLnYxLk1lbWJlclN1bW1hcnkSLQoKY2F0ZWdvcmllcxgHIAMoCzIZLmFwaS5vcGVuLnYxLlBvc3RDYXRlZ29yeRIiCgR0YWdzGAggAygLMhQuYXBpLm9wZW4udjEuUG9zdFRhZxIZCgxtYXBfcGxhY2VfaWQYCSABKAlIAogBARJCChdmZWF0dXJlZF9pbWFnZV9kZWxpdmVyeRgKIAEoCzIcLmFwaS5jb21tb24udjEuTWVkaWFEZWxpdmVyeUgDiAEBEhkKDHNlcmllc19vcmRlchgLIAEoBUgEiAEBQgcKBV9zbHVnQgoKCF9zdW1tYXJ5Qg8KDV9tYXBfcGxhY2VfaWRCGgoYX2ZlYXR1cmVkX2ltYWdlX2RlbGl2ZXJ5Qg8KDV9zZXJpZXNfb3JkZXIiMgoSU2VhcmNoUG9zdHNSZXF1ZXN0Eg0KBXF1ZXJ5GAEgASgJEg0KBWxpbWl0GAIgASgFIj4KE1NlYXJjaFBvc3RzUmVzcG9uc2USJwoFcG9zdHMYASADKAsyGC5hcGkub3Blbi52MS5Qb3N0U3VtbWFyeSJECgxQb3N0Q2F0ZWdvcnkSCgoCaWQYASABKAkSDAoEbmFtZRgCIAEoCRIRCgRzbHVnGAMgASgJSACIAQFCBwoFX3NsdWciPwoHUG9zdFRhZxIKCgJpZBgBIAEoCRIMCgRuYW1lGAIgASgJEhEKBHNsdWcYAyABKAlIAIgBAUIHCgVfc2x1ZyJDCgpQb3N0U2VyaWVzEgoKAmlkGAEgASgJEg0KBXRpdGxlGAIgASgJEhEKBHNsdWcYAyABKAlIAIgBAUIHCgVfc2x1ZyqQAQoKUG9zdFN0YXR1cxIbChdQT1NUX1NUQVRVU19VTlNQRUNJRklFRBAAEhUKEVBPU1RfU1RBVFVTX0RSQUZUEAESGQoVUE9TVF9TVEFUVVNfUFVCTElTSEVEEAISGAoUUE9TVF9TVEFUVVNfQVJDSElWRUQQAxIZChVQT1NUX1NUQVRVU19TQ0hFRFVMRUQQBDLJAgoLUG9zdFNlcnZpY2USQAoDR2V0EhsuYXBpLm9wZW4udjEuR2V0UG9zdFJlcXVlc3QaHC5hcGkub3Blbi52MS5HZXRQb3N0UmVzcG9uc2USRQoETGlzdBIdLmFwaS5vcGVuLnYxLkxpc3RQb3N0c1JlcXVlc3QaHi5hcGkub3Blbi52MS5MaXN0UG9zdHNSZXNwb25zZRJkCg9MaXN0TWFwRmVhdHVyZXMSJy5hcGkub3Blbi52MS5MaXN0UG9zdE1hcEZlYXR1cmVzUmVxdWVzdBooLmFwaS5vcGVuLnYxLkxpc3RQb3N0TWFwRmVhdHVyZXNSZXNwb25zZRJLCgZTZWFyY2gSHy5hcGkub3Blbi52MS5TZWFyY2hQb3N0c1JlcXVlc3QaIC5hcGkub3Blbi52MS5TZWFyY2hQb3N0c1Jlc3BvbnNlQrABCg9jb20uYXBpLm9wZW4udjFCCVBvc3RQcm90b1ABWkRnaXRodWIuY29tL2VjaG92aXNpb25sYWIvZ2V1bC1ldmVudC1jb250cmFjdHMvZ2VuL2FwaS9vcGVuL3YxO29wZW52MaICA0FPWKoCC0FwaS5PcGVuLlYxygILQXBpXE9wZW5cVjHiAhdBcGlcT3BlblxWMVxHUEJNZXRhZGF0YeoCDUFwaTo6T3Blbjo6VjFiBnByb3RvMw",
+    "ChZhcGkvb3Blbi92MS9wb3N0LnByb3RvEgthcGkub3Blbi52MSJ4Cg5HZXRQb3N0UmVxdWVzdBIMCgRzbHVnGAEgASgJEhgKC3NoYXJlX3Rva2VuGAIgASgJSACIAQESGwoOc2hhcmVfcGFzc3dvcmQYAyABKAlIAYgBAUIOCgxfc2hhcmVfdG9rZW5CEQoPX3NoYXJlX3Bhc3N3b3JkInwKD0dldFBvc3RSZXNwb25zZRIkCgRwb3N0GAEgASgLMhEuYXBpLm9wZW4udjEuUG9zdEgAiAEBEjoKC2Jsb2NrX21lZGlhGAIgAygLMiUuYXBpLmNvbnRlbnQudjEuQ29udGVudEJsb2NrTWVkaWFJdGVtQgcKBV9wb3N0IqsJCgRQb3N0EgoKAmlkGAEgASgJEg0KBXRpdGxlGAIgASgJEhEKBHNsdWcYAyABKAlIAIgBARIUCgdzdW1tYXJ5GAQgASgJSAGIAQESJwoGc3RhdHVzGAUgASgOMhcuYXBpLm9wZW4udjEuUG9zdFN0YXR1cxIYChBjb21tZW50c19lbmFibGVkGAYgASgIEi4KCmNyZWF0ZWRfYXQYByABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEi4KCnVwZGF0ZWRfYXQYCCABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEjUKDHB1Ymxpc2hlZF9hdBgJIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBIAogBARI0Cg5hdXRob3JfbWVtYmVycxgKIAMoCzIcLmFwaS5jb21tb24udjEuTWVtYmVyU3VtbWFyeRItCgpjYXRlZ29yaWVzGAsgAygLMhkuYXBpLm9wZW4udjEuUG9zdENhdGVnb3J5EiIKBHRhZ3MYDCADKAsyFC5hcGkub3Blbi52MS5Qb3N0VGFnEiwKBnNlcmllcxgNIAEoCzIXLmFwaS5vcGVuLnYxLlBvc3RTZXJpZXNIA4gBARIZCgxzZXJpZXNfb3JkZXIYDiABKAVIBIgBARI7Cghkb2N1bWVudBgPIAEoCzIpLmFwaS5jb250ZW50LnYxLkxvY2FsaXplZFJpY2hUZXh0RG9jdW1lbnQSLgoIb2dfYXNzZXQYECABKAsyFy5hcGkuY29tbW9uLnYxLkFzc2V0UmVmSAWIAQESGQoMbWFwX3BsYWNlX2lkGBEgASgJSAaIAQESNwoObG9jYXRpb25fcGxhY2UYEiABKAsyGi5hcGkub3Blbi52MS5NYXBQbGFjZUJhc2ljSAeIAQESPQoRbG9jYWxpemF0aW9uX2luZm8YEyABKAsyHS5hcGkub3Blbi52MS5Mb2NhbGl6YXRpb25JbmZvSAiIAQESNgoPZG9jdW1lbnRfbGF5b3V0GBQgASgLMh0uYXBpLmNvbW1vbi52MS5Eb2N1bWVudExheW91dBI1CgxzY2hlZHVsZWRfYXQYFSABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wSAmIAQESIAoTc2NoZWR1bGVkX3RpbWVfem9uZRgWIAEoCUgKiAEBEkIKF2ZlYXR1cmVkX2ltYWdlX2RlbGl2ZXJ5GBcgASgLMhwuYXBpLmNvbW1vbi52MS5NZWRpYURlbGl2ZXJ5SAuIAQESEAoIcmV2aXNpb24YGCABKAlCBwoFX3NsdWdCCgoIX3N1bW1hcnlCDwoNX3B1Ymxpc2hlZF9hdEIJCgdfc2VyaWVzQg8KDV9zZXJpZXNfb3JkZXJCCwoJX29nX2Fzc2V0Qg8KDV9tYXBfcGxhY2VfaWRCEQoPX2xvY2F0aW9uX3BsYWNlQhQKEl9sb2NhbGl6YXRpb25faW5mb0IPCg1fc2NoZWR1bGVkX2F0QhYKFF9zY2hlZHVsZWRfdGltZV96b25lQhoKGF9mZWF0dXJlZF9pbWFnZV9kZWxpdmVyeSKcAQoQTGlzdFBvc3RzUmVxdWVzdBI0CgpwYWdpbmF0aW9uGAEgASgLMiAuYXBpLmNvbW1vbi52MS5QYWdpbmF0aW9uUmVxdWVzdBIqCgdmaWx0ZXJzGAIgAygLMhkuYXBpLmNvbW1vbi52MS5GaWx0ZXJTcGVjEiYKBXNvcnRzGAMgAygLMhcuYXBpLmNvbW1vbi52MS5Tb3J0U3BlYyJzChFMaXN0UG9zdHNSZXNwb25zZRInCgVwb3N0cxgBIAMoCzIYLmFwaS5vcGVuLnYxLlBvc3RTdW1tYXJ5EjUKCnBhZ2luYXRpb24YAiABKAsyIS5hcGkuY29tbW9uLnYxLlBhZ2luYXRpb25SZXNwb25zZSJFCglNYXBCb3VuZHMSDAoEd2VzdBgBIAEoARINCgVzb3V0aBgCIAEoARIMCgRlYXN0GAMgASgBEg0KBW5vcnRoGAQgASgBIqMBCg9Qb3N0TWFwVmlld3BvcnQSJgoGYm91bmRzGAEgASgLMhYuYXBpLm9wZW4udjEuTWFwQm91bmRzEgwKBHpvb20YAiABKAESEAoId2lkdGhfcHgYAyABKAUSEQoJaGVpZ2h0X3B4GAQgASgFEhkKEWNsdXN0ZXJfcmFkaXVzX3B4GAUgASgFEhoKEm1pbl9jbHVzdGVyX3BvaW50cxgGIAEoBSKgAQoaTGlzdFBvc3RNYXBGZWF0dXJlc1JlcXVlc3QSLgoIdmlld3BvcnQYASABKAsyHC5hcGkub3Blbi52MS5Qb3N0TWFwVmlld3BvcnQSKgoHZmlsdGVycxgCIAMoCzIZLmFwaS5jb21tb24udjEuRmlsdGVyU3BlYxImCgVzb3J0cxgDIAMoCzIXLmFwaS5jb21tb24udjEuU29ydFNwZWMivQEKDlBvc3RNYXBDbHVzdGVyEgoKAmlkGAEgASgJEgsKA2xhdBgCIAEoARILCgNsbmcYAyABKAESEwoLcGxhY2VfY291bnQYBCABKAUSEgoKcG9zdF9jb3VudBgFIAEoBRImCgZib3VuZHMYBiABKAsyFi5hcGkub3Blbi52MS5NYXBCb3VuZHMSHgoRbWluX2JyZWFrb3V0X3pvb20YByABKAFIAIgBAUIUChJfbWluX2JyZWFrb3V0X3pvb20i1wEKC1Bvc3RNYXBJdGVtEhAKCHBsYWNlX2lkGAEgASgJEgwKBG5hbWUYAiABKAkSDwoHYWRkcmVzcxgDIAEoCRILCgNsYXQYBCABKAESCwoDbG5nGAUgASgBEhIKCnBvc3RfY291bnQYBiABKAUSFwoPcHJpbWFyeV9wb3N0X2lkGAcgASgJEh4KEXByaW1hcnlfcG9zdF9zbHVnGAggASgJSACIAQESGgoScHJpbWFyeV9wb3N0X3RpdGxlGAkgASgJQhQKEl9wcmltYXJ5X3Bvc3Rfc2x1ZyJ1ChtMaXN0UG9zdE1hcEZlYXR1cmVzUmVzcG9uc2USLQoIY2x1c3RlcnMYASADKAsyGy5hcGkub3Blbi52MS5Qb3N0TWFwQ2x1c3RlchInCgVpdGVtcxgCIAMoCzIYLmFwaS5vcGVuLnYxLlBvc3RNYXBJdGVtItkDCgtQb3N0U3VtbWFyeRIKCgJpZBgBIAEoCRINCgV0aXRsZRgCIAEoCRIRCgRzbHVnGAMgASgJSACIAQESFAoHc3VtbWFyeRgEIAEoCUgBiAEBEjAKDHB1Ymxpc2hlZF9hdBgFIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASNAoOYXV0aG9yX21lbWJlcnMYBiADKAsyHC5hcGkuY29tbW9uLnYxLk1lbWJlclN1bW1hcnkSLQoKY2F0ZWdvcmllcxgHIAMoCzIZLmFwaS5vcGVuLnYxLlBvc3RDYXRlZ29yeRIiCgR0YWdzGAggAygLMhQuYXBpLm9wZW4udjEuUG9zdFRhZxIZCgxtYXBfcGxhY2VfaWQYCSABKAlIAogBARJCChdmZWF0dXJlZF9pbWFnZV9kZWxpdmVyeRgKIAEoCzIcLmFwaS5jb21tb24udjEuTWVkaWFEZWxpdmVyeUgDiAEBEhkKDHNlcmllc19vcmRlchgLIAEoBUgEiAEBQgcKBV9zbHVnQgoKCF9zdW1tYXJ5Qg8KDV9tYXBfcGxhY2VfaWRCGgoYX2ZlYXR1cmVkX2ltYWdlX2RlbGl2ZXJ5Qg8KDV9zZXJpZXNfb3JkZXIiMgoSU2VhcmNoUG9zdHNSZXF1ZXN0Eg0KBXF1ZXJ5GAEgASgJEg0KBWxpbWl0GAIgASgFIj4KE1NlYXJjaFBvc3RzUmVzcG9uc2USJwoFcG9zdHMYASADKAsyGC5hcGkub3Blbi52MS5Qb3N0U3VtbWFyeSJECgxQb3N0Q2F0ZWdvcnkSCgoCaWQYASABKAkSDAoEbmFtZRgCIAEoCRIRCgRzbHVnGAMgASgJSACIAQFCBwoFX3NsdWciPwoHUG9zdFRhZxIKCgJpZBgBIAEoCRIMCgRuYW1lGAIgASgJEhEKBHNsdWcYAyABKAlIAIgBAUIHCgVfc2x1ZyJDCgpQb3N0U2VyaWVzEgoKAmlkGAEgASgJEg0KBXRpdGxlGAIgASgJEhEKBHNsdWcYAyABKAlIAIgBAUIHCgVfc2x1ZyKhAwoPUG9zdENvbW1lbnROb2RlEgoKAmlkGAEgASgJEg8KB3Bvc3RfaWQYAiABKAkSFgoJcGFyZW50X2lkGAMgASgJSACIAQESDwoHY29udGVudBgEIAEoCRISCgppc19kZWxldGVkGAUgASgIEi4KCmNyZWF0ZWRfYXQYBiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEi4KCnVwZGF0ZWRfYXQYByABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEi0KB3JlcGxpZXMYCCADKAsyHC5hcGkub3Blbi52MS5Qb3N0Q29tbWVudE5vZGUSGAoQaGFzX21vcmVfcmVwbGllcxgJIAEoCBIZChF0b3RhbF9yZXBseV9jb3VudBgKIAEoBRIWCgltZW1iZXJfaWQYCyABKAlIAYgBARIxCgZhdXRob3IYDCABKAsyHC5hcGkuY29tbW9uLnYxLk1lbWJlclN1bW1hcnlIAogBAUIMCgpfcGFyZW50X2lkQgwKCl9tZW1iZXJfaWRCCQoHX2F1dGhvciLIAQoXTGlzdFBvc3RDb21tZW50c1JlcXVlc3QSDwoHcG9zdF9pZBgBIAEoCRINCgVsaW1pdBgCIAEoBRITCgZjdXJzb3IYAyABKAlIAIgBARITCgtyZXBseV9saW1pdBgEIAEoBRIYCgtzaGFyZV90b2tlbhgFIAEoCUgBiAEBEhsKDnNoYXJlX3Bhc3N3b3JkGAYgASgJSAKIAQFCCQoHX2N1cnNvckIOCgxfc2hhcmVfdG9rZW5CEQoPX3NoYXJlX3Bhc3N3b3JkItEBCiFMb2FkTW9yZVBvc3RDb21tZW50UmVwbGllc1JlcXVlc3QSDwoHcG9zdF9pZBgBIAEoCRISCgpjb21tZW50X2lkGAIgASgJEg0KBWxpbWl0GAMgASgFEhMKBmN1cnNvchgEIAEoCUgAiAEBEhgKC3NoYXJlX3Rva2VuGAUgASgJSAGIAQESGwoOc2hhcmVfcGFzc3dvcmQYBiABKAlIAogBAUIJCgdfY3Vyc29yQg4KDF9zaGFyZV90b2tlbkIRCg9fc2hhcmVfcGFzc3dvcmQimwEKGExpc3RQb3N0Q29tbWVudHNSZXNwb25zZRIuCghjb21tZW50cxgBIAMoCzIcLmFwaS5vcGVuLnYxLlBvc3RDb21tZW50Tm9kZRIYCgtuZXh0X2N1cnNvchgCIAEoCUgAiAEBEhAKCGhhc19tb3JlGAMgASgIEhMKC3RvdGFsX2NvdW50GAQgASgFQg4KDF9uZXh0X2N1cnNvciqQAQoKUG9zdFN0YXR1cxIbChdQT1NUX1NUQVRVU19VTlNQRUNJRklFRBAAEhUKEVBPU1RfU1RBVFVTX0RSQUZUEAESGQoVUE9TVF9TVEFUVVNfUFVCTElTSEVEEAISGAoUUE9TVF9TVEFUVVNfQVJDSElWRUQQAxIZChVQT1NUX1NUQVRVU19TQ0hFRFVMRUQQBDKXBAoLUG9zdFNlcnZpY2USQAoDR2V0EhsuYXBpLm9wZW4udjEuR2V0UG9zdFJlcXVlc3QaHC5hcGkub3Blbi52MS5HZXRQb3N0UmVzcG9uc2USWwoMTGlzdENvbW1lbnRzEiQuYXBpLm9wZW4udjEuTGlzdFBvc3RDb21tZW50c1JlcXVlc3QaJS5hcGkub3Blbi52MS5MaXN0UG9zdENvbW1lbnRzUmVzcG9uc2USbwoWTG9hZE1vcmVDb21tZW50UmVwbGllcxIuLmFwaS5vcGVuLnYxLkxvYWRNb3JlUG9zdENvbW1lbnRSZXBsaWVzUmVxdWVzdBolLmFwaS5vcGVuLnYxLkxpc3RQb3N0Q29tbWVudHNSZXNwb25zZRJFCgRMaXN0Eh0uYXBpLm9wZW4udjEuTGlzdFBvc3RzUmVxdWVzdBoeLmFwaS5vcGVuLnYxLkxpc3RQb3N0c1Jlc3BvbnNlEmQKD0xpc3RNYXBGZWF0dXJlcxInLmFwaS5vcGVuLnYxLkxpc3RQb3N0TWFwRmVhdHVyZXNSZXF1ZXN0GiguYXBpLm9wZW4udjEuTGlzdFBvc3RNYXBGZWF0dXJlc1Jlc3BvbnNlEksKBlNlYXJjaBIfLmFwaS5vcGVuLnYxLlNlYXJjaFBvc3RzUmVxdWVzdBogLmFwaS5vcGVuLnYxLlNlYXJjaFBvc3RzUmVzcG9uc2VCsAEKD2NvbS5hcGkub3Blbi52MUIJUG9zdFByb3RvUAFaRGdpdGh1Yi5jb20vZWNob3Zpc2lvbmxhYi9nZXVsLWV2ZW50LWNvbnRyYWN0cy9nZW4vYXBpL29wZW4vdjE7b3BlbnYxogIDQU9YqgILQXBpLk9wZW4uVjHKAgtBcGlcT3BlblxWMeICF0FwaVxPcGVuXFYxXEdQQk1ldGFkYXRh6gINQXBpOjpPcGVuOjpWMWIGcHJvdG8z",
     [
       file_api_common_v1_common,
       file_api_common_v1_media,
@@ -744,6 +744,201 @@ export const PostSeriesSchema: GenMessage<PostSeries> =
   messageDesc(file_api_open_v1_post, 16);
 
 /**
+ * @generated from message api.open.v1.PostCommentNode
+ */
+export type PostCommentNode = Message<"api.open.v1.PostCommentNode"> & {
+  /**
+   * @generated from field: string id = 1;
+   */
+  id: string;
+
+  /**
+   * @generated from field: string post_id = 2;
+   */
+  postId: string;
+
+  /**
+   * @generated from field: optional string parent_id = 3;
+   */
+  parentId?: string | undefined;
+
+  /**
+   * @generated from field: string content = 4;
+   */
+  content: string;
+
+  /**
+   * @generated from field: bool is_deleted = 5;
+   */
+  isDeleted: boolean;
+
+  /**
+   * @generated from field: google.protobuf.Timestamp created_at = 6;
+   */
+  createdAt?: Timestamp | undefined;
+
+  /**
+   * @generated from field: google.protobuf.Timestamp updated_at = 7;
+   */
+  updatedAt?: Timestamp | undefined;
+
+  /**
+   * @generated from field: repeated api.open.v1.PostCommentNode replies = 8;
+   */
+  replies: PostCommentNode[];
+
+  /**
+   * @generated from field: bool has_more_replies = 9;
+   */
+  hasMoreReplies: boolean;
+
+  /**
+   * @generated from field: int32 total_reply_count = 10;
+   */
+  totalReplyCount: number;
+
+  /**
+   * @generated from field: optional string member_id = 11;
+   */
+  memberId?: string | undefined;
+
+  /**
+   * @generated from field: optional api.common.v1.MemberSummary author = 12;
+   */
+  author?: MemberSummary | undefined;
+};
+
+/**
+ * Describes the message api.open.v1.PostCommentNode.
+ * Use `create(PostCommentNodeSchema)` to create a new message.
+ */
+export const PostCommentNodeSchema: GenMessage<PostCommentNode> =
+  /*@__PURE__*/
+  messageDesc(file_api_open_v1_post, 17);
+
+/**
+ * @generated from message api.open.v1.ListPostCommentsRequest
+ */
+export type ListPostCommentsRequest =
+  Message<"api.open.v1.ListPostCommentsRequest"> & {
+    /**
+     * @generated from field: string post_id = 1;
+     */
+    postId: string;
+
+    /**
+     * @generated from field: int32 limit = 2;
+     */
+    limit: number;
+
+    /**
+     * @generated from field: optional string cursor = 3;
+     */
+    cursor?: string | undefined;
+
+    /**
+     * @generated from field: int32 reply_limit = 4;
+     */
+    replyLimit: number;
+
+    /**
+     * @generated from field: optional string share_token = 5;
+     */
+    shareToken?: string | undefined;
+
+    /**
+     * @generated from field: optional string share_password = 6;
+     */
+    sharePassword?: string | undefined;
+  };
+
+/**
+ * Describes the message api.open.v1.ListPostCommentsRequest.
+ * Use `create(ListPostCommentsRequestSchema)` to create a new message.
+ */
+export const ListPostCommentsRequestSchema: GenMessage<ListPostCommentsRequest> =
+  /*@__PURE__*/
+  messageDesc(file_api_open_v1_post, 18);
+
+/**
+ * @generated from message api.open.v1.LoadMorePostCommentRepliesRequest
+ */
+export type LoadMorePostCommentRepliesRequest =
+  Message<"api.open.v1.LoadMorePostCommentRepliesRequest"> & {
+    /**
+     * @generated from field: string post_id = 1;
+     */
+    postId: string;
+
+    /**
+     * @generated from field: string comment_id = 2;
+     */
+    commentId: string;
+
+    /**
+     * @generated from field: int32 limit = 3;
+     */
+    limit: number;
+
+    /**
+     * @generated from field: optional string cursor = 4;
+     */
+    cursor?: string | undefined;
+
+    /**
+     * @generated from field: optional string share_token = 5;
+     */
+    shareToken?: string | undefined;
+
+    /**
+     * @generated from field: optional string share_password = 6;
+     */
+    sharePassword?: string | undefined;
+  };
+
+/**
+ * Describes the message api.open.v1.LoadMorePostCommentRepliesRequest.
+ * Use `create(LoadMorePostCommentRepliesRequestSchema)` to create a new message.
+ */
+export const LoadMorePostCommentRepliesRequestSchema: GenMessage<LoadMorePostCommentRepliesRequest> =
+  /*@__PURE__*/
+  messageDesc(file_api_open_v1_post, 19);
+
+/**
+ * @generated from message api.open.v1.ListPostCommentsResponse
+ */
+export type ListPostCommentsResponse =
+  Message<"api.open.v1.ListPostCommentsResponse"> & {
+    /**
+     * @generated from field: repeated api.open.v1.PostCommentNode comments = 1;
+     */
+    comments: PostCommentNode[];
+
+    /**
+     * @generated from field: optional string next_cursor = 2;
+     */
+    nextCursor?: string | undefined;
+
+    /**
+     * @generated from field: bool has_more = 3;
+     */
+    hasMore: boolean;
+
+    /**
+     * @generated from field: int32 total_count = 4;
+     */
+    totalCount: number;
+  };
+
+/**
+ * Describes the message api.open.v1.ListPostCommentsResponse.
+ * Use `create(ListPostCommentsResponseSchema)` to create a new message.
+ */
+export const ListPostCommentsResponseSchema: GenMessage<ListPostCommentsResponse> =
+  /*@__PURE__*/
+  messageDesc(file_api_open_v1_post, 20);
+
+/**
  * @generated from enum api.open.v1.PostStatus
  */
 export enum PostStatus {
@@ -797,6 +992,26 @@ export const PostService: GenService<{
     methodKind: "unary";
     input: typeof GetPostRequestSchema;
     output: typeof GetPostResponseSchema;
+  };
+  /**
+   * ListComments reads a thread using the same public/draft access as Get.
+   *
+   * @generated from rpc api.open.v1.PostService.ListComments
+   */
+  listComments: {
+    methodKind: "unary";
+    input: typeof ListPostCommentsRequestSchema;
+    output: typeof ListPostCommentsResponseSchema;
+  };
+  /**
+   * LoadMoreCommentReplies retains the owning Post and ShareLink access fence.
+   *
+   * @generated from rpc api.open.v1.PostService.LoadMoreCommentReplies
+   */
+  loadMoreCommentReplies: {
+    methodKind: "unary";
+    input: typeof LoadMorePostCommentRepliesRequestSchema;
+    output: typeof ListPostCommentsResponseSchema;
   };
   /**
    * List returns published and archived Posts for public list/table blocks.

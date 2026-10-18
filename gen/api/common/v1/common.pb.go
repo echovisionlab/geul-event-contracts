@@ -257,12 +257,13 @@ func (FilterOp) EnumDescriptor() ([]byte, []int) {
 
 // Document-wide layout authored once and shared across locale bodies.
 type DocumentLayout struct {
-	state         protoimpl.MessageState  `protogen:"open.v1"`
-	ContentHeight DocumentContentHeight   `protobuf:"varint,1,opt,name=content_height,json=contentHeight,proto3,enum=api.common.v1.DocumentContentHeight" json:"content_height,omitempty"`
-	PageChrome    DocumentRegionPlacement `protobuf:"varint,2,opt,name=page_chrome,json=pageChrome,proto3,enum=api.common.v1.DocumentRegionPlacement" json:"page_chrome,omitempty"`
-	Footer        DocumentRegionPlacement `protobuf:"varint,3,opt,name=footer,proto3,enum=api.common.v1.DocumentRegionPlacement" json:"footer,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state               protoimpl.MessageState  `protogen:"open.v1"`
+	ContentHeight       DocumentContentHeight   `protobuf:"varint,1,opt,name=content_height,json=contentHeight,proto3,enum=api.common.v1.DocumentContentHeight" json:"content_height,omitempty"`
+	PageChrome          DocumentRegionPlacement `protobuf:"varint,2,opt,name=page_chrome,json=pageChrome,proto3,enum=api.common.v1.DocumentRegionPlacement" json:"page_chrome,omitempty"`
+	Footer              DocumentRegionPlacement `protobuf:"varint,3,opt,name=footer,proto3,enum=api.common.v1.DocumentRegionPlacement" json:"footer,omitempty"`
+	HideTableOfContents bool                    `protobuf:"varint,4,opt,name=hide_table_of_contents,json=hideTableOfContents,proto3" json:"hide_table_of_contents,omitempty"`
+	unknownFields       protoimpl.UnknownFields
+	sizeCache           protoimpl.SizeCache
 }
 
 func (x *DocumentLayout) Reset() {
@@ -314,6 +315,13 @@ func (x *DocumentLayout) GetFooter() DocumentRegionPlacement {
 		return x.Footer
 	}
 	return DocumentRegionPlacement_DOCUMENT_REGION_PLACEMENT_UNSPECIFIED
+}
+
+func (x *DocumentLayout) GetHideTableOfContents() bool {
+	if x != nil {
+		return x.HideTableOfContents
+	}
+	return false
 }
 
 // Pagination request parameters
@@ -639,12 +647,13 @@ var File_api_common_v1_common_proto protoreflect.FileDescriptor
 
 const file_api_common_v1_common_proto_rawDesc = "" +
 	"\n" +
-	"\x1aapi/common/v1/common.proto\x12\rapi.common.v1\x1a\x19api/common/v1/media.proto\"\xe6\x01\n" +
+	"\x1aapi/common/v1/common.proto\x12\rapi.common.v1\x1a\x19api/common/v1/media.proto\"\x9b\x02\n" +
 	"\x0eDocumentLayout\x12K\n" +
 	"\x0econtent_height\x18\x01 \x01(\x0e2$.api.common.v1.DocumentContentHeightR\rcontentHeight\x12G\n" +
 	"\vpage_chrome\x18\x02 \x01(\x0e2&.api.common.v1.DocumentRegionPlacementR\n" +
 	"pageChrome\x12>\n" +
-	"\x06footer\x18\x03 \x01(\x0e2&.api.common.v1.DocumentRegionPlacementR\x06footer\"A\n" +
+	"\x06footer\x18\x03 \x01(\x0e2&.api.common.v1.DocumentRegionPlacementR\x06footer\x123\n" +
+	"\x16hide_table_of_contents\x18\x04 \x01(\bR\x13hideTableOfContents\"A\n" +
 	"\x11PaginationRequest\x12\x14\n" +
 	"\x05limit\x18\x01 \x01(\x05R\x05limit\x12\x16\n" +
 	"\x06offset\x18\x02 \x01(\x05R\x06offset\"s\n" +
