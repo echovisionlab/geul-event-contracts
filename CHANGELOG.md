@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.11.0](https://github.com/echovisionlab/geul-event-contracts/compare/v0.10.0...v0.11.0) (2026-10-18)
+
+
+### Features
+
+* add xs and xl collection item sizes ([#40](https://github.com/echovisionlab/geul-event-contracts/issues/40)) ([e78ba6d](https://github.com/echovisionlab/geul-event-contracts/commit/e78ba6d0fdeae4c408601b803eaaa490b846f60b))
+
 ## [0.10.0](https://github.com/echovisionlab/geul-event-contracts/compare/v0.9.0...v0.10.0) (2026-10-17)
 
 
