@@ -38,7 +38,7 @@ import {
 } from "./block_content_pb.ts";
 
 export const contentBlockCatalogFingerprint =
-  "732d62ad223d3012770b10d0a1ab25a8dae2336c52b56ecd01cf276051e75637" as const;
+  "d876a2c013cb49556f8953118b47c81ea0a13262db8f06581672048e48a761a6" as const;
 export const contentBlockRuntimeForbiddenFields = [
   "_tempUrl",
   "allowOriginalDownload",
@@ -1283,7 +1283,7 @@ export const pageSectionCatalog = {
       },
       itemSize: {
         type: "enum",
-        values: ["s", "m", "l"],
+        values: ["s", "m", "l", "xs", "xl"],
         default: "m",
         ownership: "shared",
       },
@@ -1726,7 +1726,7 @@ export const pageSectionCatalog = {
       },
       itemSize: {
         type: "enum",
-        values: ["s", "m", "l"],
+        values: ["s", "m", "l", "xs", "xl"],
         default: "m",
         ownership: "shared",
       },
@@ -1820,7 +1820,7 @@ export const pageSectionCatalog = {
       },
       itemSize: {
         type: "enum",
-        values: ["s", "m", "l"],
+        values: ["s", "m", "l", "xs", "xl"],
         default: "m",
         ownership: "shared",
       },
@@ -1922,7 +1922,7 @@ export const pageSectionCatalog = {
       },
       itemSize: {
         type: "enum",
-        values: ["s", "m", "l"],
+        values: ["s", "m", "l", "xs", "xl"],
         default: "m",
         ownership: "shared",
       },
@@ -2006,7 +2006,7 @@ export const pageSectionCatalog = {
       },
       itemSize: {
         type: "enum",
-        values: ["s", "m", "l"],
+        values: ["s", "m", "l", "xs", "xl"],
         default: "m",
         ownership: "shared",
       },
@@ -2081,7 +2081,7 @@ export const pageSectionCatalog = {
       },
       itemSize: {
         type: "enum",
-        values: ["s", "m", "l"],
+        values: ["s", "m", "l", "xs", "xl"],
         default: "m",
         ownership: "shared",
       },
@@ -2139,7 +2139,7 @@ export const pageSectionCatalog = {
       },
       itemSize: {
         type: "enum",
-        values: ["s", "m", "l"],
+        values: ["s", "m", "l", "xs", "xl"],
         default: "m",
         ownership: "shared",
       },

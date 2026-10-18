@@ -1040,6 +1040,8 @@ message PostListSectionProps {
     ITEM_SIZE_S = 1;
     ITEM_SIZE_M = 2;
     ITEM_SIZE_L = 3;
+    ITEM_SIZE_XS = 4;
+    ITEM_SIZE_XL = 5;
   }
   optional Layout layout = 1;
   optional int32 columns = 2;
@@ -1290,6 +1292,8 @@ message WorkListSectionProps {
     ITEM_SIZE_S = 1;
     ITEM_SIZE_M = 2;
     ITEM_SIZE_L = 3;
+    ITEM_SIZE_XS = 4;
+    ITEM_SIZE_XL = 5;
   }
   optional Layout layout = 1;
   optional int32 columns = 2;
@@ -1348,6 +1352,8 @@ message ProgramEventListSectionProps {
     ITEM_SIZE_S = 1;
     ITEM_SIZE_M = 2;
     ITEM_SIZE_L = 3;
+    ITEM_SIZE_XS = 4;
+    ITEM_SIZE_XL = 5;
   }
   optional Layout layout = 1;
   optional int32 columns = 2;
@@ -1405,6 +1411,8 @@ message ReleaseListSectionProps {
     ITEM_SIZE_S = 1;
     ITEM_SIZE_M = 2;
     ITEM_SIZE_L = 3;
+    ITEM_SIZE_XS = 4;
+    ITEM_SIZE_XL = 5;
   }
   optional Layout layout = 1;
   optional int32 columns = 2;
@@ -1455,6 +1463,8 @@ message ArtistListSectionProps {
     ITEM_SIZE_S = 1;
     ITEM_SIZE_M = 2;
     ITEM_SIZE_L = 3;
+    ITEM_SIZE_XS = 4;
+    ITEM_SIZE_XL = 5;
   }
   optional Layout layout = 1;
   optional int32 columns = 2;
@@ -1502,6 +1512,8 @@ message LabelListSectionProps {
     ITEM_SIZE_S = 1;
     ITEM_SIZE_M = 2;
     ITEM_SIZE_L = 3;
+    ITEM_SIZE_XS = 4;
+    ITEM_SIZE_XL = 5;
   }
   optional Layout layout = 1;
   optional int32 columns = 2;
@@ -1533,6 +1545,8 @@ message AuthorListSectionProps {
     ITEM_SIZE_S = 1;
     ITEM_SIZE_M = 2;
     ITEM_SIZE_L = 3;
+    ITEM_SIZE_XS = 4;
+    ITEM_SIZE_XL = 5;
   }
   optional Layout layout = 1;
   optional int32 columns = 2;

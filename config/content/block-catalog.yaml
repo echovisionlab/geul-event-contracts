@@ -875,7 +875,7 @@ page:
         itemSize:
           &collection_item_size {
             type: enum,
-            values: [s, m, l],
+            values: [s, m, l, xs, xl],
             default: m,
             ownership: shared,
           }

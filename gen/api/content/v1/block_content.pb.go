@@ -2613,6 +2613,8 @@ const (
 	PostListSectionProps_ITEM_SIZE_S           PostListSectionProps_ItemSize = 1
 	PostListSectionProps_ITEM_SIZE_M           PostListSectionProps_ItemSize = 2
 	PostListSectionProps_ITEM_SIZE_L           PostListSectionProps_ItemSize = 3
+	PostListSectionProps_ITEM_SIZE_XS          PostListSectionProps_ItemSize = 4
+	PostListSectionProps_ITEM_SIZE_XL          PostListSectionProps_ItemSize = 5
 )
 
 // Enum value maps for PostListSectionProps_ItemSize.
@@ -2622,12 +2624,16 @@ var (
 		1: "ITEM_SIZE_S",
 		2: "ITEM_SIZE_M",
 		3: "ITEM_SIZE_L",
+		4: "ITEM_SIZE_XS",
+		5: "ITEM_SIZE_XL",
 	}
 	PostListSectionProps_ItemSize_value = map[string]int32{
 		"ITEM_SIZE_UNSPECIFIED": 0,
 		"ITEM_SIZE_S":           1,
 		"ITEM_SIZE_M":           2,
 		"ITEM_SIZE_L":           3,
+		"ITEM_SIZE_XS":          4,
+		"ITEM_SIZE_XL":          5,
 	}
 )
 
@@ -4090,6 +4096,8 @@ const (
 	WorkListSectionProps_ITEM_SIZE_S           WorkListSectionProps_ItemSize = 1
 	WorkListSectionProps_ITEM_SIZE_M           WorkListSectionProps_ItemSize = 2
 	WorkListSectionProps_ITEM_SIZE_L           WorkListSectionProps_ItemSize = 3
+	WorkListSectionProps_ITEM_SIZE_XS          WorkListSectionProps_ItemSize = 4
+	WorkListSectionProps_ITEM_SIZE_XL          WorkListSectionProps_ItemSize = 5
 )
 
 // Enum value maps for WorkListSectionProps_ItemSize.
@@ -4099,12 +4107,16 @@ var (
 		1: "ITEM_SIZE_S",
 		2: "ITEM_SIZE_M",
 		3: "ITEM_SIZE_L",
+		4: "ITEM_SIZE_XS",
+		5: "ITEM_SIZE_XL",
 	}
 	WorkListSectionProps_ItemSize_value = map[string]int32{
 		"ITEM_SIZE_UNSPECIFIED": 0,
 		"ITEM_SIZE_S":           1,
 		"ITEM_SIZE_M":           2,
 		"ITEM_SIZE_L":           3,
+		"ITEM_SIZE_XS":          4,
+		"ITEM_SIZE_XL":          5,
 	}
 )
 
@@ -4417,6 +4429,8 @@ const (
 	ProgramEventListSectionProps_ITEM_SIZE_S           ProgramEventListSectionProps_ItemSize = 1
 	ProgramEventListSectionProps_ITEM_SIZE_M           ProgramEventListSectionProps_ItemSize = 2
 	ProgramEventListSectionProps_ITEM_SIZE_L           ProgramEventListSectionProps_ItemSize = 3
+	ProgramEventListSectionProps_ITEM_SIZE_XS          ProgramEventListSectionProps_ItemSize = 4
+	ProgramEventListSectionProps_ITEM_SIZE_XL          ProgramEventListSectionProps_ItemSize = 5
 )
 
 // Enum value maps for ProgramEventListSectionProps_ItemSize.
@@ -4426,12 +4440,16 @@ var (
 		1: "ITEM_SIZE_S",
 		2: "ITEM_SIZE_M",
 		3: "ITEM_SIZE_L",
+		4: "ITEM_SIZE_XS",
+		5: "ITEM_SIZE_XL",
 	}
 	ProgramEventListSectionProps_ItemSize_value = map[string]int32{
 		"ITEM_SIZE_UNSPECIFIED": 0,
 		"ITEM_SIZE_S":           1,
 		"ITEM_SIZE_M":           2,
 		"ITEM_SIZE_L":           3,
+		"ITEM_SIZE_XS":          4,
+		"ITEM_SIZE_XL":          5,
 	}
 )
 
@@ -4738,6 +4756,8 @@ const (
 	ReleaseListSectionProps_ITEM_SIZE_S           ReleaseListSectionProps_ItemSize = 1
 	ReleaseListSectionProps_ITEM_SIZE_M           ReleaseListSectionProps_ItemSize = 2
 	ReleaseListSectionProps_ITEM_SIZE_L           ReleaseListSectionProps_ItemSize = 3
+	ReleaseListSectionProps_ITEM_SIZE_XS          ReleaseListSectionProps_ItemSize = 4
+	ReleaseListSectionProps_ITEM_SIZE_XL          ReleaseListSectionProps_ItemSize = 5
 )
 
 // Enum value maps for ReleaseListSectionProps_ItemSize.
@@ -4747,12 +4767,16 @@ var (
 		1: "ITEM_SIZE_S",
 		2: "ITEM_SIZE_M",
 		3: "ITEM_SIZE_L",
+		4: "ITEM_SIZE_XS",
+		5: "ITEM_SIZE_XL",
 	}
 	ReleaseListSectionProps_ItemSize_value = map[string]int32{
 		"ITEM_SIZE_UNSPECIFIED": 0,
 		"ITEM_SIZE_S":           1,
 		"ITEM_SIZE_M":           2,
 		"ITEM_SIZE_L":           3,
+		"ITEM_SIZE_XS":          4,
+		"ITEM_SIZE_XL":          5,
 	}
 )
 
@@ -5001,6 +5025,8 @@ const (
 	ArtistListSectionProps_ITEM_SIZE_S           ArtistListSectionProps_ItemSize = 1
 	ArtistListSectionProps_ITEM_SIZE_M           ArtistListSectionProps_ItemSize = 2
 	ArtistListSectionProps_ITEM_SIZE_L           ArtistListSectionProps_ItemSize = 3
+	ArtistListSectionProps_ITEM_SIZE_XS          ArtistListSectionProps_ItemSize = 4
+	ArtistListSectionProps_ITEM_SIZE_XL          ArtistListSectionProps_ItemSize = 5
 )
 
 // Enum value maps for ArtistListSectionProps_ItemSize.
@@ -5010,12 +5036,16 @@ var (
 		1: "ITEM_SIZE_S",
 		2: "ITEM_SIZE_M",
 		3: "ITEM_SIZE_L",
+		4: "ITEM_SIZE_XS",
+		5: "ITEM_SIZE_XL",
 	}
 	ArtistListSectionProps_ItemSize_value = map[string]int32{
 		"ITEM_SIZE_UNSPECIFIED": 0,
 		"ITEM_SIZE_S":           1,
 		"ITEM_SIZE_M":           2,
 		"ITEM_SIZE_L":           3,
+		"ITEM_SIZE_XS":          4,
+		"ITEM_SIZE_XL":          5,
 	}
 )
 
@@ -5264,6 +5294,8 @@ const (
 	LabelListSectionProps_ITEM_SIZE_S           LabelListSectionProps_ItemSize = 1
 	LabelListSectionProps_ITEM_SIZE_M           LabelListSectionProps_ItemSize = 2
 	LabelListSectionProps_ITEM_SIZE_L           LabelListSectionProps_ItemSize = 3
+	LabelListSectionProps_ITEM_SIZE_XS          LabelListSectionProps_ItemSize = 4
+	LabelListSectionProps_ITEM_SIZE_XL          LabelListSectionProps_ItemSize = 5
 )
 
 // Enum value maps for LabelListSectionProps_ItemSize.
@@ -5273,12 +5305,16 @@ var (
 		1: "ITEM_SIZE_S",
 		2: "ITEM_SIZE_M",
 		3: "ITEM_SIZE_L",
+		4: "ITEM_SIZE_XS",
+		5: "ITEM_SIZE_XL",
 	}
 	LabelListSectionProps_ItemSize_value = map[string]int32{
 		"ITEM_SIZE_UNSPECIFIED": 0,
 		"ITEM_SIZE_S":           1,
 		"ITEM_SIZE_M":           2,
 		"ITEM_SIZE_L":           3,
+		"ITEM_SIZE_XS":          4,
+		"ITEM_SIZE_XL":          5,
 	}
 )
 
@@ -5414,6 +5450,8 @@ const (
 	AuthorListSectionProps_ITEM_SIZE_S           AuthorListSectionProps_ItemSize = 1
 	AuthorListSectionProps_ITEM_SIZE_M           AuthorListSectionProps_ItemSize = 2
 	AuthorListSectionProps_ITEM_SIZE_L           AuthorListSectionProps_ItemSize = 3
+	AuthorListSectionProps_ITEM_SIZE_XS          AuthorListSectionProps_ItemSize = 4
+	AuthorListSectionProps_ITEM_SIZE_XL          AuthorListSectionProps_ItemSize = 5
 )
 
 // Enum value maps for AuthorListSectionProps_ItemSize.
@@ -5423,12 +5461,16 @@ var (
 		1: "ITEM_SIZE_S",
 		2: "ITEM_SIZE_M",
 		3: "ITEM_SIZE_L",
+		4: "ITEM_SIZE_XS",
+		5: "ITEM_SIZE_XL",
 	}
 	AuthorListSectionProps_ItemSize_value = map[string]int32{
 		"ITEM_SIZE_UNSPECIFIED": 0,
 		"ITEM_SIZE_S":           1,
 		"ITEM_SIZE_M":           2,
 		"ITEM_SIZE_L":           3,
+		"ITEM_SIZE_XS":          4,
+		"ITEM_SIZE_XL":          5,
 	}
 )
 
@@ -24107,7 +24149,7 @@ const file_api_content_v1_block_content_proto_rawDesc = "" +
 	"\x12ASPECT_RATIO_X_4_3\x10\x03\x12\x16\n" +
 	"\x12ASPECT_RATIO_X_1_1\x10\x04\x12\x17\n" +
 	"\x13ASPECT_RATIO_X_9_16\x10\x05B\x0f\n" +
-	"\r_aspect_ratio\"\xa0\r\n" +
+	"\r_aspect_ratio\"\xc4\r\n" +
 	"\x14PostListSectionProps\x12H\n" +
 	"\x06layout\x18\x01 \x01(\x0e2+.api.content.v1.PostListSectionProps.LayoutH\x00R\x06layout\x88\x01\x01\x12\x1d\n" +
 	"\acolumns\x18\x02 \x01(\x05H\x01R\acolumns\x88\x01\x01\x12R\n" +
@@ -24152,12 +24194,14 @@ const file_api_content_v1_block_content_proto_rawDesc = "" +
 	"\x19IMAGE_ASPECT_RATIO_X_16_9\x10\x01\x12\x1c\n" +
 	"\x18IMAGE_ASPECT_RATIO_X_4_3\x10\x02\x12\x1c\n" +
 	"\x18IMAGE_ASPECT_RATIO_X_1_1\x10\x03\x12\x1b\n" +
-	"\x17IMAGE_ASPECT_RATIO_AUTO\x10\x04\"X\n" +
+	"\x17IMAGE_ASPECT_RATIO_AUTO\x10\x04\"|\n" +
 	"\bItemSize\x12\x19\n" +
 	"\x15ITEM_SIZE_UNSPECIFIED\x10\x00\x12\x0f\n" +
 	"\vITEM_SIZE_S\x10\x01\x12\x0f\n" +
 	"\vITEM_SIZE_M\x10\x02\x12\x0f\n" +
-	"\vITEM_SIZE_L\x10\x03B\t\n" +
+	"\vITEM_SIZE_L\x10\x03\x12\x10\n" +
+	"\fITEM_SIZE_XS\x10\x04\x12\x10\n" +
+	"\fITEM_SIZE_XL\x10\x05B\t\n" +
 	"\a_layoutB\n" +
 	"\n" +
 	"\b_columnsB\r\n" +
@@ -24384,7 +24428,7 @@ const file_api_content_v1_block_content_proto_rawDesc = "" +
 	"\x16SORT_FIELDS_ITEM_TITLE\x10\x03B\x10\n" +
 	"\x0e_featured_onlyB\f\n" +
 	"\n" +
-	"_page_size\"\x8b\x0e\n" +
+	"_page_size\"\xaf\x0e\n" +
 	"\x14WorkListSectionProps\x12H\n" +
 	"\x06layout\x18\x01 \x01(\x0e2+.api.content.v1.WorkListSectionProps.LayoutH\x00R\x06layout\x88\x01\x01\x12\x1d\n" +
 	"\acolumns\x18\x02 \x01(\x05H\x01R\acolumns\x88\x01\x01\x12R\n" +
@@ -24432,12 +24476,14 @@ const file_api_content_v1_block_content_proto_rawDesc = "" +
 	"\x19IMAGE_ASPECT_RATIO_X_16_9\x10\x01\x12\x1c\n" +
 	"\x18IMAGE_ASPECT_RATIO_X_4_3\x10\x02\x12\x1c\n" +
 	"\x18IMAGE_ASPECT_RATIO_X_1_1\x10\x03\x12\x1b\n" +
-	"\x17IMAGE_ASPECT_RATIO_AUTO\x10\x04\"X\n" +
+	"\x17IMAGE_ASPECT_RATIO_AUTO\x10\x04\"|\n" +
 	"\bItemSize\x12\x19\n" +
 	"\x15ITEM_SIZE_UNSPECIFIED\x10\x00\x12\x0f\n" +
 	"\vITEM_SIZE_S\x10\x01\x12\x0f\n" +
 	"\vITEM_SIZE_M\x10\x02\x12\x0f\n" +
-	"\vITEM_SIZE_L\x10\x03B\t\n" +
+	"\vITEM_SIZE_L\x10\x03\x12\x10\n" +
+	"\fITEM_SIZE_XS\x10\x04\x12\x10\n" +
+	"\fITEM_SIZE_XL\x10\x05B\t\n" +
 	"\a_layoutB\n" +
 	"\n" +
 	"\b_columnsB\r\n" +
@@ -24454,7 +24500,7 @@ const file_api_content_v1_block_content_proto_rawDesc = "" +
 	"\x06_limitB\x15\n" +
 	"\x13_image_aspect_ratioB\f\n" +
 	"\n" +
-	"_item_size\"\xe9\x0e\n" +
+	"_item_size\"\x8d\x0f\n" +
 	"\x1cProgramEventListSectionProps\x12P\n" +
 	"\x06layout\x18\x01 \x01(\x0e23.api.content.v1.ProgramEventListSectionProps.LayoutH\x00R\x06layout\x88\x01\x01\x12\x1d\n" +
 	"\acolumns\x18\x02 \x01(\x05H\x01R\acolumns\x88\x01\x01\x12Z\n" +
@@ -24506,12 +24552,14 @@ const file_api_content_v1_block_content_proto_rawDesc = "" +
 	"\x19IMAGE_ASPECT_RATIO_X_16_9\x10\x01\x12\x1c\n" +
 	"\x18IMAGE_ASPECT_RATIO_X_4_3\x10\x02\x12\x1c\n" +
 	"\x18IMAGE_ASPECT_RATIO_X_1_1\x10\x03\x12\x1b\n" +
-	"\x17IMAGE_ASPECT_RATIO_AUTO\x10\x04\"X\n" +
+	"\x17IMAGE_ASPECT_RATIO_AUTO\x10\x04\"|\n" +
 	"\bItemSize\x12\x19\n" +
 	"\x15ITEM_SIZE_UNSPECIFIED\x10\x00\x12\x0f\n" +
 	"\vITEM_SIZE_S\x10\x01\x12\x0f\n" +
 	"\vITEM_SIZE_M\x10\x02\x12\x0f\n" +
-	"\vITEM_SIZE_L\x10\x03B\t\n" +
+	"\vITEM_SIZE_L\x10\x03\x12\x10\n" +
+	"\fITEM_SIZE_XS\x10\x04\x12\x10\n" +
+	"\fITEM_SIZE_XL\x10\x05B\t\n" +
 	"\a_layoutB\n" +
 	"\n" +
 	"\b_columnsB\r\n" +
@@ -24530,7 +24578,7 @@ const file_api_content_v1_block_content_proto_rawDesc = "" +
 	"\x06_limitB\x15\n" +
 	"\x13_image_aspect_ratioB\f\n" +
 	"\n" +
-	"_item_size\"\xab\x0e\n" +
+	"_item_size\"\xcf\x0e\n" +
 	"\x17ReleaseListSectionProps\x12K\n" +
 	"\x06layout\x18\x01 \x01(\x0e2..api.content.v1.ReleaseListSectionProps.LayoutH\x00R\x06layout\x88\x01\x01\x12\x1d\n" +
 	"\acolumns\x18\x02 \x01(\x05H\x01R\acolumns\x88\x01\x01\x12U\n" +
@@ -24579,12 +24627,14 @@ const file_api_content_v1_block_content_proto_rawDesc = "" +
 	"\x19IMAGE_ASPECT_RATIO_X_16_9\x10\x01\x12\x1c\n" +
 	"\x18IMAGE_ASPECT_RATIO_X_4_3\x10\x02\x12\x1c\n" +
 	"\x18IMAGE_ASPECT_RATIO_X_1_1\x10\x03\x12\x1b\n" +
-	"\x17IMAGE_ASPECT_RATIO_AUTO\x10\x04\"X\n" +
+	"\x17IMAGE_ASPECT_RATIO_AUTO\x10\x04\"|\n" +
 	"\bItemSize\x12\x19\n" +
 	"\x15ITEM_SIZE_UNSPECIFIED\x10\x00\x12\x0f\n" +
 	"\vITEM_SIZE_S\x10\x01\x12\x0f\n" +
 	"\vITEM_SIZE_M\x10\x02\x12\x0f\n" +
-	"\vITEM_SIZE_L\x10\x03B\t\n" +
+	"\vITEM_SIZE_L\x10\x03\x12\x10\n" +
+	"\fITEM_SIZE_XS\x10\x04\x12\x10\n" +
+	"\fITEM_SIZE_XL\x10\x05B\t\n" +
 	"\a_layoutB\n" +
 	"\n" +
 	"\b_columnsB\r\n" +
@@ -24603,7 +24653,7 @@ const file_api_content_v1_block_content_proto_rawDesc = "" +
 	"\x06_limitB\x15\n" +
 	"\x13_image_aspect_ratioB\f\n" +
 	"\n" +
-	"_item_size\"\xd8\v\n" +
+	"_item_size\"\xfc\v\n" +
 	"\x16ArtistListSectionProps\x12J\n" +
 	"\x06layout\x18\x01 \x01(\x0e2-.api.content.v1.ArtistListSectionProps.LayoutH\x00R\x06layout\x88\x01\x01\x12\x1d\n" +
 	"\acolumns\x18\x02 \x01(\x05H\x01R\acolumns\x88\x01\x01\x12T\n" +
@@ -24642,12 +24692,14 @@ const file_api_content_v1_block_content_proto_rawDesc = "" +
 	"\x19IMAGE_ASPECT_RATIO_X_16_9\x10\x01\x12\x1c\n" +
 	"\x18IMAGE_ASPECT_RATIO_X_4_3\x10\x02\x12\x1c\n" +
 	"\x18IMAGE_ASPECT_RATIO_X_1_1\x10\x03\x12\x1b\n" +
-	"\x17IMAGE_ASPECT_RATIO_AUTO\x10\x04\"X\n" +
+	"\x17IMAGE_ASPECT_RATIO_AUTO\x10\x04\"|\n" +
 	"\bItemSize\x12\x19\n" +
 	"\x15ITEM_SIZE_UNSPECIFIED\x10\x00\x12\x0f\n" +
 	"\vITEM_SIZE_S\x10\x01\x12\x0f\n" +
 	"\vITEM_SIZE_M\x10\x02\x12\x0f\n" +
-	"\vITEM_SIZE_L\x10\x03B\t\n" +
+	"\vITEM_SIZE_L\x10\x03\x12\x10\n" +
+	"\fITEM_SIZE_XS\x10\x04\x12\x10\n" +
+	"\fITEM_SIZE_XL\x10\x05B\t\n" +
 	"\a_layoutB\n" +
 	"\n" +
 	"\b_columnsB\r\n" +
@@ -24663,7 +24715,7 @@ const file_api_content_v1_block_content_proto_rawDesc = "" +
 	"\x06_limitB\x15\n" +
 	"\x13_image_aspect_ratioB\f\n" +
 	"\n" +
-	"_item_size\"\xb5\v\n" +
+	"_item_size\"\xd9\v\n" +
 	"\x15LabelListSectionProps\x12I\n" +
 	"\x06layout\x18\x01 \x01(\x0e2,.api.content.v1.LabelListSectionProps.LayoutH\x00R\x06layout\x88\x01\x01\x12\x1d\n" +
 	"\acolumns\x18\x02 \x01(\x05H\x01R\acolumns\x88\x01\x01\x12S\n" +
@@ -24701,12 +24753,14 @@ const file_api_content_v1_block_content_proto_rawDesc = "" +
 	"\x19IMAGE_ASPECT_RATIO_X_16_9\x10\x01\x12\x1c\n" +
 	"\x18IMAGE_ASPECT_RATIO_X_4_3\x10\x02\x12\x1c\n" +
 	"\x18IMAGE_ASPECT_RATIO_X_1_1\x10\x03\x12\x1b\n" +
-	"\x17IMAGE_ASPECT_RATIO_AUTO\x10\x04\"X\n" +
+	"\x17IMAGE_ASPECT_RATIO_AUTO\x10\x04\"|\n" +
 	"\bItemSize\x12\x19\n" +
 	"\x15ITEM_SIZE_UNSPECIFIED\x10\x00\x12\x0f\n" +
 	"\vITEM_SIZE_S\x10\x01\x12\x0f\n" +
 	"\vITEM_SIZE_M\x10\x02\x12\x0f\n" +
-	"\vITEM_SIZE_L\x10\x03B\t\n" +
+	"\vITEM_SIZE_L\x10\x03\x12\x10\n" +
+	"\fITEM_SIZE_XS\x10\x04\x12\x10\n" +
+	"\fITEM_SIZE_XL\x10\x05B\t\n" +
 	"\a_layoutB\n" +
 	"\n" +
 	"\b_columnsB\r\n" +
@@ -24722,7 +24776,7 @@ const file_api_content_v1_block_content_proto_rawDesc = "" +
 	"\x06_limitB\x15\n" +
 	"\x13_image_aspect_ratioB\f\n" +
 	"\n" +
-	"_item_size\"\xe4\x05\n" +
+	"_item_size\"\x88\x06\n" +
 	"\x16AuthorListSectionProps\x12J\n" +
 	"\x06layout\x18\x01 \x01(\x0e2-.api.content.v1.AuthorListSectionProps.LayoutH\x00R\x06layout\x88\x01\x01\x12\x1d\n" +
 	"\acolumns\x18\x02 \x01(\x05H\x01R\acolumns\x88\x01\x01\x12\x19\n" +
@@ -24741,12 +24795,14 @@ const file_api_content_v1_block_content_proto_rawDesc = "" +
 	"\x06Source\x12\x16\n" +
 	"\x12SOURCE_UNSPECIFIED\x10\x00\x12\x14\n" +
 	"\x10SOURCE_AUTOMATIC\x10\x01\x12\x13\n" +
-	"\x0fSOURCE_SELECTED\x10\x02\"X\n" +
+	"\x0fSOURCE_SELECTED\x10\x02\"|\n" +
 	"\bItemSize\x12\x19\n" +
 	"\x15ITEM_SIZE_UNSPECIFIED\x10\x00\x12\x0f\n" +
 	"\vITEM_SIZE_S\x10\x01\x12\x0f\n" +
 	"\vITEM_SIZE_M\x10\x02\x12\x0f\n" +
-	"\vITEM_SIZE_L\x10\x03B\t\n" +
+	"\vITEM_SIZE_L\x10\x03\x12\x10\n" +
+	"\fITEM_SIZE_XS\x10\x04\x12\x10\n" +
+	"\fITEM_SIZE_XL\x10\x05B\t\n" +
 	"\a_layoutB\n" +
 	"\n" +
 	"\b_columnsB\b\n" +
