@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.12.0](https://github.com/echovisionlab/geul-event-contracts/compare/v0.11.0...v0.12.0) (2026-10-18)
+
+
+### Features
+
+* add document outline visibility and public comment reads ([#42](https://github.com/echovisionlab/geul-event-contracts/issues/42)) ([b8b5bfd](https://github.com/echovisionlab/geul-event-contracts/commit/b8b5bfd89483d7315b0a9e0bdd1c8840154c8b17))
+
 ## [0.11.0](https://github.com/echovisionlab/geul-event-contracts/compare/v0.10.0...v0.11.0) (2026-10-18)
 
 
