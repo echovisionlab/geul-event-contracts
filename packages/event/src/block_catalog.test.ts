@@ -1086,7 +1086,7 @@ describe("generated storage materializers", () => {
             attachment: {
               state: { case: "activeFileId", value: upperFileId },
             },
-            previewWidth: 100,
+            displaySize: 100,
           },
         },
       },
