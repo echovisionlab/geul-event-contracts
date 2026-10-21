@@ -1,9 +1,9 @@
 module github.com/echovisionlab/geul-event-contracts
 
-go 1.26.6
+go 1.27.3
 
 require (
-	connectrpc.com/connect v1.21.0
+	connectrpc.com/connect v1.21.1
 	google.golang.org/protobuf v1.36.12
 )
 
