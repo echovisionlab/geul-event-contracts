@@ -456,6 +456,61 @@ func (ParagraphProps_AspectRatio) EnumDescriptor() ([]byte, []int) {
 	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{16, 1}
 }
 
+type ParagraphProps_LinkPresentation int32
+
+const (
+	ParagraphProps_LINK_PRESENTATION_UNSPECIFIED ParagraphProps_LinkPresentation = 0
+	ParagraphProps_LINK_PRESENTATION_AUTO        ParagraphProps_LinkPresentation = 1
+	ParagraphProps_LINK_PRESENTATION_LINK        ParagraphProps_LinkPresentation = 2
+	ParagraphProps_LINK_PRESENTATION_CARD        ParagraphProps_LinkPresentation = 3
+	ParagraphProps_LINK_PRESENTATION_VIDEO       ParagraphProps_LinkPresentation = 4
+)
+
+// Enum value maps for ParagraphProps_LinkPresentation.
+var (
+	ParagraphProps_LinkPresentation_name = map[int32]string{
+		0: "LINK_PRESENTATION_UNSPECIFIED",
+		1: "LINK_PRESENTATION_AUTO",
+		2: "LINK_PRESENTATION_LINK",
+		3: "LINK_PRESENTATION_CARD",
+		4: "LINK_PRESENTATION_VIDEO",
+	}
+	ParagraphProps_LinkPresentation_value = map[string]int32{
+		"LINK_PRESENTATION_UNSPECIFIED": 0,
+		"LINK_PRESENTATION_AUTO":        1,
+		"LINK_PRESENTATION_LINK":        2,
+		"LINK_PRESENTATION_CARD":        3,
+		"LINK_PRESENTATION_VIDEO":       4,
+	}
+)
+
+func (x ParagraphProps_LinkPresentation) Enum() *ParagraphProps_LinkPresentation {
+	p := new(ParagraphProps_LinkPresentation)
+	*p = x
+	return p
+}
+
+func (x ParagraphProps_LinkPresentation) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (ParagraphProps_LinkPresentation) Descriptor() protoreflect.EnumDescriptor {
+	return file_api_content_v1_block_content_proto_enumTypes[8].Descriptor()
+}
+
+func (ParagraphProps_LinkPresentation) Type() protoreflect.EnumType {
+	return &file_api_content_v1_block_content_proto_enumTypes[8]
+}
+
+func (x ParagraphProps_LinkPresentation) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use ParagraphProps_LinkPresentation.Descriptor instead.
+func (ParagraphProps_LinkPresentation) EnumDescriptor() ([]byte, []int) {
+	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{16, 2}
+}
+
 type HeadingProps_TextAlignment int32
 
 const (
@@ -492,11 +547,11 @@ func (x HeadingProps_TextAlignment) String() string {
 }
 
 func (HeadingProps_TextAlignment) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[8].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[9].Descriptor()
 }
 
 func (HeadingProps_TextAlignment) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[8]
+	return &file_api_content_v1_block_content_proto_enumTypes[9]
 }
 
 func (x HeadingProps_TextAlignment) Number() protoreflect.EnumNumber {
@@ -544,11 +599,11 @@ func (x HeadingProps_Level) String() string {
 }
 
 func (HeadingProps_Level) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[9].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[10].Descriptor()
 }
 
 func (HeadingProps_Level) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[9]
+	return &file_api_content_v1_block_content_proto_enumTypes[10]
 }
 
 func (x HeadingProps_Level) Number() protoreflect.EnumNumber {
@@ -596,11 +651,11 @@ func (x BulletListItemProps_TextAlignment) String() string {
 }
 
 func (BulletListItemProps_TextAlignment) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[10].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[11].Descriptor()
 }
 
 func (BulletListItemProps_TextAlignment) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[10]
+	return &file_api_content_v1_block_content_proto_enumTypes[11]
 }
 
 func (x BulletListItemProps_TextAlignment) Number() protoreflect.EnumNumber {
@@ -648,11 +703,11 @@ func (x NumberedListItemProps_TextAlignment) String() string {
 }
 
 func (NumberedListItemProps_TextAlignment) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[11].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[12].Descriptor()
 }
 
 func (NumberedListItemProps_TextAlignment) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[11]
+	return &file_api_content_v1_block_content_proto_enumTypes[12]
 }
 
 func (x NumberedListItemProps_TextAlignment) Number() protoreflect.EnumNumber {
@@ -700,11 +755,11 @@ func (x CheckListItemProps_TextAlignment) String() string {
 }
 
 func (CheckListItemProps_TextAlignment) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[12].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[13].Descriptor()
 }
 
 func (CheckListItemProps_TextAlignment) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[12]
+	return &file_api_content_v1_block_content_proto_enumTypes[13]
 }
 
 func (x CheckListItemProps_TextAlignment) Number() protoreflect.EnumNumber {
@@ -890,11 +945,11 @@ func (x CodeBlockProps_Language) String() string {
 }
 
 func (CodeBlockProps_Language) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[13].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[14].Descriptor()
 }
 
 func (CodeBlockProps_Language) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[13]
+	return &file_api_content_v1_block_content_proto_enumTypes[14]
 }
 
 func (x CodeBlockProps_Language) Number() protoreflect.EnumNumber {
@@ -942,11 +997,11 @@ func (x CodeBlockProps_TextAlignment) String() string {
 }
 
 func (CodeBlockProps_TextAlignment) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[14].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[15].Descriptor()
 }
 
 func (CodeBlockProps_TextAlignment) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[14]
+	return &file_api_content_v1_block_content_proto_enumTypes[15]
 }
 
 func (x CodeBlockProps_TextAlignment) Number() protoreflect.EnumNumber {
@@ -994,11 +1049,11 @@ func (x TableProps_TextAlignment) String() string {
 }
 
 func (TableProps_TextAlignment) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[15].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[16].Descriptor()
 }
 
 func (TableProps_TextAlignment) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[15]
+	return &file_api_content_v1_block_content_proto_enumTypes[16]
 }
 
 func (x TableProps_TextAlignment) Number() protoreflect.EnumNumber {
@@ -1046,11 +1101,11 @@ func (x P5SketchProps_Mode) String() string {
 }
 
 func (P5SketchProps_Mode) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[16].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[17].Descriptor()
 }
 
 func (P5SketchProps_Mode) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[16]
+	return &file_api_content_v1_block_content_proto_enumTypes[17]
 }
 
 func (x P5SketchProps_Mode) Number() protoreflect.EnumNumber {
@@ -1098,11 +1153,11 @@ func (x P5SketchProps_TextAlignment) String() string {
 }
 
 func (P5SketchProps_TextAlignment) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[17].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[18].Descriptor()
 }
 
 func (P5SketchProps_TextAlignment) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[17]
+	return &file_api_content_v1_block_content_proto_enumTypes[18]
 }
 
 func (x P5SketchProps_TextAlignment) Number() protoreflect.EnumNumber {
@@ -1165,11 +1220,11 @@ func (x P5SketchProps_CapabilitiesItem) String() string {
 }
 
 func (P5SketchProps_CapabilitiesItem) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[18].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[19].Descriptor()
 }
 
 func (P5SketchProps_CapabilitiesItem) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[18]
+	return &file_api_content_v1_block_content_proto_enumTypes[19]
 }
 
 func (x P5SketchProps_CapabilitiesItem) Number() protoreflect.EnumNumber {
@@ -1217,11 +1272,11 @@ func (x ThreeSceneProps_Mode) String() string {
 }
 
 func (ThreeSceneProps_Mode) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[19].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[20].Descriptor()
 }
 
 func (ThreeSceneProps_Mode) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[19]
+	return &file_api_content_v1_block_content_proto_enumTypes[20]
 }
 
 func (x ThreeSceneProps_Mode) Number() protoreflect.EnumNumber {
@@ -1269,11 +1324,11 @@ func (x ThreeSceneProps_TextAlignment) String() string {
 }
 
 func (ThreeSceneProps_TextAlignment) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[20].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[21].Descriptor()
 }
 
 func (ThreeSceneProps_TextAlignment) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[20]
+	return &file_api_content_v1_block_content_proto_enumTypes[21]
 }
 
 func (x ThreeSceneProps_TextAlignment) Number() protoreflect.EnumNumber {
@@ -1318,11 +1373,11 @@ func (x ThreeSceneProps_Language) String() string {
 }
 
 func (ThreeSceneProps_Language) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[21].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[22].Descriptor()
 }
 
 func (ThreeSceneProps_Language) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[21]
+	return &file_api_content_v1_block_content_proto_enumTypes[22]
 }
 
 func (x ThreeSceneProps_Language) Number() protoreflect.EnumNumber {
@@ -1370,11 +1425,11 @@ func (x ShaderProps_Mode) String() string {
 }
 
 func (ShaderProps_Mode) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[22].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[23].Descriptor()
 }
 
 func (ShaderProps_Mode) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[22]
+	return &file_api_content_v1_block_content_proto_enumTypes[23]
 }
 
 func (x ShaderProps_Mode) Number() protoreflect.EnumNumber {
@@ -1422,11 +1477,11 @@ func (x ShaderProps_TextAlignment) String() string {
 }
 
 func (ShaderProps_TextAlignment) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[23].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[24].Descriptor()
 }
 
 func (ShaderProps_TextAlignment) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[23]
+	return &file_api_content_v1_block_content_proto_enumTypes[24]
 }
 
 func (x ShaderProps_TextAlignment) Number() protoreflect.EnumNumber {
@@ -1492,11 +1547,11 @@ func (x ShaderProps_StagesItem_Kind) String() string {
 }
 
 func (ShaderProps_StagesItem_Kind) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[24].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[25].Descriptor()
 }
 
 func (ShaderProps_StagesItem_Kind) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[24]
+	return &file_api_content_v1_block_content_proto_enumTypes[25]
 }
 
 func (x ShaderProps_StagesItem_Kind) Number() protoreflect.EnumNumber {
@@ -1553,11 +1608,11 @@ func (x ShaderProps_StagesItem_ChannelsItem_Kind) String() string {
 }
 
 func (ShaderProps_StagesItem_ChannelsItem_Kind) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[25].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[26].Descriptor()
 }
 
 func (ShaderProps_StagesItem_ChannelsItem_Kind) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[25]
+	return &file_api_content_v1_block_content_proto_enumTypes[26]
 }
 
 func (x ShaderProps_StagesItem_ChannelsItem_Kind) Number() protoreflect.EnumNumber {
@@ -1608,11 +1663,11 @@ func (x ShaderProps_StagesItem_ChannelsItem_Buffer) String() string {
 }
 
 func (ShaderProps_StagesItem_ChannelsItem_Buffer) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[26].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[27].Descriptor()
 }
 
 func (ShaderProps_StagesItem_ChannelsItem_Buffer) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[26]
+	return &file_api_content_v1_block_content_proto_enumTypes[27]
 }
 
 func (x ShaderProps_StagesItem_ChannelsItem_Buffer) Number() protoreflect.EnumNumber {
@@ -1657,11 +1712,11 @@ func (x ShaderProps_StagesItem_ChannelsItem_SamplerValue_Filter) String() string
 }
 
 func (ShaderProps_StagesItem_ChannelsItem_SamplerValue_Filter) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[27].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[28].Descriptor()
 }
 
 func (ShaderProps_StagesItem_ChannelsItem_SamplerValue_Filter) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[27]
+	return &file_api_content_v1_block_content_proto_enumTypes[28]
 }
 
 func (x ShaderProps_StagesItem_ChannelsItem_SamplerValue_Filter) Number() protoreflect.EnumNumber {
@@ -1706,11 +1761,11 @@ func (x ShaderProps_StagesItem_ChannelsItem_SamplerValue_Wrap) String() string {
 }
 
 func (ShaderProps_StagesItem_ChannelsItem_SamplerValue_Wrap) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[28].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[29].Descriptor()
 }
 
 func (ShaderProps_StagesItem_ChannelsItem_SamplerValue_Wrap) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[28]
+	return &file_api_content_v1_block_content_proto_enumTypes[29]
 }
 
 func (x ShaderProps_StagesItem_ChannelsItem_SamplerValue_Wrap) Number() protoreflect.EnumNumber {
@@ -1758,11 +1813,11 @@ func (x MapProps_AspectRatio) String() string {
 }
 
 func (MapProps_AspectRatio) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[29].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[30].Descriptor()
 }
 
 func (MapProps_AspectRatio) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[29]
+	return &file_api_content_v1_block_content_proto_enumTypes[30]
 }
 
 func (x MapProps_AspectRatio) Number() protoreflect.EnumNumber {
@@ -1810,11 +1865,11 @@ func (x MapProps_TextAlignment) String() string {
 }
 
 func (MapProps_TextAlignment) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[30].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[31].Descriptor()
 }
 
 func (MapProps_TextAlignment) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[30]
+	return &file_api_content_v1_block_content_proto_enumTypes[31]
 }
 
 func (x MapProps_TextAlignment) Number() protoreflect.EnumNumber {
@@ -1856,11 +1911,11 @@ func (x MapProps_Variant) String() string {
 }
 
 func (MapProps_Variant) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[31].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[32].Descriptor()
 }
 
 func (MapProps_Variant) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[31]
+	return &file_api_content_v1_block_content_proto_enumTypes[32]
 }
 
 func (x MapProps_Variant) Number() protoreflect.EnumNumber {
@@ -1908,11 +1963,11 @@ func (x MapProps_PreferredScheme) String() string {
 }
 
 func (MapProps_PreferredScheme) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[32].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[33].Descriptor()
 }
 
 func (MapProps_PreferredScheme) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[32]
+	return &file_api_content_v1_block_content_proto_enumTypes[33]
 }
 
 func (x MapProps_PreferredScheme) Number() protoreflect.EnumNumber {
@@ -1960,11 +2015,11 @@ func (x MapProps_AreaLabelsMode) String() string {
 }
 
 func (MapProps_AreaLabelsMode) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[33].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[34].Descriptor()
 }
 
 func (MapProps_AreaLabelsMode) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[33]
+	return &file_api_content_v1_block_content_proto_enumTypes[34]
 }
 
 func (x MapProps_AreaLabelsMode) Number() protoreflect.EnumNumber {
@@ -2012,11 +2067,11 @@ func (x MapProps_PoiLabelsMode) String() string {
 }
 
 func (MapProps_PoiLabelsMode) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[34].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[35].Descriptor()
 }
 
 func (MapProps_PoiLabelsMode) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[34]
+	return &file_api_content_v1_block_content_proto_enumTypes[35]
 }
 
 func (x MapProps_PoiLabelsMode) Number() protoreflect.EnumNumber {
@@ -2064,11 +2119,11 @@ func (x FileProps_TextAlignment) String() string {
 }
 
 func (FileProps_TextAlignment) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[35].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[36].Descriptor()
 }
 
 func (FileProps_TextAlignment) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[35]
+	return &file_api_content_v1_block_content_proto_enumTypes[36]
 }
 
 func (x FileProps_TextAlignment) Number() protoreflect.EnumNumber {
@@ -2116,11 +2171,11 @@ func (x PageSectionSettings_MaxWidth) String() string {
 }
 
 func (PageSectionSettings_MaxWidth) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[36].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[37].Descriptor()
 }
 
 func (PageSectionSettings_MaxWidth) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[36]
+	return &file_api_content_v1_block_content_proto_enumTypes[37]
 }
 
 func (x PageSectionSettings_MaxWidth) Number() protoreflect.EnumNumber {
@@ -2171,11 +2226,11 @@ func (x PageImmersiveUnitProps_Mesh) String() string {
 }
 
 func (PageImmersiveUnitProps_Mesh) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[37].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[38].Descriptor()
 }
 
 func (PageImmersiveUnitProps_Mesh) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[37]
+	return &file_api_content_v1_block_content_proto_enumTypes[38]
 }
 
 func (x PageImmersiveUnitProps_Mesh) Number() protoreflect.EnumNumber {
@@ -2220,11 +2275,11 @@ func (x PageImmersiveUnitProps_MeshSource) String() string {
 }
 
 func (PageImmersiveUnitProps_MeshSource) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[38].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[39].Descriptor()
 }
 
 func (PageImmersiveUnitProps_MeshSource) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[38]
+	return &file_api_content_v1_block_content_proto_enumTypes[39]
 }
 
 func (x PageImmersiveUnitProps_MeshSource) Number() protoreflect.EnumNumber {
@@ -2269,11 +2324,11 @@ func (x PageImmersiveUnitProps_TextureSource) String() string {
 }
 
 func (PageImmersiveUnitProps_TextureSource) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[39].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[40].Descriptor()
 }
 
 func (PageImmersiveUnitProps_TextureSource) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[39]
+	return &file_api_content_v1_block_content_proto_enumTypes[40]
 }
 
 func (x PageImmersiveUnitProps_TextureSource) Number() protoreflect.EnumNumber {
@@ -2318,11 +2373,11 @@ func (x PageImmersiveUnitProps_DarkTextureSource) String() string {
 }
 
 func (PageImmersiveUnitProps_DarkTextureSource) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[40].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[41].Descriptor()
 }
 
 func (PageImmersiveUnitProps_DarkTextureSource) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[40]
+	return &file_api_content_v1_block_content_proto_enumTypes[41]
 }
 
 func (x PageImmersiveUnitProps_DarkTextureSource) Number() protoreflect.EnumNumber {
@@ -2376,11 +2431,11 @@ func (x ExternalVideoSectionProps_AspectRatio) String() string {
 }
 
 func (ExternalVideoSectionProps_AspectRatio) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[41].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[42].Descriptor()
 }
 
 func (ExternalVideoSectionProps_AspectRatio) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[41]
+	return &file_api_content_v1_block_content_proto_enumTypes[42]
 }
 
 func (x ExternalVideoSectionProps_AspectRatio) Number() protoreflect.EnumNumber {
@@ -2434,11 +2489,11 @@ func (x PostListSectionProps_Layout) String() string {
 }
 
 func (PostListSectionProps_Layout) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[42].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[43].Descriptor()
 }
 
 func (PostListSectionProps_Layout) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[42]
+	return &file_api_content_v1_block_content_proto_enumTypes[43]
 }
 
 func (x PostListSectionProps_Layout) Number() protoreflect.EnumNumber {
@@ -2483,11 +2538,11 @@ func (x PostListSectionProps_SortOrder) String() string {
 }
 
 func (PostListSectionProps_SortOrder) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[43].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[44].Descriptor()
 }
 
 func (PostListSectionProps_SortOrder) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[43]
+	return &file_api_content_v1_block_content_proto_enumTypes[44]
 }
 
 func (x PostListSectionProps_SortOrder) Number() protoreflect.EnumNumber {
@@ -2535,11 +2590,11 @@ func (x PostListSectionProps_SortBy) String() string {
 }
 
 func (PostListSectionProps_SortBy) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[44].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[45].Descriptor()
 }
 
 func (PostListSectionProps_SortBy) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[44]
+	return &file_api_content_v1_block_content_proto_enumTypes[45]
 }
 
 func (x PostListSectionProps_SortBy) Number() protoreflect.EnumNumber {
@@ -2590,11 +2645,11 @@ func (x PostListSectionProps_ImageAspectRatio) String() string {
 }
 
 func (PostListSectionProps_ImageAspectRatio) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[45].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[46].Descriptor()
 }
 
 func (PostListSectionProps_ImageAspectRatio) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[45]
+	return &file_api_content_v1_block_content_proto_enumTypes[46]
 }
 
 func (x PostListSectionProps_ImageAspectRatio) Number() protoreflect.EnumNumber {
@@ -2648,11 +2703,11 @@ func (x PostListSectionProps_ItemSize) String() string {
 }
 
 func (PostListSectionProps_ItemSize) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[46].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[47].Descriptor()
 }
 
 func (PostListSectionProps_ItemSize) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[46]
+	return &file_api_content_v1_block_content_proto_enumTypes[47]
 }
 
 func (x PostListSectionProps_ItemSize) Number() protoreflect.EnumNumber {
@@ -2697,11 +2752,11 @@ func (x PostTableSectionProps_StatusesItem) String() string {
 }
 
 func (PostTableSectionProps_StatusesItem) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[47].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[48].Descriptor()
 }
 
 func (PostTableSectionProps_StatusesItem) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[47]
+	return &file_api_content_v1_block_content_proto_enumTypes[48]
 }
 
 func (x PostTableSectionProps_StatusesItem) Number() protoreflect.EnumNumber {
@@ -2758,11 +2813,11 @@ func (x PostTableSectionProps_FilterFieldsItem) String() string {
 }
 
 func (PostTableSectionProps_FilterFieldsItem) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[48].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[49].Descriptor()
 }
 
 func (PostTableSectionProps_FilterFieldsItem) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[48]
+	return &file_api_content_v1_block_content_proto_enumTypes[49]
 }
 
 func (x PostTableSectionProps_FilterFieldsItem) Number() protoreflect.EnumNumber {
@@ -2807,11 +2862,11 @@ func (x PostTableSectionProps_SortFieldsItem) String() string {
 }
 
 func (PostTableSectionProps_SortFieldsItem) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[49].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[50].Descriptor()
 }
 
 func (PostTableSectionProps_SortFieldsItem) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[49]
+	return &file_api_content_v1_block_content_proto_enumTypes[50]
 }
 
 func (x PostTableSectionProps_SortFieldsItem) Number() protoreflect.EnumNumber {
@@ -2859,11 +2914,11 @@ func (x PostMapSectionProps_SortBy) String() string {
 }
 
 func (PostMapSectionProps_SortBy) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[50].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[51].Descriptor()
 }
 
 func (PostMapSectionProps_SortBy) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[50]
+	return &file_api_content_v1_block_content_proto_enumTypes[51]
 }
 
 func (x PostMapSectionProps_SortBy) Number() protoreflect.EnumNumber {
@@ -2908,11 +2963,11 @@ func (x PostMapSectionProps_SortOrder) String() string {
 }
 
 func (PostMapSectionProps_SortOrder) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[51].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[52].Descriptor()
 }
 
 func (PostMapSectionProps_SortOrder) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[51]
+	return &file_api_content_v1_block_content_proto_enumTypes[52]
 }
 
 func (x PostMapSectionProps_SortOrder) Number() protoreflect.EnumNumber {
@@ -2960,11 +3015,11 @@ func (x PostMapSectionProps_AspectRatio) String() string {
 }
 
 func (PostMapSectionProps_AspectRatio) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[52].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[53].Descriptor()
 }
 
 func (PostMapSectionProps_AspectRatio) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[52]
+	return &file_api_content_v1_block_content_proto_enumTypes[53]
 }
 
 func (x PostMapSectionProps_AspectRatio) Number() protoreflect.EnumNumber {
@@ -3009,11 +3064,11 @@ func (x PostMapSectionProps_PrimaryLabel) String() string {
 }
 
 func (PostMapSectionProps_PrimaryLabel) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[53].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[54].Descriptor()
 }
 
 func (PostMapSectionProps_PrimaryLabel) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[53]
+	return &file_api_content_v1_block_content_proto_enumTypes[54]
 }
 
 func (x PostMapSectionProps_PrimaryLabel) Number() protoreflect.EnumNumber {
@@ -3061,11 +3116,11 @@ func (x PostMapSectionProps_PreferredScheme) String() string {
 }
 
 func (PostMapSectionProps_PreferredScheme) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[54].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[55].Descriptor()
 }
 
 func (PostMapSectionProps_PreferredScheme) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[54]
+	return &file_api_content_v1_block_content_proto_enumTypes[55]
 }
 
 func (x PostMapSectionProps_PreferredScheme) Number() protoreflect.EnumNumber {
@@ -3113,11 +3168,11 @@ func (x PostMapSectionProps_AreaLabelsMode) String() string {
 }
 
 func (PostMapSectionProps_AreaLabelsMode) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[55].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[56].Descriptor()
 }
 
 func (PostMapSectionProps_AreaLabelsMode) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[55]
+	return &file_api_content_v1_block_content_proto_enumTypes[56]
 }
 
 func (x PostMapSectionProps_AreaLabelsMode) Number() protoreflect.EnumNumber {
@@ -3165,11 +3220,11 @@ func (x PostMapSectionProps_PoiLabelsMode) String() string {
 }
 
 func (PostMapSectionProps_PoiLabelsMode) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[56].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[57].Descriptor()
 }
 
 func (PostMapSectionProps_PoiLabelsMode) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[56]
+	return &file_api_content_v1_block_content_proto_enumTypes[57]
 }
 
 func (x PostMapSectionProps_PoiLabelsMode) Number() protoreflect.EnumNumber {
@@ -3220,11 +3275,11 @@ func (x WorkMapSectionProps_WorkTypesItem) String() string {
 }
 
 func (WorkMapSectionProps_WorkTypesItem) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[57].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[58].Descriptor()
 }
 
 func (WorkMapSectionProps_WorkTypesItem) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[57]
+	return &file_api_content_v1_block_content_proto_enumTypes[58]
 }
 
 func (x WorkMapSectionProps_WorkTypesItem) Number() protoreflect.EnumNumber {
@@ -3272,11 +3327,11 @@ func (x WorkMapSectionProps_SortBy) String() string {
 }
 
 func (WorkMapSectionProps_SortBy) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[58].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[59].Descriptor()
 }
 
 func (WorkMapSectionProps_SortBy) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[58]
+	return &file_api_content_v1_block_content_proto_enumTypes[59]
 }
 
 func (x WorkMapSectionProps_SortBy) Number() protoreflect.EnumNumber {
@@ -3321,11 +3376,11 @@ func (x WorkMapSectionProps_SortOrder) String() string {
 }
 
 func (WorkMapSectionProps_SortOrder) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[59].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[60].Descriptor()
 }
 
 func (WorkMapSectionProps_SortOrder) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[59]
+	return &file_api_content_v1_block_content_proto_enumTypes[60]
 }
 
 func (x WorkMapSectionProps_SortOrder) Number() protoreflect.EnumNumber {
@@ -3373,11 +3428,11 @@ func (x WorkMapSectionProps_AspectRatio) String() string {
 }
 
 func (WorkMapSectionProps_AspectRatio) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[60].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[61].Descriptor()
 }
 
 func (WorkMapSectionProps_AspectRatio) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[60]
+	return &file_api_content_v1_block_content_proto_enumTypes[61]
 }
 
 func (x WorkMapSectionProps_AspectRatio) Number() protoreflect.EnumNumber {
@@ -3422,11 +3477,11 @@ func (x WorkMapSectionProps_PrimaryLabel) String() string {
 }
 
 func (WorkMapSectionProps_PrimaryLabel) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[61].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[62].Descriptor()
 }
 
 func (WorkMapSectionProps_PrimaryLabel) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[61]
+	return &file_api_content_v1_block_content_proto_enumTypes[62]
 }
 
 func (x WorkMapSectionProps_PrimaryLabel) Number() protoreflect.EnumNumber {
@@ -3474,11 +3529,11 @@ func (x WorkMapSectionProps_PreferredScheme) String() string {
 }
 
 func (WorkMapSectionProps_PreferredScheme) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[62].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[63].Descriptor()
 }
 
 func (WorkMapSectionProps_PreferredScheme) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[62]
+	return &file_api_content_v1_block_content_proto_enumTypes[63]
 }
 
 func (x WorkMapSectionProps_PreferredScheme) Number() protoreflect.EnumNumber {
@@ -3526,11 +3581,11 @@ func (x WorkMapSectionProps_AreaLabelsMode) String() string {
 }
 
 func (WorkMapSectionProps_AreaLabelsMode) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[63].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[64].Descriptor()
 }
 
 func (WorkMapSectionProps_AreaLabelsMode) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[63]
+	return &file_api_content_v1_block_content_proto_enumTypes[64]
 }
 
 func (x WorkMapSectionProps_AreaLabelsMode) Number() protoreflect.EnumNumber {
@@ -3578,11 +3633,11 @@ func (x WorkMapSectionProps_PoiLabelsMode) String() string {
 }
 
 func (WorkMapSectionProps_PoiLabelsMode) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[64].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[65].Descriptor()
 }
 
 func (WorkMapSectionProps_PoiLabelsMode) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[64]
+	return &file_api_content_v1_block_content_proto_enumTypes[65]
 }
 
 func (x WorkMapSectionProps_PoiLabelsMode) Number() protoreflect.EnumNumber {
@@ -3633,11 +3688,11 @@ func (x WorkTableSectionProps_WorkTypesItem) String() string {
 }
 
 func (WorkTableSectionProps_WorkTypesItem) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[65].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[66].Descriptor()
 }
 
 func (WorkTableSectionProps_WorkTypesItem) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[65]
+	return &file_api_content_v1_block_content_proto_enumTypes[66]
 }
 
 func (x WorkTableSectionProps_WorkTypesItem) Number() protoreflect.EnumNumber {
@@ -3682,11 +3737,11 @@ func (x WorkTableSectionProps_StatusesItem) String() string {
 }
 
 func (WorkTableSectionProps_StatusesItem) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[66].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[67].Descriptor()
 }
 
 func (WorkTableSectionProps_StatusesItem) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[66]
+	return &file_api_content_v1_block_content_proto_enumTypes[67]
 }
 
 func (x WorkTableSectionProps_StatusesItem) Number() protoreflect.EnumNumber {
@@ -3752,11 +3807,11 @@ func (x WorkTableSectionProps_FilterFieldsItem) String() string {
 }
 
 func (WorkTableSectionProps_FilterFieldsItem) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[67].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[68].Descriptor()
 }
 
 func (WorkTableSectionProps_FilterFieldsItem) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[67]
+	return &file_api_content_v1_block_content_proto_enumTypes[68]
 }
 
 func (x WorkTableSectionProps_FilterFieldsItem) Number() protoreflect.EnumNumber {
@@ -3804,11 +3859,11 @@ func (x WorkTableSectionProps_SortFieldsItem) String() string {
 }
 
 func (WorkTableSectionProps_SortFieldsItem) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[68].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[69].Descriptor()
 }
 
 func (WorkTableSectionProps_SortFieldsItem) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[68]
+	return &file_api_content_v1_block_content_proto_enumTypes[69]
 }
 
 func (x WorkTableSectionProps_SortFieldsItem) Number() protoreflect.EnumNumber {
@@ -3862,11 +3917,11 @@ func (x WorkListSectionProps_Layout) String() string {
 }
 
 func (WorkListSectionProps_Layout) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[69].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[70].Descriptor()
 }
 
 func (WorkListSectionProps_Layout) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[69]
+	return &file_api_content_v1_block_content_proto_enumTypes[70]
 }
 
 func (x WorkListSectionProps_Layout) Number() protoreflect.EnumNumber {
@@ -3911,11 +3966,11 @@ func (x WorkListSectionProps_SortOrder) String() string {
 }
 
 func (WorkListSectionProps_SortOrder) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[70].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[71].Descriptor()
 }
 
 func (WorkListSectionProps_SortOrder) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[70]
+	return &file_api_content_v1_block_content_proto_enumTypes[71]
 }
 
 func (x WorkListSectionProps_SortOrder) Number() protoreflect.EnumNumber {
@@ -3966,11 +4021,11 @@ func (x WorkListSectionProps_WorkTypesItem) String() string {
 }
 
 func (WorkListSectionProps_WorkTypesItem) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[71].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[72].Descriptor()
 }
 
 func (WorkListSectionProps_WorkTypesItem) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[71]
+	return &file_api_content_v1_block_content_proto_enumTypes[72]
 }
 
 func (x WorkListSectionProps_WorkTypesItem) Number() protoreflect.EnumNumber {
@@ -4018,11 +4073,11 @@ func (x WorkListSectionProps_SortBy) String() string {
 }
 
 func (WorkListSectionProps_SortBy) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[72].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[73].Descriptor()
 }
 
 func (WorkListSectionProps_SortBy) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[72]
+	return &file_api_content_v1_block_content_proto_enumTypes[73]
 }
 
 func (x WorkListSectionProps_SortBy) Number() protoreflect.EnumNumber {
@@ -4073,11 +4128,11 @@ func (x WorkListSectionProps_ImageAspectRatio) String() string {
 }
 
 func (WorkListSectionProps_ImageAspectRatio) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[73].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[74].Descriptor()
 }
 
 func (WorkListSectionProps_ImageAspectRatio) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[73]
+	return &file_api_content_v1_block_content_proto_enumTypes[74]
 }
 
 func (x WorkListSectionProps_ImageAspectRatio) Number() protoreflect.EnumNumber {
@@ -4131,11 +4186,11 @@ func (x WorkListSectionProps_ItemSize) String() string {
 }
 
 func (WorkListSectionProps_ItemSize) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[74].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[75].Descriptor()
 }
 
 func (WorkListSectionProps_ItemSize) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[74]
+	return &file_api_content_v1_block_content_proto_enumTypes[75]
 }
 
 func (x WorkListSectionProps_ItemSize) Number() protoreflect.EnumNumber {
@@ -4189,11 +4244,11 @@ func (x ProgramEventListSectionProps_Layout) String() string {
 }
 
 func (ProgramEventListSectionProps_Layout) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[75].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[76].Descriptor()
 }
 
 func (ProgramEventListSectionProps_Layout) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[75]
+	return &file_api_content_v1_block_content_proto_enumTypes[76]
 }
 
 func (x ProgramEventListSectionProps_Layout) Number() protoreflect.EnumNumber {
@@ -4238,11 +4293,11 @@ func (x ProgramEventListSectionProps_SortOrder) String() string {
 }
 
 func (ProgramEventListSectionProps_SortOrder) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[76].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[77].Descriptor()
 }
 
 func (ProgramEventListSectionProps_SortOrder) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[76]
+	return &file_api_content_v1_block_content_proto_enumTypes[77]
 }
 
 func (x ProgramEventListSectionProps_SortOrder) Number() protoreflect.EnumNumber {
@@ -4293,11 +4348,11 @@ func (x ProgramEventListSectionProps_TimeWindow) String() string {
 }
 
 func (ProgramEventListSectionProps_TimeWindow) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[77].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[78].Descriptor()
 }
 
 func (ProgramEventListSectionProps_TimeWindow) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[77]
+	return &file_api_content_v1_block_content_proto_enumTypes[78]
 }
 
 func (x ProgramEventListSectionProps_TimeWindow) Number() protoreflect.EnumNumber {
@@ -4351,11 +4406,11 @@ func (x ProgramEventListSectionProps_SortBy) String() string {
 }
 
 func (ProgramEventListSectionProps_SortBy) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[78].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[79].Descriptor()
 }
 
 func (ProgramEventListSectionProps_SortBy) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[78]
+	return &file_api_content_v1_block_content_proto_enumTypes[79]
 }
 
 func (x ProgramEventListSectionProps_SortBy) Number() protoreflect.EnumNumber {
@@ -4406,11 +4461,11 @@ func (x ProgramEventListSectionProps_ImageAspectRatio) String() string {
 }
 
 func (ProgramEventListSectionProps_ImageAspectRatio) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[79].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[80].Descriptor()
 }
 
 func (ProgramEventListSectionProps_ImageAspectRatio) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[79]
+	return &file_api_content_v1_block_content_proto_enumTypes[80]
 }
 
 func (x ProgramEventListSectionProps_ImageAspectRatio) Number() protoreflect.EnumNumber {
@@ -4464,11 +4519,11 @@ func (x ProgramEventListSectionProps_ItemSize) String() string {
 }
 
 func (ProgramEventListSectionProps_ItemSize) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[80].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[81].Descriptor()
 }
 
 func (ProgramEventListSectionProps_ItemSize) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[80]
+	return &file_api_content_v1_block_content_proto_enumTypes[81]
 }
 
 func (x ProgramEventListSectionProps_ItemSize) Number() protoreflect.EnumNumber {
@@ -4522,11 +4577,11 @@ func (x ReleaseListSectionProps_Layout) String() string {
 }
 
 func (ReleaseListSectionProps_Layout) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[81].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[82].Descriptor()
 }
 
 func (ReleaseListSectionProps_Layout) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[81]
+	return &file_api_content_v1_block_content_proto_enumTypes[82]
 }
 
 func (x ReleaseListSectionProps_Layout) Number() protoreflect.EnumNumber {
@@ -4571,11 +4626,11 @@ func (x ReleaseListSectionProps_SortOrder) String() string {
 }
 
 func (ReleaseListSectionProps_SortOrder) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[82].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[83].Descriptor()
 }
 
 func (ReleaseListSectionProps_SortOrder) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[82]
+	return &file_api_content_v1_block_content_proto_enumTypes[83]
 }
 
 func (x ReleaseListSectionProps_SortOrder) Number() protoreflect.EnumNumber {
@@ -4626,11 +4681,11 @@ func (x ReleaseListSectionProps_TypesItem) String() string {
 }
 
 func (ReleaseListSectionProps_TypesItem) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[83].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[84].Descriptor()
 }
 
 func (ReleaseListSectionProps_TypesItem) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[83]
+	return &file_api_content_v1_block_content_proto_enumTypes[84]
 }
 
 func (x ReleaseListSectionProps_TypesItem) Number() protoreflect.EnumNumber {
@@ -4678,11 +4733,11 @@ func (x ReleaseListSectionProps_SortBy) String() string {
 }
 
 func (ReleaseListSectionProps_SortBy) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[84].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[85].Descriptor()
 }
 
 func (ReleaseListSectionProps_SortBy) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[84]
+	return &file_api_content_v1_block_content_proto_enumTypes[85]
 }
 
 func (x ReleaseListSectionProps_SortBy) Number() protoreflect.EnumNumber {
@@ -4733,11 +4788,11 @@ func (x ReleaseListSectionProps_ImageAspectRatio) String() string {
 }
 
 func (ReleaseListSectionProps_ImageAspectRatio) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[85].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[86].Descriptor()
 }
 
 func (ReleaseListSectionProps_ImageAspectRatio) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[85]
+	return &file_api_content_v1_block_content_proto_enumTypes[86]
 }
 
 func (x ReleaseListSectionProps_ImageAspectRatio) Number() protoreflect.EnumNumber {
@@ -4791,11 +4846,11 @@ func (x ReleaseListSectionProps_ItemSize) String() string {
 }
 
 func (ReleaseListSectionProps_ItemSize) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[86].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[87].Descriptor()
 }
 
 func (ReleaseListSectionProps_ItemSize) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[86]
+	return &file_api_content_v1_block_content_proto_enumTypes[87]
 }
 
 func (x ReleaseListSectionProps_ItemSize) Number() protoreflect.EnumNumber {
@@ -4849,11 +4904,11 @@ func (x ArtistListSectionProps_Layout) String() string {
 }
 
 func (ArtistListSectionProps_Layout) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[87].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[88].Descriptor()
 }
 
 func (ArtistListSectionProps_Layout) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[87]
+	return &file_api_content_v1_block_content_proto_enumTypes[88]
 }
 
 func (x ArtistListSectionProps_Layout) Number() protoreflect.EnumNumber {
@@ -4898,11 +4953,11 @@ func (x ArtistListSectionProps_SortOrder) String() string {
 }
 
 func (ArtistListSectionProps_SortOrder) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[88].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[89].Descriptor()
 }
 
 func (ArtistListSectionProps_SortOrder) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[88]
+	return &file_api_content_v1_block_content_proto_enumTypes[89]
 }
 
 func (x ArtistListSectionProps_SortOrder) Number() protoreflect.EnumNumber {
@@ -4947,11 +5002,11 @@ func (x ArtistListSectionProps_SortBy) String() string {
 }
 
 func (ArtistListSectionProps_SortBy) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[89].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[90].Descriptor()
 }
 
 func (ArtistListSectionProps_SortBy) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[89]
+	return &file_api_content_v1_block_content_proto_enumTypes[90]
 }
 
 func (x ArtistListSectionProps_SortBy) Number() protoreflect.EnumNumber {
@@ -5002,11 +5057,11 @@ func (x ArtistListSectionProps_ImageAspectRatio) String() string {
 }
 
 func (ArtistListSectionProps_ImageAspectRatio) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[90].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[91].Descriptor()
 }
 
 func (ArtistListSectionProps_ImageAspectRatio) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[90]
+	return &file_api_content_v1_block_content_proto_enumTypes[91]
 }
 
 func (x ArtistListSectionProps_ImageAspectRatio) Number() protoreflect.EnumNumber {
@@ -5060,11 +5115,11 @@ func (x ArtistListSectionProps_ItemSize) String() string {
 }
 
 func (ArtistListSectionProps_ItemSize) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[91].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[92].Descriptor()
 }
 
 func (ArtistListSectionProps_ItemSize) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[91]
+	return &file_api_content_v1_block_content_proto_enumTypes[92]
 }
 
 func (x ArtistListSectionProps_ItemSize) Number() protoreflect.EnumNumber {
@@ -5118,11 +5173,11 @@ func (x LabelListSectionProps_Layout) String() string {
 }
 
 func (LabelListSectionProps_Layout) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[92].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[93].Descriptor()
 }
 
 func (LabelListSectionProps_Layout) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[92]
+	return &file_api_content_v1_block_content_proto_enumTypes[93]
 }
 
 func (x LabelListSectionProps_Layout) Number() protoreflect.EnumNumber {
@@ -5167,11 +5222,11 @@ func (x LabelListSectionProps_SortOrder) String() string {
 }
 
 func (LabelListSectionProps_SortOrder) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[93].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[94].Descriptor()
 }
 
 func (LabelListSectionProps_SortOrder) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[93]
+	return &file_api_content_v1_block_content_proto_enumTypes[94]
 }
 
 func (x LabelListSectionProps_SortOrder) Number() protoreflect.EnumNumber {
@@ -5216,11 +5271,11 @@ func (x LabelListSectionProps_SortBy) String() string {
 }
 
 func (LabelListSectionProps_SortBy) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[94].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[95].Descriptor()
 }
 
 func (LabelListSectionProps_SortBy) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[94]
+	return &file_api_content_v1_block_content_proto_enumTypes[95]
 }
 
 func (x LabelListSectionProps_SortBy) Number() protoreflect.EnumNumber {
@@ -5271,11 +5326,11 @@ func (x LabelListSectionProps_ImageAspectRatio) String() string {
 }
 
 func (LabelListSectionProps_ImageAspectRatio) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[95].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[96].Descriptor()
 }
 
 func (LabelListSectionProps_ImageAspectRatio) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[95]
+	return &file_api_content_v1_block_content_proto_enumTypes[96]
 }
 
 func (x LabelListSectionProps_ImageAspectRatio) Number() protoreflect.EnumNumber {
@@ -5329,11 +5384,11 @@ func (x LabelListSectionProps_ItemSize) String() string {
 }
 
 func (LabelListSectionProps_ItemSize) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[96].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[97].Descriptor()
 }
 
 func (LabelListSectionProps_ItemSize) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[96]
+	return &file_api_content_v1_block_content_proto_enumTypes[97]
 }
 
 func (x LabelListSectionProps_ItemSize) Number() protoreflect.EnumNumber {
@@ -5378,11 +5433,11 @@ func (x AuthorListSectionProps_Layout) String() string {
 }
 
 func (AuthorListSectionProps_Layout) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[97].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[98].Descriptor()
 }
 
 func (AuthorListSectionProps_Layout) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[97]
+	return &file_api_content_v1_block_content_proto_enumTypes[98]
 }
 
 func (x AuthorListSectionProps_Layout) Number() protoreflect.EnumNumber {
@@ -5427,11 +5482,11 @@ func (x AuthorListSectionProps_Source) String() string {
 }
 
 func (AuthorListSectionProps_Source) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[98].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[99].Descriptor()
 }
 
 func (AuthorListSectionProps_Source) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[98]
+	return &file_api_content_v1_block_content_proto_enumTypes[99]
 }
 
 func (x AuthorListSectionProps_Source) Number() protoreflect.EnumNumber {
@@ -5485,11 +5540,11 @@ func (x AuthorListSectionProps_ItemSize) String() string {
 }
 
 func (AuthorListSectionProps_ItemSize) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[99].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[100].Descriptor()
 }
 
 func (AuthorListSectionProps_ItemSize) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[99]
+	return &file_api_content_v1_block_content_proto_enumTypes[100]
 }
 
 func (x AuthorListSectionProps_ItemSize) Number() protoreflect.EnumNumber {
@@ -5534,11 +5589,11 @@ func (x TextMarqueeSectionProps_Direction) String() string {
 }
 
 func (TextMarqueeSectionProps_Direction) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[100].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[101].Descriptor()
 }
 
 func (TextMarqueeSectionProps_Direction) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[100]
+	return &file_api_content_v1_block_content_proto_enumTypes[101]
 }
 
 func (x TextMarqueeSectionProps_Direction) Number() protoreflect.EnumNumber {
@@ -5586,11 +5641,11 @@ func (x TextMarqueeSectionProps_Speed) String() string {
 }
 
 func (TextMarqueeSectionProps_Speed) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[101].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[102].Descriptor()
 }
 
 func (TextMarqueeSectionProps_Speed) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[101]
+	return &file_api_content_v1_block_content_proto_enumTypes[102]
 }
 
 func (x TextMarqueeSectionProps_Speed) Number() protoreflect.EnumNumber {
@@ -5641,11 +5696,11 @@ func (x TextMarqueeSectionProps_ItemHeight) String() string {
 }
 
 func (TextMarqueeSectionProps_ItemHeight) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[102].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[103].Descriptor()
 }
 
 func (TextMarqueeSectionProps_ItemHeight) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[102]
+	return &file_api_content_v1_block_content_proto_enumTypes[103]
 }
 
 func (x TextMarqueeSectionProps_ItemHeight) Number() protoreflect.EnumNumber {
@@ -5696,11 +5751,11 @@ func (x TextMarqueeSectionProps_Gap) String() string {
 }
 
 func (TextMarqueeSectionProps_Gap) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[103].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[104].Descriptor()
 }
 
 func (TextMarqueeSectionProps_Gap) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[103]
+	return &file_api_content_v1_block_content_proto_enumTypes[104]
 }
 
 func (x TextMarqueeSectionProps_Gap) Number() protoreflect.EnumNumber {
@@ -5745,11 +5800,11 @@ func (x TextMarqueeSectionProps_LinkTarget) String() string {
 }
 
 func (TextMarqueeSectionProps_LinkTarget) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[104].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[105].Descriptor()
 }
 
 func (TextMarqueeSectionProps_LinkTarget) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[104]
+	return &file_api_content_v1_block_content_proto_enumTypes[105]
 }
 
 func (x TextMarqueeSectionProps_LinkTarget) Number() protoreflect.EnumNumber {
@@ -5794,11 +5849,11 @@ func (x ClientMarqueeSectionProps_Direction) String() string {
 }
 
 func (ClientMarqueeSectionProps_Direction) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[105].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[106].Descriptor()
 }
 
 func (ClientMarqueeSectionProps_Direction) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[105]
+	return &file_api_content_v1_block_content_proto_enumTypes[106]
 }
 
 func (x ClientMarqueeSectionProps_Direction) Number() protoreflect.EnumNumber {
@@ -5846,11 +5901,11 @@ func (x ClientMarqueeSectionProps_Speed) String() string {
 }
 
 func (ClientMarqueeSectionProps_Speed) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[106].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[107].Descriptor()
 }
 
 func (ClientMarqueeSectionProps_Speed) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[106]
+	return &file_api_content_v1_block_content_proto_enumTypes[107]
 }
 
 func (x ClientMarqueeSectionProps_Speed) Number() protoreflect.EnumNumber {
@@ -5901,11 +5956,11 @@ func (x ClientMarqueeSectionProps_ItemHeight) String() string {
 }
 
 func (ClientMarqueeSectionProps_ItemHeight) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[107].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[108].Descriptor()
 }
 
 func (ClientMarqueeSectionProps_ItemHeight) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[107]
+	return &file_api_content_v1_block_content_proto_enumTypes[108]
 }
 
 func (x ClientMarqueeSectionProps_ItemHeight) Number() protoreflect.EnumNumber {
@@ -5956,11 +6011,11 @@ func (x ClientMarqueeSectionProps_Gap) String() string {
 }
 
 func (ClientMarqueeSectionProps_Gap) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[108].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[109].Descriptor()
 }
 
 func (ClientMarqueeSectionProps_Gap) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[108]
+	return &file_api_content_v1_block_content_proto_enumTypes[109]
 }
 
 func (x ClientMarqueeSectionProps_Gap) Number() protoreflect.EnumNumber {
@@ -6005,11 +6060,11 @@ func (x ClientMarqueeSectionProps_LinkTarget) String() string {
 }
 
 func (ClientMarqueeSectionProps_LinkTarget) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[109].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[110].Descriptor()
 }
 
 func (ClientMarqueeSectionProps_LinkTarget) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[109]
+	return &file_api_content_v1_block_content_proto_enumTypes[110]
 }
 
 func (x ClientMarqueeSectionProps_LinkTarget) Number() protoreflect.EnumNumber {
@@ -6054,11 +6109,11 @@ func (x ClientMarqueeSectionProps_Source) String() string {
 }
 
 func (ClientMarqueeSectionProps_Source) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[110].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[111].Descriptor()
 }
 
 func (ClientMarqueeSectionProps_Source) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[110]
+	return &file_api_content_v1_block_content_proto_enumTypes[111]
 }
 
 func (x ClientMarqueeSectionProps_Source) Number() protoreflect.EnumNumber {
@@ -6103,11 +6158,11 @@ func (x ClientMarqueeSectionProps_LinkMode) String() string {
 }
 
 func (ClientMarqueeSectionProps_LinkMode) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[111].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[112].Descriptor()
 }
 
 func (ClientMarqueeSectionProps_LinkMode) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[111]
+	return &file_api_content_v1_block_content_proto_enumTypes[112]
 }
 
 func (x ClientMarqueeSectionProps_LinkMode) Number() protoreflect.EnumNumber {
@@ -6152,11 +6207,11 @@ func (x ClientMarqueeSectionProps_LogoScale) String() string {
 }
 
 func (ClientMarqueeSectionProps_LogoScale) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[112].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[113].Descriptor()
 }
 
 func (ClientMarqueeSectionProps_LogoScale) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[112]
+	return &file_api_content_v1_block_content_proto_enumTypes[113]
 }
 
 func (x ClientMarqueeSectionProps_LogoScale) Number() protoreflect.EnumNumber {
@@ -6201,11 +6256,11 @@ func (x ClientMarqueeSectionProps_FallbackMode) String() string {
 }
 
 func (ClientMarqueeSectionProps_FallbackMode) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[113].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[114].Descriptor()
 }
 
 func (ClientMarqueeSectionProps_FallbackMode) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[113]
+	return &file_api_content_v1_block_content_proto_enumTypes[114]
 }
 
 func (x ClientMarqueeSectionProps_FallbackMode) Number() protoreflect.EnumNumber {
@@ -6250,11 +6305,11 @@ func (x LabelMarqueeSectionProps_Direction) String() string {
 }
 
 func (LabelMarqueeSectionProps_Direction) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[114].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[115].Descriptor()
 }
 
 func (LabelMarqueeSectionProps_Direction) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[114]
+	return &file_api_content_v1_block_content_proto_enumTypes[115]
 }
 
 func (x LabelMarqueeSectionProps_Direction) Number() protoreflect.EnumNumber {
@@ -6302,11 +6357,11 @@ func (x LabelMarqueeSectionProps_Speed) String() string {
 }
 
 func (LabelMarqueeSectionProps_Speed) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[115].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[116].Descriptor()
 }
 
 func (LabelMarqueeSectionProps_Speed) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[115]
+	return &file_api_content_v1_block_content_proto_enumTypes[116]
 }
 
 func (x LabelMarqueeSectionProps_Speed) Number() protoreflect.EnumNumber {
@@ -6357,11 +6412,11 @@ func (x LabelMarqueeSectionProps_ItemHeight) String() string {
 }
 
 func (LabelMarqueeSectionProps_ItemHeight) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[116].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[117].Descriptor()
 }
 
 func (LabelMarqueeSectionProps_ItemHeight) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[116]
+	return &file_api_content_v1_block_content_proto_enumTypes[117]
 }
 
 func (x LabelMarqueeSectionProps_ItemHeight) Number() protoreflect.EnumNumber {
@@ -6412,11 +6467,11 @@ func (x LabelMarqueeSectionProps_Gap) String() string {
 }
 
 func (LabelMarqueeSectionProps_Gap) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[117].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[118].Descriptor()
 }
 
 func (LabelMarqueeSectionProps_Gap) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[117]
+	return &file_api_content_v1_block_content_proto_enumTypes[118]
 }
 
 func (x LabelMarqueeSectionProps_Gap) Number() protoreflect.EnumNumber {
@@ -6461,11 +6516,11 @@ func (x LabelMarqueeSectionProps_LinkTarget) String() string {
 }
 
 func (LabelMarqueeSectionProps_LinkTarget) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[118].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[119].Descriptor()
 }
 
 func (LabelMarqueeSectionProps_LinkTarget) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[118]
+	return &file_api_content_v1_block_content_proto_enumTypes[119]
 }
 
 func (x LabelMarqueeSectionProps_LinkTarget) Number() protoreflect.EnumNumber {
@@ -6510,11 +6565,11 @@ func (x LabelMarqueeSectionProps_Source) String() string {
 }
 
 func (LabelMarqueeSectionProps_Source) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[119].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[120].Descriptor()
 }
 
 func (LabelMarqueeSectionProps_Source) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[119]
+	return &file_api_content_v1_block_content_proto_enumTypes[120]
 }
 
 func (x LabelMarqueeSectionProps_Source) Number() protoreflect.EnumNumber {
@@ -6559,11 +6614,11 @@ func (x LabelMarqueeSectionProps_LinkMode) String() string {
 }
 
 func (LabelMarqueeSectionProps_LinkMode) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[120].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[121].Descriptor()
 }
 
 func (LabelMarqueeSectionProps_LinkMode) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[120]
+	return &file_api_content_v1_block_content_proto_enumTypes[121]
 }
 
 func (x LabelMarqueeSectionProps_LinkMode) Number() protoreflect.EnumNumber {
@@ -6608,11 +6663,11 @@ func (x LabelMarqueeSectionProps_LogoScale) String() string {
 }
 
 func (LabelMarqueeSectionProps_LogoScale) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[121].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[122].Descriptor()
 }
 
 func (LabelMarqueeSectionProps_LogoScale) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[121]
+	return &file_api_content_v1_block_content_proto_enumTypes[122]
 }
 
 func (x LabelMarqueeSectionProps_LogoScale) Number() protoreflect.EnumNumber {
@@ -6657,11 +6712,11 @@ func (x LabelMarqueeSectionProps_FallbackMode) String() string {
 }
 
 func (LabelMarqueeSectionProps_FallbackMode) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[122].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[123].Descriptor()
 }
 
 func (LabelMarqueeSectionProps_FallbackMode) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[122]
+	return &file_api_content_v1_block_content_proto_enumTypes[123]
 }
 
 func (x LabelMarqueeSectionProps_FallbackMode) Number() protoreflect.EnumNumber {
@@ -6709,11 +6764,11 @@ func (x MapSectionProps_AspectRatio) String() string {
 }
 
 func (MapSectionProps_AspectRatio) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[123].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[124].Descriptor()
 }
 
 func (MapSectionProps_AspectRatio) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[123]
+	return &file_api_content_v1_block_content_proto_enumTypes[124]
 }
 
 func (x MapSectionProps_AspectRatio) Number() protoreflect.EnumNumber {
@@ -6755,11 +6810,11 @@ func (x MapSectionProps_Variant) String() string {
 }
 
 func (MapSectionProps_Variant) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[124].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[125].Descriptor()
 }
 
 func (MapSectionProps_Variant) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[124]
+	return &file_api_content_v1_block_content_proto_enumTypes[125]
 }
 
 func (x MapSectionProps_Variant) Number() protoreflect.EnumNumber {
@@ -6807,11 +6862,11 @@ func (x MapSectionProps_PreferredScheme) String() string {
 }
 
 func (MapSectionProps_PreferredScheme) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[125].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[126].Descriptor()
 }
 
 func (MapSectionProps_PreferredScheme) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[125]
+	return &file_api_content_v1_block_content_proto_enumTypes[126]
 }
 
 func (x MapSectionProps_PreferredScheme) Number() protoreflect.EnumNumber {
@@ -6859,11 +6914,11 @@ func (x MapSectionProps_AreaLabelsMode) String() string {
 }
 
 func (MapSectionProps_AreaLabelsMode) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[126].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[127].Descriptor()
 }
 
 func (MapSectionProps_AreaLabelsMode) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[126]
+	return &file_api_content_v1_block_content_proto_enumTypes[127]
 }
 
 func (x MapSectionProps_AreaLabelsMode) Number() protoreflect.EnumNumber {
@@ -6911,11 +6966,11 @@ func (x MapSectionProps_PoiLabelsMode) String() string {
 }
 
 func (MapSectionProps_PoiLabelsMode) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[127].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[128].Descriptor()
 }
 
 func (MapSectionProps_PoiLabelsMode) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[127]
+	return &file_api_content_v1_block_content_proto_enumTypes[128]
 }
 
 func (x MapSectionProps_PoiLabelsMode) Number() protoreflect.EnumNumber {
@@ -6960,11 +7015,11 @@ func (x ImmersiveSceneSectionProps_Playback) String() string {
 }
 
 func (ImmersiveSceneSectionProps_Playback) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[128].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[129].Descriptor()
 }
 
 func (ImmersiveSceneSectionProps_Playback) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[128]
+	return &file_api_content_v1_block_content_proto_enumTypes[129]
 }
 
 func (x ImmersiveSceneSectionProps_Playback) Number() protoreflect.EnumNumber {
@@ -7009,11 +7064,11 @@ func (x ImmersiveSceneSectionProps_Transition) String() string {
 }
 
 func (ImmersiveSceneSectionProps_Transition) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[129].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[130].Descriptor()
 }
 
 func (ImmersiveSceneSectionProps_Transition) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[129]
+	return &file_api_content_v1_block_content_proto_enumTypes[130]
 }
 
 func (x ImmersiveSceneSectionProps_Transition) Number() protoreflect.EnumNumber {
@@ -7064,11 +7119,11 @@ func (x ImmersiveSceneSectionProps_TextureSize) String() string {
 }
 
 func (ImmersiveSceneSectionProps_TextureSize) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[130].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[131].Descriptor()
 }
 
 func (ImmersiveSceneSectionProps_TextureSize) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[130]
+	return &file_api_content_v1_block_content_proto_enumTypes[131]
 }
 
 func (x ImmersiveSceneSectionProps_TextureSize) Number() protoreflect.EnumNumber {
@@ -7116,11 +7171,11 @@ func (x ImmersiveSceneSectionProps_PreferredScheme) String() string {
 }
 
 func (ImmersiveSceneSectionProps_PreferredScheme) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[131].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[132].Descriptor()
 }
 
 func (ImmersiveSceneSectionProps_PreferredScheme) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[131]
+	return &file_api_content_v1_block_content_proto_enumTypes[132]
 }
 
 func (x ImmersiveSceneSectionProps_PreferredScheme) Number() protoreflect.EnumNumber {
@@ -7165,11 +7220,11 @@ func (x ImmersiveSceneSectionProps_TextColorSource) String() string {
 }
 
 func (ImmersiveSceneSectionProps_TextColorSource) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[132].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[133].Descriptor()
 }
 
 func (ImmersiveSceneSectionProps_TextColorSource) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[132]
+	return &file_api_content_v1_block_content_proto_enumTypes[133]
 }
 
 func (x ImmersiveSceneSectionProps_TextColorSource) Number() protoreflect.EnumNumber {
@@ -7214,11 +7269,11 @@ func (x ImmersiveSceneSectionProps_DarkTextColorSource) String() string {
 }
 
 func (ImmersiveSceneSectionProps_DarkTextColorSource) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[133].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[134].Descriptor()
 }
 
 func (ImmersiveSceneSectionProps_DarkTextColorSource) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[133]
+	return &file_api_content_v1_block_content_proto_enumTypes[134]
 }
 
 func (x ImmersiveSceneSectionProps_DarkTextColorSource) Number() protoreflect.EnumNumber {
@@ -7266,11 +7321,11 @@ func (x EmbedSectionProps_HeightMode) String() string {
 }
 
 func (EmbedSectionProps_HeightMode) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_content_v1_block_content_proto_enumTypes[134].Descriptor()
+	return file_api_content_v1_block_content_proto_enumTypes[135].Descriptor()
 }
 
 func (EmbedSectionProps_HeightMode) Type() protoreflect.EnumType {
-	return &file_api_content_v1_block_content_proto_enumTypes[134]
+	return &file_api_content_v1_block_content_proto_enumTypes[135]
 }
 
 func (x EmbedSectionProps_HeightMode) Number() protoreflect.EnumNumber {
@@ -8291,14 +8346,17 @@ func (x *RichTextTableLocale) GetRows() []*RichTextTableRowLocale {
 }
 
 type ParagraphProps struct {
-	state           protoimpl.MessageState        `protogen:"open.v1"`
-	BackgroundColor *string                       `protobuf:"bytes,1,opt,name=background_color,json=backgroundColor,proto3,oneof" json:"background_color,omitempty"`
-	TextColor       *string                       `protobuf:"bytes,2,opt,name=text_color,json=textColor,proto3,oneof" json:"text_color,omitempty"`
-	TextAlignment   *ParagraphProps_TextAlignment `protobuf:"varint,3,opt,name=text_alignment,json=textAlignment,proto3,enum=api.content.v1.ParagraphProps_TextAlignment,oneof" json:"text_alignment,omitempty"`
-	PreviewWidth    *int32                        `protobuf:"varint,4,opt,name=preview_width,json=previewWidth,proto3,oneof" json:"preview_width,omitempty"`
-	AspectRatio     *ParagraphProps_AspectRatio   `protobuf:"varint,5,opt,name=aspect_ratio,json=aspectRatio,proto3,enum=api.content.v1.ParagraphProps_AspectRatio,oneof" json:"aspect_ratio,omitempty"`
-	unknownFields   protoimpl.UnknownFields
-	sizeCache       protoimpl.SizeCache
+	state            protoimpl.MessageState           `protogen:"open.v1"`
+	BackgroundColor  *string                          `protobuf:"bytes,1,opt,name=background_color,json=backgroundColor,proto3,oneof" json:"background_color,omitempty"`
+	TextColor        *string                          `protobuf:"bytes,2,opt,name=text_color,json=textColor,proto3,oneof" json:"text_color,omitempty"`
+	TextAlignment    *ParagraphProps_TextAlignment    `protobuf:"varint,3,opt,name=text_alignment,json=textAlignment,proto3,enum=api.content.v1.ParagraphProps_TextAlignment,oneof" json:"text_alignment,omitempty"`
+	PreviewWidth     *int32                           `protobuf:"varint,4,opt,name=preview_width,json=previewWidth,proto3,oneof" json:"preview_width,omitempty"`
+	AspectRatio      *ParagraphProps_AspectRatio      `protobuf:"varint,5,opt,name=aspect_ratio,json=aspectRatio,proto3,enum=api.content.v1.ParagraphProps_AspectRatio,oneof" json:"aspect_ratio,omitempty"`
+	LinkPresentation *ParagraphProps_LinkPresentation `protobuf:"varint,6,opt,name=link_presentation,json=linkPresentation,proto3,enum=api.content.v1.ParagraphProps_LinkPresentation,oneof" json:"link_presentation,omitempty"`
+	LinkSiteName     *string                          `protobuf:"bytes,7,opt,name=link_site_name,json=linkSiteName,proto3,oneof" json:"link_site_name,omitempty"`
+	LinkThumbnail    *FileAttachment                  `protobuf:"bytes,8,opt,name=link_thumbnail,json=linkThumbnail,proto3" json:"link_thumbnail,omitempty"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
 }
 
 func (x *ParagraphProps) Reset() {
@@ -8364,6 +8422,27 @@ func (x *ParagraphProps) GetAspectRatio() ParagraphProps_AspectRatio {
 		return *x.AspectRatio
 	}
 	return ParagraphProps_ASPECT_RATIO_UNSPECIFIED
+}
+
+func (x *ParagraphProps) GetLinkPresentation() ParagraphProps_LinkPresentation {
+	if x != nil && x.LinkPresentation != nil {
+		return *x.LinkPresentation
+	}
+	return ParagraphProps_LINK_PRESENTATION_UNSPECIFIED
+}
+
+func (x *ParagraphProps) GetLinkSiteName() string {
+	if x != nil && x.LinkSiteName != nil {
+		return *x.LinkSiteName
+	}
+	return ""
+}
+
+func (x *ParagraphProps) GetLinkThumbnail() *FileAttachment {
+	if x != nil {
+		return x.LinkThumbnail
+	}
+	return nil
 }
 
 type HeadingProps struct {
@@ -9551,9 +9630,10 @@ func (x *MermaidProps) GetSource() string {
 }
 
 type ParagraphLocaleProps struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state           protoimpl.MessageState `protogen:"open.v1"`
+	LinkDescription *string                `protobuf:"bytes,1,opt,name=link_description,json=linkDescription,proto3,oneof" json:"link_description,omitempty"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
 }
 
 func (x *ParagraphLocaleProps) Reset() {
@@ -9584,6 +9664,13 @@ func (x *ParagraphLocaleProps) ProtoReflect() protoreflect.Message {
 // Deprecated: Use ParagraphLocaleProps.ProtoReflect.Descriptor instead.
 func (*ParagraphLocaleProps) Descriptor() ([]byte, []int) {
 	return file_api_content_v1_block_content_proto_rawDescGZIP(), []int{33}
+}
+
+func (x *ParagraphLocaleProps) GetLinkDescription() string {
+	if x != nil && x.LinkDescription != nil {
+		return *x.LinkDescription
+	}
+	return ""
 }
 
 type HeadingLocaleProps struct {
@@ -23338,14 +23425,17 @@ const file_api_content_v1_block_content_proto_rawDesc = "" +
 	"\x06row_id\x18\x01 \x01(\tR\x05rowId\x12=\n" +
 	"\x05cells\x18\x02 \x03(\v2'.api.content.v1.RichTextTableCellLocaleR\x05cells\"Q\n" +
 	"\x13RichTextTableLocale\x12:\n" +
-	"\x04rows\x18\x01 \x03(\v2&.api.content.v1.RichTextTableRowLocaleR\x04rows\"\xbc\x05\n" +
+	"\x04rows\x18\x01 \x03(\v2&.api.content.v1.RichTextTableRowLocaleR\x04rows\"\xe3\b\n" +
 	"\x0eParagraphProps\x12.\n" +
 	"\x10background_color\x18\x01 \x01(\tH\x00R\x0fbackgroundColor\x88\x01\x01\x12\"\n" +
 	"\n" +
 	"text_color\x18\x02 \x01(\tH\x01R\ttextColor\x88\x01\x01\x12X\n" +
 	"\x0etext_alignment\x18\x03 \x01(\x0e2,.api.content.v1.ParagraphProps.TextAlignmentH\x02R\rtextAlignment\x88\x01\x01\x12(\n" +
 	"\rpreview_width\x18\x04 \x01(\x05H\x03R\fpreviewWidth\x88\x01\x01\x12R\n" +
-	"\faspect_ratio\x18\x05 \x01(\x0e2*.api.content.v1.ParagraphProps.AspectRatioH\x04R\vaspectRatio\x88\x01\x01\"}\n" +
+	"\faspect_ratio\x18\x05 \x01(\x0e2*.api.content.v1.ParagraphProps.AspectRatioH\x04R\vaspectRatio\x88\x01\x01\x12a\n" +
+	"\x11link_presentation\x18\x06 \x01(\x0e2/.api.content.v1.ParagraphProps.LinkPresentationH\x05R\x10linkPresentation\x88\x01\x01\x12)\n" +
+	"\x0elink_site_name\x18\a \x01(\tH\x06R\flinkSiteName\x88\x01\x01\x12E\n" +
+	"\x0elink_thumbnail\x18\b \x01(\v2\x1e.api.content.v1.FileAttachmentR\rlinkThumbnail\"}\n" +
 	"\rTextAlignment\x12\x1e\n" +
 	"\x1aTEXT_ALIGNMENT_UNSPECIFIED\x10\x00\x12\x17\n" +
 	"\x13TEXT_ALIGNMENT_LEFT\x10\x01\x12\x19\n" +
@@ -23357,12 +23447,20 @@ const file_api_content_v1_block_content_proto_rawDesc = "" +
 	"\x13ASPECT_RATIO_X_16_9\x10\x02\x12\x16\n" +
 	"\x12ASPECT_RATIO_X_4_3\x10\x03\x12\x16\n" +
 	"\x12ASPECT_RATIO_X_1_1\x10\x04\x12\x17\n" +
-	"\x13ASPECT_RATIO_X_9_16\x10\x05B\x13\n" +
+	"\x13ASPECT_RATIO_X_9_16\x10\x05\"\xa6\x01\n" +
+	"\x10LinkPresentation\x12!\n" +
+	"\x1dLINK_PRESENTATION_UNSPECIFIED\x10\x00\x12\x1a\n" +
+	"\x16LINK_PRESENTATION_AUTO\x10\x01\x12\x1a\n" +
+	"\x16LINK_PRESENTATION_LINK\x10\x02\x12\x1a\n" +
+	"\x16LINK_PRESENTATION_CARD\x10\x03\x12\x1b\n" +
+	"\x17LINK_PRESENTATION_VIDEO\x10\x04B\x13\n" +
 	"\x11_background_colorB\r\n" +
 	"\v_text_colorB\x11\n" +
 	"\x0f_text_alignmentB\x10\n" +
 	"\x0e_preview_widthB\x0f\n" +
-	"\r_aspect_ratio\"\x80\x04\n" +
+	"\r_aspect_ratioB\x14\n" +
+	"\x12_link_presentationB\x11\n" +
+	"\x0f_link_site_name\"\x80\x04\n" +
 	"\fHeadingProps\x12.\n" +
 	"\x10background_color\x18\x01 \x01(\tH\x00R\x0fbackgroundColor\x88\x01\x01\x12\"\n" +
 	"\n" +
@@ -23768,8 +23866,10 @@ const file_api_content_v1_block_content_proto_rawDesc = "" +
 	"\v_text_color\"6\n" +
 	"\fMermaidProps\x12\x1b\n" +
 	"\x06source\x18\x01 \x01(\tH\x00R\x06source\x88\x01\x01B\t\n" +
-	"\a_source\"\x16\n" +
-	"\x14ParagraphLocaleProps\"\x14\n" +
+	"\a_source\"[\n" +
+	"\x14ParagraphLocaleProps\x12.\n" +
+	"\x10link_description\x18\x01 \x01(\tH\x00R\x0flinkDescription\x88\x01\x01B\x13\n" +
+	"\x11_link_description\"\x14\n" +
 	"\x12HeadingLocaleProps\"\x1b\n" +
 	"\x19BulletListItemLocaleProps\"\x1d\n" +
 	"\x1bNumberedListItemLocaleProps\"\x1a\n" +
@@ -25647,7 +25747,7 @@ func file_api_content_v1_block_content_proto_rawDescGZIP() []byte {
 	return file_api_content_v1_block_content_proto_rawDescData
 }
 
-var file_api_content_v1_block_content_proto_enumTypes = make([]protoimpl.EnumInfo, 135)
+var file_api_content_v1_block_content_proto_enumTypes = make([]protoimpl.EnumInfo, 136)
 var file_api_content_v1_block_content_proto_msgTypes = make([]protoimpl.MessageInfo, 225)
 var file_api_content_v1_block_content_proto_goTypes = []any{
 	(RichTextProfile)(0),                                         // 0: api.content.v1.RichTextProfile
@@ -25658,826 +25758,829 @@ var file_api_content_v1_block_content_proto_goTypes = []any{
 	(RichTextTableCellProps_TextAlignment)(0),                    // 5: api.content.v1.RichTextTableCellProps.TextAlignment
 	(ParagraphProps_TextAlignment)(0),                            // 6: api.content.v1.ParagraphProps.TextAlignment
 	(ParagraphProps_AspectRatio)(0),                              // 7: api.content.v1.ParagraphProps.AspectRatio
-	(HeadingProps_TextAlignment)(0),                              // 8: api.content.v1.HeadingProps.TextAlignment
-	(HeadingProps_Level)(0),                                      // 9: api.content.v1.HeadingProps.Level
-	(BulletListItemProps_TextAlignment)(0),                       // 10: api.content.v1.BulletListItemProps.TextAlignment
-	(NumberedListItemProps_TextAlignment)(0),                     // 11: api.content.v1.NumberedListItemProps.TextAlignment
-	(CheckListItemProps_TextAlignment)(0),                        // 12: api.content.v1.CheckListItemProps.TextAlignment
-	(CodeBlockProps_Language)(0),                                 // 13: api.content.v1.CodeBlockProps.Language
-	(CodeBlockProps_TextAlignment)(0),                            // 14: api.content.v1.CodeBlockProps.TextAlignment
-	(TableProps_TextAlignment)(0),                                // 15: api.content.v1.TableProps.TextAlignment
-	(P5SketchProps_Mode)(0),                                      // 16: api.content.v1.P5SketchProps.Mode
-	(P5SketchProps_TextAlignment)(0),                             // 17: api.content.v1.P5SketchProps.TextAlignment
-	(P5SketchProps_CapabilitiesItem)(0),                          // 18: api.content.v1.P5SketchProps.CapabilitiesItem
-	(ThreeSceneProps_Mode)(0),                                    // 19: api.content.v1.ThreeSceneProps.Mode
-	(ThreeSceneProps_TextAlignment)(0),                           // 20: api.content.v1.ThreeSceneProps.TextAlignment
-	(ThreeSceneProps_Language)(0),                                // 21: api.content.v1.ThreeSceneProps.Language
-	(ShaderProps_Mode)(0),                                        // 22: api.content.v1.ShaderProps.Mode
-	(ShaderProps_TextAlignment)(0),                               // 23: api.content.v1.ShaderProps.TextAlignment
-	(ShaderProps_StagesItem_Kind)(0),                             // 24: api.content.v1.ShaderProps.StagesItem.Kind
-	(ShaderProps_StagesItem_ChannelsItem_Kind)(0),                // 25: api.content.v1.ShaderProps.StagesItem.ChannelsItem.Kind
-	(ShaderProps_StagesItem_ChannelsItem_Buffer)(0),              // 26: api.content.v1.ShaderProps.StagesItem.ChannelsItem.Buffer
-	(ShaderProps_StagesItem_ChannelsItem_SamplerValue_Filter)(0), // 27: api.content.v1.ShaderProps.StagesItem.ChannelsItem.SamplerValue.Filter
-	(ShaderProps_StagesItem_ChannelsItem_SamplerValue_Wrap)(0),   // 28: api.content.v1.ShaderProps.StagesItem.ChannelsItem.SamplerValue.Wrap
-	(MapProps_AspectRatio)(0),                                    // 29: api.content.v1.MapProps.AspectRatio
-	(MapProps_TextAlignment)(0),                                  // 30: api.content.v1.MapProps.TextAlignment
-	(MapProps_Variant)(0),                                        // 31: api.content.v1.MapProps.Variant
-	(MapProps_PreferredScheme)(0),                                // 32: api.content.v1.MapProps.PreferredScheme
-	(MapProps_AreaLabelsMode)(0),                                 // 33: api.content.v1.MapProps.AreaLabelsMode
-	(MapProps_PoiLabelsMode)(0),                                  // 34: api.content.v1.MapProps.PoiLabelsMode
-	(FileProps_TextAlignment)(0),                                 // 35: api.content.v1.FileProps.TextAlignment
-	(PageSectionSettings_MaxWidth)(0),                            // 36: api.content.v1.PageSectionSettings.MaxWidth
-	(PageImmersiveUnitProps_Mesh)(0),                             // 37: api.content.v1.PageImmersiveUnitProps.Mesh
-	(PageImmersiveUnitProps_MeshSource)(0),                       // 38: api.content.v1.PageImmersiveUnitProps.MeshSource
-	(PageImmersiveUnitProps_TextureSource)(0),                    // 39: api.content.v1.PageImmersiveUnitProps.TextureSource
-	(PageImmersiveUnitProps_DarkTextureSource)(0),                // 40: api.content.v1.PageImmersiveUnitProps.DarkTextureSource
-	(ExternalVideoSectionProps_AspectRatio)(0),                   // 41: api.content.v1.ExternalVideoSectionProps.AspectRatio
-	(PostListSectionProps_Layout)(0),                             // 42: api.content.v1.PostListSectionProps.Layout
-	(PostListSectionProps_SortOrder)(0),                          // 43: api.content.v1.PostListSectionProps.SortOrder
-	(PostListSectionProps_SortBy)(0),                             // 44: api.content.v1.PostListSectionProps.SortBy
-	(PostListSectionProps_ImageAspectRatio)(0),                   // 45: api.content.v1.PostListSectionProps.ImageAspectRatio
-	(PostListSectionProps_ItemSize)(0),                           // 46: api.content.v1.PostListSectionProps.ItemSize
-	(PostTableSectionProps_StatusesItem)(0),                      // 47: api.content.v1.PostTableSectionProps.StatusesItem
-	(PostTableSectionProps_FilterFieldsItem)(0),                  // 48: api.content.v1.PostTableSectionProps.FilterFieldsItem
-	(PostTableSectionProps_SortFieldsItem)(0),                    // 49: api.content.v1.PostTableSectionProps.SortFieldsItem
-	(PostMapSectionProps_SortBy)(0),                              // 50: api.content.v1.PostMapSectionProps.SortBy
-	(PostMapSectionProps_SortOrder)(0),                           // 51: api.content.v1.PostMapSectionProps.SortOrder
-	(PostMapSectionProps_AspectRatio)(0),                         // 52: api.content.v1.PostMapSectionProps.AspectRatio
-	(PostMapSectionProps_PrimaryLabel)(0),                        // 53: api.content.v1.PostMapSectionProps.PrimaryLabel
-	(PostMapSectionProps_PreferredScheme)(0),                     // 54: api.content.v1.PostMapSectionProps.PreferredScheme
-	(PostMapSectionProps_AreaLabelsMode)(0),                      // 55: api.content.v1.PostMapSectionProps.AreaLabelsMode
-	(PostMapSectionProps_PoiLabelsMode)(0),                       // 56: api.content.v1.PostMapSectionProps.PoiLabelsMode
-	(WorkMapSectionProps_WorkTypesItem)(0),                       // 57: api.content.v1.WorkMapSectionProps.WorkTypesItem
-	(WorkMapSectionProps_SortBy)(0),                              // 58: api.content.v1.WorkMapSectionProps.SortBy
-	(WorkMapSectionProps_SortOrder)(0),                           // 59: api.content.v1.WorkMapSectionProps.SortOrder
-	(WorkMapSectionProps_AspectRatio)(0),                         // 60: api.content.v1.WorkMapSectionProps.AspectRatio
-	(WorkMapSectionProps_PrimaryLabel)(0),                        // 61: api.content.v1.WorkMapSectionProps.PrimaryLabel
-	(WorkMapSectionProps_PreferredScheme)(0),                     // 62: api.content.v1.WorkMapSectionProps.PreferredScheme
-	(WorkMapSectionProps_AreaLabelsMode)(0),                      // 63: api.content.v1.WorkMapSectionProps.AreaLabelsMode
-	(WorkMapSectionProps_PoiLabelsMode)(0),                       // 64: api.content.v1.WorkMapSectionProps.PoiLabelsMode
-	(WorkTableSectionProps_WorkTypesItem)(0),                     // 65: api.content.v1.WorkTableSectionProps.WorkTypesItem
-	(WorkTableSectionProps_StatusesItem)(0),                      // 66: api.content.v1.WorkTableSectionProps.StatusesItem
-	(WorkTableSectionProps_FilterFieldsItem)(0),                  // 67: api.content.v1.WorkTableSectionProps.FilterFieldsItem
-	(WorkTableSectionProps_SortFieldsItem)(0),                    // 68: api.content.v1.WorkTableSectionProps.SortFieldsItem
-	(WorkListSectionProps_Layout)(0),                             // 69: api.content.v1.WorkListSectionProps.Layout
-	(WorkListSectionProps_SortOrder)(0),                          // 70: api.content.v1.WorkListSectionProps.SortOrder
-	(WorkListSectionProps_WorkTypesItem)(0),                      // 71: api.content.v1.WorkListSectionProps.WorkTypesItem
-	(WorkListSectionProps_SortBy)(0),                             // 72: api.content.v1.WorkListSectionProps.SortBy
-	(WorkListSectionProps_ImageAspectRatio)(0),                   // 73: api.content.v1.WorkListSectionProps.ImageAspectRatio
-	(WorkListSectionProps_ItemSize)(0),                           // 74: api.content.v1.WorkListSectionProps.ItemSize
-	(ProgramEventListSectionProps_Layout)(0),                     // 75: api.content.v1.ProgramEventListSectionProps.Layout
-	(ProgramEventListSectionProps_SortOrder)(0),                  // 76: api.content.v1.ProgramEventListSectionProps.SortOrder
-	(ProgramEventListSectionProps_TimeWindow)(0),                 // 77: api.content.v1.ProgramEventListSectionProps.TimeWindow
-	(ProgramEventListSectionProps_SortBy)(0),                     // 78: api.content.v1.ProgramEventListSectionProps.SortBy
-	(ProgramEventListSectionProps_ImageAspectRatio)(0),           // 79: api.content.v1.ProgramEventListSectionProps.ImageAspectRatio
-	(ProgramEventListSectionProps_ItemSize)(0),                   // 80: api.content.v1.ProgramEventListSectionProps.ItemSize
-	(ReleaseListSectionProps_Layout)(0),                          // 81: api.content.v1.ReleaseListSectionProps.Layout
-	(ReleaseListSectionProps_SortOrder)(0),                       // 82: api.content.v1.ReleaseListSectionProps.SortOrder
-	(ReleaseListSectionProps_TypesItem)(0),                       // 83: api.content.v1.ReleaseListSectionProps.TypesItem
-	(ReleaseListSectionProps_SortBy)(0),                          // 84: api.content.v1.ReleaseListSectionProps.SortBy
-	(ReleaseListSectionProps_ImageAspectRatio)(0),                // 85: api.content.v1.ReleaseListSectionProps.ImageAspectRatio
-	(ReleaseListSectionProps_ItemSize)(0),                        // 86: api.content.v1.ReleaseListSectionProps.ItemSize
-	(ArtistListSectionProps_Layout)(0),                           // 87: api.content.v1.ArtistListSectionProps.Layout
-	(ArtistListSectionProps_SortOrder)(0),                        // 88: api.content.v1.ArtistListSectionProps.SortOrder
-	(ArtistListSectionProps_SortBy)(0),                           // 89: api.content.v1.ArtistListSectionProps.SortBy
-	(ArtistListSectionProps_ImageAspectRatio)(0),                 // 90: api.content.v1.ArtistListSectionProps.ImageAspectRatio
-	(ArtistListSectionProps_ItemSize)(0),                         // 91: api.content.v1.ArtistListSectionProps.ItemSize
-	(LabelListSectionProps_Layout)(0),                            // 92: api.content.v1.LabelListSectionProps.Layout
-	(LabelListSectionProps_SortOrder)(0),                         // 93: api.content.v1.LabelListSectionProps.SortOrder
-	(LabelListSectionProps_SortBy)(0),                            // 94: api.content.v1.LabelListSectionProps.SortBy
-	(LabelListSectionProps_ImageAspectRatio)(0),                  // 95: api.content.v1.LabelListSectionProps.ImageAspectRatio
-	(LabelListSectionProps_ItemSize)(0),                          // 96: api.content.v1.LabelListSectionProps.ItemSize
-	(AuthorListSectionProps_Layout)(0),                           // 97: api.content.v1.AuthorListSectionProps.Layout
-	(AuthorListSectionProps_Source)(0),                           // 98: api.content.v1.AuthorListSectionProps.Source
-	(AuthorListSectionProps_ItemSize)(0),                         // 99: api.content.v1.AuthorListSectionProps.ItemSize
-	(TextMarqueeSectionProps_Direction)(0),                       // 100: api.content.v1.TextMarqueeSectionProps.Direction
-	(TextMarqueeSectionProps_Speed)(0),                           // 101: api.content.v1.TextMarqueeSectionProps.Speed
-	(TextMarqueeSectionProps_ItemHeight)(0),                      // 102: api.content.v1.TextMarqueeSectionProps.ItemHeight
-	(TextMarqueeSectionProps_Gap)(0),                             // 103: api.content.v1.TextMarqueeSectionProps.Gap
-	(TextMarqueeSectionProps_LinkTarget)(0),                      // 104: api.content.v1.TextMarqueeSectionProps.LinkTarget
-	(ClientMarqueeSectionProps_Direction)(0),                     // 105: api.content.v1.ClientMarqueeSectionProps.Direction
-	(ClientMarqueeSectionProps_Speed)(0),                         // 106: api.content.v1.ClientMarqueeSectionProps.Speed
-	(ClientMarqueeSectionProps_ItemHeight)(0),                    // 107: api.content.v1.ClientMarqueeSectionProps.ItemHeight
-	(ClientMarqueeSectionProps_Gap)(0),                           // 108: api.content.v1.ClientMarqueeSectionProps.Gap
-	(ClientMarqueeSectionProps_LinkTarget)(0),                    // 109: api.content.v1.ClientMarqueeSectionProps.LinkTarget
-	(ClientMarqueeSectionProps_Source)(0),                        // 110: api.content.v1.ClientMarqueeSectionProps.Source
-	(ClientMarqueeSectionProps_LinkMode)(0),                      // 111: api.content.v1.ClientMarqueeSectionProps.LinkMode
-	(ClientMarqueeSectionProps_LogoScale)(0),                     // 112: api.content.v1.ClientMarqueeSectionProps.LogoScale
-	(ClientMarqueeSectionProps_FallbackMode)(0),                  // 113: api.content.v1.ClientMarqueeSectionProps.FallbackMode
-	(LabelMarqueeSectionProps_Direction)(0),                      // 114: api.content.v1.LabelMarqueeSectionProps.Direction
-	(LabelMarqueeSectionProps_Speed)(0),                          // 115: api.content.v1.LabelMarqueeSectionProps.Speed
-	(LabelMarqueeSectionProps_ItemHeight)(0),                     // 116: api.content.v1.LabelMarqueeSectionProps.ItemHeight
-	(LabelMarqueeSectionProps_Gap)(0),                            // 117: api.content.v1.LabelMarqueeSectionProps.Gap
-	(LabelMarqueeSectionProps_LinkTarget)(0),                     // 118: api.content.v1.LabelMarqueeSectionProps.LinkTarget
-	(LabelMarqueeSectionProps_Source)(0),                         // 119: api.content.v1.LabelMarqueeSectionProps.Source
-	(LabelMarqueeSectionProps_LinkMode)(0),                       // 120: api.content.v1.LabelMarqueeSectionProps.LinkMode
-	(LabelMarqueeSectionProps_LogoScale)(0),                      // 121: api.content.v1.LabelMarqueeSectionProps.LogoScale
-	(LabelMarqueeSectionProps_FallbackMode)(0),                   // 122: api.content.v1.LabelMarqueeSectionProps.FallbackMode
-	(MapSectionProps_AspectRatio)(0),                             // 123: api.content.v1.MapSectionProps.AspectRatio
-	(MapSectionProps_Variant)(0),                                 // 124: api.content.v1.MapSectionProps.Variant
-	(MapSectionProps_PreferredScheme)(0),                         // 125: api.content.v1.MapSectionProps.PreferredScheme
-	(MapSectionProps_AreaLabelsMode)(0),                          // 126: api.content.v1.MapSectionProps.AreaLabelsMode
-	(MapSectionProps_PoiLabelsMode)(0),                           // 127: api.content.v1.MapSectionProps.PoiLabelsMode
-	(ImmersiveSceneSectionProps_Playback)(0),                     // 128: api.content.v1.ImmersiveSceneSectionProps.Playback
-	(ImmersiveSceneSectionProps_Transition)(0),                   // 129: api.content.v1.ImmersiveSceneSectionProps.Transition
-	(ImmersiveSceneSectionProps_TextureSize)(0),                  // 130: api.content.v1.ImmersiveSceneSectionProps.TextureSize
-	(ImmersiveSceneSectionProps_PreferredScheme)(0),              // 131: api.content.v1.ImmersiveSceneSectionProps.PreferredScheme
-	(ImmersiveSceneSectionProps_TextColorSource)(0),              // 132: api.content.v1.ImmersiveSceneSectionProps.TextColorSource
-	(ImmersiveSceneSectionProps_DarkTextColorSource)(0),          // 133: api.content.v1.ImmersiveSceneSectionProps.DarkTextColorSource
-	(EmbedSectionProps_HeightMode)(0),                            // 134: api.content.v1.EmbedSectionProps.HeightMode
-	(*MissingAttachment)(nil),                                    // 135: api.content.v1.MissingAttachment
-	(*FileAttachment)(nil),                                       // 136: api.content.v1.FileAttachment
-	(*RichTextStyle)(nil),                                        // 137: api.content.v1.RichTextStyle
-	(*RichTextStyledText)(nil),                                   // 138: api.content.v1.RichTextStyledText
-	(*RichTextHardBreak)(nil),                                    // 139: api.content.v1.RichTextHardBreak
-	(*RichTextLink)(nil),                                         // 140: api.content.v1.RichTextLink
-	(*RichTextInlineMath)(nil),                                   // 141: api.content.v1.RichTextInlineMath
-	(*RichTextSiteVariable)(nil),                                 // 142: api.content.v1.RichTextSiteVariable
-	(*RichTextInline)(nil),                                       // 143: api.content.v1.RichTextInline
-	(*RichTextTableCellProps)(nil),                               // 144: api.content.v1.RichTextTableCellProps
-	(*RichTextTableCellBase)(nil),                                // 145: api.content.v1.RichTextTableCellBase
-	(*RichTextTableRowBase)(nil),                                 // 146: api.content.v1.RichTextTableRowBase
-	(*RichTextTableBase)(nil),                                    // 147: api.content.v1.RichTextTableBase
-	(*RichTextTableCellLocale)(nil),                              // 148: api.content.v1.RichTextTableCellLocale
-	(*RichTextTableRowLocale)(nil),                               // 149: api.content.v1.RichTextTableRowLocale
-	(*RichTextTableLocale)(nil),                                  // 150: api.content.v1.RichTextTableLocale
-	(*ParagraphProps)(nil),                                       // 151: api.content.v1.ParagraphProps
-	(*HeadingProps)(nil),                                         // 152: api.content.v1.HeadingProps
-	(*BulletListItemProps)(nil),                                  // 153: api.content.v1.BulletListItemProps
-	(*NumberedListItemProps)(nil),                                // 154: api.content.v1.NumberedListItemProps
-	(*CheckListItemProps)(nil),                                   // 155: api.content.v1.CheckListItemProps
-	(*QuoteProps)(nil),                                           // 156: api.content.v1.QuoteProps
-	(*CodeBlockProps)(nil),                                       // 157: api.content.v1.CodeBlockProps
-	(*DividerProps)(nil),                                         // 158: api.content.v1.DividerProps
-	(*TableProps)(nil),                                           // 159: api.content.v1.TableProps
-	(*P5SketchProps)(nil),                                        // 160: api.content.v1.P5SketchProps
-	(*ThreeSceneProps)(nil),                                      // 161: api.content.v1.ThreeSceneProps
-	(*ShaderProps)(nil),                                          // 162: api.content.v1.ShaderProps
-	(*MathProps)(nil),                                            // 163: api.content.v1.MathProps
-	(*MapProps)(nil),                                             // 164: api.content.v1.MapProps
-	(*FileProps)(nil),                                            // 165: api.content.v1.FileProps
-	(*CalloutProps)(nil),                                         // 166: api.content.v1.CalloutProps
-	(*MermaidProps)(nil),                                         // 167: api.content.v1.MermaidProps
-	(*ParagraphLocaleProps)(nil),                                 // 168: api.content.v1.ParagraphLocaleProps
-	(*HeadingLocaleProps)(nil),                                   // 169: api.content.v1.HeadingLocaleProps
-	(*BulletListItemLocaleProps)(nil),                            // 170: api.content.v1.BulletListItemLocaleProps
-	(*NumberedListItemLocaleProps)(nil),                          // 171: api.content.v1.NumberedListItemLocaleProps
-	(*CheckListItemLocaleProps)(nil),                             // 172: api.content.v1.CheckListItemLocaleProps
-	(*QuoteLocaleProps)(nil),                                     // 173: api.content.v1.QuoteLocaleProps
-	(*CodeBlockLocaleProps)(nil),                                 // 174: api.content.v1.CodeBlockLocaleProps
-	(*DividerLocaleProps)(nil),                                   // 175: api.content.v1.DividerLocaleProps
-	(*TableLocaleProps)(nil),                                     // 176: api.content.v1.TableLocaleProps
-	(*P5SketchLocaleProps)(nil),                                  // 177: api.content.v1.P5SketchLocaleProps
-	(*ThreeSceneLocaleProps)(nil),                                // 178: api.content.v1.ThreeSceneLocaleProps
-	(*ShaderLocaleProps)(nil),                                    // 179: api.content.v1.ShaderLocaleProps
-	(*MathLocaleProps)(nil),                                      // 180: api.content.v1.MathLocaleProps
-	(*MapLocaleProps)(nil),                                       // 181: api.content.v1.MapLocaleProps
-	(*FileLocaleProps)(nil),                                      // 182: api.content.v1.FileLocaleProps
-	(*CalloutLocaleProps)(nil),                                   // 183: api.content.v1.CalloutLocaleProps
-	(*MermaidLocaleProps)(nil),                                   // 184: api.content.v1.MermaidLocaleProps
-	(*ParagraphBlock)(nil),                                       // 185: api.content.v1.ParagraphBlock
-	(*HeadingBlock)(nil),                                         // 186: api.content.v1.HeadingBlock
-	(*BulletListItemBlock)(nil),                                  // 187: api.content.v1.BulletListItemBlock
-	(*NumberedListItemBlock)(nil),                                // 188: api.content.v1.NumberedListItemBlock
-	(*CheckListItemBlock)(nil),                                   // 189: api.content.v1.CheckListItemBlock
-	(*QuoteBlock)(nil),                                           // 190: api.content.v1.QuoteBlock
-	(*CodeBlockBlock)(nil),                                       // 191: api.content.v1.CodeBlockBlock
-	(*DividerBlock)(nil),                                         // 192: api.content.v1.DividerBlock
-	(*TableBlock)(nil),                                           // 193: api.content.v1.TableBlock
-	(*P5SketchBlock)(nil),                                        // 194: api.content.v1.P5SketchBlock
-	(*ThreeSceneBlock)(nil),                                      // 195: api.content.v1.ThreeSceneBlock
-	(*ShaderBlock)(nil),                                          // 196: api.content.v1.ShaderBlock
-	(*MathBlock)(nil),                                            // 197: api.content.v1.MathBlock
-	(*MapBlock)(nil),                                             // 198: api.content.v1.MapBlock
-	(*FileBlock)(nil),                                            // 199: api.content.v1.FileBlock
-	(*CalloutBlock)(nil),                                         // 200: api.content.v1.CalloutBlock
-	(*MermaidBlock)(nil),                                         // 201: api.content.v1.MermaidBlock
-	(*ParagraphBlockLocale)(nil),                                 // 202: api.content.v1.ParagraphBlockLocale
-	(*HeadingBlockLocale)(nil),                                   // 203: api.content.v1.HeadingBlockLocale
-	(*BulletListItemBlockLocale)(nil),                            // 204: api.content.v1.BulletListItemBlockLocale
-	(*NumberedListItemBlockLocale)(nil),                          // 205: api.content.v1.NumberedListItemBlockLocale
-	(*CheckListItemBlockLocale)(nil),                             // 206: api.content.v1.CheckListItemBlockLocale
-	(*QuoteBlockLocale)(nil),                                     // 207: api.content.v1.QuoteBlockLocale
-	(*CodeBlockBlockLocale)(nil),                                 // 208: api.content.v1.CodeBlockBlockLocale
-	(*DividerBlockLocale)(nil),                                   // 209: api.content.v1.DividerBlockLocale
-	(*TableBlockLocale)(nil),                                     // 210: api.content.v1.TableBlockLocale
-	(*P5SketchBlockLocale)(nil),                                  // 211: api.content.v1.P5SketchBlockLocale
-	(*ThreeSceneBlockLocale)(nil),                                // 212: api.content.v1.ThreeSceneBlockLocale
-	(*ShaderBlockLocale)(nil),                                    // 213: api.content.v1.ShaderBlockLocale
-	(*MathBlockLocale)(nil),                                      // 214: api.content.v1.MathBlockLocale
-	(*MapBlockLocale)(nil),                                       // 215: api.content.v1.MapBlockLocale
-	(*FileBlockLocale)(nil),                                      // 216: api.content.v1.FileBlockLocale
-	(*CalloutBlockLocale)(nil),                                   // 217: api.content.v1.CalloutBlockLocale
-	(*MermaidBlockLocale)(nil),                                   // 218: api.content.v1.MermaidBlockLocale
-	(*RichTextBlock)(nil),                                        // 219: api.content.v1.RichTextBlock
-	(*RichTextBlockLocale)(nil),                                  // 220: api.content.v1.RichTextBlockLocale
-	(*RichTextBlockData)(nil),                                    // 221: api.content.v1.RichTextBlockData
-	(*RichTextBlockLocaleData)(nil),                              // 222: api.content.v1.RichTextBlockLocaleData
-	(*ContentBlockPlacement)(nil),                                // 223: api.content.v1.ContentBlockPlacement
-	(*RichTextBlockNode)(nil),                                    // 224: api.content.v1.RichTextBlockNode
-	(*RichTextBlockGraph)(nil),                                   // 225: api.content.v1.RichTextBlockGraph
-	(*RichTextLocaleOverlay)(nil),                                // 226: api.content.v1.RichTextLocaleOverlay
-	(*RichTextDocument)(nil),                                     // 227: api.content.v1.RichTextDocument
-	(*LocalizedRichTextDocument)(nil),                            // 228: api.content.v1.LocalizedRichTextDocument
-	(*UpsertRichTextBlock)(nil),                                  // 229: api.content.v1.UpsertRichTextBlock
-	(*DeleteRichTextBlock)(nil),                                  // 230: api.content.v1.DeleteRichTextBlock
-	(*MoveRichTextBlock)(nil),                                    // 231: api.content.v1.MoveRichTextBlock
-	(*RichTextBlockMutation)(nil),                                // 232: api.content.v1.RichTextBlockMutation
-	(*UpsertRichTextBlockLocale)(nil),                            // 233: api.content.v1.UpsertRichTextBlockLocale
-	(*DeleteRichTextBlockLocale)(nil),                            // 234: api.content.v1.DeleteRichTextBlockLocale
-	(*RichTextBlockLocaleMutation)(nil),                          // 235: api.content.v1.RichTextBlockLocaleMutation
-	(*RichTextLocaleMutationGroup)(nil),                          // 236: api.content.v1.RichTextLocaleMutationGroup
-	(*RichTextBlockMutationBatch)(nil),                           // 237: api.content.v1.RichTextBlockMutationBatch
-	(*PageSectionSettings)(nil),                                  // 238: api.content.v1.PageSectionSettings
-	(*PageImmersiveUnitProps)(nil),                               // 239: api.content.v1.PageImmersiveUnitProps
-	(*PageImmersiveUnitLocaleProps)(nil),                         // 240: api.content.v1.PageImmersiveUnitLocaleProps
-	(*PageImmersiveUnit)(nil),                                    // 241: api.content.v1.PageImmersiveUnit
-	(*PageImmersiveUnitLocale)(nil),                              // 242: api.content.v1.PageImmersiveUnitLocale
-	(*RichTextSectionProps)(nil),                                 // 243: api.content.v1.RichTextSectionProps
-	(*ExternalVideoSectionProps)(nil),                            // 244: api.content.v1.ExternalVideoSectionProps
-	(*PostListSectionProps)(nil),                                 // 245: api.content.v1.PostListSectionProps
-	(*PostTableSectionProps)(nil),                                // 246: api.content.v1.PostTableSectionProps
-	(*PostMapSectionProps)(nil),                                  // 247: api.content.v1.PostMapSectionProps
-	(*WorkMapSectionProps)(nil),                                  // 248: api.content.v1.WorkMapSectionProps
-	(*WorkTableSectionProps)(nil),                                // 249: api.content.v1.WorkTableSectionProps
-	(*WorkListSectionProps)(nil),                                 // 250: api.content.v1.WorkListSectionProps
-	(*ProgramEventListSectionProps)(nil),                         // 251: api.content.v1.ProgramEventListSectionProps
-	(*ReleaseListSectionProps)(nil),                              // 252: api.content.v1.ReleaseListSectionProps
-	(*ArtistListSectionProps)(nil),                               // 253: api.content.v1.ArtistListSectionProps
-	(*LabelListSectionProps)(nil),                                // 254: api.content.v1.LabelListSectionProps
-	(*AuthorListSectionProps)(nil),                               // 255: api.content.v1.AuthorListSectionProps
-	(*FormSectionProps)(nil),                                     // 256: api.content.v1.FormSectionProps
-	(*TextMarqueeSectionProps)(nil),                              // 257: api.content.v1.TextMarqueeSectionProps
-	(*ClientMarqueeSectionProps)(nil),                            // 258: api.content.v1.ClientMarqueeSectionProps
-	(*LabelMarqueeSectionProps)(nil),                             // 259: api.content.v1.LabelMarqueeSectionProps
-	(*MapSectionProps)(nil),                                      // 260: api.content.v1.MapSectionProps
-	(*ImmersiveSceneSectionProps)(nil),                           // 261: api.content.v1.ImmersiveSceneSectionProps
-	(*ColumnsSectionProps)(nil),                                  // 262: api.content.v1.ColumnsSectionProps
-	(*MermaidSectionProps)(nil),                                  // 263: api.content.v1.MermaidSectionProps
-	(*EmbedSectionProps)(nil),                                    // 264: api.content.v1.EmbedSectionProps
-	(*RichTextSectionLocaleProps)(nil),                           // 265: api.content.v1.RichTextSectionLocaleProps
-	(*ExternalVideoSectionLocaleProps)(nil),                      // 266: api.content.v1.ExternalVideoSectionLocaleProps
-	(*PostListSectionLocaleProps)(nil),                           // 267: api.content.v1.PostListSectionLocaleProps
-	(*PostTableSectionLocaleProps)(nil),                          // 268: api.content.v1.PostTableSectionLocaleProps
-	(*PostMapSectionLocaleProps)(nil),                            // 269: api.content.v1.PostMapSectionLocaleProps
-	(*WorkMapSectionLocaleProps)(nil),                            // 270: api.content.v1.WorkMapSectionLocaleProps
-	(*WorkTableSectionLocaleProps)(nil),                          // 271: api.content.v1.WorkTableSectionLocaleProps
-	(*WorkListSectionLocaleProps)(nil),                           // 272: api.content.v1.WorkListSectionLocaleProps
-	(*ProgramEventListSectionLocaleProps)(nil),                   // 273: api.content.v1.ProgramEventListSectionLocaleProps
-	(*ReleaseListSectionLocaleProps)(nil),                        // 274: api.content.v1.ReleaseListSectionLocaleProps
-	(*ArtistListSectionLocaleProps)(nil),                         // 275: api.content.v1.ArtistListSectionLocaleProps
-	(*LabelListSectionLocaleProps)(nil),                          // 276: api.content.v1.LabelListSectionLocaleProps
-	(*AuthorListSectionLocaleProps)(nil),                         // 277: api.content.v1.AuthorListSectionLocaleProps
-	(*FormSectionLocaleProps)(nil),                               // 278: api.content.v1.FormSectionLocaleProps
-	(*TextMarqueeSectionLocaleProps)(nil),                        // 279: api.content.v1.TextMarqueeSectionLocaleProps
-	(*ClientMarqueeSectionLocaleProps)(nil),                      // 280: api.content.v1.ClientMarqueeSectionLocaleProps
-	(*LabelMarqueeSectionLocaleProps)(nil),                       // 281: api.content.v1.LabelMarqueeSectionLocaleProps
-	(*MapSectionLocaleProps)(nil),                                // 282: api.content.v1.MapSectionLocaleProps
-	(*ImmersiveSceneSectionLocaleProps)(nil),                     // 283: api.content.v1.ImmersiveSceneSectionLocaleProps
-	(*ColumnsSectionLocaleProps)(nil),                            // 284: api.content.v1.ColumnsSectionLocaleProps
-	(*MermaidSectionLocaleProps)(nil),                            // 285: api.content.v1.MermaidSectionLocaleProps
-	(*EmbedSectionLocaleProps)(nil),                              // 286: api.content.v1.EmbedSectionLocaleProps
-	(*RichTextSection)(nil),                                      // 287: api.content.v1.RichTextSection
-	(*ExternalVideoSection)(nil),                                 // 288: api.content.v1.ExternalVideoSection
-	(*PostListSection)(nil),                                      // 289: api.content.v1.PostListSection
-	(*PostTableSection)(nil),                                     // 290: api.content.v1.PostTableSection
-	(*PostMapSection)(nil),                                       // 291: api.content.v1.PostMapSection
-	(*WorkMapSection)(nil),                                       // 292: api.content.v1.WorkMapSection
-	(*WorkTableSection)(nil),                                     // 293: api.content.v1.WorkTableSection
-	(*WorkListSection)(nil),                                      // 294: api.content.v1.WorkListSection
-	(*ProgramEventListSection)(nil),                              // 295: api.content.v1.ProgramEventListSection
-	(*ReleaseListSection)(nil),                                   // 296: api.content.v1.ReleaseListSection
-	(*ArtistListSection)(nil),                                    // 297: api.content.v1.ArtistListSection
-	(*LabelListSection)(nil),                                     // 298: api.content.v1.LabelListSection
-	(*AuthorListSection)(nil),                                    // 299: api.content.v1.AuthorListSection
-	(*FormSection)(nil),                                          // 300: api.content.v1.FormSection
-	(*TextMarqueeSection)(nil),                                   // 301: api.content.v1.TextMarqueeSection
-	(*ClientMarqueeSection)(nil),                                 // 302: api.content.v1.ClientMarqueeSection
-	(*LabelMarqueeSection)(nil),                                  // 303: api.content.v1.LabelMarqueeSection
-	(*MapSection)(nil),                                           // 304: api.content.v1.MapSection
-	(*ImmersiveSceneSection)(nil),                                // 305: api.content.v1.ImmersiveSceneSection
-	(*ColumnsSection)(nil),                                       // 306: api.content.v1.ColumnsSection
-	(*MermaidSection)(nil),                                       // 307: api.content.v1.MermaidSection
-	(*EmbedSection)(nil),                                         // 308: api.content.v1.EmbedSection
-	(*RichTextSectionLocale)(nil),                                // 309: api.content.v1.RichTextSectionLocale
-	(*ExternalVideoSectionLocale)(nil),                           // 310: api.content.v1.ExternalVideoSectionLocale
-	(*PostListSectionLocale)(nil),                                // 311: api.content.v1.PostListSectionLocale
-	(*PostTableSectionLocale)(nil),                               // 312: api.content.v1.PostTableSectionLocale
-	(*PostMapSectionLocale)(nil),                                 // 313: api.content.v1.PostMapSectionLocale
-	(*WorkMapSectionLocale)(nil),                                 // 314: api.content.v1.WorkMapSectionLocale
-	(*WorkTableSectionLocale)(nil),                               // 315: api.content.v1.WorkTableSectionLocale
-	(*WorkListSectionLocale)(nil),                                // 316: api.content.v1.WorkListSectionLocale
-	(*ProgramEventListSectionLocale)(nil),                        // 317: api.content.v1.ProgramEventListSectionLocale
-	(*ReleaseListSectionLocale)(nil),                             // 318: api.content.v1.ReleaseListSectionLocale
-	(*ArtistListSectionLocale)(nil),                              // 319: api.content.v1.ArtistListSectionLocale
-	(*LabelListSectionLocale)(nil),                               // 320: api.content.v1.LabelListSectionLocale
-	(*AuthorListSectionLocale)(nil),                              // 321: api.content.v1.AuthorListSectionLocale
-	(*FormSectionLocale)(nil),                                    // 322: api.content.v1.FormSectionLocale
-	(*TextMarqueeSectionLocale)(nil),                             // 323: api.content.v1.TextMarqueeSectionLocale
-	(*ClientMarqueeSectionLocale)(nil),                           // 324: api.content.v1.ClientMarqueeSectionLocale
-	(*LabelMarqueeSectionLocale)(nil),                            // 325: api.content.v1.LabelMarqueeSectionLocale
-	(*MapSectionLocale)(nil),                                     // 326: api.content.v1.MapSectionLocale
-	(*ImmersiveSceneSectionLocale)(nil),                          // 327: api.content.v1.ImmersiveSceneSectionLocale
-	(*ColumnsSectionLocale)(nil),                                 // 328: api.content.v1.ColumnsSectionLocale
-	(*MermaidSectionLocale)(nil),                                 // 329: api.content.v1.MermaidSectionLocale
-	(*EmbedSectionLocale)(nil),                                   // 330: api.content.v1.EmbedSectionLocale
-	(*PageSection)(nil),                                          // 331: api.content.v1.PageSection
-	(*PageSectionLocale)(nil),                                    // 332: api.content.v1.PageSectionLocale
-	(*PageSectionData)(nil),                                      // 333: api.content.v1.PageSectionData
-	(*PageSectionLocaleData)(nil),                                // 334: api.content.v1.PageSectionLocaleData
-	(*PageSectionPlacement)(nil),                                 // 335: api.content.v1.PageSectionPlacement
-	(*PageSectionNode)(nil),                                      // 336: api.content.v1.PageSectionNode
-	(*PageSectionGraph)(nil),                                     // 337: api.content.v1.PageSectionGraph
-	(*PageLocaleOverlay)(nil),                                    // 338: api.content.v1.PageLocaleOverlay
-	(*PageDocument)(nil),                                         // 339: api.content.v1.PageDocument
-	(*LocalizedPageDocument)(nil),                                // 340: api.content.v1.LocalizedPageDocument
-	(*UpsertPageSection)(nil),                                    // 341: api.content.v1.UpsertPageSection
-	(*DeletePageSection)(nil),                                    // 342: api.content.v1.DeletePageSection
-	(*MovePageSection)(nil),                                      // 343: api.content.v1.MovePageSection
-	(*MutatePageRichTextBlock)(nil),                              // 344: api.content.v1.MutatePageRichTextBlock
-	(*PageSectionMutation)(nil),                                  // 345: api.content.v1.PageSectionMutation
-	(*UpsertPageSectionLocale)(nil),                              // 346: api.content.v1.UpsertPageSectionLocale
-	(*DeletePageSectionLocale)(nil),                              // 347: api.content.v1.DeletePageSectionLocale
-	(*MutatePageRichTextBlockLocale)(nil),                        // 348: api.content.v1.MutatePageRichTextBlockLocale
-	(*PageSectionLocaleMutation)(nil),                            // 349: api.content.v1.PageSectionLocaleMutation
-	(*PageLocaleMutationGroup)(nil),                              // 350: api.content.v1.PageLocaleMutationGroup
-	(*PageSectionMutationBatch)(nil),                             // 351: api.content.v1.PageSectionMutationBatch
-	(*ContentBlockMediaSelector)(nil),                            // 352: api.content.v1.ContentBlockMediaSelector
-	(*ContentBlockMediaReference)(nil),                           // 353: api.content.v1.ContentBlockMediaReference
-	(*ContentBlockMediaItem)(nil),                                // 354: api.content.v1.ContentBlockMediaItem
-	(*ShaderProps_StagesItem)(nil),                               // 355: api.content.v1.ShaderProps.StagesItem
-	(*ShaderProps_StagesItem_ChannelsItem)(nil),                  // 356: api.content.v1.ShaderProps.StagesItem.ChannelsItem
-	(*ShaderProps_StagesItem_ChannelsItem_SamplerValue)(nil),     // 357: api.content.v1.ShaderProps.StagesItem.ChannelsItem.SamplerValue
-	(*TextMarqueeSectionProps_ItemsItem)(nil),                    // 358: api.content.v1.TextMarqueeSectionProps.ItemsItem
-	(*ColumnsSectionProps_ColumnsItem)(nil),                      // 359: api.content.v1.ColumnsSectionProps.ColumnsItem
-	(*v1.MediaDelivery)(nil),                                     // 360: api.common.v1.MediaDelivery
+	(ParagraphProps_LinkPresentation)(0),                         // 8: api.content.v1.ParagraphProps.LinkPresentation
+	(HeadingProps_TextAlignment)(0),                              // 9: api.content.v1.HeadingProps.TextAlignment
+	(HeadingProps_Level)(0),                                      // 10: api.content.v1.HeadingProps.Level
+	(BulletListItemProps_TextAlignment)(0),                       // 11: api.content.v1.BulletListItemProps.TextAlignment
+	(NumberedListItemProps_TextAlignment)(0),                     // 12: api.content.v1.NumberedListItemProps.TextAlignment
+	(CheckListItemProps_TextAlignment)(0),                        // 13: api.content.v1.CheckListItemProps.TextAlignment
+	(CodeBlockProps_Language)(0),                                 // 14: api.content.v1.CodeBlockProps.Language
+	(CodeBlockProps_TextAlignment)(0),                            // 15: api.content.v1.CodeBlockProps.TextAlignment
+	(TableProps_TextAlignment)(0),                                // 16: api.content.v1.TableProps.TextAlignment
+	(P5SketchProps_Mode)(0),                                      // 17: api.content.v1.P5SketchProps.Mode
+	(P5SketchProps_TextAlignment)(0),                             // 18: api.content.v1.P5SketchProps.TextAlignment
+	(P5SketchProps_CapabilitiesItem)(0),                          // 19: api.content.v1.P5SketchProps.CapabilitiesItem
+	(ThreeSceneProps_Mode)(0),                                    // 20: api.content.v1.ThreeSceneProps.Mode
+	(ThreeSceneProps_TextAlignment)(0),                           // 21: api.content.v1.ThreeSceneProps.TextAlignment
+	(ThreeSceneProps_Language)(0),                                // 22: api.content.v1.ThreeSceneProps.Language
+	(ShaderProps_Mode)(0),                                        // 23: api.content.v1.ShaderProps.Mode
+	(ShaderProps_TextAlignment)(0),                               // 24: api.content.v1.ShaderProps.TextAlignment
+	(ShaderProps_StagesItem_Kind)(0),                             // 25: api.content.v1.ShaderProps.StagesItem.Kind
+	(ShaderProps_StagesItem_ChannelsItem_Kind)(0),                // 26: api.content.v1.ShaderProps.StagesItem.ChannelsItem.Kind
+	(ShaderProps_StagesItem_ChannelsItem_Buffer)(0),              // 27: api.content.v1.ShaderProps.StagesItem.ChannelsItem.Buffer
+	(ShaderProps_StagesItem_ChannelsItem_SamplerValue_Filter)(0), // 28: api.content.v1.ShaderProps.StagesItem.ChannelsItem.SamplerValue.Filter
+	(ShaderProps_StagesItem_ChannelsItem_SamplerValue_Wrap)(0),   // 29: api.content.v1.ShaderProps.StagesItem.ChannelsItem.SamplerValue.Wrap
+	(MapProps_AspectRatio)(0),                                    // 30: api.content.v1.MapProps.AspectRatio
+	(MapProps_TextAlignment)(0),                                  // 31: api.content.v1.MapProps.TextAlignment
+	(MapProps_Variant)(0),                                        // 32: api.content.v1.MapProps.Variant
+	(MapProps_PreferredScheme)(0),                                // 33: api.content.v1.MapProps.PreferredScheme
+	(MapProps_AreaLabelsMode)(0),                                 // 34: api.content.v1.MapProps.AreaLabelsMode
+	(MapProps_PoiLabelsMode)(0),                                  // 35: api.content.v1.MapProps.PoiLabelsMode
+	(FileProps_TextAlignment)(0),                                 // 36: api.content.v1.FileProps.TextAlignment
+	(PageSectionSettings_MaxWidth)(0),                            // 37: api.content.v1.PageSectionSettings.MaxWidth
+	(PageImmersiveUnitProps_Mesh)(0),                             // 38: api.content.v1.PageImmersiveUnitProps.Mesh
+	(PageImmersiveUnitProps_MeshSource)(0),                       // 39: api.content.v1.PageImmersiveUnitProps.MeshSource
+	(PageImmersiveUnitProps_TextureSource)(0),                    // 40: api.content.v1.PageImmersiveUnitProps.TextureSource
+	(PageImmersiveUnitProps_DarkTextureSource)(0),                // 41: api.content.v1.PageImmersiveUnitProps.DarkTextureSource
+	(ExternalVideoSectionProps_AspectRatio)(0),                   // 42: api.content.v1.ExternalVideoSectionProps.AspectRatio
+	(PostListSectionProps_Layout)(0),                             // 43: api.content.v1.PostListSectionProps.Layout
+	(PostListSectionProps_SortOrder)(0),                          // 44: api.content.v1.PostListSectionProps.SortOrder
+	(PostListSectionProps_SortBy)(0),                             // 45: api.content.v1.PostListSectionProps.SortBy
+	(PostListSectionProps_ImageAspectRatio)(0),                   // 46: api.content.v1.PostListSectionProps.ImageAspectRatio
+	(PostListSectionProps_ItemSize)(0),                           // 47: api.content.v1.PostListSectionProps.ItemSize
+	(PostTableSectionProps_StatusesItem)(0),                      // 48: api.content.v1.PostTableSectionProps.StatusesItem
+	(PostTableSectionProps_FilterFieldsItem)(0),                  // 49: api.content.v1.PostTableSectionProps.FilterFieldsItem
+	(PostTableSectionProps_SortFieldsItem)(0),                    // 50: api.content.v1.PostTableSectionProps.SortFieldsItem
+	(PostMapSectionProps_SortBy)(0),                              // 51: api.content.v1.PostMapSectionProps.SortBy
+	(PostMapSectionProps_SortOrder)(0),                           // 52: api.content.v1.PostMapSectionProps.SortOrder
+	(PostMapSectionProps_AspectRatio)(0),                         // 53: api.content.v1.PostMapSectionProps.AspectRatio
+	(PostMapSectionProps_PrimaryLabel)(0),                        // 54: api.content.v1.PostMapSectionProps.PrimaryLabel
+	(PostMapSectionProps_PreferredScheme)(0),                     // 55: api.content.v1.PostMapSectionProps.PreferredScheme
+	(PostMapSectionProps_AreaLabelsMode)(0),                      // 56: api.content.v1.PostMapSectionProps.AreaLabelsMode
+	(PostMapSectionProps_PoiLabelsMode)(0),                       // 57: api.content.v1.PostMapSectionProps.PoiLabelsMode
+	(WorkMapSectionProps_WorkTypesItem)(0),                       // 58: api.content.v1.WorkMapSectionProps.WorkTypesItem
+	(WorkMapSectionProps_SortBy)(0),                              // 59: api.content.v1.WorkMapSectionProps.SortBy
+	(WorkMapSectionProps_SortOrder)(0),                           // 60: api.content.v1.WorkMapSectionProps.SortOrder
+	(WorkMapSectionProps_AspectRatio)(0),                         // 61: api.content.v1.WorkMapSectionProps.AspectRatio
+	(WorkMapSectionProps_PrimaryLabel)(0),                        // 62: api.content.v1.WorkMapSectionProps.PrimaryLabel
+	(WorkMapSectionProps_PreferredScheme)(0),                     // 63: api.content.v1.WorkMapSectionProps.PreferredScheme
+	(WorkMapSectionProps_AreaLabelsMode)(0),                      // 64: api.content.v1.WorkMapSectionProps.AreaLabelsMode
+	(WorkMapSectionProps_PoiLabelsMode)(0),                       // 65: api.content.v1.WorkMapSectionProps.PoiLabelsMode
+	(WorkTableSectionProps_WorkTypesItem)(0),                     // 66: api.content.v1.WorkTableSectionProps.WorkTypesItem
+	(WorkTableSectionProps_StatusesItem)(0),                      // 67: api.content.v1.WorkTableSectionProps.StatusesItem
+	(WorkTableSectionProps_FilterFieldsItem)(0),                  // 68: api.content.v1.WorkTableSectionProps.FilterFieldsItem
+	(WorkTableSectionProps_SortFieldsItem)(0),                    // 69: api.content.v1.WorkTableSectionProps.SortFieldsItem
+	(WorkListSectionProps_Layout)(0),                             // 70: api.content.v1.WorkListSectionProps.Layout
+	(WorkListSectionProps_SortOrder)(0),                          // 71: api.content.v1.WorkListSectionProps.SortOrder
+	(WorkListSectionProps_WorkTypesItem)(0),                      // 72: api.content.v1.WorkListSectionProps.WorkTypesItem
+	(WorkListSectionProps_SortBy)(0),                             // 73: api.content.v1.WorkListSectionProps.SortBy
+	(WorkListSectionProps_ImageAspectRatio)(0),                   // 74: api.content.v1.WorkListSectionProps.ImageAspectRatio
+	(WorkListSectionProps_ItemSize)(0),                           // 75: api.content.v1.WorkListSectionProps.ItemSize
+	(ProgramEventListSectionProps_Layout)(0),                     // 76: api.content.v1.ProgramEventListSectionProps.Layout
+	(ProgramEventListSectionProps_SortOrder)(0),                  // 77: api.content.v1.ProgramEventListSectionProps.SortOrder
+	(ProgramEventListSectionProps_TimeWindow)(0),                 // 78: api.content.v1.ProgramEventListSectionProps.TimeWindow
+	(ProgramEventListSectionProps_SortBy)(0),                     // 79: api.content.v1.ProgramEventListSectionProps.SortBy
+	(ProgramEventListSectionProps_ImageAspectRatio)(0),           // 80: api.content.v1.ProgramEventListSectionProps.ImageAspectRatio
+	(ProgramEventListSectionProps_ItemSize)(0),                   // 81: api.content.v1.ProgramEventListSectionProps.ItemSize
+	(ReleaseListSectionProps_Layout)(0),                          // 82: api.content.v1.ReleaseListSectionProps.Layout
+	(ReleaseListSectionProps_SortOrder)(0),                       // 83: api.content.v1.ReleaseListSectionProps.SortOrder
+	(ReleaseListSectionProps_TypesItem)(0),                       // 84: api.content.v1.ReleaseListSectionProps.TypesItem
+	(ReleaseListSectionProps_SortBy)(0),                          // 85: api.content.v1.ReleaseListSectionProps.SortBy
+	(ReleaseListSectionProps_ImageAspectRatio)(0),                // 86: api.content.v1.ReleaseListSectionProps.ImageAspectRatio
+	(ReleaseListSectionProps_ItemSize)(0),                        // 87: api.content.v1.ReleaseListSectionProps.ItemSize
+	(ArtistListSectionProps_Layout)(0),                           // 88: api.content.v1.ArtistListSectionProps.Layout
+	(ArtistListSectionProps_SortOrder)(0),                        // 89: api.content.v1.ArtistListSectionProps.SortOrder
+	(ArtistListSectionProps_SortBy)(0),                           // 90: api.content.v1.ArtistListSectionProps.SortBy
+	(ArtistListSectionProps_ImageAspectRatio)(0),                 // 91: api.content.v1.ArtistListSectionProps.ImageAspectRatio
+	(ArtistListSectionProps_ItemSize)(0),                         // 92: api.content.v1.ArtistListSectionProps.ItemSize
+	(LabelListSectionProps_Layout)(0),                            // 93: api.content.v1.LabelListSectionProps.Layout
+	(LabelListSectionProps_SortOrder)(0),                         // 94: api.content.v1.LabelListSectionProps.SortOrder
+	(LabelListSectionProps_SortBy)(0),                            // 95: api.content.v1.LabelListSectionProps.SortBy
+	(LabelListSectionProps_ImageAspectRatio)(0),                  // 96: api.content.v1.LabelListSectionProps.ImageAspectRatio
+	(LabelListSectionProps_ItemSize)(0),                          // 97: api.content.v1.LabelListSectionProps.ItemSize
+	(AuthorListSectionProps_Layout)(0),                           // 98: api.content.v1.AuthorListSectionProps.Layout
+	(AuthorListSectionProps_Source)(0),                           // 99: api.content.v1.AuthorListSectionProps.Source
+	(AuthorListSectionProps_ItemSize)(0),                         // 100: api.content.v1.AuthorListSectionProps.ItemSize
+	(TextMarqueeSectionProps_Direction)(0),                       // 101: api.content.v1.TextMarqueeSectionProps.Direction
+	(TextMarqueeSectionProps_Speed)(0),                           // 102: api.content.v1.TextMarqueeSectionProps.Speed
+	(TextMarqueeSectionProps_ItemHeight)(0),                      // 103: api.content.v1.TextMarqueeSectionProps.ItemHeight
+	(TextMarqueeSectionProps_Gap)(0),                             // 104: api.content.v1.TextMarqueeSectionProps.Gap
+	(TextMarqueeSectionProps_LinkTarget)(0),                      // 105: api.content.v1.TextMarqueeSectionProps.LinkTarget
+	(ClientMarqueeSectionProps_Direction)(0),                     // 106: api.content.v1.ClientMarqueeSectionProps.Direction
+	(ClientMarqueeSectionProps_Speed)(0),                         // 107: api.content.v1.ClientMarqueeSectionProps.Speed
+	(ClientMarqueeSectionProps_ItemHeight)(0),                    // 108: api.content.v1.ClientMarqueeSectionProps.ItemHeight
+	(ClientMarqueeSectionProps_Gap)(0),                           // 109: api.content.v1.ClientMarqueeSectionProps.Gap
+	(ClientMarqueeSectionProps_LinkTarget)(0),                    // 110: api.content.v1.ClientMarqueeSectionProps.LinkTarget
+	(ClientMarqueeSectionProps_Source)(0),                        // 111: api.content.v1.ClientMarqueeSectionProps.Source
+	(ClientMarqueeSectionProps_LinkMode)(0),                      // 112: api.content.v1.ClientMarqueeSectionProps.LinkMode
+	(ClientMarqueeSectionProps_LogoScale)(0),                     // 113: api.content.v1.ClientMarqueeSectionProps.LogoScale
+	(ClientMarqueeSectionProps_FallbackMode)(0),                  // 114: api.content.v1.ClientMarqueeSectionProps.FallbackMode
+	(LabelMarqueeSectionProps_Direction)(0),                      // 115: api.content.v1.LabelMarqueeSectionProps.Direction
+	(LabelMarqueeSectionProps_Speed)(0),                          // 116: api.content.v1.LabelMarqueeSectionProps.Speed
+	(LabelMarqueeSectionProps_ItemHeight)(0),                     // 117: api.content.v1.LabelMarqueeSectionProps.ItemHeight
+	(LabelMarqueeSectionProps_Gap)(0),                            // 118: api.content.v1.LabelMarqueeSectionProps.Gap
+	(LabelMarqueeSectionProps_LinkTarget)(0),                     // 119: api.content.v1.LabelMarqueeSectionProps.LinkTarget
+	(LabelMarqueeSectionProps_Source)(0),                         // 120: api.content.v1.LabelMarqueeSectionProps.Source
+	(LabelMarqueeSectionProps_LinkMode)(0),                       // 121: api.content.v1.LabelMarqueeSectionProps.LinkMode
+	(LabelMarqueeSectionProps_LogoScale)(0),                      // 122: api.content.v1.LabelMarqueeSectionProps.LogoScale
+	(LabelMarqueeSectionProps_FallbackMode)(0),                   // 123: api.content.v1.LabelMarqueeSectionProps.FallbackMode
+	(MapSectionProps_AspectRatio)(0),                             // 124: api.content.v1.MapSectionProps.AspectRatio
+	(MapSectionProps_Variant)(0),                                 // 125: api.content.v1.MapSectionProps.Variant
+	(MapSectionProps_PreferredScheme)(0),                         // 126: api.content.v1.MapSectionProps.PreferredScheme
+	(MapSectionProps_AreaLabelsMode)(0),                          // 127: api.content.v1.MapSectionProps.AreaLabelsMode
+	(MapSectionProps_PoiLabelsMode)(0),                           // 128: api.content.v1.MapSectionProps.PoiLabelsMode
+	(ImmersiveSceneSectionProps_Playback)(0),                     // 129: api.content.v1.ImmersiveSceneSectionProps.Playback
+	(ImmersiveSceneSectionProps_Transition)(0),                   // 130: api.content.v1.ImmersiveSceneSectionProps.Transition
+	(ImmersiveSceneSectionProps_TextureSize)(0),                  // 131: api.content.v1.ImmersiveSceneSectionProps.TextureSize
+	(ImmersiveSceneSectionProps_PreferredScheme)(0),              // 132: api.content.v1.ImmersiveSceneSectionProps.PreferredScheme
+	(ImmersiveSceneSectionProps_TextColorSource)(0),              // 133: api.content.v1.ImmersiveSceneSectionProps.TextColorSource
+	(ImmersiveSceneSectionProps_DarkTextColorSource)(0),          // 134: api.content.v1.ImmersiveSceneSectionProps.DarkTextColorSource
+	(EmbedSectionProps_HeightMode)(0),                            // 135: api.content.v1.EmbedSectionProps.HeightMode
+	(*MissingAttachment)(nil),                                    // 136: api.content.v1.MissingAttachment
+	(*FileAttachment)(nil),                                       // 137: api.content.v1.FileAttachment
+	(*RichTextStyle)(nil),                                        // 138: api.content.v1.RichTextStyle
+	(*RichTextStyledText)(nil),                                   // 139: api.content.v1.RichTextStyledText
+	(*RichTextHardBreak)(nil),                                    // 140: api.content.v1.RichTextHardBreak
+	(*RichTextLink)(nil),                                         // 141: api.content.v1.RichTextLink
+	(*RichTextInlineMath)(nil),                                   // 142: api.content.v1.RichTextInlineMath
+	(*RichTextSiteVariable)(nil),                                 // 143: api.content.v1.RichTextSiteVariable
+	(*RichTextInline)(nil),                                       // 144: api.content.v1.RichTextInline
+	(*RichTextTableCellProps)(nil),                               // 145: api.content.v1.RichTextTableCellProps
+	(*RichTextTableCellBase)(nil),                                // 146: api.content.v1.RichTextTableCellBase
+	(*RichTextTableRowBase)(nil),                                 // 147: api.content.v1.RichTextTableRowBase
+	(*RichTextTableBase)(nil),                                    // 148: api.content.v1.RichTextTableBase
+	(*RichTextTableCellLocale)(nil),                              // 149: api.content.v1.RichTextTableCellLocale
+	(*RichTextTableRowLocale)(nil),                               // 150: api.content.v1.RichTextTableRowLocale
+	(*RichTextTableLocale)(nil),                                  // 151: api.content.v1.RichTextTableLocale
+	(*ParagraphProps)(nil),                                       // 152: api.content.v1.ParagraphProps
+	(*HeadingProps)(nil),                                         // 153: api.content.v1.HeadingProps
+	(*BulletListItemProps)(nil),                                  // 154: api.content.v1.BulletListItemProps
+	(*NumberedListItemProps)(nil),                                // 155: api.content.v1.NumberedListItemProps
+	(*CheckListItemProps)(nil),                                   // 156: api.content.v1.CheckListItemProps
+	(*QuoteProps)(nil),                                           // 157: api.content.v1.QuoteProps
+	(*CodeBlockProps)(nil),                                       // 158: api.content.v1.CodeBlockProps
+	(*DividerProps)(nil),                                         // 159: api.content.v1.DividerProps
+	(*TableProps)(nil),                                           // 160: api.content.v1.TableProps
+	(*P5SketchProps)(nil),                                        // 161: api.content.v1.P5SketchProps
+	(*ThreeSceneProps)(nil),                                      // 162: api.content.v1.ThreeSceneProps
+	(*ShaderProps)(nil),                                          // 163: api.content.v1.ShaderProps
+	(*MathProps)(nil),                                            // 164: api.content.v1.MathProps
+	(*MapProps)(nil),                                             // 165: api.content.v1.MapProps
+	(*FileProps)(nil),                                            // 166: api.content.v1.FileProps
+	(*CalloutProps)(nil),                                         // 167: api.content.v1.CalloutProps
+	(*MermaidProps)(nil),                                         // 168: api.content.v1.MermaidProps
+	(*ParagraphLocaleProps)(nil),                                 // 169: api.content.v1.ParagraphLocaleProps
+	(*HeadingLocaleProps)(nil),                                   // 170: api.content.v1.HeadingLocaleProps
+	(*BulletListItemLocaleProps)(nil),                            // 171: api.content.v1.BulletListItemLocaleProps
+	(*NumberedListItemLocaleProps)(nil),                          // 172: api.content.v1.NumberedListItemLocaleProps
+	(*CheckListItemLocaleProps)(nil),                             // 173: api.content.v1.CheckListItemLocaleProps
+	(*QuoteLocaleProps)(nil),                                     // 174: api.content.v1.QuoteLocaleProps
+	(*CodeBlockLocaleProps)(nil),                                 // 175: api.content.v1.CodeBlockLocaleProps
+	(*DividerLocaleProps)(nil),                                   // 176: api.content.v1.DividerLocaleProps
+	(*TableLocaleProps)(nil),                                     // 177: api.content.v1.TableLocaleProps
+	(*P5SketchLocaleProps)(nil),                                  // 178: api.content.v1.P5SketchLocaleProps
+	(*ThreeSceneLocaleProps)(nil),                                // 179: api.content.v1.ThreeSceneLocaleProps
+	(*ShaderLocaleProps)(nil),                                    // 180: api.content.v1.ShaderLocaleProps
+	(*MathLocaleProps)(nil),                                      // 181: api.content.v1.MathLocaleProps
+	(*MapLocaleProps)(nil),                                       // 182: api.content.v1.MapLocaleProps
+	(*FileLocaleProps)(nil),                                      // 183: api.content.v1.FileLocaleProps
+	(*CalloutLocaleProps)(nil),                                   // 184: api.content.v1.CalloutLocaleProps
+	(*MermaidLocaleProps)(nil),                                   // 185: api.content.v1.MermaidLocaleProps
+	(*ParagraphBlock)(nil),                                       // 186: api.content.v1.ParagraphBlock
+	(*HeadingBlock)(nil),                                         // 187: api.content.v1.HeadingBlock
+	(*BulletListItemBlock)(nil),                                  // 188: api.content.v1.BulletListItemBlock
+	(*NumberedListItemBlock)(nil),                                // 189: api.content.v1.NumberedListItemBlock
+	(*CheckListItemBlock)(nil),                                   // 190: api.content.v1.CheckListItemBlock
+	(*QuoteBlock)(nil),                                           // 191: api.content.v1.QuoteBlock
+	(*CodeBlockBlock)(nil),                                       // 192: api.content.v1.CodeBlockBlock
+	(*DividerBlock)(nil),                                         // 193: api.content.v1.DividerBlock
+	(*TableBlock)(nil),                                           // 194: api.content.v1.TableBlock
+	(*P5SketchBlock)(nil),                                        // 195: api.content.v1.P5SketchBlock
+	(*ThreeSceneBlock)(nil),                                      // 196: api.content.v1.ThreeSceneBlock
+	(*ShaderBlock)(nil),                                          // 197: api.content.v1.ShaderBlock
+	(*MathBlock)(nil),                                            // 198: api.content.v1.MathBlock
+	(*MapBlock)(nil),                                             // 199: api.content.v1.MapBlock
+	(*FileBlock)(nil),                                            // 200: api.content.v1.FileBlock
+	(*CalloutBlock)(nil),                                         // 201: api.content.v1.CalloutBlock
+	(*MermaidBlock)(nil),                                         // 202: api.content.v1.MermaidBlock
+	(*ParagraphBlockLocale)(nil),                                 // 203: api.content.v1.ParagraphBlockLocale
+	(*HeadingBlockLocale)(nil),                                   // 204: api.content.v1.HeadingBlockLocale
+	(*BulletListItemBlockLocale)(nil),                            // 205: api.content.v1.BulletListItemBlockLocale
+	(*NumberedListItemBlockLocale)(nil),                          // 206: api.content.v1.NumberedListItemBlockLocale
+	(*CheckListItemBlockLocale)(nil),                             // 207: api.content.v1.CheckListItemBlockLocale
+	(*QuoteBlockLocale)(nil),                                     // 208: api.content.v1.QuoteBlockLocale
+	(*CodeBlockBlockLocale)(nil),                                 // 209: api.content.v1.CodeBlockBlockLocale
+	(*DividerBlockLocale)(nil),                                   // 210: api.content.v1.DividerBlockLocale
+	(*TableBlockLocale)(nil),                                     // 211: api.content.v1.TableBlockLocale
+	(*P5SketchBlockLocale)(nil),                                  // 212: api.content.v1.P5SketchBlockLocale
+	(*ThreeSceneBlockLocale)(nil),                                // 213: api.content.v1.ThreeSceneBlockLocale
+	(*ShaderBlockLocale)(nil),                                    // 214: api.content.v1.ShaderBlockLocale
+	(*MathBlockLocale)(nil),                                      // 215: api.content.v1.MathBlockLocale
+	(*MapBlockLocale)(nil),                                       // 216: api.content.v1.MapBlockLocale
+	(*FileBlockLocale)(nil),                                      // 217: api.content.v1.FileBlockLocale
+	(*CalloutBlockLocale)(nil),                                   // 218: api.content.v1.CalloutBlockLocale
+	(*MermaidBlockLocale)(nil),                                   // 219: api.content.v1.MermaidBlockLocale
+	(*RichTextBlock)(nil),                                        // 220: api.content.v1.RichTextBlock
+	(*RichTextBlockLocale)(nil),                                  // 221: api.content.v1.RichTextBlockLocale
+	(*RichTextBlockData)(nil),                                    // 222: api.content.v1.RichTextBlockData
+	(*RichTextBlockLocaleData)(nil),                              // 223: api.content.v1.RichTextBlockLocaleData
+	(*ContentBlockPlacement)(nil),                                // 224: api.content.v1.ContentBlockPlacement
+	(*RichTextBlockNode)(nil),                                    // 225: api.content.v1.RichTextBlockNode
+	(*RichTextBlockGraph)(nil),                                   // 226: api.content.v1.RichTextBlockGraph
+	(*RichTextLocaleOverlay)(nil),                                // 227: api.content.v1.RichTextLocaleOverlay
+	(*RichTextDocument)(nil),                                     // 228: api.content.v1.RichTextDocument
+	(*LocalizedRichTextDocument)(nil),                            // 229: api.content.v1.LocalizedRichTextDocument
+	(*UpsertRichTextBlock)(nil),                                  // 230: api.content.v1.UpsertRichTextBlock
+	(*DeleteRichTextBlock)(nil),                                  // 231: api.content.v1.DeleteRichTextBlock
+	(*MoveRichTextBlock)(nil),                                    // 232: api.content.v1.MoveRichTextBlock
+	(*RichTextBlockMutation)(nil),                                // 233: api.content.v1.RichTextBlockMutation
+	(*UpsertRichTextBlockLocale)(nil),                            // 234: api.content.v1.UpsertRichTextBlockLocale
+	(*DeleteRichTextBlockLocale)(nil),                            // 235: api.content.v1.DeleteRichTextBlockLocale
+	(*RichTextBlockLocaleMutation)(nil),                          // 236: api.content.v1.RichTextBlockLocaleMutation
+	(*RichTextLocaleMutationGroup)(nil),                          // 237: api.content.v1.RichTextLocaleMutationGroup
+	(*RichTextBlockMutationBatch)(nil),                           // 238: api.content.v1.RichTextBlockMutationBatch
+	(*PageSectionSettings)(nil),                                  // 239: api.content.v1.PageSectionSettings
+	(*PageImmersiveUnitProps)(nil),                               // 240: api.content.v1.PageImmersiveUnitProps
+	(*PageImmersiveUnitLocaleProps)(nil),                         // 241: api.content.v1.PageImmersiveUnitLocaleProps
+	(*PageImmersiveUnit)(nil),                                    // 242: api.content.v1.PageImmersiveUnit
+	(*PageImmersiveUnitLocale)(nil),                              // 243: api.content.v1.PageImmersiveUnitLocale
+	(*RichTextSectionProps)(nil),                                 // 244: api.content.v1.RichTextSectionProps
+	(*ExternalVideoSectionProps)(nil),                            // 245: api.content.v1.ExternalVideoSectionProps
+	(*PostListSectionProps)(nil),                                 // 246: api.content.v1.PostListSectionProps
+	(*PostTableSectionProps)(nil),                                // 247: api.content.v1.PostTableSectionProps
+	(*PostMapSectionProps)(nil),                                  // 248: api.content.v1.PostMapSectionProps
+	(*WorkMapSectionProps)(nil),                                  // 249: api.content.v1.WorkMapSectionProps
+	(*WorkTableSectionProps)(nil),                                // 250: api.content.v1.WorkTableSectionProps
+	(*WorkListSectionProps)(nil),                                 // 251: api.content.v1.WorkListSectionProps
+	(*ProgramEventListSectionProps)(nil),                         // 252: api.content.v1.ProgramEventListSectionProps
+	(*ReleaseListSectionProps)(nil),                              // 253: api.content.v1.ReleaseListSectionProps
+	(*ArtistListSectionProps)(nil),                               // 254: api.content.v1.ArtistListSectionProps
+	(*LabelListSectionProps)(nil),                                // 255: api.content.v1.LabelListSectionProps
+	(*AuthorListSectionProps)(nil),                               // 256: api.content.v1.AuthorListSectionProps
+	(*FormSectionProps)(nil),                                     // 257: api.content.v1.FormSectionProps
+	(*TextMarqueeSectionProps)(nil),                              // 258: api.content.v1.TextMarqueeSectionProps
+	(*ClientMarqueeSectionProps)(nil),                            // 259: api.content.v1.ClientMarqueeSectionProps
+	(*LabelMarqueeSectionProps)(nil),                             // 260: api.content.v1.LabelMarqueeSectionProps
+	(*MapSectionProps)(nil),                                      // 261: api.content.v1.MapSectionProps
+	(*ImmersiveSceneSectionProps)(nil),                           // 262: api.content.v1.ImmersiveSceneSectionProps
+	(*ColumnsSectionProps)(nil),                                  // 263: api.content.v1.ColumnsSectionProps
+	(*MermaidSectionProps)(nil),                                  // 264: api.content.v1.MermaidSectionProps
+	(*EmbedSectionProps)(nil),                                    // 265: api.content.v1.EmbedSectionProps
+	(*RichTextSectionLocaleProps)(nil),                           // 266: api.content.v1.RichTextSectionLocaleProps
+	(*ExternalVideoSectionLocaleProps)(nil),                      // 267: api.content.v1.ExternalVideoSectionLocaleProps
+	(*PostListSectionLocaleProps)(nil),                           // 268: api.content.v1.PostListSectionLocaleProps
+	(*PostTableSectionLocaleProps)(nil),                          // 269: api.content.v1.PostTableSectionLocaleProps
+	(*PostMapSectionLocaleProps)(nil),                            // 270: api.content.v1.PostMapSectionLocaleProps
+	(*WorkMapSectionLocaleProps)(nil),                            // 271: api.content.v1.WorkMapSectionLocaleProps
+	(*WorkTableSectionLocaleProps)(nil),                          // 272: api.content.v1.WorkTableSectionLocaleProps
+	(*WorkListSectionLocaleProps)(nil),                           // 273: api.content.v1.WorkListSectionLocaleProps
+	(*ProgramEventListSectionLocaleProps)(nil),                   // 274: api.content.v1.ProgramEventListSectionLocaleProps
+	(*ReleaseListSectionLocaleProps)(nil),                        // 275: api.content.v1.ReleaseListSectionLocaleProps
+	(*ArtistListSectionLocaleProps)(nil),                         // 276: api.content.v1.ArtistListSectionLocaleProps
+	(*LabelListSectionLocaleProps)(nil),                          // 277: api.content.v1.LabelListSectionLocaleProps
+	(*AuthorListSectionLocaleProps)(nil),                         // 278: api.content.v1.AuthorListSectionLocaleProps
+	(*FormSectionLocaleProps)(nil),                               // 279: api.content.v1.FormSectionLocaleProps
+	(*TextMarqueeSectionLocaleProps)(nil),                        // 280: api.content.v1.TextMarqueeSectionLocaleProps
+	(*ClientMarqueeSectionLocaleProps)(nil),                      // 281: api.content.v1.ClientMarqueeSectionLocaleProps
+	(*LabelMarqueeSectionLocaleProps)(nil),                       // 282: api.content.v1.LabelMarqueeSectionLocaleProps
+	(*MapSectionLocaleProps)(nil),                                // 283: api.content.v1.MapSectionLocaleProps
+	(*ImmersiveSceneSectionLocaleProps)(nil),                     // 284: api.content.v1.ImmersiveSceneSectionLocaleProps
+	(*ColumnsSectionLocaleProps)(nil),                            // 285: api.content.v1.ColumnsSectionLocaleProps
+	(*MermaidSectionLocaleProps)(nil),                            // 286: api.content.v1.MermaidSectionLocaleProps
+	(*EmbedSectionLocaleProps)(nil),                              // 287: api.content.v1.EmbedSectionLocaleProps
+	(*RichTextSection)(nil),                                      // 288: api.content.v1.RichTextSection
+	(*ExternalVideoSection)(nil),                                 // 289: api.content.v1.ExternalVideoSection
+	(*PostListSection)(nil),                                      // 290: api.content.v1.PostListSection
+	(*PostTableSection)(nil),                                     // 291: api.content.v1.PostTableSection
+	(*PostMapSection)(nil),                                       // 292: api.content.v1.PostMapSection
+	(*WorkMapSection)(nil),                                       // 293: api.content.v1.WorkMapSection
+	(*WorkTableSection)(nil),                                     // 294: api.content.v1.WorkTableSection
+	(*WorkListSection)(nil),                                      // 295: api.content.v1.WorkListSection
+	(*ProgramEventListSection)(nil),                              // 296: api.content.v1.ProgramEventListSection
+	(*ReleaseListSection)(nil),                                   // 297: api.content.v1.ReleaseListSection
+	(*ArtistListSection)(nil),                                    // 298: api.content.v1.ArtistListSection
+	(*LabelListSection)(nil),                                     // 299: api.content.v1.LabelListSection
+	(*AuthorListSection)(nil),                                    // 300: api.content.v1.AuthorListSection
+	(*FormSection)(nil),                                          // 301: api.content.v1.FormSection
+	(*TextMarqueeSection)(nil),                                   // 302: api.content.v1.TextMarqueeSection
+	(*ClientMarqueeSection)(nil),                                 // 303: api.content.v1.ClientMarqueeSection
+	(*LabelMarqueeSection)(nil),                                  // 304: api.content.v1.LabelMarqueeSection
+	(*MapSection)(nil),                                           // 305: api.content.v1.MapSection
+	(*ImmersiveSceneSection)(nil),                                // 306: api.content.v1.ImmersiveSceneSection
+	(*ColumnsSection)(nil),                                       // 307: api.content.v1.ColumnsSection
+	(*MermaidSection)(nil),                                       // 308: api.content.v1.MermaidSection
+	(*EmbedSection)(nil),                                         // 309: api.content.v1.EmbedSection
+	(*RichTextSectionLocale)(nil),                                // 310: api.content.v1.RichTextSectionLocale
+	(*ExternalVideoSectionLocale)(nil),                           // 311: api.content.v1.ExternalVideoSectionLocale
+	(*PostListSectionLocale)(nil),                                // 312: api.content.v1.PostListSectionLocale
+	(*PostTableSectionLocale)(nil),                               // 313: api.content.v1.PostTableSectionLocale
+	(*PostMapSectionLocale)(nil),                                 // 314: api.content.v1.PostMapSectionLocale
+	(*WorkMapSectionLocale)(nil),                                 // 315: api.content.v1.WorkMapSectionLocale
+	(*WorkTableSectionLocale)(nil),                               // 316: api.content.v1.WorkTableSectionLocale
+	(*WorkListSectionLocale)(nil),                                // 317: api.content.v1.WorkListSectionLocale
+	(*ProgramEventListSectionLocale)(nil),                        // 318: api.content.v1.ProgramEventListSectionLocale
+	(*ReleaseListSectionLocale)(nil),                             // 319: api.content.v1.ReleaseListSectionLocale
+	(*ArtistListSectionLocale)(nil),                              // 320: api.content.v1.ArtistListSectionLocale
+	(*LabelListSectionLocale)(nil),                               // 321: api.content.v1.LabelListSectionLocale
+	(*AuthorListSectionLocale)(nil),                              // 322: api.content.v1.AuthorListSectionLocale
+	(*FormSectionLocale)(nil),                                    // 323: api.content.v1.FormSectionLocale
+	(*TextMarqueeSectionLocale)(nil),                             // 324: api.content.v1.TextMarqueeSectionLocale
+	(*ClientMarqueeSectionLocale)(nil),                           // 325: api.content.v1.ClientMarqueeSectionLocale
+	(*LabelMarqueeSectionLocale)(nil),                            // 326: api.content.v1.LabelMarqueeSectionLocale
+	(*MapSectionLocale)(nil),                                     // 327: api.content.v1.MapSectionLocale
+	(*ImmersiveSceneSectionLocale)(nil),                          // 328: api.content.v1.ImmersiveSceneSectionLocale
+	(*ColumnsSectionLocale)(nil),                                 // 329: api.content.v1.ColumnsSectionLocale
+	(*MermaidSectionLocale)(nil),                                 // 330: api.content.v1.MermaidSectionLocale
+	(*EmbedSectionLocale)(nil),                                   // 331: api.content.v1.EmbedSectionLocale
+	(*PageSection)(nil),                                          // 332: api.content.v1.PageSection
+	(*PageSectionLocale)(nil),                                    // 333: api.content.v1.PageSectionLocale
+	(*PageSectionData)(nil),                                      // 334: api.content.v1.PageSectionData
+	(*PageSectionLocaleData)(nil),                                // 335: api.content.v1.PageSectionLocaleData
+	(*PageSectionPlacement)(nil),                                 // 336: api.content.v1.PageSectionPlacement
+	(*PageSectionNode)(nil),                                      // 337: api.content.v1.PageSectionNode
+	(*PageSectionGraph)(nil),                                     // 338: api.content.v1.PageSectionGraph
+	(*PageLocaleOverlay)(nil),                                    // 339: api.content.v1.PageLocaleOverlay
+	(*PageDocument)(nil),                                         // 340: api.content.v1.PageDocument
+	(*LocalizedPageDocument)(nil),                                // 341: api.content.v1.LocalizedPageDocument
+	(*UpsertPageSection)(nil),                                    // 342: api.content.v1.UpsertPageSection
+	(*DeletePageSection)(nil),                                    // 343: api.content.v1.DeletePageSection
+	(*MovePageSection)(nil),                                      // 344: api.content.v1.MovePageSection
+	(*MutatePageRichTextBlock)(nil),                              // 345: api.content.v1.MutatePageRichTextBlock
+	(*PageSectionMutation)(nil),                                  // 346: api.content.v1.PageSectionMutation
+	(*UpsertPageSectionLocale)(nil),                              // 347: api.content.v1.UpsertPageSectionLocale
+	(*DeletePageSectionLocale)(nil),                              // 348: api.content.v1.DeletePageSectionLocale
+	(*MutatePageRichTextBlockLocale)(nil),                        // 349: api.content.v1.MutatePageRichTextBlockLocale
+	(*PageSectionLocaleMutation)(nil),                            // 350: api.content.v1.PageSectionLocaleMutation
+	(*PageLocaleMutationGroup)(nil),                              // 351: api.content.v1.PageLocaleMutationGroup
+	(*PageSectionMutationBatch)(nil),                             // 352: api.content.v1.PageSectionMutationBatch
+	(*ContentBlockMediaSelector)(nil),                            // 353: api.content.v1.ContentBlockMediaSelector
+	(*ContentBlockMediaReference)(nil),                           // 354: api.content.v1.ContentBlockMediaReference
+	(*ContentBlockMediaItem)(nil),                                // 355: api.content.v1.ContentBlockMediaItem
+	(*ShaderProps_StagesItem)(nil),                               // 356: api.content.v1.ShaderProps.StagesItem
+	(*ShaderProps_StagesItem_ChannelsItem)(nil),                  // 357: api.content.v1.ShaderProps.StagesItem.ChannelsItem
+	(*ShaderProps_StagesItem_ChannelsItem_SamplerValue)(nil),     // 358: api.content.v1.ShaderProps.StagesItem.ChannelsItem.SamplerValue
+	(*TextMarqueeSectionProps_ItemsItem)(nil),                    // 359: api.content.v1.TextMarqueeSectionProps.ItemsItem
+	(*ColumnsSectionProps_ColumnsItem)(nil),                      // 360: api.content.v1.ColumnsSectionProps.ColumnsItem
+	(*v1.MediaDelivery)(nil),                                     // 361: api.common.v1.MediaDelivery
 }
 var file_api_content_v1_block_content_proto_depIdxs = []int32{
 	2,   // 0: api.content.v1.MissingAttachment.media_kind:type_name -> api.content.v1.MissingAttachmentMediaKind
-	135, // 1: api.content.v1.FileAttachment.missing_attachment:type_name -> api.content.v1.MissingAttachment
-	137, // 2: api.content.v1.RichTextStyledText.styles:type_name -> api.content.v1.RichTextStyle
-	138, // 3: api.content.v1.RichTextLink.content:type_name -> api.content.v1.RichTextStyledText
-	137, // 4: api.content.v1.RichTextSiteVariable.styles:type_name -> api.content.v1.RichTextStyle
-	138, // 5: api.content.v1.RichTextInline.text:type_name -> api.content.v1.RichTextStyledText
-	139, // 6: api.content.v1.RichTextInline.hard_break:type_name -> api.content.v1.RichTextHardBreak
-	140, // 7: api.content.v1.RichTextInline.link:type_name -> api.content.v1.RichTextLink
-	141, // 8: api.content.v1.RichTextInline.math_inline:type_name -> api.content.v1.RichTextInlineMath
-	142, // 9: api.content.v1.RichTextInline.site_variable:type_name -> api.content.v1.RichTextSiteVariable
+	136, // 1: api.content.v1.FileAttachment.missing_attachment:type_name -> api.content.v1.MissingAttachment
+	138, // 2: api.content.v1.RichTextStyledText.styles:type_name -> api.content.v1.RichTextStyle
+	139, // 3: api.content.v1.RichTextLink.content:type_name -> api.content.v1.RichTextStyledText
+	138, // 4: api.content.v1.RichTextSiteVariable.styles:type_name -> api.content.v1.RichTextStyle
+	139, // 5: api.content.v1.RichTextInline.text:type_name -> api.content.v1.RichTextStyledText
+	140, // 6: api.content.v1.RichTextInline.hard_break:type_name -> api.content.v1.RichTextHardBreak
+	141, // 7: api.content.v1.RichTextInline.link:type_name -> api.content.v1.RichTextLink
+	142, // 8: api.content.v1.RichTextInline.math_inline:type_name -> api.content.v1.RichTextInlineMath
+	143, // 9: api.content.v1.RichTextInline.site_variable:type_name -> api.content.v1.RichTextSiteVariable
 	5,   // 10: api.content.v1.RichTextTableCellProps.text_alignment:type_name -> api.content.v1.RichTextTableCellProps.TextAlignment
-	144, // 11: api.content.v1.RichTextTableCellBase.props:type_name -> api.content.v1.RichTextTableCellProps
-	145, // 12: api.content.v1.RichTextTableRowBase.cells:type_name -> api.content.v1.RichTextTableCellBase
-	146, // 13: api.content.v1.RichTextTableBase.rows:type_name -> api.content.v1.RichTextTableRowBase
-	143, // 14: api.content.v1.RichTextTableCellLocale.content:type_name -> api.content.v1.RichTextInline
-	148, // 15: api.content.v1.RichTextTableRowLocale.cells:type_name -> api.content.v1.RichTextTableCellLocale
-	149, // 16: api.content.v1.RichTextTableLocale.rows:type_name -> api.content.v1.RichTextTableRowLocale
+	145, // 11: api.content.v1.RichTextTableCellBase.props:type_name -> api.content.v1.RichTextTableCellProps
+	146, // 12: api.content.v1.RichTextTableRowBase.cells:type_name -> api.content.v1.RichTextTableCellBase
+	147, // 13: api.content.v1.RichTextTableBase.rows:type_name -> api.content.v1.RichTextTableRowBase
+	144, // 14: api.content.v1.RichTextTableCellLocale.content:type_name -> api.content.v1.RichTextInline
+	149, // 15: api.content.v1.RichTextTableRowLocale.cells:type_name -> api.content.v1.RichTextTableCellLocale
+	150, // 16: api.content.v1.RichTextTableLocale.rows:type_name -> api.content.v1.RichTextTableRowLocale
 	6,   // 17: api.content.v1.ParagraphProps.text_alignment:type_name -> api.content.v1.ParagraphProps.TextAlignment
 	7,   // 18: api.content.v1.ParagraphProps.aspect_ratio:type_name -> api.content.v1.ParagraphProps.AspectRatio
-	8,   // 19: api.content.v1.HeadingProps.text_alignment:type_name -> api.content.v1.HeadingProps.TextAlignment
-	9,   // 20: api.content.v1.HeadingProps.level:type_name -> api.content.v1.HeadingProps.Level
-	10,  // 21: api.content.v1.BulletListItemProps.text_alignment:type_name -> api.content.v1.BulletListItemProps.TextAlignment
-	11,  // 22: api.content.v1.NumberedListItemProps.text_alignment:type_name -> api.content.v1.NumberedListItemProps.TextAlignment
-	12,  // 23: api.content.v1.CheckListItemProps.text_alignment:type_name -> api.content.v1.CheckListItemProps.TextAlignment
-	13,  // 24: api.content.v1.CodeBlockProps.language:type_name -> api.content.v1.CodeBlockProps.Language
-	14,  // 25: api.content.v1.CodeBlockProps.text_alignment:type_name -> api.content.v1.CodeBlockProps.TextAlignment
-	15,  // 26: api.content.v1.TableProps.text_alignment:type_name -> api.content.v1.TableProps.TextAlignment
-	16,  // 27: api.content.v1.P5SketchProps.mode:type_name -> api.content.v1.P5SketchProps.Mode
-	17,  // 28: api.content.v1.P5SketchProps.text_alignment:type_name -> api.content.v1.P5SketchProps.TextAlignment
-	18,  // 29: api.content.v1.P5SketchProps.capabilities:type_name -> api.content.v1.P5SketchProps.CapabilitiesItem
-	19,  // 30: api.content.v1.ThreeSceneProps.mode:type_name -> api.content.v1.ThreeSceneProps.Mode
-	20,  // 31: api.content.v1.ThreeSceneProps.text_alignment:type_name -> api.content.v1.ThreeSceneProps.TextAlignment
-	21,  // 32: api.content.v1.ThreeSceneProps.language:type_name -> api.content.v1.ThreeSceneProps.Language
-	22,  // 33: api.content.v1.ShaderProps.mode:type_name -> api.content.v1.ShaderProps.Mode
-	23,  // 34: api.content.v1.ShaderProps.text_alignment:type_name -> api.content.v1.ShaderProps.TextAlignment
-	355, // 35: api.content.v1.ShaderProps.stages:type_name -> api.content.v1.ShaderProps.StagesItem
-	29,  // 36: api.content.v1.MapProps.aspect_ratio:type_name -> api.content.v1.MapProps.AspectRatio
-	30,  // 37: api.content.v1.MapProps.text_alignment:type_name -> api.content.v1.MapProps.TextAlignment
-	31,  // 38: api.content.v1.MapProps.variant:type_name -> api.content.v1.MapProps.Variant
-	32,  // 39: api.content.v1.MapProps.preferred_scheme:type_name -> api.content.v1.MapProps.PreferredScheme
-	33,  // 40: api.content.v1.MapProps.area_labels_mode:type_name -> api.content.v1.MapProps.AreaLabelsMode
-	34,  // 41: api.content.v1.MapProps.poi_labels_mode:type_name -> api.content.v1.MapProps.PoiLabelsMode
-	136, // 42: api.content.v1.FileProps.attachment:type_name -> api.content.v1.FileAttachment
-	35,  // 43: api.content.v1.FileProps.text_alignment:type_name -> api.content.v1.FileProps.TextAlignment
-	151, // 44: api.content.v1.ParagraphBlock.props:type_name -> api.content.v1.ParagraphProps
-	152, // 45: api.content.v1.HeadingBlock.props:type_name -> api.content.v1.HeadingProps
-	153, // 46: api.content.v1.BulletListItemBlock.props:type_name -> api.content.v1.BulletListItemProps
-	154, // 47: api.content.v1.NumberedListItemBlock.props:type_name -> api.content.v1.NumberedListItemProps
-	155, // 48: api.content.v1.CheckListItemBlock.props:type_name -> api.content.v1.CheckListItemProps
-	156, // 49: api.content.v1.QuoteBlock.props:type_name -> api.content.v1.QuoteProps
-	157, // 50: api.content.v1.CodeBlockBlock.props:type_name -> api.content.v1.CodeBlockProps
-	158, // 51: api.content.v1.DividerBlock.props:type_name -> api.content.v1.DividerProps
-	159, // 52: api.content.v1.TableBlock.props:type_name -> api.content.v1.TableProps
-	147, // 53: api.content.v1.TableBlock.content:type_name -> api.content.v1.RichTextTableBase
-	160, // 54: api.content.v1.P5SketchBlock.props:type_name -> api.content.v1.P5SketchProps
-	161, // 55: api.content.v1.ThreeSceneBlock.props:type_name -> api.content.v1.ThreeSceneProps
-	162, // 56: api.content.v1.ShaderBlock.props:type_name -> api.content.v1.ShaderProps
-	163, // 57: api.content.v1.MathBlock.props:type_name -> api.content.v1.MathProps
-	164, // 58: api.content.v1.MapBlock.props:type_name -> api.content.v1.MapProps
-	165, // 59: api.content.v1.FileBlock.props:type_name -> api.content.v1.FileProps
-	166, // 60: api.content.v1.CalloutBlock.props:type_name -> api.content.v1.CalloutProps
-	167, // 61: api.content.v1.MermaidBlock.props:type_name -> api.content.v1.MermaidProps
-	168, // 62: api.content.v1.ParagraphBlockLocale.props:type_name -> api.content.v1.ParagraphLocaleProps
-	143, // 63: api.content.v1.ParagraphBlockLocale.content:type_name -> api.content.v1.RichTextInline
-	169, // 64: api.content.v1.HeadingBlockLocale.props:type_name -> api.content.v1.HeadingLocaleProps
-	143, // 65: api.content.v1.HeadingBlockLocale.content:type_name -> api.content.v1.RichTextInline
-	170, // 66: api.content.v1.BulletListItemBlockLocale.props:type_name -> api.content.v1.BulletListItemLocaleProps
-	143, // 67: api.content.v1.BulletListItemBlockLocale.content:type_name -> api.content.v1.RichTextInline
-	171, // 68: api.content.v1.NumberedListItemBlockLocale.props:type_name -> api.content.v1.NumberedListItemLocaleProps
-	143, // 69: api.content.v1.NumberedListItemBlockLocale.content:type_name -> api.content.v1.RichTextInline
-	172, // 70: api.content.v1.CheckListItemBlockLocale.props:type_name -> api.content.v1.CheckListItemLocaleProps
-	143, // 71: api.content.v1.CheckListItemBlockLocale.content:type_name -> api.content.v1.RichTextInline
-	173, // 72: api.content.v1.QuoteBlockLocale.props:type_name -> api.content.v1.QuoteLocaleProps
-	143, // 73: api.content.v1.QuoteBlockLocale.content:type_name -> api.content.v1.RichTextInline
-	174, // 74: api.content.v1.CodeBlockBlockLocale.props:type_name -> api.content.v1.CodeBlockLocaleProps
-	175, // 75: api.content.v1.DividerBlockLocale.props:type_name -> api.content.v1.DividerLocaleProps
-	176, // 76: api.content.v1.TableBlockLocale.props:type_name -> api.content.v1.TableLocaleProps
-	150, // 77: api.content.v1.TableBlockLocale.content:type_name -> api.content.v1.RichTextTableLocale
-	177, // 78: api.content.v1.P5SketchBlockLocale.props:type_name -> api.content.v1.P5SketchLocaleProps
-	178, // 79: api.content.v1.ThreeSceneBlockLocale.props:type_name -> api.content.v1.ThreeSceneLocaleProps
-	179, // 80: api.content.v1.ShaderBlockLocale.props:type_name -> api.content.v1.ShaderLocaleProps
-	180, // 81: api.content.v1.MathBlockLocale.props:type_name -> api.content.v1.MathLocaleProps
-	181, // 82: api.content.v1.MapBlockLocale.props:type_name -> api.content.v1.MapLocaleProps
-	182, // 83: api.content.v1.FileBlockLocale.props:type_name -> api.content.v1.FileLocaleProps
-	183, // 84: api.content.v1.CalloutBlockLocale.props:type_name -> api.content.v1.CalloutLocaleProps
-	143, // 85: api.content.v1.CalloutBlockLocale.content:type_name -> api.content.v1.RichTextInline
-	184, // 86: api.content.v1.MermaidBlockLocale.props:type_name -> api.content.v1.MermaidLocaleProps
-	185, // 87: api.content.v1.RichTextBlock.paragraph:type_name -> api.content.v1.ParagraphBlock
-	186, // 88: api.content.v1.RichTextBlock.heading:type_name -> api.content.v1.HeadingBlock
-	187, // 89: api.content.v1.RichTextBlock.bullet_list_item:type_name -> api.content.v1.BulletListItemBlock
-	188, // 90: api.content.v1.RichTextBlock.numbered_list_item:type_name -> api.content.v1.NumberedListItemBlock
-	189, // 91: api.content.v1.RichTextBlock.check_list_item:type_name -> api.content.v1.CheckListItemBlock
-	190, // 92: api.content.v1.RichTextBlock.quote:type_name -> api.content.v1.QuoteBlock
-	191, // 93: api.content.v1.RichTextBlock.code_block:type_name -> api.content.v1.CodeBlockBlock
-	192, // 94: api.content.v1.RichTextBlock.divider:type_name -> api.content.v1.DividerBlock
-	193, // 95: api.content.v1.RichTextBlock.table:type_name -> api.content.v1.TableBlock
-	194, // 96: api.content.v1.RichTextBlock.p5_sketch:type_name -> api.content.v1.P5SketchBlock
-	195, // 97: api.content.v1.RichTextBlock.three_scene:type_name -> api.content.v1.ThreeSceneBlock
-	196, // 98: api.content.v1.RichTextBlock.shader:type_name -> api.content.v1.ShaderBlock
-	197, // 99: api.content.v1.RichTextBlock.math:type_name -> api.content.v1.MathBlock
-	198, // 100: api.content.v1.RichTextBlock.map:type_name -> api.content.v1.MapBlock
-	199, // 101: api.content.v1.RichTextBlock.file:type_name -> api.content.v1.FileBlock
-	200, // 102: api.content.v1.RichTextBlock.callout:type_name -> api.content.v1.CalloutBlock
-	201, // 103: api.content.v1.RichTextBlock.mermaid:type_name -> api.content.v1.MermaidBlock
-	202, // 104: api.content.v1.RichTextBlockLocale.paragraph:type_name -> api.content.v1.ParagraphBlockLocale
-	203, // 105: api.content.v1.RichTextBlockLocale.heading:type_name -> api.content.v1.HeadingBlockLocale
-	204, // 106: api.content.v1.RichTextBlockLocale.bullet_list_item:type_name -> api.content.v1.BulletListItemBlockLocale
-	205, // 107: api.content.v1.RichTextBlockLocale.numbered_list_item:type_name -> api.content.v1.NumberedListItemBlockLocale
-	206, // 108: api.content.v1.RichTextBlockLocale.check_list_item:type_name -> api.content.v1.CheckListItemBlockLocale
-	207, // 109: api.content.v1.RichTextBlockLocale.quote:type_name -> api.content.v1.QuoteBlockLocale
-	208, // 110: api.content.v1.RichTextBlockLocale.code_block:type_name -> api.content.v1.CodeBlockBlockLocale
-	209, // 111: api.content.v1.RichTextBlockLocale.divider:type_name -> api.content.v1.DividerBlockLocale
-	210, // 112: api.content.v1.RichTextBlockLocale.table:type_name -> api.content.v1.TableBlockLocale
-	211, // 113: api.content.v1.RichTextBlockLocale.p5_sketch:type_name -> api.content.v1.P5SketchBlockLocale
-	212, // 114: api.content.v1.RichTextBlockLocale.three_scene:type_name -> api.content.v1.ThreeSceneBlockLocale
-	213, // 115: api.content.v1.RichTextBlockLocale.shader:type_name -> api.content.v1.ShaderBlockLocale
-	214, // 116: api.content.v1.RichTextBlockLocale.math:type_name -> api.content.v1.MathBlockLocale
-	215, // 117: api.content.v1.RichTextBlockLocale.map:type_name -> api.content.v1.MapBlockLocale
-	216, // 118: api.content.v1.RichTextBlockLocale.file:type_name -> api.content.v1.FileBlockLocale
-	217, // 119: api.content.v1.RichTextBlockLocale.callout:type_name -> api.content.v1.CalloutBlockLocale
-	218, // 120: api.content.v1.RichTextBlockLocale.mermaid:type_name -> api.content.v1.MermaidBlockLocale
-	185, // 121: api.content.v1.RichTextBlockData.paragraph:type_name -> api.content.v1.ParagraphBlock
-	186, // 122: api.content.v1.RichTextBlockData.heading:type_name -> api.content.v1.HeadingBlock
-	187, // 123: api.content.v1.RichTextBlockData.bullet_list_item:type_name -> api.content.v1.BulletListItemBlock
-	188, // 124: api.content.v1.RichTextBlockData.numbered_list_item:type_name -> api.content.v1.NumberedListItemBlock
-	189, // 125: api.content.v1.RichTextBlockData.check_list_item:type_name -> api.content.v1.CheckListItemBlock
-	190, // 126: api.content.v1.RichTextBlockData.quote:type_name -> api.content.v1.QuoteBlock
-	191, // 127: api.content.v1.RichTextBlockData.code_block:type_name -> api.content.v1.CodeBlockBlock
-	192, // 128: api.content.v1.RichTextBlockData.divider:type_name -> api.content.v1.DividerBlock
-	193, // 129: api.content.v1.RichTextBlockData.table:type_name -> api.content.v1.TableBlock
-	194, // 130: api.content.v1.RichTextBlockData.p5_sketch:type_name -> api.content.v1.P5SketchBlock
-	195, // 131: api.content.v1.RichTextBlockData.three_scene:type_name -> api.content.v1.ThreeSceneBlock
-	196, // 132: api.content.v1.RichTextBlockData.shader:type_name -> api.content.v1.ShaderBlock
-	197, // 133: api.content.v1.RichTextBlockData.math:type_name -> api.content.v1.MathBlock
-	198, // 134: api.content.v1.RichTextBlockData.map:type_name -> api.content.v1.MapBlock
-	199, // 135: api.content.v1.RichTextBlockData.file:type_name -> api.content.v1.FileBlock
-	200, // 136: api.content.v1.RichTextBlockData.callout:type_name -> api.content.v1.CalloutBlock
-	201, // 137: api.content.v1.RichTextBlockData.mermaid:type_name -> api.content.v1.MermaidBlock
-	202, // 138: api.content.v1.RichTextBlockLocaleData.paragraph:type_name -> api.content.v1.ParagraphBlockLocale
-	203, // 139: api.content.v1.RichTextBlockLocaleData.heading:type_name -> api.content.v1.HeadingBlockLocale
-	204, // 140: api.content.v1.RichTextBlockLocaleData.bullet_list_item:type_name -> api.content.v1.BulletListItemBlockLocale
-	205, // 141: api.content.v1.RichTextBlockLocaleData.numbered_list_item:type_name -> api.content.v1.NumberedListItemBlockLocale
-	206, // 142: api.content.v1.RichTextBlockLocaleData.check_list_item:type_name -> api.content.v1.CheckListItemBlockLocale
-	207, // 143: api.content.v1.RichTextBlockLocaleData.quote:type_name -> api.content.v1.QuoteBlockLocale
-	208, // 144: api.content.v1.RichTextBlockLocaleData.code_block:type_name -> api.content.v1.CodeBlockBlockLocale
-	209, // 145: api.content.v1.RichTextBlockLocaleData.divider:type_name -> api.content.v1.DividerBlockLocale
-	210, // 146: api.content.v1.RichTextBlockLocaleData.table:type_name -> api.content.v1.TableBlockLocale
-	211, // 147: api.content.v1.RichTextBlockLocaleData.p5_sketch:type_name -> api.content.v1.P5SketchBlockLocale
-	212, // 148: api.content.v1.RichTextBlockLocaleData.three_scene:type_name -> api.content.v1.ThreeSceneBlockLocale
-	213, // 149: api.content.v1.RichTextBlockLocaleData.shader:type_name -> api.content.v1.ShaderBlockLocale
-	214, // 150: api.content.v1.RichTextBlockLocaleData.math:type_name -> api.content.v1.MathBlockLocale
-	215, // 151: api.content.v1.RichTextBlockLocaleData.map:type_name -> api.content.v1.MapBlockLocale
-	216, // 152: api.content.v1.RichTextBlockLocaleData.file:type_name -> api.content.v1.FileBlockLocale
-	217, // 153: api.content.v1.RichTextBlockLocaleData.callout:type_name -> api.content.v1.CalloutBlockLocale
-	218, // 154: api.content.v1.RichTextBlockLocaleData.mermaid:type_name -> api.content.v1.MermaidBlockLocale
-	219, // 155: api.content.v1.RichTextBlockNode.block:type_name -> api.content.v1.RichTextBlock
-	223, // 156: api.content.v1.RichTextBlockNode.placement:type_name -> api.content.v1.ContentBlockPlacement
-	224, // 157: api.content.v1.RichTextBlockGraph.nodes:type_name -> api.content.v1.RichTextBlockNode
-	220, // 158: api.content.v1.RichTextLocaleOverlay.blocks:type_name -> api.content.v1.RichTextBlockLocale
-	0,   // 159: api.content.v1.RichTextDocument.profile:type_name -> api.content.v1.RichTextProfile
-	225, // 160: api.content.v1.RichTextDocument.base:type_name -> api.content.v1.RichTextBlockGraph
-	226, // 161: api.content.v1.RichTextDocument.locale_overlays:type_name -> api.content.v1.RichTextLocaleOverlay
-	0,   // 162: api.content.v1.LocalizedRichTextDocument.profile:type_name -> api.content.v1.RichTextProfile
-	225, // 163: api.content.v1.LocalizedRichTextDocument.base:type_name -> api.content.v1.RichTextBlockGraph
-	226, // 164: api.content.v1.LocalizedRichTextDocument.locale_overlay:type_name -> api.content.v1.RichTextLocaleOverlay
-	224, // 165: api.content.v1.UpsertRichTextBlock.node:type_name -> api.content.v1.RichTextBlockNode
-	223, // 166: api.content.v1.MoveRichTextBlock.placement:type_name -> api.content.v1.ContentBlockPlacement
-	229, // 167: api.content.v1.RichTextBlockMutation.upsert:type_name -> api.content.v1.UpsertRichTextBlock
-	230, // 168: api.content.v1.RichTextBlockMutation.delete:type_name -> api.content.v1.DeleteRichTextBlock
-	231, // 169: api.content.v1.RichTextBlockMutation.move:type_name -> api.content.v1.MoveRichTextBlock
-	220, // 170: api.content.v1.UpsertRichTextBlockLocale.block:type_name -> api.content.v1.RichTextBlockLocale
-	233, // 171: api.content.v1.RichTextBlockLocaleMutation.upsert:type_name -> api.content.v1.UpsertRichTextBlockLocale
-	234, // 172: api.content.v1.RichTextBlockLocaleMutation.delete:type_name -> api.content.v1.DeleteRichTextBlockLocale
-	235, // 173: api.content.v1.RichTextLocaleMutationGroup.mutations:type_name -> api.content.v1.RichTextBlockLocaleMutation
-	0,   // 174: api.content.v1.RichTextBlockMutationBatch.profile:type_name -> api.content.v1.RichTextProfile
-	232, // 175: api.content.v1.RichTextBlockMutationBatch.base_mutations:type_name -> api.content.v1.RichTextBlockMutation
-	236, // 176: api.content.v1.RichTextBlockMutationBatch.locale_mutation_groups:type_name -> api.content.v1.RichTextLocaleMutationGroup
-	36,  // 177: api.content.v1.PageSectionSettings.max_width:type_name -> api.content.v1.PageSectionSettings.MaxWidth
-	37,  // 178: api.content.v1.PageImmersiveUnitProps.mesh:type_name -> api.content.v1.PageImmersiveUnitProps.Mesh
-	38,  // 179: api.content.v1.PageImmersiveUnitProps.mesh_source:type_name -> api.content.v1.PageImmersiveUnitProps.MeshSource
-	136, // 180: api.content.v1.PageImmersiveUnitProps.mesh_file:type_name -> api.content.v1.FileAttachment
-	136, // 181: api.content.v1.PageImmersiveUnitProps.mesh_optimization_source_file:type_name -> api.content.v1.FileAttachment
-	136, // 182: api.content.v1.PageImmersiveUnitProps.mesh_optimization_file:type_name -> api.content.v1.FileAttachment
-	39,  // 183: api.content.v1.PageImmersiveUnitProps.texture_source:type_name -> api.content.v1.PageImmersiveUnitProps.TextureSource
-	136, // 184: api.content.v1.PageImmersiveUnitProps.texture_file:type_name -> api.content.v1.FileAttachment
-	40,  // 185: api.content.v1.PageImmersiveUnitProps.dark_texture_source:type_name -> api.content.v1.PageImmersiveUnitProps.DarkTextureSource
-	136, // 186: api.content.v1.PageImmersiveUnitProps.dark_texture_file:type_name -> api.content.v1.FileAttachment
-	239, // 187: api.content.v1.PageImmersiveUnit.props:type_name -> api.content.v1.PageImmersiveUnitProps
-	240, // 188: api.content.v1.PageImmersiveUnitLocale.props:type_name -> api.content.v1.PageImmersiveUnitLocaleProps
-	41,  // 189: api.content.v1.ExternalVideoSectionProps.aspect_ratio:type_name -> api.content.v1.ExternalVideoSectionProps.AspectRatio
-	42,  // 190: api.content.v1.PostListSectionProps.layout:type_name -> api.content.v1.PostListSectionProps.Layout
-	43,  // 191: api.content.v1.PostListSectionProps.sort_order:type_name -> api.content.v1.PostListSectionProps.SortOrder
-	44,  // 192: api.content.v1.PostListSectionProps.sort_by:type_name -> api.content.v1.PostListSectionProps.SortBy
-	45,  // 193: api.content.v1.PostListSectionProps.image_aspect_ratio:type_name -> api.content.v1.PostListSectionProps.ImageAspectRatio
-	46,  // 194: api.content.v1.PostListSectionProps.item_size:type_name -> api.content.v1.PostListSectionProps.ItemSize
-	47,  // 195: api.content.v1.PostTableSectionProps.statuses:type_name -> api.content.v1.PostTableSectionProps.StatusesItem
-	48,  // 196: api.content.v1.PostTableSectionProps.filter_fields:type_name -> api.content.v1.PostTableSectionProps.FilterFieldsItem
-	49,  // 197: api.content.v1.PostTableSectionProps.sort_fields:type_name -> api.content.v1.PostTableSectionProps.SortFieldsItem
-	50,  // 198: api.content.v1.PostMapSectionProps.sort_by:type_name -> api.content.v1.PostMapSectionProps.SortBy
-	51,  // 199: api.content.v1.PostMapSectionProps.sort_order:type_name -> api.content.v1.PostMapSectionProps.SortOrder
-	52,  // 200: api.content.v1.PostMapSectionProps.aspect_ratio:type_name -> api.content.v1.PostMapSectionProps.AspectRatio
-	53,  // 201: api.content.v1.PostMapSectionProps.primary_label:type_name -> api.content.v1.PostMapSectionProps.PrimaryLabel
-	54,  // 202: api.content.v1.PostMapSectionProps.preferred_scheme:type_name -> api.content.v1.PostMapSectionProps.PreferredScheme
-	55,  // 203: api.content.v1.PostMapSectionProps.area_labels_mode:type_name -> api.content.v1.PostMapSectionProps.AreaLabelsMode
-	56,  // 204: api.content.v1.PostMapSectionProps.poi_labels_mode:type_name -> api.content.v1.PostMapSectionProps.PoiLabelsMode
-	57,  // 205: api.content.v1.WorkMapSectionProps.work_types:type_name -> api.content.v1.WorkMapSectionProps.WorkTypesItem
-	58,  // 206: api.content.v1.WorkMapSectionProps.sort_by:type_name -> api.content.v1.WorkMapSectionProps.SortBy
-	59,  // 207: api.content.v1.WorkMapSectionProps.sort_order:type_name -> api.content.v1.WorkMapSectionProps.SortOrder
-	60,  // 208: api.content.v1.WorkMapSectionProps.aspect_ratio:type_name -> api.content.v1.WorkMapSectionProps.AspectRatio
-	61,  // 209: api.content.v1.WorkMapSectionProps.primary_label:type_name -> api.content.v1.WorkMapSectionProps.PrimaryLabel
-	62,  // 210: api.content.v1.WorkMapSectionProps.preferred_scheme:type_name -> api.content.v1.WorkMapSectionProps.PreferredScheme
-	63,  // 211: api.content.v1.WorkMapSectionProps.area_labels_mode:type_name -> api.content.v1.WorkMapSectionProps.AreaLabelsMode
-	64,  // 212: api.content.v1.WorkMapSectionProps.poi_labels_mode:type_name -> api.content.v1.WorkMapSectionProps.PoiLabelsMode
-	65,  // 213: api.content.v1.WorkTableSectionProps.work_types:type_name -> api.content.v1.WorkTableSectionProps.WorkTypesItem
-	66,  // 214: api.content.v1.WorkTableSectionProps.statuses:type_name -> api.content.v1.WorkTableSectionProps.StatusesItem
-	67,  // 215: api.content.v1.WorkTableSectionProps.filter_fields:type_name -> api.content.v1.WorkTableSectionProps.FilterFieldsItem
-	68,  // 216: api.content.v1.WorkTableSectionProps.sort_fields:type_name -> api.content.v1.WorkTableSectionProps.SortFieldsItem
-	69,  // 217: api.content.v1.WorkListSectionProps.layout:type_name -> api.content.v1.WorkListSectionProps.Layout
-	70,  // 218: api.content.v1.WorkListSectionProps.sort_order:type_name -> api.content.v1.WorkListSectionProps.SortOrder
-	71,  // 219: api.content.v1.WorkListSectionProps.work_types:type_name -> api.content.v1.WorkListSectionProps.WorkTypesItem
-	72,  // 220: api.content.v1.WorkListSectionProps.sort_by:type_name -> api.content.v1.WorkListSectionProps.SortBy
-	73,  // 221: api.content.v1.WorkListSectionProps.image_aspect_ratio:type_name -> api.content.v1.WorkListSectionProps.ImageAspectRatio
-	74,  // 222: api.content.v1.WorkListSectionProps.item_size:type_name -> api.content.v1.WorkListSectionProps.ItemSize
-	75,  // 223: api.content.v1.ProgramEventListSectionProps.layout:type_name -> api.content.v1.ProgramEventListSectionProps.Layout
-	76,  // 224: api.content.v1.ProgramEventListSectionProps.sort_order:type_name -> api.content.v1.ProgramEventListSectionProps.SortOrder
-	77,  // 225: api.content.v1.ProgramEventListSectionProps.time_window:type_name -> api.content.v1.ProgramEventListSectionProps.TimeWindow
-	78,  // 226: api.content.v1.ProgramEventListSectionProps.sort_by:type_name -> api.content.v1.ProgramEventListSectionProps.SortBy
-	79,  // 227: api.content.v1.ProgramEventListSectionProps.image_aspect_ratio:type_name -> api.content.v1.ProgramEventListSectionProps.ImageAspectRatio
-	80,  // 228: api.content.v1.ProgramEventListSectionProps.item_size:type_name -> api.content.v1.ProgramEventListSectionProps.ItemSize
-	81,  // 229: api.content.v1.ReleaseListSectionProps.layout:type_name -> api.content.v1.ReleaseListSectionProps.Layout
-	82,  // 230: api.content.v1.ReleaseListSectionProps.sort_order:type_name -> api.content.v1.ReleaseListSectionProps.SortOrder
-	83,  // 231: api.content.v1.ReleaseListSectionProps.types:type_name -> api.content.v1.ReleaseListSectionProps.TypesItem
-	84,  // 232: api.content.v1.ReleaseListSectionProps.sort_by:type_name -> api.content.v1.ReleaseListSectionProps.SortBy
-	85,  // 233: api.content.v1.ReleaseListSectionProps.image_aspect_ratio:type_name -> api.content.v1.ReleaseListSectionProps.ImageAspectRatio
-	86,  // 234: api.content.v1.ReleaseListSectionProps.item_size:type_name -> api.content.v1.ReleaseListSectionProps.ItemSize
-	87,  // 235: api.content.v1.ArtistListSectionProps.layout:type_name -> api.content.v1.ArtistListSectionProps.Layout
-	88,  // 236: api.content.v1.ArtistListSectionProps.sort_order:type_name -> api.content.v1.ArtistListSectionProps.SortOrder
-	89,  // 237: api.content.v1.ArtistListSectionProps.sort_by:type_name -> api.content.v1.ArtistListSectionProps.SortBy
-	90,  // 238: api.content.v1.ArtistListSectionProps.image_aspect_ratio:type_name -> api.content.v1.ArtistListSectionProps.ImageAspectRatio
-	91,  // 239: api.content.v1.ArtistListSectionProps.item_size:type_name -> api.content.v1.ArtistListSectionProps.ItemSize
-	92,  // 240: api.content.v1.LabelListSectionProps.layout:type_name -> api.content.v1.LabelListSectionProps.Layout
-	93,  // 241: api.content.v1.LabelListSectionProps.sort_order:type_name -> api.content.v1.LabelListSectionProps.SortOrder
-	94,  // 242: api.content.v1.LabelListSectionProps.sort_by:type_name -> api.content.v1.LabelListSectionProps.SortBy
-	95,  // 243: api.content.v1.LabelListSectionProps.image_aspect_ratio:type_name -> api.content.v1.LabelListSectionProps.ImageAspectRatio
-	96,  // 244: api.content.v1.LabelListSectionProps.item_size:type_name -> api.content.v1.LabelListSectionProps.ItemSize
-	97,  // 245: api.content.v1.AuthorListSectionProps.layout:type_name -> api.content.v1.AuthorListSectionProps.Layout
-	98,  // 246: api.content.v1.AuthorListSectionProps.source:type_name -> api.content.v1.AuthorListSectionProps.Source
-	99,  // 247: api.content.v1.AuthorListSectionProps.item_size:type_name -> api.content.v1.AuthorListSectionProps.ItemSize
-	100, // 248: api.content.v1.TextMarqueeSectionProps.direction:type_name -> api.content.v1.TextMarqueeSectionProps.Direction
-	101, // 249: api.content.v1.TextMarqueeSectionProps.speed:type_name -> api.content.v1.TextMarqueeSectionProps.Speed
-	102, // 250: api.content.v1.TextMarqueeSectionProps.item_height:type_name -> api.content.v1.TextMarqueeSectionProps.ItemHeight
-	103, // 251: api.content.v1.TextMarqueeSectionProps.gap:type_name -> api.content.v1.TextMarqueeSectionProps.Gap
-	104, // 252: api.content.v1.TextMarqueeSectionProps.link_target:type_name -> api.content.v1.TextMarqueeSectionProps.LinkTarget
-	358, // 253: api.content.v1.TextMarqueeSectionProps.items:type_name -> api.content.v1.TextMarqueeSectionProps.ItemsItem
-	105, // 254: api.content.v1.ClientMarqueeSectionProps.direction:type_name -> api.content.v1.ClientMarqueeSectionProps.Direction
-	106, // 255: api.content.v1.ClientMarqueeSectionProps.speed:type_name -> api.content.v1.ClientMarqueeSectionProps.Speed
-	107, // 256: api.content.v1.ClientMarqueeSectionProps.item_height:type_name -> api.content.v1.ClientMarqueeSectionProps.ItemHeight
-	108, // 257: api.content.v1.ClientMarqueeSectionProps.gap:type_name -> api.content.v1.ClientMarqueeSectionProps.Gap
-	109, // 258: api.content.v1.ClientMarqueeSectionProps.link_target:type_name -> api.content.v1.ClientMarqueeSectionProps.LinkTarget
-	110, // 259: api.content.v1.ClientMarqueeSectionProps.source:type_name -> api.content.v1.ClientMarqueeSectionProps.Source
-	111, // 260: api.content.v1.ClientMarqueeSectionProps.link_mode:type_name -> api.content.v1.ClientMarqueeSectionProps.LinkMode
-	112, // 261: api.content.v1.ClientMarqueeSectionProps.logo_scale:type_name -> api.content.v1.ClientMarqueeSectionProps.LogoScale
-	113, // 262: api.content.v1.ClientMarqueeSectionProps.fallback_mode:type_name -> api.content.v1.ClientMarqueeSectionProps.FallbackMode
-	114, // 263: api.content.v1.LabelMarqueeSectionProps.direction:type_name -> api.content.v1.LabelMarqueeSectionProps.Direction
-	115, // 264: api.content.v1.LabelMarqueeSectionProps.speed:type_name -> api.content.v1.LabelMarqueeSectionProps.Speed
-	116, // 265: api.content.v1.LabelMarqueeSectionProps.item_height:type_name -> api.content.v1.LabelMarqueeSectionProps.ItemHeight
-	117, // 266: api.content.v1.LabelMarqueeSectionProps.gap:type_name -> api.content.v1.LabelMarqueeSectionProps.Gap
-	118, // 267: api.content.v1.LabelMarqueeSectionProps.link_target:type_name -> api.content.v1.LabelMarqueeSectionProps.LinkTarget
-	119, // 268: api.content.v1.LabelMarqueeSectionProps.source:type_name -> api.content.v1.LabelMarqueeSectionProps.Source
-	120, // 269: api.content.v1.LabelMarqueeSectionProps.link_mode:type_name -> api.content.v1.LabelMarqueeSectionProps.LinkMode
-	121, // 270: api.content.v1.LabelMarqueeSectionProps.logo_scale:type_name -> api.content.v1.LabelMarqueeSectionProps.LogoScale
-	122, // 271: api.content.v1.LabelMarqueeSectionProps.fallback_mode:type_name -> api.content.v1.LabelMarqueeSectionProps.FallbackMode
-	123, // 272: api.content.v1.MapSectionProps.aspect_ratio:type_name -> api.content.v1.MapSectionProps.AspectRatio
-	124, // 273: api.content.v1.MapSectionProps.variant:type_name -> api.content.v1.MapSectionProps.Variant
-	125, // 274: api.content.v1.MapSectionProps.preferred_scheme:type_name -> api.content.v1.MapSectionProps.PreferredScheme
-	126, // 275: api.content.v1.MapSectionProps.area_labels_mode:type_name -> api.content.v1.MapSectionProps.AreaLabelsMode
-	127, // 276: api.content.v1.MapSectionProps.poi_labels_mode:type_name -> api.content.v1.MapSectionProps.PoiLabelsMode
-	128, // 277: api.content.v1.ImmersiveSceneSectionProps.playback:type_name -> api.content.v1.ImmersiveSceneSectionProps.Playback
-	129, // 278: api.content.v1.ImmersiveSceneSectionProps.transition:type_name -> api.content.v1.ImmersiveSceneSectionProps.Transition
-	130, // 279: api.content.v1.ImmersiveSceneSectionProps.texture_size:type_name -> api.content.v1.ImmersiveSceneSectionProps.TextureSize
-	131, // 280: api.content.v1.ImmersiveSceneSectionProps.preferred_scheme:type_name -> api.content.v1.ImmersiveSceneSectionProps.PreferredScheme
-	132, // 281: api.content.v1.ImmersiveSceneSectionProps.text_color_source:type_name -> api.content.v1.ImmersiveSceneSectionProps.TextColorSource
-	133, // 282: api.content.v1.ImmersiveSceneSectionProps.dark_text_color_source:type_name -> api.content.v1.ImmersiveSceneSectionProps.DarkTextColorSource
-	359, // 283: api.content.v1.ColumnsSectionProps.columns:type_name -> api.content.v1.ColumnsSectionProps.ColumnsItem
-	134, // 284: api.content.v1.EmbedSectionProps.height_mode:type_name -> api.content.v1.EmbedSectionProps.HeightMode
-	243, // 285: api.content.v1.RichTextSection.props:type_name -> api.content.v1.RichTextSectionProps
-	225, // 286: api.content.v1.RichTextSection.blocks:type_name -> api.content.v1.RichTextBlockGraph
-	244, // 287: api.content.v1.ExternalVideoSection.props:type_name -> api.content.v1.ExternalVideoSectionProps
-	245, // 288: api.content.v1.PostListSection.props:type_name -> api.content.v1.PostListSectionProps
-	246, // 289: api.content.v1.PostTableSection.props:type_name -> api.content.v1.PostTableSectionProps
-	247, // 290: api.content.v1.PostMapSection.props:type_name -> api.content.v1.PostMapSectionProps
-	248, // 291: api.content.v1.WorkMapSection.props:type_name -> api.content.v1.WorkMapSectionProps
-	249, // 292: api.content.v1.WorkTableSection.props:type_name -> api.content.v1.WorkTableSectionProps
-	250, // 293: api.content.v1.WorkListSection.props:type_name -> api.content.v1.WorkListSectionProps
-	251, // 294: api.content.v1.ProgramEventListSection.props:type_name -> api.content.v1.ProgramEventListSectionProps
-	252, // 295: api.content.v1.ReleaseListSection.props:type_name -> api.content.v1.ReleaseListSectionProps
-	253, // 296: api.content.v1.ArtistListSection.props:type_name -> api.content.v1.ArtistListSectionProps
-	254, // 297: api.content.v1.LabelListSection.props:type_name -> api.content.v1.LabelListSectionProps
-	255, // 298: api.content.v1.AuthorListSection.props:type_name -> api.content.v1.AuthorListSectionProps
-	256, // 299: api.content.v1.FormSection.props:type_name -> api.content.v1.FormSectionProps
-	257, // 300: api.content.v1.TextMarqueeSection.props:type_name -> api.content.v1.TextMarqueeSectionProps
-	258, // 301: api.content.v1.ClientMarqueeSection.props:type_name -> api.content.v1.ClientMarqueeSectionProps
-	259, // 302: api.content.v1.LabelMarqueeSection.props:type_name -> api.content.v1.LabelMarqueeSectionProps
-	260, // 303: api.content.v1.MapSection.props:type_name -> api.content.v1.MapSectionProps
-	261, // 304: api.content.v1.ImmersiveSceneSection.props:type_name -> api.content.v1.ImmersiveSceneSectionProps
-	241, // 305: api.content.v1.ImmersiveSceneSection.units:type_name -> api.content.v1.PageImmersiveUnit
-	262, // 306: api.content.v1.ColumnsSection.props:type_name -> api.content.v1.ColumnsSectionProps
-	263, // 307: api.content.v1.MermaidSection.props:type_name -> api.content.v1.MermaidSectionProps
-	264, // 308: api.content.v1.EmbedSection.props:type_name -> api.content.v1.EmbedSectionProps
-	265, // 309: api.content.v1.RichTextSectionLocale.props:type_name -> api.content.v1.RichTextSectionLocaleProps
-	226, // 310: api.content.v1.RichTextSectionLocale.blocks:type_name -> api.content.v1.RichTextLocaleOverlay
-	266, // 311: api.content.v1.ExternalVideoSectionLocale.props:type_name -> api.content.v1.ExternalVideoSectionLocaleProps
-	267, // 312: api.content.v1.PostListSectionLocale.props:type_name -> api.content.v1.PostListSectionLocaleProps
-	268, // 313: api.content.v1.PostTableSectionLocale.props:type_name -> api.content.v1.PostTableSectionLocaleProps
-	269, // 314: api.content.v1.PostMapSectionLocale.props:type_name -> api.content.v1.PostMapSectionLocaleProps
-	270, // 315: api.content.v1.WorkMapSectionLocale.props:type_name -> api.content.v1.WorkMapSectionLocaleProps
-	271, // 316: api.content.v1.WorkTableSectionLocale.props:type_name -> api.content.v1.WorkTableSectionLocaleProps
-	272, // 317: api.content.v1.WorkListSectionLocale.props:type_name -> api.content.v1.WorkListSectionLocaleProps
-	273, // 318: api.content.v1.ProgramEventListSectionLocale.props:type_name -> api.content.v1.ProgramEventListSectionLocaleProps
-	274, // 319: api.content.v1.ReleaseListSectionLocale.props:type_name -> api.content.v1.ReleaseListSectionLocaleProps
-	275, // 320: api.content.v1.ArtistListSectionLocale.props:type_name -> api.content.v1.ArtistListSectionLocaleProps
-	276, // 321: api.content.v1.LabelListSectionLocale.props:type_name -> api.content.v1.LabelListSectionLocaleProps
-	277, // 322: api.content.v1.AuthorListSectionLocale.props:type_name -> api.content.v1.AuthorListSectionLocaleProps
-	278, // 323: api.content.v1.FormSectionLocale.props:type_name -> api.content.v1.FormSectionLocaleProps
-	279, // 324: api.content.v1.TextMarqueeSectionLocale.props:type_name -> api.content.v1.TextMarqueeSectionLocaleProps
-	280, // 325: api.content.v1.ClientMarqueeSectionLocale.props:type_name -> api.content.v1.ClientMarqueeSectionLocaleProps
-	281, // 326: api.content.v1.LabelMarqueeSectionLocale.props:type_name -> api.content.v1.LabelMarqueeSectionLocaleProps
-	282, // 327: api.content.v1.MapSectionLocale.props:type_name -> api.content.v1.MapSectionLocaleProps
-	283, // 328: api.content.v1.ImmersiveSceneSectionLocale.props:type_name -> api.content.v1.ImmersiveSceneSectionLocaleProps
-	242, // 329: api.content.v1.ImmersiveSceneSectionLocale.units:type_name -> api.content.v1.PageImmersiveUnitLocale
-	284, // 330: api.content.v1.ColumnsSectionLocale.props:type_name -> api.content.v1.ColumnsSectionLocaleProps
-	285, // 331: api.content.v1.MermaidSectionLocale.props:type_name -> api.content.v1.MermaidSectionLocaleProps
-	286, // 332: api.content.v1.EmbedSectionLocale.props:type_name -> api.content.v1.EmbedSectionLocaleProps
-	238, // 333: api.content.v1.PageSection.settings:type_name -> api.content.v1.PageSectionSettings
-	287, // 334: api.content.v1.PageSection.rich_text:type_name -> api.content.v1.RichTextSection
-	288, // 335: api.content.v1.PageSection.external_video:type_name -> api.content.v1.ExternalVideoSection
-	289, // 336: api.content.v1.PageSection.post_list:type_name -> api.content.v1.PostListSection
-	290, // 337: api.content.v1.PageSection.post_table:type_name -> api.content.v1.PostTableSection
-	291, // 338: api.content.v1.PageSection.post_map:type_name -> api.content.v1.PostMapSection
-	292, // 339: api.content.v1.PageSection.work_map:type_name -> api.content.v1.WorkMapSection
-	293, // 340: api.content.v1.PageSection.work_table:type_name -> api.content.v1.WorkTableSection
-	294, // 341: api.content.v1.PageSection.work_list:type_name -> api.content.v1.WorkListSection
-	295, // 342: api.content.v1.PageSection.program_event_list:type_name -> api.content.v1.ProgramEventListSection
-	296, // 343: api.content.v1.PageSection.release_list:type_name -> api.content.v1.ReleaseListSection
-	297, // 344: api.content.v1.PageSection.artist_list:type_name -> api.content.v1.ArtistListSection
-	298, // 345: api.content.v1.PageSection.label_list:type_name -> api.content.v1.LabelListSection
-	299, // 346: api.content.v1.PageSection.author_list:type_name -> api.content.v1.AuthorListSection
-	300, // 347: api.content.v1.PageSection.form:type_name -> api.content.v1.FormSection
-	301, // 348: api.content.v1.PageSection.text_marquee:type_name -> api.content.v1.TextMarqueeSection
-	302, // 349: api.content.v1.PageSection.client_marquee:type_name -> api.content.v1.ClientMarqueeSection
-	303, // 350: api.content.v1.PageSection.label_marquee:type_name -> api.content.v1.LabelMarqueeSection
-	304, // 351: api.content.v1.PageSection.map:type_name -> api.content.v1.MapSection
-	305, // 352: api.content.v1.PageSection.immersive_scene:type_name -> api.content.v1.ImmersiveSceneSection
-	306, // 353: api.content.v1.PageSection.columns:type_name -> api.content.v1.ColumnsSection
-	307, // 354: api.content.v1.PageSection.mermaid:type_name -> api.content.v1.MermaidSection
-	308, // 355: api.content.v1.PageSection.embed:type_name -> api.content.v1.EmbedSection
-	309, // 356: api.content.v1.PageSectionLocale.rich_text:type_name -> api.content.v1.RichTextSectionLocale
-	310, // 357: api.content.v1.PageSectionLocale.external_video:type_name -> api.content.v1.ExternalVideoSectionLocale
-	311, // 358: api.content.v1.PageSectionLocale.post_list:type_name -> api.content.v1.PostListSectionLocale
-	312, // 359: api.content.v1.PageSectionLocale.post_table:type_name -> api.content.v1.PostTableSectionLocale
-	313, // 360: api.content.v1.PageSectionLocale.post_map:type_name -> api.content.v1.PostMapSectionLocale
-	314, // 361: api.content.v1.PageSectionLocale.work_map:type_name -> api.content.v1.WorkMapSectionLocale
-	315, // 362: api.content.v1.PageSectionLocale.work_table:type_name -> api.content.v1.WorkTableSectionLocale
-	316, // 363: api.content.v1.PageSectionLocale.work_list:type_name -> api.content.v1.WorkListSectionLocale
-	317, // 364: api.content.v1.PageSectionLocale.program_event_list:type_name -> api.content.v1.ProgramEventListSectionLocale
-	318, // 365: api.content.v1.PageSectionLocale.release_list:type_name -> api.content.v1.ReleaseListSectionLocale
-	319, // 366: api.content.v1.PageSectionLocale.artist_list:type_name -> api.content.v1.ArtistListSectionLocale
-	320, // 367: api.content.v1.PageSectionLocale.label_list:type_name -> api.content.v1.LabelListSectionLocale
-	321, // 368: api.content.v1.PageSectionLocale.author_list:type_name -> api.content.v1.AuthorListSectionLocale
-	322, // 369: api.content.v1.PageSectionLocale.form:type_name -> api.content.v1.FormSectionLocale
-	323, // 370: api.content.v1.PageSectionLocale.text_marquee:type_name -> api.content.v1.TextMarqueeSectionLocale
-	324, // 371: api.content.v1.PageSectionLocale.client_marquee:type_name -> api.content.v1.ClientMarqueeSectionLocale
-	325, // 372: api.content.v1.PageSectionLocale.label_marquee:type_name -> api.content.v1.LabelMarqueeSectionLocale
-	326, // 373: api.content.v1.PageSectionLocale.map:type_name -> api.content.v1.MapSectionLocale
-	327, // 374: api.content.v1.PageSectionLocale.immersive_scene:type_name -> api.content.v1.ImmersiveSceneSectionLocale
-	328, // 375: api.content.v1.PageSectionLocale.columns:type_name -> api.content.v1.ColumnsSectionLocale
-	329, // 376: api.content.v1.PageSectionLocale.mermaid:type_name -> api.content.v1.MermaidSectionLocale
-	330, // 377: api.content.v1.PageSectionLocale.embed:type_name -> api.content.v1.EmbedSectionLocale
-	238, // 378: api.content.v1.PageSectionData.settings:type_name -> api.content.v1.PageSectionSettings
-	287, // 379: api.content.v1.PageSectionData.rich_text:type_name -> api.content.v1.RichTextSection
-	288, // 380: api.content.v1.PageSectionData.external_video:type_name -> api.content.v1.ExternalVideoSection
-	289, // 381: api.content.v1.PageSectionData.post_list:type_name -> api.content.v1.PostListSection
-	290, // 382: api.content.v1.PageSectionData.post_table:type_name -> api.content.v1.PostTableSection
-	291, // 383: api.content.v1.PageSectionData.post_map:type_name -> api.content.v1.PostMapSection
-	292, // 384: api.content.v1.PageSectionData.work_map:type_name -> api.content.v1.WorkMapSection
-	293, // 385: api.content.v1.PageSectionData.work_table:type_name -> api.content.v1.WorkTableSection
-	294, // 386: api.content.v1.PageSectionData.work_list:type_name -> api.content.v1.WorkListSection
-	295, // 387: api.content.v1.PageSectionData.program_event_list:type_name -> api.content.v1.ProgramEventListSection
-	296, // 388: api.content.v1.PageSectionData.release_list:type_name -> api.content.v1.ReleaseListSection
-	297, // 389: api.content.v1.PageSectionData.artist_list:type_name -> api.content.v1.ArtistListSection
-	298, // 390: api.content.v1.PageSectionData.label_list:type_name -> api.content.v1.LabelListSection
-	299, // 391: api.content.v1.PageSectionData.author_list:type_name -> api.content.v1.AuthorListSection
-	300, // 392: api.content.v1.PageSectionData.form:type_name -> api.content.v1.FormSection
-	301, // 393: api.content.v1.PageSectionData.text_marquee:type_name -> api.content.v1.TextMarqueeSection
-	302, // 394: api.content.v1.PageSectionData.client_marquee:type_name -> api.content.v1.ClientMarqueeSection
-	303, // 395: api.content.v1.PageSectionData.label_marquee:type_name -> api.content.v1.LabelMarqueeSection
-	304, // 396: api.content.v1.PageSectionData.map:type_name -> api.content.v1.MapSection
-	305, // 397: api.content.v1.PageSectionData.immersive_scene:type_name -> api.content.v1.ImmersiveSceneSection
-	306, // 398: api.content.v1.PageSectionData.columns:type_name -> api.content.v1.ColumnsSection
-	307, // 399: api.content.v1.PageSectionData.mermaid:type_name -> api.content.v1.MermaidSection
-	308, // 400: api.content.v1.PageSectionData.embed:type_name -> api.content.v1.EmbedSection
-	309, // 401: api.content.v1.PageSectionLocaleData.rich_text:type_name -> api.content.v1.RichTextSectionLocale
-	310, // 402: api.content.v1.PageSectionLocaleData.external_video:type_name -> api.content.v1.ExternalVideoSectionLocale
-	311, // 403: api.content.v1.PageSectionLocaleData.post_list:type_name -> api.content.v1.PostListSectionLocale
-	312, // 404: api.content.v1.PageSectionLocaleData.post_table:type_name -> api.content.v1.PostTableSectionLocale
-	313, // 405: api.content.v1.PageSectionLocaleData.post_map:type_name -> api.content.v1.PostMapSectionLocale
-	314, // 406: api.content.v1.PageSectionLocaleData.work_map:type_name -> api.content.v1.WorkMapSectionLocale
-	315, // 407: api.content.v1.PageSectionLocaleData.work_table:type_name -> api.content.v1.WorkTableSectionLocale
-	316, // 408: api.content.v1.PageSectionLocaleData.work_list:type_name -> api.content.v1.WorkListSectionLocale
-	317, // 409: api.content.v1.PageSectionLocaleData.program_event_list:type_name -> api.content.v1.ProgramEventListSectionLocale
-	318, // 410: api.content.v1.PageSectionLocaleData.release_list:type_name -> api.content.v1.ReleaseListSectionLocale
-	319, // 411: api.content.v1.PageSectionLocaleData.artist_list:type_name -> api.content.v1.ArtistListSectionLocale
-	320, // 412: api.content.v1.PageSectionLocaleData.label_list:type_name -> api.content.v1.LabelListSectionLocale
-	321, // 413: api.content.v1.PageSectionLocaleData.author_list:type_name -> api.content.v1.AuthorListSectionLocale
-	322, // 414: api.content.v1.PageSectionLocaleData.form:type_name -> api.content.v1.FormSectionLocale
-	323, // 415: api.content.v1.PageSectionLocaleData.text_marquee:type_name -> api.content.v1.TextMarqueeSectionLocale
-	324, // 416: api.content.v1.PageSectionLocaleData.client_marquee:type_name -> api.content.v1.ClientMarqueeSectionLocale
-	325, // 417: api.content.v1.PageSectionLocaleData.label_marquee:type_name -> api.content.v1.LabelMarqueeSectionLocale
-	326, // 418: api.content.v1.PageSectionLocaleData.map:type_name -> api.content.v1.MapSectionLocale
-	327, // 419: api.content.v1.PageSectionLocaleData.immersive_scene:type_name -> api.content.v1.ImmersiveSceneSectionLocale
-	328, // 420: api.content.v1.PageSectionLocaleData.columns:type_name -> api.content.v1.ColumnsSectionLocale
-	329, // 421: api.content.v1.PageSectionLocaleData.mermaid:type_name -> api.content.v1.MermaidSectionLocale
-	330, // 422: api.content.v1.PageSectionLocaleData.embed:type_name -> api.content.v1.EmbedSectionLocale
-	331, // 423: api.content.v1.PageSectionNode.section:type_name -> api.content.v1.PageSection
-	335, // 424: api.content.v1.PageSectionNode.placement:type_name -> api.content.v1.PageSectionPlacement
-	336, // 425: api.content.v1.PageSectionGraph.nodes:type_name -> api.content.v1.PageSectionNode
-	332, // 426: api.content.v1.PageLocaleOverlay.sections:type_name -> api.content.v1.PageSectionLocale
-	337, // 427: api.content.v1.PageDocument.base:type_name -> api.content.v1.PageSectionGraph
-	338, // 428: api.content.v1.PageDocument.locale_overlays:type_name -> api.content.v1.PageLocaleOverlay
-	337, // 429: api.content.v1.LocalizedPageDocument.base:type_name -> api.content.v1.PageSectionGraph
-	338, // 430: api.content.v1.LocalizedPageDocument.locale_overlay:type_name -> api.content.v1.PageLocaleOverlay
-	336, // 431: api.content.v1.UpsertPageSection.node:type_name -> api.content.v1.PageSectionNode
-	335, // 432: api.content.v1.MovePageSection.placement:type_name -> api.content.v1.PageSectionPlacement
-	232, // 433: api.content.v1.MutatePageRichTextBlock.mutation:type_name -> api.content.v1.RichTextBlockMutation
-	341, // 434: api.content.v1.PageSectionMutation.upsert:type_name -> api.content.v1.UpsertPageSection
-	342, // 435: api.content.v1.PageSectionMutation.delete:type_name -> api.content.v1.DeletePageSection
-	343, // 436: api.content.v1.PageSectionMutation.move:type_name -> api.content.v1.MovePageSection
-	344, // 437: api.content.v1.PageSectionMutation.mutate_rich_text_block:type_name -> api.content.v1.MutatePageRichTextBlock
-	332, // 438: api.content.v1.UpsertPageSectionLocale.section:type_name -> api.content.v1.PageSectionLocale
-	235, // 439: api.content.v1.MutatePageRichTextBlockLocale.mutation:type_name -> api.content.v1.RichTextBlockLocaleMutation
-	346, // 440: api.content.v1.PageSectionLocaleMutation.upsert:type_name -> api.content.v1.UpsertPageSectionLocale
-	347, // 441: api.content.v1.PageSectionLocaleMutation.delete:type_name -> api.content.v1.DeletePageSectionLocale
-	348, // 442: api.content.v1.PageSectionLocaleMutation.mutate_rich_text_block:type_name -> api.content.v1.MutatePageRichTextBlockLocale
-	349, // 443: api.content.v1.PageLocaleMutationGroup.mutations:type_name -> api.content.v1.PageSectionLocaleMutation
-	345, // 444: api.content.v1.PageSectionMutationBatch.base_mutations:type_name -> api.content.v1.PageSectionMutation
-	350, // 445: api.content.v1.PageSectionMutationBatch.locale_mutation_groups:type_name -> api.content.v1.PageLocaleMutationGroup
-	352, // 446: api.content.v1.ContentBlockMediaItem.selector:type_name -> api.content.v1.ContentBlockMediaSelector
-	136, // 447: api.content.v1.ContentBlockMediaItem.attachment:type_name -> api.content.v1.FileAttachment
-	360, // 448: api.content.v1.ContentBlockMediaItem.delivery:type_name -> api.common.v1.MediaDelivery
-	3,   // 449: api.content.v1.ContentBlockMediaItem.download_availability:type_name -> api.content.v1.ContentBlockDownloadAvailability
-	4,   // 450: api.content.v1.ContentBlockMediaItem.download_action:type_name -> api.content.v1.ContentBlockDownloadAction
-	24,  // 451: api.content.v1.ShaderProps.StagesItem.kind:type_name -> api.content.v1.ShaderProps.StagesItem.Kind
-	356, // 452: api.content.v1.ShaderProps.StagesItem.channels:type_name -> api.content.v1.ShaderProps.StagesItem.ChannelsItem
-	25,  // 453: api.content.v1.ShaderProps.StagesItem.ChannelsItem.kind:type_name -> api.content.v1.ShaderProps.StagesItem.ChannelsItem.Kind
-	26,  // 454: api.content.v1.ShaderProps.StagesItem.ChannelsItem.buffer:type_name -> api.content.v1.ShaderProps.StagesItem.ChannelsItem.Buffer
-	136, // 455: api.content.v1.ShaderProps.StagesItem.ChannelsItem.file:type_name -> api.content.v1.FileAttachment
-	136, // 456: api.content.v1.ShaderProps.StagesItem.ChannelsItem.faces:type_name -> api.content.v1.FileAttachment
-	357, // 457: api.content.v1.ShaderProps.StagesItem.ChannelsItem.sampler:type_name -> api.content.v1.ShaderProps.StagesItem.ChannelsItem.SamplerValue
-	27,  // 458: api.content.v1.ShaderProps.StagesItem.ChannelsItem.SamplerValue.filter:type_name -> api.content.v1.ShaderProps.StagesItem.ChannelsItem.SamplerValue.Filter
-	28,  // 459: api.content.v1.ShaderProps.StagesItem.ChannelsItem.SamplerValue.wrap:type_name -> api.content.v1.ShaderProps.StagesItem.ChannelsItem.SamplerValue.Wrap
-	460, // [460:460] is the sub-list for method output_type
-	460, // [460:460] is the sub-list for method input_type
-	460, // [460:460] is the sub-list for extension type_name
-	460, // [460:460] is the sub-list for extension extendee
-	0,   // [0:460] is the sub-list for field type_name
+	8,   // 19: api.content.v1.ParagraphProps.link_presentation:type_name -> api.content.v1.ParagraphProps.LinkPresentation
+	137, // 20: api.content.v1.ParagraphProps.link_thumbnail:type_name -> api.content.v1.FileAttachment
+	9,   // 21: api.content.v1.HeadingProps.text_alignment:type_name -> api.content.v1.HeadingProps.TextAlignment
+	10,  // 22: api.content.v1.HeadingProps.level:type_name -> api.content.v1.HeadingProps.Level
+	11,  // 23: api.content.v1.BulletListItemProps.text_alignment:type_name -> api.content.v1.BulletListItemProps.TextAlignment
+	12,  // 24: api.content.v1.NumberedListItemProps.text_alignment:type_name -> api.content.v1.NumberedListItemProps.TextAlignment
+	13,  // 25: api.content.v1.CheckListItemProps.text_alignment:type_name -> api.content.v1.CheckListItemProps.TextAlignment
+	14,  // 26: api.content.v1.CodeBlockProps.language:type_name -> api.content.v1.CodeBlockProps.Language
+	15,  // 27: api.content.v1.CodeBlockProps.text_alignment:type_name -> api.content.v1.CodeBlockProps.TextAlignment
+	16,  // 28: api.content.v1.TableProps.text_alignment:type_name -> api.content.v1.TableProps.TextAlignment
+	17,  // 29: api.content.v1.P5SketchProps.mode:type_name -> api.content.v1.P5SketchProps.Mode
+	18,  // 30: api.content.v1.P5SketchProps.text_alignment:type_name -> api.content.v1.P5SketchProps.TextAlignment
+	19,  // 31: api.content.v1.P5SketchProps.capabilities:type_name -> api.content.v1.P5SketchProps.CapabilitiesItem
+	20,  // 32: api.content.v1.ThreeSceneProps.mode:type_name -> api.content.v1.ThreeSceneProps.Mode
+	21,  // 33: api.content.v1.ThreeSceneProps.text_alignment:type_name -> api.content.v1.ThreeSceneProps.TextAlignment
+	22,  // 34: api.content.v1.ThreeSceneProps.language:type_name -> api.content.v1.ThreeSceneProps.Language
+	23,  // 35: api.content.v1.ShaderProps.mode:type_name -> api.content.v1.ShaderProps.Mode
+	24,  // 36: api.content.v1.ShaderProps.text_alignment:type_name -> api.content.v1.ShaderProps.TextAlignment
+	356, // 37: api.content.v1.ShaderProps.stages:type_name -> api.content.v1.ShaderProps.StagesItem
+	30,  // 38: api.content.v1.MapProps.aspect_ratio:type_name -> api.content.v1.MapProps.AspectRatio
+	31,  // 39: api.content.v1.MapProps.text_alignment:type_name -> api.content.v1.MapProps.TextAlignment
+	32,  // 40: api.content.v1.MapProps.variant:type_name -> api.content.v1.MapProps.Variant
+	33,  // 41: api.content.v1.MapProps.preferred_scheme:type_name -> api.content.v1.MapProps.PreferredScheme
+	34,  // 42: api.content.v1.MapProps.area_labels_mode:type_name -> api.content.v1.MapProps.AreaLabelsMode
+	35,  // 43: api.content.v1.MapProps.poi_labels_mode:type_name -> api.content.v1.MapProps.PoiLabelsMode
+	137, // 44: api.content.v1.FileProps.attachment:type_name -> api.content.v1.FileAttachment
+	36,  // 45: api.content.v1.FileProps.text_alignment:type_name -> api.content.v1.FileProps.TextAlignment
+	152, // 46: api.content.v1.ParagraphBlock.props:type_name -> api.content.v1.ParagraphProps
+	153, // 47: api.content.v1.HeadingBlock.props:type_name -> api.content.v1.HeadingProps
+	154, // 48: api.content.v1.BulletListItemBlock.props:type_name -> api.content.v1.BulletListItemProps
+	155, // 49: api.content.v1.NumberedListItemBlock.props:type_name -> api.content.v1.NumberedListItemProps
+	156, // 50: api.content.v1.CheckListItemBlock.props:type_name -> api.content.v1.CheckListItemProps
+	157, // 51: api.content.v1.QuoteBlock.props:type_name -> api.content.v1.QuoteProps
+	158, // 52: api.content.v1.CodeBlockBlock.props:type_name -> api.content.v1.CodeBlockProps
+	159, // 53: api.content.v1.DividerBlock.props:type_name -> api.content.v1.DividerProps
+	160, // 54: api.content.v1.TableBlock.props:type_name -> api.content.v1.TableProps
+	148, // 55: api.content.v1.TableBlock.content:type_name -> api.content.v1.RichTextTableBase
+	161, // 56: api.content.v1.P5SketchBlock.props:type_name -> api.content.v1.P5SketchProps
+	162, // 57: api.content.v1.ThreeSceneBlock.props:type_name -> api.content.v1.ThreeSceneProps
+	163, // 58: api.content.v1.ShaderBlock.props:type_name -> api.content.v1.ShaderProps
+	164, // 59: api.content.v1.MathBlock.props:type_name -> api.content.v1.MathProps
+	165, // 60: api.content.v1.MapBlock.props:type_name -> api.content.v1.MapProps
+	166, // 61: api.content.v1.FileBlock.props:type_name -> api.content.v1.FileProps
+	167, // 62: api.content.v1.CalloutBlock.props:type_name -> api.content.v1.CalloutProps
+	168, // 63: api.content.v1.MermaidBlock.props:type_name -> api.content.v1.MermaidProps
+	169, // 64: api.content.v1.ParagraphBlockLocale.props:type_name -> api.content.v1.ParagraphLocaleProps
+	144, // 65: api.content.v1.ParagraphBlockLocale.content:type_name -> api.content.v1.RichTextInline
+	170, // 66: api.content.v1.HeadingBlockLocale.props:type_name -> api.content.v1.HeadingLocaleProps
+	144, // 67: api.content.v1.HeadingBlockLocale.content:type_name -> api.content.v1.RichTextInline
+	171, // 68: api.content.v1.BulletListItemBlockLocale.props:type_name -> api.content.v1.BulletListItemLocaleProps
+	144, // 69: api.content.v1.BulletListItemBlockLocale.content:type_name -> api.content.v1.RichTextInline
+	172, // 70: api.content.v1.NumberedListItemBlockLocale.props:type_name -> api.content.v1.NumberedListItemLocaleProps
+	144, // 71: api.content.v1.NumberedListItemBlockLocale.content:type_name -> api.content.v1.RichTextInline
+	173, // 72: api.content.v1.CheckListItemBlockLocale.props:type_name -> api.content.v1.CheckListItemLocaleProps
+	144, // 73: api.content.v1.CheckListItemBlockLocale.content:type_name -> api.content.v1.RichTextInline
+	174, // 74: api.content.v1.QuoteBlockLocale.props:type_name -> api.content.v1.QuoteLocaleProps
+	144, // 75: api.content.v1.QuoteBlockLocale.content:type_name -> api.content.v1.RichTextInline
+	175, // 76: api.content.v1.CodeBlockBlockLocale.props:type_name -> api.content.v1.CodeBlockLocaleProps
+	176, // 77: api.content.v1.DividerBlockLocale.props:type_name -> api.content.v1.DividerLocaleProps
+	177, // 78: api.content.v1.TableBlockLocale.props:type_name -> api.content.v1.TableLocaleProps
+	151, // 79: api.content.v1.TableBlockLocale.content:type_name -> api.content.v1.RichTextTableLocale
+	178, // 80: api.content.v1.P5SketchBlockLocale.props:type_name -> api.content.v1.P5SketchLocaleProps
+	179, // 81: api.content.v1.ThreeSceneBlockLocale.props:type_name -> api.content.v1.ThreeSceneLocaleProps
+	180, // 82: api.content.v1.ShaderBlockLocale.props:type_name -> api.content.v1.ShaderLocaleProps
+	181, // 83: api.content.v1.MathBlockLocale.props:type_name -> api.content.v1.MathLocaleProps
+	182, // 84: api.content.v1.MapBlockLocale.props:type_name -> api.content.v1.MapLocaleProps
+	183, // 85: api.content.v1.FileBlockLocale.props:type_name -> api.content.v1.FileLocaleProps
+	184, // 86: api.content.v1.CalloutBlockLocale.props:type_name -> api.content.v1.CalloutLocaleProps
+	144, // 87: api.content.v1.CalloutBlockLocale.content:type_name -> api.content.v1.RichTextInline
+	185, // 88: api.content.v1.MermaidBlockLocale.props:type_name -> api.content.v1.MermaidLocaleProps
+	186, // 89: api.content.v1.RichTextBlock.paragraph:type_name -> api.content.v1.ParagraphBlock
+	187, // 90: api.content.v1.RichTextBlock.heading:type_name -> api.content.v1.HeadingBlock
+	188, // 91: api.content.v1.RichTextBlock.bullet_list_item:type_name -> api.content.v1.BulletListItemBlock
+	189, // 92: api.content.v1.RichTextBlock.numbered_list_item:type_name -> api.content.v1.NumberedListItemBlock
+	190, // 93: api.content.v1.RichTextBlock.check_list_item:type_name -> api.content.v1.CheckListItemBlock
+	191, // 94: api.content.v1.RichTextBlock.quote:type_name -> api.content.v1.QuoteBlock
+	192, // 95: api.content.v1.RichTextBlock.code_block:type_name -> api.content.v1.CodeBlockBlock
+	193, // 96: api.content.v1.RichTextBlock.divider:type_name -> api.content.v1.DividerBlock
+	194, // 97: api.content.v1.RichTextBlock.table:type_name -> api.content.v1.TableBlock
+	195, // 98: api.content.v1.RichTextBlock.p5_sketch:type_name -> api.content.v1.P5SketchBlock
+	196, // 99: api.content.v1.RichTextBlock.three_scene:type_name -> api.content.v1.ThreeSceneBlock
+	197, // 100: api.content.v1.RichTextBlock.shader:type_name -> api.content.v1.ShaderBlock
+	198, // 101: api.content.v1.RichTextBlock.math:type_name -> api.content.v1.MathBlock
+	199, // 102: api.content.v1.RichTextBlock.map:type_name -> api.content.v1.MapBlock
+	200, // 103: api.content.v1.RichTextBlock.file:type_name -> api.content.v1.FileBlock
+	201, // 104: api.content.v1.RichTextBlock.callout:type_name -> api.content.v1.CalloutBlock
+	202, // 105: api.content.v1.RichTextBlock.mermaid:type_name -> api.content.v1.MermaidBlock
+	203, // 106: api.content.v1.RichTextBlockLocale.paragraph:type_name -> api.content.v1.ParagraphBlockLocale
+	204, // 107: api.content.v1.RichTextBlockLocale.heading:type_name -> api.content.v1.HeadingBlockLocale
+	205, // 108: api.content.v1.RichTextBlockLocale.bullet_list_item:type_name -> api.content.v1.BulletListItemBlockLocale
+	206, // 109: api.content.v1.RichTextBlockLocale.numbered_list_item:type_name -> api.content.v1.NumberedListItemBlockLocale
+	207, // 110: api.content.v1.RichTextBlockLocale.check_list_item:type_name -> api.content.v1.CheckListItemBlockLocale
+	208, // 111: api.content.v1.RichTextBlockLocale.quote:type_name -> api.content.v1.QuoteBlockLocale
+	209, // 112: api.content.v1.RichTextBlockLocale.code_block:type_name -> api.content.v1.CodeBlockBlockLocale
+	210, // 113: api.content.v1.RichTextBlockLocale.divider:type_name -> api.content.v1.DividerBlockLocale
+	211, // 114: api.content.v1.RichTextBlockLocale.table:type_name -> api.content.v1.TableBlockLocale
+	212, // 115: api.content.v1.RichTextBlockLocale.p5_sketch:type_name -> api.content.v1.P5SketchBlockLocale
+	213, // 116: api.content.v1.RichTextBlockLocale.three_scene:type_name -> api.content.v1.ThreeSceneBlockLocale
+	214, // 117: api.content.v1.RichTextBlockLocale.shader:type_name -> api.content.v1.ShaderBlockLocale
+	215, // 118: api.content.v1.RichTextBlockLocale.math:type_name -> api.content.v1.MathBlockLocale
+	216, // 119: api.content.v1.RichTextBlockLocale.map:type_name -> api.content.v1.MapBlockLocale
+	217, // 120: api.content.v1.RichTextBlockLocale.file:type_name -> api.content.v1.FileBlockLocale
+	218, // 121: api.content.v1.RichTextBlockLocale.callout:type_name -> api.content.v1.CalloutBlockLocale
+	219, // 122: api.content.v1.RichTextBlockLocale.mermaid:type_name -> api.content.v1.MermaidBlockLocale
+	186, // 123: api.content.v1.RichTextBlockData.paragraph:type_name -> api.content.v1.ParagraphBlock
+	187, // 124: api.content.v1.RichTextBlockData.heading:type_name -> api.content.v1.HeadingBlock
+	188, // 125: api.content.v1.RichTextBlockData.bullet_list_item:type_name -> api.content.v1.BulletListItemBlock
+	189, // 126: api.content.v1.RichTextBlockData.numbered_list_item:type_name -> api.content.v1.NumberedListItemBlock
+	190, // 127: api.content.v1.RichTextBlockData.check_list_item:type_name -> api.content.v1.CheckListItemBlock
+	191, // 128: api.content.v1.RichTextBlockData.quote:type_name -> api.content.v1.QuoteBlock
+	192, // 129: api.content.v1.RichTextBlockData.code_block:type_name -> api.content.v1.CodeBlockBlock
+	193, // 130: api.content.v1.RichTextBlockData.divider:type_name -> api.content.v1.DividerBlock
+	194, // 131: api.content.v1.RichTextBlockData.table:type_name -> api.content.v1.TableBlock
+	195, // 132: api.content.v1.RichTextBlockData.p5_sketch:type_name -> api.content.v1.P5SketchBlock
+	196, // 133: api.content.v1.RichTextBlockData.three_scene:type_name -> api.content.v1.ThreeSceneBlock
+	197, // 134: api.content.v1.RichTextBlockData.shader:type_name -> api.content.v1.ShaderBlock
+	198, // 135: api.content.v1.RichTextBlockData.math:type_name -> api.content.v1.MathBlock
+	199, // 136: api.content.v1.RichTextBlockData.map:type_name -> api.content.v1.MapBlock
+	200, // 137: api.content.v1.RichTextBlockData.file:type_name -> api.content.v1.FileBlock
+	201, // 138: api.content.v1.RichTextBlockData.callout:type_name -> api.content.v1.CalloutBlock
+	202, // 139: api.content.v1.RichTextBlockData.mermaid:type_name -> api.content.v1.MermaidBlock
+	203, // 140: api.content.v1.RichTextBlockLocaleData.paragraph:type_name -> api.content.v1.ParagraphBlockLocale
+	204, // 141: api.content.v1.RichTextBlockLocaleData.heading:type_name -> api.content.v1.HeadingBlockLocale
+	205, // 142: api.content.v1.RichTextBlockLocaleData.bullet_list_item:type_name -> api.content.v1.BulletListItemBlockLocale
+	206, // 143: api.content.v1.RichTextBlockLocaleData.numbered_list_item:type_name -> api.content.v1.NumberedListItemBlockLocale
+	207, // 144: api.content.v1.RichTextBlockLocaleData.check_list_item:type_name -> api.content.v1.CheckListItemBlockLocale
+	208, // 145: api.content.v1.RichTextBlockLocaleData.quote:type_name -> api.content.v1.QuoteBlockLocale
+	209, // 146: api.content.v1.RichTextBlockLocaleData.code_block:type_name -> api.content.v1.CodeBlockBlockLocale
+	210, // 147: api.content.v1.RichTextBlockLocaleData.divider:type_name -> api.content.v1.DividerBlockLocale
+	211, // 148: api.content.v1.RichTextBlockLocaleData.table:type_name -> api.content.v1.TableBlockLocale
+	212, // 149: api.content.v1.RichTextBlockLocaleData.p5_sketch:type_name -> api.content.v1.P5SketchBlockLocale
+	213, // 150: api.content.v1.RichTextBlockLocaleData.three_scene:type_name -> api.content.v1.ThreeSceneBlockLocale
+	214, // 151: api.content.v1.RichTextBlockLocaleData.shader:type_name -> api.content.v1.ShaderBlockLocale
+	215, // 152: api.content.v1.RichTextBlockLocaleData.math:type_name -> api.content.v1.MathBlockLocale
+	216, // 153: api.content.v1.RichTextBlockLocaleData.map:type_name -> api.content.v1.MapBlockLocale
+	217, // 154: api.content.v1.RichTextBlockLocaleData.file:type_name -> api.content.v1.FileBlockLocale
+	218, // 155: api.content.v1.RichTextBlockLocaleData.callout:type_name -> api.content.v1.CalloutBlockLocale
+	219, // 156: api.content.v1.RichTextBlockLocaleData.mermaid:type_name -> api.content.v1.MermaidBlockLocale
+	220, // 157: api.content.v1.RichTextBlockNode.block:type_name -> api.content.v1.RichTextBlock
+	224, // 158: api.content.v1.RichTextBlockNode.placement:type_name -> api.content.v1.ContentBlockPlacement
+	225, // 159: api.content.v1.RichTextBlockGraph.nodes:type_name -> api.content.v1.RichTextBlockNode
+	221, // 160: api.content.v1.RichTextLocaleOverlay.blocks:type_name -> api.content.v1.RichTextBlockLocale
+	0,   // 161: api.content.v1.RichTextDocument.profile:type_name -> api.content.v1.RichTextProfile
+	226, // 162: api.content.v1.RichTextDocument.base:type_name -> api.content.v1.RichTextBlockGraph
+	227, // 163: api.content.v1.RichTextDocument.locale_overlays:type_name -> api.content.v1.RichTextLocaleOverlay
+	0,   // 164: api.content.v1.LocalizedRichTextDocument.profile:type_name -> api.content.v1.RichTextProfile
+	226, // 165: api.content.v1.LocalizedRichTextDocument.base:type_name -> api.content.v1.RichTextBlockGraph
+	227, // 166: api.content.v1.LocalizedRichTextDocument.locale_overlay:type_name -> api.content.v1.RichTextLocaleOverlay
+	225, // 167: api.content.v1.UpsertRichTextBlock.node:type_name -> api.content.v1.RichTextBlockNode
+	224, // 168: api.content.v1.MoveRichTextBlock.placement:type_name -> api.content.v1.ContentBlockPlacement
+	230, // 169: api.content.v1.RichTextBlockMutation.upsert:type_name -> api.content.v1.UpsertRichTextBlock
+	231, // 170: api.content.v1.RichTextBlockMutation.delete:type_name -> api.content.v1.DeleteRichTextBlock
+	232, // 171: api.content.v1.RichTextBlockMutation.move:type_name -> api.content.v1.MoveRichTextBlock
+	221, // 172: api.content.v1.UpsertRichTextBlockLocale.block:type_name -> api.content.v1.RichTextBlockLocale
+	234, // 173: api.content.v1.RichTextBlockLocaleMutation.upsert:type_name -> api.content.v1.UpsertRichTextBlockLocale
+	235, // 174: api.content.v1.RichTextBlockLocaleMutation.delete:type_name -> api.content.v1.DeleteRichTextBlockLocale
+	236, // 175: api.content.v1.RichTextLocaleMutationGroup.mutations:type_name -> api.content.v1.RichTextBlockLocaleMutation
+	0,   // 176: api.content.v1.RichTextBlockMutationBatch.profile:type_name -> api.content.v1.RichTextProfile
+	233, // 177: api.content.v1.RichTextBlockMutationBatch.base_mutations:type_name -> api.content.v1.RichTextBlockMutation
+	237, // 178: api.content.v1.RichTextBlockMutationBatch.locale_mutation_groups:type_name -> api.content.v1.RichTextLocaleMutationGroup
+	37,  // 179: api.content.v1.PageSectionSettings.max_width:type_name -> api.content.v1.PageSectionSettings.MaxWidth
+	38,  // 180: api.content.v1.PageImmersiveUnitProps.mesh:type_name -> api.content.v1.PageImmersiveUnitProps.Mesh
+	39,  // 181: api.content.v1.PageImmersiveUnitProps.mesh_source:type_name -> api.content.v1.PageImmersiveUnitProps.MeshSource
+	137, // 182: api.content.v1.PageImmersiveUnitProps.mesh_file:type_name -> api.content.v1.FileAttachment
+	137, // 183: api.content.v1.PageImmersiveUnitProps.mesh_optimization_source_file:type_name -> api.content.v1.FileAttachment
+	137, // 184: api.content.v1.PageImmersiveUnitProps.mesh_optimization_file:type_name -> api.content.v1.FileAttachment
+	40,  // 185: api.content.v1.PageImmersiveUnitProps.texture_source:type_name -> api.content.v1.PageImmersiveUnitProps.TextureSource
+	137, // 186: api.content.v1.PageImmersiveUnitProps.texture_file:type_name -> api.content.v1.FileAttachment
+	41,  // 187: api.content.v1.PageImmersiveUnitProps.dark_texture_source:type_name -> api.content.v1.PageImmersiveUnitProps.DarkTextureSource
+	137, // 188: api.content.v1.PageImmersiveUnitProps.dark_texture_file:type_name -> api.content.v1.FileAttachment
+	240, // 189: api.content.v1.PageImmersiveUnit.props:type_name -> api.content.v1.PageImmersiveUnitProps
+	241, // 190: api.content.v1.PageImmersiveUnitLocale.props:type_name -> api.content.v1.PageImmersiveUnitLocaleProps
+	42,  // 191: api.content.v1.ExternalVideoSectionProps.aspect_ratio:type_name -> api.content.v1.ExternalVideoSectionProps.AspectRatio
+	43,  // 192: api.content.v1.PostListSectionProps.layout:type_name -> api.content.v1.PostListSectionProps.Layout
+	44,  // 193: api.content.v1.PostListSectionProps.sort_order:type_name -> api.content.v1.PostListSectionProps.SortOrder
+	45,  // 194: api.content.v1.PostListSectionProps.sort_by:type_name -> api.content.v1.PostListSectionProps.SortBy
+	46,  // 195: api.content.v1.PostListSectionProps.image_aspect_ratio:type_name -> api.content.v1.PostListSectionProps.ImageAspectRatio
+	47,  // 196: api.content.v1.PostListSectionProps.item_size:type_name -> api.content.v1.PostListSectionProps.ItemSize
+	48,  // 197: api.content.v1.PostTableSectionProps.statuses:type_name -> api.content.v1.PostTableSectionProps.StatusesItem
+	49,  // 198: api.content.v1.PostTableSectionProps.filter_fields:type_name -> api.content.v1.PostTableSectionProps.FilterFieldsItem
+	50,  // 199: api.content.v1.PostTableSectionProps.sort_fields:type_name -> api.content.v1.PostTableSectionProps.SortFieldsItem
+	51,  // 200: api.content.v1.PostMapSectionProps.sort_by:type_name -> api.content.v1.PostMapSectionProps.SortBy
+	52,  // 201: api.content.v1.PostMapSectionProps.sort_order:type_name -> api.content.v1.PostMapSectionProps.SortOrder
+	53,  // 202: api.content.v1.PostMapSectionProps.aspect_ratio:type_name -> api.content.v1.PostMapSectionProps.AspectRatio
+	54,  // 203: api.content.v1.PostMapSectionProps.primary_label:type_name -> api.content.v1.PostMapSectionProps.PrimaryLabel
+	55,  // 204: api.content.v1.PostMapSectionProps.preferred_scheme:type_name -> api.content.v1.PostMapSectionProps.PreferredScheme
+	56,  // 205: api.content.v1.PostMapSectionProps.area_labels_mode:type_name -> api.content.v1.PostMapSectionProps.AreaLabelsMode
+	57,  // 206: api.content.v1.PostMapSectionProps.poi_labels_mode:type_name -> api.content.v1.PostMapSectionProps.PoiLabelsMode
+	58,  // 207: api.content.v1.WorkMapSectionProps.work_types:type_name -> api.content.v1.WorkMapSectionProps.WorkTypesItem
+	59,  // 208: api.content.v1.WorkMapSectionProps.sort_by:type_name -> api.content.v1.WorkMapSectionProps.SortBy
+	60,  // 209: api.content.v1.WorkMapSectionProps.sort_order:type_name -> api.content.v1.WorkMapSectionProps.SortOrder
+	61,  // 210: api.content.v1.WorkMapSectionProps.aspect_ratio:type_name -> api.content.v1.WorkMapSectionProps.AspectRatio
+	62,  // 211: api.content.v1.WorkMapSectionProps.primary_label:type_name -> api.content.v1.WorkMapSectionProps.PrimaryLabel
+	63,  // 212: api.content.v1.WorkMapSectionProps.preferred_scheme:type_name -> api.content.v1.WorkMapSectionProps.PreferredScheme
+	64,  // 213: api.content.v1.WorkMapSectionProps.area_labels_mode:type_name -> api.content.v1.WorkMapSectionProps.AreaLabelsMode
+	65,  // 214: api.content.v1.WorkMapSectionProps.poi_labels_mode:type_name -> api.content.v1.WorkMapSectionProps.PoiLabelsMode
+	66,  // 215: api.content.v1.WorkTableSectionProps.work_types:type_name -> api.content.v1.WorkTableSectionProps.WorkTypesItem
+	67,  // 216: api.content.v1.WorkTableSectionProps.statuses:type_name -> api.content.v1.WorkTableSectionProps.StatusesItem
+	68,  // 217: api.content.v1.WorkTableSectionProps.filter_fields:type_name -> api.content.v1.WorkTableSectionProps.FilterFieldsItem
+	69,  // 218: api.content.v1.WorkTableSectionProps.sort_fields:type_name -> api.content.v1.WorkTableSectionProps.SortFieldsItem
+	70,  // 219: api.content.v1.WorkListSectionProps.layout:type_name -> api.content.v1.WorkListSectionProps.Layout
+	71,  // 220: api.content.v1.WorkListSectionProps.sort_order:type_name -> api.content.v1.WorkListSectionProps.SortOrder
+	72,  // 221: api.content.v1.WorkListSectionProps.work_types:type_name -> api.content.v1.WorkListSectionProps.WorkTypesItem
+	73,  // 222: api.content.v1.WorkListSectionProps.sort_by:type_name -> api.content.v1.WorkListSectionProps.SortBy
+	74,  // 223: api.content.v1.WorkListSectionProps.image_aspect_ratio:type_name -> api.content.v1.WorkListSectionProps.ImageAspectRatio
+	75,  // 224: api.content.v1.WorkListSectionProps.item_size:type_name -> api.content.v1.WorkListSectionProps.ItemSize
+	76,  // 225: api.content.v1.ProgramEventListSectionProps.layout:type_name -> api.content.v1.ProgramEventListSectionProps.Layout
+	77,  // 226: api.content.v1.ProgramEventListSectionProps.sort_order:type_name -> api.content.v1.ProgramEventListSectionProps.SortOrder
+	78,  // 227: api.content.v1.ProgramEventListSectionProps.time_window:type_name -> api.content.v1.ProgramEventListSectionProps.TimeWindow
+	79,  // 228: api.content.v1.ProgramEventListSectionProps.sort_by:type_name -> api.content.v1.ProgramEventListSectionProps.SortBy
+	80,  // 229: api.content.v1.ProgramEventListSectionProps.image_aspect_ratio:type_name -> api.content.v1.ProgramEventListSectionProps.ImageAspectRatio
+	81,  // 230: api.content.v1.ProgramEventListSectionProps.item_size:type_name -> api.content.v1.ProgramEventListSectionProps.ItemSize
+	82,  // 231: api.content.v1.ReleaseListSectionProps.layout:type_name -> api.content.v1.ReleaseListSectionProps.Layout
+	83,  // 232: api.content.v1.ReleaseListSectionProps.sort_order:type_name -> api.content.v1.ReleaseListSectionProps.SortOrder
+	84,  // 233: api.content.v1.ReleaseListSectionProps.types:type_name -> api.content.v1.ReleaseListSectionProps.TypesItem
+	85,  // 234: api.content.v1.ReleaseListSectionProps.sort_by:type_name -> api.content.v1.ReleaseListSectionProps.SortBy
+	86,  // 235: api.content.v1.ReleaseListSectionProps.image_aspect_ratio:type_name -> api.content.v1.ReleaseListSectionProps.ImageAspectRatio
+	87,  // 236: api.content.v1.ReleaseListSectionProps.item_size:type_name -> api.content.v1.ReleaseListSectionProps.ItemSize
+	88,  // 237: api.content.v1.ArtistListSectionProps.layout:type_name -> api.content.v1.ArtistListSectionProps.Layout
+	89,  // 238: api.content.v1.ArtistListSectionProps.sort_order:type_name -> api.content.v1.ArtistListSectionProps.SortOrder
+	90,  // 239: api.content.v1.ArtistListSectionProps.sort_by:type_name -> api.content.v1.ArtistListSectionProps.SortBy
+	91,  // 240: api.content.v1.ArtistListSectionProps.image_aspect_ratio:type_name -> api.content.v1.ArtistListSectionProps.ImageAspectRatio
+	92,  // 241: api.content.v1.ArtistListSectionProps.item_size:type_name -> api.content.v1.ArtistListSectionProps.ItemSize
+	93,  // 242: api.content.v1.LabelListSectionProps.layout:type_name -> api.content.v1.LabelListSectionProps.Layout
+	94,  // 243: api.content.v1.LabelListSectionProps.sort_order:type_name -> api.content.v1.LabelListSectionProps.SortOrder
+	95,  // 244: api.content.v1.LabelListSectionProps.sort_by:type_name -> api.content.v1.LabelListSectionProps.SortBy
+	96,  // 245: api.content.v1.LabelListSectionProps.image_aspect_ratio:type_name -> api.content.v1.LabelListSectionProps.ImageAspectRatio
+	97,  // 246: api.content.v1.LabelListSectionProps.item_size:type_name -> api.content.v1.LabelListSectionProps.ItemSize
+	98,  // 247: api.content.v1.AuthorListSectionProps.layout:type_name -> api.content.v1.AuthorListSectionProps.Layout
+	99,  // 248: api.content.v1.AuthorListSectionProps.source:type_name -> api.content.v1.AuthorListSectionProps.Source
+	100, // 249: api.content.v1.AuthorListSectionProps.item_size:type_name -> api.content.v1.AuthorListSectionProps.ItemSize
+	101, // 250: api.content.v1.TextMarqueeSectionProps.direction:type_name -> api.content.v1.TextMarqueeSectionProps.Direction
+	102, // 251: api.content.v1.TextMarqueeSectionProps.speed:type_name -> api.content.v1.TextMarqueeSectionProps.Speed
+	103, // 252: api.content.v1.TextMarqueeSectionProps.item_height:type_name -> api.content.v1.TextMarqueeSectionProps.ItemHeight
+	104, // 253: api.content.v1.TextMarqueeSectionProps.gap:type_name -> api.content.v1.TextMarqueeSectionProps.Gap
+	105, // 254: api.content.v1.TextMarqueeSectionProps.link_target:type_name -> api.content.v1.TextMarqueeSectionProps.LinkTarget
+	359, // 255: api.content.v1.TextMarqueeSectionProps.items:type_name -> api.content.v1.TextMarqueeSectionProps.ItemsItem
+	106, // 256: api.content.v1.ClientMarqueeSectionProps.direction:type_name -> api.content.v1.ClientMarqueeSectionProps.Direction
+	107, // 257: api.content.v1.ClientMarqueeSectionProps.speed:type_name -> api.content.v1.ClientMarqueeSectionProps.Speed
+	108, // 258: api.content.v1.ClientMarqueeSectionProps.item_height:type_name -> api.content.v1.ClientMarqueeSectionProps.ItemHeight
+	109, // 259: api.content.v1.ClientMarqueeSectionProps.gap:type_name -> api.content.v1.ClientMarqueeSectionProps.Gap
+	110, // 260: api.content.v1.ClientMarqueeSectionProps.link_target:type_name -> api.content.v1.ClientMarqueeSectionProps.LinkTarget
+	111, // 261: api.content.v1.ClientMarqueeSectionProps.source:type_name -> api.content.v1.ClientMarqueeSectionProps.Source
+	112, // 262: api.content.v1.ClientMarqueeSectionProps.link_mode:type_name -> api.content.v1.ClientMarqueeSectionProps.LinkMode
+	113, // 263: api.content.v1.ClientMarqueeSectionProps.logo_scale:type_name -> api.content.v1.ClientMarqueeSectionProps.LogoScale
+	114, // 264: api.content.v1.ClientMarqueeSectionProps.fallback_mode:type_name -> api.content.v1.ClientMarqueeSectionProps.FallbackMode
+	115, // 265: api.content.v1.LabelMarqueeSectionProps.direction:type_name -> api.content.v1.LabelMarqueeSectionProps.Direction
+	116, // 266: api.content.v1.LabelMarqueeSectionProps.speed:type_name -> api.content.v1.LabelMarqueeSectionProps.Speed
+	117, // 267: api.content.v1.LabelMarqueeSectionProps.item_height:type_name -> api.content.v1.LabelMarqueeSectionProps.ItemHeight
+	118, // 268: api.content.v1.LabelMarqueeSectionProps.gap:type_name -> api.content.v1.LabelMarqueeSectionProps.Gap
+	119, // 269: api.content.v1.LabelMarqueeSectionProps.link_target:type_name -> api.content.v1.LabelMarqueeSectionProps.LinkTarget
+	120, // 270: api.content.v1.LabelMarqueeSectionProps.source:type_name -> api.content.v1.LabelMarqueeSectionProps.Source
+	121, // 271: api.content.v1.LabelMarqueeSectionProps.link_mode:type_name -> api.content.v1.LabelMarqueeSectionProps.LinkMode
+	122, // 272: api.content.v1.LabelMarqueeSectionProps.logo_scale:type_name -> api.content.v1.LabelMarqueeSectionProps.LogoScale
+	123, // 273: api.content.v1.LabelMarqueeSectionProps.fallback_mode:type_name -> api.content.v1.LabelMarqueeSectionProps.FallbackMode
+	124, // 274: api.content.v1.MapSectionProps.aspect_ratio:type_name -> api.content.v1.MapSectionProps.AspectRatio
+	125, // 275: api.content.v1.MapSectionProps.variant:type_name -> api.content.v1.MapSectionProps.Variant
+	126, // 276: api.content.v1.MapSectionProps.preferred_scheme:type_name -> api.content.v1.MapSectionProps.PreferredScheme
+	127, // 277: api.content.v1.MapSectionProps.area_labels_mode:type_name -> api.content.v1.MapSectionProps.AreaLabelsMode
+	128, // 278: api.content.v1.MapSectionProps.poi_labels_mode:type_name -> api.content.v1.MapSectionProps.PoiLabelsMode
+	129, // 279: api.content.v1.ImmersiveSceneSectionProps.playback:type_name -> api.content.v1.ImmersiveSceneSectionProps.Playback
+	130, // 280: api.content.v1.ImmersiveSceneSectionProps.transition:type_name -> api.content.v1.ImmersiveSceneSectionProps.Transition
+	131, // 281: api.content.v1.ImmersiveSceneSectionProps.texture_size:type_name -> api.content.v1.ImmersiveSceneSectionProps.TextureSize
+	132, // 282: api.content.v1.ImmersiveSceneSectionProps.preferred_scheme:type_name -> api.content.v1.ImmersiveSceneSectionProps.PreferredScheme
+	133, // 283: api.content.v1.ImmersiveSceneSectionProps.text_color_source:type_name -> api.content.v1.ImmersiveSceneSectionProps.TextColorSource
+	134, // 284: api.content.v1.ImmersiveSceneSectionProps.dark_text_color_source:type_name -> api.content.v1.ImmersiveSceneSectionProps.DarkTextColorSource
+	360, // 285: api.content.v1.ColumnsSectionProps.columns:type_name -> api.content.v1.ColumnsSectionProps.ColumnsItem
+	135, // 286: api.content.v1.EmbedSectionProps.height_mode:type_name -> api.content.v1.EmbedSectionProps.HeightMode
+	244, // 287: api.content.v1.RichTextSection.props:type_name -> api.content.v1.RichTextSectionProps
+	226, // 288: api.content.v1.RichTextSection.blocks:type_name -> api.content.v1.RichTextBlockGraph
+	245, // 289: api.content.v1.ExternalVideoSection.props:type_name -> api.content.v1.ExternalVideoSectionProps
+	246, // 290: api.content.v1.PostListSection.props:type_name -> api.content.v1.PostListSectionProps
+	247, // 291: api.content.v1.PostTableSection.props:type_name -> api.content.v1.PostTableSectionProps
+	248, // 292: api.content.v1.PostMapSection.props:type_name -> api.content.v1.PostMapSectionProps
+	249, // 293: api.content.v1.WorkMapSection.props:type_name -> api.content.v1.WorkMapSectionProps
+	250, // 294: api.content.v1.WorkTableSection.props:type_name -> api.content.v1.WorkTableSectionProps
+	251, // 295: api.content.v1.WorkListSection.props:type_name -> api.content.v1.WorkListSectionProps
+	252, // 296: api.content.v1.ProgramEventListSection.props:type_name -> api.content.v1.ProgramEventListSectionProps
+	253, // 297: api.content.v1.ReleaseListSection.props:type_name -> api.content.v1.ReleaseListSectionProps
+	254, // 298: api.content.v1.ArtistListSection.props:type_name -> api.content.v1.ArtistListSectionProps
+	255, // 299: api.content.v1.LabelListSection.props:type_name -> api.content.v1.LabelListSectionProps
+	256, // 300: api.content.v1.AuthorListSection.props:type_name -> api.content.v1.AuthorListSectionProps
+	257, // 301: api.content.v1.FormSection.props:type_name -> api.content.v1.FormSectionProps
+	258, // 302: api.content.v1.TextMarqueeSection.props:type_name -> api.content.v1.TextMarqueeSectionProps
+	259, // 303: api.content.v1.ClientMarqueeSection.props:type_name -> api.content.v1.ClientMarqueeSectionProps
+	260, // 304: api.content.v1.LabelMarqueeSection.props:type_name -> api.content.v1.LabelMarqueeSectionProps
+	261, // 305: api.content.v1.MapSection.props:type_name -> api.content.v1.MapSectionProps
+	262, // 306: api.content.v1.ImmersiveSceneSection.props:type_name -> api.content.v1.ImmersiveSceneSectionProps
+	242, // 307: api.content.v1.ImmersiveSceneSection.units:type_name -> api.content.v1.PageImmersiveUnit
+	263, // 308: api.content.v1.ColumnsSection.props:type_name -> api.content.v1.ColumnsSectionProps
+	264, // 309: api.content.v1.MermaidSection.props:type_name -> api.content.v1.MermaidSectionProps
+	265, // 310: api.content.v1.EmbedSection.props:type_name -> api.content.v1.EmbedSectionProps
+	266, // 311: api.content.v1.RichTextSectionLocale.props:type_name -> api.content.v1.RichTextSectionLocaleProps
+	227, // 312: api.content.v1.RichTextSectionLocale.blocks:type_name -> api.content.v1.RichTextLocaleOverlay
+	267, // 313: api.content.v1.ExternalVideoSectionLocale.props:type_name -> api.content.v1.ExternalVideoSectionLocaleProps
+	268, // 314: api.content.v1.PostListSectionLocale.props:type_name -> api.content.v1.PostListSectionLocaleProps
+	269, // 315: api.content.v1.PostTableSectionLocale.props:type_name -> api.content.v1.PostTableSectionLocaleProps
+	270, // 316: api.content.v1.PostMapSectionLocale.props:type_name -> api.content.v1.PostMapSectionLocaleProps
+	271, // 317: api.content.v1.WorkMapSectionLocale.props:type_name -> api.content.v1.WorkMapSectionLocaleProps
+	272, // 318: api.content.v1.WorkTableSectionLocale.props:type_name -> api.content.v1.WorkTableSectionLocaleProps
+	273, // 319: api.content.v1.WorkListSectionLocale.props:type_name -> api.content.v1.WorkListSectionLocaleProps
+	274, // 320: api.content.v1.ProgramEventListSectionLocale.props:type_name -> api.content.v1.ProgramEventListSectionLocaleProps
+	275, // 321: api.content.v1.ReleaseListSectionLocale.props:type_name -> api.content.v1.ReleaseListSectionLocaleProps
+	276, // 322: api.content.v1.ArtistListSectionLocale.props:type_name -> api.content.v1.ArtistListSectionLocaleProps
+	277, // 323: api.content.v1.LabelListSectionLocale.props:type_name -> api.content.v1.LabelListSectionLocaleProps
+	278, // 324: api.content.v1.AuthorListSectionLocale.props:type_name -> api.content.v1.AuthorListSectionLocaleProps
+	279, // 325: api.content.v1.FormSectionLocale.props:type_name -> api.content.v1.FormSectionLocaleProps
+	280, // 326: api.content.v1.TextMarqueeSectionLocale.props:type_name -> api.content.v1.TextMarqueeSectionLocaleProps
+	281, // 327: api.content.v1.ClientMarqueeSectionLocale.props:type_name -> api.content.v1.ClientMarqueeSectionLocaleProps
+	282, // 328: api.content.v1.LabelMarqueeSectionLocale.props:type_name -> api.content.v1.LabelMarqueeSectionLocaleProps
+	283, // 329: api.content.v1.MapSectionLocale.props:type_name -> api.content.v1.MapSectionLocaleProps
+	284, // 330: api.content.v1.ImmersiveSceneSectionLocale.props:type_name -> api.content.v1.ImmersiveSceneSectionLocaleProps
+	243, // 331: api.content.v1.ImmersiveSceneSectionLocale.units:type_name -> api.content.v1.PageImmersiveUnitLocale
+	285, // 332: api.content.v1.ColumnsSectionLocale.props:type_name -> api.content.v1.ColumnsSectionLocaleProps
+	286, // 333: api.content.v1.MermaidSectionLocale.props:type_name -> api.content.v1.MermaidSectionLocaleProps
+	287, // 334: api.content.v1.EmbedSectionLocale.props:type_name -> api.content.v1.EmbedSectionLocaleProps
+	239, // 335: api.content.v1.PageSection.settings:type_name -> api.content.v1.PageSectionSettings
+	288, // 336: api.content.v1.PageSection.rich_text:type_name -> api.content.v1.RichTextSection
+	289, // 337: api.content.v1.PageSection.external_video:type_name -> api.content.v1.ExternalVideoSection
+	290, // 338: api.content.v1.PageSection.post_list:type_name -> api.content.v1.PostListSection
+	291, // 339: api.content.v1.PageSection.post_table:type_name -> api.content.v1.PostTableSection
+	292, // 340: api.content.v1.PageSection.post_map:type_name -> api.content.v1.PostMapSection
+	293, // 341: api.content.v1.PageSection.work_map:type_name -> api.content.v1.WorkMapSection
+	294, // 342: api.content.v1.PageSection.work_table:type_name -> api.content.v1.WorkTableSection
+	295, // 343: api.content.v1.PageSection.work_list:type_name -> api.content.v1.WorkListSection
+	296, // 344: api.content.v1.PageSection.program_event_list:type_name -> api.content.v1.ProgramEventListSection
+	297, // 345: api.content.v1.PageSection.release_list:type_name -> api.content.v1.ReleaseListSection
+	298, // 346: api.content.v1.PageSection.artist_list:type_name -> api.content.v1.ArtistListSection
+	299, // 347: api.content.v1.PageSection.label_list:type_name -> api.content.v1.LabelListSection
+	300, // 348: api.content.v1.PageSection.author_list:type_name -> api.content.v1.AuthorListSection
+	301, // 349: api.content.v1.PageSection.form:type_name -> api.content.v1.FormSection
+	302, // 350: api.content.v1.PageSection.text_marquee:type_name -> api.content.v1.TextMarqueeSection
+	303, // 351: api.content.v1.PageSection.client_marquee:type_name -> api.content.v1.ClientMarqueeSection
+	304, // 352: api.content.v1.PageSection.label_marquee:type_name -> api.content.v1.LabelMarqueeSection
+	305, // 353: api.content.v1.PageSection.map:type_name -> api.content.v1.MapSection
+	306, // 354: api.content.v1.PageSection.immersive_scene:type_name -> api.content.v1.ImmersiveSceneSection
+	307, // 355: api.content.v1.PageSection.columns:type_name -> api.content.v1.ColumnsSection
+	308, // 356: api.content.v1.PageSection.mermaid:type_name -> api.content.v1.MermaidSection
+	309, // 357: api.content.v1.PageSection.embed:type_name -> api.content.v1.EmbedSection
+	310, // 358: api.content.v1.PageSectionLocale.rich_text:type_name -> api.content.v1.RichTextSectionLocale
+	311, // 359: api.content.v1.PageSectionLocale.external_video:type_name -> api.content.v1.ExternalVideoSectionLocale
+	312, // 360: api.content.v1.PageSectionLocale.post_list:type_name -> api.content.v1.PostListSectionLocale
+	313, // 361: api.content.v1.PageSectionLocale.post_table:type_name -> api.content.v1.PostTableSectionLocale
+	314, // 362: api.content.v1.PageSectionLocale.post_map:type_name -> api.content.v1.PostMapSectionLocale
+	315, // 363: api.content.v1.PageSectionLocale.work_map:type_name -> api.content.v1.WorkMapSectionLocale
+	316, // 364: api.content.v1.PageSectionLocale.work_table:type_name -> api.content.v1.WorkTableSectionLocale
+	317, // 365: api.content.v1.PageSectionLocale.work_list:type_name -> api.content.v1.WorkListSectionLocale
+	318, // 366: api.content.v1.PageSectionLocale.program_event_list:type_name -> api.content.v1.ProgramEventListSectionLocale
+	319, // 367: api.content.v1.PageSectionLocale.release_list:type_name -> api.content.v1.ReleaseListSectionLocale
+	320, // 368: api.content.v1.PageSectionLocale.artist_list:type_name -> api.content.v1.ArtistListSectionLocale
+	321, // 369: api.content.v1.PageSectionLocale.label_list:type_name -> api.content.v1.LabelListSectionLocale
+	322, // 370: api.content.v1.PageSectionLocale.author_list:type_name -> api.content.v1.AuthorListSectionLocale
+	323, // 371: api.content.v1.PageSectionLocale.form:type_name -> api.content.v1.FormSectionLocale
+	324, // 372: api.content.v1.PageSectionLocale.text_marquee:type_name -> api.content.v1.TextMarqueeSectionLocale
+	325, // 373: api.content.v1.PageSectionLocale.client_marquee:type_name -> api.content.v1.ClientMarqueeSectionLocale
+	326, // 374: api.content.v1.PageSectionLocale.label_marquee:type_name -> api.content.v1.LabelMarqueeSectionLocale
+	327, // 375: api.content.v1.PageSectionLocale.map:type_name -> api.content.v1.MapSectionLocale
+	328, // 376: api.content.v1.PageSectionLocale.immersive_scene:type_name -> api.content.v1.ImmersiveSceneSectionLocale
+	329, // 377: api.content.v1.PageSectionLocale.columns:type_name -> api.content.v1.ColumnsSectionLocale
+	330, // 378: api.content.v1.PageSectionLocale.mermaid:type_name -> api.content.v1.MermaidSectionLocale
+	331, // 379: api.content.v1.PageSectionLocale.embed:type_name -> api.content.v1.EmbedSectionLocale
+	239, // 380: api.content.v1.PageSectionData.settings:type_name -> api.content.v1.PageSectionSettings
+	288, // 381: api.content.v1.PageSectionData.rich_text:type_name -> api.content.v1.RichTextSection
+	289, // 382: api.content.v1.PageSectionData.external_video:type_name -> api.content.v1.ExternalVideoSection
+	290, // 383: api.content.v1.PageSectionData.post_list:type_name -> api.content.v1.PostListSection
+	291, // 384: api.content.v1.PageSectionData.post_table:type_name -> api.content.v1.PostTableSection
+	292, // 385: api.content.v1.PageSectionData.post_map:type_name -> api.content.v1.PostMapSection
+	293, // 386: api.content.v1.PageSectionData.work_map:type_name -> api.content.v1.WorkMapSection
+	294, // 387: api.content.v1.PageSectionData.work_table:type_name -> api.content.v1.WorkTableSection
+	295, // 388: api.content.v1.PageSectionData.work_list:type_name -> api.content.v1.WorkListSection
+	296, // 389: api.content.v1.PageSectionData.program_event_list:type_name -> api.content.v1.ProgramEventListSection
+	297, // 390: api.content.v1.PageSectionData.release_list:type_name -> api.content.v1.ReleaseListSection
+	298, // 391: api.content.v1.PageSectionData.artist_list:type_name -> api.content.v1.ArtistListSection
+	299, // 392: api.content.v1.PageSectionData.label_list:type_name -> api.content.v1.LabelListSection
+	300, // 393: api.content.v1.PageSectionData.author_list:type_name -> api.content.v1.AuthorListSection
+	301, // 394: api.content.v1.PageSectionData.form:type_name -> api.content.v1.FormSection
+	302, // 395: api.content.v1.PageSectionData.text_marquee:type_name -> api.content.v1.TextMarqueeSection
+	303, // 396: api.content.v1.PageSectionData.client_marquee:type_name -> api.content.v1.ClientMarqueeSection
+	304, // 397: api.content.v1.PageSectionData.label_marquee:type_name -> api.content.v1.LabelMarqueeSection
+	305, // 398: api.content.v1.PageSectionData.map:type_name -> api.content.v1.MapSection
+	306, // 399: api.content.v1.PageSectionData.immersive_scene:type_name -> api.content.v1.ImmersiveSceneSection
+	307, // 400: api.content.v1.PageSectionData.columns:type_name -> api.content.v1.ColumnsSection
+	308, // 401: api.content.v1.PageSectionData.mermaid:type_name -> api.content.v1.MermaidSection
+	309, // 402: api.content.v1.PageSectionData.embed:type_name -> api.content.v1.EmbedSection
+	310, // 403: api.content.v1.PageSectionLocaleData.rich_text:type_name -> api.content.v1.RichTextSectionLocale
+	311, // 404: api.content.v1.PageSectionLocaleData.external_video:type_name -> api.content.v1.ExternalVideoSectionLocale
+	312, // 405: api.content.v1.PageSectionLocaleData.post_list:type_name -> api.content.v1.PostListSectionLocale
+	313, // 406: api.content.v1.PageSectionLocaleData.post_table:type_name -> api.content.v1.PostTableSectionLocale
+	314, // 407: api.content.v1.PageSectionLocaleData.post_map:type_name -> api.content.v1.PostMapSectionLocale
+	315, // 408: api.content.v1.PageSectionLocaleData.work_map:type_name -> api.content.v1.WorkMapSectionLocale
+	316, // 409: api.content.v1.PageSectionLocaleData.work_table:type_name -> api.content.v1.WorkTableSectionLocale
+	317, // 410: api.content.v1.PageSectionLocaleData.work_list:type_name -> api.content.v1.WorkListSectionLocale
+	318, // 411: api.content.v1.PageSectionLocaleData.program_event_list:type_name -> api.content.v1.ProgramEventListSectionLocale
+	319, // 412: api.content.v1.PageSectionLocaleData.release_list:type_name -> api.content.v1.ReleaseListSectionLocale
+	320, // 413: api.content.v1.PageSectionLocaleData.artist_list:type_name -> api.content.v1.ArtistListSectionLocale
+	321, // 414: api.content.v1.PageSectionLocaleData.label_list:type_name -> api.content.v1.LabelListSectionLocale
+	322, // 415: api.content.v1.PageSectionLocaleData.author_list:type_name -> api.content.v1.AuthorListSectionLocale
+	323, // 416: api.content.v1.PageSectionLocaleData.form:type_name -> api.content.v1.FormSectionLocale
+	324, // 417: api.content.v1.PageSectionLocaleData.text_marquee:type_name -> api.content.v1.TextMarqueeSectionLocale
+	325, // 418: api.content.v1.PageSectionLocaleData.client_marquee:type_name -> api.content.v1.ClientMarqueeSectionLocale
+	326, // 419: api.content.v1.PageSectionLocaleData.label_marquee:type_name -> api.content.v1.LabelMarqueeSectionLocale
+	327, // 420: api.content.v1.PageSectionLocaleData.map:type_name -> api.content.v1.MapSectionLocale
+	328, // 421: api.content.v1.PageSectionLocaleData.immersive_scene:type_name -> api.content.v1.ImmersiveSceneSectionLocale
+	329, // 422: api.content.v1.PageSectionLocaleData.columns:type_name -> api.content.v1.ColumnsSectionLocale
+	330, // 423: api.content.v1.PageSectionLocaleData.mermaid:type_name -> api.content.v1.MermaidSectionLocale
+	331, // 424: api.content.v1.PageSectionLocaleData.embed:type_name -> api.content.v1.EmbedSectionLocale
+	332, // 425: api.content.v1.PageSectionNode.section:type_name -> api.content.v1.PageSection
+	336, // 426: api.content.v1.PageSectionNode.placement:type_name -> api.content.v1.PageSectionPlacement
+	337, // 427: api.content.v1.PageSectionGraph.nodes:type_name -> api.content.v1.PageSectionNode
+	333, // 428: api.content.v1.PageLocaleOverlay.sections:type_name -> api.content.v1.PageSectionLocale
+	338, // 429: api.content.v1.PageDocument.base:type_name -> api.content.v1.PageSectionGraph
+	339, // 430: api.content.v1.PageDocument.locale_overlays:type_name -> api.content.v1.PageLocaleOverlay
+	338, // 431: api.content.v1.LocalizedPageDocument.base:type_name -> api.content.v1.PageSectionGraph
+	339, // 432: api.content.v1.LocalizedPageDocument.locale_overlay:type_name -> api.content.v1.PageLocaleOverlay
+	337, // 433: api.content.v1.UpsertPageSection.node:type_name -> api.content.v1.PageSectionNode
+	336, // 434: api.content.v1.MovePageSection.placement:type_name -> api.content.v1.PageSectionPlacement
+	233, // 435: api.content.v1.MutatePageRichTextBlock.mutation:type_name -> api.content.v1.RichTextBlockMutation
+	342, // 436: api.content.v1.PageSectionMutation.upsert:type_name -> api.content.v1.UpsertPageSection
+	343, // 437: api.content.v1.PageSectionMutation.delete:type_name -> api.content.v1.DeletePageSection
+	344, // 438: api.content.v1.PageSectionMutation.move:type_name -> api.content.v1.MovePageSection
+	345, // 439: api.content.v1.PageSectionMutation.mutate_rich_text_block:type_name -> api.content.v1.MutatePageRichTextBlock
+	333, // 440: api.content.v1.UpsertPageSectionLocale.section:type_name -> api.content.v1.PageSectionLocale
+	236, // 441: api.content.v1.MutatePageRichTextBlockLocale.mutation:type_name -> api.content.v1.RichTextBlockLocaleMutation
+	347, // 442: api.content.v1.PageSectionLocaleMutation.upsert:type_name -> api.content.v1.UpsertPageSectionLocale
+	348, // 443: api.content.v1.PageSectionLocaleMutation.delete:type_name -> api.content.v1.DeletePageSectionLocale
+	349, // 444: api.content.v1.PageSectionLocaleMutation.mutate_rich_text_block:type_name -> api.content.v1.MutatePageRichTextBlockLocale
+	350, // 445: api.content.v1.PageLocaleMutationGroup.mutations:type_name -> api.content.v1.PageSectionLocaleMutation
+	346, // 446: api.content.v1.PageSectionMutationBatch.base_mutations:type_name -> api.content.v1.PageSectionMutation
+	351, // 447: api.content.v1.PageSectionMutationBatch.locale_mutation_groups:type_name -> api.content.v1.PageLocaleMutationGroup
+	353, // 448: api.content.v1.ContentBlockMediaItem.selector:type_name -> api.content.v1.ContentBlockMediaSelector
+	137, // 449: api.content.v1.ContentBlockMediaItem.attachment:type_name -> api.content.v1.FileAttachment
+	361, // 450: api.content.v1.ContentBlockMediaItem.delivery:type_name -> api.common.v1.MediaDelivery
+	3,   // 451: api.content.v1.ContentBlockMediaItem.download_availability:type_name -> api.content.v1.ContentBlockDownloadAvailability
+	4,   // 452: api.content.v1.ContentBlockMediaItem.download_action:type_name -> api.content.v1.ContentBlockDownloadAction
+	25,  // 453: api.content.v1.ShaderProps.StagesItem.kind:type_name -> api.content.v1.ShaderProps.StagesItem.Kind
+	357, // 454: api.content.v1.ShaderProps.StagesItem.channels:type_name -> api.content.v1.ShaderProps.StagesItem.ChannelsItem
+	26,  // 455: api.content.v1.ShaderProps.StagesItem.ChannelsItem.kind:type_name -> api.content.v1.ShaderProps.StagesItem.ChannelsItem.Kind
+	27,  // 456: api.content.v1.ShaderProps.StagesItem.ChannelsItem.buffer:type_name -> api.content.v1.ShaderProps.StagesItem.ChannelsItem.Buffer
+	137, // 457: api.content.v1.ShaderProps.StagesItem.ChannelsItem.file:type_name -> api.content.v1.FileAttachment
+	137, // 458: api.content.v1.ShaderProps.StagesItem.ChannelsItem.faces:type_name -> api.content.v1.FileAttachment
+	358, // 459: api.content.v1.ShaderProps.StagesItem.ChannelsItem.sampler:type_name -> api.content.v1.ShaderProps.StagesItem.ChannelsItem.SamplerValue
+	28,  // 460: api.content.v1.ShaderProps.StagesItem.ChannelsItem.SamplerValue.filter:type_name -> api.content.v1.ShaderProps.StagesItem.ChannelsItem.SamplerValue.Filter
+	29,  // 461: api.content.v1.ShaderProps.StagesItem.ChannelsItem.SamplerValue.wrap:type_name -> api.content.v1.ShaderProps.StagesItem.ChannelsItem.SamplerValue.Wrap
+	462, // [462:462] is the sub-list for method output_type
+	462, // [462:462] is the sub-list for method input_type
+	462, // [462:462] is the sub-list for extension type_name
+	462, // [462:462] is the sub-list for extension extendee
+	0,   // [0:462] is the sub-list for field type_name
 }
 
 func init() { file_api_content_v1_block_content_proto_init() }
@@ -26515,6 +26618,7 @@ func file_api_content_v1_block_content_proto_init() {
 	file_api_content_v1_block_content_proto_msgTypes[30].OneofWrappers = []any{}
 	file_api_content_v1_block_content_proto_msgTypes[31].OneofWrappers = []any{}
 	file_api_content_v1_block_content_proto_msgTypes[32].OneofWrappers = []any{}
+	file_api_content_v1_block_content_proto_msgTypes[33].OneofWrappers = []any{}
 	file_api_content_v1_block_content_proto_msgTypes[39].OneofWrappers = []any{}
 	file_api_content_v1_block_content_proto_msgTypes[42].OneofWrappers = []any{}
 	file_api_content_v1_block_content_proto_msgTypes[43].OneofWrappers = []any{}
@@ -26753,7 +26857,7 @@ func file_api_content_v1_block_content_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_api_content_v1_block_content_proto_rawDesc), len(file_api_content_v1_block_content_proto_rawDesc)),
-			NumEnums:      135,
+			NumEnums:      136,
 			NumMessages:   225,
 			NumExtensions: 0,
 			NumServices:   0,

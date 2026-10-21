@@ -38,7 +38,7 @@ import {
 } from "./block_content_pb.ts";
 
 export const contentBlockCatalogFingerprint =
-  "d876a2c013cb49556f8953118b47c81ea0a13262db8f06581672048e48a761a6" as const;
+  "ce1b6255aa04815d432011e7375b39ce4bcbebae426d473eddd00cae835e8401" as const;
 export const contentBlockRuntimeForbiddenFields = [
   "_tempUrl",
   "allowOriginalDownload",
@@ -374,6 +374,28 @@ export const richTextBlockCatalog = {
         values: ["auto", "16:9", "4:3", "1:1", "9:16"],
         default: "auto",
         ownership: "shared",
+      },
+      linkPresentation: {
+        type: "enum",
+        values: ["auto", "link", "card", "video"],
+        default: "auto",
+        ownership: "shared",
+      },
+      linkSiteName: {
+        type: "string",
+        default: "",
+        ownership: "shared",
+      },
+      linkDescription: {
+        type: "string",
+        default: "",
+        ownership: "locale",
+        translatable: true,
+      },
+      linkThumbnail: {
+        type: "file_attachment",
+        ownership: "shared",
+        file_reference: "link_thumbnail",
       },
     },
     content: "inline",
@@ -3158,6 +3180,9 @@ export const contentBlockFileReferencePolicies = {
   "immersive.dark_texture": {
     mime_prefixes: ["image/"],
   },
+  link_thumbnail: {
+    mime_prefixes: ["image/"],
+  },
 } as const;
 export const richTextBlockKindByProtoCase = {
   paragraph: "paragraph",
@@ -3203,7 +3228,7 @@ export const pageSectionKindByProtoCase = {
   embed: "embed",
 } as const;
 export const richTextCollaborativeTextCatalog = {
-  paragraph: ["content"],
+  paragraph: ["props.linkSiteName", "props.linkDescription", "content"],
   heading: ["content"],
   "bullet-list-item": ["content"],
   "numbered-list-item": ["content"],
@@ -3561,6 +3586,27 @@ function validateFields(
   }
 }
 
+// Link presentation media follows the profile's paragraph video permission; restricted profiles stay media-free.
+function validateProfileLinkMedia(
+  kind: string,
+  props: unknown,
+  profile: keyof typeof richTextProfiles,
+  path: string,
+): void {
+  const thumbnail = (props as { linkThumbnail?: unknown } | undefined)
+    ?.linkThumbnail;
+  if (
+    kind === "paragraph" &&
+    thumbnail !== undefined &&
+    thumbnail !== null &&
+    !richTextProfiles[profile].paragraph_external_video
+  )
+    fail(
+      path + ".linkThumbnail",
+      "profile",
+      "link thumbnail is forbidden by profile",
+    );
+}
 function validateInlineStyles(
   value: unknown,
   profile: keyof typeof richTextProfiles,
@@ -3757,6 +3803,12 @@ function validateRichGraph(
       new Set(["shared", "source"]),
       nodePath + ".props",
       mode,
+    );
+    validateProfileLinkMedia(
+      kind,
+      blockValue.props,
+      profile,
+      nodePath + ".props",
     );
     if (placement.parentBlockId !== undefined)
       requireUuid(
@@ -4581,6 +4633,12 @@ export function extractContentStorageFileReferences(
   };
   if (sharedData.value.case === "file")
     append(sharedData.value.value.props?.attachment, "file", "file");
+  if (sharedData.value.case === "paragraph")
+    append(
+      sharedData.value.value.props?.linkThumbnail,
+      "paragraph.linkThumbnail",
+      "link_thumbnail",
+    );
   if (sharedData.value.case === "shader")
     sharedData.value.value.props?.stages.forEach((stage, stageIndex) =>
       stage.channels.forEach((channel, channelIndex) => {
@@ -4783,6 +4841,7 @@ export function normalizeContentStorageShared(
       "$.shared.props",
       mode,
     );
+    validateProfileLinkMedia(kind, props, profile, "$.shared.props");
     normalizePresentStorageFields(
       props,
       richTextBlockCatalog[kind as RichTextBlockKind].fields as FieldCatalog,
@@ -5986,6 +6045,14 @@ export function extractRichTextFileReferences(
         block.value.value.props?.attachment,
         block.id,
         "file",
+      );
+      if (ref) result.push(ref);
+    }
+    if (block.value.case === "paragraph") {
+      const ref = activeReference(
+        block.value.value.props?.linkThumbnail,
+        block.id,
+        "paragraph.linkThumbnail",
       );
       if (ref) result.push(ref);
     }

@@ -3829,6 +3829,26 @@
       ]
     },
     {
+      "service": "api.manage.v1.LinkPreviewService",
+      "procedures": [
+        {
+          "name": "GetLinkPreview",
+          "consumerStatus": "verified",
+          "consumers": [
+            {
+              "repository": "web",
+              "file": "lib/actions/link-preview.ts",
+              "symbol": "getLinkPreviewAction",
+              "call": "createLinkPreviewClient().getLinkPreview({ url })",
+              "entrypoint": "The rich-text link presentation menu reads a card or video preview before writing the paragraph"
+            }
+          ],
+          "consumerTests": ["web/lib/actions/link-preview.test.ts"],
+          "providerTests": ["api/internal/filemedia/link_preview_test.go"]
+        }
+      ]
+    },
+    {
       "service": "api.manage.v1.MailAdapterService",
       "procedures": [
         {

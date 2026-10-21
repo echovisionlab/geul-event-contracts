@@ -151,11 +151,21 @@ message ParagraphProps {
     ASPECT_RATIO_X_1_1 = 4;
     ASPECT_RATIO_X_9_16 = 5;
   }
+  enum LinkPresentation {
+    LINK_PRESENTATION_UNSPECIFIED = 0;
+    LINK_PRESENTATION_AUTO = 1;
+    LINK_PRESENTATION_LINK = 2;
+    LINK_PRESENTATION_CARD = 3;
+    LINK_PRESENTATION_VIDEO = 4;
+  }
   optional string background_color = 1;
   optional string text_color = 2;
   optional TextAlignment text_alignment = 3;
   optional int32 preview_width = 4;
   optional AspectRatio aspect_ratio = 5;
+  optional LinkPresentation link_presentation = 6;
+  optional string link_site_name = 7;
+  FileAttachment link_thumbnail = 8;
 }
 
 message HeadingProps {
@@ -525,7 +535,7 @@ message MermaidProps {
 }
 
 message ParagraphLocaleProps {
-
+  optional string link_description = 1;
 }
 
 message HeadingLocaleProps {

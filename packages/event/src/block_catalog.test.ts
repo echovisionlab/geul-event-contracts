@@ -1052,6 +1052,29 @@ describe("generated storage materializers", () => {
       ).not.toThrow();
   });
 
+  it("allows a paragraph link thumbnail only where paragraph video is allowed", () => {
+    const card = create(RichTextBlockDataSchema, {
+      value: {
+        case: "paragraph",
+        value: {
+          props: {
+            linkThumbnail: { state: { case: "activeFileId", value: BLOCK_ID } },
+          },
+        },
+      },
+    });
+    expect(
+      normalizeContentStorageShared(
+        "post",
+        "paragraph",
+        card,
+      ).fileReferences.map((reference) => reference.referencePath),
+    ).toEqual(["paragraph.linkThumbnail"]);
+    expect(() =>
+      normalizeContentStorageShared("email", "paragraph", card),
+    ).toThrow(/link thumbnail is forbidden/);
+  });
+
   it("owns canonical shared validation, modes, refs, and flattener reuse", () => {
     const upperFileId = BLOCK_ID.toUpperCase();
     const active = create(RichTextBlockDataSchema, {
