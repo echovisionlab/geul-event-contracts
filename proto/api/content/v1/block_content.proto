@@ -161,7 +161,7 @@ message ParagraphProps {
   optional string background_color = 1;
   optional string text_color = 2;
   optional TextAlignment text_alignment = 3;
-  optional int32 preview_width = 4;
+  optional int32 display_size = 4;
   optional AspectRatio aspect_ratio = 5;
   optional LinkPresentation link_presentation = 6;
   optional string link_site_name = 7;
@@ -291,7 +291,7 @@ message CodeBlockProps {
     TEXT_ALIGNMENT_RIGHT = 3;
   }
   optional Language language = 1;
-  optional int32 preview_width = 2;
+  optional int32 display_size = 2;
   optional TextAlignment text_alignment = 3;
 }
 
@@ -307,7 +307,7 @@ message TableProps {
     TEXT_ALIGNMENT_RIGHT = 3;
   }
   optional string text_color = 1;
-  optional int32 preview_width = 2;
+  optional int32 display_size = 2;
   optional TextAlignment text_alignment = 3;
 }
 
@@ -337,7 +337,7 @@ message P5SketchProps {
   }
   optional Mode mode = 1;
   optional int32 preview_height = 2;
-  optional int32 preview_width = 3;
+  optional int32 display_size = 3;
   optional TextAlignment text_alignment = 4;
   optional string source = 5;
   repeated CapabilitiesItem capabilities = 6;
@@ -363,7 +363,7 @@ message ThreeSceneProps {
   }
   optional Mode mode = 1;
   optional int32 preview_height = 2;
-  optional int32 preview_width = 3;
+  optional int32 display_size = 3;
   optional TextAlignment text_alignment = 4;
   optional string source = 5;
   optional Language language = 6;
@@ -439,7 +439,7 @@ message ShaderProps {
   }
   optional Mode mode = 1;
   optional int32 preview_height = 2;
-  optional int32 preview_width = 3;
+  optional int32 display_size = 3;
   optional TextAlignment text_alignment = 4;
   repeated StagesItem stages = 5;
 }
@@ -485,7 +485,7 @@ message MapProps {
   }
   repeated string map_place_ids = 1;
   optional AspectRatio aspect_ratio = 2;
-  optional int32 preview_width = 3;
+  optional int32 display_size = 3;
   optional TextAlignment text_alignment = 4;
   optional double zoom = 5;
   optional double min_zoom = 6;
@@ -521,7 +521,7 @@ message FileProps {
   optional string name = 2;
   optional double width = 3;
   optional double height = 4;
-  optional int32 preview_width = 5;
+  optional int32 display_size = 5;
   optional TextAlignment text_alignment = 6;
 }
 
@@ -1153,7 +1153,7 @@ message PostMapSectionProps {
   optional SortBy sort_by = 6;
   optional SortOrder sort_order = 7;
   optional AspectRatio aspect_ratio = 8;
-  optional int32 preview_width = 9;
+  optional int32 display_size = 9;
   optional double min_zoom = 10;
   optional double max_zoom = 11;
   optional PrimaryLabel primary_label = 12;
@@ -1216,7 +1216,7 @@ message WorkMapSectionProps {
   optional SortBy sort_by = 3;
   optional SortOrder sort_order = 4;
   optional AspectRatio aspect_ratio = 5;
-  optional int32 preview_width = 6;
+  optional int32 display_size = 6;
   optional double min_zoom = 7;
   optional double max_zoom = 8;
   optional PrimaryLabel primary_label = 9;
@@ -1786,7 +1786,7 @@ message MapSectionProps {
   }
   repeated string map_place_ids = 1;
   optional AspectRatio aspect_ratio = 2;
-  optional int32 preview_width = 3;
+  optional int32 display_size = 3;
   optional double zoom = 4;
   optional double min_zoom = 5;
   optional double max_zoom = 6;

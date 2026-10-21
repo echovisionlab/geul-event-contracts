@@ -8350,7 +8350,7 @@ type ParagraphProps struct {
 	BackgroundColor  *string                          `protobuf:"bytes,1,opt,name=background_color,json=backgroundColor,proto3,oneof" json:"background_color,omitempty"`
 	TextColor        *string                          `protobuf:"bytes,2,opt,name=text_color,json=textColor,proto3,oneof" json:"text_color,omitempty"`
 	TextAlignment    *ParagraphProps_TextAlignment    `protobuf:"varint,3,opt,name=text_alignment,json=textAlignment,proto3,enum=api.content.v1.ParagraphProps_TextAlignment,oneof" json:"text_alignment,omitempty"`
-	PreviewWidth     *int32                           `protobuf:"varint,4,opt,name=preview_width,json=previewWidth,proto3,oneof" json:"preview_width,omitempty"`
+	DisplaySize      *int32                           `protobuf:"varint,4,opt,name=display_size,json=displaySize,proto3,oneof" json:"display_size,omitempty"`
 	AspectRatio      *ParagraphProps_AspectRatio      `protobuf:"varint,5,opt,name=aspect_ratio,json=aspectRatio,proto3,enum=api.content.v1.ParagraphProps_AspectRatio,oneof" json:"aspect_ratio,omitempty"`
 	LinkPresentation *ParagraphProps_LinkPresentation `protobuf:"varint,6,opt,name=link_presentation,json=linkPresentation,proto3,enum=api.content.v1.ParagraphProps_LinkPresentation,oneof" json:"link_presentation,omitempty"`
 	LinkSiteName     *string                          `protobuf:"bytes,7,opt,name=link_site_name,json=linkSiteName,proto3,oneof" json:"link_site_name,omitempty"`
@@ -8411,9 +8411,9 @@ func (x *ParagraphProps) GetTextAlignment() ParagraphProps_TextAlignment {
 	return ParagraphProps_TEXT_ALIGNMENT_UNSPECIFIED
 }
 
-func (x *ParagraphProps) GetPreviewWidth() int32 {
-	if x != nil && x.PreviewWidth != nil {
-		return *x.PreviewWidth
+func (x *ParagraphProps) GetDisplaySize() int32 {
+	if x != nil && x.DisplaySize != nil {
+		return *x.DisplaySize
 	}
 	return 0
 }
@@ -8772,7 +8772,7 @@ func (x *QuoteProps) GetTextColor() string {
 type CodeBlockProps struct {
 	state         protoimpl.MessageState        `protogen:"open.v1"`
 	Language      *CodeBlockProps_Language      `protobuf:"varint,1,opt,name=language,proto3,enum=api.content.v1.CodeBlockProps_Language,oneof" json:"language,omitempty"`
-	PreviewWidth  *int32                        `protobuf:"varint,2,opt,name=preview_width,json=previewWidth,proto3,oneof" json:"preview_width,omitempty"`
+	DisplaySize   *int32                        `protobuf:"varint,2,opt,name=display_size,json=displaySize,proto3,oneof" json:"display_size,omitempty"`
 	TextAlignment *CodeBlockProps_TextAlignment `protobuf:"varint,3,opt,name=text_alignment,json=textAlignment,proto3,enum=api.content.v1.CodeBlockProps_TextAlignment,oneof" json:"text_alignment,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -8815,9 +8815,9 @@ func (x *CodeBlockProps) GetLanguage() CodeBlockProps_Language {
 	return CodeBlockProps_LANGUAGE_UNSPECIFIED
 }
 
-func (x *CodeBlockProps) GetPreviewWidth() int32 {
-	if x != nil && x.PreviewWidth != nil {
-		return *x.PreviewWidth
+func (x *CodeBlockProps) GetDisplaySize() int32 {
+	if x != nil && x.DisplaySize != nil {
+		return *x.DisplaySize
 	}
 	return 0
 }
@@ -8868,7 +8868,7 @@ func (*DividerProps) Descriptor() ([]byte, []int) {
 type TableProps struct {
 	state         protoimpl.MessageState    `protogen:"open.v1"`
 	TextColor     *string                   `protobuf:"bytes,1,opt,name=text_color,json=textColor,proto3,oneof" json:"text_color,omitempty"`
-	PreviewWidth  *int32                    `protobuf:"varint,2,opt,name=preview_width,json=previewWidth,proto3,oneof" json:"preview_width,omitempty"`
+	DisplaySize   *int32                    `protobuf:"varint,2,opt,name=display_size,json=displaySize,proto3,oneof" json:"display_size,omitempty"`
 	TextAlignment *TableProps_TextAlignment `protobuf:"varint,3,opt,name=text_alignment,json=textAlignment,proto3,enum=api.content.v1.TableProps_TextAlignment,oneof" json:"text_alignment,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -8911,9 +8911,9 @@ func (x *TableProps) GetTextColor() string {
 	return ""
 }
 
-func (x *TableProps) GetPreviewWidth() int32 {
-	if x != nil && x.PreviewWidth != nil {
-		return *x.PreviewWidth
+func (x *TableProps) GetDisplaySize() int32 {
+	if x != nil && x.DisplaySize != nil {
+		return *x.DisplaySize
 	}
 	return 0
 }
@@ -8929,7 +8929,7 @@ type P5SketchProps struct {
 	state         protoimpl.MessageState           `protogen:"open.v1"`
 	Mode          *P5SketchProps_Mode              `protobuf:"varint,1,opt,name=mode,proto3,enum=api.content.v1.P5SketchProps_Mode,oneof" json:"mode,omitempty"`
 	PreviewHeight *int32                           `protobuf:"varint,2,opt,name=preview_height,json=previewHeight,proto3,oneof" json:"preview_height,omitempty"`
-	PreviewWidth  *int32                           `protobuf:"varint,3,opt,name=preview_width,json=previewWidth,proto3,oneof" json:"preview_width,omitempty"`
+	DisplaySize   *int32                           `protobuf:"varint,3,opt,name=display_size,json=displaySize,proto3,oneof" json:"display_size,omitempty"`
 	TextAlignment *P5SketchProps_TextAlignment     `protobuf:"varint,4,opt,name=text_alignment,json=textAlignment,proto3,enum=api.content.v1.P5SketchProps_TextAlignment,oneof" json:"text_alignment,omitempty"`
 	Source        *string                          `protobuf:"bytes,5,opt,name=source,proto3,oneof" json:"source,omitempty"`
 	Capabilities  []P5SketchProps_CapabilitiesItem `protobuf:"varint,6,rep,packed,name=capabilities,proto3,enum=api.content.v1.P5SketchProps_CapabilitiesItem" json:"capabilities,omitempty"`
@@ -8981,9 +8981,9 @@ func (x *P5SketchProps) GetPreviewHeight() int32 {
 	return 0
 }
 
-func (x *P5SketchProps) GetPreviewWidth() int32 {
-	if x != nil && x.PreviewWidth != nil {
-		return *x.PreviewWidth
+func (x *P5SketchProps) GetDisplaySize() int32 {
+	if x != nil && x.DisplaySize != nil {
+		return *x.DisplaySize
 	}
 	return 0
 }
@@ -9013,7 +9013,7 @@ type ThreeSceneProps struct {
 	state         protoimpl.MessageState         `protogen:"open.v1"`
 	Mode          *ThreeSceneProps_Mode          `protobuf:"varint,1,opt,name=mode,proto3,enum=api.content.v1.ThreeSceneProps_Mode,oneof" json:"mode,omitempty"`
 	PreviewHeight *int32                         `protobuf:"varint,2,opt,name=preview_height,json=previewHeight,proto3,oneof" json:"preview_height,omitempty"`
-	PreviewWidth  *int32                         `protobuf:"varint,3,opt,name=preview_width,json=previewWidth,proto3,oneof" json:"preview_width,omitempty"`
+	DisplaySize   *int32                         `protobuf:"varint,3,opt,name=display_size,json=displaySize,proto3,oneof" json:"display_size,omitempty"`
 	TextAlignment *ThreeSceneProps_TextAlignment `protobuf:"varint,4,opt,name=text_alignment,json=textAlignment,proto3,enum=api.content.v1.ThreeSceneProps_TextAlignment,oneof" json:"text_alignment,omitempty"`
 	Source        *string                        `protobuf:"bytes,5,opt,name=source,proto3,oneof" json:"source,omitempty"`
 	Language      *ThreeSceneProps_Language      `protobuf:"varint,6,opt,name=language,proto3,enum=api.content.v1.ThreeSceneProps_Language,oneof" json:"language,omitempty"`
@@ -9065,9 +9065,9 @@ func (x *ThreeSceneProps) GetPreviewHeight() int32 {
 	return 0
 }
 
-func (x *ThreeSceneProps) GetPreviewWidth() int32 {
-	if x != nil && x.PreviewWidth != nil {
-		return *x.PreviewWidth
+func (x *ThreeSceneProps) GetDisplaySize() int32 {
+	if x != nil && x.DisplaySize != nil {
+		return *x.DisplaySize
 	}
 	return 0
 }
@@ -9097,7 +9097,7 @@ type ShaderProps struct {
 	state         protoimpl.MessageState     `protogen:"open.v1"`
 	Mode          *ShaderProps_Mode          `protobuf:"varint,1,opt,name=mode,proto3,enum=api.content.v1.ShaderProps_Mode,oneof" json:"mode,omitempty"`
 	PreviewHeight *int32                     `protobuf:"varint,2,opt,name=preview_height,json=previewHeight,proto3,oneof" json:"preview_height,omitempty"`
-	PreviewWidth  *int32                     `protobuf:"varint,3,opt,name=preview_width,json=previewWidth,proto3,oneof" json:"preview_width,omitempty"`
+	DisplaySize   *int32                     `protobuf:"varint,3,opt,name=display_size,json=displaySize,proto3,oneof" json:"display_size,omitempty"`
 	TextAlignment *ShaderProps_TextAlignment `protobuf:"varint,4,opt,name=text_alignment,json=textAlignment,proto3,enum=api.content.v1.ShaderProps_TextAlignment,oneof" json:"text_alignment,omitempty"`
 	Stages        []*ShaderProps_StagesItem  `protobuf:"bytes,5,rep,name=stages,proto3" json:"stages,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -9148,9 +9148,9 @@ func (x *ShaderProps) GetPreviewHeight() int32 {
 	return 0
 }
 
-func (x *ShaderProps) GetPreviewWidth() int32 {
-	if x != nil && x.PreviewWidth != nil {
-		return *x.PreviewWidth
+func (x *ShaderProps) GetDisplaySize() int32 {
+	if x != nil && x.DisplaySize != nil {
+		return *x.DisplaySize
 	}
 	return 0
 }
@@ -9217,7 +9217,7 @@ type MapProps struct {
 	state            protoimpl.MessageState    `protogen:"open.v1"`
 	MapPlaceIds      []string                  `protobuf:"bytes,1,rep,name=map_place_ids,json=mapPlaceIds,proto3" json:"map_place_ids,omitempty"`
 	AspectRatio      *MapProps_AspectRatio     `protobuf:"varint,2,opt,name=aspect_ratio,json=aspectRatio,proto3,enum=api.content.v1.MapProps_AspectRatio,oneof" json:"aspect_ratio,omitempty"`
-	PreviewWidth     *int32                    `protobuf:"varint,3,opt,name=preview_width,json=previewWidth,proto3,oneof" json:"preview_width,omitempty"`
+	DisplaySize      *int32                    `protobuf:"varint,3,opt,name=display_size,json=displaySize,proto3,oneof" json:"display_size,omitempty"`
 	TextAlignment    *MapProps_TextAlignment   `protobuf:"varint,4,opt,name=text_alignment,json=textAlignment,proto3,enum=api.content.v1.MapProps_TextAlignment,oneof" json:"text_alignment,omitempty"`
 	Zoom             *float64                  `protobuf:"fixed64,5,opt,name=zoom,proto3,oneof" json:"zoom,omitempty"`
 	MinZoom          *float64                  `protobuf:"fixed64,6,opt,name=min_zoom,json=minZoom,proto3,oneof" json:"min_zoom,omitempty"`
@@ -9288,9 +9288,9 @@ func (x *MapProps) GetAspectRatio() MapProps_AspectRatio {
 	return MapProps_ASPECT_RATIO_UNSPECIFIED
 }
 
-func (x *MapProps) GetPreviewWidth() int32 {
-	if x != nil && x.PreviewWidth != nil {
-		return *x.PreviewWidth
+func (x *MapProps) GetDisplaySize() int32 {
+	if x != nil && x.DisplaySize != nil {
+		return *x.DisplaySize
 	}
 	return 0
 }
@@ -9455,7 +9455,7 @@ type FileProps struct {
 	Name          *string                  `protobuf:"bytes,2,opt,name=name,proto3,oneof" json:"name,omitempty"`
 	Width         *float64                 `protobuf:"fixed64,3,opt,name=width,proto3,oneof" json:"width,omitempty"`
 	Height        *float64                 `protobuf:"fixed64,4,opt,name=height,proto3,oneof" json:"height,omitempty"`
-	PreviewWidth  *int32                   `protobuf:"varint,5,opt,name=preview_width,json=previewWidth,proto3,oneof" json:"preview_width,omitempty"`
+	DisplaySize   *int32                   `protobuf:"varint,5,opt,name=display_size,json=displaySize,proto3,oneof" json:"display_size,omitempty"`
 	TextAlignment *FileProps_TextAlignment `protobuf:"varint,6,opt,name=text_alignment,json=textAlignment,proto3,enum=api.content.v1.FileProps_TextAlignment,oneof" json:"text_alignment,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -9519,9 +9519,9 @@ func (x *FileProps) GetHeight() float64 {
 	return 0
 }
 
-func (x *FileProps) GetPreviewWidth() int32 {
-	if x != nil && x.PreviewWidth != nil {
-		return *x.PreviewWidth
+func (x *FileProps) GetDisplaySize() int32 {
+	if x != nil && x.DisplaySize != nil {
+		return *x.DisplaySize
 	}
 	return 0
 }
@@ -14978,7 +14978,7 @@ type PostMapSectionProps struct {
 	SortBy          *PostMapSectionProps_SortBy          `protobuf:"varint,6,opt,name=sort_by,json=sortBy,proto3,enum=api.content.v1.PostMapSectionProps_SortBy,oneof" json:"sort_by,omitempty"`
 	SortOrder       *PostMapSectionProps_SortOrder       `protobuf:"varint,7,opt,name=sort_order,json=sortOrder,proto3,enum=api.content.v1.PostMapSectionProps_SortOrder,oneof" json:"sort_order,omitempty"`
 	AspectRatio     *PostMapSectionProps_AspectRatio     `protobuf:"varint,8,opt,name=aspect_ratio,json=aspectRatio,proto3,enum=api.content.v1.PostMapSectionProps_AspectRatio,oneof" json:"aspect_ratio,omitempty"`
-	PreviewWidth    *int32                               `protobuf:"varint,9,opt,name=preview_width,json=previewWidth,proto3,oneof" json:"preview_width,omitempty"`
+	DisplaySize     *int32                               `protobuf:"varint,9,opt,name=display_size,json=displaySize,proto3,oneof" json:"display_size,omitempty"`
 	MinZoom         *float64                             `protobuf:"fixed64,10,opt,name=min_zoom,json=minZoom,proto3,oneof" json:"min_zoom,omitempty"`
 	MaxZoom         *float64                             `protobuf:"fixed64,11,opt,name=max_zoom,json=maxZoom,proto3,oneof" json:"max_zoom,omitempty"`
 	PrimaryLabel    *PostMapSectionProps_PrimaryLabel    `protobuf:"varint,12,opt,name=primary_label,json=primaryLabel,proto3,enum=api.content.v1.PostMapSectionProps_PrimaryLabel,oneof" json:"primary_label,omitempty"`
@@ -15076,9 +15076,9 @@ func (x *PostMapSectionProps) GetAspectRatio() PostMapSectionProps_AspectRatio {
 	return PostMapSectionProps_ASPECT_RATIO_UNSPECIFIED
 }
 
-func (x *PostMapSectionProps) GetPreviewWidth() int32 {
-	if x != nil && x.PreviewWidth != nil {
-		return *x.PreviewWidth
+func (x *PostMapSectionProps) GetDisplaySize() int32 {
+	if x != nil && x.DisplaySize != nil {
+		return *x.DisplaySize
 	}
 	return 0
 }
@@ -15139,7 +15139,7 @@ type WorkMapSectionProps struct {
 	SortBy          *WorkMapSectionProps_SortBy          `protobuf:"varint,3,opt,name=sort_by,json=sortBy,proto3,enum=api.content.v1.WorkMapSectionProps_SortBy,oneof" json:"sort_by,omitempty"`
 	SortOrder       *WorkMapSectionProps_SortOrder       `protobuf:"varint,4,opt,name=sort_order,json=sortOrder,proto3,enum=api.content.v1.WorkMapSectionProps_SortOrder,oneof" json:"sort_order,omitempty"`
 	AspectRatio     *WorkMapSectionProps_AspectRatio     `protobuf:"varint,5,opt,name=aspect_ratio,json=aspectRatio,proto3,enum=api.content.v1.WorkMapSectionProps_AspectRatio,oneof" json:"aspect_ratio,omitempty"`
-	PreviewWidth    *int32                               `protobuf:"varint,6,opt,name=preview_width,json=previewWidth,proto3,oneof" json:"preview_width,omitempty"`
+	DisplaySize     *int32                               `protobuf:"varint,6,opt,name=display_size,json=displaySize,proto3,oneof" json:"display_size,omitempty"`
 	MinZoom         *float64                             `protobuf:"fixed64,7,opt,name=min_zoom,json=minZoom,proto3,oneof" json:"min_zoom,omitempty"`
 	MaxZoom         *float64                             `protobuf:"fixed64,8,opt,name=max_zoom,json=maxZoom,proto3,oneof" json:"max_zoom,omitempty"`
 	PrimaryLabel    *WorkMapSectionProps_PrimaryLabel    `protobuf:"varint,9,opt,name=primary_label,json=primaryLabel,proto3,enum=api.content.v1.WorkMapSectionProps_PrimaryLabel,oneof" json:"primary_label,omitempty"`
@@ -15216,9 +15216,9 @@ func (x *WorkMapSectionProps) GetAspectRatio() WorkMapSectionProps_AspectRatio {
 	return WorkMapSectionProps_ASPECT_RATIO_UNSPECIFIED
 }
 
-func (x *WorkMapSectionProps) GetPreviewWidth() int32 {
-	if x != nil && x.PreviewWidth != nil {
-		return *x.PreviewWidth
+func (x *WorkMapSectionProps) GetDisplaySize() int32 {
+	if x != nil && x.DisplaySize != nil {
+		return *x.DisplaySize
 	}
 	return 0
 }
@@ -16656,7 +16656,7 @@ type MapSectionProps struct {
 	state            protoimpl.MessageState           `protogen:"open.v1"`
 	MapPlaceIds      []string                         `protobuf:"bytes,1,rep,name=map_place_ids,json=mapPlaceIds,proto3" json:"map_place_ids,omitempty"`
 	AspectRatio      *MapSectionProps_AspectRatio     `protobuf:"varint,2,opt,name=aspect_ratio,json=aspectRatio,proto3,enum=api.content.v1.MapSectionProps_AspectRatio,oneof" json:"aspect_ratio,omitempty"`
-	PreviewWidth     *int32                           `protobuf:"varint,3,opt,name=preview_width,json=previewWidth,proto3,oneof" json:"preview_width,omitempty"`
+	DisplaySize      *int32                           `protobuf:"varint,3,opt,name=display_size,json=displaySize,proto3,oneof" json:"display_size,omitempty"`
 	Zoom             *float64                         `protobuf:"fixed64,4,opt,name=zoom,proto3,oneof" json:"zoom,omitempty"`
 	MinZoom          *float64                         `protobuf:"fixed64,5,opt,name=min_zoom,json=minZoom,proto3,oneof" json:"min_zoom,omitempty"`
 	MaxZoom          *float64                         `protobuf:"fixed64,6,opt,name=max_zoom,json=maxZoom,proto3,oneof" json:"max_zoom,omitempty"`
@@ -16726,9 +16726,9 @@ func (x *MapSectionProps) GetAspectRatio() MapSectionProps_AspectRatio {
 	return MapSectionProps_ASPECT_RATIO_UNSPECIFIED
 }
 
-func (x *MapSectionProps) GetPreviewWidth() int32 {
-	if x != nil && x.PreviewWidth != nil {
-		return *x.PreviewWidth
+func (x *MapSectionProps) GetDisplaySize() int32 {
+	if x != nil && x.DisplaySize != nil {
+		return *x.DisplaySize
 	}
 	return 0
 }
@@ -23441,13 +23441,13 @@ const file_api_content_v1_block_content_proto_rawDesc = "" +
 	"\x06row_id\x18\x01 \x01(\tR\x05rowId\x12=\n" +
 	"\x05cells\x18\x02 \x03(\v2'.api.content.v1.RichTextTableCellLocaleR\x05cells\"Q\n" +
 	"\x13RichTextTableLocale\x12:\n" +
-	"\x04rows\x18\x01 \x03(\v2&.api.content.v1.RichTextTableRowLocaleR\x04rows\"\xa0\t\n" +
+	"\x04rows\x18\x01 \x03(\v2&.api.content.v1.RichTextTableRowLocaleR\x04rows\"\x9d\t\n" +
 	"\x0eParagraphProps\x12.\n" +
 	"\x10background_color\x18\x01 \x01(\tH\x00R\x0fbackgroundColor\x88\x01\x01\x12\"\n" +
 	"\n" +
 	"text_color\x18\x02 \x01(\tH\x01R\ttextColor\x88\x01\x01\x12X\n" +
-	"\x0etext_alignment\x18\x03 \x01(\x0e2,.api.content.v1.ParagraphProps.TextAlignmentH\x02R\rtextAlignment\x88\x01\x01\x12(\n" +
-	"\rpreview_width\x18\x04 \x01(\x05H\x03R\fpreviewWidth\x88\x01\x01\x12R\n" +
+	"\x0etext_alignment\x18\x03 \x01(\x0e2,.api.content.v1.ParagraphProps.TextAlignmentH\x02R\rtextAlignment\x88\x01\x01\x12&\n" +
+	"\fdisplay_size\x18\x04 \x01(\x05H\x03R\vdisplaySize\x88\x01\x01\x12R\n" +
 	"\faspect_ratio\x18\x05 \x01(\x0e2*.api.content.v1.ParagraphProps.AspectRatioH\x04R\vaspectRatio\x88\x01\x01\x12a\n" +
 	"\x11link_presentation\x18\x06 \x01(\x0e2/.api.content.v1.ParagraphProps.LinkPresentationH\x05R\x10linkPresentation\x88\x01\x01\x12)\n" +
 	"\x0elink_site_name\x18\a \x01(\tH\x06R\flinkSiteName\x88\x01\x01\x12E\n" +
@@ -23473,8 +23473,8 @@ const file_api_content_v1_block_content_proto_rawDesc = "" +
 	"\x17LINK_PRESENTATION_VIDEO\x10\x04B\x13\n" +
 	"\x11_background_colorB\r\n" +
 	"\v_text_colorB\x11\n" +
-	"\x0f_text_alignmentB\x10\n" +
-	"\x0e_preview_widthB\x0f\n" +
+	"\x0f_text_alignmentB\x0f\n" +
+	"\r_display_sizeB\x0f\n" +
 	"\r_aspect_ratioB\x14\n" +
 	"\x12_link_presentationB\x11\n" +
 	"\x0f_link_site_name\"\x80\x04\n" +
@@ -23548,10 +23548,10 @@ const file_api_content_v1_block_content_proto_rawDesc = "" +
 	"\n" +
 	"text_color\x18\x02 \x01(\tH\x01R\ttextColor\x88\x01\x01B\x13\n" +
 	"\x11_background_colorB\r\n" +
-	"\v_text_color\"\x84\v\n" +
+	"\v_text_color\"\x81\v\n" +
 	"\x0eCodeBlockProps\x12H\n" +
-	"\blanguage\x18\x01 \x01(\x0e2'.api.content.v1.CodeBlockProps.LanguageH\x00R\blanguage\x88\x01\x01\x12(\n" +
-	"\rpreview_width\x18\x02 \x01(\x05H\x01R\fpreviewWidth\x88\x01\x01\x12X\n" +
+	"\blanguage\x18\x01 \x01(\x0e2'.api.content.v1.CodeBlockProps.LanguageH\x00R\blanguage\x88\x01\x01\x12&\n" +
+	"\fdisplay_size\x18\x02 \x01(\x05H\x01R\vdisplaySize\x88\x01\x01\x12X\n" +
 	"\x0etext_alignment\x18\x03 \x01(\x0e2,.api.content.v1.CodeBlockProps.TextAlignmentH\x02R\rtextAlignment\x88\x01\x01\"\xf2\a\n" +
 	"\bLanguage\x12\x18\n" +
 	"\x14LANGUAGE_UNSPECIFIED\x10\x00\x12\x11\n" +
@@ -23612,28 +23612,28 @@ const file_api_content_v1_block_content_proto_rawDesc = "" +
 	"\x13TEXT_ALIGNMENT_LEFT\x10\x01\x12\x19\n" +
 	"\x15TEXT_ALIGNMENT_CENTER\x10\x02\x12\x18\n" +
 	"\x14TEXT_ALIGNMENT_RIGHT\x10\x03B\v\n" +
-	"\t_languageB\x10\n" +
-	"\x0e_preview_widthB\x11\n" +
+	"\t_languageB\x0f\n" +
+	"\r_display_sizeB\x11\n" +
 	"\x0f_text_alignment\"\x0e\n" +
-	"\fDividerProps\"\xe3\x02\n" +
+	"\fDividerProps\"\xe0\x02\n" +
 	"\n" +
 	"TableProps\x12\"\n" +
 	"\n" +
-	"text_color\x18\x01 \x01(\tH\x00R\ttextColor\x88\x01\x01\x12(\n" +
-	"\rpreview_width\x18\x02 \x01(\x05H\x01R\fpreviewWidth\x88\x01\x01\x12T\n" +
+	"text_color\x18\x01 \x01(\tH\x00R\ttextColor\x88\x01\x01\x12&\n" +
+	"\fdisplay_size\x18\x02 \x01(\x05H\x01R\vdisplaySize\x88\x01\x01\x12T\n" +
 	"\x0etext_alignment\x18\x03 \x01(\x0e2(.api.content.v1.TableProps.TextAlignmentH\x02R\rtextAlignment\x88\x01\x01\"}\n" +
 	"\rTextAlignment\x12\x1e\n" +
 	"\x1aTEXT_ALIGNMENT_UNSPECIFIED\x10\x00\x12\x17\n" +
 	"\x13TEXT_ALIGNMENT_LEFT\x10\x01\x12\x19\n" +
 	"\x15TEXT_ALIGNMENT_CENTER\x10\x02\x12\x18\n" +
 	"\x14TEXT_ALIGNMENT_RIGHT\x10\x03B\r\n" +
-	"\v_text_colorB\x10\n" +
-	"\x0e_preview_widthB\x11\n" +
-	"\x0f_text_alignment\"\xb7\a\n" +
+	"\v_text_colorB\x0f\n" +
+	"\r_display_sizeB\x11\n" +
+	"\x0f_text_alignment\"\xb4\a\n" +
 	"\rP5SketchProps\x12;\n" +
 	"\x04mode\x18\x01 \x01(\x0e2\".api.content.v1.P5SketchProps.ModeH\x00R\x04mode\x88\x01\x01\x12*\n" +
-	"\x0epreview_height\x18\x02 \x01(\x05H\x01R\rpreviewHeight\x88\x01\x01\x12(\n" +
-	"\rpreview_width\x18\x03 \x01(\x05H\x02R\fpreviewWidth\x88\x01\x01\x12W\n" +
+	"\x0epreview_height\x18\x02 \x01(\x05H\x01R\rpreviewHeight\x88\x01\x01\x12&\n" +
+	"\fdisplay_size\x18\x03 \x01(\x05H\x02R\vdisplaySize\x88\x01\x01\x12W\n" +
 	"\x0etext_alignment\x18\x04 \x01(\x0e2+.api.content.v1.P5SketchProps.TextAlignmentH\x03R\rtextAlignment\x88\x01\x01\x12\x1b\n" +
 	"\x06source\x18\x05 \x01(\tH\x04R\x06source\x88\x01\x01\x12R\n" +
 	"\fcapabilities\x18\x06 \x03(\x0e2..api.content.v1.P5SketchProps.CapabilitiesItemR\fcapabilities\"N\n" +
@@ -23658,14 +23658,14 @@ const file_api_content_v1_block_content_proto_rawDesc = "" +
 	"\x1aCAPABILITIES_ITEM_LOCATION\x10\a\x12\x1f\n" +
 	"\x1bCAPABILITIES_ITEM_BLUETOOTH\x10\bB\a\n" +
 	"\x05_modeB\x11\n" +
-	"\x0f_preview_heightB\x10\n" +
-	"\x0e_preview_widthB\x11\n" +
+	"\x0f_preview_heightB\x0f\n" +
+	"\r_display_sizeB\x11\n" +
 	"\x0f_text_alignmentB\t\n" +
-	"\a_source\"\xe9\x05\n" +
+	"\a_source\"\xe6\x05\n" +
 	"\x0fThreeSceneProps\x12=\n" +
 	"\x04mode\x18\x01 \x01(\x0e2$.api.content.v1.ThreeSceneProps.ModeH\x00R\x04mode\x88\x01\x01\x12*\n" +
-	"\x0epreview_height\x18\x02 \x01(\x05H\x01R\rpreviewHeight\x88\x01\x01\x12(\n" +
-	"\rpreview_width\x18\x03 \x01(\x05H\x02R\fpreviewWidth\x88\x01\x01\x12Y\n" +
+	"\x0epreview_height\x18\x02 \x01(\x05H\x01R\rpreviewHeight\x88\x01\x01\x12&\n" +
+	"\fdisplay_size\x18\x03 \x01(\x05H\x02R\vdisplaySize\x88\x01\x01\x12Y\n" +
 	"\x0etext_alignment\x18\x04 \x01(\x0e2-.api.content.v1.ThreeSceneProps.TextAlignmentH\x03R\rtextAlignment\x88\x01\x01\x12\x1b\n" +
 	"\x06source\x18\x05 \x01(\tH\x04R\x06source\x88\x01\x01\x12I\n" +
 	"\blanguage\x18\x06 \x01(\x0e2(.api.content.v1.ThreeSceneProps.LanguageH\x05R\blanguage\x88\x01\x01\"N\n" +
@@ -23684,15 +23684,15 @@ const file_api_content_v1_block_content_proto_rawDesc = "" +
 	"\x13LANGUAGE_JAVASCRIPT\x10\x01\x12\x17\n" +
 	"\x13LANGUAGE_TYPESCRIPT\x10\x02B\a\n" +
 	"\x05_modeB\x11\n" +
-	"\x0f_preview_heightB\x10\n" +
-	"\x0e_preview_widthB\x11\n" +
+	"\x0f_preview_heightB\x0f\n" +
+	"\r_display_sizeB\x11\n" +
 	"\x0f_text_alignmentB\t\n" +
 	"\a_sourceB\v\n" +
-	"\t_language\"\xd2\x0f\n" +
+	"\t_language\"\xcf\x0f\n" +
 	"\vShaderProps\x129\n" +
 	"\x04mode\x18\x01 \x01(\x0e2 .api.content.v1.ShaderProps.ModeH\x00R\x04mode\x88\x01\x01\x12*\n" +
-	"\x0epreview_height\x18\x02 \x01(\x05H\x01R\rpreviewHeight\x88\x01\x01\x12(\n" +
-	"\rpreview_width\x18\x03 \x01(\x05H\x02R\fpreviewWidth\x88\x01\x01\x12U\n" +
+	"\x0epreview_height\x18\x02 \x01(\x05H\x01R\rpreviewHeight\x88\x01\x01\x12&\n" +
+	"\fdisplay_size\x18\x03 \x01(\x05H\x02R\vdisplaySize\x88\x01\x01\x12U\n" +
 	"\x0etext_alignment\x18\x04 \x01(\x0e2).api.content.v1.ShaderProps.TextAlignmentH\x03R\rtextAlignment\x88\x01\x01\x12>\n" +
 	"\x06stages\x18\x05 \x03(\v2&.api.content.v1.ShaderProps.StagesItemR\x06stages\x1a\x8a\v\n" +
 	"\n" +
@@ -23761,16 +23761,16 @@ const file_api_content_v1_block_content_proto_rawDesc = "" +
 	"\x15TEXT_ALIGNMENT_CENTER\x10\x02\x12\x18\n" +
 	"\x14TEXT_ALIGNMENT_RIGHT\x10\x03B\a\n" +
 	"\x05_modeB\x11\n" +
-	"\x0f_preview_heightB\x10\n" +
-	"\x0e_preview_widthB\x11\n" +
+	"\x0f_preview_heightB\x0f\n" +
+	"\r_display_sizeB\x11\n" +
 	"\x0f_text_alignment\"0\n" +
 	"\tMathProps\x12\x19\n" +
 	"\x05latex\x18\x01 \x01(\tH\x00R\x05latex\x88\x01\x01B\b\n" +
-	"\x06_latex\"\xe4\x11\n" +
+	"\x06_latex\"\xe1\x11\n" +
 	"\bMapProps\x12\"\n" +
 	"\rmap_place_ids\x18\x01 \x03(\tR\vmapPlaceIds\x12L\n" +
-	"\faspect_ratio\x18\x02 \x01(\x0e2$.api.content.v1.MapProps.AspectRatioH\x00R\vaspectRatio\x88\x01\x01\x12(\n" +
-	"\rpreview_width\x18\x03 \x01(\x05H\x01R\fpreviewWidth\x88\x01\x01\x12R\n" +
+	"\faspect_ratio\x18\x02 \x01(\x0e2$.api.content.v1.MapProps.AspectRatioH\x00R\vaspectRatio\x88\x01\x01\x12&\n" +
+	"\fdisplay_size\x18\x03 \x01(\x05H\x01R\vdisplaySize\x88\x01\x01\x12R\n" +
 	"\x0etext_alignment\x18\x04 \x01(\x0e2&.api.content.v1.MapProps.TextAlignmentH\x02R\rtextAlignment\x88\x01\x01\x12\x17\n" +
 	"\x04zoom\x18\x05 \x01(\x01H\x03R\x04zoom\x88\x01\x01\x12\x1e\n" +
 	"\bmin_zoom\x18\x06 \x01(\x01H\x04R\aminZoom\x88\x01\x01\x12\x1e\n" +
@@ -23826,8 +23826,8 @@ const file_api_content_v1_block_content_proto_rawDesc = "" +
 	"\x17POI_LABELS_MODE_INHERIT\x10\x01\x12\x18\n" +
 	"\x14POI_LABELS_MODE_SHOW\x10\x02\x12\x18\n" +
 	"\x14POI_LABELS_MODE_HIDE\x10\x03B\x0f\n" +
-	"\r_aspect_ratioB\x10\n" +
-	"\x0e_preview_widthB\x11\n" +
+	"\r_aspect_ratioB\x0f\n" +
+	"\r_display_sizeB\x11\n" +
 	"\x0f_text_alignmentB\a\n" +
 	"\x05_zoomB\v\n" +
 	"\t_min_zoomB\v\n" +
@@ -23853,15 +23853,15 @@ const file_api_content_v1_block_content_proto_rawDesc = "" +
 	"\t_theme_idB\x13\n" +
 	"\x11_preferred_schemeB\x13\n" +
 	"\x11_area_labels_modeB\x12\n" +
-	"\x10_poi_labels_mode\"\xdd\x03\n" +
+	"\x10_poi_labels_mode\"\xda\x03\n" +
 	"\tFileProps\x12>\n" +
 	"\n" +
 	"attachment\x18\x01 \x01(\v2\x1e.api.content.v1.FileAttachmentR\n" +
 	"attachment\x12\x17\n" +
 	"\x04name\x18\x02 \x01(\tH\x00R\x04name\x88\x01\x01\x12\x19\n" +
 	"\x05width\x18\x03 \x01(\x01H\x01R\x05width\x88\x01\x01\x12\x1b\n" +
-	"\x06height\x18\x04 \x01(\x01H\x02R\x06height\x88\x01\x01\x12(\n" +
-	"\rpreview_width\x18\x05 \x01(\x05H\x03R\fpreviewWidth\x88\x01\x01\x12S\n" +
+	"\x06height\x18\x04 \x01(\x01H\x02R\x06height\x88\x01\x01\x12&\n" +
+	"\fdisplay_size\x18\x05 \x01(\x05H\x03R\vdisplaySize\x88\x01\x01\x12S\n" +
 	"\x0etext_alignment\x18\x06 \x01(\x0e2'.api.content.v1.FileProps.TextAlignmentH\x04R\rtextAlignment\x88\x01\x01\"}\n" +
 	"\rTextAlignment\x12\x1e\n" +
 	"\x1aTEXT_ALIGNMENT_UNSPECIFIED\x10\x00\x12\x17\n" +
@@ -23870,8 +23870,8 @@ const file_api_content_v1_block_content_proto_rawDesc = "" +
 	"\x14TEXT_ALIGNMENT_RIGHT\x10\x03B\a\n" +
 	"\x05_nameB\b\n" +
 	"\x06_widthB\t\n" +
-	"\a_heightB\x10\n" +
-	"\x0e_preview_widthB\x11\n" +
+	"\a_heightB\x0f\n" +
+	"\r_display_sizeB\x11\n" +
 	"\x0f_text_alignment\"\xa8\x01\n" +
 	"\fCalloutProps\x12\x17\n" +
 	"\x04icon\x18\x01 \x01(\tH\x00R\x04icon\x88\x01\x01\x12.\n" +
@@ -24370,7 +24370,7 @@ const file_api_content_v1_block_content_proto_rawDesc = "" +
 	"\n" +
 	"_series_idB\f\n" +
 	"\n" +
-	"_page_size\"\xc8\x0f\n" +
+	"_page_size\"\xc5\x0f\n" +
 	"\x13PostMapSectionProps\x12!\n" +
 	"\fcategory_ids\x18\x01 \x03(\tR\vcategoryIds\x12\x17\n" +
 	"\atag_ids\x18\x02 \x03(\tR\x06tagIds\x12\x1d\n" +
@@ -24381,8 +24381,8 @@ const file_api_content_v1_block_content_proto_rawDesc = "" +
 	"\asort_by\x18\x06 \x01(\x0e2*.api.content.v1.PostMapSectionProps.SortByH\x02R\x06sortBy\x88\x01\x01\x12Q\n" +
 	"\n" +
 	"sort_order\x18\a \x01(\x0e2-.api.content.v1.PostMapSectionProps.SortOrderH\x03R\tsortOrder\x88\x01\x01\x12W\n" +
-	"\faspect_ratio\x18\b \x01(\x0e2/.api.content.v1.PostMapSectionProps.AspectRatioH\x04R\vaspectRatio\x88\x01\x01\x12(\n" +
-	"\rpreview_width\x18\t \x01(\x05H\x05R\fpreviewWidth\x88\x01\x01\x12\x1e\n" +
+	"\faspect_ratio\x18\b \x01(\x0e2/.api.content.v1.PostMapSectionProps.AspectRatioH\x04R\vaspectRatio\x88\x01\x01\x12&\n" +
+	"\fdisplay_size\x18\t \x01(\x05H\x05R\vdisplaySize\x88\x01\x01\x12\x1e\n" +
 	"\bmin_zoom\x18\n" +
 	" \x01(\x01H\x06R\aminZoom\x88\x01\x01\x12\x1e\n" +
 	"\bmax_zoom\x18\v \x01(\x01H\aR\amaxZoom\x88\x01\x01\x12Z\n" +
@@ -24431,15 +24431,15 @@ const file_api_content_v1_block_content_proto_rawDesc = "" +
 	"\n" +
 	"\b_sort_byB\r\n" +
 	"\v_sort_orderB\x0f\n" +
-	"\r_aspect_ratioB\x10\n" +
-	"\x0e_preview_widthB\v\n" +
+	"\r_aspect_ratioB\x0f\n" +
+	"\r_display_sizeB\v\n" +
 	"\t_min_zoomB\v\n" +
 	"\t_max_zoomB\x10\n" +
 	"\x0e_primary_labelB\v\n" +
 	"\t_theme_idB\x13\n" +
 	"\x11_preferred_schemeB\x13\n" +
 	"\x11_area_labels_modeB\x12\n" +
-	"\x10_poi_labels_mode\"\xc3\x10\n" +
+	"\x10_poi_labels_mode\"\xc0\x10\n" +
 	"\x13WorkMapSectionProps\x12P\n" +
 	"\n" +
 	"work_types\x18\x01 \x03(\x0e21.api.content.v1.WorkMapSectionProps.WorkTypesItemR\tworkTypes\x12(\n" +
@@ -24447,8 +24447,8 @@ const file_api_content_v1_block_content_proto_rawDesc = "" +
 	"\asort_by\x18\x03 \x01(\x0e2*.api.content.v1.WorkMapSectionProps.SortByH\x01R\x06sortBy\x88\x01\x01\x12Q\n" +
 	"\n" +
 	"sort_order\x18\x04 \x01(\x0e2-.api.content.v1.WorkMapSectionProps.SortOrderH\x02R\tsortOrder\x88\x01\x01\x12W\n" +
-	"\faspect_ratio\x18\x05 \x01(\x0e2/.api.content.v1.WorkMapSectionProps.AspectRatioH\x03R\vaspectRatio\x88\x01\x01\x12(\n" +
-	"\rpreview_width\x18\x06 \x01(\x05H\x04R\fpreviewWidth\x88\x01\x01\x12\x1e\n" +
+	"\faspect_ratio\x18\x05 \x01(\x0e2/.api.content.v1.WorkMapSectionProps.AspectRatioH\x03R\vaspectRatio\x88\x01\x01\x12&\n" +
+	"\fdisplay_size\x18\x06 \x01(\x05H\x04R\vdisplaySize\x88\x01\x01\x12\x1e\n" +
 	"\bmin_zoom\x18\a \x01(\x01H\x05R\aminZoom\x88\x01\x01\x12\x1e\n" +
 	"\bmax_zoom\x18\b \x01(\x01H\x06R\amaxZoom\x88\x01\x01\x12Z\n" +
 	"\rprimary_label\x18\t \x01(\x0e20.api.content.v1.WorkMapSectionProps.PrimaryLabelH\aR\fprimaryLabel\x88\x01\x01\x12\x1e\n" +
@@ -24501,8 +24501,8 @@ const file_api_content_v1_block_content_proto_rawDesc = "" +
 	"\n" +
 	"\b_sort_byB\r\n" +
 	"\v_sort_orderB\x0f\n" +
-	"\r_aspect_ratioB\x10\n" +
-	"\x0e_preview_widthB\v\n" +
+	"\r_aspect_ratioB\x0f\n" +
+	"\r_display_sizeB\v\n" +
 	"\t_min_zoomB\v\n" +
 	"\t_max_zoomB\x10\n" +
 	"\x0e_primary_labelB\v\n" +
@@ -25164,11 +25164,11 @@ const file_api_content_v1_block_content_proto_rawDesc = "" +
 	"_link_modeB\r\n" +
 	"\v_logo_scaleB\x10\n" +
 	"\x0e_fallback_modeB\b\n" +
-	"\x06_limit\"\xa8\x10\n" +
+	"\x06_limit\"\xa5\x10\n" +
 	"\x0fMapSectionProps\x12\"\n" +
 	"\rmap_place_ids\x18\x01 \x03(\tR\vmapPlaceIds\x12S\n" +
-	"\faspect_ratio\x18\x02 \x01(\x0e2+.api.content.v1.MapSectionProps.AspectRatioH\x00R\vaspectRatio\x88\x01\x01\x12(\n" +
-	"\rpreview_width\x18\x03 \x01(\x05H\x01R\fpreviewWidth\x88\x01\x01\x12\x17\n" +
+	"\faspect_ratio\x18\x02 \x01(\x0e2+.api.content.v1.MapSectionProps.AspectRatioH\x00R\vaspectRatio\x88\x01\x01\x12&\n" +
+	"\fdisplay_size\x18\x03 \x01(\x05H\x01R\vdisplaySize\x88\x01\x01\x12\x17\n" +
 	"\x04zoom\x18\x04 \x01(\x01H\x02R\x04zoom\x88\x01\x01\x12\x1e\n" +
 	"\bmin_zoom\x18\x05 \x01(\x01H\x03R\aminZoom\x88\x01\x01\x12\x1e\n" +
 	"\bmax_zoom\x18\x06 \x01(\x01H\x04R\amaxZoom\x88\x01\x01\x12!\n" +
@@ -25218,8 +25218,8 @@ const file_api_content_v1_block_content_proto_rawDesc = "" +
 	"\x17POI_LABELS_MODE_INHERIT\x10\x01\x12\x18\n" +
 	"\x14POI_LABELS_MODE_SHOW\x10\x02\x12\x18\n" +
 	"\x14POI_LABELS_MODE_HIDE\x10\x03B\x0f\n" +
-	"\r_aspect_ratioB\x10\n" +
-	"\x0e_preview_widthB\a\n" +
+	"\r_aspect_ratioB\x0f\n" +
+	"\r_display_sizeB\a\n" +
 	"\x05_zoomB\v\n" +
 	"\t_min_zoomB\v\n" +
 	"\t_max_zoomB\f\n" +

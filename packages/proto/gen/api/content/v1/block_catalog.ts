@@ -38,7 +38,7 @@ import {
 } from "./block_content_pb.ts";
 
 export const contentBlockCatalogFingerprint =
-  "ebe3faa84fc5bd95f8ed1f459ce260f55415232036c709338efdce838e817252" as const;
+  "c3faf5bae48b1ef80f2f5496bdc3382130f53b9f744cd35dbe566beab4573fc5" as const;
 export const contentBlockRuntimeForbiddenFields = [
   "_tempUrl",
   "allowOriginalDownload",
@@ -362,7 +362,7 @@ export const richTextBlockCatalog = {
         default: "left",
         ownership: "shared",
       },
-      previewWidth: {
+      displaySize: {
         type: "integer",
         min: 10,
         max: 100,
@@ -590,7 +590,7 @@ export const richTextBlockCatalog = {
           "objective-c",
         ],
       },
-      previewWidth: {
+      displaySize: {
         type: "integer",
         min: 10,
         max: 100,
@@ -617,7 +617,7 @@ export const richTextBlockCatalog = {
         default: "default",
         ownership: "shared",
       },
-      previewWidth: {
+      displaySize: {
         type: "integer",
         min: 10,
         max: 100,
@@ -648,7 +648,7 @@ export const richTextBlockCatalog = {
         default: 360,
         ownership: "shared",
       },
-      previewWidth: {
+      displaySize: {
         type: "integer",
         min: 10,
         max: 100,
@@ -713,7 +713,7 @@ export const richTextBlockCatalog = {
         default: 360,
         ownership: "shared",
       },
-      previewWidth: {
+      displaySize: {
         type: "integer",
         min: 10,
         max: 100,
@@ -762,7 +762,7 @@ export const richTextBlockCatalog = {
         default: 360,
         ownership: "shared",
       },
-      previewWidth: {
+      displaySize: {
         type: "integer",
         min: 10,
         max: 100,
@@ -913,7 +913,7 @@ export const richTextBlockCatalog = {
         default: "16:9",
         ownership: "shared",
       },
-      previewWidth: {
+      displaySize: {
         type: "integer",
         min: 10,
         max: 100,
@@ -1088,7 +1088,7 @@ export const richTextBlockCatalog = {
         default: 0,
         ownership: "shared",
       },
-      previewWidth: {
+      displaySize: {
         type: "integer",
         min: 10,
         max: 100,
@@ -1468,7 +1468,7 @@ export const pageSectionCatalog = {
         default: "16:9",
         ownership: "shared",
       },
-      previewWidth: {
+      displaySize: {
         type: "integer",
         min: 10,
         max: 100,
@@ -1556,7 +1556,7 @@ export const pageSectionCatalog = {
         default: "16:9",
         ownership: "shared",
       },
-      previewWidth: {
+      displaySize: {
         type: "integer",
         min: 10,
         max: 100,
@@ -2470,7 +2470,7 @@ export const pageSectionCatalog = {
         default: "16:9",
         ownership: "shared",
       },
-      previewWidth: {
+      displaySize: {
         type: "integer",
         min: 10,
         max: 100,

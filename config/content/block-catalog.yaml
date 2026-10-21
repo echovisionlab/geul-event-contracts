@@ -90,7 +90,7 @@ field_sets:
       }
     previewHeight:
       { type: integer, min: 180, max: 720, default: 360, ownership: shared }
-    previewWidth:
+    displaySize:
       { type: integer, min: 10, max: 100, default: 100, ownership: shared }
     textAlignment:
       {
@@ -224,7 +224,7 @@ rich_text:
     paragraph:
       field_sets: [text_block]
       fields:
-        previewWidth:
+        displaySize:
           { type: integer, min: 10, max: 100, default: 100, ownership: shared }
         aspectRatio:
           {
@@ -348,7 +348,7 @@ rich_text:
               kotlin,
               objective-c,
             ]
-        previewWidth:
+        displaySize:
           { type: integer, min: 10, max: 100, default: 100, ownership: shared }
         textAlignment:
           {
@@ -363,7 +363,7 @@ rich_text:
     table:
       fields:
         textColor: { type: editor_color, default: default, ownership: shared }
-        previewWidth:
+        displaySize:
           { type: integer, min: 10, max: 100, default: 100, ownership: shared }
         textAlignment:
           {
@@ -524,7 +524,7 @@ rich_text:
             default: "16:9",
             ownership: shared,
           }
-        previewWidth:
+        displaySize:
           { type: integer, min: 10, max: 100, default: 100, ownership: shared }
         textAlignment:
           {
@@ -594,7 +594,7 @@ rich_text:
           { type: string, default: "", ownership: locale, translatable: true }
         width: { type: number, min: 0, default: 0, ownership: shared }
         height: { type: number, min: 0, default: 0, ownership: shared }
-        previewWidth:
+        displaySize:
           { type: integer, min: 10, max: 100, default: 100, ownership: shared }
         textAlignment:
           {
@@ -1019,7 +1019,7 @@ page:
             default: "16:9",
             ownership: shared,
           }
-        previewWidth:
+        displaySize:
           { type: integer, min: 10, max: 100, default: 100, ownership: shared }
         minZoom:
           { type: number, min: -2, max: 22, default: -2, ownership: shared }
@@ -1085,7 +1085,7 @@ page:
             default: "16:9",
             ownership: shared,
           }
-        previewWidth:
+        displaySize:
           { type: integer, min: 10, max: 100, default: 100, ownership: shared }
         minZoom:
           { type: number, min: -2, max: 22, default: -2, ownership: shared }
@@ -1432,7 +1432,7 @@ page:
             default: "16:9",
             ownership: shared,
           }
-        previewWidth:
+        displaySize:
           { type: integer, min: 10, max: 100, default: 100, ownership: shared }
         zoom: { type: number, min: -2, max: 22, default: 15, ownership: shared }
         minZoom:

@@ -206,7 +206,7 @@ func TestNormalizeContentStorageSharedOwnsCanonicalValidationAndReferences(t *te
 	t.Parallel()
 
 	upperFileID := strings.ToUpper(blockCatalogFileID)
-	activeJSON := []byte(`{"file":{"props":{"attachment":{"activeFileId":"` + upperFileID + `"},"previewWidth":100}}}`)
+	activeJSON := []byte(`{"file":{"props":{"attachment":{"activeFileId":"` + upperFileID + `"},"displaySize":100}}}`)
 	shared, err := contentv1.NormalizeContentStorageShared(
 		"post",
 		"file",
