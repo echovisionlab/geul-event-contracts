@@ -119,8 +119,8 @@ Resizable blocks store one shared integer, `displaySize` (10–100, default 100)
 which replaces `previewWidth`. Renderers cap the block's width at that percentage
 of the content column. Blocks that keep an aspect ratio (images, videos, maps and
 standalone link videos) also cap their height at the same percentage of 80% of
-the viewport's small height (`80svh`), so tall images fit the screen. Email has
-no viewport and uses a 600px reference height. Authors pick the XS 25, S 40,
+the viewport's small height (`80svh`), so tall images fit the screen. Email
+renders blocks at the email width and does not apply display size. Authors pick the XS 25, S 40,
 M 60, L 80 or XL 100 preset, or drag to any value in range.
 
 The field keeps its wire number. Stored JSON keeps no `previewWidth` alias, so
