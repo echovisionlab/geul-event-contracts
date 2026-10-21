@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.14.0](https://github.com/echovisionlab/geul-event-contracts/compare/v0.13.1...v0.14.0) (2026-10-21)
+
+
+### ⚠ BREAKING CHANGES
+
+* Stored JSON uses displaySize with no previewWidth alias. Migrate live content and version snapshots before consumers of this catalog start.
+
+### Features
+
+* rename block previewWidth to displaySize ([#49](https://github.com/echovisionlab/geul-event-contracts/issues/49)) ([59f4887](https://github.com/echovisionlab/geul-event-contracts/commit/59f48872d1b6dc2c558b7b3b98e97e4869509115))
+
 ## [0.13.1](https://github.com/echovisionlab/geul-event-contracts/compare/v0.13.0...v0.13.1) (2026-10-21)
 
 

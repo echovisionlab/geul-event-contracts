@@ -1,6 +1,6 @@
 {
   "name": "@echovisionlab/geul-proto",
-  "version": "0.13.1",
+  "version": "0.14.0",
   "private": false,
   "type": "module",
   "scripts": {
