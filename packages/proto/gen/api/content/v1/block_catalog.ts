@@ -38,7 +38,7 @@ import {
 } from "./block_content_pb.ts";
 
 export const contentBlockCatalogFingerprint =
-  "ce1b6255aa04815d432011e7375b39ce4bcbebae426d473eddd00cae835e8401" as const;
+  "ebe3faa84fc5bd95f8ed1f459ce260f55415232036c709338efdce838e817252" as const;
 export const contentBlockRuntimeForbiddenFields = [
   "_tempUrl",
   "allowOriginalDownload",
@@ -396,6 +396,17 @@ export const richTextBlockCatalog = {
         type: "file_attachment",
         ownership: "shared",
         file_reference: "link_thumbnail",
+      },
+      linkIcon: {
+        type: "file_attachment",
+        ownership: "shared",
+        file_reference: "link_icon",
+      },
+      linkCaption: {
+        type: "string",
+        default: "",
+        ownership: "locale",
+        translatable: true,
       },
     },
     content: "inline",
@@ -3180,6 +3191,9 @@ export const contentBlockFileReferencePolicies = {
   "immersive.dark_texture": {
     mime_prefixes: ["image/"],
   },
+  link_icon: {
+    mime_prefixes: ["image/"],
+  },
   link_thumbnail: {
     mime_prefixes: ["image/"],
   },
@@ -3228,7 +3242,12 @@ export const pageSectionKindByProtoCase = {
   embed: "embed",
 } as const;
 export const richTextCollaborativeTextCatalog = {
-  paragraph: ["props.linkSiteName", "props.linkDescription", "content"],
+  paragraph: [
+    "props.linkSiteName",
+    "props.linkDescription",
+    "props.linkCaption",
+    "content",
+  ],
   heading: ["content"],
   "bullet-list-item": ["content"],
   "numbered-list-item": ["content"],
@@ -3593,19 +3612,18 @@ function validateProfileLinkMedia(
   profile: keyof typeof richTextProfiles,
   path: string,
 ): void {
-  const thumbnail = (props as { linkThumbnail?: unknown } | undefined)
-    ?.linkThumbnail;
   if (
-    kind === "paragraph" &&
-    thumbnail !== undefined &&
-    thumbnail !== null &&
-    !richTextProfiles[profile].paragraph_external_video
+    kind !== "paragraph" ||
+    richTextProfiles[profile].paragraph_external_video
   )
-    fail(
-      path + ".linkThumbnail",
-      "profile",
-      "link thumbnail is forbidden by profile",
-    );
+    return;
+  for (const field of ["linkThumbnail", "linkIcon"] as const) {
+    const value = (
+      props as Partial<Record<typeof field, unknown>> | undefined
+    )?.[field];
+    if (value !== undefined && value !== null)
+      fail(path + "." + field, "profile", "link media is forbidden by profile");
+  }
 }
 function validateInlineStyles(
   value: unknown,
@@ -4633,12 +4651,18 @@ export function extractContentStorageFileReferences(
   };
   if (sharedData.value.case === "file")
     append(sharedData.value.value.props?.attachment, "file", "file");
-  if (sharedData.value.case === "paragraph")
+  if (sharedData.value.case === "paragraph") {
     append(
       sharedData.value.value.props?.linkThumbnail,
       "paragraph.linkThumbnail",
       "link_thumbnail",
     );
+    append(
+      sharedData.value.value.props?.linkIcon,
+      "paragraph.linkIcon",
+      "link_icon",
+    );
+  }
   if (sharedData.value.case === "shader")
     sharedData.value.value.props?.stages.forEach((stage, stageIndex) =>
       stage.channels.forEach((channel, channelIndex) => {
@@ -6049,12 +6073,13 @@ export function extractRichTextFileReferences(
       if (ref) result.push(ref);
     }
     if (block.value.case === "paragraph") {
-      const ref = activeReference(
-        block.value.value.props?.linkThumbnail,
-        block.id,
-        "paragraph.linkThumbnail",
-      );
-      if (ref) result.push(ref);
+      for (const [attachment, path] of [
+        [block.value.value.props?.linkThumbnail, "paragraph.linkThumbnail"],
+        [block.value.value.props?.linkIcon, "paragraph.linkIcon"],
+      ] as const) {
+        const ref = activeReference(attachment, block.id, path);
+        if (ref) result.push(ref);
+      }
     }
     if (block.value.case === "shader")
       block.value.value.props?.stages.forEach((stage, stageIndex) =>

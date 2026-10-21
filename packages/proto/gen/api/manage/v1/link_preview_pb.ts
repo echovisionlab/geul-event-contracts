@@ -19,13 +19,13 @@ import type { Message } from "@bufbuild/protobuf";
 export const file_api_manage_v1_link_preview: GenFile =
   /*@__PURE__*/
   fileDesc(
-    "CiBhcGkvbWFuYWdlL3YxL2xpbmtfcHJldmlldy5wcm90bxINYXBpLm1hbmFnZS52MSIkChVHZXRMaW5rUHJldmlld1JlcXVlc3QSCwoDdXJsGAEgASgJInsKFkdldExpbmtQcmV2aWV3UmVzcG9uc2USFAoMcmVzb2x2ZWRfdXJsGAEgASgJEg0KBXRpdGxlGAIgASgJEhMKC2Rlc2NyaXB0aW9uGAMgASgJEhEKCXNpdGVfbmFtZRgEIAEoCRIUCgxpbWFnZV9zb3VyY2UYBSABKAkyewoSTGlua1ByZXZpZXdTZXJ2aWNlEmUKDkdldExpbmtQcmV2aWV3EiQuYXBpLm1hbmFnZS52MS5HZXRMaW5rUHJldmlld1JlcXVlc3QaJS5hcGkubWFuYWdlLnYxLkdldExpbmtQcmV2aWV3UmVzcG9uc2UiBsrzGAIIA0LFAQoRY29tLmFwaS5tYW5hZ2UudjFCEExpbmtQcmV2aWV3UHJvdG9QAVpIZ2l0aHViLmNvbS9lY2hvdmlzaW9ubGFiL2dldWwtZXZlbnQtY29udHJhY3RzL2dlbi9hcGkvbWFuYWdlL3YxO21hbmFnZXYxogIDQU1YqgINQXBpLk1hbmFnZS5WMcoCDUFwaVxNYW5hZ2VcVjHiAhlBcGlcTWFuYWdlXFYxXEdQQk1ldGFkYXRh6gIPQXBpOjpNYW5hZ2U6OlYxYgZwcm90bzM",
+    "CiBhcGkvbWFuYWdlL3YxL2xpbmtfcHJldmlldy5wcm90bxINYXBpLm1hbmFnZS52MSIkChVHZXRMaW5rUHJldmlld1JlcXVlc3QSCwoDdXJsGAEgASgJIpABChZHZXRMaW5rUHJldmlld1Jlc3BvbnNlEhQKDHJlc29sdmVkX3VybBgBIAEoCRINCgV0aXRsZRgCIAEoCRITCgtkZXNjcmlwdGlvbhgDIAEoCRIRCglzaXRlX25hbWUYBCABKAkSFAoMaW1hZ2Vfc291cmNlGAUgASgJEhMKC2ljb25fc291cmNlGAYgASgJMnsKEkxpbmtQcmV2aWV3U2VydmljZRJlCg5HZXRMaW5rUHJldmlldxIkLmFwaS5tYW5hZ2UudjEuR2V0TGlua1ByZXZpZXdSZXF1ZXN0GiUuYXBpLm1hbmFnZS52MS5HZXRMaW5rUHJldmlld1Jlc3BvbnNlIgbK8xgCCANCxQEKEWNvbS5hcGkubWFuYWdlLnYxQhBMaW5rUHJldmlld1Byb3RvUAFaSGdpdGh1Yi5jb20vZWNob3Zpc2lvbmxhYi9nZXVsLWV2ZW50LWNvbnRyYWN0cy9nZW4vYXBpL21hbmFnZS92MTttYW5hZ2V2MaICA0FNWKoCDUFwaS5NYW5hZ2UuVjHKAg1BcGlcTWFuYWdlXFYx4gIZQXBpXE1hbmFnZVxWMVxHUEJNZXRhZGF0YeoCD0FwaTo6TWFuYWdlOjpWMWIGcHJvdG8z",
     [file_api_policy_v1_access],
   );
 
 /**
  * Reads the preview metadata a page publishes about itself (Open Graph,
- * Twitter card and document title) so an author can present a link as a card
+ * Twitter card, document title and site icon) so an author can present a link as a card
  * or video. The server fetches the page directly with the same HTTPS-only,
  * public-address and redirect checks as remote File import; no third-party
  * preview service is involved. Nothing is stored: the author's editor writes
@@ -86,6 +86,14 @@ export type GetLinkPreviewResponse =
      * @generated from field: string image_source = 5;
      */
     imageSource: string;
+
+    /**
+     * External absolute HTTPS site icon the page declares (or the site's
+     * /favicon.ico), for the editor to import as the link icon File.
+     *
+     * @generated from field: string icon_source = 6;
+     */
+    iconSource: string;
   };
 
 /**

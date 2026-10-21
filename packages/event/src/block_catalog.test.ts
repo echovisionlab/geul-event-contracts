@@ -1052,13 +1052,14 @@ describe("generated storage materializers", () => {
       ).not.toThrow();
   });
 
-  it("allows a paragraph link thumbnail only where paragraph video is allowed", () => {
+  it("allows paragraph link thumbnail and icon Files only where paragraph video is allowed", () => {
     const card = create(RichTextBlockDataSchema, {
       value: {
         case: "paragraph",
         value: {
           props: {
             linkThumbnail: { state: { case: "activeFileId", value: BLOCK_ID } },
+            linkIcon: { state: { case: "activeFileId", value: BLOCK_ID } },
           },
         },
       },
@@ -1069,10 +1070,10 @@ describe("generated storage materializers", () => {
         "paragraph",
         card,
       ).fileReferences.map((reference) => reference.referencePath),
-    ).toEqual(["paragraph.linkThumbnail"]);
+    ).toEqual(["paragraph.linkIcon", "paragraph.linkThumbnail"]);
     expect(() =>
       normalizeContentStorageShared("email", "paragraph", card),
-    ).toThrow(/link thumbnail is forbidden/);
+    ).toThrow(/link media is forbidden/);
   });
 
   it("owns canonical shared validation, modes, refs, and flattener reuse", () => {

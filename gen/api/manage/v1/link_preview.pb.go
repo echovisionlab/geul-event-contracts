@@ -23,7 +23,7 @@ const (
 )
 
 // Reads the preview metadata a page publishes about itself (Open Graph,
-// Twitter card and document title) so an author can present a link as a card
+// Twitter card, document title and site icon) so an author can present a link as a card
 // or video. The server fetches the page directly with the same HTTPS-only,
 // public-address and redirect checks as remote File import; no third-party
 // preview service is involved. Nothing is stored: the author's editor writes
@@ -83,7 +83,10 @@ type GetLinkPreviewResponse struct {
 	// External absolute HTTPS image URL the page declares, for the editor to
 	// import as the link thumbnail File; empty when it declares none or an
 	// unsupported URL. It is never a managed asset or delivered to visitors.
-	ImageSource   string `protobuf:"bytes,5,opt,name=image_source,json=imageSource,proto3" json:"image_source,omitempty"`
+	ImageSource string `protobuf:"bytes,5,opt,name=image_source,json=imageSource,proto3" json:"image_source,omitempty"`
+	// External absolute HTTPS site icon the page declares (or the site's
+	// /favicon.ico), for the editor to import as the link icon File.
+	IconSource    string `protobuf:"bytes,6,opt,name=icon_source,json=iconSource,proto3" json:"icon_source,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -153,19 +156,28 @@ func (x *GetLinkPreviewResponse) GetImageSource() string {
 	return ""
 }
 
+func (x *GetLinkPreviewResponse) GetIconSource() string {
+	if x != nil {
+		return x.IconSource
+	}
+	return ""
+}
+
 var File_api_manage_v1_link_preview_proto protoreflect.FileDescriptor
 
 const file_api_manage_v1_link_preview_proto_rawDesc = "" +
 	"\n" +
 	" api/manage/v1/link_preview.proto\x12\rapi.manage.v1\x1a\x1aapi/policy/v1/access.proto\")\n" +
 	"\x15GetLinkPreviewRequest\x12\x10\n" +
-	"\x03url\x18\x01 \x01(\tR\x03url\"\xb3\x01\n" +
+	"\x03url\x18\x01 \x01(\tR\x03url\"\xd4\x01\n" +
 	"\x16GetLinkPreviewResponse\x12!\n" +
 	"\fresolved_url\x18\x01 \x01(\tR\vresolvedUrl\x12\x14\n" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x12 \n" +
 	"\vdescription\x18\x03 \x01(\tR\vdescription\x12\x1b\n" +
 	"\tsite_name\x18\x04 \x01(\tR\bsiteName\x12!\n" +
-	"\fimage_source\x18\x05 \x01(\tR\vimageSource2{\n" +
+	"\fimage_source\x18\x05 \x01(\tR\vimageSource\x12\x1f\n" +
+	"\vicon_source\x18\x06 \x01(\tR\n" +
+	"iconSource2{\n" +
 	"\x12LinkPreviewService\x12e\n" +
 	"\x0eGetLinkPreview\x12$.api.manage.v1.GetLinkPreviewRequest\x1a%.api.manage.v1.GetLinkPreviewResponse\"\x06\xca\xf3\x18\x02\b\x03B\xc5\x01\n" +
 	"\x11com.api.manage.v1B\x10LinkPreviewProtoP\x01ZHgithub.com/echovisionlab/geul-event-contracts/gen/api/manage/v1;managev1\xa2\x02\x03AMX\xaa\x02\rApi.Manage.V1\xca\x02\rApi\\Manage\\V1\xe2\x02\x19Api\\Manage\\V1\\GPBMetadata\xea\x02\x0fApi::Manage::V1b\x06proto3"

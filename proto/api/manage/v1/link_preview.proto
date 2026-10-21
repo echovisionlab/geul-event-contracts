@@ -5,7 +5,7 @@ package api.manage.v1;
 import "api/policy/v1/access.proto";
 
 // Reads the preview metadata a page publishes about itself (Open Graph,
-// Twitter card and document title) so an author can present a link as a card
+// Twitter card, document title and site icon) so an author can present a link as a card
 // or video. The server fetches the page directly with the same HTTPS-only,
 // public-address and redirect checks as remote File import; no third-party
 // preview service is involved. Nothing is stored: the author's editor writes
@@ -25,6 +25,9 @@ message GetLinkPreviewResponse {
   // import as the link thumbnail File; empty when it declares none or an
   // unsupported URL. It is never a managed asset or delivered to visitors.
   string image_source = 5;
+  // External absolute HTTPS site icon the page declares (or the site's
+  // /favicon.ico), for the editor to import as the link icon File.
+  string icon_source = 6;
 }
 
 service LinkPreviewService {

@@ -166,6 +166,7 @@ message ParagraphProps {
   optional LinkPresentation link_presentation = 6;
   optional string link_site_name = 7;
   FileAttachment link_thumbnail = 8;
+  FileAttachment link_icon = 9;
 }
 
 message HeadingProps {
@@ -536,6 +537,7 @@ message MermaidProps {
 
 message ParagraphLocaleProps {
   optional string link_description = 1;
+  optional string link_caption = 2;
 }
 
 message HeadingLocaleProps {

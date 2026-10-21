@@ -914,8 +914,12 @@ func validateRuntimeShared(profile, kind string, shared map[string]any, mode Con
 			sharedValue["props"] = sharedProps
 		}
 		// Link presentation media follows the profile's paragraph video permission.
-		if kind == "paragraph" && sharedProps["linkThumbnail"] != nil && !contentBlockRuntimeDescriptor.Profiles[profile].ParagraphExternalVideo {
-			return contentValidationError("$.shared.props.linkThumbnail", "profile", "link thumbnail is forbidden by profile")
+		if kind == "paragraph" && !contentBlockRuntimeDescriptor.Profiles[profile].ParagraphExternalVideo {
+			for _, field := range []string{"linkThumbnail", "linkIcon"} {
+				if sharedProps[field] != nil {
+					return contentValidationError("$.shared.props."+field, "profile", "link media is forbidden by profile")
+				}
+			}
 		}
 		return validateAndNormalizeFields(sharedProps, definition.Fields, map[string]bool{"shared": true, "source": true}, true, "$.shared.props", mode)
 	}
@@ -1502,6 +1506,9 @@ func extractStorageFileReferences(kind string, shared map[string]any) ([]Content
 	}
 	if kind == "paragraph" {
 		if err := appendReference(props["linkThumbnail"], "paragraph.linkThumbnail", "link_thumbnail"); err != nil {
+			return nil, err
+		}
+		if err := appendReference(props["linkIcon"], "paragraph.linkIcon", "link_icon"); err != nil {
 			return nil, err
 		}
 	}
