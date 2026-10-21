@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.13.0](https://github.com/echovisionlab/geul-event-contracts/compare/v0.12.0...v0.13.0) (2026-10-21)
+
+
+### Features
+
+* present paragraph links as cards or videos ([#44](https://github.com/echovisionlab/geul-event-contracts/issues/44)) ([f1f25a3](https://github.com/echovisionlab/geul-event-contracts/commit/f1f25a35106dd87a8ee22a27549a26ca74543c18))
+
 ## [0.12.0](https://github.com/echovisionlab/geul-event-contracts/compare/v0.11.0...v0.12.0) (2026-10-18)
 
 
