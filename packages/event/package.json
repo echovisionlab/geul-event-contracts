@@ -29,12 +29,12 @@
   },
   "devDependencies": {
     "@echovisionlab/geul-proto": "workspace:*",
-    "@types/node": "^24.19.1",
+    "@types/node": "^24.19.2",
     "@typescript/native": "npm:typescript@7.0.2",
-    "eslint": "^10.12.0",
-    "tsup": "^8.5.1",
+    "eslint": "^10.13.0",
+    "tsup": "^9.0.0",
     "typescript": "npm:@typescript/typescript6@6.0.2",
-    "typescript-eslint": "^8.71.1"
+    "typescript-eslint": "^8.72.0"
   },
   "license": "PolyForm-Noncommercial-1.0.0",
   "repository": {
