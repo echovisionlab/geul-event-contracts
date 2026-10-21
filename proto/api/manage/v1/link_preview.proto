@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+package api.manage.v1;
+
+import "api/policy/v1/access.proto";
+
+// Reads the preview metadata a page publishes about itself (Open Graph,
+// Twitter card, document title and site icon) so an author can present a link as a card
+// or video. The server fetches the page directly with the same HTTPS-only,
+// public-address and redirect checks as remote File import; no third-party
+// preview service is involved. Nothing is stored: the author's editor writes
+// the result into the paragraph and imports the image as a File.
+message GetLinkPreviewRequest {
+  // Absolute HTTPS URL of the linked page.
+  string url = 1;
+}
+
+message GetLinkPreviewResponse {
+  // Final page URL after redirects; the link itself keeps the authored URL.
+  string resolved_url = 1;
+  string title = 2;
+  string description = 3;
+  string site_name = 4;
+  // External absolute HTTPS image URL the page declares, for the editor to
+  // import as the link thumbnail File; empty when it declares none or an
+  // unsupported URL. It is never a managed asset or delivered to visitors.
+  string image_source = 5;
+  // External absolute HTTPS site icon the page declares (or the site's
+  // /favicon.ico), for the editor to import as the link icon File.
+  string icon_source = 6;
+}
+
+service LinkPreviewService {
+  rpc GetLinkPreview(GetLinkPreviewRequest) returns (GetLinkPreviewResponse) {
+    option (api.policy.v1.access) = {role: AUTHOR};
+  }
+}

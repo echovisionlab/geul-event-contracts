@@ -108,7 +108,7 @@ func TestPostRichTextCatalogDescriptorExposesClosedRecursiveAuthority(t *testing
 	if callout.Content != "inline" || icon.Type != "string" || !icon.HasDefault || icon.Default != "💡" || background.Type != "editor_color" || !background.HasDefault || background.Default != "gray" {
 		t.Fatalf("Callout descriptor is incomplete: %+v", callout)
 	}
-	if len(descriptor.FilePolicies) != 3 || descriptor.FilePolicies[0].Name != "file" || descriptor.FilePolicies[1].Name != "shader_channel" || descriptor.FilePolicies[2].Name != "shader_cubemap_face" {
+	if len(descriptor.FilePolicies) != 5 || descriptor.FilePolicies[0].Name != "file" || descriptor.FilePolicies[1].Name != "link_icon" || descriptor.FilePolicies[2].Name != "link_thumbnail" || descriptor.FilePolicies[3].Name != "shader_channel" || descriptor.FilePolicies[4].Name != "shader_cubemap_face" {
 		t.Fatalf("Post descriptor leaked unrelated File policies: %+v", descriptor.FilePolicies)
 	}
 }

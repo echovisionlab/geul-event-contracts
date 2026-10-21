@@ -262,6 +262,25 @@ func TestNormalizeContentStorageSharedOwnsCanonicalValidationAndReferences(t *te
 	}
 }
 
+func TestParagraphLinkMediaFollowsProfileVideoPermission(t *testing.T) {
+	t.Parallel()
+
+	shared := []byte(`{"paragraph":{"props":{"linkPresentation":"LINK_PRESENTATION_CARD","linkThumbnail":{"activeFileId":"` + blockCatalogFileID + `"},"linkIcon":{"activeFileId":"` + blockCatalogMissingFileID + `"}}}}`)
+	card, err := contentv1.NormalizeContentStorageShared("post", "paragraph", shared, contentv1.ContentValidationMode_CONTENT_VALIDATION_MODE_WRITE)
+	if err != nil {
+		t.Fatalf("post rejected a link card thumbnail: %v", err)
+	}
+	if len(card.FileReferences) != 2 || card.FileReferences[0].ReferencePath != "paragraph.linkIcon" || card.FileReferences[0].FileID != blockCatalogMissingFileID || card.FileReferences[1].ReferencePath != "paragraph.linkThumbnail" || card.FileReferences[1].FileID != blockCatalogFileID {
+		t.Fatalf("link media references = %#v", card.FileReferences)
+	}
+	iconOnly := []byte(`{"paragraph":{"props":{"linkIcon":{"activeFileId":"` + blockCatalogFileID + `"}}}}`)
+	for _, rejected := range [][]byte{shared, iconOnly} {
+		if _, err := contentv1.NormalizeContentStorageShared("email", "paragraph", rejected, contentv1.ContentValidationMode_CONTENT_VALIDATION_MODE_WRITE); err == nil {
+			t.Fatalf("email accepted link media: %s", rejected)
+		}
+	}
+}
+
 func TestMutationFlattenerReusesSharedNormalizer(t *testing.T) {
 	t.Parallel()
 

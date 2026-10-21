@@ -66,6 +66,8 @@ file_reference_policies:
   immersive.optimized_mesh: { mime_types: [model/gltf-binary] }
   immersive.texture: { mime_prefixes: [image/] }
   immersive.dark_texture: { mime_prefixes: [image/] }
+  link_icon: { mime_prefixes: [image/] }
+  link_thumbnail: { mime_prefixes: [image/] }
 
 field_sets:
   text_block:
@@ -231,6 +233,34 @@ rich_text:
             default: auto,
             ownership: shared,
           }
+        # A paragraph holding only one link may present it as a card or video.
+        # `auto` keeps the URL-based video detection of earlier documents.
+        # Profiles with paragraph_external_video allow the thumbnail and icon
+        # Files; other profiles render the link and reject both.
+        linkPresentation:
+          {
+            type: enum,
+            values: [auto, link, card, video],
+            default: auto,
+            ownership: shared,
+          }
+        linkSiteName: { type: string, default: "", ownership: shared }
+        linkDescription:
+          { type: string, default: "", ownership: locale, translatable: true }
+        linkThumbnail:
+          {
+            type: file_attachment,
+            ownership: shared,
+            file_reference: link_thumbnail,
+          }
+        linkIcon:
+          {
+            type: file_attachment,
+            ownership: shared,
+            file_reference: link_icon,
+          }
+        linkCaption:
+          { type: string, default: "", ownership: locale, translatable: true }
       content: inline
     heading:
       field_sets: [text_block]
