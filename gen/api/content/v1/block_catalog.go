@@ -12,6 +12,7 @@ import (
 	"io"
 	"net/url"
 	"regexp"
+	"slices"
 	"sort"
 	"strings"
 
@@ -321,6 +322,10 @@ func DescribePageCatalog() PageCatalogDescriptor {
 
 // DescribeRichTextCatalog returns a fresh deep copy so consumers cannot
 // mutate the generated validation authority shared by other requests.
+// paragraphLinkMediaFields are the paragraph File fields a profile may hold
+// only when it allows paragraph video (link card and video presentation).
+var paragraphLinkMediaFields = []string{"linkIcon", "linkThumbnail"}
+
 func DescribeRichTextCatalog(profile RichTextProfile) (RichTextCatalogDescriptor, error) {
 	name, err := RichTextProfileStorageName(profile)
 	if err != nil {
@@ -344,10 +349,17 @@ func DescribeRichTextCatalog(profile RichTextProfile) (RichTextCatalogDescriptor
 		if !exists {
 			return RichTextCatalogDescriptor{}, contentValidationError("$.profile.blocks", "kind", "profile references an unknown Block kind")
 		}
+		fields := describeContentFields(definition.Fields, "shared")
+		if kind == "paragraph" && !profileDescriptor.ParagraphExternalVideo {
+			// Restricted profiles reject link media Files, so the descriptor does not offer them.
+			fields = slices.DeleteFunc(fields, func(field ContentFieldDescriptor) bool {
+				return slices.Contains(paragraphLinkMediaFields, field.Name)
+			})
+		}
 		descriptor.Blocks = append(descriptor.Blocks, ContentBlockDescriptor{
 			Kind:    kind,
 			Content: definition.Content,
-			Fields:  describeContentFields(definition.Fields, "shared"),
+			Fields:  fields,
 		})
 	}
 	usedPolicies := make(map[string]struct{})
@@ -925,7 +937,7 @@ func validateRuntimeShared(profile, kind string, shared map[string]any, mode Con
 		}
 		// Link presentation media follows the profile's paragraph video permission.
 		if kind == "paragraph" && !contentBlockRuntimeDescriptor.Profiles[profile].ParagraphExternalVideo {
-			for _, field := range []string{"linkThumbnail", "linkIcon"} {
+			for _, field := range paragraphLinkMediaFields {
 				if sharedProps[field] != nil {
 					return contentValidationError("$.shared.props."+field, "profile", "link media is forbidden by profile")
 				}

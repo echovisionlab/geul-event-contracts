@@ -113,6 +113,34 @@ func TestPostRichTextCatalogDescriptorExposesClosedRecursiveAuthority(t *testing
 	}
 }
 
+func TestRestrictedProfileDescriptorsDoNotOfferLinkMediaFiles(t *testing.T) {
+	t.Parallel()
+
+	for _, profile := range []contentv1.RichTextProfile{
+		contentv1.RichTextProfile_RICH_TEXT_PROFILE_COMPACT,
+		contentv1.RichTextProfile_RICH_TEXT_PROFILE_EMAIL,
+	} {
+		descriptor, err := contentv1.DescribeRichTextCatalog(profile)
+		if err != nil {
+			t.Fatal(err)
+		}
+		for _, field := range requireBlockDescriptor(t, descriptor, "paragraph").Fields {
+			if field.Type == "file_attachment" {
+				t.Fatalf("%s paragraph offers File field %s", profile, field.Name)
+			}
+		}
+		if len(descriptor.FilePolicies) != 0 {
+			t.Fatalf("%s descriptor offers File policies: %+v", profile, descriptor.FilePolicies)
+		}
+	}
+	post, err := contentv1.DescribeRichTextCatalog(contentv1.RichTextProfile_RICH_TEXT_PROFILE_POST)
+	if err != nil {
+		t.Fatal(err)
+	}
+	requireFieldDescriptor(t, requireBlockDescriptor(t, post, "paragraph").Fields, "linkThumbnail")
+	requireFieldDescriptor(t, requireBlockDescriptor(t, post, "paragraph").Fields, "linkIcon")
+}
+
 func TestRichTextCatalogDescriptorReturnsDeepCallerOwnedCopies(t *testing.T) {
 	t.Parallel()
 
