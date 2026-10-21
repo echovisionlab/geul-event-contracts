@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.13.1](https://github.com/echovisionlab/geul-event-contracts/compare/v0.13.0...v0.13.1) (2026-10-21)
+
+
+### Bug Fixes
+
+* keep link media out of restricted profile descriptors ([#46](https://github.com/echovisionlab/geul-event-contracts/issues/46)) ([7e0c913](https://github.com/echovisionlab/geul-event-contracts/commit/7e0c9135f1b30a48be73a1d26e9b27cf4d808a92))
+
 ## [0.13.0](https://github.com/echovisionlab/geul-event-contracts/compare/v0.12.0...v0.13.0) (2026-10-21)
 
 
