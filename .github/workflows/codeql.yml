@@ -1,5 +1,5 @@
 name: CodeQL
-run-name: 'CodeQL · PR #${{ github.event.pull_request.number }}'
+run-name: "CodeQL · PR #${{ github.event.pull_request.number }}"
 
 # Code is analyzed in its pull request, so merging it into main does not analyze it again.
 # This replaces GitHub's default setup, which also analyzes every push to main.
