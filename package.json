@@ -8,7 +8,7 @@
     "url": "git+https://github.com/echovisionlab/geul-event-contracts.git"
   },
   "engines": {
-    "node": "24.22.0"
+    "node": "24.22.1"
   },
   "packageManager": "pnpm@12.14.0+sha512.c18ba6d87993d3d164cb5e8948f32b2c06ee854487e06cd8d86781342fb3e5bb4634367034711e86802baa9c37bea906ce1929ad08d70884c97d801df13389a6",
   "scripts": {
@@ -51,7 +51,7 @@
     "@bufbuild/protoc-gen-es": "^2.16.0",
     "@types/node": "^24.19.2",
     "@vitest/coverage-v8": "5.0.5",
-    "knip": "6.42.1",
+    "knip": "6.43.0",
     "prettier": "^3.9.10",
     "typescript": "npm:@typescript/typescript6@6.0.2",
     "vitest": "5.0.5",
