@@ -934,6 +934,220 @@ func TestPageStorageFlattensAndRebuildsInnerRichTextBlocks(t *testing.T) {
 	}
 }
 
+func TestPageStorageMaterializesNodesInPlacementOrder(t *testing.T) {
+	t.Parallel()
+
+	// Section IDs descend while their indexes ascend, so neither ID order nor
+	// map iteration can accidentally produce the placement order.
+	sectionIDs := []string{
+		"00000000-0000-4000-8000-0000000000f6",
+		"00000000-0000-4000-8000-0000000000f5",
+		"00000000-0000-4000-8000-0000000000f4",
+		"00000000-0000-4000-8000-0000000000f3",
+		"00000000-0000-4000-8000-0000000000f2",
+		"00000000-0000-4000-8000-0000000000f1",
+	}
+	blockIDs := []string{
+		"00000000-0000-4000-8000-0000000000e3",
+		"00000000-0000-4000-8000-0000000000e2",
+		"00000000-0000-4000-8000-0000000000e1",
+	}
+	document := &contentv1.PageDocument{
+		BlockCatalogFingerprint: contentv1.ContentBlockCatalogFingerprint,
+		SourceLocale:            "en",
+		Base:                    &contentv1.PageSectionGraph{},
+		LocaleOverlays:          []*contentv1.PageLocaleOverlay{{Locale: "en"}},
+	}
+	for index, sectionID := range sectionIDs {
+		graph := &contentv1.RichTextBlockGraph{}
+		overlay := &contentv1.RichTextLocaleOverlay{Locale: "en"}
+		if index == 0 {
+			for blockIndex, blockID := range blockIDs {
+				graph.Nodes = append(graph.Nodes, &contentv1.RichTextBlockNode{
+					Block: &contentv1.RichTextBlock{Id: blockID, Value: &contentv1.RichTextBlock_Paragraph{
+						Paragraph: &contentv1.ParagraphBlock{Props: &contentv1.ParagraphProps{}},
+					}},
+					Placement: &contentv1.ContentBlockPlacement{Index: uint32(blockIndex)},
+				})
+				overlay.Blocks = append(overlay.Blocks, &contentv1.RichTextBlockLocale{
+					BlockId: blockID,
+					Value: &contentv1.RichTextBlockLocale_Paragraph{Paragraph: &contentv1.ParagraphBlockLocale{
+						Props: &contentv1.ParagraphLocaleProps{},
+						Content: []*contentv1.RichTextInline{{Value: &contentv1.RichTextInline_Text{
+							Text: &contentv1.RichTextStyledText{Text: blockID},
+						}}},
+					}},
+				})
+			}
+		}
+		document.Base.Nodes = append(document.Base.Nodes, &contentv1.PageSectionNode{
+			Section: &contentv1.PageSection{
+				Id:       sectionID,
+				Settings: &contentv1.PageSectionSettings{},
+				Value: &contentv1.PageSection_RichText{RichText: &contentv1.RichTextSection{
+					Props: &contentv1.RichTextSectionProps{}, Blocks: graph,
+				}},
+			},
+			Placement: &contentv1.PageSectionPlacement{Index: uint32(index)},
+		})
+		document.LocaleOverlays[0].Sections = append(document.LocaleOverlays[0].Sections, &contentv1.PageSectionLocale{
+			SectionId: sectionID,
+			Value: &contentv1.PageSectionLocale_RichText{RichText: &contentv1.RichTextSectionLocale{
+				Props: &contentv1.RichTextSectionLocaleProps{}, Blocks: overlay,
+			}},
+		})
+	}
+	rows, err := contentv1.FlattenPageDocumentStorage(document, contentv1.ContentValidationMode_CONTENT_VALIDATION_MODE_WRITE)
+	if err != nil {
+		t.Fatalf("flatten Page: %v", err)
+	}
+
+	sortedSectionIDs := append([]string(nil), sectionIDs...)
+	for left, right := 0, len(sortedSectionIDs)-1; left < right; left, right = left+1, right-1 {
+		sortedSectionIDs[left], sortedSectionIDs[right] = sortedSectionIDs[right], sortedSectionIDs[left]
+	}
+	var first *contentv1.PageDocument
+	for attempt := 0; attempt < 64; attempt++ {
+		input := cloneStorageRows(rows)
+		if attempt%2 == 1 {
+			for left, right := 0, len(input)-1; left < right; left, right = left+1, right-1 {
+				input[left], input[right] = input[right], input[left]
+			}
+		}
+		rebuilt, err := contentv1.MaterializePageDocumentStorage("en", input)
+		if err != nil {
+			t.Fatalf("materialize Page: %v", err)
+		}
+		var nodeIDs []string
+		for _, node := range rebuilt.GetBase().GetNodes() {
+			nodeIDs = append(nodeIDs, node.GetSection().GetId())
+		}
+		if !reflect.DeepEqual(nodeIDs, sectionIDs) {
+			t.Fatalf("attempt %d: Page nodes %v, want placement order %v", attempt, nodeIDs, sectionIDs)
+		}
+		var blockOrder []string
+		for _, node := range rebuilt.GetBase().GetNodes()[0].GetSection().GetRichText().GetBlocks().GetNodes() {
+			blockOrder = append(blockOrder, node.GetBlock().GetId())
+		}
+		if !reflect.DeepEqual(blockOrder, blockIDs) {
+			t.Fatalf("attempt %d: rich-text Blocks %v, want placement order %v", attempt, blockOrder, blockIDs)
+		}
+		var localeSectionIDs []string
+		for _, section := range rebuilt.GetLocaleOverlays()[0].GetSections() {
+			localeSectionIDs = append(localeSectionIDs, section.GetSectionId())
+		}
+		if !reflect.DeepEqual(localeSectionIDs, sortedSectionIDs) {
+			t.Fatalf("attempt %d: locale sections %v, want section ID order %v", attempt, localeSectionIDs, sortedSectionIDs)
+		}
+		if first == nil {
+			first = rebuilt
+		} else if !proto.Equal(first, rebuilt) {
+			t.Fatalf("attempt %d: materialized Page differs from the first attempt", attempt)
+		}
+	}
+}
+
+func TestRichTextStorageMaterializesNodesInPlacementOrder(t *testing.T) {
+	t.Parallel()
+
+	// Root IDs descend while their indexes ascend; the nested child sorts after
+	// every root because its parent ID is not empty.
+	rootIDs := []string{
+		"00000000-0000-4000-8000-0000000000d5",
+		"00000000-0000-4000-8000-0000000000d4",
+		"00000000-0000-4000-8000-0000000000d3",
+		"00000000-0000-4000-8000-0000000000d2",
+		"00000000-0000-4000-8000-0000000000d1",
+	}
+	childID := "00000000-0000-4000-8000-0000000000c1"
+	document := &contentv1.RichTextDocument{
+		BlockCatalogFingerprint: contentv1.ContentBlockCatalogFingerprint,
+		Profile:                 contentv1.RichTextProfile_RICH_TEXT_PROFILE_POST,
+		SourceLocale:            "en",
+		Base:                    &contentv1.RichTextBlockGraph{},
+		LocaleOverlays:          []*contentv1.RichTextLocaleOverlay{{Locale: "en"}, {Locale: "ko"}},
+	}
+	for index, blockID := range rootIDs {
+		document.Base.Nodes = append(document.Base.Nodes, &contentv1.RichTextBlockNode{
+			Block: &contentv1.RichTextBlock{Id: blockID, Value: &contentv1.RichTextBlock_Paragraph{
+				Paragraph: &contentv1.ParagraphBlock{Props: &contentv1.ParagraphProps{}},
+			}},
+			Placement: &contentv1.ContentBlockPlacement{Index: uint32(index)},
+		})
+		for _, overlay := range document.LocaleOverlays {
+			overlay.Blocks = append(overlay.Blocks, &contentv1.RichTextBlockLocale{
+				BlockId: blockID,
+				Value: &contentv1.RichTextBlockLocale_Paragraph{Paragraph: &contentv1.ParagraphBlockLocale{
+					Props: &contentv1.ParagraphLocaleProps{},
+					Content: []*contentv1.RichTextInline{{Value: &contentv1.RichTextInline_Text{
+						Text: &contentv1.RichTextStyledText{Text: overlay.Locale + " " + blockID},
+					}}},
+				}},
+			})
+		}
+	}
+	parentID := rootIDs[0]
+	document.Base.Nodes = append(document.Base.Nodes, &contentv1.RichTextBlockNode{
+		Block: &contentv1.RichTextBlock{Id: childID, Value: &contentv1.RichTextBlock_CodeBlock{
+			CodeBlock: &contentv1.CodeBlockBlock{Props: &contentv1.CodeBlockProps{}},
+		}},
+		Placement: &contentv1.ContentBlockPlacement{ParentBlockId: &parentID, Index: 0},
+	})
+	document.LocaleOverlays[0].Blocks = append(document.LocaleOverlays[0].Blocks, &contentv1.RichTextBlockLocale{
+		BlockId: childID,
+		Value: &contentv1.RichTextBlockLocale_CodeBlock{CodeBlock: &contentv1.CodeBlockBlockLocale{
+			Props: &contentv1.CodeBlockLocaleProps{}, Content: "nested",
+		}},
+	})
+	rows, err := contentv1.FlattenRichTextDocumentStorage(document, contentv1.ContentValidationMode_CONTENT_VALIDATION_MODE_WRITE)
+	if err != nil {
+		t.Fatalf("flatten Rich Text: %v", err)
+	}
+
+	wantNodes := append(append([]string(nil), rootIDs...), childID)
+	var first *contentv1.RichTextDocument
+	for attempt := 0; attempt < 64; attempt++ {
+		input := cloneStorageRows(rows)
+		// Rotate, and on odd attempts also reverse, the caller's row order.
+		shift := attempt % len(input)
+		input = append(input[shift:], input[:shift]...)
+		if attempt%2 == 1 {
+			for left, right := 0, len(input)-1; left < right; left, right = left+1, right-1 {
+				input[left], input[right] = input[right], input[left]
+			}
+		}
+		rebuilt, err := contentv1.MaterializeRichTextDocumentStorage(contentv1.RichTextProfile_RICH_TEXT_PROFILE_POST, "en", input)
+		if err != nil {
+			t.Fatalf("materialize Rich Text: %v", err)
+		}
+		var nodeIDs []string
+		for _, node := range rebuilt.GetBase().GetNodes() {
+			nodeIDs = append(nodeIDs, node.GetBlock().GetId())
+		}
+		if !reflect.DeepEqual(nodeIDs, wantNodes) {
+			t.Fatalf("attempt %d: Rich Text nodes %v, want placement order %v", attempt, nodeIDs, wantNodes)
+		}
+		for _, overlay := range rebuilt.GetLocaleOverlays() {
+			var blockIDs []string
+			for _, block := range overlay.GetBlocks() {
+				blockIDs = append(blockIDs, block.GetBlockId())
+			}
+			want := wantNodes
+			if overlay.GetLocale() == "ko" {
+				want = rootIDs
+			}
+			if !reflect.DeepEqual(blockIDs, want) {
+				t.Fatalf("attempt %d: %s locale Blocks %v, want placement order %v", attempt, overlay.GetLocale(), blockIDs, want)
+			}
+		}
+		if first == nil {
+			first = rebuilt
+		} else if !proto.Equal(first, rebuilt) {
+			t.Fatalf("attempt %d: materialized Rich Text differs from the first attempt", attempt)
+		}
+	}
+}
+
 func paragraphDocument(text string) *contentv1.RichTextDocument {
 	return &contentv1.RichTextDocument{
 		BlockCatalogFingerprint: contentv1.ContentBlockCatalogFingerprint,

@@ -1821,6 +1821,22 @@ func messageFromRowData(data []byte, idField, id string, target proto.Message) e
 	return unmarshalProtoJSON.Unmarshal(encoded, target)
 }
 
+// compareContentStorageRowPlacement orders storage rows by placement (parent,
+// container slot, index) and then Block ID, matching compareStorageRows in the
+// TypeScript runtime, so materialized graphs do not depend on map iteration.
+func compareContentStorageRowPlacement(left, right ContentStorageRow) bool {
+	if left.ParentBlockID != right.ParentBlockID {
+		return left.ParentBlockID < right.ParentBlockID
+	}
+	if left.ContainerSlot != right.ContainerSlot {
+		return left.ContainerSlot < right.ContainerSlot
+	}
+	if left.Position != right.Position {
+		return left.Position < right.Position
+	}
+	return left.BlockID < right.BlockID
+}
+
 func MaterializeRichTextDocumentStorage(profile RichTextProfile, sourceLocale string, rows []ContentStorageRow) (*RichTextDocument, error) {
 	profileName, err := RichTextProfileStorageName(profile)
 	if err != nil {
@@ -1828,7 +1844,11 @@ func MaterializeRichTextDocumentStorage(profile RichTextProfile, sourceLocale st
 	}
 	document := &RichTextDocument{BlockCatalogFingerprint: ContentBlockCatalogFingerprint, Profile: profile, SourceLocale: sourceLocale, Base: &RichTextBlockGraph{}}
 	overlays := map[string]*RichTextLocaleOverlay{}
-	for _, row := range rows {
+	// Like the TypeScript runtime, build nodes and locale Blocks in placement
+	// order so the result does not depend on the caller's row order.
+	orderedRows := append([]ContentStorageRow(nil), rows...)
+	sort.SliceStable(orderedRows, func(i, j int) bool { return compareContentStorageRowPlacement(orderedRows[i], orderedRows[j]) })
+	for _, row := range orderedRows {
 		if !isRichKind(row.Kind) {
 			return nil, contentValidationError("$.kind", "kind", "non-rich row in rich document")
 		}
@@ -2098,7 +2118,6 @@ func FlattenPageDocumentStorage(document *PageDocument, mode ContentValidationMo
 
 func MaterializePageDocumentStorage(sourceLocale string, rows []ContentStorageRow) (*PageDocument, error) {
 	document := &PageDocument{BlockCatalogFingerprint: ContentBlockCatalogFingerprint, SourceLocale: sourceLocale, Base: &PageSectionGraph{}}
-	sectionRows := map[string]ContentStorageRow{}
 	richRows := map[string]ContentStorageRow{}
 	rowsByID := make(map[string]ContentStorageRow, len(rows))
 	for _, row := range rows {
@@ -2107,6 +2126,8 @@ func MaterializePageDocumentStorage(sourceLocale string, rows []ContentStorageRo
 		}
 		rowsByID[row.BlockID] = row
 	}
+	orderedRows := append([]ContentStorageRow(nil), rows...)
+	sort.SliceStable(orderedRows, func(i, j int) bool { return compareContentStorageRowPlacement(orderedRows[i], orderedRows[j]) })
 	var classify func(string, map[string]bool) (bool, error)
 	classified := map[string]bool{}
 	isSection := map[string]bool{}
@@ -2147,19 +2168,21 @@ func MaterializePageDocumentStorage(sourceLocale string, rows []ContentStorageRo
 		classified[id], isSection[id] = true, section
 		return section, nil
 	}
-	for id, row := range rowsByID {
-		section, err := classify(id, nil)
+	var orderedSectionRows, orderedRichRows []ContentStorageRow
+	for _, row := range orderedRows {
+		section, err := classify(row.BlockID, nil)
 		if err != nil {
 			return nil, err
 		}
 		if section {
-			sectionRows[id] = row
+			orderedSectionRows = append(orderedSectionRows, row)
 		} else {
-			richRows[id] = row
+			richRows[row.BlockID] = row
+			orderedRichRows = append(orderedRichRows, row)
 		}
 	}
 	overlays := map[string]*PageLocaleOverlay{}
-	for _, row := range sectionRows {
+	for _, row := range orderedSectionRows {
 		section := &PageSection{}
 		if err := messageFromRowData(row.SharedData, "id", row.BlockID, section); err != nil {
 			return nil, err
@@ -2185,12 +2208,13 @@ func MaterializePageDocumentStorage(sourceLocale string, rows []ContentStorageRo
 			overlay.Sections = append(overlay.Sections, value)
 		}
 	}
-	for sectionID, row := range sectionRows {
+	for _, row := range orderedSectionRows {
+		sectionID := row.BlockID
 		if row.Kind != "rich-text" {
 			continue
 		}
 		var descendants []ContentStorageRow
-		for _, candidate := range richRows {
+		for _, candidate := range orderedRichRows {
 			parent := candidate.ParentBlockID
 			for parent != "" {
 				if parent == sectionID {
@@ -2247,6 +2271,8 @@ func MaterializePageDocumentStorage(sourceLocale string, rows []ContentStorageRo
 		overlays[sourceLocale] = &PageLocaleOverlay{Locale: sourceLocale}
 	}
 	for _, overlay := range overlays {
+		// Match the TypeScript runtime: locale sections are ordered by section ID.
+		sort.SliceStable(overlay.Sections, func(i, j int) bool { return overlay.Sections[i].GetSectionId() < overlay.Sections[j].GetSectionId() })
 		document.LocaleOverlays = append(document.LocaleOverlays, overlay)
 	}
 	sort.Slice(document.LocaleOverlays, func(i, j int) bool { return document.LocaleOverlays[i].Locale < document.LocaleOverlays[j].Locale })
