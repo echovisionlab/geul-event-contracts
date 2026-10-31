@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.14.1](https://github.com/echovisionlab/geul-event-contracts/compare/v0.14.0...v0.14.1) (2026-10-31)
+
+
+### Bug Fixes
+
+* materialize Page and Rich Text storage nodes in placement order ([#54](https://github.com/echovisionlab/geul-event-contracts/issues/54)) ([005f5b4](https://github.com/echovisionlab/geul-event-contracts/commit/005f5b4951e99d2a4e2c9c3ad85329941160c7f7))
+
 ## [0.14.0](https://github.com/echovisionlab/geul-event-contracts/compare/v0.13.1...v0.14.0) (2026-10-21)
 
 
