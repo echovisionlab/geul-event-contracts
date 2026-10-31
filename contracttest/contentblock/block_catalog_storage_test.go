@@ -1047,6 +1047,107 @@ func TestPageStorageMaterializesNodesInPlacementOrder(t *testing.T) {
 	}
 }
 
+func TestRichTextStorageMaterializesNodesInPlacementOrder(t *testing.T) {
+	t.Parallel()
+
+	// Root IDs descend while their indexes ascend; the nested child sorts after
+	// every root because its parent ID is not empty.
+	rootIDs := []string{
+		"00000000-0000-4000-8000-0000000000d5",
+		"00000000-0000-4000-8000-0000000000d4",
+		"00000000-0000-4000-8000-0000000000d3",
+		"00000000-0000-4000-8000-0000000000d2",
+		"00000000-0000-4000-8000-0000000000d1",
+	}
+	childID := "00000000-0000-4000-8000-0000000000c1"
+	document := &contentv1.RichTextDocument{
+		BlockCatalogFingerprint: contentv1.ContentBlockCatalogFingerprint,
+		Profile:                 contentv1.RichTextProfile_RICH_TEXT_PROFILE_POST,
+		SourceLocale:            "en",
+		Base:                    &contentv1.RichTextBlockGraph{},
+		LocaleOverlays:          []*contentv1.RichTextLocaleOverlay{{Locale: "en"}, {Locale: "ko"}},
+	}
+	for index, blockID := range rootIDs {
+		document.Base.Nodes = append(document.Base.Nodes, &contentv1.RichTextBlockNode{
+			Block: &contentv1.RichTextBlock{Id: blockID, Value: &contentv1.RichTextBlock_Paragraph{
+				Paragraph: &contentv1.ParagraphBlock{Props: &contentv1.ParagraphProps{}},
+			}},
+			Placement: &contentv1.ContentBlockPlacement{Index: uint32(index)},
+		})
+		for _, overlay := range document.LocaleOverlays {
+			overlay.Blocks = append(overlay.Blocks, &contentv1.RichTextBlockLocale{
+				BlockId: blockID,
+				Value: &contentv1.RichTextBlockLocale_Paragraph{Paragraph: &contentv1.ParagraphBlockLocale{
+					Props: &contentv1.ParagraphLocaleProps{},
+					Content: []*contentv1.RichTextInline{{Value: &contentv1.RichTextInline_Text{
+						Text: &contentv1.RichTextStyledText{Text: overlay.Locale + " " + blockID},
+					}}},
+				}},
+			})
+		}
+	}
+	parentID := rootIDs[0]
+	document.Base.Nodes = append(document.Base.Nodes, &contentv1.RichTextBlockNode{
+		Block: &contentv1.RichTextBlock{Id: childID, Value: &contentv1.RichTextBlock_CodeBlock{
+			CodeBlock: &contentv1.CodeBlockBlock{Props: &contentv1.CodeBlockProps{}},
+		}},
+		Placement: &contentv1.ContentBlockPlacement{ParentBlockId: &parentID, Index: 0},
+	})
+	document.LocaleOverlays[0].Blocks = append(document.LocaleOverlays[0].Blocks, &contentv1.RichTextBlockLocale{
+		BlockId: childID,
+		Value: &contentv1.RichTextBlockLocale_CodeBlock{CodeBlock: &contentv1.CodeBlockBlockLocale{
+			Props: &contentv1.CodeBlockLocaleProps{}, Content: "nested",
+		}},
+	})
+	rows, err := contentv1.FlattenRichTextDocumentStorage(document, contentv1.ContentValidationMode_CONTENT_VALIDATION_MODE_WRITE)
+	if err != nil {
+		t.Fatalf("flatten Rich Text: %v", err)
+	}
+
+	wantNodes := append(append([]string(nil), rootIDs...), childID)
+	var first *contentv1.RichTextDocument
+	for attempt := 0; attempt < 64; attempt++ {
+		input := cloneStorageRows(rows)
+		// Rotate, and on odd attempts also reverse, the caller's row order.
+		shift := attempt % len(input)
+		input = append(input[shift:], input[:shift]...)
+		if attempt%2 == 1 {
+			for left, right := 0, len(input)-1; left < right; left, right = left+1, right-1 {
+				input[left], input[right] = input[right], input[left]
+			}
+		}
+		rebuilt, err := contentv1.MaterializeRichTextDocumentStorage(contentv1.RichTextProfile_RICH_TEXT_PROFILE_POST, "en", input)
+		if err != nil {
+			t.Fatalf("materialize Rich Text: %v", err)
+		}
+		var nodeIDs []string
+		for _, node := range rebuilt.GetBase().GetNodes() {
+			nodeIDs = append(nodeIDs, node.GetBlock().GetId())
+		}
+		if !reflect.DeepEqual(nodeIDs, wantNodes) {
+			t.Fatalf("attempt %d: Rich Text nodes %v, want placement order %v", attempt, nodeIDs, wantNodes)
+		}
+		for _, overlay := range rebuilt.GetLocaleOverlays() {
+			var blockIDs []string
+			for _, block := range overlay.GetBlocks() {
+				blockIDs = append(blockIDs, block.GetBlockId())
+			}
+			want := wantNodes
+			if overlay.GetLocale() == "ko" {
+				want = rootIDs
+			}
+			if !reflect.DeepEqual(blockIDs, want) {
+				t.Fatalf("attempt %d: %s locale Blocks %v, want placement order %v", attempt, overlay.GetLocale(), blockIDs, want)
+			}
+		}
+		if first == nil {
+			first = rebuilt
+		} else if !proto.Equal(first, rebuilt) {
+			t.Fatalf("attempt %d: materialized Rich Text differs from the first attempt", attempt)
+		}
+	}
+}
+
 func paragraphDocument(text string) *contentv1.RichTextDocument {
 	return &contentv1.RichTextDocument{
 		BlockCatalogFingerprint: contentv1.ContentBlockCatalogFingerprint,

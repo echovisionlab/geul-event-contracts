@@ -1805,6 +1805,22 @@ func messageFromRowData(data []byte, idField, id string, target proto.Message) e
 	return unmarshalProtoJSON.Unmarshal(encoded, target)
 }
 
+// compareContentStorageRowPlacement orders storage rows by placement (parent,
+// container slot, index) and then Block ID, matching compareStorageRows in the
+// TypeScript runtime, so materialized graphs do not depend on map iteration.
+func compareContentStorageRowPlacement(left, right ContentStorageRow) bool {
+	if left.ParentBlockID != right.ParentBlockID {
+		return left.ParentBlockID < right.ParentBlockID
+	}
+	if left.ContainerSlot != right.ContainerSlot {
+		return left.ContainerSlot < right.ContainerSlot
+	}
+	if left.Position != right.Position {
+		return left.Position < right.Position
+	}
+	return left.BlockID < right.BlockID
+}
+
 func MaterializeRichTextDocumentStorage(profile RichTextProfile, sourceLocale string, rows []ContentStorageRow) (*RichTextDocument, error) {
 	profileName, err := RichTextProfileStorageName(profile)
 	if err != nil {
@@ -1812,7 +1828,11 @@ func MaterializeRichTextDocumentStorage(profile RichTextProfile, sourceLocale st
 	}
 	document := &RichTextDocument{BlockCatalogFingerprint: ContentBlockCatalogFingerprint, Profile: profile, SourceLocale: sourceLocale, Base: &RichTextBlockGraph{}}
 	overlays := map[string]*RichTextLocaleOverlay{}
-	for _, row := range rows {
+	// Like the TypeScript runtime, build nodes and locale Blocks in placement
+	// order so the result does not depend on the caller's row order.
+	orderedRows := append([]ContentStorageRow(nil), rows...)
+	sort.SliceStable(orderedRows, func(i, j int) bool { return compareContentStorageRowPlacement(orderedRows[i], orderedRows[j]) })
+	for _, row := range orderedRows {
 		if !isRichKind(row.Kind) {
 			return nil, contentValidationError("$.kind", "kind", "non-rich row in rich document")
 		}
@@ -2078,22 +2098,6 @@ func FlattenPageDocumentStorage(document *PageDocument, mode ContentValidationMo
 		return nil, contentValidationError("$.base.nodes", "limit", "too many Blocks")
 	}
 	return rows, nil
-}
-
-// compareContentStorageRowPlacement orders storage rows by placement (parent,
-// container slot, index) and then Block ID, matching compareStorageRows in the
-// TypeScript runtime, so materialized graphs do not depend on map iteration.
-func compareContentStorageRowPlacement(left, right ContentStorageRow) bool {
-	if left.ParentBlockID != right.ParentBlockID {
-		return left.ParentBlockID < right.ParentBlockID
-	}
-	if left.ContainerSlot != right.ContainerSlot {
-		return left.ContainerSlot < right.ContainerSlot
-	}
-	if left.Position != right.Position {
-		return left.Position < right.Position
-	}
-	return left.BlockID < right.BlockID
 }
 
 func MaterializePageDocumentStorage(sourceLocale string, rows []ContentStorageRow) (*PageDocument, error) {
