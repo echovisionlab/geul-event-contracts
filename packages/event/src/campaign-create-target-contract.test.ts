@@ -9,8 +9,8 @@ describe("CreateCampaignRequest target wire contract", () => {
       target: { case: "all" as const, value: {} },
     },
     {
-      name: "one exact audience segment",
-      target: { case: "segmentId" as const, value: "segment-1" },
+      name: "one exact Member criteria",
+      target: { case: "memberCriteriaId" as const, value: "criteria-1" },
     },
   ])("round-trips the explicit $name target", ({ target }) => {
     const request = create(CreateCampaignRequestSchema, {

@@ -15,7 +15,7 @@ import (
 )
 
 func TestSpiceDBDecisionDelegationCannotChangeEngineCheck(t *testing.T) {
-	const originalFingerprint = "b1c92baf58538b463ae2a94d9b26c3c7e920b22bf92ca71841196b017592a2fe"
+	const originalFingerprint = "11aecef4a356c7338f52dfbc5b44fdeac84ce47d6cd6a7d2c81e6c3b4f0ca307"
 	if policyv1.SpiceDBCatalogFingerprint != originalFingerprint {
 		t.Fatalf("assembled catalog fingerprint changed: %s", policyv1.SpiceDBCatalogFingerprint)
 	}
@@ -244,7 +244,6 @@ func TestSpiceDBRelationshipSnapshotPlansAreDomainOwned(t *testing.T) {
 		construct      func(string) (policyv1.RelationshipSnapshotPlan, error)
 	}{
 		{"artist", "parent", policyv1.Artist.Snapshot},
-		{"audience_segment", "", policyv1.AudienceSegment.Snapshot},
 		{"campaign", "", policyv1.Campaign.Snapshot},
 		{"category", "", policyv1.Category.Snapshot},
 		{"client", "", policyv1.Client.Snapshot},
@@ -258,6 +257,7 @@ func TestSpiceDBRelationshipSnapshotPlansAreDomainOwned(t *testing.T) {
 		{"map_place", "", policyv1.MapPlace.Snapshot},
 		{"map_theme", "", policyv1.MapTheme.Snapshot},
 		{"member", "", policyv1.Member.Snapshot},
+		{"member_criteria", "", policyv1.MemberCriteria.Snapshot},
 		{"menu", "", policyv1.Menu.Snapshot},
 		{"page", "", policyv1.Page.Snapshot},
 		{"post", "", policyv1.Post.Snapshot},

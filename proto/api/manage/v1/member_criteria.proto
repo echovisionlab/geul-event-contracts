@@ -1,0 +1,152 @@
+syntax = "proto3";
+
+package api.manage.v1;
+
+import "api/common/v1/common.proto";
+import "api/policy/v1/access.proto";
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/echovisionlab/geul-event-contracts/gen/api/v1;apiv1";
+
+// How a Member criteria selects Members. The value names are stored as-is.
+enum MemberCriteriaKind {
+  MEMBER_CRITERIA_KIND_UNSPECIFIED = 0;
+  // Every active Member.
+  MEMBER_CRITERIA_KIND_ALL_MEMBERS = 1;
+  // Members with any of the selected Member tags.
+  MEMBER_CRITERIA_KIND_MEMBER_TAGS = 2;
+  // Members matching account roles and join dates, minus excluded Members.
+  MEMBER_CRITERIA_KIND_FILTER = 3;
+}
+
+message MemberCriteriaConfig {
+  repeated string member_tag_ids = 1; // For MEMBER_TAGS
+  repeated api.policy.v1.AuthorizationRole account_roles = 2; // For FILTER
+  optional google.protobuf.Timestamp created_after = 3; // For FILTER
+  optional google.protobuf.Timestamp created_before = 4; // For FILTER
+  repeated string exclude_member_ids = 5; // For FILTER
+}
+
+// A saved rule that selects Members. Campaigns send to it, restricted downloads
+// grant access through it.
+message MemberCriteria {
+  string id = 1;
+  string name = 2;
+  optional string description = 3;
+  MemberCriteriaKind kind = 4;
+  MemberCriteriaConfig config = 5;
+  google.protobuf.Timestamp created_at = 6;
+  optional google.protobuf.Timestamp updated_at = 7;
+  optional int32 matching_member_count = 8; // Populated on read
+  int32 campaign_count = 9; // Campaigns that currently reference this criteria
+  int32 delivery_run_count = 10; // Durable delivery runs that reference this criteria
+  // Exact File Block and Track download-policy relations that reference this criteria
+  int32 download_policy_reference_count = 11;
+  google.protobuf.Timestamp archived_at = 12;
+}
+
+// Minimal Member criteria metadata for authenticated file access. Its
+// configuration remains admin-only.
+message MemberCriteriaSummary {
+  string id = 1;
+  string name = 2;
+  optional string description = 3;
+  MemberCriteriaKind kind = 4;
+}
+
+message GetMemberCriteriaRequest {
+  string id = 1;
+}
+
+message ListMemberCriteriaAdminRequest {
+  api.common.v1.PaginationRequest pagination = 1;
+  repeated api.common.v1.FilterSpec filters = 2;
+  repeated api.common.v1.SortSpec sorts = 3;
+  bool include_archived = 4;
+}
+
+message ListMemberCriteriaAdminResponse {
+  repeated MemberCriteria member_criteria = 1;
+  api.common.v1.PaginationResponse pagination = 2;
+}
+
+message ListMemberCriteriaForAuthenticatedAccessRequest {
+  api.common.v1.PaginationRequest pagination = 1;
+  repeated api.common.v1.FilterSpec filters = 2;
+  repeated api.common.v1.SortSpec sorts = 3;
+}
+
+message ListMemberCriteriaForAuthenticatedAccessResponse {
+  repeated MemberCriteriaSummary member_criteria = 1;
+  api.common.v1.PaginationResponse pagination = 2;
+}
+
+message CreateMemberCriteriaRequest {
+  string name = 1;
+  optional string description = 2;
+  MemberCriteriaKind kind = 3;
+  MemberCriteriaConfig config = 4;
+}
+
+message UpdateMemberCriteriaRequest {
+  string id = 1;
+  optional string name = 2;
+  optional string description = 3;
+  optional MemberCriteriaKind kind = 4;
+  optional MemberCriteriaConfig config = 5;
+  // Required baseline for config or kind updates; only changes relative to this snapshot are merged.
+  MemberCriteriaConfigSnapshot observed = 6;
+}
+
+// Kind and config observed together so intentional kind changes can reset
+// their coupled config atomically, while same-kind edits merge config leaves
+// against the current locked state.
+message MemberCriteriaConfigSnapshot {
+  MemberCriteriaKind kind = 1;
+  MemberCriteriaConfig config = 2;
+}
+
+message ArchiveMemberCriteriaRequest {
+  string id = 1;
+}
+
+message RestoreMemberCriteriaRequest {
+  string id = 1;
+}
+
+message CountMatchingMembersRequest {
+  MemberCriteriaKind kind = 1;
+  MemberCriteriaConfig config = 2;
+}
+
+message CountMatchingMembersResponse {
+  int32 count = 1;
+}
+
+// MemberCriteriaService manages saved Member criteria (Admin).
+service MemberCriteriaService {
+  rpc GetMemberCriteria(GetMemberCriteriaRequest) returns (MemberCriteria) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc ListMemberCriteriaAdmin(ListMemberCriteriaAdminRequest) returns (ListMemberCriteriaAdminResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc ListMemberCriteriaForAuthenticatedAccess(ListMemberCriteriaForAuthenticatedAccessRequest) returns (ListMemberCriteriaForAuthenticatedAccessResponse) {
+    option (api.policy.v1.access) = {role: AUTHOR};
+  }
+  rpc CreateMemberCriteria(CreateMemberCriteriaRequest) returns (MemberCriteria) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc UpdateMemberCriteria(UpdateMemberCriteriaRequest) returns (MemberCriteria) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc ArchiveMemberCriteria(ArchiveMemberCriteriaRequest) returns (MemberCriteria) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc RestoreMemberCriteria(RestoreMemberCriteriaRequest) returns (MemberCriteria) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc CountMatchingMembers(CountMatchingMembersRequest) returns (CountMatchingMembersResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+}

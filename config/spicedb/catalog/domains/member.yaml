@@ -1,9 +1,14 @@
-# Member owns Member profile resource authorization; account authentication
-# remains outside this resource definition.
+# Member owns Member profile and Member criteria resource authorization;
+# account authentication remains outside these resource definitions.
 domain: member
-description: Member profile resource policy
+description: Member profile and Member criteria resource policy
 actions:
   member:
+    view: view
+    edit: edit
+    delete: delete
+    manage: manage
+  member_criteria:
     view: view
     edit: edit
     delete: delete
@@ -11,13 +16,27 @@ actions:
 platform_actions:
   member:
     list: is_admin
+  member_criteria:
+    create: is_admin
+    list: is_admin
+    list_authenticated_access: is_author
 definitions:
   member:
     relations:
       policy: [platform]
     permissions: [platform_admin, view, edit, delete, manage]
+  member_criteria:
+    relations:
+      policy: [platform]
+    permissions: [platform_admin, view, edit, delete, manage]
 permission_expressions:
   member:
+    platform_admin: policy->is_admin
+    view: platform_admin
+    edit: platform_admin
+    delete: platform_admin
+    manage: platform_admin
+  member_criteria:
     platform_admin: policy->is_admin
     view: platform_admin
     edit: platform_admin

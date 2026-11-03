@@ -86,13 +86,13 @@ func (CampaignStatus) EnumDescriptor() ([]byte, []int) {
 }
 
 // CampaignTargetMode makes the target population explicit. A campaign must
-// never infer ALL from a missing segment relationship.
+// never infer ALL from a missing Member criteria relationship.
 type CampaignTargetMode int32
 
 const (
-	CampaignTargetMode_CAMPAIGN_TARGET_MODE_UNSPECIFIED CampaignTargetMode = 0
-	CampaignTargetMode_CAMPAIGN_TARGET_MODE_ALL         CampaignTargetMode = 1
-	CampaignTargetMode_CAMPAIGN_TARGET_MODE_SEGMENT     CampaignTargetMode = 2
+	CampaignTargetMode_CAMPAIGN_TARGET_MODE_UNSPECIFIED     CampaignTargetMode = 0
+	CampaignTargetMode_CAMPAIGN_TARGET_MODE_ALL             CampaignTargetMode = 1
+	CampaignTargetMode_CAMPAIGN_TARGET_MODE_MEMBER_CRITERIA CampaignTargetMode = 2
 )
 
 // Enum value maps for CampaignTargetMode.
@@ -100,12 +100,12 @@ var (
 	CampaignTargetMode_name = map[int32]string{
 		0: "CAMPAIGN_TARGET_MODE_UNSPECIFIED",
 		1: "CAMPAIGN_TARGET_MODE_ALL",
-		2: "CAMPAIGN_TARGET_MODE_SEGMENT",
+		2: "CAMPAIGN_TARGET_MODE_MEMBER_CRITERIA",
 	}
 	CampaignTargetMode_value = map[string]int32{
-		"CAMPAIGN_TARGET_MODE_UNSPECIFIED": 0,
-		"CAMPAIGN_TARGET_MODE_ALL":         1,
-		"CAMPAIGN_TARGET_MODE_SEGMENT":     2,
+		"CAMPAIGN_TARGET_MODE_UNSPECIFIED":     0,
+		"CAMPAIGN_TARGET_MODE_ALL":             1,
+		"CAMPAIGN_TARGET_MODE_MEMBER_CRITERIA": 2,
 	}
 )
 
@@ -136,8 +136,8 @@ func (CampaignTargetMode) EnumDescriptor() ([]byte, []int) {
 	return file_api_manage_v1_campaign_proto_rawDescGZIP(), []int{1}
 }
 
-// CampaignRecipientScope is a positive delivery gate applied after Audience
-// matching. The product default is SUBSCRIBED_USERS.
+// CampaignRecipientScope is a positive delivery gate applied after Member
+// criteria matching. The product default is SUBSCRIBED_USERS.
 type CampaignRecipientScope int32
 
 const (
@@ -194,7 +194,7 @@ type Campaign struct {
 	SentCount        int32                  `protobuf:"varint,6,opt,name=sent_count,json=sentCount,proto3" json:"sent_count,omitempty"`
 	CreatedAt        *timestamppb.Timestamp `protobuf:"bytes,7,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	UpdatedAt        *timestamppb.Timestamp `protobuf:"bytes,8,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
-	SegmentId        *string                `protobuf:"bytes,9,opt,name=segment_id,json=segmentId,proto3,oneof" json:"segment_id,omitempty"`
+	MemberCriteriaId *string                `protobuf:"bytes,9,opt,name=member_criteria_id,json=memberCriteriaId,proto3,oneof" json:"member_criteria_id,omitempty"`
 	LayoutId         *string                `protobuf:"bytes,10,opt,name=layout_id,json=layoutId,proto3,oneof" json:"layout_id,omitempty"`
 	RecipientScope   CampaignRecipientScope `protobuf:"varint,11,opt,name=recipient_scope,json=recipientScope,proto3,enum=api.manage.v1.CampaignRecipientScope" json:"recipient_scope,omitempty"`
 	Name             string                 `protobuf:"bytes,12,opt,name=name,proto3" json:"name,omitempty"`
@@ -292,9 +292,9 @@ func (x *Campaign) GetUpdatedAt() *timestamppb.Timestamp {
 	return nil
 }
 
-func (x *Campaign) GetSegmentId() string {
-	if x != nil && x.SegmentId != nil {
-		return *x.SegmentId
+func (x *Campaign) GetMemberCriteriaId() string {
+	if x != nil && x.MemberCriteriaId != nil {
+		return *x.MemberCriteriaId
 	}
 	return ""
 }
@@ -692,7 +692,7 @@ func (x *ListCampaignsAdminResponse) GetPagination() *v11.PaginationResponse {
 }
 
 // CreateCampaignRequest creates a draft with an explicit target. The API must
-// reject an unset target and an empty segment_id; it must never infer all
+// reject an unset target and an empty member_criteria_id; it must never infer all
 // recipients from either case.
 type CreateCampaignRequest struct {
 	state   protoimpl.MessageState `protogen:"open.v1"`
@@ -701,7 +701,7 @@ type CreateCampaignRequest struct {
 	// Types that are valid to be assigned to Target:
 	//
 	//	*CreateCampaignRequest_All
-	//	*CreateCampaignRequest_SegmentId
+	//	*CreateCampaignRequest_MemberCriteriaId
 	Target isCreateCampaignRequest_Target `protobuf_oneof:"target"`
 	// Required initial source locale for the new Campaign.
 	SourceLocale  string `protobuf:"bytes,5,opt,name=source_locale,json=sourceLocale,proto3" json:"source_locale,omitempty"`
@@ -769,10 +769,10 @@ func (x *CreateCampaignRequest) GetAll() *emptypb.Empty {
 	return nil
 }
 
-func (x *CreateCampaignRequest) GetSegmentId() string {
+func (x *CreateCampaignRequest) GetMemberCriteriaId() string {
 	if x != nil {
-		if x, ok := x.Target.(*CreateCampaignRequest_SegmentId); ok {
-			return x.SegmentId
+		if x, ok := x.Target.(*CreateCampaignRequest_MemberCriteriaId); ok {
+			return x.MemberCriteriaId
 		}
 	}
 	return ""
@@ -793,13 +793,13 @@ type CreateCampaignRequest_All struct {
 	All *emptypb.Empty `protobuf:"bytes,3,opt,name=all,proto3,oneof"`
 }
 
-type CreateCampaignRequest_SegmentId struct {
-	SegmentId string `protobuf:"bytes,4,opt,name=segment_id,json=segmentId,proto3,oneof"`
+type CreateCampaignRequest_MemberCriteriaId struct {
+	MemberCriteriaId string `protobuf:"bytes,4,opt,name=member_criteria_id,json=memberCriteriaId,proto3,oneof"`
 }
 
 func (*CreateCampaignRequest_All) isCreateCampaignRequest_Target() {}
 
-func (*CreateCampaignRequest_SegmentId) isCreateCampaignRequest_Target() {}
+func (*CreateCampaignRequest_MemberCriteriaId) isCreateCampaignRequest_Target() {}
 
 // CreateCampaignResponse
 type CreateCampaignResponse struct {
@@ -969,16 +969,17 @@ func (x *UpdateCampaignNameResponse) GetUpdatedAt() *timestamppb.Timestamp {
 // UpdateCampaignConfiguration owns durable delivery targeting. It is separate
 // from collaboration documents so the authenticated Admin is the Audit actor.
 // Optional fields form a sparse patch. target_mode updates the target_mode and
-// segment_id pair; an absent segment_id clears the segment when mode is ALL.
+// member_criteria_id pair; an absent member_criteria_id clears the criteria when
+// mode is ALL.
 type UpdateCampaignConfigurationRequest struct {
-	state          protoimpl.MessageState  `protogen:"open.v1"`
-	Id             string                  `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	TargetMode     *CampaignTargetMode     `protobuf:"varint,2,opt,name=target_mode,json=targetMode,proto3,enum=api.manage.v1.CampaignTargetMode,oneof" json:"target_mode,omitempty"`
-	SegmentId      *string                 `protobuf:"bytes,3,opt,name=segment_id,json=segmentId,proto3,oneof" json:"segment_id,omitempty"`
-	LayoutId       *string                 `protobuf:"bytes,4,opt,name=layout_id,json=layoutId,proto3,oneof" json:"layout_id,omitempty"`
-	RecipientScope *CampaignRecipientScope `protobuf:"varint,5,opt,name=recipient_scope,json=recipientScope,proto3,enum=api.manage.v1.CampaignRecipientScope,oneof" json:"recipient_scope,omitempty"`
-	unknownFields  protoimpl.UnknownFields
-	sizeCache      protoimpl.SizeCache
+	state            protoimpl.MessageState  `protogen:"open.v1"`
+	Id               string                  `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	TargetMode       *CampaignTargetMode     `protobuf:"varint,2,opt,name=target_mode,json=targetMode,proto3,enum=api.manage.v1.CampaignTargetMode,oneof" json:"target_mode,omitempty"`
+	MemberCriteriaId *string                 `protobuf:"bytes,3,opt,name=member_criteria_id,json=memberCriteriaId,proto3,oneof" json:"member_criteria_id,omitempty"`
+	LayoutId         *string                 `protobuf:"bytes,4,opt,name=layout_id,json=layoutId,proto3,oneof" json:"layout_id,omitempty"`
+	RecipientScope   *CampaignRecipientScope `protobuf:"varint,5,opt,name=recipient_scope,json=recipientScope,proto3,enum=api.manage.v1.CampaignRecipientScope,oneof" json:"recipient_scope,omitempty"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
 }
 
 func (x *UpdateCampaignConfigurationRequest) Reset() {
@@ -1025,9 +1026,9 @@ func (x *UpdateCampaignConfigurationRequest) GetTargetMode() CampaignTargetMode 
 	return CampaignTargetMode_CAMPAIGN_TARGET_MODE_UNSPECIFIED
 }
 
-func (x *UpdateCampaignConfigurationRequest) GetSegmentId() string {
-	if x != nil && x.SegmentId != nil {
-		return *x.SegmentId
+func (x *UpdateCampaignConfigurationRequest) GetMemberCriteriaId() string {
+	if x != nil && x.MemberCriteriaId != nil {
+		return *x.MemberCriteriaId
 	}
 	return ""
 }
@@ -1047,16 +1048,16 @@ func (x *UpdateCampaignConfigurationRequest) GetRecipientScope() CampaignRecipie
 }
 
 type UpdateCampaignConfigurationResponse struct {
-	state          protoimpl.MessageState `protogen:"open.v1"`
-	Id             string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Changed        bool                   `protobuf:"varint,2,opt,name=changed,proto3" json:"changed,omitempty"`
-	TargetMode     CampaignTargetMode     `protobuf:"varint,3,opt,name=target_mode,json=targetMode,proto3,enum=api.manage.v1.CampaignTargetMode" json:"target_mode,omitempty"`
-	SegmentId      *string                `protobuf:"bytes,4,opt,name=segment_id,json=segmentId,proto3,oneof" json:"segment_id,omitempty"`
-	LayoutId       *string                `protobuf:"bytes,5,opt,name=layout_id,json=layoutId,proto3,oneof" json:"layout_id,omitempty"`
-	RecipientScope CampaignRecipientScope `protobuf:"varint,6,opt,name=recipient_scope,json=recipientScope,proto3,enum=api.manage.v1.CampaignRecipientScope" json:"recipient_scope,omitempty"`
-	UpdatedAt      *timestamppb.Timestamp `protobuf:"bytes,7,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
-	unknownFields  protoimpl.UnknownFields
-	sizeCache      protoimpl.SizeCache
+	state            protoimpl.MessageState `protogen:"open.v1"`
+	Id               string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Changed          bool                   `protobuf:"varint,2,opt,name=changed,proto3" json:"changed,omitempty"`
+	TargetMode       CampaignTargetMode     `protobuf:"varint,3,opt,name=target_mode,json=targetMode,proto3,enum=api.manage.v1.CampaignTargetMode" json:"target_mode,omitempty"`
+	MemberCriteriaId *string                `protobuf:"bytes,4,opt,name=member_criteria_id,json=memberCriteriaId,proto3,oneof" json:"member_criteria_id,omitempty"`
+	LayoutId         *string                `protobuf:"bytes,5,opt,name=layout_id,json=layoutId,proto3,oneof" json:"layout_id,omitempty"`
+	RecipientScope   CampaignRecipientScope `protobuf:"varint,6,opt,name=recipient_scope,json=recipientScope,proto3,enum=api.manage.v1.CampaignRecipientScope" json:"recipient_scope,omitempty"`
+	UpdatedAt        *timestamppb.Timestamp `protobuf:"bytes,7,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
 }
 
 func (x *UpdateCampaignConfigurationResponse) Reset() {
@@ -1110,9 +1111,9 @@ func (x *UpdateCampaignConfigurationResponse) GetTargetMode() CampaignTargetMode
 	return CampaignTargetMode_CAMPAIGN_TARGET_MODE_UNSPECIFIED
 }
 
-func (x *UpdateCampaignConfigurationResponse) GetSegmentId() string {
-	if x != nil && x.SegmentId != nil {
-		return *x.SegmentId
+func (x *UpdateCampaignConfigurationResponse) GetMemberCriteriaId() string {
+	if x != nil && x.MemberCriteriaId != nil {
+		return *x.MemberCriteriaId
 	}
 	return ""
 }
@@ -2140,7 +2141,7 @@ var File_api_manage_v1_campaign_proto protoreflect.FileDescriptor
 
 const file_api_manage_v1_campaign_proto_rawDesc = "" +
 	"\n" +
-	"\x1capi/manage/v1/campaign.proto\x12\rapi.manage.v1\x1a\x1aapi/common/v1/common.proto\x1a\"api/content/v1/block_content.proto\x1a\x1aapi/policy/v1/access.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xb6\x06\n" +
+	"\x1capi/manage/v1/campaign.proto\x12\rapi.manage.v1\x1a\x1aapi/common/v1/common.proto\x1a\"api/content/v1/block_content.proto\x1a\x1aapi/policy/v1/access.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xcd\x06\n" +
 	"\bCampaign\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x18\n" +
 	"\asubject\x18\x02 \x01(\tR\asubject\x125\n" +
@@ -2152,9 +2153,8 @@ const file_api_manage_v1_campaign_proto_rawDesc = "" +
 	"\n" +
 	"created_at\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x129\n" +
 	"\n" +
-	"updated_at\x18\b \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\x12\"\n" +
-	"\n" +
-	"segment_id\x18\t \x01(\tH\x02R\tsegmentId\x88\x01\x01\x12 \n" +
+	"updated_at\x18\b \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\x121\n" +
+	"\x12member_criteria_id\x18\t \x01(\tH\x02R\x10memberCriteriaId\x88\x01\x01\x12 \n" +
 	"\tlayout_id\x18\n" +
 	" \x01(\tH\x03R\blayoutId\x88\x01\x01\x12N\n" +
 	"\x0frecipient_scope\x18\v \x01(\x0e2%.api.manage.v1.CampaignRecipientScopeR\x0erecipientScope\x12\x12\n" +
@@ -2166,8 +2166,8 @@ const file_api_manage_v1_campaign_proto_rawDesc = "" +
 	"\rsource_locale\x18\x10 \x01(\tR\fsourceLocaleB\x0f\n" +
 	"\r_scheduled_atB\n" +
 	"\n" +
-	"\b_sent_atB\r\n" +
-	"\v_segment_idB\f\n" +
+	"\b_sent_atB\x15\n" +
+	"\x13_member_criteria_idB\f\n" +
 	"\n" +
 	"_layout_id\"\xc6\x01\n" +
 	"\rCampaignStats\x12\x1d\n" +
@@ -2195,13 +2195,12 @@ const file_api_manage_v1_campaign_proto_rawDesc = "" +
 	"\tcampaigns\x18\x01 \x03(\v2\x17.api.manage.v1.CampaignR\tcampaigns\x12A\n" +
 	"\n" +
 	"pagination\x18\x02 \x01(\v2!.api.common.v1.PaginationResponseR\n" +
-	"pagination\"\xc1\x01\n" +
+	"pagination\"\xd0\x01\n" +
 	"\x15CreateCampaignRequest\x12\x18\n" +
 	"\asubject\x18\x01 \x01(\tR\asubject\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12*\n" +
-	"\x03all\x18\x03 \x01(\v2\x16.google.protobuf.EmptyH\x00R\x03all\x12\x1f\n" +
-	"\n" +
-	"segment_id\x18\x04 \x01(\tH\x00R\tsegmentId\x12#\n" +
+	"\x03all\x18\x03 \x01(\v2\x16.google.protobuf.EmptyH\x00R\x03all\x12.\n" +
+	"\x12member_criteria_id\x18\x04 \x01(\tH\x00R\x10memberCriteriaId\x12#\n" +
 	"\rsource_locale\x18\x05 \x01(\tR\fsourceLocaleB\b\n" +
 	"\x06target\"M\n" +
 	"\x16CreateCampaignResponse\x123\n" +
@@ -2214,32 +2213,30 @@ const file_api_manage_v1_campaign_proto_rawDesc = "" +
 	"\achanged\x18\x02 \x01(\bR\achanged\x12\x12\n" +
 	"\x04name\x18\x03 \x01(\tR\x04name\x129\n" +
 	"\n" +
-	"updated_at\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\"\xd9\x02\n" +
+	"updated_at\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\"\xf0\x02\n" +
 	"\"UpdateCampaignConfigurationRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12G\n" +
 	"\vtarget_mode\x18\x02 \x01(\x0e2!.api.manage.v1.CampaignTargetModeH\x00R\n" +
-	"targetMode\x88\x01\x01\x12\"\n" +
-	"\n" +
-	"segment_id\x18\x03 \x01(\tH\x01R\tsegmentId\x88\x01\x01\x12 \n" +
+	"targetMode\x88\x01\x01\x121\n" +
+	"\x12member_criteria_id\x18\x03 \x01(\tH\x01R\x10memberCriteriaId\x88\x01\x01\x12 \n" +
 	"\tlayout_id\x18\x04 \x01(\tH\x02R\blayoutId\x88\x01\x01\x12S\n" +
 	"\x0frecipient_scope\x18\x05 \x01(\x0e2%.api.manage.v1.CampaignRecipientScopeH\x03R\x0erecipientScope\x88\x01\x01B\x0e\n" +
-	"\f_target_modeB\r\n" +
-	"\v_segment_idB\f\n" +
+	"\f_target_modeB\x15\n" +
+	"\x13_member_criteria_idB\f\n" +
 	"\n" +
 	"_layout_idB\x12\n" +
-	"\x10_recipient_scope\"\x81\x03\n" +
+	"\x10_recipient_scope\"\x98\x03\n" +
 	"#UpdateCampaignConfigurationResponse\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x18\n" +
 	"\achanged\x18\x02 \x01(\bR\achanged\x12B\n" +
 	"\vtarget_mode\x18\x03 \x01(\x0e2!.api.manage.v1.CampaignTargetModeR\n" +
-	"targetMode\x12\"\n" +
-	"\n" +
-	"segment_id\x18\x04 \x01(\tH\x00R\tsegmentId\x88\x01\x01\x12 \n" +
+	"targetMode\x121\n" +
+	"\x12member_criteria_id\x18\x04 \x01(\tH\x00R\x10memberCriteriaId\x88\x01\x01\x12 \n" +
 	"\tlayout_id\x18\x05 \x01(\tH\x01R\blayoutId\x88\x01\x01\x12N\n" +
 	"\x0frecipient_scope\x18\x06 \x01(\x0e2%.api.manage.v1.CampaignRecipientScopeR\x0erecipientScope\x129\n" +
 	"\n" +
-	"updated_at\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAtB\r\n" +
-	"\v_segment_idB\f\n" +
+	"updated_at\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAtB\x15\n" +
+	"\x13_member_criteria_idB\f\n" +
 	"\n" +
 	"_layout_id\"'\n" +
 	"\x15DeleteCampaignRequest\x12\x0e\n" +
@@ -2331,11 +2328,11 @@ const file_api_manage_v1_campaign_proto_rawDesc = "" +
 	"\x19CAMPAIGN_STATUS_SCHEDULED\x10\x02\x12\x1b\n" +
 	"\x17CAMPAIGN_STATUS_SENDING\x10\x03\x12\x18\n" +
 	"\x14CAMPAIGN_STATUS_SENT\x10\x04\x12\x1a\n" +
-	"\x16CAMPAIGN_STATUS_FAILED\x10\x05*z\n" +
+	"\x16CAMPAIGN_STATUS_FAILED\x10\x05*\x82\x01\n" +
 	"\x12CampaignTargetMode\x12$\n" +
 	" CAMPAIGN_TARGET_MODE_UNSPECIFIED\x10\x00\x12\x1c\n" +
-	"\x18CAMPAIGN_TARGET_MODE_ALL\x10\x01\x12 \n" +
-	"\x1cCAMPAIGN_TARGET_MODE_SEGMENT\x10\x02*x\n" +
+	"\x18CAMPAIGN_TARGET_MODE_ALL\x10\x01\x12(\n" +
+	"$CAMPAIGN_TARGET_MODE_MEMBER_CRITERIA\x10\x02*x\n" +
 	"\x16CampaignRecipientScope\x12-\n" +
 	")CAMPAIGN_RECIPIENT_SCOPE_SUBSCRIBED_USERS\x10\x00\x12/\n" +
 	"+CAMPAIGN_RECIPIENT_SCOPE_ALL_MATCHING_USERS\x10\x012\xb0\v\n" +
@@ -2494,7 +2491,7 @@ func file_api_manage_v1_campaign_proto_init() {
 	file_api_manage_v1_campaign_proto_msgTypes[0].OneofWrappers = []any{}
 	file_api_manage_v1_campaign_proto_msgTypes[7].OneofWrappers = []any{
 		(*CreateCampaignRequest_All)(nil),
-		(*CreateCampaignRequest_SegmentId)(nil),
+		(*CreateCampaignRequest_MemberCriteriaId)(nil),
 	}
 	file_api_manage_v1_campaign_proto_msgTypes[11].OneofWrappers = []any{}
 	file_api_manage_v1_campaign_proto_msgTypes[12].OneofWrappers = []any{}

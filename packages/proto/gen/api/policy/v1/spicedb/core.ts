@@ -29,7 +29,7 @@ import type {
 } from "./internal.ts";
 
 export const spiceDbCatalogFingerprint =
-  "b1c92baf58538b463ae2a94d9b26c3c7e920b22bf92ca71841196b017592a2fe" as const;
+  "11aecef4a356c7338f52dfbc5b44fdeac84ce47d6cd6a7d2c81e6c3b4f0ca307" as const;
 
 export type {
   Actor,

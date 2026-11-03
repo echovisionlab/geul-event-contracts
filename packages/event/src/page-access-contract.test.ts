@@ -19,7 +19,7 @@ import {
 } from "@echovisionlab/geul-proto/public/page_pb.ts";
 
 describe("Page access contract", () => {
-  it("appends audience fields without changing Page field tags", () => {
+  it("appends viewer access fields without changing Page field tags", () => {
     for (const [schema, tag] of [
       [ManagePageSchema, 17],
       [PageSummarySchema, 10],

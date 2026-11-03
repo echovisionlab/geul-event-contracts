@@ -31,7 +31,7 @@ func TestCampaignSharedDocumentDoesNotCarryConfiguration(t *testing.T) {
 	requireMessageField(t, apply, "locale", 3, protoreflect.StringKind, "")
 	requireMessageField(t, apply, "expected_target_revision", 4, protoreflect.StringKind, "")
 	requireMessageField(t, apply, "affected_locale_values", 5, protoreflect.MessageKind, "api.manage.v1.AIDocumentFieldTarget")
-	for _, field := range []protoreflect.Name{"recipient_scope", "target_mode", "segment_id", "layout_id"} {
+	for _, field := range []protoreflect.Name{"recipient_scope", "target_mode", "member_criteria_id", "layout_id"} {
 		if apply.Fields().ByName(field) != nil || response.Fields().ByName(field) != nil {
 			t.Fatalf("Campaign collaboration document must not carry %s", field)
 		}
@@ -49,7 +49,7 @@ func TestCampaignTargetModeIsClosedAndTyped(t *testing.T) {
 	}{
 		{name: "CAMPAIGN_TARGET_MODE_UNSPECIFIED", number: 0},
 		{name: "CAMPAIGN_TARGET_MODE_ALL", number: 1},
-		{name: "CAMPAIGN_TARGET_MODE_SEGMENT", number: 2},
+		{name: "CAMPAIGN_TARGET_MODE_MEMBER_CRITERIA", number: 2},
 	} {
 		value := targetMode.Values().Get(index)
 		if value.Name() != expected.name || value.Number() != expected.number {
@@ -152,9 +152,9 @@ func TestCampaignSubjectIsSourceOwned(t *testing.T) {
 	)
 }
 
-func TestAdminSegmentExposesReferenceCountsAndArchiveState(t *testing.T) {
-	segment := (&managev1.Segment{}).ProtoReflect().Descriptor()
-	requireMessageFieldCount(t, segment, 12)
+func TestAdminMemberCriteriaExposesReferenceCountsAndArchiveState(t *testing.T) {
+	criteria := (&managev1.MemberCriteria{}).ProtoReflect().Descriptor()
+	requireMessageFieldCount(t, criteria, 12)
 	for _, expected := range []struct {
 		name   protoreflect.Name
 		number protoreflect.FieldNumber
@@ -165,71 +165,71 @@ func TestAdminSegmentExposesReferenceCountsAndArchiveState(t *testing.T) {
 	} {
 		field := requireMessageField(
 			t,
-			segment,
+			criteria,
 			expected.name,
 			expected.number,
 			protoreflect.Int32Kind,
 			"",
 		)
 		if field.HasPresence() {
-			t.Errorf("api.manage.v1.Segment.%s must be a non-optional count", expected.name)
+			t.Errorf("api.manage.v1.MemberCriteria.%s must be a non-optional count", expected.name)
 		}
 	}
 	archivedAt := requireMessageField(
 		t,
-		segment,
+		criteria,
 		"archived_at",
 		12,
 		protoreflect.MessageKind,
 		"google.protobuf.Timestamp",
 	)
 	if !archivedAt.HasPresence() {
-		t.Error("api.manage.v1.Segment.archived_at must preserve active versus archived presence")
+		t.Error("api.manage.v1.MemberCriteria.archived_at must preserve active versus archived presence")
 	}
 
-	if segment.ReservedNames().Len() != 0 || segment.ReservedRanges().Len() != 0 {
-		t.Error("api.manage.v1.Segment must not retain a compatibility reservation")
+	if criteria.ReservedNames().Len() != 0 || criteria.ReservedRanges().Len() != 0 {
+		t.Error("api.manage.v1.MemberCriteria must not retain a compatibility reservation")
 	}
 
-	summary := (&managev1.AudienceSegmentSummary{}).ProtoReflect().Descriptor()
+	summary := (&managev1.MemberCriteriaSummary{}).ProtoReflect().Descriptor()
 	for _, name := range []protoreflect.Name{
 		"campaign_count",
 		"delivery_run_count",
 		"download_policy_reference_count",
 	} {
 		if summary.Fields().ByName(name) != nil {
-			t.Errorf("api.manage.v1.AudienceSegmentSummary must not expose admin %s usage", name)
+			t.Errorf("api.manage.v1.MemberCriteriaSummary must not expose admin %s usage", name)
 		}
 	}
 }
 
-func TestAudienceSegmentArchiveLifecycleContract(t *testing.T) {
-	list := (&managev1.ListSegmentsAdminRequest{}).ProtoReflect().Descriptor()
+func TestMemberCriteriaArchiveLifecycleContract(t *testing.T) {
+	list := (&managev1.ListMemberCriteriaAdminRequest{}).ProtoReflect().Descriptor()
 	requireMessageFieldCount(t, list, 4)
 	requireMessageField(t, list, "pagination", 1, protoreflect.MessageKind, "api.common.v1.PaginationRequest")
 	requireMessageField(t, list, "filters", 2, protoreflect.MessageKind, "api.common.v1.FilterSpec")
 	requireMessageField(t, list, "sorts", 3, protoreflect.MessageKind, "api.common.v1.SortSpec")
 	requireMessageField(t, list, "include_archived", 4, protoreflect.BoolKind, "")
 
-	archive := (&managev1.ArchiveSegmentRequest{}).ProtoReflect().Descriptor()
+	archive := (&managev1.ArchiveMemberCriteriaRequest{}).ProtoReflect().Descriptor()
 	requireMessageFieldCount(t, archive, 1)
 	requireMessageField(t, archive, "id", 1, protoreflect.StringKind, "")
 
-	restore := (&managev1.RestoreSegmentRequest{}).ProtoReflect().Descriptor()
+	restore := (&managev1.RestoreMemberCriteriaRequest{}).ProtoReflect().Descriptor()
 	requireMessageFieldCount(t, restore, 1)
 	requireMessageField(t, restore, "id", 1, protoreflect.StringKind, "")
 
-	file := managev1.File_api_manage_v1_audience_proto
-	service := file.Services().ByName("AudienceService")
+	file := managev1.File_api_manage_v1_member_criteria_proto
+	service := file.Services().ByName("MemberCriteriaService")
 	if service == nil {
-		t.Fatal("api.manage.v1.AudienceService descriptor is missing")
+		t.Fatal("api.manage.v1.MemberCriteriaService descriptor is missing")
 	}
 	for _, expected := range []struct {
 		method  protoreflect.Name
 		request protoreflect.FullName
 	}{
-		{method: "ArchiveSegment", request: "api.manage.v1.ArchiveSegmentRequest"},
-		{method: "RestoreSegment", request: "api.manage.v1.RestoreSegmentRequest"},
+		{method: "ArchiveMemberCriteria", request: "api.manage.v1.ArchiveMemberCriteriaRequest"},
+		{method: "RestoreMemberCriteria", request: "api.manage.v1.RestoreMemberCriteriaRequest"},
 	} {
 		method := service.Methods().ByName(expected.method)
 		if method == nil {
@@ -238,30 +238,30 @@ func TestAudienceSegmentArchiveLifecycleContract(t *testing.T) {
 		if got := method.Input().FullName(); got != expected.request {
 			t.Errorf("%s.%s input = %s, want %s", service.FullName(), expected.method, got, expected.request)
 		}
-		if got := method.Output().FullName(); got != "api.manage.v1.Segment" {
-			t.Errorf("%s.%s output = %s, want api.manage.v1.Segment", service.FullName(), expected.method, got)
+		if got := method.Output().FullName(); got != "api.manage.v1.MemberCriteria" {
+			t.Errorf("%s.%s output = %s, want api.manage.v1.MemberCriteria", service.FullName(), expected.method, got)
 		}
 		requireMethodTier(t, service, expected.method, policyv1.AuthorizationRole_ADMIN)
 	}
 }
 
-func TestAudienceSegmentConfigUsesCanonicalTypedFilters(t *testing.T) {
-	config := (&managev1.SegmentConfig{}).ProtoReflect().Descriptor()
+func TestMemberCriteriaConfigUsesCanonicalTypedFilters(t *testing.T) {
+	config := (&managev1.MemberCriteriaConfig{}).ProtoReflect().Descriptor()
 	requireMessageFieldCount(t, config, 5)
 
-	segmentType := managev1.SegmentType(0).Descriptor()
+	kind := managev1.MemberCriteriaKind(0).Descriptor()
 	for index, expected := range []struct {
 		name   protoreflect.Name
 		number protoreflect.EnumNumber
 	}{
-		{name: "SEGMENT_TYPE_UNSPECIFIED", number: 0},
-		{name: "SEGMENT_TYPE_ALL_MEMBERS", number: 1},
-		{name: "SEGMENT_TYPE_MEMBER_TAGS", number: 2},
-		{name: "SEGMENT_TYPE_MEMBERS_BY_FILTER", number: 3},
+		{name: "MEMBER_CRITERIA_KIND_UNSPECIFIED", number: 0},
+		{name: "MEMBER_CRITERIA_KIND_ALL_MEMBERS", number: 1},
+		{name: "MEMBER_CRITERIA_KIND_MEMBER_TAGS", number: 2},
+		{name: "MEMBER_CRITERIA_KIND_FILTER", number: 3},
 	} {
-		value := segmentType.Values().Get(index)
+		value := kind.Values().Get(index)
 		if value.Name() != expected.name || value.Number() != expected.number {
-			t.Errorf("api.manage.v1.SegmentType value %d = %s/%d, want %s/%d", index, value.Name(), value.Number(), expected.name, expected.number)
+			t.Errorf("api.manage.v1.MemberCriteriaKind value %d = %s/%d, want %s/%d", index, value.Name(), value.Number(), expected.name, expected.number)
 		}
 	}
 
@@ -274,7 +274,7 @@ func TestAudienceSegmentConfigUsesCanonicalTypedFilters(t *testing.T) {
 		"api.policy.v1.AuthorizationRole",
 	)
 	if !roles.IsList() {
-		t.Error("api.manage.v1.SegmentConfig.account_roles must be repeated")
+		t.Error("api.manage.v1.MemberCriteriaConfig.account_roles must be repeated")
 	}
 
 	for _, expected := range []struct {
@@ -293,16 +293,16 @@ func TestAudienceSegmentConfigUsesCanonicalTypedFilters(t *testing.T) {
 			"google.protobuf.Timestamp",
 		)
 		if !field.HasOptionalKeyword() {
-			t.Errorf("api.manage.v1.SegmentConfig.%s must remain optional", expected.name)
+			t.Errorf("api.manage.v1.MemberCriteriaConfig.%s must remain optional", expected.name)
 		}
 	}
 	memberTags := requireMessageField(t, config, "member_tag_ids", 1, protoreflect.StringKind, "")
 	if !memberTags.IsList() {
-		t.Error("api.manage.v1.SegmentConfig.member_tag_ids must be repeated")
+		t.Error("api.manage.v1.MemberCriteriaConfig.member_tag_ids must be repeated")
 	}
 	excluded := requireMessageField(t, config, "exclude_member_ids", 5, protoreflect.StringKind, "")
 	if !excluded.IsList() {
-		t.Error("api.manage.v1.SegmentConfig.exclude_member_ids must be repeated")
+		t.Error("api.manage.v1.MemberCriteriaConfig.exclude_member_ids must be repeated")
 	}
 }
 

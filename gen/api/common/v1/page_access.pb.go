@@ -180,7 +180,7 @@ func (PageAccessReason) EnumDescriptor() ([]byte, []int) {
 	return file_api_common_v1_page_access_proto_rawDescGZIP(), []int{2}
 }
 
-// Server-enforced Page audience conditions. CONDITIONS writes require at least
+// Server-enforced Page viewer conditions. CONDITIONS writes require at least
 // one selected condition group. Authentication is a prerequisite, never an OR
 // condition group. Billing conditions may be added when supported.
 type PageAccessPolicy struct {
