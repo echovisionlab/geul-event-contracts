@@ -27,8 +27,8 @@ message MemberCriteriaConfig {
   repeated string exclude_member_ids = 5; // For FILTER
 }
 
-// A saved rule that selects Members. Campaigns send to it, restricted downloads
-// grant access through it.
+// A saved rule that selects Members. Campaigns send to it; restricted downloads
+// and sign-in apps grant access through it.
 message MemberCriteria {
   string id = 1;
   string name = 2;
@@ -43,6 +43,8 @@ message MemberCriteria {
   // Exact File Block and Track download-policy relations that reference this criteria
   int32 download_policy_reference_count = 11;
   google.protobuf.Timestamp archived_at = 12;
+  // Sign-in apps that admit Members through this criteria
+  int32 sign_in_app_reference_count = 13;
 }
 
 // Minimal Member criteria metadata for authenticated file access. Its

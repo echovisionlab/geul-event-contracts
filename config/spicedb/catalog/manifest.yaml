@@ -23,6 +23,7 @@ modules:
   - translation
   - legal_policy
   - map_theme
+  - oauth_app
 
 definition_order:
   - account_identity
@@ -62,3 +63,5 @@ definition_order:
   - terms_history
   - privacy_history
   - map_theme
+  - oauth_sign_in_app
+  - oauth_connected_tool

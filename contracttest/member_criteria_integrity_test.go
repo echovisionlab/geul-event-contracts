@@ -154,7 +154,7 @@ func TestCampaignSubjectIsSourceOwned(t *testing.T) {
 
 func TestAdminMemberCriteriaExposesReferenceCountsAndArchiveState(t *testing.T) {
 	criteria := (&managev1.MemberCriteria{}).ProtoReflect().Descriptor()
-	requireMessageFieldCount(t, criteria, 12)
+	requireMessageFieldCount(t, criteria, 13)
 	for _, expected := range []struct {
 		name   protoreflect.Name
 		number protoreflect.FieldNumber
@@ -162,6 +162,7 @@ func TestAdminMemberCriteriaExposesReferenceCountsAndArchiveState(t *testing.T) 
 		{name: "campaign_count", number: 9},
 		{name: "delivery_run_count", number: 10},
 		{name: "download_policy_reference_count", number: 11},
+		{name: "sign_in_app_reference_count", number: 13},
 	} {
 		field := requireMessageField(
 			t,

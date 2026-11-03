@@ -1,0 +1,210 @@
+syntax = "proto3";
+
+package api.manage.v1;
+
+import "api/manage/v1/member_criteria.proto";
+import "api/policy/v1/access.proto";
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/echovisionlab/geul-event-contracts/gen/api/v1;apiv1";
+
+// Who may sign in through a sign-in app. The value names are stored as-is.
+enum SignInAccess {
+  SIGN_IN_ACCESS_UNSPECIFIED = 0;
+  // Nobody; the app stays registered but signs no one in.
+  SIGN_IN_ACCESS_NONE = 1;
+  // Active Admins.
+  SIGN_IN_ACCESS_ADMINS = 2;
+  // Every active Member.
+  SIGN_IN_ACCESS_MEMBERS = 3;
+  // Active Members matched by any of the selected Member criteria.
+  SIGN_IN_ACCESS_MEMBER_CRITERIA = 4;
+}
+
+// How a sign-in app authenticates at the token endpoint.
+enum SignInAppAuthMethod {
+  SIGN_IN_APP_AUTH_METHOD_UNSPECIFIED = 0;
+  // A client secret sent with HTTP Basic authentication.
+  SIGN_IN_APP_AUTH_METHOD_CLIENT_SECRET_BASIC = 1;
+  // A client secret sent in the form body.
+  SIGN_IN_APP_AUTH_METHOD_CLIENT_SECRET_POST = 2;
+  // No secret: a public app that must use PKCE.
+  SIGN_IN_APP_AUTH_METHOD_NONE = 3;
+}
+
+// Profile data a sign-in app may receive besides the account ID (openid), which every app gets.
+enum SignInAppScope {
+  SIGN_IN_APP_SCOPE_UNSPECIFIED = 0;
+  SIGN_IN_APP_SCOPE_EMAIL = 1;
+  SIGN_IN_APP_SCOPE_PROFILE = 2;
+}
+
+enum SignInTokenLifespan {
+  SIGN_IN_TOKEN_LIFESPAN_UNSPECIFIED = 0;
+  SIGN_IN_TOKEN_LIFESPAN_FIVE_MINUTES = 1;
+  SIGN_IN_TOKEN_LIFESPAN_FIFTEEN_MINUTES = 2;
+  SIGN_IN_TOKEN_LIFESPAN_ONE_HOUR = 3;
+}
+
+// An app an Admin registered to sign people in with their site account. It
+// receives no refresh token, so every sign-in checks its access again.
+message SignInApp {
+  string client_id = 1;
+  string name = 2;
+  SignInAccess access = 3;
+  // The criteria a MEMBER_CRITERIA app admits through.
+  repeated MemberCriteriaSummary member_criteria = 4;
+  repeated string redirect_uris = 5;
+  repeated string post_logout_redirect_uris = 6;
+  repeated SignInAppScope scopes = 7;
+  SignInAppAuthMethod auth_method = 8;
+  SignInTokenLifespan access_token_lifespan = 9;
+  SignInTokenLifespan id_token_lifespan = 10;
+  // Changes on every write; updates, deletes and secret rotations must name it.
+  string revision = 11;
+  google.protobuf.Timestamp created_at = 12;
+  optional google.protobuf.Timestamp updated_at = 13;
+}
+
+// The settings an Admin chooses for a sign-in app.
+message SignInAppSettings {
+  string name = 1;
+  SignInAccess access = 2;
+  // Required for MEMBER_CRITERIA, empty otherwise.
+  repeated string member_criteria_ids = 3;
+  repeated string redirect_uris = 4;
+  repeated string post_logout_redirect_uris = 5;
+  repeated SignInAppScope scopes = 6;
+  SignInAppAuthMethod auth_method = 7;
+  SignInTokenLifespan access_token_lifespan = 8;
+  SignInTokenLifespan id_token_lifespan = 9;
+}
+
+// An AI tool that registered itself to connect to the site's editing tools.
+message ConnectedTool {
+  string client_id = 1;
+  string name = 2;
+  // Host that published the tool's registration; absent when it registered with a generated ID.
+  optional string publisher = 3;
+  // The connection targets an address the site no longer serves.
+  bool stale = 4;
+  repeated string redirect_uris = 5;
+  // The resource its tokens are issued for.
+  string resource = 6;
+  // Token endpoint authentication method as registered, for example private_key_jwt.
+  string auth_method = 7;
+  optional google.protobuf.Timestamp created_at = 8;
+}
+
+message ListSignInAppsRequest {}
+
+message ListSignInAppsResponse {
+  repeated SignInApp apps = 1;
+}
+
+message GetSignInAppRequest {
+  string client_id = 1;
+}
+
+message CreateSignInAppRequest {
+  // Empty lets the server generate the ID. It cannot change after creation.
+  string client_id = 1;
+  SignInAppSettings settings = 2;
+}
+
+message CreateSignInAppResponse {
+  SignInApp app = 1;
+  // Shown once; absent for public apps.
+  optional string client_secret = 2;
+}
+
+// Replaces every setting of the app.
+message UpdateSignInAppRequest {
+  string client_id = 1;
+  string expected_revision = 2;
+  SignInAppSettings settings = 3;
+}
+
+message UpdateSignInAppResponse {
+  SignInApp app = 1;
+  // Present when the update turned a public app into one that needs a secret.
+  optional string client_secret = 2;
+}
+
+message DeleteSignInAppRequest {
+  string client_id = 1;
+  string expected_revision = 2;
+}
+
+message DeleteSignInAppResponse {}
+
+message RotateSignInAppSecretRequest {
+  string client_id = 1;
+  string expected_revision = 2;
+}
+
+message RotateSignInAppSecretResponse {
+  SignInApp app = 1;
+  string client_secret = 2;
+}
+
+message ListConnectedToolsRequest {}
+
+message ListConnectedToolsResponse {
+  repeated ConnectedTool tools = 1;
+}
+
+message DisconnectConnectedToolRequest {
+  string client_id = 1;
+}
+
+message DisconnectConnectedToolResponse {}
+
+enum SignInDecision {
+  SIGN_IN_DECISION_UNSPECIFIED = 0;
+  // The client is not a sign-in app; the MCP connection rules apply.
+  SIGN_IN_DECISION_NOT_SIGN_IN_APP = 1;
+  SIGN_IN_DECISION_ALLOWED = 2;
+  SIGN_IN_DECISION_DENIED = 3;
+}
+
+message AuthorizeOAuthSignInRequest {
+  string client_id = 1;
+}
+
+message AuthorizeOAuthSignInResponse {
+  SignInDecision decision = 1;
+}
+
+// OAuthAppService manages the apps that sign people in with their site account
+// and the AI tools connected to the editing tools (Admin). AuthorizeOAuthSignIn
+// decides for the signed-in Member alone.
+service OAuthAppService {
+  rpc ListSignInApps(ListSignInAppsRequest) returns (ListSignInAppsResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc GetSignInApp(GetSignInAppRequest) returns (SignInApp) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc CreateSignInApp(CreateSignInAppRequest) returns (CreateSignInAppResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc UpdateSignInApp(UpdateSignInAppRequest) returns (UpdateSignInAppResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc DeleteSignInApp(DeleteSignInAppRequest) returns (DeleteSignInAppResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc RotateSignInAppSecret(RotateSignInAppSecretRequest) returns (RotateSignInAppSecretResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc ListConnectedTools(ListConnectedToolsRequest) returns (ListConnectedToolsResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc DisconnectConnectedTool(DisconnectConnectedToolRequest) returns (DisconnectConnectedToolResponse) {
+    option (api.policy.v1.access) = {role: ADMIN};
+  }
+  rpc AuthorizeOAuthSignIn(AuthorizeOAuthSignInRequest) returns (AuthorizeOAuthSignInResponse) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+}

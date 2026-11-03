@@ -4599,6 +4599,146 @@
       ]
     },
     {
+      "service": "api.manage.v1.OAuthAppService",
+      "procedures": [
+        {
+          "name": "AuthorizeOAuthSignIn",
+          "consumerStatus": "verified",
+          "consumers": [
+            {
+              "repository": "web",
+              "file": "features/auth/hydra-mcp-oauth.ts",
+              "symbol": "acceptHydraLogin",
+              "call": "createOAuthAppClient().authorizeOAuthSignIn({ clientId })",
+              "entrypoint": "app/(general)/oauth/authorize/login/route.ts accepts a Hydra login only when the client admits the Member"
+            }
+          ],
+          "consumerTests": [],
+          "providerTests": []
+        },
+        {
+          "name": "CreateSignInApp",
+          "consumerStatus": "verified",
+          "consumers": [
+            {
+              "repository": "web",
+              "file": "lib/actions/oauth-apps.ts",
+              "symbol": "createSignInAppAction",
+              "call": "createOAuthAppClient().createSignInApp({ clientId, settings })",
+              "entrypoint": "OAuthAppEditor creates an app and shows its one-time secret"
+            }
+          ],
+          "consumerTests": [],
+          "providerTests": []
+        },
+        {
+          "name": "DeleteSignInApp",
+          "consumerStatus": "verified",
+          "consumers": [
+            {
+              "repository": "web",
+              "file": "lib/actions/oauth-apps.ts",
+              "symbol": "deleteSignInAppAction",
+              "call": "createOAuthAppClient().deleteSignInApp({ clientId, expectedRevision })",
+              "entrypoint": "OAuthAppEditor deletes an app after confirmation"
+            }
+          ],
+          "consumerTests": [],
+          "providerTests": []
+        },
+        {
+          "name": "DisconnectConnectedTool",
+          "consumerStatus": "verified",
+          "consumers": [
+            {
+              "repository": "web",
+              "file": "lib/actions/oauth-apps.ts",
+              "symbol": "disconnectConnectedToolAction",
+              "call": "createOAuthAppClient().disconnectConnectedTool({ clientId })",
+              "entrypoint": "OAuthConnectionDetail disconnects an AI tool after confirmation"
+            }
+          ],
+          "consumerTests": [],
+          "providerTests": []
+        },
+        {
+          "name": "GetSignInApp",
+          "consumerStatus": "verified",
+          "consumers": [
+            {
+              "repository": "web",
+              "file": "lib/actions/oauth-apps.ts",
+              "symbol": "getSignInAppAction",
+              "call": "createOAuthAppClient().getSignInApp({ clientId })",
+              "entrypoint": "OAuthAppEditor loads an app before editing it"
+            }
+          ],
+          "consumerTests": [],
+          "providerTests": []
+        },
+        {
+          "name": "ListConnectedTools",
+          "consumerStatus": "verified",
+          "consumers": [
+            {
+              "repository": "web",
+              "file": "lib/actions/oauth-apps.ts",
+              "symbol": "listConnectedToolsAction",
+              "call": "createOAuthAppClient().listConnectedTools({})",
+              "entrypoint": "app/admin/oauth-apps/page.tsx lists the connected AI tools"
+            }
+          ],
+          "consumerTests": [],
+          "providerTests": []
+        },
+        {
+          "name": "ListSignInApps",
+          "consumerStatus": "verified",
+          "consumers": [
+            {
+              "repository": "web",
+              "file": "lib/actions/oauth-apps.ts",
+              "symbol": "listSignInAppsAction",
+              "call": "createOAuthAppClient().listSignInApps({})",
+              "entrypoint": "app/admin/oauth-apps/page.tsx lists the sign-in apps"
+            }
+          ],
+          "consumerTests": [],
+          "providerTests": []
+        },
+        {
+          "name": "RotateSignInAppSecret",
+          "consumerStatus": "verified",
+          "consumers": [
+            {
+              "repository": "web",
+              "file": "lib/actions/oauth-apps.ts",
+              "symbol": "rotateSignInAppSecretAction",
+              "call": "createOAuthAppClient().rotateSignInAppSecret({ clientId, expectedRevision })",
+              "entrypoint": "OAuthAppEditor issues a new secret after confirmation"
+            }
+          ],
+          "consumerTests": [],
+          "providerTests": []
+        },
+        {
+          "name": "UpdateSignInApp",
+          "consumerStatus": "verified",
+          "consumers": [
+            {
+              "repository": "web",
+              "file": "lib/actions/oauth-apps.ts",
+              "symbol": "updateSignInAppAction",
+              "call": "createOAuthAppClient().updateSignInApp({ clientId, expectedRevision, settings })",
+              "entrypoint": "OAuthAppEditor saves an app"
+            }
+          ],
+          "consumerTests": [],
+          "providerTests": []
+        }
+      ]
+    },
+    {
       "service": "api.manage.v1.PageService",
       "procedures": [
         {

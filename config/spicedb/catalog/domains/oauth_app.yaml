@@ -1,0 +1,27 @@
+# OAuth App owns the policy keys for sign-in apps and connected AI tools. Sign-in
+# app rows and Hydra clients remain DB and Hydra state, not SpiceDB resources.
+domain: oauth_app
+description: Sign-in app and connected AI tool management policy
+actions:
+  oauth_sign_in_app: {}
+  oauth_connected_tool: {}
+platform_actions:
+  oauth_sign_in_app:
+    list: is_admin
+    create: is_admin
+    update: is_admin
+    delete: is_admin
+    rotate_secret: is_admin
+  oauth_connected_tool:
+    list: is_admin
+    disconnect: is_admin
+definitions:
+  oauth_sign_in_app:
+    relations: {}
+    permissions: []
+  oauth_connected_tool:
+    relations: {}
+    permissions: []
+permission_expressions:
+  oauth_sign_in_app: {}
+  oauth_connected_tool: {}

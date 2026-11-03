@@ -11,10 +11,10 @@ import (
 )
 
 // SpiceDBCatalogFingerprint identifies the exact assembled modular catalog.
-const SpiceDBCatalogFingerprint = "11aecef4a356c7338f52dfbc5b44fdeac84ce47d6cd6a7d2c81e6c3b4f0ca307"
+const SpiceDBCatalogFingerprint = "3e90e115e02903ab802370cdfbdb7a093e22e16291fa91cdb26eda43a2d45e5f"
 
 // SpiceDBSchemaSHA256 identifies the exact generated deployable Zed schema.
-const SpiceDBSchemaSHA256 = "65437a0bac91ecac091890000c8146f71006d6f59a1f290d27c67f08e34ca3e0"
+const SpiceDBSchemaSHA256 = "bdf83229f6e396b6830bbb857632db659327be4ca813ca26b9da324a9c4a03b5"
 
 type resourceKey string
 type actionKey string
