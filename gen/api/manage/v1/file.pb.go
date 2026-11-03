@@ -509,58 +509,60 @@ func (UploadSessionStatus) EnumDescriptor() ([]byte, []int) {
 	return file_api_manage_v1_file_proto_rawDescGZIP(), []int{6}
 }
 
-type FileDownloadAudience int32
+// Who may download a File through a download policy.
+type FileDownloadAccess int32
 
 const (
-	FileDownloadAudience_FILE_DOWNLOAD_AUDIENCE_UNSPECIFIED   FileDownloadAudience = 0
-	FileDownloadAudience_FILE_DOWNLOAD_AUDIENCE_DISABLED      FileDownloadAudience = 1
-	FileDownloadAudience_FILE_DOWNLOAD_AUDIENCE_PUBLIC        FileDownloadAudience = 2
-	FileDownloadAudience_FILE_DOWNLOAD_AUDIENCE_AUTHENTICATED FileDownloadAudience = 3
-	FileDownloadAudience_FILE_DOWNLOAD_AUDIENCE_RESTRICTED    FileDownloadAudience = 4
+	FileDownloadAccess_FILE_DOWNLOAD_ACCESS_UNSPECIFIED   FileDownloadAccess = 0
+	FileDownloadAccess_FILE_DOWNLOAD_ACCESS_DISABLED      FileDownloadAccess = 1
+	FileDownloadAccess_FILE_DOWNLOAD_ACCESS_PUBLIC        FileDownloadAccess = 2
+	FileDownloadAccess_FILE_DOWNLOAD_ACCESS_AUTHENTICATED FileDownloadAccess = 3
+	// Members matching any of the policy's Member criteria.
+	FileDownloadAccess_FILE_DOWNLOAD_ACCESS_RESTRICTED FileDownloadAccess = 4
 )
 
-// Enum value maps for FileDownloadAudience.
+// Enum value maps for FileDownloadAccess.
 var (
-	FileDownloadAudience_name = map[int32]string{
-		0: "FILE_DOWNLOAD_AUDIENCE_UNSPECIFIED",
-		1: "FILE_DOWNLOAD_AUDIENCE_DISABLED",
-		2: "FILE_DOWNLOAD_AUDIENCE_PUBLIC",
-		3: "FILE_DOWNLOAD_AUDIENCE_AUTHENTICATED",
-		4: "FILE_DOWNLOAD_AUDIENCE_RESTRICTED",
+	FileDownloadAccess_name = map[int32]string{
+		0: "FILE_DOWNLOAD_ACCESS_UNSPECIFIED",
+		1: "FILE_DOWNLOAD_ACCESS_DISABLED",
+		2: "FILE_DOWNLOAD_ACCESS_PUBLIC",
+		3: "FILE_DOWNLOAD_ACCESS_AUTHENTICATED",
+		4: "FILE_DOWNLOAD_ACCESS_RESTRICTED",
 	}
-	FileDownloadAudience_value = map[string]int32{
-		"FILE_DOWNLOAD_AUDIENCE_UNSPECIFIED":   0,
-		"FILE_DOWNLOAD_AUDIENCE_DISABLED":      1,
-		"FILE_DOWNLOAD_AUDIENCE_PUBLIC":        2,
-		"FILE_DOWNLOAD_AUDIENCE_AUTHENTICATED": 3,
-		"FILE_DOWNLOAD_AUDIENCE_RESTRICTED":    4,
+	FileDownloadAccess_value = map[string]int32{
+		"FILE_DOWNLOAD_ACCESS_UNSPECIFIED":   0,
+		"FILE_DOWNLOAD_ACCESS_DISABLED":      1,
+		"FILE_DOWNLOAD_ACCESS_PUBLIC":        2,
+		"FILE_DOWNLOAD_ACCESS_AUTHENTICATED": 3,
+		"FILE_DOWNLOAD_ACCESS_RESTRICTED":    4,
 	}
 )
 
-func (x FileDownloadAudience) Enum() *FileDownloadAudience {
-	p := new(FileDownloadAudience)
+func (x FileDownloadAccess) Enum() *FileDownloadAccess {
+	p := new(FileDownloadAccess)
 	*p = x
 	return p
 }
 
-func (x FileDownloadAudience) String() string {
+func (x FileDownloadAccess) String() string {
 	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
 }
 
-func (FileDownloadAudience) Descriptor() protoreflect.EnumDescriptor {
+func (FileDownloadAccess) Descriptor() protoreflect.EnumDescriptor {
 	return file_api_manage_v1_file_proto_enumTypes[7].Descriptor()
 }
 
-func (FileDownloadAudience) Type() protoreflect.EnumType {
+func (FileDownloadAccess) Type() protoreflect.EnumType {
 	return &file_api_manage_v1_file_proto_enumTypes[7]
 }
 
-func (x FileDownloadAudience) Number() protoreflect.EnumNumber {
+func (x FileDownloadAccess) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Deprecated: Use FileDownloadAudience.Descriptor instead.
-func (FileDownloadAudience) EnumDescriptor() ([]byte, []int) {
+// Deprecated: Use FileDownloadAccess.Descriptor instead.
+func (FileDownloadAccess) EnumDescriptor() ([]byte, []int) {
 	return file_api_manage_v1_file_proto_rawDescGZIP(), []int{7}
 }
 
@@ -3902,11 +3904,11 @@ type FileDownloadPolicy struct {
 	BlockId       *string             `protobuf:"bytes,3,opt,name=block_id,json=blockId,proto3,oneof" json:"block_id,omitempty"`
 	ReferencePath *string             `protobuf:"bytes,4,opt,name=reference_path,json=referencePath,proto3,oneof" json:"reference_path,omitempty"`
 	// Current File resolved by the server from the exact relation above.
-	FileId           string                    `protobuf:"bytes,5,opt,name=file_id,json=fileId,proto3" json:"file_id,omitempty"`
-	Audience         FileDownloadAudience      `protobuf:"varint,6,opt,name=audience,proto3,enum=api.manage.v1.FileDownloadAudience" json:"audience,omitempty"`
-	AudienceSegments []*AudienceSegmentSummary `protobuf:"bytes,7,rep,name=audience_segments,json=audienceSegments,proto3" json:"audience_segments,omitempty"`
-	unknownFields    protoimpl.UnknownFields
-	sizeCache        protoimpl.SizeCache
+	FileId         string                   `protobuf:"bytes,5,opt,name=file_id,json=fileId,proto3" json:"file_id,omitempty"`
+	Access         FileDownloadAccess       `protobuf:"varint,6,opt,name=access,proto3,enum=api.manage.v1.FileDownloadAccess" json:"access,omitempty"`
+	MemberCriteria []*MemberCriteriaSummary `protobuf:"bytes,7,rep,name=member_criteria,json=memberCriteria,proto3" json:"member_criteria,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
 }
 
 func (x *FileDownloadPolicy) Reset() {
@@ -3974,16 +3976,16 @@ func (x *FileDownloadPolicy) GetFileId() string {
 	return ""
 }
 
-func (x *FileDownloadPolicy) GetAudience() FileDownloadAudience {
+func (x *FileDownloadPolicy) GetAccess() FileDownloadAccess {
 	if x != nil {
-		return x.Audience
+		return x.Access
 	}
-	return FileDownloadAudience_FILE_DOWNLOAD_AUDIENCE_UNSPECIFIED
+	return FileDownloadAccess_FILE_DOWNLOAD_ACCESS_UNSPECIFIED
 }
 
-func (x *FileDownloadPolicy) GetAudienceSegments() []*AudienceSegmentSummary {
+func (x *FileDownloadPolicy) GetMemberCriteria() []*MemberCriteriaSummary {
 	if x != nil {
-		return x.AudienceSegments
+		return x.MemberCriteria
 	}
 	return nil
 }
@@ -4103,11 +4105,11 @@ func (x *GetFileDownloadPolicyResponse) GetPolicy() *FileDownloadPolicy {
 }
 
 type FileDownloadPolicyObservedState struct {
-	state              protoimpl.MessageState `protogen:"open.v1"`
-	Audience           FileDownloadAudience   `protobuf:"varint,1,opt,name=audience,proto3,enum=api.manage.v1.FileDownloadAudience" json:"audience,omitempty"`
-	AudienceSegmentIds []string               `protobuf:"bytes,2,rep,name=audience_segment_ids,json=audienceSegmentIds,proto3" json:"audience_segment_ids,omitempty"`
-	unknownFields      protoimpl.UnknownFields
-	sizeCache          protoimpl.SizeCache
+	state             protoimpl.MessageState `protogen:"open.v1"`
+	Access            FileDownloadAccess     `protobuf:"varint,1,opt,name=access,proto3,enum=api.manage.v1.FileDownloadAccess" json:"access,omitempty"`
+	MemberCriteriaIds []string               `protobuf:"bytes,2,rep,name=member_criteria_ids,json=memberCriteriaIds,proto3" json:"member_criteria_ids,omitempty"`
+	unknownFields     protoimpl.UnknownFields
+	sizeCache         protoimpl.SizeCache
 }
 
 func (x *FileDownloadPolicyObservedState) Reset() {
@@ -4140,16 +4142,16 @@ func (*FileDownloadPolicyObservedState) Descriptor() ([]byte, []int) {
 	return file_api_manage_v1_file_proto_rawDescGZIP(), []int{53}
 }
 
-func (x *FileDownloadPolicyObservedState) GetAudience() FileDownloadAudience {
+func (x *FileDownloadPolicyObservedState) GetAccess() FileDownloadAccess {
 	if x != nil {
-		return x.Audience
+		return x.Access
 	}
-	return FileDownloadAudience_FILE_DOWNLOAD_AUDIENCE_UNSPECIFIED
+	return FileDownloadAccess_FILE_DOWNLOAD_ACCESS_UNSPECIFIED
 }
 
-func (x *FileDownloadPolicyObservedState) GetAudienceSegmentIds() []string {
+func (x *FileDownloadPolicyObservedState) GetMemberCriteriaIds() []string {
 	if x != nil {
-		return x.AudienceSegmentIds
+		return x.MemberCriteriaIds
 	}
 	return nil
 }
@@ -4164,9 +4166,9 @@ type UpdateFileDownloadPolicyRequest struct {
 	ReferencePath *string             `protobuf:"bytes,4,opt,name=reference_path,json=referencePath,proto3,oneof" json:"reference_path,omitempty"`
 	// Compare-and-set guard only. The server resolves policy authority and the
 	// current File from the exact relation above.
-	ExpectedFileId     string               `protobuf:"bytes,5,opt,name=expected_file_id,json=expectedFileId,proto3" json:"expected_file_id,omitempty"`
-	Audience           FileDownloadAudience `protobuf:"varint,6,opt,name=audience,proto3,enum=api.manage.v1.FileDownloadAudience" json:"audience,omitempty"`
-	AudienceSegmentIds []string             `protobuf:"bytes,7,rep,name=audience_segment_ids,json=audienceSegmentIds,proto3" json:"audience_segment_ids,omitempty"`
+	ExpectedFileId    string             `protobuf:"bytes,5,opt,name=expected_file_id,json=expectedFileId,proto3" json:"expected_file_id,omitempty"`
+	Access            FileDownloadAccess `protobuf:"varint,6,opt,name=access,proto3,enum=api.manage.v1.FileDownloadAccess" json:"access,omitempty"`
+	MemberCriteriaIds []string           `protobuf:"bytes,7,rep,name=member_criteria_ids,json=memberCriteriaIds,proto3" json:"member_criteria_ids,omitempty"`
 	// Required editor baseline used to merge the desired policy into current state.
 	ObservedPolicy *FileDownloadPolicyObservedState `protobuf:"bytes,8,opt,name=observed_policy,json=observedPolicy,proto3" json:"observed_policy,omitempty"`
 	unknownFields  protoimpl.UnknownFields
@@ -4238,16 +4240,16 @@ func (x *UpdateFileDownloadPolicyRequest) GetExpectedFileId() string {
 	return ""
 }
 
-func (x *UpdateFileDownloadPolicyRequest) GetAudience() FileDownloadAudience {
+func (x *UpdateFileDownloadPolicyRequest) GetAccess() FileDownloadAccess {
 	if x != nil {
-		return x.Audience
+		return x.Access
 	}
-	return FileDownloadAudience_FILE_DOWNLOAD_AUDIENCE_UNSPECIFIED
+	return FileDownloadAccess_FILE_DOWNLOAD_ACCESS_UNSPECIFIED
 }
 
-func (x *UpdateFileDownloadPolicyRequest) GetAudienceSegmentIds() []string {
+func (x *UpdateFileDownloadPolicyRequest) GetMemberCriteriaIds() []string {
 	if x != nil {
-		return x.AudienceSegmentIds
+		return x.MemberCriteriaIds
 	}
 	return nil
 }
@@ -5023,7 +5025,7 @@ var File_api_manage_v1_file_proto protoreflect.FileDescriptor
 
 const file_api_manage_v1_file_proto_rawDesc = "" +
 	"\n" +
-	"\x18api/manage/v1/file.proto\x12\rapi.manage.v1\x1a\x1aapi/common/v1/common.proto\x1a\x19api/common/v1/media.proto\x1a\x1capi/manage/v1/audience.proto\x1a\x1aapi/manage/v1/events.proto\x1a\x1aapi/policy/v1/access.proto\x1a\x1fgoogle/protobuf/timestamp.proto\",\n" +
+	"\x18api/manage/v1/file.proto\x12\rapi.manage.v1\x1a\x1aapi/common/v1/common.proto\x1a\x19api/common/v1/media.proto\x1a#api/manage/v1/member_criteria.proto\x1a\x1aapi/manage/v1/events.proto\x1a\x1aapi/policy/v1/access.proto\x1a\x1fgoogle/protobuf/timestamp.proto\",\n" +
 	"\x11DeleteFileRequest\x12\x17\n" +
 	"\afile_id\x18\x01 \x01(\tR\x06fileId\".\n" +
 	"\x12DeleteFileResponse\x12\x18\n" +
@@ -5367,16 +5369,16 @@ const file_api_manage_v1_file_proto_rawDesc = "" +
 	"\n" +
 	"FilesEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12=\n" +
-	"\x05value\x18\x02 \x01(\v2'.api.manage.v1.GetMediaDeliveryResponseR\x05value:\x028\x01\"\x90\x03\n" +
+	"\x05value\x18\x02 \x01(\v2'.api.manage.v1.GetMediaDeliveryResponseR\x05value:\x028\x01\"\x85\x03\n" +
 	"\x12FileDownloadPolicy\x12C\n" +
 	"\ventity_type\x18\x01 \x01(\x0e2\".api.manage.v1.TranscodeEntityTypeR\n" +
 	"entityType\x12\x1b\n" +
 	"\tentity_id\x18\x02 \x01(\tR\bentityId\x12\x1e\n" +
 	"\bblock_id\x18\x03 \x01(\tH\x00R\ablockId\x88\x01\x01\x12*\n" +
 	"\x0ereference_path\x18\x04 \x01(\tH\x01R\rreferencePath\x88\x01\x01\x12\x17\n" +
-	"\afile_id\x18\x05 \x01(\tR\x06fileId\x12?\n" +
-	"\baudience\x18\x06 \x01(\x0e2#.api.manage.v1.FileDownloadAudienceR\baudience\x12R\n" +
-	"\x11audience_segments\x18\a \x03(\v2%.api.manage.v1.AudienceSegmentSummaryR\x10audienceSegmentsB\v\n" +
+	"\afile_id\x18\x05 \x01(\tR\x06fileId\x129\n" +
+	"\x06access\x18\x06 \x01(\x0e2!.api.manage.v1.FileDownloadAccessR\x06access\x12M\n" +
+	"\x0fmember_criteria\x18\a \x03(\v2$.api.manage.v1.MemberCriteriaSummaryR\x0ememberCriteriaB\v\n" +
 	"\t_block_idB\x11\n" +
 	"\x0f_reference_path\"\xec\x01\n" +
 	"\x1cGetFileDownloadPolicyRequest\x12C\n" +
@@ -5388,19 +5390,19 @@ const file_api_manage_v1_file_proto_rawDesc = "" +
 	"\t_block_idB\x11\n" +
 	"\x0f_reference_path\"Z\n" +
 	"\x1dGetFileDownloadPolicyResponse\x129\n" +
-	"\x06policy\x18\x01 \x01(\v2!.api.manage.v1.FileDownloadPolicyR\x06policy\"\x94\x01\n" +
-	"\x1fFileDownloadPolicyObservedState\x12?\n" +
-	"\baudience\x18\x01 \x01(\x0e2#.api.manage.v1.FileDownloadAudienceR\baudience\x120\n" +
-	"\x14audience_segment_ids\x18\x02 \x03(\tR\x12audienceSegmentIds\"\xe5\x03\n" +
+	"\x06policy\x18\x01 \x01(\v2!.api.manage.v1.FileDownloadPolicyR\x06policy\"\x8c\x01\n" +
+	"\x1fFileDownloadPolicyObservedState\x129\n" +
+	"\x06access\x18\x01 \x01(\x0e2!.api.manage.v1.FileDownloadAccessR\x06access\x12.\n" +
+	"\x13member_criteria_ids\x18\x02 \x03(\tR\x11memberCriteriaIds\"\xdd\x03\n" +
 	"\x1fUpdateFileDownloadPolicyRequest\x12C\n" +
 	"\ventity_type\x18\x01 \x01(\x0e2\".api.manage.v1.TranscodeEntityTypeR\n" +
 	"entityType\x12\x1b\n" +
 	"\tentity_id\x18\x02 \x01(\tR\bentityId\x12\x1e\n" +
 	"\bblock_id\x18\x03 \x01(\tH\x00R\ablockId\x88\x01\x01\x12*\n" +
 	"\x0ereference_path\x18\x04 \x01(\tH\x01R\rreferencePath\x88\x01\x01\x12(\n" +
-	"\x10expected_file_id\x18\x05 \x01(\tR\x0eexpectedFileId\x12?\n" +
-	"\baudience\x18\x06 \x01(\x0e2#.api.manage.v1.FileDownloadAudienceR\baudience\x120\n" +
-	"\x14audience_segment_ids\x18\a \x03(\tR\x12audienceSegmentIds\x12W\n" +
+	"\x10expected_file_id\x18\x05 \x01(\tR\x0eexpectedFileId\x129\n" +
+	"\x06access\x18\x06 \x01(\x0e2!.api.manage.v1.FileDownloadAccessR\x06access\x12.\n" +
+	"\x13member_criteria_ids\x18\a \x03(\tR\x11memberCriteriaIds\x12W\n" +
 	"\x0fobserved_policy\x18\b \x01(\v2..api.manage.v1.FileDownloadPolicyObservedStateR\x0eobservedPolicyB\v\n" +
 	"\t_block_idB\x11\n" +
 	"\x0f_reference_path\"]\n" +
@@ -5580,13 +5582,13 @@ const file_api_manage_v1_file_proto_rawDesc = "" +
 	"\x1fUPLOAD_SESSION_STATUS_UPLOADING\x10\x02\x12$\n" +
 	" UPLOAD_SESSION_STATUS_FINALIZING\x10\x03\x12 \n" +
 	"\x1cUPLOAD_SESSION_STATUS_FAILED\x10\x04\x12!\n" +
-	"\x1dUPLOAD_SESSION_STATUS_ABORTED\x10\x05*\xd7\x01\n" +
-	"\x14FileDownloadAudience\x12&\n" +
-	"\"FILE_DOWNLOAD_AUDIENCE_UNSPECIFIED\x10\x00\x12#\n" +
-	"\x1fFILE_DOWNLOAD_AUDIENCE_DISABLED\x10\x01\x12!\n" +
-	"\x1dFILE_DOWNLOAD_AUDIENCE_PUBLIC\x10\x02\x12(\n" +
-	"$FILE_DOWNLOAD_AUDIENCE_AUTHENTICATED\x10\x03\x12%\n" +
-	"!FILE_DOWNLOAD_AUDIENCE_RESTRICTED\x10\x04*\xc7\x02\n" +
+	"\x1dUPLOAD_SESSION_STATUS_ABORTED\x10\x05*\xcb\x01\n" +
+	"\x12FileDownloadAccess\x12$\n" +
+	" FILE_DOWNLOAD_ACCESS_UNSPECIFIED\x10\x00\x12!\n" +
+	"\x1dFILE_DOWNLOAD_ACCESS_DISABLED\x10\x01\x12\x1f\n" +
+	"\x1bFILE_DOWNLOAD_ACCESS_PUBLIC\x10\x02\x12&\n" +
+	"\"FILE_DOWNLOAD_ACCESS_AUTHENTICATED\x10\x03\x12#\n" +
+	"\x1fFILE_DOWNLOAD_ACCESS_RESTRICTED\x10\x04*\xc7\x02\n" +
 	"\x1fMeshOptimizationCandidateStatus\x122\n" +
 	".MESH_OPTIMIZATION_CANDIDATE_STATUS_UNSPECIFIED\x10\x00\x12.\n" +
 	"*MESH_OPTIMIZATION_CANDIDATE_STATUS_PENDING\x10\x01\x121\n" +
@@ -5647,7 +5649,7 @@ var file_api_manage_v1_file_proto_goTypes = []any{
 	(FileManagerSortField)(0),                         // 4: api.manage.v1.FileManagerSortField
 	(FileUsageDomain)(0),                              // 5: api.manage.v1.FileUsageDomain
 	(UploadSessionStatus)(0),                          // 6: api.manage.v1.UploadSessionStatus
-	(FileDownloadAudience)(0),                         // 7: api.manage.v1.FileDownloadAudience
+	(FileDownloadAccess)(0),                           // 7: api.manage.v1.FileDownloadAccess
 	(MeshOptimizationCandidateStatus)(0),              // 8: api.manage.v1.MeshOptimizationCandidateStatus
 	(*DeleteFileRequest)(nil),                         // 9: api.manage.v1.DeleteFileRequest
 	(*DeleteFileResponse)(nil),                        // 10: api.manage.v1.DeleteFileResponse
@@ -5721,7 +5723,7 @@ var file_api_manage_v1_file_proto_goTypes = []any{
 	(v1.SortOrder)(0),                      // 78: api.common.v1.SortOrder
 	(v1.MediaProcessingStatus)(0),          // 79: api.common.v1.MediaProcessingStatus
 	(TranscodeEntityType)(0),               // 80: api.manage.v1.TranscodeEntityType
-	(*AudienceSegmentSummary)(nil),         // 81: api.manage.v1.AudienceSegmentSummary
+	(*MemberCriteriaSummary)(nil),          // 81: api.manage.v1.MemberCriteriaSummary
 	(MeshOptimizationCompressionMethod)(0), // 82: api.manage.v1.MeshOptimizationCompressionMethod
 	(MeshOptimizationProfile)(0),           // 83: api.manage.v1.MeshOptimizationProfile
 }
@@ -5777,13 +5779,13 @@ var file_api_manage_v1_file_proto_depIdxs = []int32{
 	77,  // 48: api.manage.v1.GetMediaDeliveryResponse.delivery:type_name -> api.common.v1.MediaDelivery
 	74,  // 49: api.manage.v1.GetBulkMediaDeliveriesResponse.files:type_name -> api.manage.v1.GetBulkMediaDeliveriesResponse.FilesEntry
 	80,  // 50: api.manage.v1.FileDownloadPolicy.entity_type:type_name -> api.manage.v1.TranscodeEntityType
-	7,   // 51: api.manage.v1.FileDownloadPolicy.audience:type_name -> api.manage.v1.FileDownloadAudience
-	81,  // 52: api.manage.v1.FileDownloadPolicy.audience_segments:type_name -> api.manage.v1.AudienceSegmentSummary
+	7,   // 51: api.manage.v1.FileDownloadPolicy.access:type_name -> api.manage.v1.FileDownloadAccess
+	81,  // 52: api.manage.v1.FileDownloadPolicy.member_criteria:type_name -> api.manage.v1.MemberCriteriaSummary
 	80,  // 53: api.manage.v1.GetFileDownloadPolicyRequest.entity_type:type_name -> api.manage.v1.TranscodeEntityType
 	59,  // 54: api.manage.v1.GetFileDownloadPolicyResponse.policy:type_name -> api.manage.v1.FileDownloadPolicy
-	7,   // 55: api.manage.v1.FileDownloadPolicyObservedState.audience:type_name -> api.manage.v1.FileDownloadAudience
+	7,   // 55: api.manage.v1.FileDownloadPolicyObservedState.access:type_name -> api.manage.v1.FileDownloadAccess
 	80,  // 56: api.manage.v1.UpdateFileDownloadPolicyRequest.entity_type:type_name -> api.manage.v1.TranscodeEntityType
-	7,   // 57: api.manage.v1.UpdateFileDownloadPolicyRequest.audience:type_name -> api.manage.v1.FileDownloadAudience
+	7,   // 57: api.manage.v1.UpdateFileDownloadPolicyRequest.access:type_name -> api.manage.v1.FileDownloadAccess
 	62,  // 58: api.manage.v1.UpdateFileDownloadPolicyRequest.observed_policy:type_name -> api.manage.v1.FileDownloadPolicyObservedState
 	59,  // 59: api.manage.v1.UpdateFileDownloadPolicyResponse.policy:type_name -> api.manage.v1.FileDownloadPolicy
 	80,  // 60: api.manage.v1.MeshOptimizationCandidate.entity_type:type_name -> api.manage.v1.TranscodeEntityType
@@ -5870,7 +5872,7 @@ func file_api_manage_v1_file_proto_init() {
 	if File_api_manage_v1_file_proto != nil {
 		return
 	}
-	file_api_manage_v1_audience_proto_init()
+	file_api_manage_v1_member_criteria_proto_init()
 	file_api_manage_v1_events_proto_init()
 	file_api_manage_v1_file_proto_msgTypes[2].OneofWrappers = []any{}
 	file_api_manage_v1_file_proto_msgTypes[3].OneofWrappers = []any{}

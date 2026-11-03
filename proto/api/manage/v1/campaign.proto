@@ -22,15 +22,15 @@ enum CampaignStatus {
 }
 
 // CampaignTargetMode makes the target population explicit. A campaign must
-// never infer ALL from a missing segment relationship.
+// never infer ALL from a missing Member criteria relationship.
 enum CampaignTargetMode {
   CAMPAIGN_TARGET_MODE_UNSPECIFIED = 0;
   CAMPAIGN_TARGET_MODE_ALL = 1;
-  CAMPAIGN_TARGET_MODE_SEGMENT = 2;
+  CAMPAIGN_TARGET_MODE_MEMBER_CRITERIA = 2;
 }
 
-// CampaignRecipientScope is a positive delivery gate applied after Audience
-// matching. The product default is SUBSCRIBED_USERS.
+// CampaignRecipientScope is a positive delivery gate applied after Member
+// criteria matching. The product default is SUBSCRIBED_USERS.
 enum CampaignRecipientScope {
   CAMPAIGN_RECIPIENT_SCOPE_SUBSCRIBED_USERS = 0;
   CAMPAIGN_RECIPIENT_SCOPE_ALL_MATCHING_USERS = 1;
@@ -45,7 +45,7 @@ message Campaign {
   int32 sent_count = 6;
   google.protobuf.Timestamp created_at = 7;
   google.protobuf.Timestamp updated_at = 8;
-  optional string segment_id = 9;
+  optional string member_criteria_id = 9;
   optional string layout_id = 10;
   CampaignRecipientScope recipient_scope = 11;
   string name = 12;
@@ -96,14 +96,14 @@ message ListCampaignsAdminResponse {
 }
 
 // CreateCampaignRequest creates a draft with an explicit target. The API must
-// reject an unset target and an empty segment_id; it must never infer all
+// reject an unset target and an empty member_criteria_id; it must never infer all
 // recipients from either case.
 message CreateCampaignRequest {
   string subject = 1;
   string name = 2;
   oneof target {
     google.protobuf.Empty all = 3;
-    string segment_id = 4;
+    string member_criteria_id = 4;
   }
   // Required initial source locale for the new Campaign.
   string source_locale = 5;
@@ -129,11 +129,12 @@ message UpdateCampaignNameResponse {
 // UpdateCampaignConfiguration owns durable delivery targeting. It is separate
 // from collaboration documents so the authenticated Admin is the Audit actor.
 // Optional fields form a sparse patch. target_mode updates the target_mode and
-// segment_id pair; an absent segment_id clears the segment when mode is ALL.
+// member_criteria_id pair; an absent member_criteria_id clears the criteria when
+// mode is ALL.
 message UpdateCampaignConfigurationRequest {
   string id = 1;
   optional CampaignTargetMode target_mode = 2;
-  optional string segment_id = 3;
+  optional string member_criteria_id = 3;
   optional string layout_id = 4;
   optional CampaignRecipientScope recipient_scope = 5;
 }
@@ -142,7 +143,7 @@ message UpdateCampaignConfigurationResponse {
   string id = 1;
   bool changed = 2;
   CampaignTargetMode target_mode = 3;
-  optional string segment_id = 4;
+  optional string member_criteria_id = 4;
   optional string layout_id = 5;
   CampaignRecipientScope recipient_scope = 6;
   google.protobuf.Timestamp updated_at = 7;

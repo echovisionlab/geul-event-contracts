@@ -100,7 +100,7 @@ void compileTimeInvalidSurfaceMustStayUnrepresentable;
 describe("domain-shaped SpiceDB policy descriptors", () => {
   it("keeps direct-session and MCP engine checks byte-identical", () => {
     expect(spiceDbCatalogFingerprint).toBe(
-      "b1c92baf58538b463ae2a94d9b26c3c7e920b22bf92ca71841196b017592a2fe",
+      "11aecef4a356c7338f52dfbc5b44fdeac84ce47d6cd6a7d2c81e6c3b4f0ca307",
     );
     const actor = NewAccountIdentityActor("identity-id");
     const can = Post.Edit("post-id");

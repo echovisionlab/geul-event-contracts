@@ -1883,138 +1883,6 @@
       ]
     },
     {
-      "service": "api.manage.v1.AudienceService",
-      "procedures": [
-        {
-          "name": "ArchiveSegment",
-          "consumerStatus": "verified",
-          "consumers": [
-            {
-              "repository": "web",
-              "file": "lib/actions/audience.ts",
-              "symbol": "archiveSegmentAction",
-              "call": "client.archiveSegment({ id })",
-              "entrypoint": "The administrative audience-segment lifecycle modal archives a target segment and refreshes Campaign selectors."
-            }
-          ],
-          "consumerTests": ["web/lib/actions/audience.lifecycle.test.ts"],
-          "providerTests": []
-        },
-        {
-          "name": "CreateSegment",
-          "consumerStatus": "verified",
-          "consumers": [
-            {
-              "repository": "web",
-              "file": "lib/actions/audience.ts",
-              "symbol": "createSegmentAction",
-              "call": "createAudienceClient().createSegment({ name, description, segmentType, config })",
-              "entrypoint": "features/admin/segment/SegmentModals.tsx creates audience segments"
-            }
-          ],
-          "consumerTests": [],
-          "providerTests": []
-        },
-        {
-          "name": "EstimateSegmentCount",
-          "consumerStatus": "verified",
-          "consumers": [
-            {
-              "repository": "web",
-              "file": "lib/actions/audience.ts",
-              "symbol": "estimateSegmentCountAction",
-              "call": "createAudienceClient().estimateSegmentCount({ segmentType, config })",
-              "entrypoint": "SegmentModals.tsx previews the audience size while configuring a segment"
-            }
-          ],
-          "consumerTests": [],
-          "providerTests": []
-        },
-        {
-          "name": "GetSegment",
-          "consumerStatus": "verified",
-          "consumers": [
-            {
-              "repository": "web",
-              "file": "lib/actions/audience.ts",
-              "symbol": "getSegmentAction",
-              "call": "createAudienceClient().getSegment({ id })",
-              "entrypoint": "SegmentModals.tsx loads an existing segment into the edit dialog"
-            }
-          ],
-          "consumerTests": [],
-          "providerTests": []
-        },
-        {
-          "name": "ListSegmentsAdmin",
-          "consumerStatus": "verified",
-          "consumers": [
-            {
-              "repository": "web",
-              "file": "lib/actions/audience.ts",
-              "symbol": "listSegmentsAdminAction",
-              "call": "createAudienceClient().listSegmentsAdmin({ pagination, filters, sorts })",
-              "entrypoint": "app/admin/audience-segments/page.tsx renders the paginated segment table"
-            },
-            {
-              "repository": "web",
-              "file": "lib/actions/audience.ts",
-              "symbol": "listAllSegmentsAction",
-              "call": "createAudienceClient().listSegmentsAdmin({ pagination })",
-              "entrypoint": "app/admin/campaigns/[id]/page.tsx populates the campaign audience selector"
-            }
-          ],
-          "consumerTests": [],
-          "providerTests": []
-        },
-        {
-          "name": "ListSegmentsForAuthenticatedAccess",
-          "consumerStatus": "verified",
-          "consumers": [
-            {
-              "repository": "web",
-              "file": "lib/actions/file-download-access.ts",
-              "symbol": "listAudienceSegmentsForAuthenticatedAccessAction",
-              "call": "client.listSegmentsForAuthenticatedAccess({ pagination, filters })",
-              "entrypoint": "Editor media blocks and Release track download-policy editors load eligible restricted-access segments."
-            }
-          ],
-          "consumerTests": ["web/lib/actions/file-download-access.test.ts"],
-          "providerTests": []
-        },
-        {
-          "name": "RestoreSegment",
-          "consumerStatus": "verified",
-          "consumers": [
-            {
-              "repository": "web",
-              "file": "lib/actions/audience.ts",
-              "symbol": "restoreSegmentAction",
-              "call": "client.restoreSegment({ id })",
-              "entrypoint": "The administrative audience-segment lifecycle modal restores a segment for Campaign and file-access selection."
-            }
-          ],
-          "consumerTests": ["web/lib/actions/audience.lifecycle.test.ts"],
-          "providerTests": []
-        },
-        {
-          "name": "UpdateSegment",
-          "consumerStatus": "verified",
-          "consumers": [
-            {
-              "repository": "web",
-              "file": "lib/actions/audience.ts",
-              "symbol": "updateSegmentAction",
-              "call": "createAudienceClient().updateSegment({ id, name, description, segmentType, config })",
-              "entrypoint": "features/admin/segment/SegmentModals.tsx edits audience segments"
-            }
-          ],
-          "consumerTests": [],
-          "providerTests": []
-        }
-      ]
-    },
-    {
       "service": "api.manage.v1.CampaignService",
       "procedures": [
         {
@@ -2190,7 +2058,7 @@
               "repository": "web",
               "file": "lib/actions/campaign.ts",
               "symbol": "updateCampaignConfigurationAction",
-              "call": "createCampaignClient().updateCampaignConfiguration({ id, targetMode, segmentId, layoutId, recipientScope })",
+              "call": "createCampaignClient().updateCampaignConfiguration({ id, targetMode, memberCriteriaId, layoutId, recipientScope })",
               "entrypoint": "features/campaign/CampaignEditPage.tsx persists recipient configuration through the Member-authenticated API"
             }
           ],
@@ -3217,7 +3085,7 @@
               "repository": "web",
               "file": "lib/actions/file-download-access.ts",
               "symbol": "updateFileDownloadPolicyAction",
-              "call": "client.updateFileDownloadPolicy({ target, audience, audienceSegmentIds })",
+              "call": "client.updateFileDownloadPolicy({ target, access, memberCriteriaIds })",
               "entrypoint": "Editor media blocks and Release track editors save file or track download access."
             }
           ],
@@ -4191,6 +4059,142 @@
               "symbol": "setDefaultMapThemeAction",
               "call": "createMapThemeClient().setDefaultMapTheme({ themeId })",
               "entrypoint": "app/admin/map/themes/page.tsx and features/admin/MapThemeEditor/ThemeEditorPage.tsx set the selected Theme as the site default"
+            }
+          ],
+          "consumerTests": [],
+          "providerTests": []
+        }
+      ]
+    },
+    {
+      "service": "api.manage.v1.MemberCriteriaService",
+      "procedures": [
+        {
+          "name": "ArchiveMemberCriteria",
+          "consumerStatus": "verified",
+          "consumers": [
+            {
+              "repository": "web",
+              "file": "lib/actions/member-criteria.ts",
+              "symbol": "archiveMemberCriteriaAction",
+              "call": "client.archiveMemberCriteria({ id })",
+              "entrypoint": "The administrative Member criteria lifecycle modal archives a criteria and refreshes Campaign selectors."
+            }
+          ],
+          "consumerTests": [
+            "web/lib/actions/member-criteria.lifecycle.test.ts"
+          ],
+          "providerTests": []
+        },
+        {
+          "name": "CountMatchingMembers",
+          "consumerStatus": "verified",
+          "consumers": [
+            {
+              "repository": "web",
+              "file": "lib/actions/member-criteria.ts",
+              "symbol": "countMatchingMembersAction",
+              "call": "createMemberCriteriaClient().countMatchingMembers({ kind, config })",
+              "entrypoint": "MemberCriteriaModals.tsx previews the matching Member count while configuring a criteria"
+            }
+          ],
+          "consumerTests": [],
+          "providerTests": []
+        },
+        {
+          "name": "CreateMemberCriteria",
+          "consumerStatus": "verified",
+          "consumers": [
+            {
+              "repository": "web",
+              "file": "lib/actions/member-criteria.ts",
+              "symbol": "createMemberCriteriaAction",
+              "call": "createMemberCriteriaClient().createMemberCriteria({ name, description, kind, config })",
+              "entrypoint": "features/admin/member-criteria/MemberCriteriaModals.tsx creates Member criteria"
+            }
+          ],
+          "consumerTests": [],
+          "providerTests": []
+        },
+        {
+          "name": "GetMemberCriteria",
+          "consumerStatus": "verified",
+          "consumers": [
+            {
+              "repository": "web",
+              "file": "lib/actions/member-criteria.ts",
+              "symbol": "getMemberCriteriaAction",
+              "call": "createMemberCriteriaClient().getMemberCriteria({ id })",
+              "entrypoint": "MemberCriteriaModals.tsx loads an existing criteria into the edit dialog"
+            }
+          ],
+          "consumerTests": [],
+          "providerTests": []
+        },
+        {
+          "name": "ListMemberCriteriaAdmin",
+          "consumerStatus": "verified",
+          "consumers": [
+            {
+              "repository": "web",
+              "file": "lib/actions/member-criteria.ts",
+              "symbol": "listMemberCriteriaAdminAction",
+              "call": "createMemberCriteriaClient().listMemberCriteriaAdmin({ pagination, filters, sorts })",
+              "entrypoint": "app/admin/member-criteria/page.tsx renders the paginated Member criteria table"
+            },
+            {
+              "repository": "web",
+              "file": "lib/actions/member-criteria.ts",
+              "symbol": "listActiveMemberCriteriaAction",
+              "call": "createMemberCriteriaClient().listMemberCriteriaAdmin({ pagination })",
+              "entrypoint": "app/admin/campaigns/[id]/page.tsx populates the Campaign recipient selector"
+            }
+          ],
+          "consumerTests": [],
+          "providerTests": []
+        },
+        {
+          "name": "ListMemberCriteriaForAuthenticatedAccess",
+          "consumerStatus": "verified",
+          "consumers": [
+            {
+              "repository": "web",
+              "file": "lib/actions/file-download-access.ts",
+              "symbol": "listMemberCriteriaForAuthenticatedAccessAction",
+              "call": "client.listMemberCriteriaForAuthenticatedAccess({ pagination, filters })",
+              "entrypoint": "Editor media blocks and Release track download-policy editors load eligible restricted-access Member criteria."
+            }
+          ],
+          "consumerTests": ["web/lib/actions/file-download-access.test.ts"],
+          "providerTests": []
+        },
+        {
+          "name": "RestoreMemberCriteria",
+          "consumerStatus": "verified",
+          "consumers": [
+            {
+              "repository": "web",
+              "file": "lib/actions/member-criteria.ts",
+              "symbol": "restoreMemberCriteriaAction",
+              "call": "client.restoreMemberCriteria({ id })",
+              "entrypoint": "The administrative Member criteria lifecycle modal restores a criteria for Campaign and file-access selection."
+            }
+          ],
+          "consumerTests": [
+            "web/lib/actions/member-criteria.lifecycle.test.ts"
+          ],
+          "providerTests": []
+        },
+        {
+          "name": "UpdateMemberCriteria",
+          "consumerStatus": "verified",
+          "consumers": [
+            {
+              "repository": "web",
+              "file": "lib/actions/member-criteria.ts",
+              "symbol": "updateMemberCriteriaAction",
+              "call": "createMemberCriteriaClient().updateMemberCriteria({ id, name, description, kind, config })",
+              "entrypoint": "features/admin/member-criteria/MemberCriteriaModals.tsx edits Member criteria"
             }
           ],
           "consumerTests": [],

@@ -12,17 +12,17 @@ import (
 	"google.golang.org/protobuf/types/descriptorpb"
 )
 
-func TestFileDownloadAudienceContract(t *testing.T) {
-	wants := map[managev1.FileDownloadAudience]int32{
-		managev1.FileDownloadAudience_FILE_DOWNLOAD_AUDIENCE_UNSPECIFIED:   0,
-		managev1.FileDownloadAudience_FILE_DOWNLOAD_AUDIENCE_DISABLED:      1,
-		managev1.FileDownloadAudience_FILE_DOWNLOAD_AUDIENCE_PUBLIC:        2,
-		managev1.FileDownloadAudience_FILE_DOWNLOAD_AUDIENCE_AUTHENTICATED: 3,
-		managev1.FileDownloadAudience_FILE_DOWNLOAD_AUDIENCE_RESTRICTED:    4,
+func TestFileDownloadAccessContract(t *testing.T) {
+	wants := map[managev1.FileDownloadAccess]int32{
+		managev1.FileDownloadAccess_FILE_DOWNLOAD_ACCESS_UNSPECIFIED:   0,
+		managev1.FileDownloadAccess_FILE_DOWNLOAD_ACCESS_DISABLED:      1,
+		managev1.FileDownloadAccess_FILE_DOWNLOAD_ACCESS_PUBLIC:        2,
+		managev1.FileDownloadAccess_FILE_DOWNLOAD_ACCESS_AUTHENTICATED: 3,
+		managev1.FileDownloadAccess_FILE_DOWNLOAD_ACCESS_RESTRICTED:    4,
 	}
-	for audience, want := range wants {
-		if got := int32(audience); got != want {
-			t.Errorf("%s = %d, want %d", audience, got, want)
+	for access, want := range wants {
+		if got := int32(access); got != want {
+			t.Errorf("%s = %d, want %d", access, got, want)
 		}
 	}
 }
@@ -72,10 +72,10 @@ func TestManageFileDownloadPolicyTargetsExactRelation(t *testing.T) {
 	if expectedFileID.HasOptionalKeyword() {
 		t.Error("UpdateFileDownloadPolicyRequest.expected_file_id must be a required CAS input")
 	}
-	requireMessageField(t, updatePolicy, "audience", 6, protoreflect.EnumKind, "api.manage.v1.FileDownloadAudience")
-	segmentIDs := requireMessageField(t, updatePolicy, "audience_segment_ids", 7, protoreflect.StringKind, "")
-	if !segmentIDs.IsList() {
-		t.Error("UpdateFileDownloadPolicyRequest.audience_segment_ids must be repeated")
+	requireMessageField(t, updatePolicy, "access", 6, protoreflect.EnumKind, "api.manage.v1.FileDownloadAccess")
+	criteriaIDs := requireMessageField(t, updatePolicy, "member_criteria_ids", 7, protoreflect.StringKind, "")
+	if !criteriaIDs.IsList() {
+		t.Error("UpdateFileDownloadPolicyRequest.member_criteria_ids must be repeated")
 	}
 	observedPolicy := requireMessageField(t, updatePolicy, "observed_policy", 8, protoreflect.MessageKind, "api.manage.v1.FileDownloadPolicyObservedState")
 	if !observedPolicy.HasPresence() {
@@ -98,17 +98,17 @@ func TestManageFileDownloadPolicyTargetsExactRelation(t *testing.T) {
 		t.Error("FileDownloadPolicy.reference_path must be optional for Track targets")
 	}
 	requireMessageField(t, policy, "file_id", 5, protoreflect.StringKind, "")
-	requireMessageField(t, policy, "audience", 6, protoreflect.EnumKind, "api.manage.v1.FileDownloadAudience")
-	segments := requireMessageField(
+	requireMessageField(t, policy, "access", 6, protoreflect.EnumKind, "api.manage.v1.FileDownloadAccess")
+	criteria := requireMessageField(
 		t,
 		policy,
-		"audience_segments",
+		"member_criteria",
 		7,
 		protoreflect.MessageKind,
-		"api.manage.v1.AudienceSegmentSummary",
+		"api.manage.v1.MemberCriteriaSummary",
 	)
-	if !segments.IsList() {
-		t.Error("FileDownloadPolicy.audience_segments must be repeated")
+	if !criteria.IsList() {
+		t.Error("FileDownloadPolicy.member_criteria must be repeated")
 	}
 
 	for _, message := range []protoreflect.MessageDescriptor{getPolicy, updatePolicy, policy} {
@@ -128,18 +128,18 @@ func TestManageFileDownloadPolicyTargetsExactRelation(t *testing.T) {
 	}
 }
 
-func TestAudienceSegmentAuthenticatedAccessContract(t *testing.T) {
-	summary := (&managev1.AudienceSegmentSummary{}).ProtoReflect().Descriptor()
+func TestMemberCriteriaAuthenticatedAccessContract(t *testing.T) {
+	summary := (&managev1.MemberCriteriaSummary{}).ProtoReflect().Descriptor()
 	requireMessageFieldCount(t, summary, 4)
 	requireMessageField(t, summary, "id", 1, protoreflect.StringKind, "")
 	requireMessageField(t, summary, "name", 2, protoreflect.StringKind, "")
 	description := requireMessageField(t, summary, "description", 3, protoreflect.StringKind, "")
 	if !description.HasOptionalKeyword() {
-		t.Error("AudienceSegmentSummary.description must be optional")
+		t.Error("MemberCriteriaSummary.description must be optional")
 	}
-	requireMessageField(t, summary, "segment_type", 4, protoreflect.EnumKind, "api.manage.v1.SegmentType")
+	requireMessageField(t, summary, "kind", 4, protoreflect.EnumKind, "api.manage.v1.MemberCriteriaKind")
 
-	request := (&managev1.ListSegmentsForAuthenticatedAccessRequest{}).ProtoReflect().Descriptor()
+	request := (&managev1.ListMemberCriteriaForAuthenticatedAccessRequest{}).ProtoReflect().Descriptor()
 	requireMessageFieldCount(t, request, 3)
 	requireMessageField(t, request, "pagination", 1, protoreflect.MessageKind, "api.common.v1.PaginationRequest")
 	filters := requireMessageField(
@@ -151,7 +151,7 @@ func TestAudienceSegmentAuthenticatedAccessContract(t *testing.T) {
 		"api.common.v1.FilterSpec",
 	)
 	if !filters.IsList() {
-		t.Error("ListSegmentsForAuthenticatedAccessRequest.filters must be repeated")
+		t.Error("ListMemberCriteriaForAuthenticatedAccessRequest.filters must be repeated")
 	}
 	sorts := requireMessageField(
 		t,
@@ -162,32 +162,32 @@ func TestAudienceSegmentAuthenticatedAccessContract(t *testing.T) {
 		"api.common.v1.SortSpec",
 	)
 	if !sorts.IsList() {
-		t.Error("ListSegmentsForAuthenticatedAccessRequest.sorts must be repeated")
+		t.Error("ListMemberCriteriaForAuthenticatedAccessRequest.sorts must be repeated")
 	}
 
-	response := (&managev1.ListSegmentsForAuthenticatedAccessResponse{}).ProtoReflect().Descriptor()
+	response := (&managev1.ListMemberCriteriaForAuthenticatedAccessResponse{}).ProtoReflect().Descriptor()
 	requireMessageFieldCount(t, response, 2)
-	responseSegments := requireMessageField(
+	responseCriteria := requireMessageField(
 		t,
 		response,
-		"segments",
+		"member_criteria",
 		1,
 		protoreflect.MessageKind,
-		"api.manage.v1.AudienceSegmentSummary",
+		"api.manage.v1.MemberCriteriaSummary",
 	)
-	if !responseSegments.IsList() {
-		t.Error("ListSegmentsForAuthenticatedAccessResponse.segments must be repeated")
+	if !responseCriteria.IsList() {
+		t.Error("ListMemberCriteriaForAuthenticatedAccessResponse.member_criteria must be repeated")
 	}
 	requireMessageField(t, response, "pagination", 2, protoreflect.MessageKind, "api.common.v1.PaginationResponse")
 
-	service := managev1.File_api_manage_v1_audience_proto.Services().ByName("AudienceService")
+	service := managev1.File_api_manage_v1_member_criteria_proto.Services().ByName("MemberCriteriaService")
 	if service == nil {
-		t.Fatal("api.manage.v1.AudienceService descriptor is missing")
+		t.Fatal("api.manage.v1.MemberCriteriaService descriptor is missing")
 	}
 	requireMethodTier(
 		t,
 		service,
-		"ListSegmentsForAuthenticatedAccess",
+		"ListMemberCriteriaForAuthenticatedAccess",
 		policyv1.AuthorizationRole_AUTHOR,
 	)
 }
@@ -214,7 +214,7 @@ func TestSetMemberTagsContract(t *testing.T) {
 
 func TestFileDownloadManagementContractsDoNotExposeIdentityMetadata(t *testing.T) {
 	for _, message := range []protoreflect.MessageDescriptor{
-		(&managev1.AudienceSegmentSummary{}).ProtoReflect().Descriptor(),
+		(&managev1.MemberCriteriaSummary{}).ProtoReflect().Descriptor(),
 		(&managev1.FileDownloadPolicy{}).ProtoReflect().Descriptor(),
 		(&openv1.AuthorizeDownloadResponse{}).ProtoReflect().Descriptor(),
 		(&openv1.FileDownloadAccess{}).ProtoReflect().Descriptor(),
@@ -223,18 +223,18 @@ func TestFileDownloadManagementContractsDoNotExposeIdentityMetadata(t *testing.T
 	}
 }
 
-func TestFileDownloadPolicyUsesOnlyAudienceSegmentSummary(t *testing.T) {
+func TestFileDownloadPolicyUsesOnlyMemberCriteriaSummary(t *testing.T) {
 	policy := (&managev1.FileDownloadPolicy{}).ProtoReflect().Descriptor()
-	segments := requireMessageField(
+	criteria := requireMessageField(
 		t,
 		policy,
-		"audience_segments",
+		"member_criteria",
 		7,
 		protoreflect.MessageKind,
-		"api.manage.v1.AudienceSegmentSummary",
+		"api.manage.v1.MemberCriteriaSummary",
 	)
-	if !segments.IsList() {
-		t.Error("FileDownloadPolicy.audience_segments must be repeated")
+	if !criteria.IsList() {
+		t.Error("FileDownloadPolicy.member_criteria must be repeated")
 	}
 }
 
@@ -282,8 +282,8 @@ func TestOpenAuthorizeDownloadIsScopedAndMinimal(t *testing.T) {
 	}
 	for index := 0; index < response.Fields().Len(); index++ {
 		fieldName := string(response.Fields().Get(index).Name())
-		if strings.Contains(fieldName, "group") || strings.Contains(fieldName, "segment") {
-			t.Errorf("public authorization response must not expose audience metadata")
+		if strings.Contains(fieldName, "group") || strings.Contains(fieldName, "criteria") {
+			t.Errorf("public authorization response must not expose Member criteria metadata")
 		}
 	}
 }

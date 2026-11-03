@@ -13,7 +13,6 @@ modules:
   - program_event_series
   - file
   - campaign
-  - audience
   - reference_data
   - site_settings
   - menu
@@ -41,7 +40,6 @@ definition_order:
   - program_event_series
   - file
   - campaign
-  - audience_segment
   - map_place
   - site_setting
   - menu
@@ -52,6 +50,7 @@ definition_order:
   - format
   - client
   - member
+  - member_criteria
   - form
   - email_template
   - email_layout

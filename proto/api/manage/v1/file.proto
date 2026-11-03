@@ -5,7 +5,7 @@ package api.manage.v1;
 // File entity (stored in S3/storage)
 import "api/common/v1/common.proto";
 import "api/common/v1/media.proto";
-import "api/manage/v1/audience.proto";
+import "api/manage/v1/member_criteria.proto";
 import "api/manage/v1/events.proto";
 import "api/policy/v1/access.proto";
 import "google/protobuf/timestamp.proto";
@@ -459,12 +459,14 @@ message GetBulkMediaDeliveriesResponse {
   map<string, GetMediaDeliveryResponse> files = 1;
 }
 
-enum FileDownloadAudience {
-  FILE_DOWNLOAD_AUDIENCE_UNSPECIFIED = 0;
-  FILE_DOWNLOAD_AUDIENCE_DISABLED = 1;
-  FILE_DOWNLOAD_AUDIENCE_PUBLIC = 2;
-  FILE_DOWNLOAD_AUDIENCE_AUTHENTICATED = 3;
-  FILE_DOWNLOAD_AUDIENCE_RESTRICTED = 4;
+// Who may download a File through a download policy.
+enum FileDownloadAccess {
+  FILE_DOWNLOAD_ACCESS_UNSPECIFIED = 0;
+  FILE_DOWNLOAD_ACCESS_DISABLED = 1;
+  FILE_DOWNLOAD_ACCESS_PUBLIC = 2;
+  FILE_DOWNLOAD_ACCESS_AUTHENTICATED = 3;
+  // Members matching any of the policy's Member criteria.
+  FILE_DOWNLOAD_ACCESS_RESTRICTED = 4;
 }
 
 message FileDownloadPolicy {
@@ -476,8 +478,8 @@ message FileDownloadPolicy {
   optional string reference_path = 4;
   // Current File resolved by the server from the exact relation above.
   string file_id = 5;
-  FileDownloadAudience audience = 6;
-  repeated AudienceSegmentSummary audience_segments = 7;
+  FileDownloadAccess access = 6;
+  repeated MemberCriteriaSummary member_criteria = 7;
 }
 
 message GetFileDownloadPolicyRequest {
@@ -494,8 +496,8 @@ message GetFileDownloadPolicyResponse {
 }
 
 message FileDownloadPolicyObservedState {
-  FileDownloadAudience audience = 1;
-  repeated string audience_segment_ids = 2;
+  FileDownloadAccess access = 1;
+  repeated string member_criteria_ids = 2;
 }
 
 message UpdateFileDownloadPolicyRequest {
@@ -508,8 +510,8 @@ message UpdateFileDownloadPolicyRequest {
   // Compare-and-set guard only. The server resolves policy authority and the
   // current File from the exact relation above.
   string expected_file_id = 5;
-  FileDownloadAudience audience = 6;
-  repeated string audience_segment_ids = 7;
+  FileDownloadAccess access = 6;
+  repeated string member_criteria_ids = 7;
   // Required editor baseline used to merge the desired policy into current state.
   FileDownloadPolicyObservedState observed_policy = 8;
 }

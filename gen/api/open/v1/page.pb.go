@@ -137,8 +137,8 @@ func (x *GetPageRequest) GetSharePassword() string {
 type GetPageResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	Page  *Page                  `protobuf:"bytes,1,opt,name=page,proto3,oneof" json:"page,omitempty"`
-	// Exact Block usage, attachment state, inline delivery and content-audience
-	// download action. File identity alone is never a Page usage key.
+	// Exact Block usage, attachment state, inline delivery and download-access
+	// action. File identity alone is never a Page usage key.
 	BlockMedia []*v1.ContentBlockMediaItem `protobuf:"bytes,2,rep,name=block_media,json=blockMedia,proto3" json:"block_media,omitempty"`
 	// Denied reads return this reason with no Page or block media.
 	AccessReason  v11.PageAccessReason `protobuf:"varint,3,opt,name=access_reason,json=accessReason,proto3,enum=api.common.v1.PageAccessReason" json:"access_reason,omitempty"`

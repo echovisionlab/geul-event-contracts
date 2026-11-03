@@ -87,8 +87,8 @@ export type GetPageResponse = Message<"api.open.v1.GetPageResponse"> & {
   page?: Page | undefined;
 
   /**
-   * Exact Block usage, attachment state, inline delivery and content-audience
-   * download action. File identity alone is never a Page usage key.
+   * Exact Block usage, attachment state, inline delivery and download-access
+   * action. File identity alone is never a Page usage key.
    *
    * @generated from field: repeated api.content.v1.ContentBlockMediaItem block_media = 2;
    */

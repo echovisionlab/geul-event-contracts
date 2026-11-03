@@ -23,16 +23,16 @@ func TestCreateCampaignUsesAnExplicitExclusiveTarget(t *testing.T) {
 		protoreflect.MessageKind,
 		"google.protobuf.Empty",
 	)
-	segmentID := requireMessageField(
+	criteriaID := requireMessageField(
 		t,
 		request,
-		"segment_id",
+		"member_criteria_id",
 		4,
 		protoreflect.StringKind,
 		"",
 	)
-	if all.ContainingOneof() == nil || all.ContainingOneof() != segmentID.ContainingOneof() {
-		t.Fatal("CreateCampaignRequest.all and segment_id must be the same oneof")
+	if all.ContainingOneof() == nil || all.ContainingOneof() != criteriaID.ContainingOneof() {
+		t.Fatal("CreateCampaignRequest.all and member_criteria_id must be the same oneof")
 	}
 	if got := all.ContainingOneof().Fields().Len(); got != 2 {
 		t.Fatalf("CreateCampaignRequest.target case count = %d, want 2", got)
@@ -48,11 +48,11 @@ func TestCreateCampaignUsesAnExplicitExclusiveTarget(t *testing.T) {
 		t.Fatalf("explicit all target = %v, want all", got)
 	}
 
-	segmentRequest := &managev1.CreateCampaignRequest{
-		Target: &managev1.CreateCampaignRequest_SegmentId{SegmentId: "segment-1"},
+	criteriaRequest := &managev1.CreateCampaignRequest{
+		Target: &managev1.CreateCampaignRequest_MemberCriteriaId{MemberCriteriaId: "criteria-1"},
 	}
-	if got := segmentRequest.ProtoReflect().WhichOneof(all.ContainingOneof()); got != segmentID {
-		t.Fatalf("explicit segment target = %v, want segment_id", got)
+	if got := criteriaRequest.ProtoReflect().WhichOneof(all.ContainingOneof()); got != criteriaID {
+		t.Fatalf("explicit criteria target = %v, want member_criteria_id", got)
 	}
 
 	missingTarget := (&managev1.CreateCampaignRequest{}).ProtoReflect()
