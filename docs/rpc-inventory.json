@@ -4145,7 +4145,7 @@
             {
               "repository": "web",
               "file": "lib/actions/member-criteria.ts",
-              "symbol": "listAllMemberCriteriaAction",
+              "symbol": "listActiveMemberCriteriaAction",
               "call": "createMemberCriteriaClient().listMemberCriteriaAdmin({ pagination })",
               "entrypoint": "app/admin/campaigns/[id]/page.tsx populates the Campaign recipient selector"
             }
