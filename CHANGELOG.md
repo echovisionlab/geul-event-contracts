@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.15.0](https://github.com/echovisionlab/geul-event-contracts/compare/v0.14.1...v0.15.0) (2026-11-03)
+
+
+### ⚠ BREAKING CHANGES
+
+* rename audience segments to Member criteria ([#57](https://github.com/echovisionlab/geul-event-contracts/issues/57))
+
+### Features
+
+* rename audience segments to Member criteria ([#57](https://github.com/echovisionlab/geul-event-contracts/issues/57)) ([7468b5d](https://github.com/echovisionlab/geul-event-contracts/commit/7468b5d874f323ff2b93ad74a7a806611943ba28))
+
 ## [0.14.1](https://github.com/echovisionlab/geul-event-contracts/compare/v0.14.0...v0.14.1) (2026-10-31)
 
 
