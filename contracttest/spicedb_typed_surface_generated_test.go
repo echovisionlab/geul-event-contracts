@@ -462,6 +462,15 @@ func TestGeneratedSpiceDBTypedSurface(t *testing.T) {
 	assertCan(t, "MapTheme.Create", "platform", "global", "map_theme.create", "is_admin", func() (policyv1.Can, error) { return policyv1.MapTheme.Create() })
 	assertRelationship(t, "MapTheme.TouchPolicy", "map_theme", resourceID, "policy", "platform", "global", "", policyv1.RelationshipTouch, func() (policyv1.RelationshipMutation, error) { return policyv1.MapTheme.TouchPolicy(resourceID) })
 	assertRelationship(t, "MapTheme.DeletePolicy", "map_theme", resourceID, "policy", "platform", "global", "", policyv1.RelationshipDelete, func() (policyv1.RelationshipMutation, error) { return policyv1.MapTheme.DeletePolicy(resourceID) })
+	assertResource(t, "OauthSignInApp.Resource", "oauth_sign_in_app", resourceID, func() (policyv1.Resource, error) { return policyv1.OauthSignInApp.Resource(resourceID) })
+	assertCan(t, "OauthSignInApp.List", "platform", "global", "oauth_sign_in_app.list", "is_admin", func() (policyv1.Can, error) { return policyv1.OauthSignInApp.List() })
+	assertCan(t, "OauthSignInApp.Create", "platform", "global", "oauth_sign_in_app.create", "is_admin", func() (policyv1.Can, error) { return policyv1.OauthSignInApp.Create() })
+	assertCan(t, "OauthSignInApp.Update", "platform", "global", "oauth_sign_in_app.update", "is_admin", func() (policyv1.Can, error) { return policyv1.OauthSignInApp.Update() })
+	assertCan(t, "OauthSignInApp.Delete", "platform", "global", "oauth_sign_in_app.delete", "is_admin", func() (policyv1.Can, error) { return policyv1.OauthSignInApp.Delete() })
+	assertCan(t, "OauthSignInApp.RotateSecret", "platform", "global", "oauth_sign_in_app.rotate_secret", "is_admin", func() (policyv1.Can, error) { return policyv1.OauthSignInApp.RotateSecret() })
+	assertResource(t, "OauthConnectedTool.Resource", "oauth_connected_tool", resourceID, func() (policyv1.Resource, error) { return policyv1.OauthConnectedTool.Resource(resourceID) })
+	assertCan(t, "OauthConnectedTool.List", "platform", "global", "oauth_connected_tool.list", "is_admin", func() (policyv1.Can, error) { return policyv1.OauthConnectedTool.List() })
+	assertCan(t, "OauthConnectedTool.Disconnect", "platform", "global", "oauth_connected_tool.disconnect", "is_admin", func() (policyv1.Can, error) { return policyv1.OauthConnectedTool.Disconnect() })
 }
 
 func assertDelegation(t *testing.T, name string, kind policyv1.DelegationKind, sessionID, delegationID, displayName string, delegation policyv1.Delegation) {

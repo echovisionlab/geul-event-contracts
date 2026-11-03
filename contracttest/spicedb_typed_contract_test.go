@@ -15,7 +15,7 @@ import (
 )
 
 func TestSpiceDBDecisionDelegationCannotChangeEngineCheck(t *testing.T) {
-	const originalFingerprint = "11aecef4a356c7338f52dfbc5b44fdeac84ce47d6cd6a7d2c81e6c3b4f0ca307"
+	const originalFingerprint = "3e90e115e02903ab802370cdfbdb7a093e22e16291fa91cdb26eda43a2d45e5f"
 	if policyv1.SpiceDBCatalogFingerprint != originalFingerprint {
 		t.Fatalf("assembled catalog fingerprint changed: %s", policyv1.SpiceDBCatalogFingerprint)
 	}

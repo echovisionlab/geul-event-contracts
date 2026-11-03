@@ -156,8 +156,8 @@ func (x *MemberCriteriaConfig) GetExcludeMemberIds() []string {
 	return nil
 }
 
-// A saved rule that selects Members. Campaigns send to it, restricted downloads
-// grant access through it.
+// A saved rule that selects Members. Campaigns send to it; restricted downloads
+// and sign-in apps grant access through it.
 type MemberCriteria struct {
 	state               protoimpl.MessageState `protogen:"open.v1"`
 	Id                  string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
@@ -173,8 +173,10 @@ type MemberCriteria struct {
 	// Exact File Block and Track download-policy relations that reference this criteria
 	DownloadPolicyReferenceCount int32                  `protobuf:"varint,11,opt,name=download_policy_reference_count,json=downloadPolicyReferenceCount,proto3" json:"download_policy_reference_count,omitempty"`
 	ArchivedAt                   *timestamppb.Timestamp `protobuf:"bytes,12,opt,name=archived_at,json=archivedAt,proto3" json:"archived_at,omitempty"`
-	unknownFields                protoimpl.UnknownFields
-	sizeCache                    protoimpl.SizeCache
+	// Sign-in apps that admit Members through this criteria
+	SignInAppReferenceCount int32 `protobuf:"varint,13,opt,name=sign_in_app_reference_count,json=signInAppReferenceCount,proto3" json:"sign_in_app_reference_count,omitempty"`
+	unknownFields           protoimpl.UnknownFields
+	sizeCache               protoimpl.SizeCache
 }
 
 func (x *MemberCriteria) Reset() {
@@ -289,6 +291,13 @@ func (x *MemberCriteria) GetArchivedAt() *timestamppb.Timestamp {
 		return x.ArchivedAt
 	}
 	return nil
+}
+
+func (x *MemberCriteria) GetSignInAppReferenceCount() int32 {
+	if x != nil {
+		return x.SignInAppReferenceCount
+	}
+	return 0
 }
 
 // Minimal Member criteria metadata for authenticated file access. Its
@@ -1041,7 +1050,7 @@ const file_api_manage_v1_member_criteria_proto_rawDesc = "" +
 	"\x0ecreated_before\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampH\x01R\rcreatedBefore\x88\x01\x01\x12,\n" +
 	"\x12exclude_member_ids\x18\x05 \x03(\tR\x10excludeMemberIdsB\x10\n" +
 	"\x0e_created_afterB\x11\n" +
-	"\x0f_created_before\"\x95\x05\n" +
+	"\x0f_created_before\"\xd3\x05\n" +
 	"\x0eMemberCriteria\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12%\n" +
@@ -1058,7 +1067,8 @@ const file_api_manage_v1_member_criteria_proto_rawDesc = "" +
 	" \x01(\x05R\x10deliveryRunCount\x12E\n" +
 	"\x1fdownload_policy_reference_count\x18\v \x01(\x05R\x1cdownloadPolicyReferenceCount\x12;\n" +
 	"\varchived_at\x18\f \x01(\v2\x1a.google.protobuf.TimestampR\n" +
-	"archivedAtB\x0e\n" +
+	"archivedAt\x12<\n" +
+	"\x1bsign_in_app_reference_count\x18\r \x01(\x05R\x17signInAppReferenceCountB\x0e\n" +
 	"\f_descriptionB\r\n" +
 	"\v_updated_atB\x18\n" +
 	"\x16_matching_member_count\"\xa9\x01\n" +

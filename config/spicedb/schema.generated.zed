@@ -2,7 +2,7 @@
 // DO NOT EDIT.
 //
 // Canonical source: config/spicedb/catalog/{core.yaml,manifest.yaml,domains/*.yaml}
-// Catalog fingerprint: 11aecef4a356c7338f52dfbc5b44fdeac84ce47d6cd6a7d2c81e6c3b4f0ca307
+// Catalog fingerprint: 3e90e115e02903ab802370cdfbdb7a093e22e16291fa91cdb26eda43a2d45e5f
 // Role inheritance tuples:
 // role:admin#member@account_identity:<id>
 // role:author#member@role:admin#member
@@ -369,3 +369,8 @@ definition map_theme {
   permission delete = platform_admin
   permission manage = platform_admin
 }
+
+// Domain: oauth_app — Sign-in app and connected AI tool management policy
+definition oauth_sign_in_app {}
+
+definition oauth_connected_tool {}
