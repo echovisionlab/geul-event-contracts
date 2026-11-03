@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.16.0](https://github.com/echovisionlab/geul-event-contracts/compare/v0.15.0...v0.16.0) (2026-11-03)
+
+
+### Features
+
+* manage sign-in apps and connected AI tools ([#59](https://github.com/echovisionlab/geul-event-contracts/issues/59)) ([a6bc64d](https://github.com/echovisionlab/geul-event-contracts/commit/a6bc64d2b7bfafa4c77ea593086d58bcd7e5ecea))
+
 ## [0.15.0](https://github.com/echovisionlab/geul-event-contracts/compare/v0.14.1...v0.15.0) (2026-11-03)
 
 
