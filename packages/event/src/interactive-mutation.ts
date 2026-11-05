@@ -26,7 +26,6 @@ export function assertRelayInteractiveAIDocumentMutationRequest(
   requireNonBlank(event.mutationId, "id");
 
   switch (event.origin) {
-    case InteractiveAIDocumentMutationOrigin.INTERACTIVE_AI_DOCUMENT_MUTATION_ORIGIN_IN_EDITOR_AI:
     case InteractiveAIDocumentMutationOrigin.INTERACTIVE_AI_DOCUMENT_MUTATION_ORIGIN_MCP:
       break;
     case InteractiveAIDocumentMutationOrigin.INTERACTIVE_AI_DOCUMENT_MUTATION_ORIGIN_UNSPECIFIED:

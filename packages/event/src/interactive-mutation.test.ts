@@ -43,7 +43,6 @@ function validEvent() {
 
 describe("interactive AI document mutation relay", () => {
   it.each([
-    InteractiveAIDocumentMutationOrigin.INTERACTIVE_AI_DOCUMENT_MUTATION_ORIGIN_IN_EDITOR_AI,
     InteractiveAIDocumentMutationOrigin.INTERACTIVE_AI_DOCUMENT_MUTATION_ORIGIN_MCP,
   ])("accepts active interactive origin %s", (origin) => {
     const event = validEvent();
