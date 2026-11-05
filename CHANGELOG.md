@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.17.0](https://github.com/echovisionlab/geul-event-contracts/compare/v0.16.0...v0.17.0) (2026-11-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* the removed RPCs, messages, events and fields no longer exist, and several translation field numbers changed.
+
+### Features
+
+* remove machine translation and in-app AI generation ([#61](https://github.com/echovisionlab/geul-event-contracts/issues/61)) ([301502e](https://github.com/echovisionlab/geul-event-contracts/commit/301502ebd5c2dc5e6af4cf2cf6013fda691ee6da))
+
 ## [0.16.0](https://github.com/echovisionlab/geul-event-contracts/compare/v0.15.0...v0.16.0) (2026-11-03)
 
 
