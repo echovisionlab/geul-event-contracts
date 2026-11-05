@@ -1214,56 +1214,6 @@ func (ContentUpdatedFieldKind) EnumDescriptor() ([]byte, []int) {
 	return file_api_manage_v1_events_proto_rawDescGZIP(), []int{19}
 }
 
-// translation.lifecycle PostgreSQL signal status enum
-type TranslationLifecycleStatus int32
-
-const (
-	TranslationLifecycleStatus_TRANSLATION_LIFECYCLE_STATUS_UNSPECIFIED TranslationLifecycleStatus = 0
-	TranslationLifecycleStatus_TRANSLATION_LIFECYCLE_STATUS_APPLIED     TranslationLifecycleStatus = 1
-	TranslationLifecycleStatus_TRANSLATION_LIFECYCLE_STATUS_FAILED      TranslationLifecycleStatus = 2
-)
-
-// Enum value maps for TranslationLifecycleStatus.
-var (
-	TranslationLifecycleStatus_name = map[int32]string{
-		0: "TRANSLATION_LIFECYCLE_STATUS_UNSPECIFIED",
-		1: "TRANSLATION_LIFECYCLE_STATUS_APPLIED",
-		2: "TRANSLATION_LIFECYCLE_STATUS_FAILED",
-	}
-	TranslationLifecycleStatus_value = map[string]int32{
-		"TRANSLATION_LIFECYCLE_STATUS_UNSPECIFIED": 0,
-		"TRANSLATION_LIFECYCLE_STATUS_APPLIED":     1,
-		"TRANSLATION_LIFECYCLE_STATUS_FAILED":      2,
-	}
-)
-
-func (x TranslationLifecycleStatus) Enum() *TranslationLifecycleStatus {
-	p := new(TranslationLifecycleStatus)
-	*p = x
-	return p
-}
-
-func (x TranslationLifecycleStatus) String() string {
-	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
-}
-
-func (TranslationLifecycleStatus) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_manage_v1_events_proto_enumTypes[20].Descriptor()
-}
-
-func (TranslationLifecycleStatus) Type() protoreflect.EnumType {
-	return &file_api_manage_v1_events_proto_enumTypes[20]
-}
-
-func (x TranslationLifecycleStatus) Number() protoreflect.EnumNumber {
-	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Use TranslationLifecycleStatus.Descriptor instead.
-func (TranslationLifecycleStatus) EnumDescriptor() ([]byte, []int) {
-	return file_api_manage_v1_events_proto_rawDescGZIP(), []int{20}
-}
-
 // Send individual transactional or authentication-code email (email.send and email.auth queues)
 // All emails are rendered by Worker using template_type + template_data
 type SendEmailEvent struct {
@@ -5334,144 +5284,6 @@ func (x *ContentUpdatedEvent) GetOrigin() string {
 	return ""
 }
 
-// translation.generate queue
-type TranslationGenerateEvent struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	JobId         string                 `protobuf:"bytes,1,opt,name=job_id,json=jobId,proto3" json:"job_id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *TranslationGenerateEvent) Reset() {
-	*x = TranslationGenerateEvent{}
-	mi := &file_api_manage_v1_events_proto_msgTypes[48]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *TranslationGenerateEvent) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*TranslationGenerateEvent) ProtoMessage() {}
-
-func (x *TranslationGenerateEvent) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_events_proto_msgTypes[48]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use TranslationGenerateEvent.ProtoReflect.Descriptor instead.
-func (*TranslationGenerateEvent) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_events_proto_rawDescGZIP(), []int{48}
-}
-
-func (x *TranslationGenerateEvent) GetJobId() string {
-	if x != nil {
-		return x.JobId
-	}
-	return ""
-}
-
-// translation.lifecycle terminal target refetch/failure signal
-type TranslationLifecycleEvent struct {
-	state         protoimpl.MessageState     `protogen:"open.v1"`
-	JobId         string                     `protobuf:"bytes,1,opt,name=job_id,json=jobId,proto3" json:"job_id,omitempty"`
-	EntityType    TranslationEntityType      `protobuf:"varint,2,opt,name=entity_type,json=entityType,proto3,enum=api.manage.v1.TranslationEntityType" json:"entity_type,omitempty"`
-	EntityId      string                     `protobuf:"bytes,3,opt,name=entity_id,json=entityId,proto3" json:"entity_id,omitempty"`
-	TargetLocale  string                     `protobuf:"bytes,4,opt,name=target_locale,json=targetLocale,proto3" json:"target_locale,omitempty"`
-	Status        TranslationLifecycleStatus `protobuf:"varint,5,opt,name=status,proto3,enum=api.manage.v1.TranslationLifecycleStatus" json:"status,omitempty"`
-	TimestampMs   int64                      `protobuf:"varint,6,opt,name=timestamp_ms,json=timestampMs,proto3" json:"timestamp_ms,omitempty"`
-	FailureReason TranslationFailureReason   `protobuf:"varint,7,opt,name=failure_reason,json=failureReason,proto3,enum=api.manage.v1.TranslationFailureReason" json:"failure_reason,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *TranslationLifecycleEvent) Reset() {
-	*x = TranslationLifecycleEvent{}
-	mi := &file_api_manage_v1_events_proto_msgTypes[49]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *TranslationLifecycleEvent) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*TranslationLifecycleEvent) ProtoMessage() {}
-
-func (x *TranslationLifecycleEvent) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_events_proto_msgTypes[49]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use TranslationLifecycleEvent.ProtoReflect.Descriptor instead.
-func (*TranslationLifecycleEvent) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_events_proto_rawDescGZIP(), []int{49}
-}
-
-func (x *TranslationLifecycleEvent) GetJobId() string {
-	if x != nil {
-		return x.JobId
-	}
-	return ""
-}
-
-func (x *TranslationLifecycleEvent) GetEntityType() TranslationEntityType {
-	if x != nil {
-		return x.EntityType
-	}
-	return TranslationEntityType_TRANSLATION_ENTITY_TYPE_UNSPECIFIED
-}
-
-func (x *TranslationLifecycleEvent) GetEntityId() string {
-	if x != nil {
-		return x.EntityId
-	}
-	return ""
-}
-
-func (x *TranslationLifecycleEvent) GetTargetLocale() string {
-	if x != nil {
-		return x.TargetLocale
-	}
-	return ""
-}
-
-func (x *TranslationLifecycleEvent) GetStatus() TranslationLifecycleStatus {
-	if x != nil {
-		return x.Status
-	}
-	return TranslationLifecycleStatus_TRANSLATION_LIFECYCLE_STATUS_UNSPECIFIED
-}
-
-func (x *TranslationLifecycleEvent) GetTimestampMs() int64 {
-	if x != nil {
-		return x.TimestampMs
-	}
-	return 0
-}
-
-func (x *TranslationLifecycleEvent) GetFailureReason() TranslationFailureReason {
-	if x != nil {
-		return x.FailureReason
-	}
-	return TranslationFailureReason_TRANSLATION_FAILURE_REASON_UNSPECIFIED
-}
-
 // Existing-account passwordless login. The identity authority's code credential
 // must contain target_email at delivery time.
 type AuthLoginRecipient struct {
@@ -5484,7 +5296,7 @@ type AuthLoginRecipient struct {
 
 func (x *AuthLoginRecipient) Reset() {
 	*x = AuthLoginRecipient{}
-	mi := &file_api_manage_v1_events_proto_msgTypes[50]
+	mi := &file_api_manage_v1_events_proto_msgTypes[48]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5496,7 +5308,7 @@ func (x *AuthLoginRecipient) String() string {
 func (*AuthLoginRecipient) ProtoMessage() {}
 
 func (x *AuthLoginRecipient) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_events_proto_msgTypes[50]
+	mi := &file_api_manage_v1_events_proto_msgTypes[48]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5509,7 +5321,7 @@ func (x *AuthLoginRecipient) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AuthLoginRecipient.ProtoReflect.Descriptor instead.
 func (*AuthLoginRecipient) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_events_proto_rawDescGZIP(), []int{50}
+	return file_api_manage_v1_events_proto_rawDescGZIP(), []int{48}
 }
 
 func (x *AuthLoginRecipient) GetIdentityId() string {
@@ -5537,7 +5349,7 @@ type AuthRegistrationRecipient struct {
 
 func (x *AuthRegistrationRecipient) Reset() {
 	*x = AuthRegistrationRecipient{}
-	mi := &file_api_manage_v1_events_proto_msgTypes[51]
+	mi := &file_api_manage_v1_events_proto_msgTypes[49]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5549,7 +5361,7 @@ func (x *AuthRegistrationRecipient) String() string {
 func (*AuthRegistrationRecipient) ProtoMessage() {}
 
 func (x *AuthRegistrationRecipient) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_events_proto_msgTypes[51]
+	mi := &file_api_manage_v1_events_proto_msgTypes[49]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5562,7 +5374,7 @@ func (x *AuthRegistrationRecipient) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AuthRegistrationRecipient.ProtoReflect.Descriptor instead.
 func (*AuthRegistrationRecipient) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_events_proto_rawDescGZIP(), []int{51}
+	return file_api_manage_v1_events_proto_rawDescGZIP(), []int{49}
 }
 
 func (x *AuthRegistrationRecipient) GetTargetEmail() string {
@@ -5576,7 +5388,7 @@ var File_api_manage_v1_events_proto protoreflect.FileDescriptor
 
 const file_api_manage_v1_events_proto_rawDesc = "" +
 	"\n" +
-	"\x1aapi/manage/v1/events.proto\x12\rapi.manage.v1\x1a\x19api/common/v1/media.proto\x1a\x1fapi/manage/v1/translation.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xa4\n" +
+	"\x1aapi/manage/v1/events.proto\x12\rapi.manage.v1\x1a\x19api/common/v1/media.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xa4\n" +
 	"\n" +
 	"\x0eSendEmailEvent\x12\x1c\n" +
 	"\trecipient\x18\x01 \x01(\tR\trecipient\x12#\n" +
@@ -6011,18 +5823,7 @@ const file_api_manage_v1_events_proto_rawDesc = "" +
 	"\a_localeB\x10\n" +
 	"\x0e_locale_existsB\x12\n" +
 	"\x10_target_revisionB\t\n" +
-	"\a_origin\"1\n" +
-	"\x18TranslationGenerateEvent\x12\x15\n" +
-	"\x06job_id\x18\x01 \x01(\tR\x05jobId\"\xf1\x02\n" +
-	"\x19TranslationLifecycleEvent\x12\x15\n" +
-	"\x06job_id\x18\x01 \x01(\tR\x05jobId\x12E\n" +
-	"\ventity_type\x18\x02 \x01(\x0e2$.api.manage.v1.TranslationEntityTypeR\n" +
-	"entityType\x12\x1b\n" +
-	"\tentity_id\x18\x03 \x01(\tR\bentityId\x12#\n" +
-	"\rtarget_locale\x18\x04 \x01(\tR\ftargetLocale\x12A\n" +
-	"\x06status\x18\x05 \x01(\x0e2).api.manage.v1.TranslationLifecycleStatusR\x06status\x12!\n" +
-	"\ftimestamp_ms\x18\x06 \x01(\x03R\vtimestampMs\x12N\n" +
-	"\x0efailure_reason\x18\a \x01(\x0e2'.api.manage.v1.TranslationFailureReasonR\rfailureReason\"X\n" +
+	"\a_origin\"X\n" +
 	"\x12AuthLoginRecipient\x12\x1f\n" +
 	"\videntity_id\x18\x01 \x01(\tR\n" +
 	"identityId\x12!\n" +
@@ -6177,11 +5978,7 @@ const file_api_manage_v1_events_proto_rawDesc = "" +
 	"#CONTENT_UPDATED_FIELD_KIND_RELATION\x10\x03\x12$\n" +
 	" CONTENT_UPDATED_FIELD_KIND_MEDIA\x10\x04\x12$\n" +
 	" CONTENT_UPDATED_FIELD_KIND_STATE\x10\x05\x12,\n" +
-	"(CONTENT_UPDATED_FIELD_KIND_CONFIGURATION\x10\x06*\x9d\x01\n" +
-	"\x1aTranslationLifecycleStatus\x12,\n" +
-	"(TRANSLATION_LIFECYCLE_STATUS_UNSPECIFIED\x10\x00\x12(\n" +
-	"$TRANSLATION_LIFECYCLE_STATUS_APPLIED\x10\x01\x12'\n" +
-	"#TRANSLATION_LIFECYCLE_STATUS_FAILED\x10\x02B\xc0\x01\n" +
+	"(CONTENT_UPDATED_FIELD_KIND_CONFIGURATION\x10\x06B\xc0\x01\n" +
 	"\x11com.api.manage.v1B\vEventsProtoP\x01ZHgithub.com/echovisionlab/geul-event-contracts/gen/api/manage/v1;managev1\xa2\x02\x03AMX\xaa\x02\rApi.Manage.V1\xca\x02\rApi\\Manage\\V1\xe2\x02\x19Api\\Manage\\V1\\GPBMetadata\xea\x02\x0fApi::Manage::V1b\x06proto3"
 
 var (
@@ -6196,8 +5993,8 @@ func file_api_manage_v1_events_proto_rawDescGZIP() []byte {
 	return file_api_manage_v1_events_proto_rawDescData
 }
 
-var file_api_manage_v1_events_proto_enumTypes = make([]protoimpl.EnumInfo, 21)
-var file_api_manage_v1_events_proto_msgTypes = make([]protoimpl.MessageInfo, 53)
+var file_api_manage_v1_events_proto_enumTypes = make([]protoimpl.EnumInfo, 20)
+var file_api_manage_v1_events_proto_msgTypes = make([]protoimpl.MessageInfo, 51)
 var file_api_manage_v1_events_proto_goTypes = []any{
 	(OgEntityType)(0),                            // 0: api.manage.v1.OgEntityType
 	(OgGenerationStatus)(0),                      // 1: api.manage.v1.OgGenerationStatus
@@ -6219,175 +6016,167 @@ var file_api_manage_v1_events_proto_goTypes = []any{
 	(ContentEntityType)(0),                       // 17: api.manage.v1.ContentEntityType
 	(ContentUpdateSource)(0),                     // 18: api.manage.v1.ContentUpdateSource
 	(ContentUpdatedFieldKind)(0),                 // 19: api.manage.v1.ContentUpdatedFieldKind
-	(TranslationLifecycleStatus)(0),              // 20: api.manage.v1.TranslationLifecycleStatus
-	(*SendEmailEvent)(nil),                       // 21: api.manage.v1.SendEmailEvent
-	(*AccountSelectedPrimaryEmailRecipient)(nil), // 22: api.manage.v1.AccountSelectedPrimaryEmailRecipient
-	(*AccountVerificationRecipient)(nil),         // 23: api.manage.v1.AccountVerificationRecipient
-	(*TestEmailRecipient)(nil),                   // 24: api.manage.v1.TestEmailRecipient
-	(*SystemDirectRecipient)(nil),                // 25: api.manage.v1.SystemDirectRecipient
-	(*NewsletterSubscriptionRecipient)(nil),      // 26: api.manage.v1.NewsletterSubscriptionRecipient
-	(*SendBulkEmailBatchEvent)(nil),              // 27: api.manage.v1.SendBulkEmailBatchEvent
-	(*UserDeleteIdentityCommand)(nil),            // 28: api.manage.v1.UserDeleteIdentityCommand
-	(*UserDeleteAvatarCommand)(nil),              // 29: api.manage.v1.UserDeleteAvatarCommand
-	(*OgEntityTarget)(nil),                       // 30: api.manage.v1.OgEntityTarget
-	(*OgLocaleTarget)(nil),                       // 31: api.manage.v1.OgLocaleTarget
-	(*OgGenerationTarget)(nil),                   // 32: api.manage.v1.OgGenerationTarget
-	(*OgGenerationJob)(nil),                      // 33: api.manage.v1.OgGenerationJob
-	(*FileDeleteEvent)(nil),                      // 34: api.manage.v1.FileDeleteEvent
-	(*FileIngestIdentity)(nil),                   // 35: api.manage.v1.FileIngestIdentity
-	(*FileIngestProgress)(nil),                   // 36: api.manage.v1.FileIngestProgress
-	(*FileIngestUploadEvent)(nil),                // 37: api.manage.v1.FileIngestUploadEvent
-	(*FileIngestDownloadEvent)(nil),              // 38: api.manage.v1.FileIngestDownloadEvent
-	(*FileIngestFinalizedEvent)(nil),             // 39: api.manage.v1.FileIngestFinalizedEvent
-	(*FileIngestAttachedEvent)(nil),              // 40: api.manage.v1.FileIngestAttachedEvent
-	(*FileIngestFailedEvent)(nil),                // 41: api.manage.v1.FileIngestFailedEvent
-	(*TranscodeAudioEvent)(nil),                  // 42: api.manage.v1.TranscodeAudioEvent
-	(*VideoTranscodeOptions)(nil),                // 43: api.manage.v1.VideoTranscodeOptions
-	(*TranscodeVideoEvent)(nil),                  // 44: api.manage.v1.TranscodeVideoEvent
-	(*WaveformGenerateEvent)(nil),                // 45: api.manage.v1.WaveformGenerateEvent
-	(*MeshOptimizationIdentity)(nil),             // 46: api.manage.v1.MeshOptimizationIdentity
-	(*MeshOptimizationOptions)(nil),              // 47: api.manage.v1.MeshOptimizationOptions
-	(*MeshOptimizationJob)(nil),                  // 48: api.manage.v1.MeshOptimizationJob
-	(*MeshOptimizationOutput)(nil),               // 49: api.manage.v1.MeshOptimizationOutput
-	(*TranscodeOutputs)(nil),                     // 50: api.manage.v1.TranscodeOutputs
-	(*MediaProcessingLifecycleOutputs)(nil),      // 51: api.manage.v1.MediaProcessingLifecycleOutputs
-	(*MediaProcessingLifecycleEvent)(nil),        // 52: api.manage.v1.MediaProcessingLifecycleEvent
-	(*TranscodeCompleteEvent)(nil),               // 53: api.manage.v1.TranscodeCompleteEvent
-	(*TranscodeProgressEvent)(nil),               // 54: api.manage.v1.TranscodeProgressEvent
-	(*TranscodeCancelEvent)(nil),                 // 55: api.manage.v1.TranscodeCancelEvent
-	(*WaveformCompleteEvent)(nil),                // 56: api.manage.v1.WaveformCompleteEvent
-	(*WaveformProgressEvent)(nil),                // 57: api.manage.v1.WaveformProgressEvent
-	(*WaveformCancelEvent)(nil),                  // 58: api.manage.v1.WaveformCancelEvent
-	(*WaveformFailEvent)(nil),                    // 59: api.manage.v1.WaveformFailEvent
-	(*WaveformResultEvent)(nil),                  // 60: api.manage.v1.WaveformResultEvent
-	(*MeshOptimizationCompleteEvent)(nil),        // 61: api.manage.v1.MeshOptimizationCompleteEvent
-	(*MeshOptimizationProgressEvent)(nil),        // 62: api.manage.v1.MeshOptimizationProgressEvent
-	(*MeshOptimizationFailEvent)(nil),            // 63: api.manage.v1.MeshOptimizationFailEvent
-	(*MeshOptimizationResultEvent)(nil),          // 64: api.manage.v1.MeshOptimizationResultEvent
-	(*OgGenerationLifecycleEvent)(nil),           // 65: api.manage.v1.OgGenerationLifecycleEvent
-	(*MailAdapterChangedEvent)(nil),              // 66: api.manage.v1.MailAdapterChangedEvent
-	(*ContentUpdatedField)(nil),                  // 67: api.manage.v1.ContentUpdatedField
-	(*ContentUpdatedEvent)(nil),                  // 68: api.manage.v1.ContentUpdatedEvent
-	(*TranslationGenerateEvent)(nil),             // 69: api.manage.v1.TranslationGenerateEvent
-	(*TranslationLifecycleEvent)(nil),            // 70: api.manage.v1.TranslationLifecycleEvent
-	(*AuthLoginRecipient)(nil),                   // 71: api.manage.v1.AuthLoginRecipient
-	(*AuthRegistrationRecipient)(nil),            // 72: api.manage.v1.AuthRegistrationRecipient
-	nil,                                          // 73: api.manage.v1.SendEmailEvent.TemplateDataEntry
-	(*timestamppb.Timestamp)(nil),                // 74: google.protobuf.Timestamp
-	(*v1.MediaObjectTarget)(nil),                 // 75: api.common.v1.MediaObjectTarget
-	(*v1.AssetWriteTarget)(nil),                  // 76: api.common.v1.AssetWriteTarget
-	(*v1.MediaGenerationWriteTarget)(nil),        // 77: api.common.v1.MediaGenerationWriteTarget
-	(*v1.MediaObjectWriteResult)(nil),            // 78: api.common.v1.MediaObjectWriteResult
-	(*v1.AssetWriteResult)(nil),                  // 79: api.common.v1.AssetWriteResult
-	(*v1.MediaGenerationWriteResult)(nil),        // 80: api.common.v1.MediaGenerationWriteResult
-	(v1.MediaProcessingStatus)(0),                // 81: api.common.v1.MediaProcessingStatus
-	(*v1.AssetRef)(nil),                          // 82: api.common.v1.AssetRef
-	(TranslationEntityType)(0),                   // 83: api.manage.v1.TranslationEntityType
-	(TranslationFailureReason)(0),                // 84: api.manage.v1.TranslationFailureReason
+	(*SendEmailEvent)(nil),                       // 20: api.manage.v1.SendEmailEvent
+	(*AccountSelectedPrimaryEmailRecipient)(nil), // 21: api.manage.v1.AccountSelectedPrimaryEmailRecipient
+	(*AccountVerificationRecipient)(nil),         // 22: api.manage.v1.AccountVerificationRecipient
+	(*TestEmailRecipient)(nil),                   // 23: api.manage.v1.TestEmailRecipient
+	(*SystemDirectRecipient)(nil),                // 24: api.manage.v1.SystemDirectRecipient
+	(*NewsletterSubscriptionRecipient)(nil),      // 25: api.manage.v1.NewsletterSubscriptionRecipient
+	(*SendBulkEmailBatchEvent)(nil),              // 26: api.manage.v1.SendBulkEmailBatchEvent
+	(*UserDeleteIdentityCommand)(nil),            // 27: api.manage.v1.UserDeleteIdentityCommand
+	(*UserDeleteAvatarCommand)(nil),              // 28: api.manage.v1.UserDeleteAvatarCommand
+	(*OgEntityTarget)(nil),                       // 29: api.manage.v1.OgEntityTarget
+	(*OgLocaleTarget)(nil),                       // 30: api.manage.v1.OgLocaleTarget
+	(*OgGenerationTarget)(nil),                   // 31: api.manage.v1.OgGenerationTarget
+	(*OgGenerationJob)(nil),                      // 32: api.manage.v1.OgGenerationJob
+	(*FileDeleteEvent)(nil),                      // 33: api.manage.v1.FileDeleteEvent
+	(*FileIngestIdentity)(nil),                   // 34: api.manage.v1.FileIngestIdentity
+	(*FileIngestProgress)(nil),                   // 35: api.manage.v1.FileIngestProgress
+	(*FileIngestUploadEvent)(nil),                // 36: api.manage.v1.FileIngestUploadEvent
+	(*FileIngestDownloadEvent)(nil),              // 37: api.manage.v1.FileIngestDownloadEvent
+	(*FileIngestFinalizedEvent)(nil),             // 38: api.manage.v1.FileIngestFinalizedEvent
+	(*FileIngestAttachedEvent)(nil),              // 39: api.manage.v1.FileIngestAttachedEvent
+	(*FileIngestFailedEvent)(nil),                // 40: api.manage.v1.FileIngestFailedEvent
+	(*TranscodeAudioEvent)(nil),                  // 41: api.manage.v1.TranscodeAudioEvent
+	(*VideoTranscodeOptions)(nil),                // 42: api.manage.v1.VideoTranscodeOptions
+	(*TranscodeVideoEvent)(nil),                  // 43: api.manage.v1.TranscodeVideoEvent
+	(*WaveformGenerateEvent)(nil),                // 44: api.manage.v1.WaveformGenerateEvent
+	(*MeshOptimizationIdentity)(nil),             // 45: api.manage.v1.MeshOptimizationIdentity
+	(*MeshOptimizationOptions)(nil),              // 46: api.manage.v1.MeshOptimizationOptions
+	(*MeshOptimizationJob)(nil),                  // 47: api.manage.v1.MeshOptimizationJob
+	(*MeshOptimizationOutput)(nil),               // 48: api.manage.v1.MeshOptimizationOutput
+	(*TranscodeOutputs)(nil),                     // 49: api.manage.v1.TranscodeOutputs
+	(*MediaProcessingLifecycleOutputs)(nil),      // 50: api.manage.v1.MediaProcessingLifecycleOutputs
+	(*MediaProcessingLifecycleEvent)(nil),        // 51: api.manage.v1.MediaProcessingLifecycleEvent
+	(*TranscodeCompleteEvent)(nil),               // 52: api.manage.v1.TranscodeCompleteEvent
+	(*TranscodeProgressEvent)(nil),               // 53: api.manage.v1.TranscodeProgressEvent
+	(*TranscodeCancelEvent)(nil),                 // 54: api.manage.v1.TranscodeCancelEvent
+	(*WaveformCompleteEvent)(nil),                // 55: api.manage.v1.WaveformCompleteEvent
+	(*WaveformProgressEvent)(nil),                // 56: api.manage.v1.WaveformProgressEvent
+	(*WaveformCancelEvent)(nil),                  // 57: api.manage.v1.WaveformCancelEvent
+	(*WaveformFailEvent)(nil),                    // 58: api.manage.v1.WaveformFailEvent
+	(*WaveformResultEvent)(nil),                  // 59: api.manage.v1.WaveformResultEvent
+	(*MeshOptimizationCompleteEvent)(nil),        // 60: api.manage.v1.MeshOptimizationCompleteEvent
+	(*MeshOptimizationProgressEvent)(nil),        // 61: api.manage.v1.MeshOptimizationProgressEvent
+	(*MeshOptimizationFailEvent)(nil),            // 62: api.manage.v1.MeshOptimizationFailEvent
+	(*MeshOptimizationResultEvent)(nil),          // 63: api.manage.v1.MeshOptimizationResultEvent
+	(*OgGenerationLifecycleEvent)(nil),           // 64: api.manage.v1.OgGenerationLifecycleEvent
+	(*MailAdapterChangedEvent)(nil),              // 65: api.manage.v1.MailAdapterChangedEvent
+	(*ContentUpdatedField)(nil),                  // 66: api.manage.v1.ContentUpdatedField
+	(*ContentUpdatedEvent)(nil),                  // 67: api.manage.v1.ContentUpdatedEvent
+	(*AuthLoginRecipient)(nil),                   // 68: api.manage.v1.AuthLoginRecipient
+	(*AuthRegistrationRecipient)(nil),            // 69: api.manage.v1.AuthRegistrationRecipient
+	nil,                                          // 70: api.manage.v1.SendEmailEvent.TemplateDataEntry
+	(*timestamppb.Timestamp)(nil),                // 71: google.protobuf.Timestamp
+	(*v1.MediaObjectTarget)(nil),                 // 72: api.common.v1.MediaObjectTarget
+	(*v1.AssetWriteTarget)(nil),                  // 73: api.common.v1.AssetWriteTarget
+	(*v1.MediaGenerationWriteTarget)(nil),        // 74: api.common.v1.MediaGenerationWriteTarget
+	(*v1.MediaObjectWriteResult)(nil),            // 75: api.common.v1.MediaObjectWriteResult
+	(*v1.AssetWriteResult)(nil),                  // 76: api.common.v1.AssetWriteResult
+	(*v1.MediaGenerationWriteResult)(nil),        // 77: api.common.v1.MediaGenerationWriteResult
+	(v1.MediaProcessingStatus)(0),                // 78: api.common.v1.MediaProcessingStatus
+	(*v1.AssetRef)(nil),                          // 79: api.common.v1.AssetRef
 }
 var file_api_manage_v1_events_proto_depIdxs = []int32{
-	73, // 0: api.manage.v1.SendEmailEvent.template_data:type_name -> api.manage.v1.SendEmailEvent.TemplateDataEntry
-	74, // 1: api.manage.v1.SendEmailEvent.expires_at:type_name -> google.protobuf.Timestamp
-	22, // 2: api.manage.v1.SendEmailEvent.account_selected_primary_email:type_name -> api.manage.v1.AccountSelectedPrimaryEmailRecipient
-	23, // 3: api.manage.v1.SendEmailEvent.account_verification:type_name -> api.manage.v1.AccountVerificationRecipient
-	24, // 4: api.manage.v1.SendEmailEvent.test_email:type_name -> api.manage.v1.TestEmailRecipient
-	25, // 5: api.manage.v1.SendEmailEvent.system_direct:type_name -> api.manage.v1.SystemDirectRecipient
-	26, // 6: api.manage.v1.SendEmailEvent.newsletter_subscription:type_name -> api.manage.v1.NewsletterSubscriptionRecipient
-	71, // 7: api.manage.v1.SendEmailEvent.auth_login:type_name -> api.manage.v1.AuthLoginRecipient
-	72, // 8: api.manage.v1.SendEmailEvent.auth_registration:type_name -> api.manage.v1.AuthRegistrationRecipient
+	70, // 0: api.manage.v1.SendEmailEvent.template_data:type_name -> api.manage.v1.SendEmailEvent.TemplateDataEntry
+	71, // 1: api.manage.v1.SendEmailEvent.expires_at:type_name -> google.protobuf.Timestamp
+	21, // 2: api.manage.v1.SendEmailEvent.account_selected_primary_email:type_name -> api.manage.v1.AccountSelectedPrimaryEmailRecipient
+	22, // 3: api.manage.v1.SendEmailEvent.account_verification:type_name -> api.manage.v1.AccountVerificationRecipient
+	23, // 4: api.manage.v1.SendEmailEvent.test_email:type_name -> api.manage.v1.TestEmailRecipient
+	24, // 5: api.manage.v1.SendEmailEvent.system_direct:type_name -> api.manage.v1.SystemDirectRecipient
+	25, // 6: api.manage.v1.SendEmailEvent.newsletter_subscription:type_name -> api.manage.v1.NewsletterSubscriptionRecipient
+	68, // 7: api.manage.v1.SendEmailEvent.auth_login:type_name -> api.manage.v1.AuthLoginRecipient
+	69, // 8: api.manage.v1.SendEmailEvent.auth_registration:type_name -> api.manage.v1.AuthRegistrationRecipient
 	4,  // 9: api.manage.v1.UserDeleteIdentityCommand.mode:type_name -> api.manage.v1.UserDeleteIdentityMode
 	0,  // 10: api.manage.v1.OgGenerationTarget.entity_type:type_name -> api.manage.v1.OgEntityType
-	30, // 11: api.manage.v1.OgGenerationTarget.entity:type_name -> api.manage.v1.OgEntityTarget
-	31, // 12: api.manage.v1.OgGenerationTarget.locale:type_name -> api.manage.v1.OgLocaleTarget
-	75, // 13: api.manage.v1.FileDeleteEvent.original:type_name -> api.common.v1.MediaObjectTarget
-	76, // 14: api.manage.v1.FileDeleteEvent.assets:type_name -> api.common.v1.AssetWriteTarget
-	74, // 15: api.manage.v1.FileDeleteEvent.timestamp:type_name -> google.protobuf.Timestamp
-	77, // 16: api.manage.v1.FileDeleteEvent.generations:type_name -> api.common.v1.MediaGenerationWriteTarget
+	29, // 11: api.manage.v1.OgGenerationTarget.entity:type_name -> api.manage.v1.OgEntityTarget
+	30, // 12: api.manage.v1.OgGenerationTarget.locale:type_name -> api.manage.v1.OgLocaleTarget
+	72, // 13: api.manage.v1.FileDeleteEvent.original:type_name -> api.common.v1.MediaObjectTarget
+	73, // 14: api.manage.v1.FileDeleteEvent.assets:type_name -> api.common.v1.AssetWriteTarget
+	71, // 15: api.manage.v1.FileDeleteEvent.timestamp:type_name -> google.protobuf.Timestamp
+	74, // 16: api.manage.v1.FileDeleteEvent.generations:type_name -> api.common.v1.MediaGenerationWriteTarget
 	2,  // 17: api.manage.v1.FileIngestIdentity.entity_type:type_name -> api.manage.v1.TranscodeEntityType
-	75, // 18: api.manage.v1.FileIngestIdentity.target:type_name -> api.common.v1.MediaObjectTarget
+	72, // 18: api.manage.v1.FileIngestIdentity.target:type_name -> api.common.v1.MediaObjectTarget
 	5,  // 19: api.manage.v1.FileIngestIdentity.source:type_name -> api.manage.v1.FileIngestSource
 	6,  // 20: api.manage.v1.FileIngestIdentity.media_kind:type_name -> api.manage.v1.FileIngestMediaKind
-	35, // 21: api.manage.v1.FileIngestUploadEvent.identity:type_name -> api.manage.v1.FileIngestIdentity
-	36, // 22: api.manage.v1.FileIngestUploadEvent.progress:type_name -> api.manage.v1.FileIngestProgress
-	35, // 23: api.manage.v1.FileIngestDownloadEvent.identity:type_name -> api.manage.v1.FileIngestIdentity
-	36, // 24: api.manage.v1.FileIngestDownloadEvent.progress:type_name -> api.manage.v1.FileIngestProgress
-	35, // 25: api.manage.v1.FileIngestFinalizedEvent.identity:type_name -> api.manage.v1.FileIngestIdentity
-	36, // 26: api.manage.v1.FileIngestFinalizedEvent.progress:type_name -> api.manage.v1.FileIngestProgress
-	35, // 27: api.manage.v1.FileIngestAttachedEvent.identity:type_name -> api.manage.v1.FileIngestIdentity
-	35, // 28: api.manage.v1.FileIngestFailedEvent.identity:type_name -> api.manage.v1.FileIngestIdentity
+	34, // 21: api.manage.v1.FileIngestUploadEvent.identity:type_name -> api.manage.v1.FileIngestIdentity
+	35, // 22: api.manage.v1.FileIngestUploadEvent.progress:type_name -> api.manage.v1.FileIngestProgress
+	34, // 23: api.manage.v1.FileIngestDownloadEvent.identity:type_name -> api.manage.v1.FileIngestIdentity
+	35, // 24: api.manage.v1.FileIngestDownloadEvent.progress:type_name -> api.manage.v1.FileIngestProgress
+	34, // 25: api.manage.v1.FileIngestFinalizedEvent.identity:type_name -> api.manage.v1.FileIngestIdentity
+	35, // 26: api.manage.v1.FileIngestFinalizedEvent.progress:type_name -> api.manage.v1.FileIngestProgress
+	34, // 27: api.manage.v1.FileIngestAttachedEvent.identity:type_name -> api.manage.v1.FileIngestIdentity
+	34, // 28: api.manage.v1.FileIngestFailedEvent.identity:type_name -> api.manage.v1.FileIngestIdentity
 	7,  // 29: api.manage.v1.FileIngestFailedEvent.reason:type_name -> api.manage.v1.FileIngestFailureReason
-	36, // 30: api.manage.v1.FileIngestFailedEvent.progress:type_name -> api.manage.v1.FileIngestProgress
+	35, // 30: api.manage.v1.FileIngestFailedEvent.progress:type_name -> api.manage.v1.FileIngestProgress
 	2,  // 31: api.manage.v1.TranscodeAudioEvent.entity_type:type_name -> api.manage.v1.TranscodeEntityType
-	75, // 32: api.manage.v1.TranscodeAudioEvent.source:type_name -> api.common.v1.MediaObjectTarget
-	77, // 33: api.manage.v1.TranscodeAudioEvent.hls_output:type_name -> api.common.v1.MediaGenerationWriteTarget
-	76, // 34: api.manage.v1.TranscodeAudioEvent.spectrogram_output:type_name -> api.common.v1.AssetWriteTarget
+	72, // 32: api.manage.v1.TranscodeAudioEvent.source:type_name -> api.common.v1.MediaObjectTarget
+	74, // 33: api.manage.v1.TranscodeAudioEvent.hls_output:type_name -> api.common.v1.MediaGenerationWriteTarget
+	73, // 34: api.manage.v1.TranscodeAudioEvent.spectrogram_output:type_name -> api.common.v1.AssetWriteTarget
 	8,  // 35: api.manage.v1.VideoTranscodeOptions.resolutions:type_name -> api.manage.v1.VideoResolution
 	2,  // 36: api.manage.v1.TranscodeVideoEvent.entity_type:type_name -> api.manage.v1.TranscodeEntityType
-	75, // 37: api.manage.v1.TranscodeVideoEvent.source:type_name -> api.common.v1.MediaObjectTarget
-	43, // 38: api.manage.v1.TranscodeVideoEvent.options:type_name -> api.manage.v1.VideoTranscodeOptions
-	77, // 39: api.manage.v1.TranscodeVideoEvent.hls_output:type_name -> api.common.v1.MediaGenerationWriteTarget
-	76, // 40: api.manage.v1.TranscodeVideoEvent.thumbnail_output:type_name -> api.common.v1.AssetWriteTarget
+	72, // 37: api.manage.v1.TranscodeVideoEvent.source:type_name -> api.common.v1.MediaObjectTarget
+	42, // 38: api.manage.v1.TranscodeVideoEvent.options:type_name -> api.manage.v1.VideoTranscodeOptions
+	74, // 39: api.manage.v1.TranscodeVideoEvent.hls_output:type_name -> api.common.v1.MediaGenerationWriteTarget
+	73, // 40: api.manage.v1.TranscodeVideoEvent.thumbnail_output:type_name -> api.common.v1.AssetWriteTarget
 	2,  // 41: api.manage.v1.WaveformGenerateEvent.entity_type:type_name -> api.manage.v1.TranscodeEntityType
-	75, // 42: api.manage.v1.WaveformGenerateEvent.source:type_name -> api.common.v1.MediaObjectTarget
-	76, // 43: api.manage.v1.WaveformGenerateEvent.output:type_name -> api.common.v1.AssetWriteTarget
+	72, // 42: api.manage.v1.WaveformGenerateEvent.source:type_name -> api.common.v1.MediaObjectTarget
+	73, // 43: api.manage.v1.WaveformGenerateEvent.output:type_name -> api.common.v1.AssetWriteTarget
 	2,  // 44: api.manage.v1.MeshOptimizationIdentity.entity_type:type_name -> api.manage.v1.TranscodeEntityType
-	75, // 45: api.manage.v1.MeshOptimizationIdentity.source:type_name -> api.common.v1.MediaObjectTarget
+	72, // 45: api.manage.v1.MeshOptimizationIdentity.source:type_name -> api.common.v1.MediaObjectTarget
 	9,  // 46: api.manage.v1.MeshOptimizationOptions.compression_method:type_name -> api.manage.v1.MeshOptimizationCompressionMethod
 	10, // 47: api.manage.v1.MeshOptimizationOptions.profile:type_name -> api.manage.v1.MeshOptimizationProfile
-	46, // 48: api.manage.v1.MeshOptimizationJob.identity:type_name -> api.manage.v1.MeshOptimizationIdentity
-	47, // 49: api.manage.v1.MeshOptimizationJob.options:type_name -> api.manage.v1.MeshOptimizationOptions
-	75, // 50: api.manage.v1.MeshOptimizationJob.output:type_name -> api.common.v1.MediaObjectTarget
-	78, // 51: api.manage.v1.MeshOptimizationOutput.written:type_name -> api.common.v1.MediaObjectWriteResult
+	45, // 48: api.manage.v1.MeshOptimizationJob.identity:type_name -> api.manage.v1.MeshOptimizationIdentity
+	46, // 49: api.manage.v1.MeshOptimizationJob.options:type_name -> api.manage.v1.MeshOptimizationOptions
+	72, // 50: api.manage.v1.MeshOptimizationJob.output:type_name -> api.common.v1.MediaObjectTarget
+	75, // 51: api.manage.v1.MeshOptimizationOutput.written:type_name -> api.common.v1.MediaObjectWriteResult
 	9,  // 52: api.manage.v1.MeshOptimizationOutput.compression_method:type_name -> api.manage.v1.MeshOptimizationCompressionMethod
 	10, // 53: api.manage.v1.MeshOptimizationOutput.profile:type_name -> api.manage.v1.MeshOptimizationProfile
-	79, // 54: api.manage.v1.TranscodeOutputs.spectrogram:type_name -> api.common.v1.AssetWriteResult
-	79, // 55: api.manage.v1.TranscodeOutputs.waveform:type_name -> api.common.v1.AssetWriteResult
-	79, // 56: api.manage.v1.TranscodeOutputs.thumbnail:type_name -> api.common.v1.AssetWriteResult
-	80, // 57: api.manage.v1.TranscodeOutputs.hls:type_name -> api.common.v1.MediaGenerationWriteResult
+	76, // 54: api.manage.v1.TranscodeOutputs.spectrogram:type_name -> api.common.v1.AssetWriteResult
+	76, // 55: api.manage.v1.TranscodeOutputs.waveform:type_name -> api.common.v1.AssetWriteResult
+	76, // 56: api.manage.v1.TranscodeOutputs.thumbnail:type_name -> api.common.v1.AssetWriteResult
+	77, // 57: api.manage.v1.TranscodeOutputs.hls:type_name -> api.common.v1.MediaGenerationWriteResult
 	2,  // 58: api.manage.v1.MediaProcessingLifecycleEvent.entity_type:type_name -> api.manage.v1.TranscodeEntityType
-	81, // 59: api.manage.v1.MediaProcessingLifecycleEvent.status:type_name -> api.common.v1.MediaProcessingStatus
-	51, // 60: api.manage.v1.MediaProcessingLifecycleEvent.outputs:type_name -> api.manage.v1.MediaProcessingLifecycleOutputs
+	78, // 59: api.manage.v1.MediaProcessingLifecycleEvent.status:type_name -> api.common.v1.MediaProcessingStatus
+	50, // 60: api.manage.v1.MediaProcessingLifecycleEvent.outputs:type_name -> api.manage.v1.MediaProcessingLifecycleOutputs
 	13, // 61: api.manage.v1.TranscodeCompleteEvent.event_type:type_name -> api.manage.v1.TranscodeEventType
 	2,  // 62: api.manage.v1.TranscodeCompleteEvent.entity_type:type_name -> api.manage.v1.TranscodeEntityType
-	50, // 63: api.manage.v1.TranscodeCompleteEvent.outputs:type_name -> api.manage.v1.TranscodeOutputs
+	49, // 63: api.manage.v1.TranscodeCompleteEvent.outputs:type_name -> api.manage.v1.TranscodeOutputs
 	2,  // 64: api.manage.v1.TranscodeProgressEvent.entity_type:type_name -> api.manage.v1.TranscodeEntityType
 	14, // 65: api.manage.v1.TranscodeProgressEvent.stage:type_name -> api.manage.v1.TranscodeStage
 	2,  // 66: api.manage.v1.TranscodeCancelEvent.entity_type:type_name -> api.manage.v1.TranscodeEntityType
 	15, // 67: api.manage.v1.TranscodeCancelEvent.reason:type_name -> api.manage.v1.TranscodeCancelReason
 	2,  // 68: api.manage.v1.WaveformCompleteEvent.entity_type:type_name -> api.manage.v1.TranscodeEntityType
-	79, // 69: api.manage.v1.WaveformCompleteEvent.output:type_name -> api.common.v1.AssetWriteResult
+	76, // 69: api.manage.v1.WaveformCompleteEvent.output:type_name -> api.common.v1.AssetWriteResult
 	2,  // 70: api.manage.v1.WaveformProgressEvent.entity_type:type_name -> api.manage.v1.TranscodeEntityType
 	14, // 71: api.manage.v1.WaveformProgressEvent.stage:type_name -> api.manage.v1.TranscodeStage
 	2,  // 72: api.manage.v1.WaveformCancelEvent.entity_type:type_name -> api.manage.v1.TranscodeEntityType
 	15, // 73: api.manage.v1.WaveformCancelEvent.reason:type_name -> api.manage.v1.TranscodeCancelReason
 	2,  // 74: api.manage.v1.WaveformFailEvent.entity_type:type_name -> api.manage.v1.TranscodeEntityType
-	56, // 75: api.manage.v1.WaveformResultEvent.completed:type_name -> api.manage.v1.WaveformCompleteEvent
-	59, // 76: api.manage.v1.WaveformResultEvent.failed:type_name -> api.manage.v1.WaveformFailEvent
-	46, // 77: api.manage.v1.MeshOptimizationCompleteEvent.identity:type_name -> api.manage.v1.MeshOptimizationIdentity
-	49, // 78: api.manage.v1.MeshOptimizationCompleteEvent.output:type_name -> api.manage.v1.MeshOptimizationOutput
-	46, // 79: api.manage.v1.MeshOptimizationProgressEvent.identity:type_name -> api.manage.v1.MeshOptimizationIdentity
+	55, // 75: api.manage.v1.WaveformResultEvent.completed:type_name -> api.manage.v1.WaveformCompleteEvent
+	58, // 76: api.manage.v1.WaveformResultEvent.failed:type_name -> api.manage.v1.WaveformFailEvent
+	45, // 77: api.manage.v1.MeshOptimizationCompleteEvent.identity:type_name -> api.manage.v1.MeshOptimizationIdentity
+	48, // 78: api.manage.v1.MeshOptimizationCompleteEvent.output:type_name -> api.manage.v1.MeshOptimizationOutput
+	45, // 79: api.manage.v1.MeshOptimizationProgressEvent.identity:type_name -> api.manage.v1.MeshOptimizationIdentity
 	11, // 80: api.manage.v1.MeshOptimizationProgressEvent.stage:type_name -> api.manage.v1.MeshOptimizationStage
-	46, // 81: api.manage.v1.MeshOptimizationFailEvent.identity:type_name -> api.manage.v1.MeshOptimizationIdentity
+	45, // 81: api.manage.v1.MeshOptimizationFailEvent.identity:type_name -> api.manage.v1.MeshOptimizationIdentity
 	12, // 82: api.manage.v1.MeshOptimizationFailEvent.reason:type_name -> api.manage.v1.MeshOptimizationFailureReason
-	61, // 83: api.manage.v1.MeshOptimizationResultEvent.completed:type_name -> api.manage.v1.MeshOptimizationCompleteEvent
-	63, // 84: api.manage.v1.MeshOptimizationResultEvent.failed:type_name -> api.manage.v1.MeshOptimizationFailEvent
-	32, // 85: api.manage.v1.OgGenerationLifecycleEvent.target:type_name -> api.manage.v1.OgGenerationTarget
+	60, // 83: api.manage.v1.MeshOptimizationResultEvent.completed:type_name -> api.manage.v1.MeshOptimizationCompleteEvent
+	62, // 84: api.manage.v1.MeshOptimizationResultEvent.failed:type_name -> api.manage.v1.MeshOptimizationFailEvent
+	31, // 85: api.manage.v1.OgGenerationLifecycleEvent.target:type_name -> api.manage.v1.OgGenerationTarget
 	1,  // 86: api.manage.v1.OgGenerationLifecycleEvent.status:type_name -> api.manage.v1.OgGenerationStatus
-	82, // 87: api.manage.v1.OgGenerationLifecycleEvent.asset:type_name -> api.common.v1.AssetRef
-	74, // 88: api.manage.v1.OgGenerationLifecycleEvent.occurred_at:type_name -> google.protobuf.Timestamp
+	79, // 87: api.manage.v1.OgGenerationLifecycleEvent.asset:type_name -> api.common.v1.AssetRef
+	71, // 88: api.manage.v1.OgGenerationLifecycleEvent.occurred_at:type_name -> google.protobuf.Timestamp
 	16, // 89: api.manage.v1.MailAdapterChangedEvent.change_type:type_name -> api.manage.v1.MailAdapterChangeType
 	19, // 90: api.manage.v1.ContentUpdatedField.kind:type_name -> api.manage.v1.ContentUpdatedFieldKind
 	17, // 91: api.manage.v1.ContentUpdatedEvent.entity_type:type_name -> api.manage.v1.ContentEntityType
 	18, // 92: api.manage.v1.ContentUpdatedEvent.source:type_name -> api.manage.v1.ContentUpdateSource
-	67, // 93: api.manage.v1.ContentUpdatedEvent.changed_fields:type_name -> api.manage.v1.ContentUpdatedField
-	83, // 94: api.manage.v1.TranslationLifecycleEvent.entity_type:type_name -> api.manage.v1.TranslationEntityType
-	20, // 95: api.manage.v1.TranslationLifecycleEvent.status:type_name -> api.manage.v1.TranslationLifecycleStatus
-	84, // 96: api.manage.v1.TranslationLifecycleEvent.failure_reason:type_name -> api.manage.v1.TranslationFailureReason
-	97, // [97:97] is the sub-list for method output_type
-	97, // [97:97] is the sub-list for method input_type
-	97, // [97:97] is the sub-list for extension type_name
-	97, // [97:97] is the sub-list for extension extendee
-	0,  // [0:97] is the sub-list for field type_name
+	66, // 93: api.manage.v1.ContentUpdatedEvent.changed_fields:type_name -> api.manage.v1.ContentUpdatedField
+	94, // [94:94] is the sub-list for method output_type
+	94, // [94:94] is the sub-list for method input_type
+	94, // [94:94] is the sub-list for extension type_name
+	94, // [94:94] is the sub-list for extension extendee
+	0,  // [0:94] is the sub-list for field type_name
 }
 
 func init() { file_api_manage_v1_events_proto_init() }
@@ -6395,7 +6184,6 @@ func file_api_manage_v1_events_proto_init() {
 	if File_api_manage_v1_events_proto != nil {
 		return
 	}
-	file_api_manage_v1_translation_proto_init()
 	file_api_manage_v1_events_proto_msgTypes[0].OneofWrappers = []any{
 		(*SendEmailEvent_AccountSelectedPrimaryEmail)(nil),
 		(*SendEmailEvent_AccountVerification)(nil),
@@ -6439,8 +6227,8 @@ func file_api_manage_v1_events_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_api_manage_v1_events_proto_rawDesc), len(file_api_manage_v1_events_proto_rawDesc)),
-			NumEnums:      21,
-			NumMessages:   53,
+			NumEnums:      20,
+			NumMessages:   51,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

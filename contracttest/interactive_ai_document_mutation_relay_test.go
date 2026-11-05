@@ -47,8 +47,7 @@ func TestInteractiveAIDocumentMutationRelayContract(t *testing.T) {
 	origins := intrav1.InteractiveAIDocumentMutationOrigin_name
 	wantOrigins := map[int32]string{
 		0: "INTERACTIVE_AI_DOCUMENT_MUTATION_ORIGIN_UNSPECIFIED",
-		1: "INTERACTIVE_AI_DOCUMENT_MUTATION_ORIGIN_IN_EDITOR_AI",
-		2: "INTERACTIVE_AI_DOCUMENT_MUTATION_ORIGIN_MCP",
+		1: "INTERACTIVE_AI_DOCUMENT_MUTATION_ORIGIN_MCP",
 	}
 	if len(origins) != len(wantOrigins) {
 		t.Fatalf("origin values = %v, want %v", origins, wantOrigins)

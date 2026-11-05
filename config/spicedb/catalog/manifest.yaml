@@ -59,7 +59,6 @@ definition_order:
   - mail_adapter
   - email_suppression
   - translation_settings
-  - translation_provider
   - terms_history
   - privacy_history
   - map_theme

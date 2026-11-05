@@ -191,14 +191,6 @@ func TestEmailLayoutCollaborationUsesOneExactLocaleDocumentContract(t *testing.T
 	requireOptionalField(t, loadResponse, "target_revision", 6, protoreflect.StringKind)
 }
 
-func TestTranslationSettingsProtectedTermsAreRepeated(t *testing.T) {
-	settings := (&managev1.TranslationSettings{}).ProtoReflect().Descriptor()
-	protectedTerms := requireField(t, settings, "protected_terms", 3, protoreflect.StringKind)
-	if !protectedTerms.IsList() {
-		t.Fatal("TranslationSettings.protected_terms must be a repeated exact-spelling list")
-	}
-}
-
 func TestTranslationHealthContainsObservedFactsOnly(t *testing.T) {
 	tests := []struct {
 		descriptor protoreflect.MessageDescriptor
@@ -217,8 +209,7 @@ func TestTranslationHealthContainsObservedFactsOnly(t *testing.T) {
 				{"enabled_locales", 2},
 				{"public_locales", 3},
 				{"source_entities", 4},
-				{"active_jobs", 5},
-				{"existing_entries", 6},
+				{"existing_entries", 5},
 			},
 		},
 		{
@@ -230,8 +221,7 @@ func TestTranslationHealthContainsObservedFactsOnly(t *testing.T) {
 				{"entity_type", 1},
 				{"source_entities", 2},
 				{"existing_entries", 3},
-				{"active_jobs", 4},
-				{"last_source_update_at", 5},
+				{"last_source_update_at", 4},
 			},
 		},
 	}
@@ -249,10 +239,10 @@ func TestTranslationHealthContainsObservedFactsOnly(t *testing.T) {
 
 	localeHealth := (&managev1.TranslationLocaleHealth{}).ProtoReflect().Descriptor()
 	requireField(t, localeHealth, "existing_entries", 2, protoreflect.Int32Kind)
-	requireField(t, localeHealth, "last_target_update_at", 4, protoreflect.MessageKind)
+	requireField(t, localeHealth, "last_target_update_at", 3, protoreflect.MessageKind)
 }
 
-func TestSourceLocaleChangeAndRegenerationStayExplicit(t *testing.T) {
+func TestSourceLocaleChangeStaysExplicit(t *testing.T) {
 	setSource := (&managev1.SetEntitySourceLocaleRequest{}).ProtoReflect().Descriptor()
 	requireField(t, setSource, "target", 1, protoreflect.MessageKind)
 	requireField(t, setSource, "source_locale", 2, protoreflect.StringKind)
@@ -262,15 +252,4 @@ func TestSourceLocaleChangeAndRegenerationStayExplicit(t *testing.T) {
 		t.Fatalf("SetEntitySourceLocaleRequest fields = %d, want target/source_locale/expected_document_revision only", setSource.Fields().Len())
 	}
 
-	regenerate := (&managev1.RegenerateEntityTranslationsRequest{}).ProtoReflect().Descriptor()
-	locales := requireField(t, regenerate, "locales", 2, protoreflect.StringKind)
-	if !locales.IsList() {
-		t.Fatal("RegenerateEntityTranslationsRequest.locales must be a repeated explicit selection")
-	}
-
-	generateEvent := (&managev1.TranslationGenerateEvent{}).ProtoReflect().Descriptor()
-	if generateEvent.Fields().Len() != 1 {
-		t.Fatalf("TranslationGenerateEvent fields = %d, want job_id only", generateEvent.Fields().Len())
-	}
-	requireField(t, generateEvent, "job_id", 1, protoreflect.StringKind)
 }

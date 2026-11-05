@@ -3,7 +3,6 @@ syntax = "proto3";
 package api.manage.v1;
 
 import "api/common/v1/media.proto";
-import "api/manage/v1/translation.proto";
 import "google/protobuf/timestamp.proto";
 
 // ============================================================
@@ -21,8 +20,6 @@ import "google/protobuf/timestamp.proto";
 //   - email.campaign: Materialized campaign delivery-run batches
 //   - user.delete.identity: Run the complete permanent account-deletion lifecycle
 //   - user.delete.avatar: Retire a deleted user's avatar binding and asset
-//   - ai.metadata.generate: AI metadata generation work items
-//   - translation.generate: Translation generation work items
 //   - transcode.result: Authoritative transcoding terminal results
 //   - waveform.result: Authoritative waveform terminal results
 //   - mesh.optimization.result: Authoritative mesh optimization terminal results
@@ -39,7 +36,6 @@ import "google/protobuf/timestamp.proto";
 //   - mail_adapter.changed: Mail adapter configuration changes
 //   - content.updated: Debounced content/document update notifications
 //   - file.ingest: File ingest lifecycle updates; protobuf type identifies the stage
-//   - translation.lifecycle: Translation lifecycle notifications
 
 // ============================================================
 // Domain-specific Entity Type Enums
@@ -770,33 +766,6 @@ message ContentUpdatedEvent {
   // write response can avoid a redundant read. Never an actor or permission
   // identity; absent for collaboration-originated persistence.
   optional string origin = 12;
-}
-
-// ============================================================
-// Translation Events
-// ============================================================
-
-// translation.generate queue
-message TranslationGenerateEvent {
-  string job_id = 1;
-}
-
-// translation.lifecycle PostgreSQL signal status enum
-enum TranslationLifecycleStatus {
-  TRANSLATION_LIFECYCLE_STATUS_UNSPECIFIED = 0;
-  TRANSLATION_LIFECYCLE_STATUS_APPLIED = 1;
-  TRANSLATION_LIFECYCLE_STATUS_FAILED = 2;
-}
-
-// translation.lifecycle terminal target refetch/failure signal
-message TranslationLifecycleEvent {
-  string job_id = 1;
-  TranslationEntityType entity_type = 2;
-  string entity_id = 3;
-  string target_locale = 4;
-  TranslationLifecycleStatus status = 5;
-  int64 timestamp_ms = 6;
-  TranslationFailureReason failure_reason = 7;
 }
 
 // Existing-account passwordless login. The identity authority's code credential

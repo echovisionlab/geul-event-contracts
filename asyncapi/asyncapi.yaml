@@ -107,20 +107,6 @@ channels:
     messages:
       userDeleteAvatarCommand:
         $ref: "#/components/messages/UserDeleteAvatarCommand"
-  aiMetadataGenerate:
-    address: ai.metadata.generate
-    x-channel-kind: durable_queue
-    description: Metadata AI generation requests (work queue)
-    messages:
-      metadataGenerationQueueEvent:
-        $ref: "#/components/messages/MetadataGenerationQueueEvent"
-  translationGenerate:
-    address: translation.generate
-    x-channel-kind: durable_queue
-    description: Translation generation requests (work queue)
-    messages:
-      translationGenerateEvent:
-        $ref: "#/components/messages/TranslationGenerateEvent"
   transcodeResult:
     address: transcode.result
     x-channel-kind: durable_queue
@@ -262,13 +248,6 @@ channels:
       - finalized
       - attached
       - failed
-  translationLifecycle:
-    address: translation.lifecycle
-    x-channel-kind: signal
-    description: Terminal applied-or-failed machine-translation target refetch/failure signal
-    messages:
-      translationLifecycleEvent:
-        $ref: "#/components/messages/TranslationLifecycleEvent"
 components:
   messages:
     # Request Messages (for Work Queues)
@@ -311,14 +290,6 @@ components:
     MeshOptimizationJob:
       contentType: application/x-protobuf
       description: Mesh optimization job event (see proto/api/manage/v1/events.proto)
-
-    MetadataGenerationQueueEvent:
-      contentType: application/x-protobuf
-      description: Metadata AI job queue event (see proto/api/manage/v1/ai.proto)
-
-    TranslationGenerateEvent:
-      contentType: application/x-protobuf
-      description: Translation generation queue event (see proto/api/manage/v1/events.proto)
 
     # Durable worker result and reconstructable lifecycle/status messages
     TranscodeCompleteEvent:
@@ -391,7 +362,3 @@ components:
     FileIngestFailedEvent:
       contentType: application/x-protobuf
       description: File ingest terminal failure event (see proto/api/manage/v1/events.proto)
-
-    TranslationLifecycleEvent:
-      contentType: application/x-protobuf
-      description: Terminal applied-or-failed machine-translation refetch signal with exact target identity and bounded failure reason; request-time source locale, translation specification version, source epoch, hash, revision, request artifact, raw provider error detail, and target deletion state are absent (see proto/api/manage/v1/events.proto)

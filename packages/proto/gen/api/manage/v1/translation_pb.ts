@@ -12,13 +12,6 @@ import {
   messageDesc,
   serviceDesc,
 } from "@bufbuild/protobuf/codegenv2";
-import type {
-  FilterSpec,
-  PaginationRequest,
-  PaginationResponse,
-  SortSpec,
-} from "../../common/v1/common_pb.ts";
-import { file_api_common_v1_common } from "../../common/v1/common_pb.ts";
 import type { AssetRef, ExpiringMediaRef } from "../../common/v1/media_pb.ts";
 import { file_api_common_v1_media } from "../../common/v1/media_pb.ts";
 import { file_api_policy_v1_access } from "../../policy/v1/access_pb.ts";
@@ -35,9 +28,8 @@ import type { Message } from "@bufbuild/protobuf";
 export const file_api_manage_v1_translation: GenFile =
   /*@__PURE__*/
   fileDesc(
-    "Ch9hcGkvbWFuYWdlL3YxL3RyYW5zbGF0aW9uLnByb3RvEg1hcGkubWFuYWdlLnYxImEKEVRyYW5zbGF0aW9uVGFyZ2V0EjkKC2VudGl0eV90eXBlGAEgASgOMiQuYXBpLm1hbmFnZS52MS5UcmFuc2xhdGlvbkVudGl0eVR5cGUSEQoJZW50aXR5X2lkGAIgASgJIs0BChFUcmFuc2xhdGlvbkxvY2FsZRIMCgRjb2RlGAEgASgJEhQKDGRpc3BsYXlfbmFtZRgCIAEoCRIPCgdlbmFibGVkGAMgASgIEhEKCWlzX3B1YmxpYxgEIAEoCBILCgNkaXIYBSABKAkSIwobbWFjaGluZV90cmFuc2xhdGlvbl9hbGxvd2VkGAYgASgIEhkKDGZvbnRfcHJvZmlsZRgHIAEoCUgAiAEBEhIKCnNvcnRfb3JkZXIYCCABKAVCDwoNX2ZvbnRfcHJvZmlsZSLWAwoOVHJhbnNsYXRpb25Kb2ISCgoCaWQYASABKAkSMAoGdGFyZ2V0GAIgASgLMiAuYXBpLm1hbmFnZS52MS5UcmFuc2xhdGlvblRhcmdldBIVCg10YXJnZXRfbG9jYWxlGAMgASgJEhUKDXNvdXJjZV9sb2NhbGUYBCABKAkSHwoXcmVxdWVzdF9hcnRpZmFjdF9kaWdlc3QYBSABKAkSMwoGc3RhdHVzGAYgASgOMiMuYXBpLm1hbmFnZS52MS5UcmFuc2xhdGlvbkpvYlN0YXR1cxIUCgxvcGVyYXRpb25faWQYByABKAkSFQoIcHJvdmlkZXIYCCABKAlIAIgBARISCgVtb2RlbBgJIAEoCUgBiAEBEjUKDHJlcXVlc3RlZF9hdBgKIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBIAogBARIzCgpzdGFydGVkX2F0GAsgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEgDiAEBEh4KFnJlcXVlc3RlZF9ieV9tZW1iZXJfaWQYDCABKAlCCwoJX3Byb3ZpZGVyQggKBl9tb2RlbEIPCg1fcmVxdWVzdGVkX2F0Qg0KC19zdGFydGVkX2F0IoUDChBUcmFuc2xhdGlvbkVudHJ5EjAKBnRhcmdldBgBIAEoCzIgLmFwaS5tYW5hZ2UudjEuVHJhbnNsYXRpb25UYXJnZXQSDgoGbG9jYWxlGAIgASgJEhIKBXRpdGxlGAMgASgJSACIAQESFAoHc3VtbWFyeRgEIAEoCUgBiAEBEhkKDGNvbnRlbnRfaHRtbBgFIAEoCUgCiAEBEhkKDGNvbnRlbnRfdGV4dBgGIAEoCUgDiAEBEhkKDGNvbnRlbnRfanNvbhgHIAEoDEgEiAEBEi4KCnVwZGF0ZWRfYXQYCCABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEi4KCG9nX2Fzc2V0GAkgASgLMhcuYXBpLmNvbW1vbi52MS5Bc3NldFJlZkgFiAEBQggKBl90aXRsZUIKCghfc3VtbWFyeUIPCg1fY29udGVudF9odG1sQg8KDV9jb250ZW50X3RleHRCDwoNX2NvbnRlbnRfanNvbkILCglfb2dfYXNzZXQiqgEKGFRyYW5zbGF0aW9uT3ZlcnZpZXdTdGF0cxIVCg10b3RhbF9sb2NhbGVzGAEgASgFEhcKD2VuYWJsZWRfbG9jYWxlcxgCIAEoBRIWCg5wdWJsaWNfbG9jYWxlcxgDIAEoBRIXCg9zb3VyY2VfZW50aXRpZXMYBCABKAUSEwoLYWN0aXZlX2pvYnMYBSABKAUSGAoQZXhpc3RpbmdfZW50cmllcxgGIAEoBSLUAQoXVHJhbnNsYXRpb25Mb2NhbGVIZWFsdGgSMAoGbG9jYWxlGAEgASgLMiAuYXBpLm1hbmFnZS52MS5UcmFuc2xhdGlvbkxvY2FsZRIYChBleGlzdGluZ19lbnRyaWVzGAIgASgFEhMKC2FjdGl2ZV9qb2JzGAMgASgFEj4KFWxhc3RfdGFyZ2V0X3VwZGF0ZV9hdBgEIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBIAIgBAUIYChZfbGFzdF90YXJnZXRfdXBkYXRlX2F0IvYBChdUcmFuc2xhdGlvbkVudGl0eUhlYWx0aBI5CgtlbnRpdHlfdHlwZRgBIAEoDjIkLmFwaS5tYW5hZ2UudjEuVHJhbnNsYXRpb25FbnRpdHlUeXBlEhcKD3NvdXJjZV9lbnRpdGllcxgCIAEoBRIYChBleGlzdGluZ19lbnRyaWVzGAMgASgFEhMKC2FjdGl2ZV9qb2JzGAQgASgFEj4KFWxhc3Rfc291cmNlX3VwZGF0ZV9hdBgFIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBIAIgBAUIYChZfbGFzdF9zb3VyY2VfdXBkYXRlX2F0IooBChNUcmFuc2xhdGlvblNldHRpbmdzEhYKDmRlZmF1bHRfbG9jYWxlGAEgASgJEjMKCnVwZGF0ZWRfYXQYAiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wSACIAQESFwoPcHJvdGVjdGVkX3Rlcm1zGAMgAygJQg0KC191cGRhdGVkX2F0IokEChxMTE1UcmFuc2xhdGlvblByb3ZpZGVyQ29uZmlnEg8KB2FwaV9rZXkYASABKAkSOwoGcHJlc2V0GAIgASgOMisuYXBpLm1hbmFnZS52MS5UcmFuc2xhdGlvbkxMTVByb3ZpZGVyUHJlc2V0EhkKDGFwaV9iYXNlX3VybBgDIAEoCUgAiAEBEg0KBW1vZGVsGAQgASgJEi4KIWlucHV0X3Rva2VuX3ByaWNlX3VzZF9wZXJfbWlsbGlvbhgFIAEoAUgBiAEBEi8KIm91dHB1dF90b2tlbl9wcmljZV91c2RfcGVyX21pbGxpb24YBiABKAFIAogBARIfChJtYXhfY29udGV4dF90b2tlbnMYByABKAVIA4gBARIeChFtYXhfb3V0cHV0X3Rva2VucxgIIAEoBUgEiAEBEhoKEnN1cHBvcnRzX2pzb25fbW9kZRgJIAEoCBIYCgt0ZW1wZXJhdHVyZRgKIAEoAUgFiAEBQg8KDV9hcGlfYmFzZV91cmxCJAoiX2lucHV0X3Rva2VuX3ByaWNlX3VzZF9wZXJfbWlsbGlvbkIlCiNfb3V0cHV0X3Rva2VuX3ByaWNlX3VzZF9wZXJfbWlsbGlvbkIVChNfbWF4X2NvbnRleHRfdG9rZW5zQhQKEl9tYXhfb3V0cHV0X3Rva2Vuc0IOCgxfdGVtcGVyYXR1cmUiXQoeRGVlcExUcmFuc2xhdGlvblByb3ZpZGVyQ29uZmlnEg8KB2FwaV9rZXkYASABKAkSGQoMYXBpX2Jhc2VfdXJsGAIgASgJSACIAQFCDwoNX2FwaV9iYXNlX3VybCKmAwoTVHJhbnNsYXRpb25Qcm92aWRlchIKCgJpZBgBIAEoCRIMCgRuYW1lGAIgASgJEjQKBHR5cGUYAyABKA4yJi5hcGkubWFuYWdlLnYxLlRyYW5zbGF0aW9uUHJvdmlkZXJUeXBlEhEKCWlzX2FjdGl2ZRgEIAEoCBIQCghwcmlvcml0eRgFIAEoBRJBCgpsbG1fY29uZmlnGAYgASgLMisuYXBpLm1hbmFnZS52MS5MTE1UcmFuc2xhdGlvblByb3ZpZGVyQ29uZmlnSAASRQoMZGVlcGxfY29uZmlnGAcgASgLMi0uYXBpLm1hbmFnZS52MS5EZWVwTFRyYW5zbGF0aW9uUHJvdmlkZXJDb25maWdIABIzCgpjcmVhdGVkX2F0GAggASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEgBiAEBEjMKCnVwZGF0ZWRfYXQYCSABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wSAKIAQFCCAoGY29uZmlnQg0KC19jcmVhdGVkX2F0Qg0KC191cGRhdGVkX2F0Ih8KHUxpc3RUcmFuc2xhdGlvbkxvY2FsZXNSZXF1ZXN0IlMKHkxpc3RUcmFuc2xhdGlvbkxvY2FsZXNSZXNwb25zZRIxCgdsb2NhbGVzGAEgAygLMiAuYXBpLm1hbmFnZS52MS5UcmFuc2xhdGlvbkxvY2FsZSIfCh1HZXRUcmFuc2xhdGlvbk92ZXJ2aWV3UmVxdWVzdCLWAQoeR2V0VHJhbnNsYXRpb25PdmVydmlld1Jlc3BvbnNlEjYKBXN0YXRzGAEgASgLMicuYXBpLm1hbmFnZS52MS5UcmFuc2xhdGlvbk92ZXJ2aWV3U3RhdHMSPQoNbG9jYWxlX2hlYWx0aBgCIAMoCzImLmFwaS5tYW5hZ2UudjEuVHJhbnNsYXRpb25Mb2NhbGVIZWFsdGgSPQoNZW50aXR5X2hlYWx0aBgDIAMoCzImLmFwaS5tYW5hZ2UudjEuVHJhbnNsYXRpb25FbnRpdHlIZWFsdGgiHwodR2V0VHJhbnNsYXRpb25TZXR0aW5nc1JlcXVlc3QiugEKHkdldFRyYW5zbGF0aW9uU2V0dGluZ3NSZXNwb25zZRI0CghzZXR0aW5ncxgBIAEoCzIiLmFwaS5tYW5hZ2UudjEuVHJhbnNsYXRpb25TZXR0aW5ncxIaChJnZW5lcmF0aW9uX2VuYWJsZWQYAiABKAgSJwoaZ2VuZXJhdGlvbl9kaXNhYmxlZF9yZWFzb24YAyABKAlIAIgBAUIdChtfZ2VuZXJhdGlvbl9kaXNhYmxlZF9yZWFzb24ixAEKIFVwZGF0ZVRyYW5zbGF0aW9uU2V0dGluZ3NSZXF1ZXN0EjQKCHNldHRpbmdzGAEgASgLMiIuYXBpLm1hbmFnZS52MS5UcmFuc2xhdGlvblNldHRpbmdzEi8KC3VwZGF0ZV9tYXNrGAIgASgLMhouZ29vZ2xlLnByb3RvYnVmLkZpZWxkTWFzaxI5Cg1iYXNlX3NldHRpbmdzGAMgASgLMiIuYXBpLm1hbmFnZS52MS5UcmFuc2xhdGlvblNldHRpbmdzIlkKIVVwZGF0ZVRyYW5zbGF0aW9uU2V0dGluZ3NSZXNwb25zZRI0CghzZXR0aW5ncxgBIAEoCzIiLmFwaS5tYW5hZ2UudjEuVHJhbnNsYXRpb25TZXR0aW5ncyKrAQofTGlzdFRyYW5zbGF0aW9uUHJvdmlkZXJzUmVxdWVzdBI0CgpwYWdpbmF0aW9uGAEgASgLMiAuYXBpLmNvbW1vbi52MS5QYWdpbmF0aW9uUmVxdWVzdBIqCgdmaWx0ZXJzGAIgAygLMhkuYXBpLmNvbW1vbi52MS5GaWx0ZXJTcGVjEiYKBXNvcnRzGAMgAygLMhcuYXBpLmNvbW1vbi52MS5Tb3J0U3BlYyKQAQogTGlzdFRyYW5zbGF0aW9uUHJvdmlkZXJzUmVzcG9uc2USNQoJcHJvdmlkZXJzGAEgAygLMiIuYXBpLm1hbmFnZS52MS5UcmFuc2xhdGlvblByb3ZpZGVyEjUKCnBhZ2luYXRpb24YAiABKAsyIS5hcGkuY29tbW9uLnYxLlBhZ2luYXRpb25SZXNwb25zZSKxAgogQ3JlYXRlVHJhbnNsYXRpb25Qcm92aWRlclJlcXVlc3QSDAoEbmFtZRgBIAEoCRI0CgR0eXBlGAIgASgOMiYuYXBpLm1hbmFnZS52MS5UcmFuc2xhdGlvblByb3ZpZGVyVHlwZRIRCglpc19hY3RpdmUYAyABKAgSFQoIcHJpb3JpdHkYBCABKAVIAYgBARJBCgpsbG1fY29uZmlnGAUgASgLMisuYXBpLm1hbmFnZS52MS5MTE1UcmFuc2xhdGlvblByb3ZpZGVyQ29uZmlnSAASRQoMZGVlcGxfY29uZmlnGAYgASgLMi0uYXBpLm1hbmFnZS52MS5EZWVwTFRyYW5zbGF0aW9uUHJvdmlkZXJDb25maWdIAEIICgZjb25maWdCCwoJX3ByaW9yaXR5IlkKIUNyZWF0ZVRyYW5zbGF0aW9uUHJvdmlkZXJSZXNwb25zZRI0Cghwcm92aWRlchgBIAEoCzIiLmFwaS5tYW5hZ2UudjEuVHJhbnNsYXRpb25Qcm92aWRlciLsAgogVXBkYXRlVHJhbnNsYXRpb25Qcm92aWRlclJlcXVlc3QSCgoCaWQYASABKAkSEQoEbmFtZRgCIAEoCUgBiAEBEhYKCWlzX2FjdGl2ZRgDIAEoCEgCiAEBEhUKCHByaW9yaXR5GAQgASgFSAOIAQESOQoEdHlwZRgFIAEoDjImLmFwaS5tYW5hZ2UudjEuVHJhbnNsYXRpb25Qcm92aWRlclR5cGVIBIgBARJBCgpsbG1fY29uZmlnGAYgASgLMisuYXBpLm1hbmFnZS52MS5MTE1UcmFuc2xhdGlvblByb3ZpZGVyQ29uZmlnSAASRQoMZGVlcGxfY29uZmlnGAcgASgLMi0uYXBpLm1hbmFnZS52MS5EZWVwTFRyYW5zbGF0aW9uUHJvdmlkZXJDb25maWdIAEIICgZjb25maWdCBwoFX25hbWVCDAoKX2lzX2FjdGl2ZUILCglfcHJpb3JpdHlCBwoFX3R5cGUiWQohVXBkYXRlVHJhbnNsYXRpb25Qcm92aWRlclJlc3BvbnNlEjQKCHByb3ZpZGVyGAEgASgLMiIuYXBpLm1hbmFnZS52MS5UcmFuc2xhdGlvblByb3ZpZGVyIi4KIERlbGV0ZVRyYW5zbGF0aW9uUHJvdmlkZXJSZXF1ZXN0EgoKAmlkGAEgASgJIiMKIURlbGV0ZVRyYW5zbGF0aW9uUHJvdmlkZXJSZXNwb25zZSKmAQoaTGlzdFRyYW5zbGF0aW9uSm9ic1JlcXVlc3QSNAoKcGFnaW5hdGlvbhgBIAEoCzIgLmFwaS5jb21tb24udjEuUGFnaW5hdGlvblJlcXVlc3QSKgoHZmlsdGVycxgCIAMoCzIZLmFwaS5jb21tb24udjEuRmlsdGVyU3BlYxImCgVzb3J0cxgDIAMoCzIXLmFwaS5jb21tb24udjEuU29ydFNwZWMigQEKG0xpc3RUcmFuc2xhdGlvbkpvYnNSZXNwb25zZRIrCgRqb2JzGAEgAygLMh0uYXBpLm1hbmFnZS52MS5UcmFuc2xhdGlvbkpvYhI1CgpwYWdpbmF0aW9uGAIgASgLMiEuYXBpLmNvbW1vbi52MS5QYWdpbmF0aW9uUmVzcG9uc2UiLQobQ2FuY2VsVHJhbnNsYXRpb25Kb2JSZXF1ZXN0Eg4KBmpvYl9pZBgBIAEoCSIeChxDYW5jZWxUcmFuc2xhdGlvbkpvYlJlc3BvbnNlIlEKHUxpc3RFbnRpdHlUcmFuc2xhdGlvbnNSZXF1ZXN0EjAKBnRhcmdldBgBIAEoCzIgLmFwaS5tYW5hZ2UudjEuVHJhbnNsYXRpb25UYXJnZXQiaQoeTGlzdEVudGl0eVRyYW5zbGF0aW9uc1Jlc3BvbnNlEjAKB2VudHJpZXMYASADKAsyHy5hcGkubWFuYWdlLnYxLlRyYW5zbGF0aW9uRW50cnkSFQoNc291cmNlX2xvY2FsZRgCIAEoCSJfChtHZXRFbnRpdHlUcmFuc2xhdGlvblJlcXVlc3QSMAoGdGFyZ2V0GAEgASgLMiAuYXBpLm1hbmFnZS52MS5UcmFuc2xhdGlvblRhcmdldBIOCgZsb2NhbGUYAiABKAkiTgocR2V0RW50aXR5VHJhbnNsYXRpb25SZXNwb25zZRIuCgVlbnRyeRgBIAEoCzIfLmFwaS5tYW5hZ2UudjEuVHJhbnNsYXRpb25FbnRyeSKvAQocU2V0RW50aXR5U291cmNlTG9jYWxlUmVxdWVzdBIwCgZ0YXJnZXQYASABKAsyIC5hcGkubWFuYWdlLnYxLlRyYW5zbGF0aW9uVGFyZ2V0EhUKDXNvdXJjZV9sb2NhbGUYAiABKAkSJwoaZXhwZWN0ZWRfZG9jdW1lbnRfcmV2aXNpb24YAyABKAlIAIgBAUIdChtfZXhwZWN0ZWRfZG9jdW1lbnRfcmV2aXNpb24ifAodU2V0RW50aXR5U291cmNlTG9jYWxlUmVzcG9uc2USGQoRZG9jdW1lbnRfcmV2aXNpb24YASABKAkSDwoHY2hhbmdlZBgCIAEoCBIWCg5zb3VyY2VfY2hhbmdlZBgDIAEoCBIXCg9jaGFuZ2VkX2xvY2FsZXMYBCADKAkiaAojUmVnZW5lcmF0ZUVudGl0eVRyYW5zbGF0aW9uc1JlcXVlc3QSMAoGdGFyZ2V0GAEgASgLMiAuYXBpLm1hbmFnZS52MS5UcmFuc2xhdGlvblRhcmdldBIPCgdsb2NhbGVzGAIgAygJIlMKJFJlZ2VuZXJhdGVFbnRpdHlUcmFuc2xhdGlvbnNSZXNwb25zZRIrCgRqb2JzGAEgAygLMh0uYXBpLm1hbmFnZS52MS5UcmFuc2xhdGlvbkpvYiK9AQojRXhwb3J0RW50aXR5VHJhbnNsYXRpb25YTElGRlJlcXVlc3QSMAoGdGFyZ2V0GAEgASgLMiAuYXBpLm1hbmFnZS52MS5UcmFuc2xhdGlvblRhcmdldBIVCg10YXJnZXRfbG9jYWxlGAIgASgJEjcKBG1vZGUYAyABKA4yKS5hcGkubWFuYWdlLnYxLlRyYW5zbGF0aW9uSW50ZXJjaGFuZ2VNb2RlEhQKDHVuaXRfaGFuZGxlcxgEIAMoCSLyAQokRXhwb3J0RW50aXR5VHJhbnNsYXRpb25YTElGRlJlc3BvbnNlEjEKCGFydGlmYWN0GAEgASgLMh8uYXBpLmNvbW1vbi52MS5FeHBpcmluZ01lZGlhUmVmEhUKDXNvdXJjZV9sb2NhbGUYAiABKAkSFQoNdGFyZ2V0X2xvY2FsZRgDIAEoCRIcCg90YXJnZXRfcmV2aXNpb24YBCABKAlIAIgBARI3CgRtb2RlGAUgASgOMikuYXBpLm1hbmFnZS52MS5UcmFuc2xhdGlvbkludGVyY2hhbmdlTW9kZUISChBfdGFyZ2V0X3JldmlzaW9uIvwBCiNJbXBvcnRFbnRpdHlUcmFuc2xhdGlvblhMSUZGUmVxdWVzdBIwCgZ0YXJnZXQYASABKAsyIC5hcGkubWFuYWdlLnYxLlRyYW5zbGF0aW9uVGFyZ2V0EhUKDXRhcmdldF9sb2NhbGUYAiABKAkSNwoEbW9kZRgDIAEoDjIpLmFwaS5tYW5hZ2UudjEuVHJhbnNsYXRpb25JbnRlcmNoYW5nZU1vZGUSDwoHZmlsZV9pZBgEIAEoCRIlChhleHBlY3RlZF90YXJnZXRfcmV2aXNpb24YBSABKAlIAIgBAUIbChlfZXhwZWN0ZWRfdGFyZ2V0X3JldmlzaW9uIm8KJEltcG9ydEVudGl0eVRyYW5zbGF0aW9uWExJRkZSZXNwb25zZRIXCg90YXJnZXRfcmV2aXNpb24YASABKAkSDwoHY2hhbmdlZBgCIAEoCBIdChVhZmZlY3RlZF91bml0X2hhbmRsZXMYAyADKAkq7gQKFVRyYW5zbGF0aW9uRW50aXR5VHlwZRInCiNUUkFOU0xBVElPTl9FTlRJVFlfVFlQRV9VTlNQRUNJRklFRBAAEiAKHFRSQU5TTEFUSU9OX0VOVElUWV9UWVBFX1BBR0UQARIgChxUUkFOU0xBVElPTl9FTlRJVFlfVFlQRV9QT1NUEAISIAocVFJBTlNMQVRJT05fRU5USVRZX1RZUEVfV09SSxADEiAKHFRSQU5TTEFUSU9OX0VOVElUWV9UWVBFX01FTlUQBBIiCh5UUkFOU0xBVElPTl9FTlRJVFlfVFlQRV9BUlRJU1QQBRIhCh1UUkFOU0xBVElPTl9FTlRJVFlfVFlQRV9MQUJFTBAGEiMKH1RSQU5TTEFUSU9OX0VOVElUWV9UWVBFX1JFTEVBU0UQBxIqCiZUUkFOU0xBVElPTl9FTlRJVFlfVFlQRV9FTUFJTF9URU1QTEFURRAIEigKJFRSQU5TTEFUSU9OX0VOVElUWV9UWVBFX0VNQUlMX0xBWU9VVBAJEiMKH1RSQU5TTEFUSU9OX0VOVElUWV9UWVBFX1BSSVZBQ1kQChIhCh1UUkFOU0xBVElPTl9FTlRJVFlfVFlQRV9URVJNUxALEiQKIFRSQU5TTEFUSU9OX0VOVElUWV9UWVBFX0NBTVBBSUdOEAwSIAocVFJBTlNMQVRJT05fRU5USVRZX1RZUEVfRk9STRANEikKJVRSQU5TTEFUSU9OX0VOVElUWV9UWVBFX1BST0dSQU1fRVZFTlQQDhInCiNUUkFOU0xBVElPTl9FTlRJVFlfVFlQRV9QT1NUX1NFUklFUxAPKoUBChRUcmFuc2xhdGlvbkpvYlN0YXR1cxImCiJUUkFOU0xBVElPTl9KT0JfU1RBVFVTX1VOU1BFQ0lGSUVEEAASIQodVFJBTlNMQVRJT05fSk9CX1NUQVRVU19RVUVVRUQQARIiCh5UUkFOU0xBVElPTl9KT0JfU1RBVFVTX1JVTk5JTkcQAirrAQoaVHJhbnNsYXRpb25Vbml0SXNzdWVSZWFzb24SLQopVFJBTlNMQVRJT05fVU5JVF9JU1NVRV9SRUFTT05fVU5TUEVDSUZJRUQQABIzCi9UUkFOU0xBVElPTl9VTklUX0lTU1VFX1JFQVNPTl9FTVBUWV9UUkFOU0xBVElPThABEjcKM1RSQU5TTEFUSU9OX1VOSVRfSVNTVUVfUkVBU09OX1VOQ0hBTkdFRF9GUk9NX1NPVVJDRRACEjAKLFRSQU5TTEFUSU9OX1VOSVRfSVNTVUVfUkVBU09OX1NPVVJDRV9SRVNJRFVFEAMqmwQKGFRyYW5zbGF0aW9uRmFpbHVyZVJlYXNvbhIqCiZUUkFOU0xBVElPTl9GQUlMVVJFX1JFQVNPTl9VTlNQRUNJRklFRBAAEjUKMVRSQU5TTEFUSU9OX0ZBSUxVUkVfUkVBU09OX1BST1ZJREVSX0NPTkZJR1VSQVRJT04QARI2CjJUUkFOU0xBVElPTl9GQUlMVVJFX1JFQVNPTl9QUk9WSURFUl9BVVRIRU5USUNBVElPThACEjQKMFRSQU5TTEFUSU9OX0ZBSUxVUkVfUkVBU09OX1BST1ZJREVSX1JBVEVfTElNSVRFRBADEjMKL1RSQU5TTEFUSU9OX0ZBSUxVUkVfUkVBU09OX1BST1ZJREVSX1VOQVZBSUxBQkxFEAQSMAosVFJBTlNMQVRJT05fRkFJTFVSRV9SRUFTT05fUFJPVklERVJfUkVKRUNURUQQBRI4CjRUUkFOU0xBVElPTl9GQUlMVVJFX1JFQVNPTl9QUk9WSURFUl9SRVNQT05TRV9JTlZBTElEEAYSMgouVFJBTlNMQVRJT05fRkFJTFVSRV9SRUFTT05fVEFSR0VUX0FQUExZX0ZBSUxFRBAHEjAKLFRSQU5TTEFUSU9OX0ZBSUxVUkVfUkVBU09OX09HX0hBTkRPRkZfRkFJTEVEEAgSJwojVFJBTlNMQVRJT05fRkFJTFVSRV9SRUFTT05fSU5URVJOQUwQCSqMAQoXVHJhbnNsYXRpb25Qcm92aWRlclR5cGUSKQolVFJBTlNMQVRJT05fUFJPVklERVJfVFlQRV9VTlNQRUNJRklFRBAAEiEKHVRSQU5TTEFUSU9OX1BST1ZJREVSX1RZUEVfTExNEAESIwofVFJBTlNMQVRJT05fUFJPVklERVJfVFlQRV9ERUVQTBACKrIBChxUcmFuc2xhdGlvbkxMTVByb3ZpZGVyUHJlc2V0Ei8KK1RSQU5TTEFUSU9OX0xMTV9QUk9WSURFUl9QUkVTRVRfVU5TUEVDSUZJRUQQABIqCiZUUkFOU0xBVElPTl9MTE1fUFJPVklERVJfUFJFU0VUX0dFTUlOSRABEjUKMVRSQU5TTEFUSU9OX0xMTV9QUk9WSURFUl9QUkVTRVRfT1BFTkFJX0NPTVBBVElCTEUQAiqcAQoaVHJhbnNsYXRpb25JbnRlcmNoYW5nZU1vZGUSLAooVFJBTlNMQVRJT05fSU5URVJDSEFOR0VfTU9ERV9VTlNQRUNJRklFRBAAEiYKIlRSQU5TTEFUSU9OX0lOVEVSQ0hBTkdFX01PREVfUEFUQ0gQARIoCiRUUkFOU0xBVElPTl9JTlRFUkNIQU5HRV9NT0RFX1JFUExBQ0UQAjLUEAoSVHJhbnNsYXRpb25TZXJ2aWNlEn0KFkxpc3RUcmFuc2xhdGlvbkxvY2FsZXMSLC5hcGkubWFuYWdlLnYxLkxpc3RUcmFuc2xhdGlvbkxvY2FsZXNSZXF1ZXN0Gi0uYXBpLm1hbmFnZS52MS5MaXN0VHJhbnNsYXRpb25Mb2NhbGVzUmVzcG9uc2UiBsrzGAIIAhJ9ChZHZXRUcmFuc2xhdGlvbk92ZXJ2aWV3EiwuYXBpLm1hbmFnZS52MS5HZXRUcmFuc2xhdGlvbk92ZXJ2aWV3UmVxdWVzdBotLmFwaS5tYW5hZ2UudjEuR2V0VHJhbnNsYXRpb25PdmVydmlld1Jlc3BvbnNlIgbK8xgCCAQSfQoWR2V0VHJhbnNsYXRpb25TZXR0aW5ncxIsLmFwaS5tYW5hZ2UudjEuR2V0VHJhbnNsYXRpb25TZXR0aW5nc1JlcXVlc3QaLS5hcGkubWFuYWdlLnYxLkdldFRyYW5zbGF0aW9uU2V0dGluZ3NSZXNwb25zZSIGyvMYAggEEoYBChlVcGRhdGVUcmFuc2xhdGlvblNldHRpbmdzEi8uYXBpLm1hbmFnZS52MS5VcGRhdGVUcmFuc2xhdGlvblNldHRpbmdzUmVxdWVzdBowLmFwaS5tYW5hZ2UudjEuVXBkYXRlVHJhbnNsYXRpb25TZXR0aW5nc1Jlc3BvbnNlIgbK8xgCCAQSgwEKGExpc3RUcmFuc2xhdGlvblByb3ZpZGVycxIuLmFwaS5tYW5hZ2UudjEuTGlzdFRyYW5zbGF0aW9uUHJvdmlkZXJzUmVxdWVzdBovLmFwaS5tYW5hZ2UudjEuTGlzdFRyYW5zbGF0aW9uUHJvdmlkZXJzUmVzcG9uc2UiBsrzGAIIBBKGAQoZQ3JlYXRlVHJhbnNsYXRpb25Qcm92aWRlchIvLmFwaS5tYW5hZ2UudjEuQ3JlYXRlVHJhbnNsYXRpb25Qcm92aWRlclJlcXVlc3QaMC5hcGkubWFuYWdlLnYxLkNyZWF0ZVRyYW5zbGF0aW9uUHJvdmlkZXJSZXNwb25zZSIGyvMYAggEEoYBChlVcGRhdGVUcmFuc2xhdGlvblByb3ZpZGVyEi8uYXBpLm1hbmFnZS52MS5VcGRhdGVUcmFuc2xhdGlvblByb3ZpZGVyUmVxdWVzdBowLmFwaS5tYW5hZ2UudjEuVXBkYXRlVHJhbnNsYXRpb25Qcm92aWRlclJlc3BvbnNlIgbK8xgCCAQShgEKGURlbGV0ZVRyYW5zbGF0aW9uUHJvdmlkZXISLy5hcGkubWFuYWdlLnYxLkRlbGV0ZVRyYW5zbGF0aW9uUHJvdmlkZXJSZXF1ZXN0GjAuYXBpLm1hbmFnZS52MS5EZWxldGVUcmFuc2xhdGlvblByb3ZpZGVyUmVzcG9uc2UiBsrzGAIIBBJ0ChNMaXN0VHJhbnNsYXRpb25Kb2JzEikuYXBpLm1hbmFnZS52MS5MaXN0VHJhbnNsYXRpb25Kb2JzUmVxdWVzdBoqLmFwaS5tYW5hZ2UudjEuTGlzdFRyYW5zbGF0aW9uSm9ic1Jlc3BvbnNlIgbK8xgCCAISdwoUQ2FuY2VsVHJhbnNsYXRpb25Kb2ISKi5hcGkubWFuYWdlLnYxLkNhbmNlbFRyYW5zbGF0aW9uSm9iUmVxdWVzdBorLmFwaS5tYW5hZ2UudjEuQ2FuY2VsVHJhbnNsYXRpb25Kb2JSZXNwb25zZSIGyvMYAggCEn0KFkxpc3RFbnRpdHlUcmFuc2xhdGlvbnMSLC5hcGkubWFuYWdlLnYxLkxpc3RFbnRpdHlUcmFuc2xhdGlvbnNSZXF1ZXN0Gi0uYXBpLm1hbmFnZS52MS5MaXN0RW50aXR5VHJhbnNsYXRpb25zUmVzcG9uc2UiBsrzGAIIAhJ3ChRHZXRFbnRpdHlUcmFuc2xhdGlvbhIqLmFwaS5tYW5hZ2UudjEuR2V0RW50aXR5VHJhbnNsYXRpb25SZXF1ZXN0GisuYXBpLm1hbmFnZS52MS5HZXRFbnRpdHlUcmFuc2xhdGlvblJlc3BvbnNlIgbK8xgCCAISegoVU2V0RW50aXR5U291cmNlTG9jYWxlEisuYXBpLm1hbmFnZS52MS5TZXRFbnRpdHlTb3VyY2VMb2NhbGVSZXF1ZXN0GiwuYXBpLm1hbmFnZS52MS5TZXRFbnRpdHlTb3VyY2VMb2NhbGVSZXNwb25zZSIGyvMYAggCEo8BChxSZWdlbmVyYXRlRW50aXR5VHJhbnNsYXRpb25zEjIuYXBpLm1hbmFnZS52MS5SZWdlbmVyYXRlRW50aXR5VHJhbnNsYXRpb25zUmVxdWVzdBozLmFwaS5tYW5hZ2UudjEuUmVnZW5lcmF0ZUVudGl0eVRyYW5zbGF0aW9uc1Jlc3BvbnNlIgbK8xgCCAISjwEKHEV4cG9ydEVudGl0eVRyYW5zbGF0aW9uWExJRkYSMi5hcGkubWFuYWdlLnYxLkV4cG9ydEVudGl0eVRyYW5zbGF0aW9uWExJRkZSZXF1ZXN0GjMuYXBpLm1hbmFnZS52MS5FeHBvcnRFbnRpdHlUcmFuc2xhdGlvblhMSUZGUmVzcG9uc2UiBsrzGAIIAhKPAQocSW1wb3J0RW50aXR5VHJhbnNsYXRpb25YTElGRhIyLmFwaS5tYW5hZ2UudjEuSW1wb3J0RW50aXR5VHJhbnNsYXRpb25YTElGRlJlcXVlc3QaMy5hcGkubWFuYWdlLnYxLkltcG9ydEVudGl0eVRyYW5zbGF0aW9uWExJRkZSZXNwb25zZSIGyvMYAggCQsUBChFjb20uYXBpLm1hbmFnZS52MUIQVHJhbnNsYXRpb25Qcm90b1ABWkhnaXRodWIuY29tL2VjaG92aXNpb25sYWIvZ2V1bC1ldmVudC1jb250cmFjdHMvZ2VuL2FwaS9tYW5hZ2UvdjE7bWFuYWdldjGiAgNBTViqAg1BcGkuTWFuYWdlLlYxygINQXBpXE1hbmFnZVxWMeICGUFwaVxNYW5hZ2VcVjFcR1BCTWV0YWRhdGHqAg9BcGk6Ok1hbmFnZTo6VjFiBnByb3RvMw",
+    "Ch9hcGkvbWFuYWdlL3YxL3RyYW5zbGF0aW9uLnByb3RvEg1hcGkubWFuYWdlLnYxImEKEVRyYW5zbGF0aW9uVGFyZ2V0EjkKC2VudGl0eV90eXBlGAEgASgOMiQuYXBpLm1hbmFnZS52MS5UcmFuc2xhdGlvbkVudGl0eVR5cGUSEQoJZW50aXR5X2lkGAIgASgJIqgBChFUcmFuc2xhdGlvbkxvY2FsZRIMCgRjb2RlGAEgASgJEhQKDGRpc3BsYXlfbmFtZRgCIAEoCRIPCgdlbmFibGVkGAMgASgIEhEKCWlzX3B1YmxpYxgEIAEoCBILCgNkaXIYBSABKAkSGQoMZm9udF9wcm9maWxlGAYgASgJSACIAQESEgoKc29ydF9vcmRlchgHIAEoBUIPCg1fZm9udF9wcm9maWxlIoUDChBUcmFuc2xhdGlvbkVudHJ5EjAKBnRhcmdldBgBIAEoCzIgLmFwaS5tYW5hZ2UudjEuVHJhbnNsYXRpb25UYXJnZXQSDgoGbG9jYWxlGAIgASgJEhIKBXRpdGxlGAMgASgJSACIAQESFAoHc3VtbWFyeRgEIAEoCUgBiAEBEhkKDGNvbnRlbnRfaHRtbBgFIAEoCUgCiAEBEhkKDGNvbnRlbnRfdGV4dBgGIAEoCUgDiAEBEhkKDGNvbnRlbnRfanNvbhgHIAEoDEgEiAEBEi4KCnVwZGF0ZWRfYXQYCCABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEi4KCG9nX2Fzc2V0GAkgASgLMhcuYXBpLmNvbW1vbi52MS5Bc3NldFJlZkgFiAEBQggKBl90aXRsZUIKCghfc3VtbWFyeUIPCg1fY29udGVudF9odG1sQg8KDV9jb250ZW50X3RleHRCDwoNX2NvbnRlbnRfanNvbkILCglfb2dfYXNzZXQilQEKGFRyYW5zbGF0aW9uT3ZlcnZpZXdTdGF0cxIVCg10b3RhbF9sb2NhbGVzGAEgASgFEhcKD2VuYWJsZWRfbG9jYWxlcxgCIAEoBRIWCg5wdWJsaWNfbG9jYWxlcxgDIAEoBRIXCg9zb3VyY2VfZW50aXRpZXMYBCABKAUSGAoQZXhpc3RpbmdfZW50cmllcxgFIAEoBSK/AQoXVHJhbnNsYXRpb25Mb2NhbGVIZWFsdGgSMAoGbG9jYWxlGAEgASgLMiAuYXBpLm1hbmFnZS52MS5UcmFuc2xhdGlvbkxvY2FsZRIYChBleGlzdGluZ19lbnRyaWVzGAIgASgFEj4KFWxhc3RfdGFyZ2V0X3VwZGF0ZV9hdBgDIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBIAIgBAUIYChZfbGFzdF90YXJnZXRfdXBkYXRlX2F0IuEBChdUcmFuc2xhdGlvbkVudGl0eUhlYWx0aBI5CgtlbnRpdHlfdHlwZRgBIAEoDjIkLmFwaS5tYW5hZ2UudjEuVHJhbnNsYXRpb25FbnRpdHlUeXBlEhcKD3NvdXJjZV9lbnRpdGllcxgCIAEoBRIYChBleGlzdGluZ19lbnRyaWVzGAMgASgFEj4KFWxhc3Rfc291cmNlX3VwZGF0ZV9hdBgEIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBIAIgBAUIYChZfbGFzdF9zb3VyY2VfdXBkYXRlX2F0InEKE1RyYW5zbGF0aW9uU2V0dGluZ3MSFgoOZGVmYXVsdF9sb2NhbGUYASABKAkSMwoKdXBkYXRlZF9hdBgCIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBIAIgBAUINCgtfdXBkYXRlZF9hdCIfCh1MaXN0VHJhbnNsYXRpb25Mb2NhbGVzUmVxdWVzdCJTCh5MaXN0VHJhbnNsYXRpb25Mb2NhbGVzUmVzcG9uc2USMQoHbG9jYWxlcxgBIAMoCzIgLmFwaS5tYW5hZ2UudjEuVHJhbnNsYXRpb25Mb2NhbGUiHwodR2V0VHJhbnNsYXRpb25PdmVydmlld1JlcXVlc3Qi1gEKHkdldFRyYW5zbGF0aW9uT3ZlcnZpZXdSZXNwb25zZRI2CgVzdGF0cxgBIAEoCzInLmFwaS5tYW5hZ2UudjEuVHJhbnNsYXRpb25PdmVydmlld1N0YXRzEj0KDWxvY2FsZV9oZWFsdGgYAiADKAsyJi5hcGkubWFuYWdlLnYxLlRyYW5zbGF0aW9uTG9jYWxlSGVhbHRoEj0KDWVudGl0eV9oZWFsdGgYAyADKAsyJi5hcGkubWFuYWdlLnYxLlRyYW5zbGF0aW9uRW50aXR5SGVhbHRoIh8KHUdldFRyYW5zbGF0aW9uU2V0dGluZ3NSZXF1ZXN0IlYKHkdldFRyYW5zbGF0aW9uU2V0dGluZ3NSZXNwb25zZRI0CghzZXR0aW5ncxgBIAEoCzIiLmFwaS5tYW5hZ2UudjEuVHJhbnNsYXRpb25TZXR0aW5ncyKJAQogVXBkYXRlVHJhbnNsYXRpb25TZXR0aW5nc1JlcXVlc3QSNAoIc2V0dGluZ3MYASABKAsyIi5hcGkubWFuYWdlLnYxLlRyYW5zbGF0aW9uU2V0dGluZ3MSLwoLdXBkYXRlX21hc2sYAiABKAsyGi5nb29nbGUucHJvdG9idWYuRmllbGRNYXNrIlkKIVVwZGF0ZVRyYW5zbGF0aW9uU2V0dGluZ3NSZXNwb25zZRI0CghzZXR0aW5ncxgBIAEoCzIiLmFwaS5tYW5hZ2UudjEuVHJhbnNsYXRpb25TZXR0aW5ncyJRCh1MaXN0RW50aXR5VHJhbnNsYXRpb25zUmVxdWVzdBIwCgZ0YXJnZXQYASABKAsyIC5hcGkubWFuYWdlLnYxLlRyYW5zbGF0aW9uVGFyZ2V0ImkKHkxpc3RFbnRpdHlUcmFuc2xhdGlvbnNSZXNwb25zZRIwCgdlbnRyaWVzGAEgAygLMh8uYXBpLm1hbmFnZS52MS5UcmFuc2xhdGlvbkVudHJ5EhUKDXNvdXJjZV9sb2NhbGUYAiABKAkiXwobR2V0RW50aXR5VHJhbnNsYXRpb25SZXF1ZXN0EjAKBnRhcmdldBgBIAEoCzIgLmFwaS5tYW5hZ2UudjEuVHJhbnNsYXRpb25UYXJnZXQSDgoGbG9jYWxlGAIgASgJIk4KHEdldEVudGl0eVRyYW5zbGF0aW9uUmVzcG9uc2USLgoFZW50cnkYASABKAsyHy5hcGkubWFuYWdlLnYxLlRyYW5zbGF0aW9uRW50cnkirwEKHFNldEVudGl0eVNvdXJjZUxvY2FsZVJlcXVlc3QSMAoGdGFyZ2V0GAEgASgLMiAuYXBpLm1hbmFnZS52MS5UcmFuc2xhdGlvblRhcmdldBIVCg1zb3VyY2VfbG9jYWxlGAIgASgJEicKGmV4cGVjdGVkX2RvY3VtZW50X3JldmlzaW9uGAMgASgJSACIAQFCHQobX2V4cGVjdGVkX2RvY3VtZW50X3JldmlzaW9uInwKHVNldEVudGl0eVNvdXJjZUxvY2FsZVJlc3BvbnNlEhkKEWRvY3VtZW50X3JldmlzaW9uGAEgASgJEg8KB2NoYW5nZWQYAiABKAgSFgoOc291cmNlX2NoYW5nZWQYAyABKAgSFwoPY2hhbmdlZF9sb2NhbGVzGAQgAygJIr0BCiNFeHBvcnRFbnRpdHlUcmFuc2xhdGlvblhMSUZGUmVxdWVzdBIwCgZ0YXJnZXQYASABKAsyIC5hcGkubWFuYWdlLnYxLlRyYW5zbGF0aW9uVGFyZ2V0EhUKDXRhcmdldF9sb2NhbGUYAiABKAkSNwoEbW9kZRgDIAEoDjIpLmFwaS5tYW5hZ2UudjEuVHJhbnNsYXRpb25JbnRlcmNoYW5nZU1vZGUSFAoMdW5pdF9oYW5kbGVzGAQgAygJIvIBCiRFeHBvcnRFbnRpdHlUcmFuc2xhdGlvblhMSUZGUmVzcG9uc2USMQoIYXJ0aWZhY3QYASABKAsyHy5hcGkuY29tbW9uLnYxLkV4cGlyaW5nTWVkaWFSZWYSFQoNc291cmNlX2xvY2FsZRgCIAEoCRIVCg10YXJnZXRfbG9jYWxlGAMgASgJEhwKD3RhcmdldF9yZXZpc2lvbhgEIAEoCUgAiAEBEjcKBG1vZGUYBSABKA4yKS5hcGkubWFuYWdlLnYxLlRyYW5zbGF0aW9uSW50ZXJjaGFuZ2VNb2RlQhIKEF90YXJnZXRfcmV2aXNpb24i/AEKI0ltcG9ydEVudGl0eVRyYW5zbGF0aW9uWExJRkZSZXF1ZXN0EjAKBnRhcmdldBgBIAEoCzIgLmFwaS5tYW5hZ2UudjEuVHJhbnNsYXRpb25UYXJnZXQSFQoNdGFyZ2V0X2xvY2FsZRgCIAEoCRI3CgRtb2RlGAMgASgOMikuYXBpLm1hbmFnZS52MS5UcmFuc2xhdGlvbkludGVyY2hhbmdlTW9kZRIPCgdmaWxlX2lkGAQgASgJEiUKGGV4cGVjdGVkX3RhcmdldF9yZXZpc2lvbhgFIAEoCUgAiAEBQhsKGV9leHBlY3RlZF90YXJnZXRfcmV2aXNpb24ibwokSW1wb3J0RW50aXR5VHJhbnNsYXRpb25YTElGRlJlc3BvbnNlEhcKD3RhcmdldF9yZXZpc2lvbhgBIAEoCRIPCgdjaGFuZ2VkGAIgASgIEh0KFWFmZmVjdGVkX3VuaXRfaGFuZGxlcxgDIAMoCSruBAoVVHJhbnNsYXRpb25FbnRpdHlUeXBlEicKI1RSQU5TTEFUSU9OX0VOVElUWV9UWVBFX1VOU1BFQ0lGSUVEEAASIAocVFJBTlNMQVRJT05fRU5USVRZX1RZUEVfUEFHRRABEiAKHFRSQU5TTEFUSU9OX0VOVElUWV9UWVBFX1BPU1QQAhIgChxUUkFOU0xBVElPTl9FTlRJVFlfVFlQRV9XT1JLEAMSIAocVFJBTlNMQVRJT05fRU5USVRZX1RZUEVfTUVOVRAEEiIKHlRSQU5TTEFUSU9OX0VOVElUWV9UWVBFX0FSVElTVBAFEiEKHVRSQU5TTEFUSU9OX0VOVElUWV9UWVBFX0xBQkVMEAYSIwofVFJBTlNMQVRJT05fRU5USVRZX1RZUEVfUkVMRUFTRRAHEioKJlRSQU5TTEFUSU9OX0VOVElUWV9UWVBFX0VNQUlMX1RFTVBMQVRFEAgSKAokVFJBTlNMQVRJT05fRU5USVRZX1RZUEVfRU1BSUxfTEFZT1VUEAkSIwofVFJBTlNMQVRJT05fRU5USVRZX1RZUEVfUFJJVkFDWRAKEiEKHVRSQU5TTEFUSU9OX0VOVElUWV9UWVBFX1RFUk1TEAsSJAogVFJBTlNMQVRJT05fRU5USVRZX1RZUEVfQ0FNUEFJR04QDBIgChxUUkFOU0xBVElPTl9FTlRJVFlfVFlQRV9GT1JNEA0SKQolVFJBTlNMQVRJT05fRU5USVRZX1RZUEVfUFJPR1JBTV9FVkVOVBAOEicKI1RSQU5TTEFUSU9OX0VOVElUWV9UWVBFX1BPU1RfU0VSSUVTEA8qnAEKGlRyYW5zbGF0aW9uSW50ZXJjaGFuZ2VNb2RlEiwKKFRSQU5TTEFUSU9OX0lOVEVSQ0hBTkdFX01PREVfVU5TUEVDSUZJRUQQABImCiJUUkFOU0xBVElPTl9JTlRFUkNIQU5HRV9NT0RFX1BBVENIEAESKAokVFJBTlNMQVRJT05fSU5URVJDSEFOR0VfTU9ERV9SRVBMQUNFEAIysgkKElRyYW5zbGF0aW9uU2VydmljZRJ9ChZMaXN0VHJhbnNsYXRpb25Mb2NhbGVzEiwuYXBpLm1hbmFnZS52MS5MaXN0VHJhbnNsYXRpb25Mb2NhbGVzUmVxdWVzdBotLmFwaS5tYW5hZ2UudjEuTGlzdFRyYW5zbGF0aW9uTG9jYWxlc1Jlc3BvbnNlIgbK8xgCCAISfQoWR2V0VHJhbnNsYXRpb25PdmVydmlldxIsLmFwaS5tYW5hZ2UudjEuR2V0VHJhbnNsYXRpb25PdmVydmlld1JlcXVlc3QaLS5hcGkubWFuYWdlLnYxLkdldFRyYW5zbGF0aW9uT3ZlcnZpZXdSZXNwb25zZSIGyvMYAggEEn0KFkdldFRyYW5zbGF0aW9uU2V0dGluZ3MSLC5hcGkubWFuYWdlLnYxLkdldFRyYW5zbGF0aW9uU2V0dGluZ3NSZXF1ZXN0Gi0uYXBpLm1hbmFnZS52MS5HZXRUcmFuc2xhdGlvblNldHRpbmdzUmVzcG9uc2UiBsrzGAIIBBKGAQoZVXBkYXRlVHJhbnNsYXRpb25TZXR0aW5ncxIvLmFwaS5tYW5hZ2UudjEuVXBkYXRlVHJhbnNsYXRpb25TZXR0aW5nc1JlcXVlc3QaMC5hcGkubWFuYWdlLnYxLlVwZGF0ZVRyYW5zbGF0aW9uU2V0dGluZ3NSZXNwb25zZSIGyvMYAggEEn0KFkxpc3RFbnRpdHlUcmFuc2xhdGlvbnMSLC5hcGkubWFuYWdlLnYxLkxpc3RFbnRpdHlUcmFuc2xhdGlvbnNSZXF1ZXN0Gi0uYXBpLm1hbmFnZS52MS5MaXN0RW50aXR5VHJhbnNsYXRpb25zUmVzcG9uc2UiBsrzGAIIAhJ3ChRHZXRFbnRpdHlUcmFuc2xhdGlvbhIqLmFwaS5tYW5hZ2UudjEuR2V0RW50aXR5VHJhbnNsYXRpb25SZXF1ZXN0GisuYXBpLm1hbmFnZS52MS5HZXRFbnRpdHlUcmFuc2xhdGlvblJlc3BvbnNlIgbK8xgCCAISegoVU2V0RW50aXR5U291cmNlTG9jYWxlEisuYXBpLm1hbmFnZS52MS5TZXRFbnRpdHlTb3VyY2VMb2NhbGVSZXF1ZXN0GiwuYXBpLm1hbmFnZS52MS5TZXRFbnRpdHlTb3VyY2VMb2NhbGVSZXNwb25zZSIGyvMYAggCEo8BChxFeHBvcnRFbnRpdHlUcmFuc2xhdGlvblhMSUZGEjIuYXBpLm1hbmFnZS52MS5FeHBvcnRFbnRpdHlUcmFuc2xhdGlvblhMSUZGUmVxdWVzdBozLmFwaS5tYW5hZ2UudjEuRXhwb3J0RW50aXR5VHJhbnNsYXRpb25YTElGRlJlc3BvbnNlIgbK8xgCCAISjwEKHEltcG9ydEVudGl0eVRyYW5zbGF0aW9uWExJRkYSMi5hcGkubWFuYWdlLnYxLkltcG9ydEVudGl0eVRyYW5zbGF0aW9uWExJRkZSZXF1ZXN0GjMuYXBpLm1hbmFnZS52MS5JbXBvcnRFbnRpdHlUcmFuc2xhdGlvblhMSUZGUmVzcG9uc2UiBsrzGAIIAkLFAQoRY29tLmFwaS5tYW5hZ2UudjFCEFRyYW5zbGF0aW9uUHJvdG9QAVpIZ2l0aHViLmNvbS9lY2hvdmlzaW9ubGFiL2dldWwtZXZlbnQtY29udHJhY3RzL2dlbi9hcGkvbWFuYWdlL3YxO21hbmFnZXYxogIDQU1YqgINQXBpLk1hbmFnZS5WMcoCDUFwaVxNYW5hZ2VcVjHiAhlBcGlcTWFuYWdlXFYxXEdQQk1ldGFkYXRh6gIPQXBpOjpNYW5hZ2U6OlYxYgZwcm90bzM",
     [
-      file_api_common_v1_common,
       file_api_common_v1_media,
       file_api_policy_v1_access,
       file_google_protobuf_field_mask,
@@ -98,17 +90,12 @@ export type TranslationLocale = Message<"api.manage.v1.TranslationLocale"> & {
   dir: string;
 
   /**
-   * @generated from field: bool machine_translation_allowed = 6;
-   */
-  machineTranslationAllowed: boolean;
-
-  /**
-   * @generated from field: optional string font_profile = 7;
+   * @generated from field: optional string font_profile = 6;
    */
   fontProfile?: string | undefined;
 
   /**
-   * @generated from field: int32 sort_order = 8;
+   * @generated from field: int32 sort_order = 7;
    */
   sortOrder: number;
 };
@@ -120,83 +107,6 @@ export type TranslationLocale = Message<"api.manage.v1.TranslationLocale"> & {
 export const TranslationLocaleSchema: GenMessage<TranslationLocale> =
   /*@__PURE__*/
   messageDesc(file_api_manage_v1_translation, 1);
-
-/**
- * @generated from message api.manage.v1.TranslationJob
- */
-export type TranslationJob = Message<"api.manage.v1.TranslationJob"> & {
-  /**
-   * @generated from field: string id = 1;
-   */
-  id: string;
-
-  /**
-   * @generated from field: api.manage.v1.TranslationTarget target = 2;
-   */
-  target?: TranslationTarget | undefined;
-
-  /**
-   * @generated from field: string target_locale = 3;
-   */
-  targetLocale: string;
-
-  /**
-   * @generated from field: string source_locale = 4;
-   */
-  sourceLocale: string;
-
-  /**
-   * Canonical digest of the exact outbound XLIFF 2.2 bytes, stable-unit
-   * manifest, and provider profile. It identifies only this active request and
-   * never acts as source freshness, document CAS, or target lifecycle state.
-   *
-   * @generated from field: string request_artifact_digest = 5;
-   */
-  requestArtifactDigest: string;
-
-  /**
-   * @generated from field: api.manage.v1.TranslationJobStatus status = 6;
-   */
-  status: TranslationJobStatus;
-
-  /**
-   * @generated from field: string operation_id = 7;
-   */
-  operationId: string;
-
-  /**
-   * @generated from field: optional string provider = 8;
-   */
-  provider?: string | undefined;
-
-  /**
-   * @generated from field: optional string model = 9;
-   */
-  model?: string | undefined;
-
-  /**
-   * @generated from field: optional google.protobuf.Timestamp requested_at = 10;
-   */
-  requestedAt?: Timestamp | undefined;
-
-  /**
-   * @generated from field: optional google.protobuf.Timestamp started_at = 11;
-   */
-  startedAt?: Timestamp | undefined;
-
-  /**
-   * @generated from field: string requested_by_member_id = 12;
-   */
-  requestedByMemberId: string;
-};
-
-/**
- * Describes the message api.manage.v1.TranslationJob.
- * Use `create(TranslationJobSchema)` to create a new message.
- */
-export const TranslationJobSchema: GenMessage<TranslationJob> =
-  /*@__PURE__*/
-  messageDesc(file_api_manage_v1_translation, 2);
 
 /**
  * @generated from message api.manage.v1.TranslationEntry
@@ -256,7 +166,7 @@ export type TranslationEntry = Message<"api.manage.v1.TranslationEntry"> & {
  */
 export const TranslationEntrySchema: GenMessage<TranslationEntry> =
   /*@__PURE__*/
-  messageDesc(file_api_manage_v1_translation, 3);
+  messageDesc(file_api_manage_v1_translation, 2);
 
 /**
  * @generated from message api.manage.v1.TranslationOverviewStats
@@ -284,12 +194,7 @@ export type TranslationOverviewStats =
     sourceEntities: number;
 
     /**
-     * @generated from field: int32 active_jobs = 5;
-     */
-    activeJobs: number;
-
-    /**
-     * @generated from field: int32 existing_entries = 6;
+     * @generated from field: int32 existing_entries = 5;
      */
     existingEntries: number;
   };
@@ -300,7 +205,7 @@ export type TranslationOverviewStats =
  */
 export const TranslationOverviewStatsSchema: GenMessage<TranslationOverviewStats> =
   /*@__PURE__*/
-  messageDesc(file_api_manage_v1_translation, 4);
+  messageDesc(file_api_manage_v1_translation, 3);
 
 /**
  * @generated from message api.manage.v1.TranslationLocaleHealth
@@ -318,12 +223,7 @@ export type TranslationLocaleHealth =
     existingEntries: number;
 
     /**
-     * @generated from field: int32 active_jobs = 3;
-     */
-    activeJobs: number;
-
-    /**
-     * @generated from field: optional google.protobuf.Timestamp last_target_update_at = 4;
+     * @generated from field: optional google.protobuf.Timestamp last_target_update_at = 3;
      */
     lastTargetUpdateAt?: Timestamp | undefined;
   };
@@ -334,7 +234,7 @@ export type TranslationLocaleHealth =
  */
 export const TranslationLocaleHealthSchema: GenMessage<TranslationLocaleHealth> =
   /*@__PURE__*/
-  messageDesc(file_api_manage_v1_translation, 5);
+  messageDesc(file_api_manage_v1_translation, 4);
 
 /**
  * @generated from message api.manage.v1.TranslationEntityHealth
@@ -357,12 +257,7 @@ export type TranslationEntityHealth =
     existingEntries: number;
 
     /**
-     * @generated from field: int32 active_jobs = 4;
-     */
-    activeJobs: number;
-
-    /**
-     * @generated from field: optional google.protobuf.Timestamp last_source_update_at = 5;
+     * @generated from field: optional google.protobuf.Timestamp last_source_update_at = 4;
      */
     lastSourceUpdateAt?: Timestamp | undefined;
   };
@@ -373,7 +268,7 @@ export type TranslationEntityHealth =
  */
 export const TranslationEntityHealthSchema: GenMessage<TranslationEntityHealth> =
   /*@__PURE__*/
-  messageDesc(file_api_manage_v1_translation, 6);
+  messageDesc(file_api_manage_v1_translation, 5);
 
 /**
  * @generated from message api.manage.v1.TranslationSettings
@@ -389,15 +284,6 @@ export type TranslationSettings =
      * @generated from field: optional google.protobuf.Timestamp updated_at = 2;
      */
     updatedAt?: Timestamp | undefined;
-
-    /**
-     * Exact case-sensitive spellings that every provider must preserve without
-     * translation. This is a minimal settings-owned exception list, not a
-     * source/target terminology glossary.
-     *
-     * @generated from field: repeated string protected_terms = 3;
-     */
-    protectedTerms: string[];
   };
 
 /**
@@ -406,168 +292,7 @@ export type TranslationSettings =
  */
 export const TranslationSettingsSchema: GenMessage<TranslationSettings> =
   /*@__PURE__*/
-  messageDesc(file_api_manage_v1_translation, 7);
-
-/**
- * @generated from message api.manage.v1.LLMTranslationProviderConfig
- */
-export type LLMTranslationProviderConfig =
-  Message<"api.manage.v1.LLMTranslationProviderConfig"> & {
-    /**
-     * write-only, never returned by admin reads
-     *
-     * @generated from field: string api_key = 1;
-     */
-    apiKey: string;
-
-    /**
-     * @generated from field: api.manage.v1.TranslationLLMProviderPreset preset = 2;
-     */
-    preset: TranslationLLMProviderPreset;
-
-    /**
-     * @generated from field: optional string api_base_url = 3;
-     */
-    apiBaseUrl?: string | undefined;
-
-    /**
-     * @generated from field: string model = 4;
-     */
-    model: string;
-
-    /**
-     * @generated from field: optional double input_token_price_usd_per_million = 5;
-     */
-    inputTokenPriceUsdPerMillion?: number | undefined;
-
-    /**
-     * @generated from field: optional double output_token_price_usd_per_million = 6;
-     */
-    outputTokenPriceUsdPerMillion?: number | undefined;
-
-    /**
-     * @generated from field: optional int32 max_context_tokens = 7;
-     */
-    maxContextTokens?: number | undefined;
-
-    /**
-     * @generated from field: optional int32 max_output_tokens = 8;
-     */
-    maxOutputTokens?: number | undefined;
-
-    /**
-     * @generated from field: bool supports_json_mode = 9;
-     */
-    supportsJsonMode: boolean;
-
-    /**
-     * @generated from field: optional double temperature = 10;
-     */
-    temperature?: number | undefined;
-  };
-
-/**
- * Describes the message api.manage.v1.LLMTranslationProviderConfig.
- * Use `create(LLMTranslationProviderConfigSchema)` to create a new message.
- */
-export const LLMTranslationProviderConfigSchema: GenMessage<LLMTranslationProviderConfig> =
-  /*@__PURE__*/
-  messageDesc(file_api_manage_v1_translation, 8);
-
-/**
- * @generated from message api.manage.v1.DeepLTranslationProviderConfig
- */
-export type DeepLTranslationProviderConfig =
-  Message<"api.manage.v1.DeepLTranslationProviderConfig"> & {
-    /**
-     * write-only, never returned by admin reads
-     *
-     * @generated from field: string api_key = 1;
-     */
-    apiKey: string;
-
-    /**
-     * @generated from field: optional string api_base_url = 2;
-     */
-    apiBaseUrl?: string | undefined;
-  };
-
-/**
- * Describes the message api.manage.v1.DeepLTranslationProviderConfig.
- * Use `create(DeepLTranslationProviderConfigSchema)` to create a new message.
- */
-export const DeepLTranslationProviderConfigSchema: GenMessage<DeepLTranslationProviderConfig> =
-  /*@__PURE__*/
-  messageDesc(file_api_manage_v1_translation, 9);
-
-/**
- * @generated from message api.manage.v1.TranslationProvider
- */
-export type TranslationProvider =
-  Message<"api.manage.v1.TranslationProvider"> & {
-    /**
-     * @generated from field: string id = 1;
-     */
-    id: string;
-
-    /**
-     * @generated from field: string name = 2;
-     */
-    name: string;
-
-    /**
-     * @generated from field: api.manage.v1.TranslationProviderType type = 3;
-     */
-    type: TranslationProviderType;
-
-    /**
-     * @generated from field: bool is_active = 4;
-     */
-    isActive: boolean;
-
-    /**
-     * @generated from field: int32 priority = 5;
-     */
-    priority: number;
-
-    /**
-     * @generated from oneof api.manage.v1.TranslationProvider.config
-     */
-    config:
-      | {
-          /**
-           * @generated from field: api.manage.v1.LLMTranslationProviderConfig llm_config = 6;
-           */
-          value: LLMTranslationProviderConfig;
-          case: "llmConfig";
-        }
-      | {
-          /**
-           * @generated from field: api.manage.v1.DeepLTranslationProviderConfig deepl_config = 7;
-           */
-          value: DeepLTranslationProviderConfig;
-          case: "deeplConfig";
-        }
-      | { case: undefined; value?: undefined };
-
-    /**
-     * @generated from field: optional google.protobuf.Timestamp created_at = 8;
-     */
-    createdAt?: Timestamp | undefined;
-
-    /**
-     * @generated from field: optional google.protobuf.Timestamp updated_at = 9;
-     */
-    updatedAt?: Timestamp | undefined;
-  };
-
-/**
- * Describes the message api.manage.v1.TranslationProvider.
- * Use `create(TranslationProviderSchema)` to create a new message.
- */
-export const TranslationProviderSchema: GenMessage<TranslationProvider> =
-  /*@__PURE__*/
-  messageDesc(file_api_manage_v1_translation, 10);
+  messageDesc(file_api_manage_v1_translation, 6);
 
 /**
  * @generated from message api.manage.v1.ListTranslationLocalesRequest
@@ -581,7 +306,7 @@ export type ListTranslationLocalesRequest =
  */
 export const ListTranslationLocalesRequestSchema: GenMessage<ListTranslationLocalesRequest> =
   /*@__PURE__*/
-  messageDesc(file_api_manage_v1_translation, 11);
+  messageDesc(file_api_manage_v1_translation, 7);
 
 /**
  * @generated from message api.manage.v1.ListTranslationLocalesResponse
@@ -600,7 +325,7 @@ export type ListTranslationLocalesResponse =
  */
 export const ListTranslationLocalesResponseSchema: GenMessage<ListTranslationLocalesResponse> =
   /*@__PURE__*/
-  messageDesc(file_api_manage_v1_translation, 12);
+  messageDesc(file_api_manage_v1_translation, 8);
 
 /**
  * @generated from message api.manage.v1.GetTranslationOverviewRequest
@@ -614,7 +339,7 @@ export type GetTranslationOverviewRequest =
  */
 export const GetTranslationOverviewRequestSchema: GenMessage<GetTranslationOverviewRequest> =
   /*@__PURE__*/
-  messageDesc(file_api_manage_v1_translation, 13);
+  messageDesc(file_api_manage_v1_translation, 9);
 
 /**
  * @generated from message api.manage.v1.GetTranslationOverviewResponse
@@ -643,7 +368,7 @@ export type GetTranslationOverviewResponse =
  */
 export const GetTranslationOverviewResponseSchema: GenMessage<GetTranslationOverviewResponse> =
   /*@__PURE__*/
-  messageDesc(file_api_manage_v1_translation, 14);
+  messageDesc(file_api_manage_v1_translation, 10);
 
 /**
  * @generated from message api.manage.v1.GetTranslationSettingsRequest
@@ -657,7 +382,7 @@ export type GetTranslationSettingsRequest =
  */
 export const GetTranslationSettingsRequestSchema: GenMessage<GetTranslationSettingsRequest> =
   /*@__PURE__*/
-  messageDesc(file_api_manage_v1_translation, 15);
+  messageDesc(file_api_manage_v1_translation, 11);
 
 /**
  * @generated from message api.manage.v1.GetTranslationSettingsResponse
@@ -668,16 +393,6 @@ export type GetTranslationSettingsResponse =
      * @generated from field: api.manage.v1.TranslationSettings settings = 1;
      */
     settings?: TranslationSettings | undefined;
-
-    /**
-     * @generated from field: bool generation_enabled = 2;
-     */
-    generationEnabled: boolean;
-
-    /**
-     * @generated from field: optional string generation_disabled_reason = 3;
-     */
-    generationDisabledReason?: string | undefined;
   };
 
 /**
@@ -686,7 +401,7 @@ export type GetTranslationSettingsResponse =
  */
 export const GetTranslationSettingsResponseSchema: GenMessage<GetTranslationSettingsResponse> =
   /*@__PURE__*/
-  messageDesc(file_api_manage_v1_translation, 16);
+  messageDesc(file_api_manage_v1_translation, 12);
 
 /**
  * @generated from message api.manage.v1.UpdateTranslationSettingsRequest
@@ -704,14 +419,6 @@ export type UpdateTranslationSettingsRequest =
      * @generated from field: google.protobuf.FieldMask update_mask = 2;
      */
     updateMask?: FieldMask | undefined;
-
-    /**
-     * Snapshot observed by the editor. Protected-term changes apply the
-     * membership delta between this snapshot and settings.protected_terms.
-     *
-     * @generated from field: api.manage.v1.TranslationSettings base_settings = 3;
-     */
-    baseSettings?: TranslationSettings | undefined;
   };
 
 /**
@@ -720,7 +427,7 @@ export type UpdateTranslationSettingsRequest =
  */
 export const UpdateTranslationSettingsRequestSchema: GenMessage<UpdateTranslationSettingsRequest> =
   /*@__PURE__*/
-  messageDesc(file_api_manage_v1_translation, 17);
+  messageDesc(file_api_manage_v1_translation, 13);
 
 /**
  * @generated from message api.manage.v1.UpdateTranslationSettingsResponse
@@ -739,330 +446,7 @@ export type UpdateTranslationSettingsResponse =
  */
 export const UpdateTranslationSettingsResponseSchema: GenMessage<UpdateTranslationSettingsResponse> =
   /*@__PURE__*/
-  messageDesc(file_api_manage_v1_translation, 18);
-
-/**
- * @generated from message api.manage.v1.ListTranslationProvidersRequest
- */
-export type ListTranslationProvidersRequest =
-  Message<"api.manage.v1.ListTranslationProvidersRequest"> & {
-    /**
-     * @generated from field: api.common.v1.PaginationRequest pagination = 1;
-     */
-    pagination?: PaginationRequest | undefined;
-
-    /**
-     * @generated from field: repeated api.common.v1.FilterSpec filters = 2;
-     */
-    filters: FilterSpec[];
-
-    /**
-     * @generated from field: repeated api.common.v1.SortSpec sorts = 3;
-     */
-    sorts: SortSpec[];
-  };
-
-/**
- * Describes the message api.manage.v1.ListTranslationProvidersRequest.
- * Use `create(ListTranslationProvidersRequestSchema)` to create a new message.
- */
-export const ListTranslationProvidersRequestSchema: GenMessage<ListTranslationProvidersRequest> =
-  /*@__PURE__*/
-  messageDesc(file_api_manage_v1_translation, 19);
-
-/**
- * @generated from message api.manage.v1.ListTranslationProvidersResponse
- */
-export type ListTranslationProvidersResponse =
-  Message<"api.manage.v1.ListTranslationProvidersResponse"> & {
-    /**
-     * @generated from field: repeated api.manage.v1.TranslationProvider providers = 1;
-     */
-    providers: TranslationProvider[];
-
-    /**
-     * @generated from field: api.common.v1.PaginationResponse pagination = 2;
-     */
-    pagination?: PaginationResponse | undefined;
-  };
-
-/**
- * Describes the message api.manage.v1.ListTranslationProvidersResponse.
- * Use `create(ListTranslationProvidersResponseSchema)` to create a new message.
- */
-export const ListTranslationProvidersResponseSchema: GenMessage<ListTranslationProvidersResponse> =
-  /*@__PURE__*/
-  messageDesc(file_api_manage_v1_translation, 20);
-
-/**
- * @generated from message api.manage.v1.CreateTranslationProviderRequest
- */
-export type CreateTranslationProviderRequest =
-  Message<"api.manage.v1.CreateTranslationProviderRequest"> & {
-    /**
-     * @generated from field: string name = 1;
-     */
-    name: string;
-
-    /**
-     * @generated from field: api.manage.v1.TranslationProviderType type = 2;
-     */
-    type: TranslationProviderType;
-
-    /**
-     * @generated from field: bool is_active = 3;
-     */
-    isActive: boolean;
-
-    /**
-     * @generated from field: optional int32 priority = 4;
-     */
-    priority?: number | undefined;
-
-    /**
-     * @generated from oneof api.manage.v1.CreateTranslationProviderRequest.config
-     */
-    config:
-      | {
-          /**
-           * @generated from field: api.manage.v1.LLMTranslationProviderConfig llm_config = 5;
-           */
-          value: LLMTranslationProviderConfig;
-          case: "llmConfig";
-        }
-      | {
-          /**
-           * @generated from field: api.manage.v1.DeepLTranslationProviderConfig deepl_config = 6;
-           */
-          value: DeepLTranslationProviderConfig;
-          case: "deeplConfig";
-        }
-      | { case: undefined; value?: undefined };
-  };
-
-/**
- * Describes the message api.manage.v1.CreateTranslationProviderRequest.
- * Use `create(CreateTranslationProviderRequestSchema)` to create a new message.
- */
-export const CreateTranslationProviderRequestSchema: GenMessage<CreateTranslationProviderRequest> =
-  /*@__PURE__*/
-  messageDesc(file_api_manage_v1_translation, 21);
-
-/**
- * @generated from message api.manage.v1.CreateTranslationProviderResponse
- */
-export type CreateTranslationProviderResponse =
-  Message<"api.manage.v1.CreateTranslationProviderResponse"> & {
-    /**
-     * @generated from field: api.manage.v1.TranslationProvider provider = 1;
-     */
-    provider?: TranslationProvider | undefined;
-  };
-
-/**
- * Describes the message api.manage.v1.CreateTranslationProviderResponse.
- * Use `create(CreateTranslationProviderResponseSchema)` to create a new message.
- */
-export const CreateTranslationProviderResponseSchema: GenMessage<CreateTranslationProviderResponse> =
-  /*@__PURE__*/
-  messageDesc(file_api_manage_v1_translation, 22);
-
-/**
- * @generated from message api.manage.v1.UpdateTranslationProviderRequest
- */
-export type UpdateTranslationProviderRequest =
-  Message<"api.manage.v1.UpdateTranslationProviderRequest"> & {
-    /**
-     * @generated from field: string id = 1;
-     */
-    id: string;
-
-    /**
-     * @generated from field: optional string name = 2;
-     */
-    name?: string | undefined;
-
-    /**
-     * @generated from field: optional bool is_active = 3;
-     */
-    isActive?: boolean | undefined;
-
-    /**
-     * @generated from field: optional int32 priority = 4;
-     */
-    priority?: number | undefined;
-
-    /**
-     * @generated from field: optional api.manage.v1.TranslationProviderType type = 5;
-     */
-    type?: TranslationProviderType | undefined;
-
-    /**
-     * @generated from oneof api.manage.v1.UpdateTranslationProviderRequest.config
-     */
-    config:
-      | {
-          /**
-           * @generated from field: api.manage.v1.LLMTranslationProviderConfig llm_config = 6;
-           */
-          value: LLMTranslationProviderConfig;
-          case: "llmConfig";
-        }
-      | {
-          /**
-           * @generated from field: api.manage.v1.DeepLTranslationProviderConfig deepl_config = 7;
-           */
-          value: DeepLTranslationProviderConfig;
-          case: "deeplConfig";
-        }
-      | { case: undefined; value?: undefined };
-  };
-
-/**
- * Describes the message api.manage.v1.UpdateTranslationProviderRequest.
- * Use `create(UpdateTranslationProviderRequestSchema)` to create a new message.
- */
-export const UpdateTranslationProviderRequestSchema: GenMessage<UpdateTranslationProviderRequest> =
-  /*@__PURE__*/
-  messageDesc(file_api_manage_v1_translation, 23);
-
-/**
- * @generated from message api.manage.v1.UpdateTranslationProviderResponse
- */
-export type UpdateTranslationProviderResponse =
-  Message<"api.manage.v1.UpdateTranslationProviderResponse"> & {
-    /**
-     * @generated from field: api.manage.v1.TranslationProvider provider = 1;
-     */
-    provider?: TranslationProvider | undefined;
-  };
-
-/**
- * Describes the message api.manage.v1.UpdateTranslationProviderResponse.
- * Use `create(UpdateTranslationProviderResponseSchema)` to create a new message.
- */
-export const UpdateTranslationProviderResponseSchema: GenMessage<UpdateTranslationProviderResponse> =
-  /*@__PURE__*/
-  messageDesc(file_api_manage_v1_translation, 24);
-
-/**
- * @generated from message api.manage.v1.DeleteTranslationProviderRequest
- */
-export type DeleteTranslationProviderRequest =
-  Message<"api.manage.v1.DeleteTranslationProviderRequest"> & {
-    /**
-     * @generated from field: string id = 1;
-     */
-    id: string;
-  };
-
-/**
- * Describes the message api.manage.v1.DeleteTranslationProviderRequest.
- * Use `create(DeleteTranslationProviderRequestSchema)` to create a new message.
- */
-export const DeleteTranslationProviderRequestSchema: GenMessage<DeleteTranslationProviderRequest> =
-  /*@__PURE__*/
-  messageDesc(file_api_manage_v1_translation, 25);
-
-/**
- * @generated from message api.manage.v1.DeleteTranslationProviderResponse
- */
-export type DeleteTranslationProviderResponse =
-  Message<"api.manage.v1.DeleteTranslationProviderResponse"> & {};
-
-/**
- * Describes the message api.manage.v1.DeleteTranslationProviderResponse.
- * Use `create(DeleteTranslationProviderResponseSchema)` to create a new message.
- */
-export const DeleteTranslationProviderResponseSchema: GenMessage<DeleteTranslationProviderResponse> =
-  /*@__PURE__*/
-  messageDesc(file_api_manage_v1_translation, 26);
-
-/**
- * @generated from message api.manage.v1.ListTranslationJobsRequest
- */
-export type ListTranslationJobsRequest =
-  Message<"api.manage.v1.ListTranslationJobsRequest"> & {
-    /**
-     * @generated from field: api.common.v1.PaginationRequest pagination = 1;
-     */
-    pagination?: PaginationRequest | undefined;
-
-    /**
-     * @generated from field: repeated api.common.v1.FilterSpec filters = 2;
-     */
-    filters: FilterSpec[];
-
-    /**
-     * @generated from field: repeated api.common.v1.SortSpec sorts = 3;
-     */
-    sorts: SortSpec[];
-  };
-
-/**
- * Describes the message api.manage.v1.ListTranslationJobsRequest.
- * Use `create(ListTranslationJobsRequestSchema)` to create a new message.
- */
-export const ListTranslationJobsRequestSchema: GenMessage<ListTranslationJobsRequest> =
-  /*@__PURE__*/
-  messageDesc(file_api_manage_v1_translation, 27);
-
-/**
- * @generated from message api.manage.v1.ListTranslationJobsResponse
- */
-export type ListTranslationJobsResponse =
-  Message<"api.manage.v1.ListTranslationJobsResponse"> & {
-    /**
-     * @generated from field: repeated api.manage.v1.TranslationJob jobs = 1;
-     */
-    jobs: TranslationJob[];
-
-    /**
-     * @generated from field: api.common.v1.PaginationResponse pagination = 2;
-     */
-    pagination?: PaginationResponse | undefined;
-  };
-
-/**
- * Describes the message api.manage.v1.ListTranslationJobsResponse.
- * Use `create(ListTranslationJobsResponseSchema)` to create a new message.
- */
-export const ListTranslationJobsResponseSchema: GenMessage<ListTranslationJobsResponse> =
-  /*@__PURE__*/
-  messageDesc(file_api_manage_v1_translation, 28);
-
-/**
- * @generated from message api.manage.v1.CancelTranslationJobRequest
- */
-export type CancelTranslationJobRequest =
-  Message<"api.manage.v1.CancelTranslationJobRequest"> & {
-    /**
-     * @generated from field: string job_id = 1;
-     */
-    jobId: string;
-  };
-
-/**
- * Describes the message api.manage.v1.CancelTranslationJobRequest.
- * Use `create(CancelTranslationJobRequestSchema)` to create a new message.
- */
-export const CancelTranslationJobRequestSchema: GenMessage<CancelTranslationJobRequest> =
-  /*@__PURE__*/
-  messageDesc(file_api_manage_v1_translation, 29);
-
-/**
- * @generated from message api.manage.v1.CancelTranslationJobResponse
- */
-export type CancelTranslationJobResponse =
-  Message<"api.manage.v1.CancelTranslationJobResponse"> & {};
-
-/**
- * Describes the message api.manage.v1.CancelTranslationJobResponse.
- * Use `create(CancelTranslationJobResponseSchema)` to create a new message.
- */
-export const CancelTranslationJobResponseSchema: GenMessage<CancelTranslationJobResponse> =
-  /*@__PURE__*/
-  messageDesc(file_api_manage_v1_translation, 30);
+  messageDesc(file_api_manage_v1_translation, 14);
 
 /**
  * @generated from message api.manage.v1.ListEntityTranslationsRequest
@@ -1081,7 +465,7 @@ export type ListEntityTranslationsRequest =
  */
 export const ListEntityTranslationsRequestSchema: GenMessage<ListEntityTranslationsRequest> =
   /*@__PURE__*/
-  messageDesc(file_api_manage_v1_translation, 31);
+  messageDesc(file_api_manage_v1_translation, 15);
 
 /**
  * @generated from message api.manage.v1.ListEntityTranslationsResponse
@@ -1105,7 +489,7 @@ export type ListEntityTranslationsResponse =
  */
 export const ListEntityTranslationsResponseSchema: GenMessage<ListEntityTranslationsResponse> =
   /*@__PURE__*/
-  messageDesc(file_api_manage_v1_translation, 32);
+  messageDesc(file_api_manage_v1_translation, 16);
 
 /**
  * @generated from message api.manage.v1.GetEntityTranslationRequest
@@ -1129,7 +513,7 @@ export type GetEntityTranslationRequest =
  */
 export const GetEntityTranslationRequestSchema: GenMessage<GetEntityTranslationRequest> =
   /*@__PURE__*/
-  messageDesc(file_api_manage_v1_translation, 33);
+  messageDesc(file_api_manage_v1_translation, 17);
 
 /**
  * @generated from message api.manage.v1.GetEntityTranslationResponse
@@ -1148,7 +532,7 @@ export type GetEntityTranslationResponse =
  */
 export const GetEntityTranslationResponseSchema: GenMessage<GetEntityTranslationResponse> =
   /*@__PURE__*/
-  messageDesc(file_api_manage_v1_translation, 34);
+  messageDesc(file_api_manage_v1_translation, 18);
 
 /**
  * SetEntitySourceLocale changes the one editable source locale. Existing
@@ -1188,7 +572,7 @@ export type SetEntitySourceLocaleRequest =
  */
 export const SetEntitySourceLocaleRequestSchema: GenMessage<SetEntitySourceLocaleRequest> =
   /*@__PURE__*/
-  messageDesc(file_api_manage_v1_translation, 35);
+  messageDesc(file_api_manage_v1_translation, 19);
 
 /**
  * @generated from message api.manage.v1.SetEntitySourceLocaleResponse
@@ -1222,52 +606,7 @@ export type SetEntitySourceLocaleResponse =
  */
 export const SetEntitySourceLocaleResponseSchema: GenMessage<SetEntitySourceLocaleResponse> =
   /*@__PURE__*/
-  messageDesc(file_api_manage_v1_translation, 36);
-
-/**
- * @generated from message api.manage.v1.RegenerateEntityTranslationsRequest
- */
-export type RegenerateEntityTranslationsRequest =
-  Message<"api.manage.v1.RegenerateEntityTranslationsRequest"> & {
-    /**
-     * @generated from field: api.manage.v1.TranslationTarget target = 1;
-     */
-    target?: TranslationTarget | undefined;
-
-    /**
-     * Required non-empty explicit locale selection. Empty never means all.
-     *
-     * @generated from field: repeated string locales = 2;
-     */
-    locales: string[];
-  };
-
-/**
- * Describes the message api.manage.v1.RegenerateEntityTranslationsRequest.
- * Use `create(RegenerateEntityTranslationsRequestSchema)` to create a new message.
- */
-export const RegenerateEntityTranslationsRequestSchema: GenMessage<RegenerateEntityTranslationsRequest> =
-  /*@__PURE__*/
-  messageDesc(file_api_manage_v1_translation, 37);
-
-/**
- * @generated from message api.manage.v1.RegenerateEntityTranslationsResponse
- */
-export type RegenerateEntityTranslationsResponse =
-  Message<"api.manage.v1.RegenerateEntityTranslationsResponse"> & {
-    /**
-     * @generated from field: repeated api.manage.v1.TranslationJob jobs = 1;
-     */
-    jobs: TranslationJob[];
-  };
-
-/**
- * Describes the message api.manage.v1.RegenerateEntityTranslationsResponse.
- * Use `create(RegenerateEntityTranslationsResponseSchema)` to create a new message.
- */
-export const RegenerateEntityTranslationsResponseSchema: GenMessage<RegenerateEntityTranslationsResponse> =
-  /*@__PURE__*/
-  messageDesc(file_api_manage_v1_translation, 38);
+  messageDesc(file_api_manage_v1_translation, 20);
 
 /**
  * Export creates a short-lived XLIFF 2.2 artifact. PATCH requires an explicit
@@ -1305,7 +644,7 @@ export type ExportEntityTranslationXLIFFRequest =
  */
 export const ExportEntityTranslationXLIFFRequestSchema: GenMessage<ExportEntityTranslationXLIFFRequest> =
   /*@__PURE__*/
-  messageDesc(file_api_manage_v1_translation, 39);
+  messageDesc(file_api_manage_v1_translation, 21);
 
 /**
  * @generated from message api.manage.v1.ExportEntityTranslationXLIFFResponse
@@ -1344,7 +683,7 @@ export type ExportEntityTranslationXLIFFResponse =
  */
 export const ExportEntityTranslationXLIFFResponseSchema: GenMessage<ExportEntityTranslationXLIFFResponse> =
   /*@__PURE__*/
-  messageDesc(file_api_manage_v1_translation, 40);
+  messageDesc(file_api_manage_v1_translation, 22);
 
 /**
  * Import consumes an upload completed through the existing File ingest. XML
@@ -1388,7 +727,7 @@ export type ImportEntityTranslationXLIFFRequest =
  */
 export const ImportEntityTranslationXLIFFRequestSchema: GenMessage<ImportEntityTranslationXLIFFRequest> =
   /*@__PURE__*/
-  messageDesc(file_api_manage_v1_translation, 41);
+  messageDesc(file_api_manage_v1_translation, 23);
 
 /**
  * @generated from message api.manage.v1.ImportEntityTranslationXLIFFResponse
@@ -1417,7 +756,7 @@ export type ImportEntityTranslationXLIFFResponse =
  */
 export const ImportEntityTranslationXLIFFResponseSchema: GenMessage<ImportEntityTranslationXLIFFResponse> =
   /*@__PURE__*/
-  messageDesc(file_api_manage_v1_translation, 42);
+  messageDesc(file_api_manage_v1_translation, 24);
 
 /**
  * @generated from enum api.manage.v1.TranslationEntityType
@@ -1512,186 +851,6 @@ export const TranslationEntityTypeSchema: GenEnum<TranslationEntityType> =
   enumDesc(file_api_manage_v1_translation, 0);
 
 /**
- * @generated from enum api.manage.v1.TranslationJobStatus
- */
-export enum TranslationJobStatus {
-  /**
-   * @generated from enum value: TRANSLATION_JOB_STATUS_UNSPECIFIED = 0;
-   */
-  UNSPECIFIED = 0,
-
-  /**
-   * @generated from enum value: TRANSLATION_JOB_STATUS_QUEUED = 1;
-   */
-  QUEUED = 1,
-
-  /**
-   * @generated from enum value: TRANSLATION_JOB_STATUS_RUNNING = 2;
-   */
-  RUNNING = 2,
-}
-
-/**
- * Describes the enum api.manage.v1.TranslationJobStatus.
- */
-export const TranslationJobStatusSchema: GenEnum<TranslationJobStatus> =
-  /*@__PURE__*/
-  enumDesc(file_api_manage_v1_translation, 1);
-
-/**
- * @generated from enum api.manage.v1.TranslationUnitIssueReason
- */
-export enum TranslationUnitIssueReason {
-  /**
-   * @generated from enum value: TRANSLATION_UNIT_ISSUE_REASON_UNSPECIFIED = 0;
-   */
-  UNSPECIFIED = 0,
-
-  /**
-   * @generated from enum value: TRANSLATION_UNIT_ISSUE_REASON_EMPTY_TRANSLATION = 1;
-   */
-  EMPTY_TRANSLATION = 1,
-
-  /**
-   * @generated from enum value: TRANSLATION_UNIT_ISSUE_REASON_UNCHANGED_FROM_SOURCE = 2;
-   */
-  UNCHANGED_FROM_SOURCE = 2,
-
-  /**
-   * @generated from enum value: TRANSLATION_UNIT_ISSUE_REASON_SOURCE_RESIDUE = 3;
-   */
-  SOURCE_RESIDUE = 3,
-}
-
-/**
- * Describes the enum api.manage.v1.TranslationUnitIssueReason.
- */
-export const TranslationUnitIssueReasonSchema: GenEnum<TranslationUnitIssueReason> =
-  /*@__PURE__*/
-  enumDesc(file_api_manage_v1_translation, 2);
-
-/**
- * TranslationFailureReason is the bounded public failure classification.
- * Provider response bodies, request XLIFF, document keys, and source/target
- * text never cross this contract or canonical logs. Provider responses are
- * consumed without a persisted raw, validated, or normalized copy.
- *
- * @generated from enum api.manage.v1.TranslationFailureReason
- */
-export enum TranslationFailureReason {
-  /**
-   * @generated from enum value: TRANSLATION_FAILURE_REASON_UNSPECIFIED = 0;
-   */
-  UNSPECIFIED = 0,
-
-  /**
-   * @generated from enum value: TRANSLATION_FAILURE_REASON_PROVIDER_CONFIGURATION = 1;
-   */
-  PROVIDER_CONFIGURATION = 1,
-
-  /**
-   * @generated from enum value: TRANSLATION_FAILURE_REASON_PROVIDER_AUTHENTICATION = 2;
-   */
-  PROVIDER_AUTHENTICATION = 2,
-
-  /**
-   * @generated from enum value: TRANSLATION_FAILURE_REASON_PROVIDER_RATE_LIMITED = 3;
-   */
-  PROVIDER_RATE_LIMITED = 3,
-
-  /**
-   * @generated from enum value: TRANSLATION_FAILURE_REASON_PROVIDER_UNAVAILABLE = 4;
-   */
-  PROVIDER_UNAVAILABLE = 4,
-
-  /**
-   * @generated from enum value: TRANSLATION_FAILURE_REASON_PROVIDER_REJECTED = 5;
-   */
-  PROVIDER_REJECTED = 5,
-
-  /**
-   * @generated from enum value: TRANSLATION_FAILURE_REASON_PROVIDER_RESPONSE_INVALID = 6;
-   */
-  PROVIDER_RESPONSE_INVALID = 6,
-
-  /**
-   * @generated from enum value: TRANSLATION_FAILURE_REASON_TARGET_APPLY_FAILED = 7;
-   */
-  TARGET_APPLY_FAILED = 7,
-
-  /**
-   * @generated from enum value: TRANSLATION_FAILURE_REASON_OG_HANDOFF_FAILED = 8;
-   */
-  OG_HANDOFF_FAILED = 8,
-
-  /**
-   * @generated from enum value: TRANSLATION_FAILURE_REASON_INTERNAL = 9;
-   */
-  INTERNAL = 9,
-}
-
-/**
- * Describes the enum api.manage.v1.TranslationFailureReason.
- */
-export const TranslationFailureReasonSchema: GenEnum<TranslationFailureReason> =
-  /*@__PURE__*/
-  enumDesc(file_api_manage_v1_translation, 3);
-
-/**
- * @generated from enum api.manage.v1.TranslationProviderType
- */
-export enum TranslationProviderType {
-  /**
-   * @generated from enum value: TRANSLATION_PROVIDER_TYPE_UNSPECIFIED = 0;
-   */
-  UNSPECIFIED = 0,
-
-  /**
-   * @generated from enum value: TRANSLATION_PROVIDER_TYPE_LLM = 1;
-   */
-  LLM = 1,
-
-  /**
-   * @generated from enum value: TRANSLATION_PROVIDER_TYPE_DEEPL = 2;
-   */
-  DEEPL = 2,
-}
-
-/**
- * Describes the enum api.manage.v1.TranslationProviderType.
- */
-export const TranslationProviderTypeSchema: GenEnum<TranslationProviderType> =
-  /*@__PURE__*/
-  enumDesc(file_api_manage_v1_translation, 4);
-
-/**
- * @generated from enum api.manage.v1.TranslationLLMProviderPreset
- */
-export enum TranslationLLMProviderPreset {
-  /**
-   * @generated from enum value: TRANSLATION_LLM_PROVIDER_PRESET_UNSPECIFIED = 0;
-   */
-  TRANSLATION_LLM_PROVIDER_PRESET_UNSPECIFIED = 0,
-
-  /**
-   * @generated from enum value: TRANSLATION_LLM_PROVIDER_PRESET_GEMINI = 1;
-   */
-  TRANSLATION_LLM_PROVIDER_PRESET_GEMINI = 1,
-
-  /**
-   * @generated from enum value: TRANSLATION_LLM_PROVIDER_PRESET_OPENAI_COMPATIBLE = 2;
-   */
-  TRANSLATION_LLM_PROVIDER_PRESET_OPENAI_COMPATIBLE = 2,
-}
-
-/**
- * Describes the enum api.manage.v1.TranslationLLMProviderPreset.
- */
-export const TranslationLLMProviderPresetSchema: GenEnum<TranslationLLMProviderPreset> =
-  /*@__PURE__*/
-  enumDesc(file_api_manage_v1_translation, 5);
-
-/**
  * @generated from enum api.manage.v1.TranslationInterchangeMode
  */
 export enum TranslationInterchangeMode {
@@ -1716,7 +875,7 @@ export enum TranslationInterchangeMode {
  */
 export const TranslationInterchangeModeSchema: GenEnum<TranslationInterchangeMode> =
   /*@__PURE__*/
-  enumDesc(file_api_manage_v1_translation, 6);
+  enumDesc(file_api_manage_v1_translation, 1);
 
 /**
  * @generated from service api.manage.v1.TranslationService
@@ -1755,58 +914,6 @@ export const TranslationService: GenService<{
     output: typeof UpdateTranslationSettingsResponseSchema;
   };
   /**
-   * @generated from rpc api.manage.v1.TranslationService.ListTranslationProviders
-   */
-  listTranslationProviders: {
-    methodKind: "unary";
-    input: typeof ListTranslationProvidersRequestSchema;
-    output: typeof ListTranslationProvidersResponseSchema;
-  };
-  /**
-   * @generated from rpc api.manage.v1.TranslationService.CreateTranslationProvider
-   */
-  createTranslationProvider: {
-    methodKind: "unary";
-    input: typeof CreateTranslationProviderRequestSchema;
-    output: typeof CreateTranslationProviderResponseSchema;
-  };
-  /**
-   * @generated from rpc api.manage.v1.TranslationService.UpdateTranslationProvider
-   */
-  updateTranslationProvider: {
-    methodKind: "unary";
-    input: typeof UpdateTranslationProviderRequestSchema;
-    output: typeof UpdateTranslationProviderResponseSchema;
-  };
-  /**
-   * @generated from rpc api.manage.v1.TranslationService.DeleteTranslationProvider
-   */
-  deleteTranslationProvider: {
-    methodKind: "unary";
-    input: typeof DeleteTranslationProviderRequestSchema;
-    output: typeof DeleteTranslationProviderResponseSchema;
-  };
-  /**
-   * Admin callers may browse globally. Other authenticated callers must use
-   * exact entity_type/entity_id equality filters and pass the API's resource
-   * manager check for that entity.
-   *
-   * @generated from rpc api.manage.v1.TranslationService.ListTranslationJobs
-   */
-  listTranslationJobs: {
-    methodKind: "unary";
-    input: typeof ListTranslationJobsRequestSchema;
-    output: typeof ListTranslationJobsResponseSchema;
-  };
-  /**
-   * @generated from rpc api.manage.v1.TranslationService.CancelTranslationJob
-   */
-  cancelTranslationJob: {
-    methodKind: "unary";
-    input: typeof CancelTranslationJobRequestSchema;
-    output: typeof CancelTranslationJobResponseSchema;
-  };
-  /**
    * @generated from rpc api.manage.v1.TranslationService.ListEntityTranslations
    */
   listEntityTranslations: {
@@ -1829,14 +936,6 @@ export const TranslationService: GenService<{
     methodKind: "unary";
     input: typeof SetEntitySourceLocaleRequestSchema;
     output: typeof SetEntitySourceLocaleResponseSchema;
-  };
-  /**
-   * @generated from rpc api.manage.v1.TranslationService.RegenerateEntityTranslations
-   */
-  regenerateEntityTranslations: {
-    methodKind: "unary";
-    input: typeof RegenerateEntityTranslationsRequestSchema;
-    output: typeof RegenerateEntityTranslationsResponseSchema;
   };
   /**
    * @generated from rpc api.manage.v1.TranslationService.ExportEntityTranslationXLIFF

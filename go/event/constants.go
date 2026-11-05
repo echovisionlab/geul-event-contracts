@@ -15,7 +15,6 @@ const (
 	SignalMailAdapterChanged       = "mail_adapter.changed"
 	SignalContentUpdated           = "content.updated"
 	SignalFileIngest               = "file.ingest"
-	SignalTranslationLifecycle     = "translation.lifecycle"
 )
 
 // Queue names for direct work and durable consumer queues
@@ -31,8 +30,6 @@ const (
 	QueueEmailCampaign                       = "email.campaign"
 	QueueUserDeleteIdentity                  = "user.delete.identity"
 	QueueUserDeleteAvatar                    = "user.delete.avatar"
-	QueueAiMetadataGenerate                  = "ai.metadata.generate"
-	QueueTranslationGenerate                 = "translation.generate"
 	QueueTranscodeResult                     = "transcode.result"
 	QueueWaveformResult                      = "waveform.result"
 	QueueMeshOptimizationResult              = "mesh.optimization.result"

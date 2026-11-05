@@ -45,24 +45,6 @@ const (
 	// TranslationServiceUpdateTranslationSettingsProcedure is the fully-qualified name of the
 	// TranslationService's UpdateTranslationSettings RPC.
 	TranslationServiceUpdateTranslationSettingsProcedure = "/api.manage.v1.TranslationService/UpdateTranslationSettings"
-	// TranslationServiceListTranslationProvidersProcedure is the fully-qualified name of the
-	// TranslationService's ListTranslationProviders RPC.
-	TranslationServiceListTranslationProvidersProcedure = "/api.manage.v1.TranslationService/ListTranslationProviders"
-	// TranslationServiceCreateTranslationProviderProcedure is the fully-qualified name of the
-	// TranslationService's CreateTranslationProvider RPC.
-	TranslationServiceCreateTranslationProviderProcedure = "/api.manage.v1.TranslationService/CreateTranslationProvider"
-	// TranslationServiceUpdateTranslationProviderProcedure is the fully-qualified name of the
-	// TranslationService's UpdateTranslationProvider RPC.
-	TranslationServiceUpdateTranslationProviderProcedure = "/api.manage.v1.TranslationService/UpdateTranslationProvider"
-	// TranslationServiceDeleteTranslationProviderProcedure is the fully-qualified name of the
-	// TranslationService's DeleteTranslationProvider RPC.
-	TranslationServiceDeleteTranslationProviderProcedure = "/api.manage.v1.TranslationService/DeleteTranslationProvider"
-	// TranslationServiceListTranslationJobsProcedure is the fully-qualified name of the
-	// TranslationService's ListTranslationJobs RPC.
-	TranslationServiceListTranslationJobsProcedure = "/api.manage.v1.TranslationService/ListTranslationJobs"
-	// TranslationServiceCancelTranslationJobProcedure is the fully-qualified name of the
-	// TranslationService's CancelTranslationJob RPC.
-	TranslationServiceCancelTranslationJobProcedure = "/api.manage.v1.TranslationService/CancelTranslationJob"
 	// TranslationServiceListEntityTranslationsProcedure is the fully-qualified name of the
 	// TranslationService's ListEntityTranslations RPC.
 	TranslationServiceListEntityTranslationsProcedure = "/api.manage.v1.TranslationService/ListEntityTranslations"
@@ -72,9 +54,6 @@ const (
 	// TranslationServiceSetEntitySourceLocaleProcedure is the fully-qualified name of the
 	// TranslationService's SetEntitySourceLocale RPC.
 	TranslationServiceSetEntitySourceLocaleProcedure = "/api.manage.v1.TranslationService/SetEntitySourceLocale"
-	// TranslationServiceRegenerateEntityTranslationsProcedure is the fully-qualified name of the
-	// TranslationService's RegenerateEntityTranslations RPC.
-	TranslationServiceRegenerateEntityTranslationsProcedure = "/api.manage.v1.TranslationService/RegenerateEntityTranslations"
 	// TranslationServiceExportEntityTranslationXLIFFProcedure is the fully-qualified name of the
 	// TranslationService's ExportEntityTranslationXLIFF RPC.
 	TranslationServiceExportEntityTranslationXLIFFProcedure = "/api.manage.v1.TranslationService/ExportEntityTranslationXLIFF"
@@ -89,19 +68,9 @@ type TranslationServiceClient interface {
 	GetTranslationOverview(context.Context, *connect.Request[v1.GetTranslationOverviewRequest]) (*connect.Response[v1.GetTranslationOverviewResponse], error)
 	GetTranslationSettings(context.Context, *connect.Request[v1.GetTranslationSettingsRequest]) (*connect.Response[v1.GetTranslationSettingsResponse], error)
 	UpdateTranslationSettings(context.Context, *connect.Request[v1.UpdateTranslationSettingsRequest]) (*connect.Response[v1.UpdateTranslationSettingsResponse], error)
-	ListTranslationProviders(context.Context, *connect.Request[v1.ListTranslationProvidersRequest]) (*connect.Response[v1.ListTranslationProvidersResponse], error)
-	CreateTranslationProvider(context.Context, *connect.Request[v1.CreateTranslationProviderRequest]) (*connect.Response[v1.CreateTranslationProviderResponse], error)
-	UpdateTranslationProvider(context.Context, *connect.Request[v1.UpdateTranslationProviderRequest]) (*connect.Response[v1.UpdateTranslationProviderResponse], error)
-	DeleteTranslationProvider(context.Context, *connect.Request[v1.DeleteTranslationProviderRequest]) (*connect.Response[v1.DeleteTranslationProviderResponse], error)
-	// Admin callers may browse globally. Other authenticated callers must use
-	// exact entity_type/entity_id equality filters and pass the API's resource
-	// manager check for that entity.
-	ListTranslationJobs(context.Context, *connect.Request[v1.ListTranslationJobsRequest]) (*connect.Response[v1.ListTranslationJobsResponse], error)
-	CancelTranslationJob(context.Context, *connect.Request[v1.CancelTranslationJobRequest]) (*connect.Response[v1.CancelTranslationJobResponse], error)
 	ListEntityTranslations(context.Context, *connect.Request[v1.ListEntityTranslationsRequest]) (*connect.Response[v1.ListEntityTranslationsResponse], error)
 	GetEntityTranslation(context.Context, *connect.Request[v1.GetEntityTranslationRequest]) (*connect.Response[v1.GetEntityTranslationResponse], error)
 	SetEntitySourceLocale(context.Context, *connect.Request[v1.SetEntitySourceLocaleRequest]) (*connect.Response[v1.SetEntitySourceLocaleResponse], error)
-	RegenerateEntityTranslations(context.Context, *connect.Request[v1.RegenerateEntityTranslationsRequest]) (*connect.Response[v1.RegenerateEntityTranslationsResponse], error)
 	ExportEntityTranslationXLIFF(context.Context, *connect.Request[v1.ExportEntityTranslationXLIFFRequest]) (*connect.Response[v1.ExportEntityTranslationXLIFFResponse], error)
 	ImportEntityTranslationXLIFF(context.Context, *connect.Request[v1.ImportEntityTranslationXLIFFRequest]) (*connect.Response[v1.ImportEntityTranslationXLIFFResponse], error)
 }
@@ -141,42 +110,6 @@ func NewTranslationServiceClient(httpClient connect.HTTPClient, baseURL string, 
 			connect.WithSchema(translationServiceMethods.ByName("UpdateTranslationSettings")),
 			connect.WithClientOptions(opts...),
 		),
-		listTranslationProviders: connect.NewClient[v1.ListTranslationProvidersRequest, v1.ListTranslationProvidersResponse](
-			httpClient,
-			baseURL+TranslationServiceListTranslationProvidersProcedure,
-			connect.WithSchema(translationServiceMethods.ByName("ListTranslationProviders")),
-			connect.WithClientOptions(opts...),
-		),
-		createTranslationProvider: connect.NewClient[v1.CreateTranslationProviderRequest, v1.CreateTranslationProviderResponse](
-			httpClient,
-			baseURL+TranslationServiceCreateTranslationProviderProcedure,
-			connect.WithSchema(translationServiceMethods.ByName("CreateTranslationProvider")),
-			connect.WithClientOptions(opts...),
-		),
-		updateTranslationProvider: connect.NewClient[v1.UpdateTranslationProviderRequest, v1.UpdateTranslationProviderResponse](
-			httpClient,
-			baseURL+TranslationServiceUpdateTranslationProviderProcedure,
-			connect.WithSchema(translationServiceMethods.ByName("UpdateTranslationProvider")),
-			connect.WithClientOptions(opts...),
-		),
-		deleteTranslationProvider: connect.NewClient[v1.DeleteTranslationProviderRequest, v1.DeleteTranslationProviderResponse](
-			httpClient,
-			baseURL+TranslationServiceDeleteTranslationProviderProcedure,
-			connect.WithSchema(translationServiceMethods.ByName("DeleteTranslationProvider")),
-			connect.WithClientOptions(opts...),
-		),
-		listTranslationJobs: connect.NewClient[v1.ListTranslationJobsRequest, v1.ListTranslationJobsResponse](
-			httpClient,
-			baseURL+TranslationServiceListTranslationJobsProcedure,
-			connect.WithSchema(translationServiceMethods.ByName("ListTranslationJobs")),
-			connect.WithClientOptions(opts...),
-		),
-		cancelTranslationJob: connect.NewClient[v1.CancelTranslationJobRequest, v1.CancelTranslationJobResponse](
-			httpClient,
-			baseURL+TranslationServiceCancelTranslationJobProcedure,
-			connect.WithSchema(translationServiceMethods.ByName("CancelTranslationJob")),
-			connect.WithClientOptions(opts...),
-		),
 		listEntityTranslations: connect.NewClient[v1.ListEntityTranslationsRequest, v1.ListEntityTranslationsResponse](
 			httpClient,
 			baseURL+TranslationServiceListEntityTranslationsProcedure,
@@ -193,12 +126,6 @@ func NewTranslationServiceClient(httpClient connect.HTTPClient, baseURL string, 
 			httpClient,
 			baseURL+TranslationServiceSetEntitySourceLocaleProcedure,
 			connect.WithSchema(translationServiceMethods.ByName("SetEntitySourceLocale")),
-			connect.WithClientOptions(opts...),
-		),
-		regenerateEntityTranslations: connect.NewClient[v1.RegenerateEntityTranslationsRequest, v1.RegenerateEntityTranslationsResponse](
-			httpClient,
-			baseURL+TranslationServiceRegenerateEntityTranslationsProcedure,
-			connect.WithSchema(translationServiceMethods.ByName("RegenerateEntityTranslations")),
 			connect.WithClientOptions(opts...),
 		),
 		exportEntityTranslationXLIFF: connect.NewClient[v1.ExportEntityTranslationXLIFFRequest, v1.ExportEntityTranslationXLIFFResponse](
@@ -222,16 +149,9 @@ type translationServiceClient struct {
 	getTranslationOverview       *connect.Client[v1.GetTranslationOverviewRequest, v1.GetTranslationOverviewResponse]
 	getTranslationSettings       *connect.Client[v1.GetTranslationSettingsRequest, v1.GetTranslationSettingsResponse]
 	updateTranslationSettings    *connect.Client[v1.UpdateTranslationSettingsRequest, v1.UpdateTranslationSettingsResponse]
-	listTranslationProviders     *connect.Client[v1.ListTranslationProvidersRequest, v1.ListTranslationProvidersResponse]
-	createTranslationProvider    *connect.Client[v1.CreateTranslationProviderRequest, v1.CreateTranslationProviderResponse]
-	updateTranslationProvider    *connect.Client[v1.UpdateTranslationProviderRequest, v1.UpdateTranslationProviderResponse]
-	deleteTranslationProvider    *connect.Client[v1.DeleteTranslationProviderRequest, v1.DeleteTranslationProviderResponse]
-	listTranslationJobs          *connect.Client[v1.ListTranslationJobsRequest, v1.ListTranslationJobsResponse]
-	cancelTranslationJob         *connect.Client[v1.CancelTranslationJobRequest, v1.CancelTranslationJobResponse]
 	listEntityTranslations       *connect.Client[v1.ListEntityTranslationsRequest, v1.ListEntityTranslationsResponse]
 	getEntityTranslation         *connect.Client[v1.GetEntityTranslationRequest, v1.GetEntityTranslationResponse]
 	setEntitySourceLocale        *connect.Client[v1.SetEntitySourceLocaleRequest, v1.SetEntitySourceLocaleResponse]
-	regenerateEntityTranslations *connect.Client[v1.RegenerateEntityTranslationsRequest, v1.RegenerateEntityTranslationsResponse]
 	exportEntityTranslationXLIFF *connect.Client[v1.ExportEntityTranslationXLIFFRequest, v1.ExportEntityTranslationXLIFFResponse]
 	importEntityTranslationXLIFF *connect.Client[v1.ImportEntityTranslationXLIFFRequest, v1.ImportEntityTranslationXLIFFResponse]
 }
@@ -256,36 +176,6 @@ func (c *translationServiceClient) UpdateTranslationSettings(ctx context.Context
 	return c.updateTranslationSettings.CallUnary(ctx, req)
 }
 
-// ListTranslationProviders calls api.manage.v1.TranslationService.ListTranslationProviders.
-func (c *translationServiceClient) ListTranslationProviders(ctx context.Context, req *connect.Request[v1.ListTranslationProvidersRequest]) (*connect.Response[v1.ListTranslationProvidersResponse], error) {
-	return c.listTranslationProviders.CallUnary(ctx, req)
-}
-
-// CreateTranslationProvider calls api.manage.v1.TranslationService.CreateTranslationProvider.
-func (c *translationServiceClient) CreateTranslationProvider(ctx context.Context, req *connect.Request[v1.CreateTranslationProviderRequest]) (*connect.Response[v1.CreateTranslationProviderResponse], error) {
-	return c.createTranslationProvider.CallUnary(ctx, req)
-}
-
-// UpdateTranslationProvider calls api.manage.v1.TranslationService.UpdateTranslationProvider.
-func (c *translationServiceClient) UpdateTranslationProvider(ctx context.Context, req *connect.Request[v1.UpdateTranslationProviderRequest]) (*connect.Response[v1.UpdateTranslationProviderResponse], error) {
-	return c.updateTranslationProvider.CallUnary(ctx, req)
-}
-
-// DeleteTranslationProvider calls api.manage.v1.TranslationService.DeleteTranslationProvider.
-func (c *translationServiceClient) DeleteTranslationProvider(ctx context.Context, req *connect.Request[v1.DeleteTranslationProviderRequest]) (*connect.Response[v1.DeleteTranslationProviderResponse], error) {
-	return c.deleteTranslationProvider.CallUnary(ctx, req)
-}
-
-// ListTranslationJobs calls api.manage.v1.TranslationService.ListTranslationJobs.
-func (c *translationServiceClient) ListTranslationJobs(ctx context.Context, req *connect.Request[v1.ListTranslationJobsRequest]) (*connect.Response[v1.ListTranslationJobsResponse], error) {
-	return c.listTranslationJobs.CallUnary(ctx, req)
-}
-
-// CancelTranslationJob calls api.manage.v1.TranslationService.CancelTranslationJob.
-func (c *translationServiceClient) CancelTranslationJob(ctx context.Context, req *connect.Request[v1.CancelTranslationJobRequest]) (*connect.Response[v1.CancelTranslationJobResponse], error) {
-	return c.cancelTranslationJob.CallUnary(ctx, req)
-}
-
 // ListEntityTranslations calls api.manage.v1.TranslationService.ListEntityTranslations.
 func (c *translationServiceClient) ListEntityTranslations(ctx context.Context, req *connect.Request[v1.ListEntityTranslationsRequest]) (*connect.Response[v1.ListEntityTranslationsResponse], error) {
 	return c.listEntityTranslations.CallUnary(ctx, req)
@@ -299,11 +189,6 @@ func (c *translationServiceClient) GetEntityTranslation(ctx context.Context, req
 // SetEntitySourceLocale calls api.manage.v1.TranslationService.SetEntitySourceLocale.
 func (c *translationServiceClient) SetEntitySourceLocale(ctx context.Context, req *connect.Request[v1.SetEntitySourceLocaleRequest]) (*connect.Response[v1.SetEntitySourceLocaleResponse], error) {
 	return c.setEntitySourceLocale.CallUnary(ctx, req)
-}
-
-// RegenerateEntityTranslations calls api.manage.v1.TranslationService.RegenerateEntityTranslations.
-func (c *translationServiceClient) RegenerateEntityTranslations(ctx context.Context, req *connect.Request[v1.RegenerateEntityTranslationsRequest]) (*connect.Response[v1.RegenerateEntityTranslationsResponse], error) {
-	return c.regenerateEntityTranslations.CallUnary(ctx, req)
 }
 
 // ExportEntityTranslationXLIFF calls api.manage.v1.TranslationService.ExportEntityTranslationXLIFF.
@@ -322,19 +207,9 @@ type TranslationServiceHandler interface {
 	GetTranslationOverview(context.Context, *connect.Request[v1.GetTranslationOverviewRequest]) (*connect.Response[v1.GetTranslationOverviewResponse], error)
 	GetTranslationSettings(context.Context, *connect.Request[v1.GetTranslationSettingsRequest]) (*connect.Response[v1.GetTranslationSettingsResponse], error)
 	UpdateTranslationSettings(context.Context, *connect.Request[v1.UpdateTranslationSettingsRequest]) (*connect.Response[v1.UpdateTranslationSettingsResponse], error)
-	ListTranslationProviders(context.Context, *connect.Request[v1.ListTranslationProvidersRequest]) (*connect.Response[v1.ListTranslationProvidersResponse], error)
-	CreateTranslationProvider(context.Context, *connect.Request[v1.CreateTranslationProviderRequest]) (*connect.Response[v1.CreateTranslationProviderResponse], error)
-	UpdateTranslationProvider(context.Context, *connect.Request[v1.UpdateTranslationProviderRequest]) (*connect.Response[v1.UpdateTranslationProviderResponse], error)
-	DeleteTranslationProvider(context.Context, *connect.Request[v1.DeleteTranslationProviderRequest]) (*connect.Response[v1.DeleteTranslationProviderResponse], error)
-	// Admin callers may browse globally. Other authenticated callers must use
-	// exact entity_type/entity_id equality filters and pass the API's resource
-	// manager check for that entity.
-	ListTranslationJobs(context.Context, *connect.Request[v1.ListTranslationJobsRequest]) (*connect.Response[v1.ListTranslationJobsResponse], error)
-	CancelTranslationJob(context.Context, *connect.Request[v1.CancelTranslationJobRequest]) (*connect.Response[v1.CancelTranslationJobResponse], error)
 	ListEntityTranslations(context.Context, *connect.Request[v1.ListEntityTranslationsRequest]) (*connect.Response[v1.ListEntityTranslationsResponse], error)
 	GetEntityTranslation(context.Context, *connect.Request[v1.GetEntityTranslationRequest]) (*connect.Response[v1.GetEntityTranslationResponse], error)
 	SetEntitySourceLocale(context.Context, *connect.Request[v1.SetEntitySourceLocaleRequest]) (*connect.Response[v1.SetEntitySourceLocaleResponse], error)
-	RegenerateEntityTranslations(context.Context, *connect.Request[v1.RegenerateEntityTranslationsRequest]) (*connect.Response[v1.RegenerateEntityTranslationsResponse], error)
 	ExportEntityTranslationXLIFF(context.Context, *connect.Request[v1.ExportEntityTranslationXLIFFRequest]) (*connect.Response[v1.ExportEntityTranslationXLIFFResponse], error)
 	ImportEntityTranslationXLIFF(context.Context, *connect.Request[v1.ImportEntityTranslationXLIFFRequest]) (*connect.Response[v1.ImportEntityTranslationXLIFFResponse], error)
 }
@@ -370,42 +245,6 @@ func NewTranslationServiceHandler(svc TranslationServiceHandler, opts ...connect
 		connect.WithSchema(translationServiceMethods.ByName("UpdateTranslationSettings")),
 		connect.WithHandlerOptions(opts...),
 	)
-	translationServiceListTranslationProvidersHandler := connect.NewUnaryHandler(
-		TranslationServiceListTranslationProvidersProcedure,
-		svc.ListTranslationProviders,
-		connect.WithSchema(translationServiceMethods.ByName("ListTranslationProviders")),
-		connect.WithHandlerOptions(opts...),
-	)
-	translationServiceCreateTranslationProviderHandler := connect.NewUnaryHandler(
-		TranslationServiceCreateTranslationProviderProcedure,
-		svc.CreateTranslationProvider,
-		connect.WithSchema(translationServiceMethods.ByName("CreateTranslationProvider")),
-		connect.WithHandlerOptions(opts...),
-	)
-	translationServiceUpdateTranslationProviderHandler := connect.NewUnaryHandler(
-		TranslationServiceUpdateTranslationProviderProcedure,
-		svc.UpdateTranslationProvider,
-		connect.WithSchema(translationServiceMethods.ByName("UpdateTranslationProvider")),
-		connect.WithHandlerOptions(opts...),
-	)
-	translationServiceDeleteTranslationProviderHandler := connect.NewUnaryHandler(
-		TranslationServiceDeleteTranslationProviderProcedure,
-		svc.DeleteTranslationProvider,
-		connect.WithSchema(translationServiceMethods.ByName("DeleteTranslationProvider")),
-		connect.WithHandlerOptions(opts...),
-	)
-	translationServiceListTranslationJobsHandler := connect.NewUnaryHandler(
-		TranslationServiceListTranslationJobsProcedure,
-		svc.ListTranslationJobs,
-		connect.WithSchema(translationServiceMethods.ByName("ListTranslationJobs")),
-		connect.WithHandlerOptions(opts...),
-	)
-	translationServiceCancelTranslationJobHandler := connect.NewUnaryHandler(
-		TranslationServiceCancelTranslationJobProcedure,
-		svc.CancelTranslationJob,
-		connect.WithSchema(translationServiceMethods.ByName("CancelTranslationJob")),
-		connect.WithHandlerOptions(opts...),
-	)
 	translationServiceListEntityTranslationsHandler := connect.NewUnaryHandler(
 		TranslationServiceListEntityTranslationsProcedure,
 		svc.ListEntityTranslations,
@@ -422,12 +261,6 @@ func NewTranslationServiceHandler(svc TranslationServiceHandler, opts ...connect
 		TranslationServiceSetEntitySourceLocaleProcedure,
 		svc.SetEntitySourceLocale,
 		connect.WithSchema(translationServiceMethods.ByName("SetEntitySourceLocale")),
-		connect.WithHandlerOptions(opts...),
-	)
-	translationServiceRegenerateEntityTranslationsHandler := connect.NewUnaryHandler(
-		TranslationServiceRegenerateEntityTranslationsProcedure,
-		svc.RegenerateEntityTranslations,
-		connect.WithSchema(translationServiceMethods.ByName("RegenerateEntityTranslations")),
 		connect.WithHandlerOptions(opts...),
 	)
 	translationServiceExportEntityTranslationXLIFFHandler := connect.NewUnaryHandler(
@@ -452,26 +285,12 @@ func NewTranslationServiceHandler(svc TranslationServiceHandler, opts ...connect
 			translationServiceGetTranslationSettingsHandler.ServeHTTP(w, r)
 		case TranslationServiceUpdateTranslationSettingsProcedure:
 			translationServiceUpdateTranslationSettingsHandler.ServeHTTP(w, r)
-		case TranslationServiceListTranslationProvidersProcedure:
-			translationServiceListTranslationProvidersHandler.ServeHTTP(w, r)
-		case TranslationServiceCreateTranslationProviderProcedure:
-			translationServiceCreateTranslationProviderHandler.ServeHTTP(w, r)
-		case TranslationServiceUpdateTranslationProviderProcedure:
-			translationServiceUpdateTranslationProviderHandler.ServeHTTP(w, r)
-		case TranslationServiceDeleteTranslationProviderProcedure:
-			translationServiceDeleteTranslationProviderHandler.ServeHTTP(w, r)
-		case TranslationServiceListTranslationJobsProcedure:
-			translationServiceListTranslationJobsHandler.ServeHTTP(w, r)
-		case TranslationServiceCancelTranslationJobProcedure:
-			translationServiceCancelTranslationJobHandler.ServeHTTP(w, r)
 		case TranslationServiceListEntityTranslationsProcedure:
 			translationServiceListEntityTranslationsHandler.ServeHTTP(w, r)
 		case TranslationServiceGetEntityTranslationProcedure:
 			translationServiceGetEntityTranslationHandler.ServeHTTP(w, r)
 		case TranslationServiceSetEntitySourceLocaleProcedure:
 			translationServiceSetEntitySourceLocaleHandler.ServeHTTP(w, r)
-		case TranslationServiceRegenerateEntityTranslationsProcedure:
-			translationServiceRegenerateEntityTranslationsHandler.ServeHTTP(w, r)
 		case TranslationServiceExportEntityTranslationXLIFFProcedure:
 			translationServiceExportEntityTranslationXLIFFHandler.ServeHTTP(w, r)
 		case TranslationServiceImportEntityTranslationXLIFFProcedure:
@@ -501,30 +320,6 @@ func (UnimplementedTranslationServiceHandler) UpdateTranslationSettings(context.
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("api.manage.v1.TranslationService.UpdateTranslationSettings is not implemented"))
 }
 
-func (UnimplementedTranslationServiceHandler) ListTranslationProviders(context.Context, *connect.Request[v1.ListTranslationProvidersRequest]) (*connect.Response[v1.ListTranslationProvidersResponse], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("api.manage.v1.TranslationService.ListTranslationProviders is not implemented"))
-}
-
-func (UnimplementedTranslationServiceHandler) CreateTranslationProvider(context.Context, *connect.Request[v1.CreateTranslationProviderRequest]) (*connect.Response[v1.CreateTranslationProviderResponse], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("api.manage.v1.TranslationService.CreateTranslationProvider is not implemented"))
-}
-
-func (UnimplementedTranslationServiceHandler) UpdateTranslationProvider(context.Context, *connect.Request[v1.UpdateTranslationProviderRequest]) (*connect.Response[v1.UpdateTranslationProviderResponse], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("api.manage.v1.TranslationService.UpdateTranslationProvider is not implemented"))
-}
-
-func (UnimplementedTranslationServiceHandler) DeleteTranslationProvider(context.Context, *connect.Request[v1.DeleteTranslationProviderRequest]) (*connect.Response[v1.DeleteTranslationProviderResponse], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("api.manage.v1.TranslationService.DeleteTranslationProvider is not implemented"))
-}
-
-func (UnimplementedTranslationServiceHandler) ListTranslationJobs(context.Context, *connect.Request[v1.ListTranslationJobsRequest]) (*connect.Response[v1.ListTranslationJobsResponse], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("api.manage.v1.TranslationService.ListTranslationJobs is not implemented"))
-}
-
-func (UnimplementedTranslationServiceHandler) CancelTranslationJob(context.Context, *connect.Request[v1.CancelTranslationJobRequest]) (*connect.Response[v1.CancelTranslationJobResponse], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("api.manage.v1.TranslationService.CancelTranslationJob is not implemented"))
-}
-
 func (UnimplementedTranslationServiceHandler) ListEntityTranslations(context.Context, *connect.Request[v1.ListEntityTranslationsRequest]) (*connect.Response[v1.ListEntityTranslationsResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("api.manage.v1.TranslationService.ListEntityTranslations is not implemented"))
 }
@@ -535,10 +330,6 @@ func (UnimplementedTranslationServiceHandler) GetEntityTranslation(context.Conte
 
 func (UnimplementedTranslationServiceHandler) SetEntitySourceLocale(context.Context, *connect.Request[v1.SetEntitySourceLocaleRequest]) (*connect.Response[v1.SetEntitySourceLocaleResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("api.manage.v1.TranslationService.SetEntitySourceLocale is not implemented"))
-}
-
-func (UnimplementedTranslationServiceHandler) RegenerateEntityTranslations(context.Context, *connect.Request[v1.RegenerateEntityTranslationsRequest]) (*connect.Response[v1.RegenerateEntityTranslationsResponse], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("api.manage.v1.TranslationService.RegenerateEntityTranslations is not implemented"))
 }
 
 func (UnimplementedTranslationServiceHandler) ExportEntityTranslationXLIFF(context.Context, *connect.Request[v1.ExportEntityTranslationXLIFFRequest]) (*connect.Response[v1.ExportEntityTranslationXLIFFResponse], error) {

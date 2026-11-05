@@ -13,7 +13,7 @@ import (
 )
 
 // ValidateRelayInteractiveAIDocumentMutationRequest fails closed for malformed
-// post-commit interactive AI/MCP relay requests. It does not create retry,
+// post-commit interactive MCP relay requests. It does not create retry,
 // history, or persistence state.
 func ValidateRelayInteractiveAIDocumentMutationRequest(request *intrav1.RelayInteractiveAIDocumentMutationRequest) error {
 	if request == nil {
@@ -23,8 +23,7 @@ func ValidateRelayInteractiveAIDocumentMutationRequest(request *intrav1.RelayInt
 		return errors.New("interactive AI document mutation id is required")
 	}
 	switch request.GetOrigin() {
-	case intrav1.InteractiveAIDocumentMutationOrigin_INTERACTIVE_AI_DOCUMENT_MUTATION_ORIGIN_IN_EDITOR_AI,
-		intrav1.InteractiveAIDocumentMutationOrigin_INTERACTIVE_AI_DOCUMENT_MUTATION_ORIGIN_MCP:
+	case intrav1.InteractiveAIDocumentMutationOrigin_INTERACTIVE_AI_DOCUMENT_MUTATION_ORIGIN_MCP:
 	default:
 		return fmt.Errorf("unsupported interactive AI document mutation origin: %s", request.GetOrigin())
 	}

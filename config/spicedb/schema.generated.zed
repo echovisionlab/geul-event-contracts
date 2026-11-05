@@ -2,7 +2,7 @@
 // DO NOT EDIT.
 //
 // Canonical source: config/spicedb/catalog/{core.yaml,manifest.yaml,domains/*.yaml}
-// Catalog fingerprint: 3e90e115e02903ab802370cdfbdb7a093e22e16291fa91cdb26eda43a2d45e5f
+// Catalog fingerprint: 9ddeb327d355eed2ef9561d8835dc585c8e42d94637268b5a60e46e60c8aafde
 // Role inheritance tuples:
 // role:admin#member@account_identity:<id>
 // role:author#member@role:admin#member
@@ -328,10 +328,8 @@ definition mail_adapter {}
 
 definition email_suppression {}
 
-// Domain: translation — Translation runtime settings and provider policy
+// Domain: translation — Translation runtime settings
 definition translation_settings {}
-
-definition translation_provider {}
 
 // Domain: legal_policy — Terms and Privacy history policy
 definition terms_history {

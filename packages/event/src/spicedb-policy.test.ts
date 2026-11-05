@@ -30,10 +30,7 @@ import type {
 import { Label } from "@echovisionlab/geul-proto/policy/spicedb/label.ts";
 import { Post } from "@echovisionlab/geul-proto/policy/spicedb/post.ts";
 import { ProgramEvent } from "@echovisionlab/geul-proto/policy/spicedb/program_event.ts";
-import {
-  TranslationProvider,
-  TranslationSettings,
-} from "@echovisionlab/geul-proto/policy/spicedb/translation.ts";
+import { TranslationSettings } from "@echovisionlab/geul-proto/policy/spicedb/translation.ts";
 
 function compileTimeInvalidSurfaceMustStayUnrepresentable(): void {
   const actor = NewAccountIdentityActor("identity-id");
@@ -100,7 +97,7 @@ void compileTimeInvalidSurfaceMustStayUnrepresentable;
 describe("domain-shaped SpiceDB policy descriptors", () => {
   it("keeps direct-session and MCP engine checks byte-identical", () => {
     expect(spiceDbCatalogFingerprint).toBe(
-      "3e90e115e02903ab802370cdfbdb7a093e22e16291fa91cdb26eda43a2d45e5f",
+      "9ddeb327d355eed2ef9561d8835dc585c8e42d94637268b5a60e46e60c8aafde",
     );
     const actor = NewAccountIdentityActor("identity-id");
     const can = Post.Edit("post-id");
@@ -141,10 +138,6 @@ describe("domain-shaped SpiceDB policy descriptors", () => {
       "email_layout.preview_content": EmailLayout.PreviewContent(),
       "translation_settings.view": TranslationSettings.View(),
       "translation_settings.update": TranslationSettings.Update(),
-      "translation_provider.list": TranslationProvider.List(),
-      "translation_provider.create": TranslationProvider.Create(),
-      "translation_provider.update": TranslationProvider.Update(),
-      "translation_provider.delete": TranslationProvider.Delete(),
       "mail_adapter.list": MailAdapter.List(),
       "mail_adapter.create": MailAdapter.Create(),
       "mail_adapter.update": MailAdapter.Update(),

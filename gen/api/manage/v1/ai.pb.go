@@ -10,7 +10,6 @@ import (
 	_ "github.com/echovisionlab/geul-event-contracts/gen/api/policy/v1"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
-	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
@@ -22,186 +21,6 @@ const (
 	// Verify that runtime/protoimpl is sufficiently up-to-date.
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
-
-type AIResourceType int32
-
-const (
-	AIResourceType_AI_RESOURCE_TYPE_UNSPECIFIED    AIResourceType = 0
-	AIResourceType_AI_RESOURCE_TYPE_POST           AIResourceType = 1
-	AIResourceType_AI_RESOURCE_TYPE_WORK           AIResourceType = 2
-	AIResourceType_AI_RESOURCE_TYPE_PAGE           AIResourceType = 3
-	AIResourceType_AI_RESOURCE_TYPE_FORM           AIResourceType = 4
-	AIResourceType_AI_RESOURCE_TYPE_ARTIST         AIResourceType = 5
-	AIResourceType_AI_RESOURCE_TYPE_RELEASE        AIResourceType = 6
-	AIResourceType_AI_RESOURCE_TYPE_LABEL          AIResourceType = 7
-	AIResourceType_AI_RESOURCE_TYPE_CAMPAIGN       AIResourceType = 8
-	AIResourceType_AI_RESOURCE_TYPE_EMAIL_TEMPLATE AIResourceType = 9
-)
-
-// Enum value maps for AIResourceType.
-var (
-	AIResourceType_name = map[int32]string{
-		0: "AI_RESOURCE_TYPE_UNSPECIFIED",
-		1: "AI_RESOURCE_TYPE_POST",
-		2: "AI_RESOURCE_TYPE_WORK",
-		3: "AI_RESOURCE_TYPE_PAGE",
-		4: "AI_RESOURCE_TYPE_FORM",
-		5: "AI_RESOURCE_TYPE_ARTIST",
-		6: "AI_RESOURCE_TYPE_RELEASE",
-		7: "AI_RESOURCE_TYPE_LABEL",
-		8: "AI_RESOURCE_TYPE_CAMPAIGN",
-		9: "AI_RESOURCE_TYPE_EMAIL_TEMPLATE",
-	}
-	AIResourceType_value = map[string]int32{
-		"AI_RESOURCE_TYPE_UNSPECIFIED":    0,
-		"AI_RESOURCE_TYPE_POST":           1,
-		"AI_RESOURCE_TYPE_WORK":           2,
-		"AI_RESOURCE_TYPE_PAGE":           3,
-		"AI_RESOURCE_TYPE_FORM":           4,
-		"AI_RESOURCE_TYPE_ARTIST":         5,
-		"AI_RESOURCE_TYPE_RELEASE":        6,
-		"AI_RESOURCE_TYPE_LABEL":          7,
-		"AI_RESOURCE_TYPE_CAMPAIGN":       8,
-		"AI_RESOURCE_TYPE_EMAIL_TEMPLATE": 9,
-	}
-)
-
-func (x AIResourceType) Enum() *AIResourceType {
-	p := new(AIResourceType)
-	*p = x
-	return p
-}
-
-func (x AIResourceType) String() string {
-	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
-}
-
-func (AIResourceType) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_manage_v1_ai_proto_enumTypes[0].Descriptor()
-}
-
-func (AIResourceType) Type() protoreflect.EnumType {
-	return &file_api_manage_v1_ai_proto_enumTypes[0]
-}
-
-func (x AIResourceType) Number() protoreflect.EnumNumber {
-	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Use AIResourceType.Descriptor instead.
-func (AIResourceType) EnumDescriptor() ([]byte, []int) {
-	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{0}
-}
-
-type MetadataGenerationJobStatus int32
-
-const (
-	MetadataGenerationJobStatus_METADATA_GENERATION_JOB_STATUS_UNSPECIFIED MetadataGenerationJobStatus = 0
-	MetadataGenerationJobStatus_METADATA_GENERATION_JOB_STATUS_QUEUED      MetadataGenerationJobStatus = 1
-	MetadataGenerationJobStatus_METADATA_GENERATION_JOB_STATUS_RUNNING     MetadataGenerationJobStatus = 2
-	MetadataGenerationJobStatus_METADATA_GENERATION_JOB_STATUS_READY       MetadataGenerationJobStatus = 3
-	MetadataGenerationJobStatus_METADATA_GENERATION_JOB_STATUS_FAILED      MetadataGenerationJobStatus = 4
-	MetadataGenerationJobStatus_METADATA_GENERATION_JOB_STATUS_APPLIED     MetadataGenerationJobStatus = 5
-	MetadataGenerationJobStatus_METADATA_GENERATION_JOB_STATUS_DISMISSED   MetadataGenerationJobStatus = 6
-)
-
-// Enum value maps for MetadataGenerationJobStatus.
-var (
-	MetadataGenerationJobStatus_name = map[int32]string{
-		0: "METADATA_GENERATION_JOB_STATUS_UNSPECIFIED",
-		1: "METADATA_GENERATION_JOB_STATUS_QUEUED",
-		2: "METADATA_GENERATION_JOB_STATUS_RUNNING",
-		3: "METADATA_GENERATION_JOB_STATUS_READY",
-		4: "METADATA_GENERATION_JOB_STATUS_FAILED",
-		5: "METADATA_GENERATION_JOB_STATUS_APPLIED",
-		6: "METADATA_GENERATION_JOB_STATUS_DISMISSED",
-	}
-	MetadataGenerationJobStatus_value = map[string]int32{
-		"METADATA_GENERATION_JOB_STATUS_UNSPECIFIED": 0,
-		"METADATA_GENERATION_JOB_STATUS_QUEUED":      1,
-		"METADATA_GENERATION_JOB_STATUS_RUNNING":     2,
-		"METADATA_GENERATION_JOB_STATUS_READY":       3,
-		"METADATA_GENERATION_JOB_STATUS_FAILED":      4,
-		"METADATA_GENERATION_JOB_STATUS_APPLIED":     5,
-		"METADATA_GENERATION_JOB_STATUS_DISMISSED":   6,
-	}
-)
-
-func (x MetadataGenerationJobStatus) Enum() *MetadataGenerationJobStatus {
-	p := new(MetadataGenerationJobStatus)
-	*p = x
-	return p
-}
-
-func (x MetadataGenerationJobStatus) String() string {
-	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
-}
-
-func (MetadataGenerationJobStatus) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_manage_v1_ai_proto_enumTypes[1].Descriptor()
-}
-
-func (MetadataGenerationJobStatus) Type() protoreflect.EnumType {
-	return &file_api_manage_v1_ai_proto_enumTypes[1]
-}
-
-func (x MetadataGenerationJobStatus) Number() protoreflect.EnumNumber {
-	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Use MetadataGenerationJobStatus.Descriptor instead.
-func (MetadataGenerationJobStatus) EnumDescriptor() ([]byte, []int) {
-	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{1}
-}
-
-type MetadataGenerationJobResolution int32
-
-const (
-	MetadataGenerationJobResolution_METADATA_GENERATION_JOB_RESOLUTION_UNSPECIFIED MetadataGenerationJobResolution = 0
-	MetadataGenerationJobResolution_METADATA_GENERATION_JOB_RESOLUTION_APPLIED     MetadataGenerationJobResolution = 1
-	MetadataGenerationJobResolution_METADATA_GENERATION_JOB_RESOLUTION_DISMISSED   MetadataGenerationJobResolution = 2
-)
-
-// Enum value maps for MetadataGenerationJobResolution.
-var (
-	MetadataGenerationJobResolution_name = map[int32]string{
-		0: "METADATA_GENERATION_JOB_RESOLUTION_UNSPECIFIED",
-		1: "METADATA_GENERATION_JOB_RESOLUTION_APPLIED",
-		2: "METADATA_GENERATION_JOB_RESOLUTION_DISMISSED",
-	}
-	MetadataGenerationJobResolution_value = map[string]int32{
-		"METADATA_GENERATION_JOB_RESOLUTION_UNSPECIFIED": 0,
-		"METADATA_GENERATION_JOB_RESOLUTION_APPLIED":     1,
-		"METADATA_GENERATION_JOB_RESOLUTION_DISMISSED":   2,
-	}
-)
-
-func (x MetadataGenerationJobResolution) Enum() *MetadataGenerationJobResolution {
-	p := new(MetadataGenerationJobResolution)
-	*p = x
-	return p
-}
-
-func (x MetadataGenerationJobResolution) String() string {
-	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
-}
-
-func (MetadataGenerationJobResolution) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_manage_v1_ai_proto_enumTypes[2].Descriptor()
-}
-
-func (MetadataGenerationJobResolution) Type() protoreflect.EnumType {
-	return &file_api_manage_v1_ai_proto_enumTypes[2]
-}
-
-func (x MetadataGenerationJobResolution) Number() protoreflect.EnumNumber {
-	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Use MetadataGenerationJobResolution.Descriptor instead.
-func (MetadataGenerationJobResolution) EnumDescriptor() ([]byte, []int) {
-	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{2}
-}
 
 // DCDP/1 is the provider-neutral authenticated document protocol. It exposes
 // stable semantic handles only; editor-native documents, numeric positions,
@@ -279,11 +98,11 @@ func (x AIDocumentDomain) String() string {
 }
 
 func (AIDocumentDomain) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_manage_v1_ai_proto_enumTypes[3].Descriptor()
+	return file_api_manage_v1_ai_proto_enumTypes[0].Descriptor()
 }
 
 func (AIDocumentDomain) Type() protoreflect.EnumType {
-	return &file_api_manage_v1_ai_proto_enumTypes[3]
+	return &file_api_manage_v1_ai_proto_enumTypes[0]
 }
 
 func (x AIDocumentDomain) Number() protoreflect.EnumNumber {
@@ -292,7 +111,7 @@ func (x AIDocumentDomain) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use AIDocumentDomain.Descriptor instead.
 func (AIDocumentDomain) EnumDescriptor() ([]byte, []int) {
-	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{3}
+	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{0}
 }
 
 type AIDocumentLocaleRole int32
@@ -328,11 +147,11 @@ func (x AIDocumentLocaleRole) String() string {
 }
 
 func (AIDocumentLocaleRole) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_manage_v1_ai_proto_enumTypes[4].Descriptor()
+	return file_api_manage_v1_ai_proto_enumTypes[1].Descriptor()
 }
 
 func (AIDocumentLocaleRole) Type() protoreflect.EnumType {
-	return &file_api_manage_v1_ai_proto_enumTypes[4]
+	return &file_api_manage_v1_ai_proto_enumTypes[1]
 }
 
 func (x AIDocumentLocaleRole) Number() protoreflect.EnumNumber {
@@ -341,7 +160,7 @@ func (x AIDocumentLocaleRole) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use AIDocumentLocaleRole.Descriptor instead.
 func (AIDocumentLocaleRole) EnumDescriptor() ([]byte, []int) {
-	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{4}
+	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{1}
 }
 
 type AIDocumentOperationKind int32
@@ -410,11 +229,11 @@ func (x AIDocumentOperationKind) String() string {
 }
 
 func (AIDocumentOperationKind) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_manage_v1_ai_proto_enumTypes[5].Descriptor()
+	return file_api_manage_v1_ai_proto_enumTypes[2].Descriptor()
 }
 
 func (AIDocumentOperationKind) Type() protoreflect.EnumType {
-	return &file_api_manage_v1_ai_proto_enumTypes[5]
+	return &file_api_manage_v1_ai_proto_enumTypes[2]
 }
 
 func (x AIDocumentOperationKind) Number() protoreflect.EnumNumber {
@@ -423,7 +242,7 @@ func (x AIDocumentOperationKind) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use AIDocumentOperationKind.Descriptor instead.
 func (AIDocumentOperationKind) EnumDescriptor() ([]byte, []int) {
-	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{5}
+	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{2}
 }
 
 type AIDocumentIssueCode int32
@@ -510,11 +329,11 @@ func (x AIDocumentIssueCode) String() string {
 }
 
 func (AIDocumentIssueCode) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_manage_v1_ai_proto_enumTypes[6].Descriptor()
+	return file_api_manage_v1_ai_proto_enumTypes[3].Descriptor()
 }
 
 func (AIDocumentIssueCode) Type() protoreflect.EnumType {
-	return &file_api_manage_v1_ai_proto_enumTypes[6]
+	return &file_api_manage_v1_ai_proto_enumTypes[3]
 }
 
 func (x AIDocumentIssueCode) Number() protoreflect.EnumNumber {
@@ -523,7 +342,7 @@ func (x AIDocumentIssueCode) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use AIDocumentIssueCode.Descriptor instead.
 func (AIDocumentIssueCode) EnumDescriptor() ([]byte, []int) {
-	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{6}
+	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{3}
 }
 
 type AIDocumentConflictCode int32
@@ -559,11 +378,11 @@ func (x AIDocumentConflictCode) String() string {
 }
 
 func (AIDocumentConflictCode) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_manage_v1_ai_proto_enumTypes[7].Descriptor()
+	return file_api_manage_v1_ai_proto_enumTypes[4].Descriptor()
 }
 
 func (AIDocumentConflictCode) Type() protoreflect.EnumType {
-	return &file_api_manage_v1_ai_proto_enumTypes[7]
+	return &file_api_manage_v1_ai_proto_enumTypes[4]
 }
 
 func (x AIDocumentConflictCode) Number() protoreflect.EnumNumber {
@@ -572,800 +391,7 @@ func (x AIDocumentConflictCode) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use AIDocumentConflictCode.Descriptor instead.
 func (AIDocumentConflictCode) EnumDescriptor() ([]byte, []int) {
-	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{7}
-}
-
-// AI Editor orchestration is a first-party Browser Session surface. It is not
-// Remote MCP, never accepts a PAT, and keeps provider credentials, prompt
-// assembly, model calls, retry policy, and the tool loop on the server. A turn
-// is transient; this contract creates no durable conversation or suggestion.
-type AIEditorTurnPhase int32
-
-const (
-	AIEditorTurnPhase_AI_EDITOR_TURN_PHASE_UNSPECIFIED            AIEditorTurnPhase = 0
-	AIEditorTurnPhase_AI_EDITOR_TURN_PHASE_PROVIDER_RUNNING       AIEditorTurnPhase = 1
-	AIEditorTurnPhase_AI_EDITOR_TURN_PHASE_AWAITING_TOOL_APPROVAL AIEditorTurnPhase = 2
-	AIEditorTurnPhase_AI_EDITOR_TURN_PHASE_APPLYING_DOCUMENT      AIEditorTurnPhase = 3
-)
-
-// Enum value maps for AIEditorTurnPhase.
-var (
-	AIEditorTurnPhase_name = map[int32]string{
-		0: "AI_EDITOR_TURN_PHASE_UNSPECIFIED",
-		1: "AI_EDITOR_TURN_PHASE_PROVIDER_RUNNING",
-		2: "AI_EDITOR_TURN_PHASE_AWAITING_TOOL_APPROVAL",
-		3: "AI_EDITOR_TURN_PHASE_APPLYING_DOCUMENT",
-	}
-	AIEditorTurnPhase_value = map[string]int32{
-		"AI_EDITOR_TURN_PHASE_UNSPECIFIED":            0,
-		"AI_EDITOR_TURN_PHASE_PROVIDER_RUNNING":       1,
-		"AI_EDITOR_TURN_PHASE_AWAITING_TOOL_APPROVAL": 2,
-		"AI_EDITOR_TURN_PHASE_APPLYING_DOCUMENT":      3,
-	}
-)
-
-func (x AIEditorTurnPhase) Enum() *AIEditorTurnPhase {
-	p := new(AIEditorTurnPhase)
-	*p = x
-	return p
-}
-
-func (x AIEditorTurnPhase) String() string {
-	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
-}
-
-func (AIEditorTurnPhase) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_manage_v1_ai_proto_enumTypes[8].Descriptor()
-}
-
-func (AIEditorTurnPhase) Type() protoreflect.EnumType {
-	return &file_api_manage_v1_ai_proto_enumTypes[8]
-}
-
-func (x AIEditorTurnPhase) Number() protoreflect.EnumNumber {
-	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Use AIEditorTurnPhase.Descriptor instead.
-func (AIEditorTurnPhase) EnumDescriptor() ([]byte, []int) {
-	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{8}
-}
-
-type AIEditorToolCallDecision int32
-
-const (
-	AIEditorToolCallDecision_AI_EDITOR_TOOL_CALL_DECISION_UNSPECIFIED AIEditorToolCallDecision = 0
-	AIEditorToolCallDecision_AI_EDITOR_TOOL_CALL_DECISION_APPROVE     AIEditorToolCallDecision = 1
-	AIEditorToolCallDecision_AI_EDITOR_TOOL_CALL_DECISION_DENY        AIEditorToolCallDecision = 2
-)
-
-// Enum value maps for AIEditorToolCallDecision.
-var (
-	AIEditorToolCallDecision_name = map[int32]string{
-		0: "AI_EDITOR_TOOL_CALL_DECISION_UNSPECIFIED",
-		1: "AI_EDITOR_TOOL_CALL_DECISION_APPROVE",
-		2: "AI_EDITOR_TOOL_CALL_DECISION_DENY",
-	}
-	AIEditorToolCallDecision_value = map[string]int32{
-		"AI_EDITOR_TOOL_CALL_DECISION_UNSPECIFIED": 0,
-		"AI_EDITOR_TOOL_CALL_DECISION_APPROVE":     1,
-		"AI_EDITOR_TOOL_CALL_DECISION_DENY":        2,
-	}
-)
-
-func (x AIEditorToolCallDecision) Enum() *AIEditorToolCallDecision {
-	p := new(AIEditorToolCallDecision)
-	*p = x
-	return p
-}
-
-func (x AIEditorToolCallDecision) String() string {
-	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
-}
-
-func (AIEditorToolCallDecision) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_manage_v1_ai_proto_enumTypes[9].Descriptor()
-}
-
-func (AIEditorToolCallDecision) Type() protoreflect.EnumType {
-	return &file_api_manage_v1_ai_proto_enumTypes[9]
-}
-
-func (x AIEditorToolCallDecision) Number() protoreflect.EnumNumber {
-	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Use AIEditorToolCallDecision.Descriptor instead.
-func (AIEditorToolCallDecision) EnumDescriptor() ([]byte, []int) {
-	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{9}
-}
-
-type AIEditorTurnTerminalStatus int32
-
-const (
-	AIEditorTurnTerminalStatus_AI_EDITOR_TURN_TERMINAL_STATUS_UNSPECIFIED AIEditorTurnTerminalStatus = 0
-	AIEditorTurnTerminalStatus_AI_EDITOR_TURN_TERMINAL_STATUS_COMPLETED   AIEditorTurnTerminalStatus = 1
-	AIEditorTurnTerminalStatus_AI_EDITOR_TURN_TERMINAL_STATUS_CANCELLED   AIEditorTurnTerminalStatus = 2
-	AIEditorTurnTerminalStatus_AI_EDITOR_TURN_TERMINAL_STATUS_FAILED      AIEditorTurnTerminalStatus = 3
-)
-
-// Enum value maps for AIEditorTurnTerminalStatus.
-var (
-	AIEditorTurnTerminalStatus_name = map[int32]string{
-		0: "AI_EDITOR_TURN_TERMINAL_STATUS_UNSPECIFIED",
-		1: "AI_EDITOR_TURN_TERMINAL_STATUS_COMPLETED",
-		2: "AI_EDITOR_TURN_TERMINAL_STATUS_CANCELLED",
-		3: "AI_EDITOR_TURN_TERMINAL_STATUS_FAILED",
-	}
-	AIEditorTurnTerminalStatus_value = map[string]int32{
-		"AI_EDITOR_TURN_TERMINAL_STATUS_UNSPECIFIED": 0,
-		"AI_EDITOR_TURN_TERMINAL_STATUS_COMPLETED":   1,
-		"AI_EDITOR_TURN_TERMINAL_STATUS_CANCELLED":   2,
-		"AI_EDITOR_TURN_TERMINAL_STATUS_FAILED":      3,
-	}
-)
-
-func (x AIEditorTurnTerminalStatus) Enum() *AIEditorTurnTerminalStatus {
-	p := new(AIEditorTurnTerminalStatus)
-	*p = x
-	return p
-}
-
-func (x AIEditorTurnTerminalStatus) String() string {
-	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
-}
-
-func (AIEditorTurnTerminalStatus) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_manage_v1_ai_proto_enumTypes[10].Descriptor()
-}
-
-func (AIEditorTurnTerminalStatus) Type() protoreflect.EnumType {
-	return &file_api_manage_v1_ai_proto_enumTypes[10]
-}
-
-func (x AIEditorTurnTerminalStatus) Number() protoreflect.EnumNumber {
-	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Use AIEditorTurnTerminalStatus.Descriptor instead.
-func (AIEditorTurnTerminalStatus) EnumDescriptor() ([]byte, []int) {
-	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{10}
-}
-
-type AIEditorTurnFailureCode int32
-
-const (
-	AIEditorTurnFailureCode_AI_EDITOR_TURN_FAILURE_CODE_UNSPECIFIED AIEditorTurnFailureCode = 0
-	AIEditorTurnFailureCode_AI_EDITOR_TURN_FAILURE_CODE_PROVIDER    AIEditorTurnFailureCode = 1
-	AIEditorTurnFailureCode_AI_EDITOR_TURN_FAILURE_CODE_DOCUMENT    AIEditorTurnFailureCode = 2
-	AIEditorTurnFailureCode_AI_EDITOR_TURN_FAILURE_CODE_INTERNAL    AIEditorTurnFailureCode = 3
-)
-
-// Enum value maps for AIEditorTurnFailureCode.
-var (
-	AIEditorTurnFailureCode_name = map[int32]string{
-		0: "AI_EDITOR_TURN_FAILURE_CODE_UNSPECIFIED",
-		1: "AI_EDITOR_TURN_FAILURE_CODE_PROVIDER",
-		2: "AI_EDITOR_TURN_FAILURE_CODE_DOCUMENT",
-		3: "AI_EDITOR_TURN_FAILURE_CODE_INTERNAL",
-	}
-	AIEditorTurnFailureCode_value = map[string]int32{
-		"AI_EDITOR_TURN_FAILURE_CODE_UNSPECIFIED": 0,
-		"AI_EDITOR_TURN_FAILURE_CODE_PROVIDER":    1,
-		"AI_EDITOR_TURN_FAILURE_CODE_DOCUMENT":    2,
-		"AI_EDITOR_TURN_FAILURE_CODE_INTERNAL":    3,
-	}
-)
-
-func (x AIEditorTurnFailureCode) Enum() *AIEditorTurnFailureCode {
-	p := new(AIEditorTurnFailureCode)
-	*p = x
-	return p
-}
-
-func (x AIEditorTurnFailureCode) String() string {
-	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
-}
-
-func (AIEditorTurnFailureCode) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_manage_v1_ai_proto_enumTypes[11].Descriptor()
-}
-
-func (AIEditorTurnFailureCode) Type() protoreflect.EnumType {
-	return &file_api_manage_v1_ai_proto_enumTypes[11]
-}
-
-func (x AIEditorTurnFailureCode) Number() protoreflect.EnumNumber {
-	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Use AIEditorTurnFailureCode.Descriptor instead.
-func (AIEditorTurnFailureCode) EnumDescriptor() ([]byte, []int) {
-	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{11}
-}
-
-type AIResourceTarget struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Type          AIResourceType         `protobuf:"varint,1,opt,name=type,proto3,enum=api.manage.v1.AIResourceType" json:"type,omitempty"`
-	Id            string                 `protobuf:"bytes,2,opt,name=id,proto3" json:"id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *AIResourceTarget) Reset() {
-	*x = AIResourceTarget{}
-	mi := &file_api_manage_v1_ai_proto_msgTypes[0]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *AIResourceTarget) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*AIResourceTarget) ProtoMessage() {}
-
-func (x *AIResourceTarget) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_ai_proto_msgTypes[0]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use AIResourceTarget.ProtoReflect.Descriptor instead.
-func (*AIResourceTarget) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{0}
-}
-
-func (x *AIResourceTarget) GetType() AIResourceType {
-	if x != nil {
-		return x.Type
-	}
-	return AIResourceType_AI_RESOURCE_TYPE_UNSPECIFIED
-}
-
-func (x *AIResourceTarget) GetId() string {
-	if x != nil {
-		return x.Id
-	}
-	return ""
-}
-
-type MetadataSuggestion struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Summary       *string                `protobuf:"bytes,1,opt,name=summary,proto3,oneof" json:"summary,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *MetadataSuggestion) Reset() {
-	*x = MetadataSuggestion{}
-	mi := &file_api_manage_v1_ai_proto_msgTypes[1]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *MetadataSuggestion) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*MetadataSuggestion) ProtoMessage() {}
-
-func (x *MetadataSuggestion) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_ai_proto_msgTypes[1]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use MetadataSuggestion.ProtoReflect.Descriptor instead.
-func (*MetadataSuggestion) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{1}
-}
-
-func (x *MetadataSuggestion) GetSummary() string {
-	if x != nil && x.Summary != nil {
-		return *x.Summary
-	}
-	return ""
-}
-
-type MetadataGenerationJob struct {
-	state             protoimpl.MessageState      `protogen:"open.v1"`
-	Id                string                      `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Target            *AIResourceTarget           `protobuf:"bytes,2,opt,name=target,proto3" json:"target,omitempty"`
-	RequesterMemberId string                      `protobuf:"bytes,3,opt,name=requester_member_id,json=requesterMemberId,proto3" json:"requester_member_id,omitempty"`
-	Status            MetadataGenerationJobStatus `protobuf:"varint,4,opt,name=status,proto3,enum=api.manage.v1.MetadataGenerationJobStatus" json:"status,omitempty"`
-	RequestedKeys     []string                    `protobuf:"bytes,5,rep,name=requested_keys,json=requestedKeys,proto3" json:"requested_keys,omitempty"`
-	Suggestion        *MetadataSuggestion         `protobuf:"bytes,6,opt,name=suggestion,proto3,oneof" json:"suggestion,omitempty"`
-	Error             *string                     `protobuf:"bytes,7,opt,name=error,proto3,oneof" json:"error,omitempty"`
-	Provider          *string                     `protobuf:"bytes,8,opt,name=provider,proto3,oneof" json:"provider,omitempty"`
-	Model             *string                     `protobuf:"bytes,9,opt,name=model,proto3,oneof" json:"model,omitempty"`
-	DurationMs        *int64                      `protobuf:"varint,10,opt,name=duration_ms,json=durationMs,proto3,oneof" json:"duration_ms,omitempty"`
-	StartedAt         *timestamppb.Timestamp      `protobuf:"bytes,11,opt,name=started_at,json=startedAt,proto3,oneof" json:"started_at,omitempty"`
-	CompletedAt       *timestamppb.Timestamp      `protobuf:"bytes,12,opt,name=completed_at,json=completedAt,proto3,oneof" json:"completed_at,omitempty"`
-	ResolvedAt        *timestamppb.Timestamp      `protobuf:"bytes,13,opt,name=resolved_at,json=resolvedAt,proto3,oneof" json:"resolved_at,omitempty"`
-	CreatedAt         *timestamppb.Timestamp      `protobuf:"bytes,14,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	UpdatedAt         *timestamppb.Timestamp      `protobuf:"bytes,15,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
-	unknownFields     protoimpl.UnknownFields
-	sizeCache         protoimpl.SizeCache
-}
-
-func (x *MetadataGenerationJob) Reset() {
-	*x = MetadataGenerationJob{}
-	mi := &file_api_manage_v1_ai_proto_msgTypes[2]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *MetadataGenerationJob) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*MetadataGenerationJob) ProtoMessage() {}
-
-func (x *MetadataGenerationJob) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_ai_proto_msgTypes[2]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use MetadataGenerationJob.ProtoReflect.Descriptor instead.
-func (*MetadataGenerationJob) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{2}
-}
-
-func (x *MetadataGenerationJob) GetId() string {
-	if x != nil {
-		return x.Id
-	}
-	return ""
-}
-
-func (x *MetadataGenerationJob) GetTarget() *AIResourceTarget {
-	if x != nil {
-		return x.Target
-	}
-	return nil
-}
-
-func (x *MetadataGenerationJob) GetRequesterMemberId() string {
-	if x != nil {
-		return x.RequesterMemberId
-	}
-	return ""
-}
-
-func (x *MetadataGenerationJob) GetStatus() MetadataGenerationJobStatus {
-	if x != nil {
-		return x.Status
-	}
-	return MetadataGenerationJobStatus_METADATA_GENERATION_JOB_STATUS_UNSPECIFIED
-}
-
-func (x *MetadataGenerationJob) GetRequestedKeys() []string {
-	if x != nil {
-		return x.RequestedKeys
-	}
-	return nil
-}
-
-func (x *MetadataGenerationJob) GetSuggestion() *MetadataSuggestion {
-	if x != nil {
-		return x.Suggestion
-	}
-	return nil
-}
-
-func (x *MetadataGenerationJob) GetError() string {
-	if x != nil && x.Error != nil {
-		return *x.Error
-	}
-	return ""
-}
-
-func (x *MetadataGenerationJob) GetProvider() string {
-	if x != nil && x.Provider != nil {
-		return *x.Provider
-	}
-	return ""
-}
-
-func (x *MetadataGenerationJob) GetModel() string {
-	if x != nil && x.Model != nil {
-		return *x.Model
-	}
-	return ""
-}
-
-func (x *MetadataGenerationJob) GetDurationMs() int64 {
-	if x != nil && x.DurationMs != nil {
-		return *x.DurationMs
-	}
-	return 0
-}
-
-func (x *MetadataGenerationJob) GetStartedAt() *timestamppb.Timestamp {
-	if x != nil {
-		return x.StartedAt
-	}
-	return nil
-}
-
-func (x *MetadataGenerationJob) GetCompletedAt() *timestamppb.Timestamp {
-	if x != nil {
-		return x.CompletedAt
-	}
-	return nil
-}
-
-func (x *MetadataGenerationJob) GetResolvedAt() *timestamppb.Timestamp {
-	if x != nil {
-		return x.ResolvedAt
-	}
-	return nil
-}
-
-func (x *MetadataGenerationJob) GetCreatedAt() *timestamppb.Timestamp {
-	if x != nil {
-		return x.CreatedAt
-	}
-	return nil
-}
-
-func (x *MetadataGenerationJob) GetUpdatedAt() *timestamppb.Timestamp {
-	if x != nil {
-		return x.UpdatedAt
-	}
-	return nil
-}
-
-type MetadataGenerationQueueEvent struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	JobId         string                 `protobuf:"bytes,1,opt,name=job_id,json=jobId,proto3" json:"job_id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *MetadataGenerationQueueEvent) Reset() {
-	*x = MetadataGenerationQueueEvent{}
-	mi := &file_api_manage_v1_ai_proto_msgTypes[3]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *MetadataGenerationQueueEvent) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*MetadataGenerationQueueEvent) ProtoMessage() {}
-
-func (x *MetadataGenerationQueueEvent) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_ai_proto_msgTypes[3]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use MetadataGenerationQueueEvent.ProtoReflect.Descriptor instead.
-func (*MetadataGenerationQueueEvent) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{3}
-}
-
-func (x *MetadataGenerationQueueEvent) GetJobId() string {
-	if x != nil {
-		return x.JobId
-	}
-	return ""
-}
-
-type StartMetadataGenerationRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Context       string                 `protobuf:"bytes,1,opt,name=context,proto3" json:"context,omitempty"`
-	Prompt        string                 `protobuf:"bytes,2,opt,name=prompt,proto3" json:"prompt,omitempty"`
-	Target        *AIResourceTarget      `protobuf:"bytes,3,opt,name=target,proto3" json:"target,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *StartMetadataGenerationRequest) Reset() {
-	*x = StartMetadataGenerationRequest{}
-	mi := &file_api_manage_v1_ai_proto_msgTypes[4]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *StartMetadataGenerationRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*StartMetadataGenerationRequest) ProtoMessage() {}
-
-func (x *StartMetadataGenerationRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_ai_proto_msgTypes[4]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use StartMetadataGenerationRequest.ProtoReflect.Descriptor instead.
-func (*StartMetadataGenerationRequest) Descriptor() ([]byte, []int) {
 	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{4}
-}
-
-func (x *StartMetadataGenerationRequest) GetContext() string {
-	if x != nil {
-		return x.Context
-	}
-	return ""
-}
-
-func (x *StartMetadataGenerationRequest) GetPrompt() string {
-	if x != nil {
-		return x.Prompt
-	}
-	return ""
-}
-
-func (x *StartMetadataGenerationRequest) GetTarget() *AIResourceTarget {
-	if x != nil {
-		return x.Target
-	}
-	return nil
-}
-
-type StartMetadataGenerationResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Job           *MetadataGenerationJob `protobuf:"bytes,1,opt,name=job,proto3" json:"job,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *StartMetadataGenerationResponse) Reset() {
-	*x = StartMetadataGenerationResponse{}
-	mi := &file_api_manage_v1_ai_proto_msgTypes[5]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *StartMetadataGenerationResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*StartMetadataGenerationResponse) ProtoMessage() {}
-
-func (x *StartMetadataGenerationResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_ai_proto_msgTypes[5]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use StartMetadataGenerationResponse.ProtoReflect.Descriptor instead.
-func (*StartMetadataGenerationResponse) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{5}
-}
-
-func (x *StartMetadataGenerationResponse) GetJob() *MetadataGenerationJob {
-	if x != nil {
-		return x.Job
-	}
-	return nil
-}
-
-type GetMetadataGenerationJobRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	JobId         string                 `protobuf:"bytes,1,opt,name=job_id,json=jobId,proto3" json:"job_id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetMetadataGenerationJobRequest) Reset() {
-	*x = GetMetadataGenerationJobRequest{}
-	mi := &file_api_manage_v1_ai_proto_msgTypes[6]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetMetadataGenerationJobRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetMetadataGenerationJobRequest) ProtoMessage() {}
-
-func (x *GetMetadataGenerationJobRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_ai_proto_msgTypes[6]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetMetadataGenerationJobRequest.ProtoReflect.Descriptor instead.
-func (*GetMetadataGenerationJobRequest) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{6}
-}
-
-func (x *GetMetadataGenerationJobRequest) GetJobId() string {
-	if x != nil {
-		return x.JobId
-	}
-	return ""
-}
-
-type GetMetadataGenerationJobResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Job           *MetadataGenerationJob `protobuf:"bytes,1,opt,name=job,proto3" json:"job,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetMetadataGenerationJobResponse) Reset() {
-	*x = GetMetadataGenerationJobResponse{}
-	mi := &file_api_manage_v1_ai_proto_msgTypes[7]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetMetadataGenerationJobResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetMetadataGenerationJobResponse) ProtoMessage() {}
-
-func (x *GetMetadataGenerationJobResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_ai_proto_msgTypes[7]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetMetadataGenerationJobResponse.ProtoReflect.Descriptor instead.
-func (*GetMetadataGenerationJobResponse) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{7}
-}
-
-func (x *GetMetadataGenerationJobResponse) GetJob() *MetadataGenerationJob {
-	if x != nil {
-		return x.Job
-	}
-	return nil
-}
-
-type ResolveMetadataGenerationJobRequest struct {
-	state         protoimpl.MessageState          `protogen:"open.v1"`
-	JobId         string                          `protobuf:"bytes,1,opt,name=job_id,json=jobId,proto3" json:"job_id,omitempty"`
-	Resolution    MetadataGenerationJobResolution `protobuf:"varint,2,opt,name=resolution,proto3,enum=api.manage.v1.MetadataGenerationJobResolution" json:"resolution,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *ResolveMetadataGenerationJobRequest) Reset() {
-	*x = ResolveMetadataGenerationJobRequest{}
-	mi := &file_api_manage_v1_ai_proto_msgTypes[8]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *ResolveMetadataGenerationJobRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ResolveMetadataGenerationJobRequest) ProtoMessage() {}
-
-func (x *ResolveMetadataGenerationJobRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_ai_proto_msgTypes[8]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ResolveMetadataGenerationJobRequest.ProtoReflect.Descriptor instead.
-func (*ResolveMetadataGenerationJobRequest) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{8}
-}
-
-func (x *ResolveMetadataGenerationJobRequest) GetJobId() string {
-	if x != nil {
-		return x.JobId
-	}
-	return ""
-}
-
-func (x *ResolveMetadataGenerationJobRequest) GetResolution() MetadataGenerationJobResolution {
-	if x != nil {
-		return x.Resolution
-	}
-	return MetadataGenerationJobResolution_METADATA_GENERATION_JOB_RESOLUTION_UNSPECIFIED
-}
-
-type ResolveMetadataGenerationJobResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Job           *MetadataGenerationJob `protobuf:"bytes,1,opt,name=job,proto3" json:"job,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *ResolveMetadataGenerationJobResponse) Reset() {
-	*x = ResolveMetadataGenerationJobResponse{}
-	mi := &file_api_manage_v1_ai_proto_msgTypes[9]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *ResolveMetadataGenerationJobResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ResolveMetadataGenerationJobResponse) ProtoMessage() {}
-
-func (x *ResolveMetadataGenerationJobResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_ai_proto_msgTypes[9]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ResolveMetadataGenerationJobResponse.ProtoReflect.Descriptor instead.
-func (*ResolveMetadataGenerationJobResponse) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{9}
-}
-
-func (x *ResolveMetadataGenerationJobResponse) GetJob() *MetadataGenerationJob {
-	if x != nil {
-		return x.Job
-	}
-	return nil
 }
 
 type AIDocumentReference struct {
@@ -1379,7 +405,7 @@ type AIDocumentReference struct {
 
 func (x *AIDocumentReference) Reset() {
 	*x = AIDocumentReference{}
-	mi := &file_api_manage_v1_ai_proto_msgTypes[10]
+	mi := &file_api_manage_v1_ai_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1391,7 +417,7 @@ func (x *AIDocumentReference) String() string {
 func (*AIDocumentReference) ProtoMessage() {}
 
 func (x *AIDocumentReference) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_ai_proto_msgTypes[10]
+	mi := &file_api_manage_v1_ai_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1404,7 +430,7 @@ func (x *AIDocumentReference) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AIDocumentReference.ProtoReflect.Descriptor instead.
 func (*AIDocumentReference) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{10}
+	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *AIDocumentReference) GetDomain() AIDocumentDomain {
@@ -1431,7 +457,7 @@ type AIDocumentLocale struct {
 
 func (x *AIDocumentLocale) Reset() {
 	*x = AIDocumentLocale{}
-	mi := &file_api_manage_v1_ai_proto_msgTypes[11]
+	mi := &file_api_manage_v1_ai_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1443,7 +469,7 @@ func (x *AIDocumentLocale) String() string {
 func (*AIDocumentLocale) ProtoMessage() {}
 
 func (x *AIDocumentLocale) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_ai_proto_msgTypes[11]
+	mi := &file_api_manage_v1_ai_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1456,7 +482,7 @@ func (x *AIDocumentLocale) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AIDocumentLocale.ProtoReflect.Descriptor instead.
 func (*AIDocumentLocale) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{11}
+	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *AIDocumentLocale) GetCode() string {
@@ -1493,7 +519,7 @@ type AIDocumentMetadata struct {
 
 func (x *AIDocumentMetadata) Reset() {
 	*x = AIDocumentMetadata{}
-	mi := &file_api_manage_v1_ai_proto_msgTypes[12]
+	mi := &file_api_manage_v1_ai_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1505,7 +531,7 @@ func (x *AIDocumentMetadata) String() string {
 func (*AIDocumentMetadata) ProtoMessage() {}
 
 func (x *AIDocumentMetadata) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_ai_proto_msgTypes[12]
+	mi := &file_api_manage_v1_ai_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1518,7 +544,7 @@ func (x *AIDocumentMetadata) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AIDocumentMetadata.ProtoReflect.Descriptor instead.
 func (*AIDocumentMetadata) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{12}
+	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *AIDocumentMetadata) GetProtocolVersion() string {
@@ -1593,7 +619,7 @@ type AIDocumentInlineContent struct {
 
 func (x *AIDocumentInlineContent) Reset() {
 	*x = AIDocumentInlineContent{}
-	mi := &file_api_manage_v1_ai_proto_msgTypes[13]
+	mi := &file_api_manage_v1_ai_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1605,7 +631,7 @@ func (x *AIDocumentInlineContent) String() string {
 func (*AIDocumentInlineContent) ProtoMessage() {}
 
 func (x *AIDocumentInlineContent) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_ai_proto_msgTypes[13]
+	mi := &file_api_manage_v1_ai_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1618,7 +644,7 @@ func (x *AIDocumentInlineContent) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AIDocumentInlineContent.ProtoReflect.Descriptor instead.
 func (*AIDocumentInlineContent) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{13}
+	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *AIDocumentInlineContent) GetItems() []*AIDocumentInlineItem {
@@ -1642,7 +668,7 @@ type AIDocumentInlineMark struct {
 
 func (x *AIDocumentInlineMark) Reset() {
 	*x = AIDocumentInlineMark{}
-	mi := &file_api_manage_v1_ai_proto_msgTypes[14]
+	mi := &file_api_manage_v1_ai_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1654,7 +680,7 @@ func (x *AIDocumentInlineMark) String() string {
 func (*AIDocumentInlineMark) ProtoMessage() {}
 
 func (x *AIDocumentInlineMark) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_ai_proto_msgTypes[14]
+	mi := &file_api_manage_v1_ai_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1667,7 +693,7 @@ func (x *AIDocumentInlineMark) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AIDocumentInlineMark.ProtoReflect.Descriptor instead.
 func (*AIDocumentInlineMark) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{14}
+	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *AIDocumentInlineMark) GetMark() string {
@@ -1701,7 +727,7 @@ type AIDocumentInlineLink struct {
 
 func (x *AIDocumentInlineLink) Reset() {
 	*x = AIDocumentInlineLink{}
-	mi := &file_api_manage_v1_ai_proto_msgTypes[15]
+	mi := &file_api_manage_v1_ai_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1713,7 +739,7 @@ func (x *AIDocumentInlineLink) String() string {
 func (*AIDocumentInlineLink) ProtoMessage() {}
 
 func (x *AIDocumentInlineLink) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_ai_proto_msgTypes[15]
+	mi := &file_api_manage_v1_ai_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1726,7 +752,7 @@ func (x *AIDocumentInlineLink) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AIDocumentInlineLink.ProtoReflect.Descriptor instead.
 func (*AIDocumentInlineLink) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{15}
+	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *AIDocumentInlineLink) GetTarget() string {
@@ -1751,7 +777,7 @@ type AIDocumentHardBreak struct {
 
 func (x *AIDocumentHardBreak) Reset() {
 	*x = AIDocumentHardBreak{}
-	mi := &file_api_manage_v1_ai_proto_msgTypes[16]
+	mi := &file_api_manage_v1_ai_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1763,7 +789,7 @@ func (x *AIDocumentHardBreak) String() string {
 func (*AIDocumentHardBreak) ProtoMessage() {}
 
 func (x *AIDocumentHardBreak) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_ai_proto_msgTypes[16]
+	mi := &file_api_manage_v1_ai_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1776,7 +802,7 @@ func (x *AIDocumentHardBreak) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AIDocumentHardBreak.ProtoReflect.Descriptor instead.
 func (*AIDocumentHardBreak) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{16}
+	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{6}
 }
 
 type AIDocumentInlineItem struct {
@@ -1796,7 +822,7 @@ type AIDocumentInlineItem struct {
 
 func (x *AIDocumentInlineItem) Reset() {
 	*x = AIDocumentInlineItem{}
-	mi := &file_api_manage_v1_ai_proto_msgTypes[17]
+	mi := &file_api_manage_v1_ai_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1808,7 +834,7 @@ func (x *AIDocumentInlineItem) String() string {
 func (*AIDocumentInlineItem) ProtoMessage() {}
 
 func (x *AIDocumentInlineItem) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_ai_proto_msgTypes[17]
+	mi := &file_api_manage_v1_ai_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1821,7 +847,7 @@ func (x *AIDocumentInlineItem) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AIDocumentInlineItem.ProtoReflect.Descriptor instead.
 func (*AIDocumentInlineItem) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{17}
+	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *AIDocumentInlineItem) GetItem() isAIDocumentInlineItem_Item {
@@ -1942,7 +968,7 @@ type AIDocumentValue struct {
 
 func (x *AIDocumentValue) Reset() {
 	*x = AIDocumentValue{}
-	mi := &file_api_manage_v1_ai_proto_msgTypes[18]
+	mi := &file_api_manage_v1_ai_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1954,7 +980,7 @@ func (x *AIDocumentValue) String() string {
 func (*AIDocumentValue) ProtoMessage() {}
 
 func (x *AIDocumentValue) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_ai_proto_msgTypes[18]
+	mi := &file_api_manage_v1_ai_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1967,7 +993,7 @@ func (x *AIDocumentValue) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AIDocumentValue.ProtoReflect.Descriptor instead.
 func (*AIDocumentValue) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{18}
+	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *AIDocumentValue) GetValue() isAIDocumentValue_Value {
@@ -2087,7 +1113,7 @@ type AIDocumentListItem struct {
 
 func (x *AIDocumentListItem) Reset() {
 	*x = AIDocumentListItem{}
-	mi := &file_api_manage_v1_ai_proto_msgTypes[19]
+	mi := &file_api_manage_v1_ai_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2099,7 +1125,7 @@ func (x *AIDocumentListItem) String() string {
 func (*AIDocumentListItem) ProtoMessage() {}
 
 func (x *AIDocumentListItem) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_ai_proto_msgTypes[19]
+	mi := &file_api_manage_v1_ai_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2112,7 +1138,7 @@ func (x *AIDocumentListItem) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AIDocumentListItem.ProtoReflect.Descriptor instead.
 func (*AIDocumentListItem) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{19}
+	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *AIDocumentListItem) GetItemHandle() string {
@@ -2138,7 +1164,7 @@ type AIDocumentListValue struct {
 
 func (x *AIDocumentListValue) Reset() {
 	*x = AIDocumentListValue{}
-	mi := &file_api_manage_v1_ai_proto_msgTypes[20]
+	mi := &file_api_manage_v1_ai_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2150,7 +1176,7 @@ func (x *AIDocumentListValue) String() string {
 func (*AIDocumentListValue) ProtoMessage() {}
 
 func (x *AIDocumentListValue) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_ai_proto_msgTypes[20]
+	mi := &file_api_manage_v1_ai_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2163,7 +1189,7 @@ func (x *AIDocumentListValue) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AIDocumentListValue.ProtoReflect.Descriptor instead.
 func (*AIDocumentListValue) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{20}
+	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *AIDocumentListValue) GetItems() []*AIDocumentListItem {
@@ -2182,7 +1208,7 @@ type AIDocumentObjectValue struct {
 
 func (x *AIDocumentObjectValue) Reset() {
 	*x = AIDocumentObjectValue{}
-	mi := &file_api_manage_v1_ai_proto_msgTypes[21]
+	mi := &file_api_manage_v1_ai_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2194,7 +1220,7 @@ func (x *AIDocumentObjectValue) String() string {
 func (*AIDocumentObjectValue) ProtoMessage() {}
 
 func (x *AIDocumentObjectValue) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_ai_proto_msgTypes[21]
+	mi := &file_api_manage_v1_ai_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2207,7 +1233,7 @@ func (x *AIDocumentObjectValue) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AIDocumentObjectValue.ProtoReflect.Descriptor instead.
 func (*AIDocumentObjectValue) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{21}
+	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *AIDocumentObjectValue) GetFields() []*AIDocumentFieldValue {
@@ -2227,7 +1253,7 @@ type AIDocumentFieldValue struct {
 
 func (x *AIDocumentFieldValue) Reset() {
 	*x = AIDocumentFieldValue{}
-	mi := &file_api_manage_v1_ai_proto_msgTypes[22]
+	mi := &file_api_manage_v1_ai_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2239,7 +1265,7 @@ func (x *AIDocumentFieldValue) String() string {
 func (*AIDocumentFieldValue) ProtoMessage() {}
 
 func (x *AIDocumentFieldValue) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_ai_proto_msgTypes[22]
+	mi := &file_api_manage_v1_ai_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2252,7 +1278,7 @@ func (x *AIDocumentFieldValue) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AIDocumentFieldValue.ProtoReflect.Descriptor instead.
 func (*AIDocumentFieldValue) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{22}
+	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *AIDocumentFieldValue) GetFieldHandle() string {
@@ -2280,7 +1306,7 @@ type AIDocumentRelationItemReference struct {
 
 func (x *AIDocumentRelationItemReference) Reset() {
 	*x = AIDocumentRelationItemReference{}
-	mi := &file_api_manage_v1_ai_proto_msgTypes[23]
+	mi := &file_api_manage_v1_ai_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2292,7 +1318,7 @@ func (x *AIDocumentRelationItemReference) String() string {
 func (*AIDocumentRelationItemReference) ProtoMessage() {}
 
 func (x *AIDocumentRelationItemReference) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_ai_proto_msgTypes[23]
+	mi := &file_api_manage_v1_ai_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2305,7 +1331,7 @@ func (x *AIDocumentRelationItemReference) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AIDocumentRelationItemReference.ProtoReflect.Descriptor instead.
 func (*AIDocumentRelationItemReference) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{23}
+	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *AIDocumentRelationItemReference) GetBlockHandle() string {
@@ -2346,7 +1372,7 @@ type AIDocumentFieldTarget struct {
 
 func (x *AIDocumentFieldTarget) Reset() {
 	*x = AIDocumentFieldTarget{}
-	mi := &file_api_manage_v1_ai_proto_msgTypes[24]
+	mi := &file_api_manage_v1_ai_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2358,7 +1384,7 @@ func (x *AIDocumentFieldTarget) String() string {
 func (*AIDocumentFieldTarget) ProtoMessage() {}
 
 func (x *AIDocumentFieldTarget) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_ai_proto_msgTypes[24]
+	mi := &file_api_manage_v1_ai_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2371,7 +1397,7 @@ func (x *AIDocumentFieldTarget) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AIDocumentFieldTarget.ProtoReflect.Descriptor instead.
 func (*AIDocumentFieldTarget) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{24}
+	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *AIDocumentFieldTarget) GetOwner() isAIDocumentFieldTarget_Owner {
@@ -2442,7 +1468,7 @@ type AIDocumentFieldPathSegment struct {
 
 func (x *AIDocumentFieldPathSegment) Reset() {
 	*x = AIDocumentFieldPathSegment{}
-	mi := &file_api_manage_v1_ai_proto_msgTypes[25]
+	mi := &file_api_manage_v1_ai_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2454,7 +1480,7 @@ func (x *AIDocumentFieldPathSegment) String() string {
 func (*AIDocumentFieldPathSegment) ProtoMessage() {}
 
 func (x *AIDocumentFieldPathSegment) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_ai_proto_msgTypes[25]
+	mi := &file_api_manage_v1_ai_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2467,7 +1493,7 @@ func (x *AIDocumentFieldPathSegment) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AIDocumentFieldPathSegment.ProtoReflect.Descriptor instead.
 func (*AIDocumentFieldPathSegment) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{25}
+	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *AIDocumentFieldPathSegment) GetSelector() isAIDocumentFieldPathSegment_Selector {
@@ -2521,7 +1547,7 @@ type OpenAIDocumentRequest struct {
 
 func (x *OpenAIDocumentRequest) Reset() {
 	*x = OpenAIDocumentRequest{}
-	mi := &file_api_manage_v1_ai_proto_msgTypes[26]
+	mi := &file_api_manage_v1_ai_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2533,7 +1559,7 @@ func (x *OpenAIDocumentRequest) String() string {
 func (*OpenAIDocumentRequest) ProtoMessage() {}
 
 func (x *OpenAIDocumentRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_ai_proto_msgTypes[26]
+	mi := &file_api_manage_v1_ai_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2546,7 +1572,7 @@ func (x *OpenAIDocumentRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use OpenAIDocumentRequest.ProtoReflect.Descriptor instead.
 func (*OpenAIDocumentRequest) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{26}
+	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *OpenAIDocumentRequest) GetDocument() *AIDocumentReference {
@@ -2572,7 +1598,7 @@ type OpenAIDocumentResponse struct {
 
 func (x *OpenAIDocumentResponse) Reset() {
 	*x = OpenAIDocumentResponse{}
-	mi := &file_api_manage_v1_ai_proto_msgTypes[27]
+	mi := &file_api_manage_v1_ai_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2584,7 +1610,7 @@ func (x *OpenAIDocumentResponse) String() string {
 func (*OpenAIDocumentResponse) ProtoMessage() {}
 
 func (x *OpenAIDocumentResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_ai_proto_msgTypes[27]
+	mi := &file_api_manage_v1_ai_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2597,7 +1623,7 @@ func (x *OpenAIDocumentResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use OpenAIDocumentResponse.ProtoReflect.Descriptor instead.
 func (*OpenAIDocumentResponse) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{27}
+	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *OpenAIDocumentResponse) GetMetadata() *AIDocumentMetadata {
@@ -2617,7 +1643,7 @@ type AIDocumentSetFieldOperation struct {
 
 func (x *AIDocumentSetFieldOperation) Reset() {
 	*x = AIDocumentSetFieldOperation{}
-	mi := &file_api_manage_v1_ai_proto_msgTypes[28]
+	mi := &file_api_manage_v1_ai_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2629,7 +1655,7 @@ func (x *AIDocumentSetFieldOperation) String() string {
 func (*AIDocumentSetFieldOperation) ProtoMessage() {}
 
 func (x *AIDocumentSetFieldOperation) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_ai_proto_msgTypes[28]
+	mi := &file_api_manage_v1_ai_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2642,7 +1668,7 @@ func (x *AIDocumentSetFieldOperation) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AIDocumentSetFieldOperation.ProtoReflect.Descriptor instead.
 func (*AIDocumentSetFieldOperation) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{28}
+	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *AIDocumentSetFieldOperation) GetTarget() *AIDocumentFieldTarget {
@@ -2668,7 +1694,7 @@ type AIDocumentUnsetFieldOperation struct {
 
 func (x *AIDocumentUnsetFieldOperation) Reset() {
 	*x = AIDocumentUnsetFieldOperation{}
-	mi := &file_api_manage_v1_ai_proto_msgTypes[29]
+	mi := &file_api_manage_v1_ai_proto_msgTypes[19]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2680,7 +1706,7 @@ func (x *AIDocumentUnsetFieldOperation) String() string {
 func (*AIDocumentUnsetFieldOperation) ProtoMessage() {}
 
 func (x *AIDocumentUnsetFieldOperation) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_ai_proto_msgTypes[29]
+	mi := &file_api_manage_v1_ai_proto_msgTypes[19]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2693,7 +1719,7 @@ func (x *AIDocumentUnsetFieldOperation) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AIDocumentUnsetFieldOperation.ProtoReflect.Descriptor instead.
 func (*AIDocumentUnsetFieldOperation) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{29}
+	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{19}
 }
 
 func (x *AIDocumentUnsetFieldOperation) GetTarget() *AIDocumentFieldTarget {
@@ -2715,7 +1741,7 @@ type AIDocumentInsertBlockOperation struct {
 
 func (x *AIDocumentInsertBlockOperation) Reset() {
 	*x = AIDocumentInsertBlockOperation{}
-	mi := &file_api_manage_v1_ai_proto_msgTypes[30]
+	mi := &file_api_manage_v1_ai_proto_msgTypes[20]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2727,7 +1753,7 @@ func (x *AIDocumentInsertBlockOperation) String() string {
 func (*AIDocumentInsertBlockOperation) ProtoMessage() {}
 
 func (x *AIDocumentInsertBlockOperation) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_ai_proto_msgTypes[30]
+	mi := &file_api_manage_v1_ai_proto_msgTypes[20]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2740,7 +1766,7 @@ func (x *AIDocumentInsertBlockOperation) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AIDocumentInsertBlockOperation.ProtoReflect.Descriptor instead.
 func (*AIDocumentInsertBlockOperation) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{30}
+	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{20}
 }
 
 func (x *AIDocumentInsertBlockOperation) GetBlockHandle() string {
@@ -2780,7 +1806,7 @@ type AIDocumentDeleteBlockOperation struct {
 
 func (x *AIDocumentDeleteBlockOperation) Reset() {
 	*x = AIDocumentDeleteBlockOperation{}
-	mi := &file_api_manage_v1_ai_proto_msgTypes[31]
+	mi := &file_api_manage_v1_ai_proto_msgTypes[21]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2792,7 +1818,7 @@ func (x *AIDocumentDeleteBlockOperation) String() string {
 func (*AIDocumentDeleteBlockOperation) ProtoMessage() {}
 
 func (x *AIDocumentDeleteBlockOperation) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_ai_proto_msgTypes[31]
+	mi := &file_api_manage_v1_ai_proto_msgTypes[21]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2805,7 +1831,7 @@ func (x *AIDocumentDeleteBlockOperation) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AIDocumentDeleteBlockOperation.ProtoReflect.Descriptor instead.
 func (*AIDocumentDeleteBlockOperation) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{31}
+	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{21}
 }
 
 func (x *AIDocumentDeleteBlockOperation) GetBlockHandle() string {
@@ -2826,7 +1852,7 @@ type AIDocumentMoveBlockOperation struct {
 
 func (x *AIDocumentMoveBlockOperation) Reset() {
 	*x = AIDocumentMoveBlockOperation{}
-	mi := &file_api_manage_v1_ai_proto_msgTypes[32]
+	mi := &file_api_manage_v1_ai_proto_msgTypes[22]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2838,7 +1864,7 @@ func (x *AIDocumentMoveBlockOperation) String() string {
 func (*AIDocumentMoveBlockOperation) ProtoMessage() {}
 
 func (x *AIDocumentMoveBlockOperation) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_ai_proto_msgTypes[32]
+	mi := &file_api_manage_v1_ai_proto_msgTypes[22]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2851,7 +1877,7 @@ func (x *AIDocumentMoveBlockOperation) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AIDocumentMoveBlockOperation.ProtoReflect.Descriptor instead.
 func (*AIDocumentMoveBlockOperation) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{32}
+	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{22}
 }
 
 func (x *AIDocumentMoveBlockOperation) GetBlockHandle() string {
@@ -2885,7 +1911,7 @@ type AIDocumentReplaceBlockKindOperation struct {
 
 func (x *AIDocumentReplaceBlockKindOperation) Reset() {
 	*x = AIDocumentReplaceBlockKindOperation{}
-	mi := &file_api_manage_v1_ai_proto_msgTypes[33]
+	mi := &file_api_manage_v1_ai_proto_msgTypes[23]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2897,7 +1923,7 @@ func (x *AIDocumentReplaceBlockKindOperation) String() string {
 func (*AIDocumentReplaceBlockKindOperation) ProtoMessage() {}
 
 func (x *AIDocumentReplaceBlockKindOperation) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_ai_proto_msgTypes[33]
+	mi := &file_api_manage_v1_ai_proto_msgTypes[23]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2910,7 +1936,7 @@ func (x *AIDocumentReplaceBlockKindOperation) ProtoReflect() protoreflect.Messag
 
 // Deprecated: Use AIDocumentReplaceBlockKindOperation.ProtoReflect.Descriptor instead.
 func (*AIDocumentReplaceBlockKindOperation) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{33}
+	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{23}
 }
 
 func (x *AIDocumentReplaceBlockKindOperation) GetBlockHandle() string {
@@ -2937,7 +1963,7 @@ type AIDocumentAttachFileOperation struct {
 
 func (x *AIDocumentAttachFileOperation) Reset() {
 	*x = AIDocumentAttachFileOperation{}
-	mi := &file_api_manage_v1_ai_proto_msgTypes[34]
+	mi := &file_api_manage_v1_ai_proto_msgTypes[24]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2949,7 +1975,7 @@ func (x *AIDocumentAttachFileOperation) String() string {
 func (*AIDocumentAttachFileOperation) ProtoMessage() {}
 
 func (x *AIDocumentAttachFileOperation) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_ai_proto_msgTypes[34]
+	mi := &file_api_manage_v1_ai_proto_msgTypes[24]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2962,7 +1988,7 @@ func (x *AIDocumentAttachFileOperation) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AIDocumentAttachFileOperation.ProtoReflect.Descriptor instead.
 func (*AIDocumentAttachFileOperation) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{34}
+	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{24}
 }
 
 func (x *AIDocumentAttachFileOperation) GetTarget() *AIDocumentFieldTarget {
@@ -2988,7 +2014,7 @@ type AIDocumentDetachFileOperation struct {
 
 func (x *AIDocumentDetachFileOperation) Reset() {
 	*x = AIDocumentDetachFileOperation{}
-	mi := &file_api_manage_v1_ai_proto_msgTypes[35]
+	mi := &file_api_manage_v1_ai_proto_msgTypes[25]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3000,7 +2026,7 @@ func (x *AIDocumentDetachFileOperation) String() string {
 func (*AIDocumentDetachFileOperation) ProtoMessage() {}
 
 func (x *AIDocumentDetachFileOperation) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_ai_proto_msgTypes[35]
+	mi := &file_api_manage_v1_ai_proto_msgTypes[25]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3013,7 +2039,7 @@ func (x *AIDocumentDetachFileOperation) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AIDocumentDetachFileOperation.ProtoReflect.Descriptor instead.
 func (*AIDocumentDetachFileOperation) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{35}
+	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{25}
 }
 
 func (x *AIDocumentDetachFileOperation) GetTarget() *AIDocumentFieldTarget {
@@ -3034,7 +2060,7 @@ type AIDocumentCreateTranslationOperation struct {
 
 func (x *AIDocumentCreateTranslationOperation) Reset() {
 	*x = AIDocumentCreateTranslationOperation{}
-	mi := &file_api_manage_v1_ai_proto_msgTypes[36]
+	mi := &file_api_manage_v1_ai_proto_msgTypes[26]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3046,7 +2072,7 @@ func (x *AIDocumentCreateTranslationOperation) String() string {
 func (*AIDocumentCreateTranslationOperation) ProtoMessage() {}
 
 func (x *AIDocumentCreateTranslationOperation) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_ai_proto_msgTypes[36]
+	mi := &file_api_manage_v1_ai_proto_msgTypes[26]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3059,7 +2085,7 @@ func (x *AIDocumentCreateTranslationOperation) ProtoReflect() protoreflect.Messa
 
 // Deprecated: Use AIDocumentCreateTranslationOperation.ProtoReflect.Descriptor instead.
 func (*AIDocumentCreateTranslationOperation) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{36}
+	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{26}
 }
 
 // Deletes one exact existing non-source locale. The source locale cannot be
@@ -3072,7 +2098,7 @@ type AIDocumentDeleteTranslationOperation struct {
 
 func (x *AIDocumentDeleteTranslationOperation) Reset() {
 	*x = AIDocumentDeleteTranslationOperation{}
-	mi := &file_api_manage_v1_ai_proto_msgTypes[37]
+	mi := &file_api_manage_v1_ai_proto_msgTypes[27]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3084,7 +2110,7 @@ func (x *AIDocumentDeleteTranslationOperation) String() string {
 func (*AIDocumentDeleteTranslationOperation) ProtoMessage() {}
 
 func (x *AIDocumentDeleteTranslationOperation) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_ai_proto_msgTypes[37]
+	mi := &file_api_manage_v1_ai_proto_msgTypes[27]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3097,7 +2123,7 @@ func (x *AIDocumentDeleteTranslationOperation) ProtoReflect() protoreflect.Messa
 
 // Deprecated: Use AIDocumentDeleteTranslationOperation.ProtoReflect.Descriptor instead.
 func (*AIDocumentDeleteTranslationOperation) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{37}
+	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{27}
 }
 
 type AIDocumentInsertRelationItemOperation struct {
@@ -3113,7 +2139,7 @@ type AIDocumentInsertRelationItemOperation struct {
 
 func (x *AIDocumentInsertRelationItemOperation) Reset() {
 	*x = AIDocumentInsertRelationItemOperation{}
-	mi := &file_api_manage_v1_ai_proto_msgTypes[38]
+	mi := &file_api_manage_v1_ai_proto_msgTypes[28]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3125,7 +2151,7 @@ func (x *AIDocumentInsertRelationItemOperation) String() string {
 func (*AIDocumentInsertRelationItemOperation) ProtoMessage() {}
 
 func (x *AIDocumentInsertRelationItemOperation) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_ai_proto_msgTypes[38]
+	mi := &file_api_manage_v1_ai_proto_msgTypes[28]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3138,7 +2164,7 @@ func (x *AIDocumentInsertRelationItemOperation) ProtoReflect() protoreflect.Mess
 
 // Deprecated: Use AIDocumentInsertRelationItemOperation.ProtoReflect.Descriptor instead.
 func (*AIDocumentInsertRelationItemOperation) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{38}
+	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{28}
 }
 
 func (x *AIDocumentInsertRelationItemOperation) GetBlockHandle() string {
@@ -3185,7 +2211,7 @@ type AIDocumentDeleteRelationItemOperation struct {
 
 func (x *AIDocumentDeleteRelationItemOperation) Reset() {
 	*x = AIDocumentDeleteRelationItemOperation{}
-	mi := &file_api_manage_v1_ai_proto_msgTypes[39]
+	mi := &file_api_manage_v1_ai_proto_msgTypes[29]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3197,7 +2223,7 @@ func (x *AIDocumentDeleteRelationItemOperation) String() string {
 func (*AIDocumentDeleteRelationItemOperation) ProtoMessage() {}
 
 func (x *AIDocumentDeleteRelationItemOperation) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_ai_proto_msgTypes[39]
+	mi := &file_api_manage_v1_ai_proto_msgTypes[29]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3210,7 +2236,7 @@ func (x *AIDocumentDeleteRelationItemOperation) ProtoReflect() protoreflect.Mess
 
 // Deprecated: Use AIDocumentDeleteRelationItemOperation.ProtoReflect.Descriptor instead.
 func (*AIDocumentDeleteRelationItemOperation) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{39}
+	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{29}
 }
 
 func (x *AIDocumentDeleteRelationItemOperation) GetItem() *AIDocumentRelationItemReference {
@@ -3232,7 +2258,7 @@ type AIDocumentMoveRelationItemOperation struct {
 
 func (x *AIDocumentMoveRelationItemOperation) Reset() {
 	*x = AIDocumentMoveRelationItemOperation{}
-	mi := &file_api_manage_v1_ai_proto_msgTypes[40]
+	mi := &file_api_manage_v1_ai_proto_msgTypes[30]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3244,7 +2270,7 @@ func (x *AIDocumentMoveRelationItemOperation) String() string {
 func (*AIDocumentMoveRelationItemOperation) ProtoMessage() {}
 
 func (x *AIDocumentMoveRelationItemOperation) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_ai_proto_msgTypes[40]
+	mi := &file_api_manage_v1_ai_proto_msgTypes[30]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3257,7 +2283,7 @@ func (x *AIDocumentMoveRelationItemOperation) ProtoReflect() protoreflect.Messag
 
 // Deprecated: Use AIDocumentMoveRelationItemOperation.ProtoReflect.Descriptor instead.
 func (*AIDocumentMoveRelationItemOperation) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{40}
+	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{30}
 }
 
 func (x *AIDocumentMoveRelationItemOperation) GetItem() *AIDocumentRelationItemReference {
@@ -3312,7 +2338,7 @@ type AIDocumentOperation struct {
 
 func (x *AIDocumentOperation) Reset() {
 	*x = AIDocumentOperation{}
-	mi := &file_api_manage_v1_ai_proto_msgTypes[41]
+	mi := &file_api_manage_v1_ai_proto_msgTypes[31]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3324,7 +2350,7 @@ func (x *AIDocumentOperation) String() string {
 func (*AIDocumentOperation) ProtoMessage() {}
 
 func (x *AIDocumentOperation) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_ai_proto_msgTypes[41]
+	mi := &file_api_manage_v1_ai_proto_msgTypes[31]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3337,7 +2363,7 @@ func (x *AIDocumentOperation) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AIDocumentOperation.ProtoReflect.Descriptor instead.
 func (*AIDocumentOperation) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{41}
+	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{31}
 }
 
 func (x *AIDocumentOperation) GetOperation() isAIDocumentOperation_Operation {
@@ -3567,7 +2593,7 @@ type AIDocumentMutation struct {
 
 func (x *AIDocumentMutation) Reset() {
 	*x = AIDocumentMutation{}
-	mi := &file_api_manage_v1_ai_proto_msgTypes[42]
+	mi := &file_api_manage_v1_ai_proto_msgTypes[32]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3579,7 +2605,7 @@ func (x *AIDocumentMutation) String() string {
 func (*AIDocumentMutation) ProtoMessage() {}
 
 func (x *AIDocumentMutation) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_ai_proto_msgTypes[42]
+	mi := &file_api_manage_v1_ai_proto_msgTypes[32]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3592,7 +2618,7 @@ func (x *AIDocumentMutation) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AIDocumentMutation.ProtoReflect.Descriptor instead.
 func (*AIDocumentMutation) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{42}
+	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{32}
 }
 
 func (x *AIDocumentMutation) GetProtocolVersion() string {
@@ -3649,7 +2675,7 @@ type AIDocumentIssue struct {
 
 func (x *AIDocumentIssue) Reset() {
 	*x = AIDocumentIssue{}
-	mi := &file_api_manage_v1_ai_proto_msgTypes[43]
+	mi := &file_api_manage_v1_ai_proto_msgTypes[33]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3661,7 +2687,7 @@ func (x *AIDocumentIssue) String() string {
 func (*AIDocumentIssue) ProtoMessage() {}
 
 func (x *AIDocumentIssue) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_ai_proto_msgTypes[43]
+	mi := &file_api_manage_v1_ai_proto_msgTypes[33]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3674,7 +2700,7 @@ func (x *AIDocumentIssue) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AIDocumentIssue.ProtoReflect.Descriptor instead.
 func (*AIDocumentIssue) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{43}
+	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{33}
 }
 
 func (x *AIDocumentIssue) GetOperationIndex() uint32 {
@@ -3712,7 +2738,7 @@ type AIDocumentConflict struct {
 
 func (x *AIDocumentConflict) Reset() {
 	*x = AIDocumentConflict{}
-	mi := &file_api_manage_v1_ai_proto_msgTypes[44]
+	mi := &file_api_manage_v1_ai_proto_msgTypes[34]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3724,7 +2750,7 @@ func (x *AIDocumentConflict) String() string {
 func (*AIDocumentConflict) ProtoMessage() {}
 
 func (x *AIDocumentConflict) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_ai_proto_msgTypes[44]
+	mi := &file_api_manage_v1_ai_proto_msgTypes[34]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3737,7 +2763,7 @@ func (x *AIDocumentConflict) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AIDocumentConflict.ProtoReflect.Descriptor instead.
 func (*AIDocumentConflict) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{44}
+	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{34}
 }
 
 func (x *AIDocumentConflict) GetCode() AIDocumentConflictCode {
@@ -3779,7 +2805,7 @@ type AIDocumentValidation struct {
 
 func (x *AIDocumentValidation) Reset() {
 	*x = AIDocumentValidation{}
-	mi := &file_api_manage_v1_ai_proto_msgTypes[45]
+	mi := &file_api_manage_v1_ai_proto_msgTypes[35]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3791,7 +2817,7 @@ func (x *AIDocumentValidation) String() string {
 func (*AIDocumentValidation) ProtoMessage() {}
 
 func (x *AIDocumentValidation) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_ai_proto_msgTypes[45]
+	mi := &file_api_manage_v1_ai_proto_msgTypes[35]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3804,7 +2830,7 @@ func (x *AIDocumentValidation) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AIDocumentValidation.ProtoReflect.Descriptor instead.
 func (*AIDocumentValidation) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{45}
+	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{35}
 }
 
 func (x *AIDocumentValidation) GetNormalizedOperations() []*AIDocumentOperation {
@@ -3841,7 +2867,7 @@ type AIDocumentAcceptedChange struct {
 
 func (x *AIDocumentAcceptedChange) Reset() {
 	*x = AIDocumentAcceptedChange{}
-	mi := &file_api_manage_v1_ai_proto_msgTypes[46]
+	mi := &file_api_manage_v1_ai_proto_msgTypes[36]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3853,7 +2879,7 @@ func (x *AIDocumentAcceptedChange) String() string {
 func (*AIDocumentAcceptedChange) ProtoMessage() {}
 
 func (x *AIDocumentAcceptedChange) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_ai_proto_msgTypes[46]
+	mi := &file_api_manage_v1_ai_proto_msgTypes[36]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3866,7 +2892,7 @@ func (x *AIDocumentAcceptedChange) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AIDocumentAcceptedChange.ProtoReflect.Descriptor instead.
 func (*AIDocumentAcceptedChange) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{46}
+	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{36}
 }
 
 func (x *AIDocumentAcceptedChange) GetOperationIndex() uint32 {
@@ -3903,7 +2929,7 @@ type AIDocumentAcceptedMutation struct {
 
 func (x *AIDocumentAcceptedMutation) Reset() {
 	*x = AIDocumentAcceptedMutation{}
-	mi := &file_api_manage_v1_ai_proto_msgTypes[47]
+	mi := &file_api_manage_v1_ai_proto_msgTypes[37]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3915,7 +2941,7 @@ func (x *AIDocumentAcceptedMutation) String() string {
 func (*AIDocumentAcceptedMutation) ProtoMessage() {}
 
 func (x *AIDocumentAcceptedMutation) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_ai_proto_msgTypes[47]
+	mi := &file_api_manage_v1_ai_proto_msgTypes[37]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3928,7 +2954,7 @@ func (x *AIDocumentAcceptedMutation) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AIDocumentAcceptedMutation.ProtoReflect.Descriptor instead.
 func (*AIDocumentAcceptedMutation) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{47}
+	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{37}
 }
 
 func (x *AIDocumentAcceptedMutation) GetDocumentRevision() string {
@@ -3961,7 +2987,7 @@ type ApplyAIDocumentOperationsRequest struct {
 
 func (x *ApplyAIDocumentOperationsRequest) Reset() {
 	*x = ApplyAIDocumentOperationsRequest{}
-	mi := &file_api_manage_v1_ai_proto_msgTypes[48]
+	mi := &file_api_manage_v1_ai_proto_msgTypes[38]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3973,7 +2999,7 @@ func (x *ApplyAIDocumentOperationsRequest) String() string {
 func (*ApplyAIDocumentOperationsRequest) ProtoMessage() {}
 
 func (x *ApplyAIDocumentOperationsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_ai_proto_msgTypes[48]
+	mi := &file_api_manage_v1_ai_proto_msgTypes[38]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3986,7 +3012,7 @@ func (x *ApplyAIDocumentOperationsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApplyAIDocumentOperationsRequest.ProtoReflect.Descriptor instead.
 func (*ApplyAIDocumentOperationsRequest) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{48}
+	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{38}
 }
 
 func (x *ApplyAIDocumentOperationsRequest) GetMutation() *AIDocumentMutation {
@@ -4009,7 +3035,7 @@ type ApplyAIDocumentOperationsResponse struct {
 
 func (x *ApplyAIDocumentOperationsResponse) Reset() {
 	*x = ApplyAIDocumentOperationsResponse{}
-	mi := &file_api_manage_v1_ai_proto_msgTypes[49]
+	mi := &file_api_manage_v1_ai_proto_msgTypes[39]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4021,7 +3047,7 @@ func (x *ApplyAIDocumentOperationsResponse) String() string {
 func (*ApplyAIDocumentOperationsResponse) ProtoMessage() {}
 
 func (x *ApplyAIDocumentOperationsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_ai_proto_msgTypes[49]
+	mi := &file_api_manage_v1_ai_proto_msgTypes[39]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4034,7 +3060,7 @@ func (x *ApplyAIDocumentOperationsResponse) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use ApplyAIDocumentOperationsResponse.ProtoReflect.Descriptor instead.
 func (*ApplyAIDocumentOperationsResponse) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{49}
+	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{39}
 }
 
 func (x *ApplyAIDocumentOperationsResponse) GetResult() isApplyAIDocumentOperationsResponse_Result {
@@ -4078,774 +3104,11 @@ func (*ApplyAIDocumentOperationsResponse_Accepted) isApplyAIDocumentOperationsRe
 
 func (*ApplyAIDocumentOperationsResponse_Rejected) isApplyAIDocumentOperationsResponse_Result() {}
 
-type StartAIEditorTurnRequest struct {
-	state    protoimpl.MessageState `protogen:"open.v1"`
-	Document *AIDocumentReference   `protobuf:"bytes,1,opt,name=document,proto3" json:"document,omitempty"`
-	Locale   *AIDocumentLocale      `protobuf:"bytes,2,opt,name=locale,proto3" json:"locale,omitempty"`
-	// Exact shared/source document revision observed when the user issued this
-	// command.
-	ExpectedDocumentRevision string `protobuf:"bytes,3,opt,name=expected_document_revision,json=expectedDocumentRevision,proto3" json:"expected_document_revision,omitempty"`
-	// Stable Block handles only. Empty means document-level context.
-	BlockHandles []string `protobuf:"bytes,4,rep,name=block_handles,json=blockHandles,proto3" json:"block_handles,omitempty"`
-	// Canonical first-party action code selected by the Web UI.
-	Action string  `protobuf:"bytes,5,opt,name=action,proto3" json:"action,omitempty"`
-	Prompt *string `protobuf:"bytes,6,opt,name=prompt,proto3,oneof" json:"prompt,omitempty"`
-	// Exact target revision for an existing non-source locale; absent for source
-	// and missing-target turns.
-	ExpectedTargetRevision *string `protobuf:"bytes,7,opt,name=expected_target_revision,json=expectedTargetRevision,proto3,oneof" json:"expected_target_revision,omitempty"`
-	unknownFields          protoimpl.UnknownFields
-	sizeCache              protoimpl.SizeCache
-}
-
-func (x *StartAIEditorTurnRequest) Reset() {
-	*x = StartAIEditorTurnRequest{}
-	mi := &file_api_manage_v1_ai_proto_msgTypes[50]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *StartAIEditorTurnRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*StartAIEditorTurnRequest) ProtoMessage() {}
-
-func (x *StartAIEditorTurnRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_ai_proto_msgTypes[50]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use StartAIEditorTurnRequest.ProtoReflect.Descriptor instead.
-func (*StartAIEditorTurnRequest) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{50}
-}
-
-func (x *StartAIEditorTurnRequest) GetDocument() *AIDocumentReference {
-	if x != nil {
-		return x.Document
-	}
-	return nil
-}
-
-func (x *StartAIEditorTurnRequest) GetLocale() *AIDocumentLocale {
-	if x != nil {
-		return x.Locale
-	}
-	return nil
-}
-
-func (x *StartAIEditorTurnRequest) GetExpectedDocumentRevision() string {
-	if x != nil {
-		return x.ExpectedDocumentRevision
-	}
-	return ""
-}
-
-func (x *StartAIEditorTurnRequest) GetBlockHandles() []string {
-	if x != nil {
-		return x.BlockHandles
-	}
-	return nil
-}
-
-func (x *StartAIEditorTurnRequest) GetAction() string {
-	if x != nil {
-		return x.Action
-	}
-	return ""
-}
-
-func (x *StartAIEditorTurnRequest) GetPrompt() string {
-	if x != nil && x.Prompt != nil {
-		return *x.Prompt
-	}
-	return ""
-}
-
-func (x *StartAIEditorTurnRequest) GetExpectedTargetRevision() string {
-	if x != nil && x.ExpectedTargetRevision != nil {
-		return *x.ExpectedTargetRevision
-	}
-	return ""
-}
-
-type AIEditorAssistantTextDelta struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Text          string                 `protobuf:"bytes,1,opt,name=text,proto3" json:"text,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *AIEditorAssistantTextDelta) Reset() {
-	*x = AIEditorAssistantTextDelta{}
-	mi := &file_api_manage_v1_ai_proto_msgTypes[51]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *AIEditorAssistantTextDelta) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*AIEditorAssistantTextDelta) ProtoMessage() {}
-
-func (x *AIEditorAssistantTextDelta) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_ai_proto_msgTypes[51]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use AIEditorAssistantTextDelta.ProtoReflect.Descriptor instead.
-func (*AIEditorAssistantTextDelta) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{51}
-}
-
-func (x *AIEditorAssistantTextDelta) GetText() string {
-	if x != nil {
-		return x.Text
-	}
-	return ""
-}
-
-type AIEditorTurnPhaseUpdate struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Phase         AIEditorTurnPhase      `protobuf:"varint,1,opt,name=phase,proto3,enum=api.manage.v1.AIEditorTurnPhase" json:"phase,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *AIEditorTurnPhaseUpdate) Reset() {
-	*x = AIEditorTurnPhaseUpdate{}
-	mi := &file_api_manage_v1_ai_proto_msgTypes[52]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *AIEditorTurnPhaseUpdate) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*AIEditorTurnPhaseUpdate) ProtoMessage() {}
-
-func (x *AIEditorTurnPhaseUpdate) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_ai_proto_msgTypes[52]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use AIEditorTurnPhaseUpdate.ProtoReflect.Descriptor instead.
-func (*AIEditorTurnPhaseUpdate) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{52}
-}
-
-func (x *AIEditorTurnPhaseUpdate) GetPhase() AIEditorTurnPhase {
-	if x != nil {
-		return x.Phase
-	}
-	return AIEditorTurnPhase_AI_EDITOR_TURN_PHASE_UNSPECIFIED
-}
-
-type AIEditorDocumentToolApprovalRequired struct {
-	state      protoimpl.MessageState `protogen:"open.v1"`
-	ToolCallId string                 `protobuf:"bytes,1,opt,name=tool_call_id,json=toolCallId,proto3" json:"tool_call_id,omitempty"`
-	// The server constructs this closed DCDP mutation. Provider output never
-	// supplies document identity, locale, revision, or an editor-native patch.
-	Mutation      *AIDocumentMutation `protobuf:"bytes,2,opt,name=mutation,proto3" json:"mutation,omitempty"`
-	Summary       *string             `protobuf:"bytes,3,opt,name=summary,proto3,oneof" json:"summary,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *AIEditorDocumentToolApprovalRequired) Reset() {
-	*x = AIEditorDocumentToolApprovalRequired{}
-	mi := &file_api_manage_v1_ai_proto_msgTypes[53]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *AIEditorDocumentToolApprovalRequired) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*AIEditorDocumentToolApprovalRequired) ProtoMessage() {}
-
-func (x *AIEditorDocumentToolApprovalRequired) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_ai_proto_msgTypes[53]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use AIEditorDocumentToolApprovalRequired.ProtoReflect.Descriptor instead.
-func (*AIEditorDocumentToolApprovalRequired) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{53}
-}
-
-func (x *AIEditorDocumentToolApprovalRequired) GetToolCallId() string {
-	if x != nil {
-		return x.ToolCallId
-	}
-	return ""
-}
-
-func (x *AIEditorDocumentToolApprovalRequired) GetMutation() *AIDocumentMutation {
-	if x != nil {
-		return x.Mutation
-	}
-	return nil
-}
-
-func (x *AIEditorDocumentToolApprovalRequired) GetSummary() string {
-	if x != nil && x.Summary != nil {
-		return *x.Summary
-	}
-	return ""
-}
-
-type AIEditorDocumentToolResult struct {
-	state      protoimpl.MessageState `protogen:"open.v1"`
-	ToolCallId string                 `protobuf:"bytes,1,opt,name=tool_call_id,json=toolCallId,proto3" json:"tool_call_id,omitempty"`
-	// Types that are valid to be assigned to Result:
-	//
-	//	*AIEditorDocumentToolResult_Accepted
-	//	*AIEditorDocumentToolResult_Rejected
-	Result        isAIEditorDocumentToolResult_Result `protobuf_oneof:"result"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *AIEditorDocumentToolResult) Reset() {
-	*x = AIEditorDocumentToolResult{}
-	mi := &file_api_manage_v1_ai_proto_msgTypes[54]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *AIEditorDocumentToolResult) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*AIEditorDocumentToolResult) ProtoMessage() {}
-
-func (x *AIEditorDocumentToolResult) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_ai_proto_msgTypes[54]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use AIEditorDocumentToolResult.ProtoReflect.Descriptor instead.
-func (*AIEditorDocumentToolResult) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{54}
-}
-
-func (x *AIEditorDocumentToolResult) GetToolCallId() string {
-	if x != nil {
-		return x.ToolCallId
-	}
-	return ""
-}
-
-func (x *AIEditorDocumentToolResult) GetResult() isAIEditorDocumentToolResult_Result {
-	if x != nil {
-		return x.Result
-	}
-	return nil
-}
-
-func (x *AIEditorDocumentToolResult) GetAccepted() *AIDocumentAcceptedMutation {
-	if x != nil {
-		if x, ok := x.Result.(*AIEditorDocumentToolResult_Accepted); ok {
-			return x.Accepted
-		}
-	}
-	return nil
-}
-
-func (x *AIEditorDocumentToolResult) GetRejected() *AIDocumentValidation {
-	if x != nil {
-		if x, ok := x.Result.(*AIEditorDocumentToolResult_Rejected); ok {
-			return x.Rejected
-		}
-	}
-	return nil
-}
-
-type isAIEditorDocumentToolResult_Result interface {
-	isAIEditorDocumentToolResult_Result()
-}
-
-type AIEditorDocumentToolResult_Accepted struct {
-	Accepted *AIDocumentAcceptedMutation `protobuf:"bytes,2,opt,name=accepted,proto3,oneof"`
-}
-
-type AIEditorDocumentToolResult_Rejected struct {
-	Rejected *AIDocumentValidation `protobuf:"bytes,3,opt,name=rejected,proto3,oneof"`
-}
-
-func (*AIEditorDocumentToolResult_Accepted) isAIEditorDocumentToolResult_Result() {}
-
-func (*AIEditorDocumentToolResult_Rejected) isAIEditorDocumentToolResult_Result() {}
-
-type AIEditorTurnTerminalOutcome struct {
-	state         protoimpl.MessageState     `protogen:"open.v1"`
-	Status        AIEditorTurnTerminalStatus `protobuf:"varint,1,opt,name=status,proto3,enum=api.manage.v1.AIEditorTurnTerminalStatus" json:"status,omitempty"`
-	FailureCode   *AIEditorTurnFailureCode   `protobuf:"varint,2,opt,name=failure_code,json=failureCode,proto3,enum=api.manage.v1.AIEditorTurnFailureCode,oneof" json:"failure_code,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *AIEditorTurnTerminalOutcome) Reset() {
-	*x = AIEditorTurnTerminalOutcome{}
-	mi := &file_api_manage_v1_ai_proto_msgTypes[55]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *AIEditorTurnTerminalOutcome) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*AIEditorTurnTerminalOutcome) ProtoMessage() {}
-
-func (x *AIEditorTurnTerminalOutcome) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_ai_proto_msgTypes[55]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use AIEditorTurnTerminalOutcome.ProtoReflect.Descriptor instead.
-func (*AIEditorTurnTerminalOutcome) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{55}
-}
-
-func (x *AIEditorTurnTerminalOutcome) GetStatus() AIEditorTurnTerminalStatus {
-	if x != nil {
-		return x.Status
-	}
-	return AIEditorTurnTerminalStatus_AI_EDITOR_TURN_TERMINAL_STATUS_UNSPECIFIED
-}
-
-func (x *AIEditorTurnTerminalOutcome) GetFailureCode() AIEditorTurnFailureCode {
-	if x != nil && x.FailureCode != nil {
-		return *x.FailureCode
-	}
-	return AIEditorTurnFailureCode_AI_EDITOR_TURN_FAILURE_CODE_UNSPECIFIED
-}
-
-type AIEditorTurnEvent struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// Server-generated transient identity repeated on every stream event.
-	TurnId string `protobuf:"bytes,1,opt,name=turn_id,json=turnId,proto3" json:"turn_id,omitempty"`
-	// Types that are valid to be assigned to Event:
-	//
-	//	*AIEditorTurnEvent_AssistantText
-	//	*AIEditorTurnEvent_Phase
-	//	*AIEditorTurnEvent_ApprovalRequired
-	//	*AIEditorTurnEvent_DocumentResult
-	//	*AIEditorTurnEvent_Terminal
-	Event         isAIEditorTurnEvent_Event `protobuf_oneof:"event"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *AIEditorTurnEvent) Reset() {
-	*x = AIEditorTurnEvent{}
-	mi := &file_api_manage_v1_ai_proto_msgTypes[56]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *AIEditorTurnEvent) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*AIEditorTurnEvent) ProtoMessage() {}
-
-func (x *AIEditorTurnEvent) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_ai_proto_msgTypes[56]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use AIEditorTurnEvent.ProtoReflect.Descriptor instead.
-func (*AIEditorTurnEvent) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{56}
-}
-
-func (x *AIEditorTurnEvent) GetTurnId() string {
-	if x != nil {
-		return x.TurnId
-	}
-	return ""
-}
-
-func (x *AIEditorTurnEvent) GetEvent() isAIEditorTurnEvent_Event {
-	if x != nil {
-		return x.Event
-	}
-	return nil
-}
-
-func (x *AIEditorTurnEvent) GetAssistantText() *AIEditorAssistantTextDelta {
-	if x != nil {
-		if x, ok := x.Event.(*AIEditorTurnEvent_AssistantText); ok {
-			return x.AssistantText
-		}
-	}
-	return nil
-}
-
-func (x *AIEditorTurnEvent) GetPhase() *AIEditorTurnPhaseUpdate {
-	if x != nil {
-		if x, ok := x.Event.(*AIEditorTurnEvent_Phase); ok {
-			return x.Phase
-		}
-	}
-	return nil
-}
-
-func (x *AIEditorTurnEvent) GetApprovalRequired() *AIEditorDocumentToolApprovalRequired {
-	if x != nil {
-		if x, ok := x.Event.(*AIEditorTurnEvent_ApprovalRequired); ok {
-			return x.ApprovalRequired
-		}
-	}
-	return nil
-}
-
-func (x *AIEditorTurnEvent) GetDocumentResult() *AIEditorDocumentToolResult {
-	if x != nil {
-		if x, ok := x.Event.(*AIEditorTurnEvent_DocumentResult); ok {
-			return x.DocumentResult
-		}
-	}
-	return nil
-}
-
-func (x *AIEditorTurnEvent) GetTerminal() *AIEditorTurnTerminalOutcome {
-	if x != nil {
-		if x, ok := x.Event.(*AIEditorTurnEvent_Terminal); ok {
-			return x.Terminal
-		}
-	}
-	return nil
-}
-
-type isAIEditorTurnEvent_Event interface {
-	isAIEditorTurnEvent_Event()
-}
-
-type AIEditorTurnEvent_AssistantText struct {
-	AssistantText *AIEditorAssistantTextDelta `protobuf:"bytes,2,opt,name=assistant_text,json=assistantText,proto3,oneof"`
-}
-
-type AIEditorTurnEvent_Phase struct {
-	Phase *AIEditorTurnPhaseUpdate `protobuf:"bytes,3,opt,name=phase,proto3,oneof"`
-}
-
-type AIEditorTurnEvent_ApprovalRequired struct {
-	ApprovalRequired *AIEditorDocumentToolApprovalRequired `protobuf:"bytes,4,opt,name=approval_required,json=approvalRequired,proto3,oneof"`
-}
-
-type AIEditorTurnEvent_DocumentResult struct {
-	DocumentResult *AIEditorDocumentToolResult `protobuf:"bytes,5,opt,name=document_result,json=documentResult,proto3,oneof"`
-}
-
-type AIEditorTurnEvent_Terminal struct {
-	Terminal *AIEditorTurnTerminalOutcome `protobuf:"bytes,6,opt,name=terminal,proto3,oneof"`
-}
-
-func (*AIEditorTurnEvent_AssistantText) isAIEditorTurnEvent_Event() {}
-
-func (*AIEditorTurnEvent_Phase) isAIEditorTurnEvent_Event() {}
-
-func (*AIEditorTurnEvent_ApprovalRequired) isAIEditorTurnEvent_Event() {}
-
-func (*AIEditorTurnEvent_DocumentResult) isAIEditorTurnEvent_Event() {}
-
-func (*AIEditorTurnEvent_Terminal) isAIEditorTurnEvent_Event() {}
-
-type ResolveAIEditorToolCallRequest struct {
-	state         protoimpl.MessageState   `protogen:"open.v1"`
-	TurnId        string                   `protobuf:"bytes,1,opt,name=turn_id,json=turnId,proto3" json:"turn_id,omitempty"`
-	ToolCallId    string                   `protobuf:"bytes,2,opt,name=tool_call_id,json=toolCallId,proto3" json:"tool_call_id,omitempty"`
-	Decision      AIEditorToolCallDecision `protobuf:"varint,3,opt,name=decision,proto3,enum=api.manage.v1.AIEditorToolCallDecision" json:"decision,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *ResolveAIEditorToolCallRequest) Reset() {
-	*x = ResolveAIEditorToolCallRequest{}
-	mi := &file_api_manage_v1_ai_proto_msgTypes[57]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *ResolveAIEditorToolCallRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ResolveAIEditorToolCallRequest) ProtoMessage() {}
-
-func (x *ResolveAIEditorToolCallRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_ai_proto_msgTypes[57]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ResolveAIEditorToolCallRequest.ProtoReflect.Descriptor instead.
-func (*ResolveAIEditorToolCallRequest) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{57}
-}
-
-func (x *ResolveAIEditorToolCallRequest) GetTurnId() string {
-	if x != nil {
-		return x.TurnId
-	}
-	return ""
-}
-
-func (x *ResolveAIEditorToolCallRequest) GetToolCallId() string {
-	if x != nil {
-		return x.ToolCallId
-	}
-	return ""
-}
-
-func (x *ResolveAIEditorToolCallRequest) GetDecision() AIEditorToolCallDecision {
-	if x != nil {
-		return x.Decision
-	}
-	return AIEditorToolCallDecision_AI_EDITOR_TOOL_CALL_DECISION_UNSPECIFIED
-}
-
-type ResolveAIEditorToolCallResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *ResolveAIEditorToolCallResponse) Reset() {
-	*x = ResolveAIEditorToolCallResponse{}
-	mi := &file_api_manage_v1_ai_proto_msgTypes[58]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *ResolveAIEditorToolCallResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ResolveAIEditorToolCallResponse) ProtoMessage() {}
-
-func (x *ResolveAIEditorToolCallResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_ai_proto_msgTypes[58]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ResolveAIEditorToolCallResponse.ProtoReflect.Descriptor instead.
-func (*ResolveAIEditorToolCallResponse) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{58}
-}
-
-type CancelAIEditorTurnRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	TurnId        string                 `protobuf:"bytes,1,opt,name=turn_id,json=turnId,proto3" json:"turn_id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *CancelAIEditorTurnRequest) Reset() {
-	*x = CancelAIEditorTurnRequest{}
-	mi := &file_api_manage_v1_ai_proto_msgTypes[59]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *CancelAIEditorTurnRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*CancelAIEditorTurnRequest) ProtoMessage() {}
-
-func (x *CancelAIEditorTurnRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_ai_proto_msgTypes[59]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use CancelAIEditorTurnRequest.ProtoReflect.Descriptor instead.
-func (*CancelAIEditorTurnRequest) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{59}
-}
-
-func (x *CancelAIEditorTurnRequest) GetTurnId() string {
-	if x != nil {
-		return x.TurnId
-	}
-	return ""
-}
-
-type CancelAIEditorTurnResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *CancelAIEditorTurnResponse) Reset() {
-	*x = CancelAIEditorTurnResponse{}
-	mi := &file_api_manage_v1_ai_proto_msgTypes[60]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *CancelAIEditorTurnResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*CancelAIEditorTurnResponse) ProtoMessage() {}
-
-func (x *CancelAIEditorTurnResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_ai_proto_msgTypes[60]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use CancelAIEditorTurnResponse.ProtoReflect.Descriptor instead.
-func (*CancelAIEditorTurnResponse) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_ai_proto_rawDescGZIP(), []int{60}
-}
-
 var File_api_manage_v1_ai_proto protoreflect.FileDescriptor
 
 const file_api_manage_v1_ai_proto_rawDesc = "" +
 	"\n" +
-	"\x16api/manage/v1/ai.proto\x12\rapi.manage.v1\x1a\x1aapi/policy/v1/access.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"U\n" +
-	"\x10AIResourceTarget\x121\n" +
-	"\x04type\x18\x01 \x01(\x0e2\x1d.api.manage.v1.AIResourceTypeR\x04type\x12\x0e\n" +
-	"\x02id\x18\x02 \x01(\tR\x02id\"?\n" +
-	"\x12MetadataSuggestion\x12\x1d\n" +
-	"\asummary\x18\x01 \x01(\tH\x00R\asummary\x88\x01\x01B\n" +
-	"\n" +
-	"\b_summary\"\xec\x06\n" +
-	"\x15MetadataGenerationJob\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\x127\n" +
-	"\x06target\x18\x02 \x01(\v2\x1f.api.manage.v1.AIResourceTargetR\x06target\x12.\n" +
-	"\x13requester_member_id\x18\x03 \x01(\tR\x11requesterMemberId\x12B\n" +
-	"\x06status\x18\x04 \x01(\x0e2*.api.manage.v1.MetadataGenerationJobStatusR\x06status\x12%\n" +
-	"\x0erequested_keys\x18\x05 \x03(\tR\rrequestedKeys\x12F\n" +
-	"\n" +
-	"suggestion\x18\x06 \x01(\v2!.api.manage.v1.MetadataSuggestionH\x00R\n" +
-	"suggestion\x88\x01\x01\x12\x19\n" +
-	"\x05error\x18\a \x01(\tH\x01R\x05error\x88\x01\x01\x12\x1f\n" +
-	"\bprovider\x18\b \x01(\tH\x02R\bprovider\x88\x01\x01\x12\x19\n" +
-	"\x05model\x18\t \x01(\tH\x03R\x05model\x88\x01\x01\x12$\n" +
-	"\vduration_ms\x18\n" +
-	" \x01(\x03H\x04R\n" +
-	"durationMs\x88\x01\x01\x12>\n" +
-	"\n" +
-	"started_at\x18\v \x01(\v2\x1a.google.protobuf.TimestampH\x05R\tstartedAt\x88\x01\x01\x12B\n" +
-	"\fcompleted_at\x18\f \x01(\v2\x1a.google.protobuf.TimestampH\x06R\vcompletedAt\x88\x01\x01\x12@\n" +
-	"\vresolved_at\x18\r \x01(\v2\x1a.google.protobuf.TimestampH\aR\n" +
-	"resolvedAt\x88\x01\x01\x129\n" +
-	"\n" +
-	"created_at\x18\x0e \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x129\n" +
-	"\n" +
-	"updated_at\x18\x0f \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAtB\r\n" +
-	"\v_suggestionB\b\n" +
-	"\x06_errorB\v\n" +
-	"\t_providerB\b\n" +
-	"\x06_modelB\x0e\n" +
-	"\f_duration_msB\r\n" +
-	"\v_started_atB\x0f\n" +
-	"\r_completed_atB\x0e\n" +
-	"\f_resolved_at\"5\n" +
-	"\x1cMetadataGenerationQueueEvent\x12\x15\n" +
-	"\x06job_id\x18\x01 \x01(\tR\x05jobId\"\x8b\x01\n" +
-	"\x1eStartMetadataGenerationRequest\x12\x18\n" +
-	"\acontext\x18\x01 \x01(\tR\acontext\x12\x16\n" +
-	"\x06prompt\x18\x02 \x01(\tR\x06prompt\x127\n" +
-	"\x06target\x18\x03 \x01(\v2\x1f.api.manage.v1.AIResourceTargetR\x06target\"Y\n" +
-	"\x1fStartMetadataGenerationResponse\x126\n" +
-	"\x03job\x18\x01 \x01(\v2$.api.manage.v1.MetadataGenerationJobR\x03job\"8\n" +
-	"\x1fGetMetadataGenerationJobRequest\x12\x15\n" +
-	"\x06job_id\x18\x01 \x01(\tR\x05jobId\"Z\n" +
-	" GetMetadataGenerationJobResponse\x126\n" +
-	"\x03job\x18\x01 \x01(\v2$.api.manage.v1.MetadataGenerationJobR\x03job\"\x8c\x01\n" +
-	"#ResolveMetadataGenerationJobRequest\x12\x15\n" +
-	"\x06job_id\x18\x01 \x01(\tR\x05jobId\x12N\n" +
-	"\n" +
-	"resolution\x18\x02 \x01(\x0e2..api.manage.v1.MetadataGenerationJobResolutionR\n" +
-	"resolution\"^\n" +
-	"$ResolveMetadataGenerationJobResponse\x126\n" +
-	"\x03job\x18\x01 \x01(\v2$.api.manage.v1.MetadataGenerationJobR\x03job\"l\n" +
+	"\x16api/manage/v1/ai.proto\x12\rapi.manage.v1\x1a\x1aapi/policy/v1/access.proto\"l\n" +
 	"\x13AIDocumentReference\x127\n" +
 	"\x06domain\x18\x01 \x01(\x0e2\x1f.api.manage.v1.AIDocumentDomainR\x06domain\x12\x1c\n" +
 	"\treference\x18\x02 \x01(\tR\treference\"&\n" +
@@ -5032,78 +3295,7 @@ const file_api_manage_v1_ai_proto_rawDesc = "" +
 	"!ApplyAIDocumentOperationsResponse\x12G\n" +
 	"\baccepted\x18\x01 \x01(\v2).api.manage.v1.AIDocumentAcceptedMutationH\x00R\baccepted\x12A\n" +
 	"\brejected\x18\x02 \x01(\v2#.api.manage.v1.AIDocumentValidationH\x00R\brejectedB\b\n" +
-	"\x06result\"\x92\x03\n" +
-	"\x18StartAIEditorTurnRequest\x12>\n" +
-	"\bdocument\x18\x01 \x01(\v2\".api.manage.v1.AIDocumentReferenceR\bdocument\x127\n" +
-	"\x06locale\x18\x02 \x01(\v2\x1f.api.manage.v1.AIDocumentLocaleR\x06locale\x12<\n" +
-	"\x1aexpected_document_revision\x18\x03 \x01(\tR\x18expectedDocumentRevision\x12#\n" +
-	"\rblock_handles\x18\x04 \x03(\tR\fblockHandles\x12\x16\n" +
-	"\x06action\x18\x05 \x01(\tR\x06action\x12\x1b\n" +
-	"\x06prompt\x18\x06 \x01(\tH\x00R\x06prompt\x88\x01\x01\x12=\n" +
-	"\x18expected_target_revision\x18\a \x01(\tH\x01R\x16expectedTargetRevision\x88\x01\x01B\t\n" +
-	"\a_promptB\x1b\n" +
-	"\x19_expected_target_revision\"0\n" +
-	"\x1aAIEditorAssistantTextDelta\x12\x12\n" +
-	"\x04text\x18\x01 \x01(\tR\x04text\"Q\n" +
-	"\x17AIEditorTurnPhaseUpdate\x126\n" +
-	"\x05phase\x18\x01 \x01(\x0e2 .api.manage.v1.AIEditorTurnPhaseR\x05phase\"\xb2\x01\n" +
-	"$AIEditorDocumentToolApprovalRequired\x12 \n" +
-	"\ftool_call_id\x18\x01 \x01(\tR\n" +
-	"toolCallId\x12=\n" +
-	"\bmutation\x18\x02 \x01(\v2!.api.manage.v1.AIDocumentMutationR\bmutation\x12\x1d\n" +
-	"\asummary\x18\x03 \x01(\tH\x00R\asummary\x88\x01\x01B\n" +
-	"\n" +
-	"\b_summary\"\xd4\x01\n" +
-	"\x1aAIEditorDocumentToolResult\x12 \n" +
-	"\ftool_call_id\x18\x01 \x01(\tR\n" +
-	"toolCallId\x12G\n" +
-	"\baccepted\x18\x02 \x01(\v2).api.manage.v1.AIDocumentAcceptedMutationH\x00R\baccepted\x12A\n" +
-	"\brejected\x18\x03 \x01(\v2#.api.manage.v1.AIDocumentValidationH\x00R\brejectedB\b\n" +
-	"\x06result\"\xc1\x01\n" +
-	"\x1bAIEditorTurnTerminalOutcome\x12A\n" +
-	"\x06status\x18\x01 \x01(\x0e2).api.manage.v1.AIEditorTurnTerminalStatusR\x06status\x12N\n" +
-	"\ffailure_code\x18\x02 \x01(\x0e2&.api.manage.v1.AIEditorTurnFailureCodeH\x00R\vfailureCode\x88\x01\x01B\x0f\n" +
-	"\r_failure_code\"\xcd\x03\n" +
-	"\x11AIEditorTurnEvent\x12\x17\n" +
-	"\aturn_id\x18\x01 \x01(\tR\x06turnId\x12R\n" +
-	"\x0eassistant_text\x18\x02 \x01(\v2).api.manage.v1.AIEditorAssistantTextDeltaH\x00R\rassistantText\x12>\n" +
-	"\x05phase\x18\x03 \x01(\v2&.api.manage.v1.AIEditorTurnPhaseUpdateH\x00R\x05phase\x12b\n" +
-	"\x11approval_required\x18\x04 \x01(\v23.api.manage.v1.AIEditorDocumentToolApprovalRequiredH\x00R\x10approvalRequired\x12T\n" +
-	"\x0fdocument_result\x18\x05 \x01(\v2).api.manage.v1.AIEditorDocumentToolResultH\x00R\x0edocumentResult\x12H\n" +
-	"\bterminal\x18\x06 \x01(\v2*.api.manage.v1.AIEditorTurnTerminalOutcomeH\x00R\bterminalB\a\n" +
-	"\x05event\"\xa0\x01\n" +
-	"\x1eResolveAIEditorToolCallRequest\x12\x17\n" +
-	"\aturn_id\x18\x01 \x01(\tR\x06turnId\x12 \n" +
-	"\ftool_call_id\x18\x02 \x01(\tR\n" +
-	"toolCallId\x12C\n" +
-	"\bdecision\x18\x03 \x01(\x0e2'.api.manage.v1.AIEditorToolCallDecisionR\bdecision\"!\n" +
-	"\x1fResolveAIEditorToolCallResponse\"4\n" +
-	"\x19CancelAIEditorTurnRequest\x12\x17\n" +
-	"\aturn_id\x18\x01 \x01(\tR\x06turnId\"\x1c\n" +
-	"\x1aCancelAIEditorTurnResponse*\xb9\x02\n" +
-	"\x0eAIResourceType\x12 \n" +
-	"\x1cAI_RESOURCE_TYPE_UNSPECIFIED\x10\x00\x12\x19\n" +
-	"\x15AI_RESOURCE_TYPE_POST\x10\x01\x12\x19\n" +
-	"\x15AI_RESOURCE_TYPE_WORK\x10\x02\x12\x19\n" +
-	"\x15AI_RESOURCE_TYPE_PAGE\x10\x03\x12\x19\n" +
-	"\x15AI_RESOURCE_TYPE_FORM\x10\x04\x12\x1b\n" +
-	"\x17AI_RESOURCE_TYPE_ARTIST\x10\x05\x12\x1c\n" +
-	"\x18AI_RESOURCE_TYPE_RELEASE\x10\x06\x12\x1a\n" +
-	"\x16AI_RESOURCE_TYPE_LABEL\x10\a\x12\x1d\n" +
-	"\x19AI_RESOURCE_TYPE_CAMPAIGN\x10\b\x12#\n" +
-	"\x1fAI_RESOURCE_TYPE_EMAIL_TEMPLATE\x10\t*\xd3\x02\n" +
-	"\x1bMetadataGenerationJobStatus\x12.\n" +
-	"*METADATA_GENERATION_JOB_STATUS_UNSPECIFIED\x10\x00\x12)\n" +
-	"%METADATA_GENERATION_JOB_STATUS_QUEUED\x10\x01\x12*\n" +
-	"&METADATA_GENERATION_JOB_STATUS_RUNNING\x10\x02\x12(\n" +
-	"$METADATA_GENERATION_JOB_STATUS_READY\x10\x03\x12)\n" +
-	"%METADATA_GENERATION_JOB_STATUS_FAILED\x10\x04\x12*\n" +
-	"&METADATA_GENERATION_JOB_STATUS_APPLIED\x10\x05\x12,\n" +
-	"(METADATA_GENERATION_JOB_STATUS_DISMISSED\x10\x06*\xb7\x01\n" +
-	"\x1fMetadataGenerationJobResolution\x122\n" +
-	".METADATA_GENERATION_JOB_RESOLUTION_UNSPECIFIED\x10\x00\x12.\n" +
-	"*METADATA_GENERATION_JOB_RESOLUTION_APPLIED\x10\x01\x120\n" +
-	",METADATA_GENERATION_JOB_RESOLUTION_DISMISSED\x10\x02*\x99\x04\n" +
+	"\x06result*\x99\x04\n" +
 	"\x10AIDocumentDomain\x12\"\n" +
 	"\x1eAI_DOCUMENT_DOMAIN_UNSPECIFIED\x10\x00\x12\x1b\n" +
 	"\x17AI_DOCUMENT_DOMAIN_POST\x10\x01\x12\x1b\n" +
@@ -5167,37 +3359,10 @@ const file_api_manage_v1_ai_proto_rawDesc = "" +
 	"\x16AIDocumentConflictCode\x12)\n" +
 	"%AI_DOCUMENT_CONFLICT_CODE_UNSPECIFIED\x10\x00\x12/\n" +
 	"+AI_DOCUMENT_CONFLICT_CODE_DOCUMENT_REVISION\x10\x01\x12-\n" +
-	")AI_DOCUMENT_CONFLICT_CODE_TARGET_REVISION\x10\x02*\xc1\x01\n" +
-	"\x11AIEditorTurnPhase\x12$\n" +
-	" AI_EDITOR_TURN_PHASE_UNSPECIFIED\x10\x00\x12)\n" +
-	"%AI_EDITOR_TURN_PHASE_PROVIDER_RUNNING\x10\x01\x12/\n" +
-	"+AI_EDITOR_TURN_PHASE_AWAITING_TOOL_APPROVAL\x10\x02\x12*\n" +
-	"&AI_EDITOR_TURN_PHASE_APPLYING_DOCUMENT\x10\x03*\x99\x01\n" +
-	"\x18AIEditorToolCallDecision\x12,\n" +
-	"(AI_EDITOR_TOOL_CALL_DECISION_UNSPECIFIED\x10\x00\x12(\n" +
-	"$AI_EDITOR_TOOL_CALL_DECISION_APPROVE\x10\x01\x12%\n" +
-	"!AI_EDITOR_TOOL_CALL_DECISION_DENY\x10\x02*\xd3\x01\n" +
-	"\x1aAIEditorTurnTerminalStatus\x12.\n" +
-	"*AI_EDITOR_TURN_TERMINAL_STATUS_UNSPECIFIED\x10\x00\x12,\n" +
-	"(AI_EDITOR_TURN_TERMINAL_STATUS_COMPLETED\x10\x01\x12,\n" +
-	"(AI_EDITOR_TURN_TERMINAL_STATUS_CANCELLED\x10\x02\x12)\n" +
-	"%AI_EDITOR_TURN_TERMINAL_STATUS_FAILED\x10\x03*\xc4\x01\n" +
-	"\x17AIEditorTurnFailureCode\x12+\n" +
-	"'AI_EDITOR_TURN_FAILURE_CODE_UNSPECIFIED\x10\x00\x12(\n" +
-	"$AI_EDITOR_TURN_FAILURE_CODE_PROVIDER\x10\x01\x12(\n" +
-	"$AI_EDITOR_TURN_FAILURE_CODE_DOCUMENT\x10\x02\x12(\n" +
-	"$AI_EDITOR_TURN_FAILURE_CODE_INTERNAL\x10\x032\x83\x02\n" +
+	")AI_DOCUMENT_CONFLICT_CODE_TARGET_REVISION\x10\x022\x83\x02\n" +
 	"\x11AIDocumentService\x12e\n" +
 	"\x0eOpenAIDocument\x12$.api.manage.v1.OpenAIDocumentRequest\x1a%.api.manage.v1.OpenAIDocumentResponse\"\x06\xca\xf3\x18\x02\b\x02\x12\x86\x01\n" +
-	"\x19ApplyAIDocumentOperations\x12/.api.manage.v1.ApplyAIDocumentOperationsRequest\x1a0.api.manage.v1.ApplyAIDocumentOperationsResponse\"\x06\xca\xf3\x18\x02\b\x022\xfe\x02\n" +
-	"\x1cAIEditorOrchestrationService\x12h\n" +
-	"\x11StartAIEditorTurn\x12'.api.manage.v1.StartAIEditorTurnRequest\x1a .api.manage.v1.AIEditorTurnEvent\"\x06\xca\xf3\x18\x02\b\x020\x01\x12\x80\x01\n" +
-	"\x17ResolveAIEditorToolCall\x12-.api.manage.v1.ResolveAIEditorToolCallRequest\x1a..api.manage.v1.ResolveAIEditorToolCallResponse\"\x06\xca\xf3\x18\x02\b\x02\x12q\n" +
-	"\x12CancelAIEditorTurn\x12(.api.manage.v1.CancelAIEditorTurnRequest\x1a).api.manage.v1.CancelAIEditorTurnResponse\"\x06\xca\xf3\x18\x02\b\x022\xa6\x03\n" +
-	"\tAIService\x12\x80\x01\n" +
-	"\x17StartMetadataGeneration\x12-.api.manage.v1.StartMetadataGenerationRequest\x1a..api.manage.v1.StartMetadataGenerationResponse\"\x06\xca\xf3\x18\x02\b\x02\x12\x83\x01\n" +
-	"\x18GetMetadataGenerationJob\x12..api.manage.v1.GetMetadataGenerationJobRequest\x1a/.api.manage.v1.GetMetadataGenerationJobResponse\"\x06\xca\xf3\x18\x02\b\x02\x12\x8f\x01\n" +
-	"\x1cResolveMetadataGenerationJob\x122.api.manage.v1.ResolveMetadataGenerationJobRequest\x1a3.api.manage.v1.ResolveMetadataGenerationJobResponse\"\x06\xca\xf3\x18\x02\b\x02B\xbc\x01\n" +
+	"\x19ApplyAIDocumentOperations\x12/.api.manage.v1.ApplyAIDocumentOperationsRequest\x1a0.api.manage.v1.ApplyAIDocumentOperationsResponse\"\x06\xca\xf3\x18\x02\b\x02B\xbc\x01\n" +
 	"\x11com.api.manage.v1B\aAiProtoP\x01ZHgithub.com/echovisionlab/geul-event-contracts/gen/api/manage/v1;managev1\xa2\x02\x03AMX\xaa\x02\rApi.Manage.V1\xca\x02\rApi\\Manage\\V1\xe2\x02\x19Api\\Manage\\V1\\GPBMetadata\xea\x02\x0fApi::Manage::V1b\x06proto3"
 
 var (
@@ -5212,191 +3377,122 @@ func file_api_manage_v1_ai_proto_rawDescGZIP() []byte {
 	return file_api_manage_v1_ai_proto_rawDescData
 }
 
-var file_api_manage_v1_ai_proto_enumTypes = make([]protoimpl.EnumInfo, 12)
-var file_api_manage_v1_ai_proto_msgTypes = make([]protoimpl.MessageInfo, 61)
+var file_api_manage_v1_ai_proto_enumTypes = make([]protoimpl.EnumInfo, 5)
+var file_api_manage_v1_ai_proto_msgTypes = make([]protoimpl.MessageInfo, 40)
 var file_api_manage_v1_ai_proto_goTypes = []any{
-	(AIResourceType)(0),                           // 0: api.manage.v1.AIResourceType
-	(MetadataGenerationJobStatus)(0),              // 1: api.manage.v1.MetadataGenerationJobStatus
-	(MetadataGenerationJobResolution)(0),          // 2: api.manage.v1.MetadataGenerationJobResolution
-	(AIDocumentDomain)(0),                         // 3: api.manage.v1.AIDocumentDomain
-	(AIDocumentLocaleRole)(0),                     // 4: api.manage.v1.AIDocumentLocaleRole
-	(AIDocumentOperationKind)(0),                  // 5: api.manage.v1.AIDocumentOperationKind
-	(AIDocumentIssueCode)(0),                      // 6: api.manage.v1.AIDocumentIssueCode
-	(AIDocumentConflictCode)(0),                   // 7: api.manage.v1.AIDocumentConflictCode
-	(AIEditorTurnPhase)(0),                        // 8: api.manage.v1.AIEditorTurnPhase
-	(AIEditorToolCallDecision)(0),                 // 9: api.manage.v1.AIEditorToolCallDecision
-	(AIEditorTurnTerminalStatus)(0),               // 10: api.manage.v1.AIEditorTurnTerminalStatus
-	(AIEditorTurnFailureCode)(0),                  // 11: api.manage.v1.AIEditorTurnFailureCode
-	(*AIResourceTarget)(nil),                      // 12: api.manage.v1.AIResourceTarget
-	(*MetadataSuggestion)(nil),                    // 13: api.manage.v1.MetadataSuggestion
-	(*MetadataGenerationJob)(nil),                 // 14: api.manage.v1.MetadataGenerationJob
-	(*MetadataGenerationQueueEvent)(nil),          // 15: api.manage.v1.MetadataGenerationQueueEvent
-	(*StartMetadataGenerationRequest)(nil),        // 16: api.manage.v1.StartMetadataGenerationRequest
-	(*StartMetadataGenerationResponse)(nil),       // 17: api.manage.v1.StartMetadataGenerationResponse
-	(*GetMetadataGenerationJobRequest)(nil),       // 18: api.manage.v1.GetMetadataGenerationJobRequest
-	(*GetMetadataGenerationJobResponse)(nil),      // 19: api.manage.v1.GetMetadataGenerationJobResponse
-	(*ResolveMetadataGenerationJobRequest)(nil),   // 20: api.manage.v1.ResolveMetadataGenerationJobRequest
-	(*ResolveMetadataGenerationJobResponse)(nil),  // 21: api.manage.v1.ResolveMetadataGenerationJobResponse
-	(*AIDocumentReference)(nil),                   // 22: api.manage.v1.AIDocumentReference
-	(*AIDocumentLocale)(nil),                      // 23: api.manage.v1.AIDocumentLocale
-	(*AIDocumentMetadata)(nil),                    // 24: api.manage.v1.AIDocumentMetadata
-	(*AIDocumentInlineContent)(nil),               // 25: api.manage.v1.AIDocumentInlineContent
-	(*AIDocumentInlineMark)(nil),                  // 26: api.manage.v1.AIDocumentInlineMark
-	(*AIDocumentInlineLink)(nil),                  // 27: api.manage.v1.AIDocumentInlineLink
-	(*AIDocumentHardBreak)(nil),                   // 28: api.manage.v1.AIDocumentHardBreak
-	(*AIDocumentInlineItem)(nil),                  // 29: api.manage.v1.AIDocumentInlineItem
-	(*AIDocumentValue)(nil),                       // 30: api.manage.v1.AIDocumentValue
-	(*AIDocumentListItem)(nil),                    // 31: api.manage.v1.AIDocumentListItem
-	(*AIDocumentListValue)(nil),                   // 32: api.manage.v1.AIDocumentListValue
-	(*AIDocumentObjectValue)(nil),                 // 33: api.manage.v1.AIDocumentObjectValue
-	(*AIDocumentFieldValue)(nil),                  // 34: api.manage.v1.AIDocumentFieldValue
-	(*AIDocumentRelationItemReference)(nil),       // 35: api.manage.v1.AIDocumentRelationItemReference
-	(*AIDocumentFieldTarget)(nil),                 // 36: api.manage.v1.AIDocumentFieldTarget
-	(*AIDocumentFieldPathSegment)(nil),            // 37: api.manage.v1.AIDocumentFieldPathSegment
-	(*OpenAIDocumentRequest)(nil),                 // 38: api.manage.v1.OpenAIDocumentRequest
-	(*OpenAIDocumentResponse)(nil),                // 39: api.manage.v1.OpenAIDocumentResponse
-	(*AIDocumentSetFieldOperation)(nil),           // 40: api.manage.v1.AIDocumentSetFieldOperation
-	(*AIDocumentUnsetFieldOperation)(nil),         // 41: api.manage.v1.AIDocumentUnsetFieldOperation
-	(*AIDocumentInsertBlockOperation)(nil),        // 42: api.manage.v1.AIDocumentInsertBlockOperation
-	(*AIDocumentDeleteBlockOperation)(nil),        // 43: api.manage.v1.AIDocumentDeleteBlockOperation
-	(*AIDocumentMoveBlockOperation)(nil),          // 44: api.manage.v1.AIDocumentMoveBlockOperation
-	(*AIDocumentReplaceBlockKindOperation)(nil),   // 45: api.manage.v1.AIDocumentReplaceBlockKindOperation
-	(*AIDocumentAttachFileOperation)(nil),         // 46: api.manage.v1.AIDocumentAttachFileOperation
-	(*AIDocumentDetachFileOperation)(nil),         // 47: api.manage.v1.AIDocumentDetachFileOperation
-	(*AIDocumentCreateTranslationOperation)(nil),  // 48: api.manage.v1.AIDocumentCreateTranslationOperation
-	(*AIDocumentDeleteTranslationOperation)(nil),  // 49: api.manage.v1.AIDocumentDeleteTranslationOperation
-	(*AIDocumentInsertRelationItemOperation)(nil), // 50: api.manage.v1.AIDocumentInsertRelationItemOperation
-	(*AIDocumentDeleteRelationItemOperation)(nil), // 51: api.manage.v1.AIDocumentDeleteRelationItemOperation
-	(*AIDocumentMoveRelationItemOperation)(nil),   // 52: api.manage.v1.AIDocumentMoveRelationItemOperation
-	(*AIDocumentOperation)(nil),                   // 53: api.manage.v1.AIDocumentOperation
-	(*AIDocumentMutation)(nil),                    // 54: api.manage.v1.AIDocumentMutation
-	(*AIDocumentIssue)(nil),                       // 55: api.manage.v1.AIDocumentIssue
-	(*AIDocumentConflict)(nil),                    // 56: api.manage.v1.AIDocumentConflict
-	(*AIDocumentValidation)(nil),                  // 57: api.manage.v1.AIDocumentValidation
-	(*AIDocumentAcceptedChange)(nil),              // 58: api.manage.v1.AIDocumentAcceptedChange
-	(*AIDocumentAcceptedMutation)(nil),            // 59: api.manage.v1.AIDocumentAcceptedMutation
-	(*ApplyAIDocumentOperationsRequest)(nil),      // 60: api.manage.v1.ApplyAIDocumentOperationsRequest
-	(*ApplyAIDocumentOperationsResponse)(nil),     // 61: api.manage.v1.ApplyAIDocumentOperationsResponse
-	(*StartAIEditorTurnRequest)(nil),              // 62: api.manage.v1.StartAIEditorTurnRequest
-	(*AIEditorAssistantTextDelta)(nil),            // 63: api.manage.v1.AIEditorAssistantTextDelta
-	(*AIEditorTurnPhaseUpdate)(nil),               // 64: api.manage.v1.AIEditorTurnPhaseUpdate
-	(*AIEditorDocumentToolApprovalRequired)(nil),  // 65: api.manage.v1.AIEditorDocumentToolApprovalRequired
-	(*AIEditorDocumentToolResult)(nil),            // 66: api.manage.v1.AIEditorDocumentToolResult
-	(*AIEditorTurnTerminalOutcome)(nil),           // 67: api.manage.v1.AIEditorTurnTerminalOutcome
-	(*AIEditorTurnEvent)(nil),                     // 68: api.manage.v1.AIEditorTurnEvent
-	(*ResolveAIEditorToolCallRequest)(nil),        // 69: api.manage.v1.ResolveAIEditorToolCallRequest
-	(*ResolveAIEditorToolCallResponse)(nil),       // 70: api.manage.v1.ResolveAIEditorToolCallResponse
-	(*CancelAIEditorTurnRequest)(nil),             // 71: api.manage.v1.CancelAIEditorTurnRequest
-	(*CancelAIEditorTurnResponse)(nil),            // 72: api.manage.v1.CancelAIEditorTurnResponse
-	(*timestamppb.Timestamp)(nil),                 // 73: google.protobuf.Timestamp
+	(AIDocumentDomain)(0),                         // 0: api.manage.v1.AIDocumentDomain
+	(AIDocumentLocaleRole)(0),                     // 1: api.manage.v1.AIDocumentLocaleRole
+	(AIDocumentOperationKind)(0),                  // 2: api.manage.v1.AIDocumentOperationKind
+	(AIDocumentIssueCode)(0),                      // 3: api.manage.v1.AIDocumentIssueCode
+	(AIDocumentConflictCode)(0),                   // 4: api.manage.v1.AIDocumentConflictCode
+	(*AIDocumentReference)(nil),                   // 5: api.manage.v1.AIDocumentReference
+	(*AIDocumentLocale)(nil),                      // 6: api.manage.v1.AIDocumentLocale
+	(*AIDocumentMetadata)(nil),                    // 7: api.manage.v1.AIDocumentMetadata
+	(*AIDocumentInlineContent)(nil),               // 8: api.manage.v1.AIDocumentInlineContent
+	(*AIDocumentInlineMark)(nil),                  // 9: api.manage.v1.AIDocumentInlineMark
+	(*AIDocumentInlineLink)(nil),                  // 10: api.manage.v1.AIDocumentInlineLink
+	(*AIDocumentHardBreak)(nil),                   // 11: api.manage.v1.AIDocumentHardBreak
+	(*AIDocumentInlineItem)(nil),                  // 12: api.manage.v1.AIDocumentInlineItem
+	(*AIDocumentValue)(nil),                       // 13: api.manage.v1.AIDocumentValue
+	(*AIDocumentListItem)(nil),                    // 14: api.manage.v1.AIDocumentListItem
+	(*AIDocumentListValue)(nil),                   // 15: api.manage.v1.AIDocumentListValue
+	(*AIDocumentObjectValue)(nil),                 // 16: api.manage.v1.AIDocumentObjectValue
+	(*AIDocumentFieldValue)(nil),                  // 17: api.manage.v1.AIDocumentFieldValue
+	(*AIDocumentRelationItemReference)(nil),       // 18: api.manage.v1.AIDocumentRelationItemReference
+	(*AIDocumentFieldTarget)(nil),                 // 19: api.manage.v1.AIDocumentFieldTarget
+	(*AIDocumentFieldPathSegment)(nil),            // 20: api.manage.v1.AIDocumentFieldPathSegment
+	(*OpenAIDocumentRequest)(nil),                 // 21: api.manage.v1.OpenAIDocumentRequest
+	(*OpenAIDocumentResponse)(nil),                // 22: api.manage.v1.OpenAIDocumentResponse
+	(*AIDocumentSetFieldOperation)(nil),           // 23: api.manage.v1.AIDocumentSetFieldOperation
+	(*AIDocumentUnsetFieldOperation)(nil),         // 24: api.manage.v1.AIDocumentUnsetFieldOperation
+	(*AIDocumentInsertBlockOperation)(nil),        // 25: api.manage.v1.AIDocumentInsertBlockOperation
+	(*AIDocumentDeleteBlockOperation)(nil),        // 26: api.manage.v1.AIDocumentDeleteBlockOperation
+	(*AIDocumentMoveBlockOperation)(nil),          // 27: api.manage.v1.AIDocumentMoveBlockOperation
+	(*AIDocumentReplaceBlockKindOperation)(nil),   // 28: api.manage.v1.AIDocumentReplaceBlockKindOperation
+	(*AIDocumentAttachFileOperation)(nil),         // 29: api.manage.v1.AIDocumentAttachFileOperation
+	(*AIDocumentDetachFileOperation)(nil),         // 30: api.manage.v1.AIDocumentDetachFileOperation
+	(*AIDocumentCreateTranslationOperation)(nil),  // 31: api.manage.v1.AIDocumentCreateTranslationOperation
+	(*AIDocumentDeleteTranslationOperation)(nil),  // 32: api.manage.v1.AIDocumentDeleteTranslationOperation
+	(*AIDocumentInsertRelationItemOperation)(nil), // 33: api.manage.v1.AIDocumentInsertRelationItemOperation
+	(*AIDocumentDeleteRelationItemOperation)(nil), // 34: api.manage.v1.AIDocumentDeleteRelationItemOperation
+	(*AIDocumentMoveRelationItemOperation)(nil),   // 35: api.manage.v1.AIDocumentMoveRelationItemOperation
+	(*AIDocumentOperation)(nil),                   // 36: api.manage.v1.AIDocumentOperation
+	(*AIDocumentMutation)(nil),                    // 37: api.manage.v1.AIDocumentMutation
+	(*AIDocumentIssue)(nil),                       // 38: api.manage.v1.AIDocumentIssue
+	(*AIDocumentConflict)(nil),                    // 39: api.manage.v1.AIDocumentConflict
+	(*AIDocumentValidation)(nil),                  // 40: api.manage.v1.AIDocumentValidation
+	(*AIDocumentAcceptedChange)(nil),              // 41: api.manage.v1.AIDocumentAcceptedChange
+	(*AIDocumentAcceptedMutation)(nil),            // 42: api.manage.v1.AIDocumentAcceptedMutation
+	(*ApplyAIDocumentOperationsRequest)(nil),      // 43: api.manage.v1.ApplyAIDocumentOperationsRequest
+	(*ApplyAIDocumentOperationsResponse)(nil),     // 44: api.manage.v1.ApplyAIDocumentOperationsResponse
 }
 var file_api_manage_v1_ai_proto_depIdxs = []int32{
-	0,  // 0: api.manage.v1.AIResourceTarget.type:type_name -> api.manage.v1.AIResourceType
-	12, // 1: api.manage.v1.MetadataGenerationJob.target:type_name -> api.manage.v1.AIResourceTarget
-	1,  // 2: api.manage.v1.MetadataGenerationJob.status:type_name -> api.manage.v1.MetadataGenerationJobStatus
-	13, // 3: api.manage.v1.MetadataGenerationJob.suggestion:type_name -> api.manage.v1.MetadataSuggestion
-	73, // 4: api.manage.v1.MetadataGenerationJob.started_at:type_name -> google.protobuf.Timestamp
-	73, // 5: api.manage.v1.MetadataGenerationJob.completed_at:type_name -> google.protobuf.Timestamp
-	73, // 6: api.manage.v1.MetadataGenerationJob.resolved_at:type_name -> google.protobuf.Timestamp
-	73, // 7: api.manage.v1.MetadataGenerationJob.created_at:type_name -> google.protobuf.Timestamp
-	73, // 8: api.manage.v1.MetadataGenerationJob.updated_at:type_name -> google.protobuf.Timestamp
-	12, // 9: api.manage.v1.StartMetadataGenerationRequest.target:type_name -> api.manage.v1.AIResourceTarget
-	14, // 10: api.manage.v1.StartMetadataGenerationResponse.job:type_name -> api.manage.v1.MetadataGenerationJob
-	14, // 11: api.manage.v1.GetMetadataGenerationJobResponse.job:type_name -> api.manage.v1.MetadataGenerationJob
-	2,  // 12: api.manage.v1.ResolveMetadataGenerationJobRequest.resolution:type_name -> api.manage.v1.MetadataGenerationJobResolution
-	14, // 13: api.manage.v1.ResolveMetadataGenerationJobResponse.job:type_name -> api.manage.v1.MetadataGenerationJob
-	3,  // 14: api.manage.v1.AIDocumentReference.domain:type_name -> api.manage.v1.AIDocumentDomain
-	22, // 15: api.manage.v1.AIDocumentMetadata.document:type_name -> api.manage.v1.AIDocumentReference
-	23, // 16: api.manage.v1.AIDocumentMetadata.source_locale:type_name -> api.manage.v1.AIDocumentLocale
-	23, // 17: api.manage.v1.AIDocumentMetadata.requested_locale:type_name -> api.manage.v1.AIDocumentLocale
-	4,  // 18: api.manage.v1.AIDocumentMetadata.locale_role:type_name -> api.manage.v1.AIDocumentLocaleRole
-	29, // 19: api.manage.v1.AIDocumentInlineContent.items:type_name -> api.manage.v1.AIDocumentInlineItem
-	29, // 20: api.manage.v1.AIDocumentInlineMark.children:type_name -> api.manage.v1.AIDocumentInlineItem
-	30, // 21: api.manage.v1.AIDocumentInlineMark.parameter:type_name -> api.manage.v1.AIDocumentValue
-	29, // 22: api.manage.v1.AIDocumentInlineLink.children:type_name -> api.manage.v1.AIDocumentInlineItem
-	26, // 23: api.manage.v1.AIDocumentInlineItem.mark:type_name -> api.manage.v1.AIDocumentInlineMark
-	27, // 24: api.manage.v1.AIDocumentInlineItem.link:type_name -> api.manage.v1.AIDocumentInlineLink
-	28, // 25: api.manage.v1.AIDocumentInlineItem.hard_break:type_name -> api.manage.v1.AIDocumentHardBreak
-	25, // 26: api.manage.v1.AIDocumentValue.inline:type_name -> api.manage.v1.AIDocumentInlineContent
-	32, // 27: api.manage.v1.AIDocumentValue.list:type_name -> api.manage.v1.AIDocumentListValue
-	33, // 28: api.manage.v1.AIDocumentValue.object:type_name -> api.manage.v1.AIDocumentObjectValue
-	30, // 29: api.manage.v1.AIDocumentListItem.value:type_name -> api.manage.v1.AIDocumentValue
-	31, // 30: api.manage.v1.AIDocumentListValue.items:type_name -> api.manage.v1.AIDocumentListItem
-	34, // 31: api.manage.v1.AIDocumentObjectValue.fields:type_name -> api.manage.v1.AIDocumentFieldValue
-	30, // 32: api.manage.v1.AIDocumentFieldValue.value:type_name -> api.manage.v1.AIDocumentValue
-	35, // 33: api.manage.v1.AIDocumentFieldTarget.relation_item:type_name -> api.manage.v1.AIDocumentRelationItemReference
-	37, // 34: api.manage.v1.AIDocumentFieldTarget.path:type_name -> api.manage.v1.AIDocumentFieldPathSegment
-	22, // 35: api.manage.v1.OpenAIDocumentRequest.document:type_name -> api.manage.v1.AIDocumentReference
-	23, // 36: api.manage.v1.OpenAIDocumentRequest.locale:type_name -> api.manage.v1.AIDocumentLocale
-	24, // 37: api.manage.v1.OpenAIDocumentResponse.metadata:type_name -> api.manage.v1.AIDocumentMetadata
-	36, // 38: api.manage.v1.AIDocumentSetFieldOperation.target:type_name -> api.manage.v1.AIDocumentFieldTarget
-	30, // 39: api.manage.v1.AIDocumentSetFieldOperation.value:type_name -> api.manage.v1.AIDocumentValue
-	36, // 40: api.manage.v1.AIDocumentUnsetFieldOperation.target:type_name -> api.manage.v1.AIDocumentFieldTarget
-	36, // 41: api.manage.v1.AIDocumentAttachFileOperation.target:type_name -> api.manage.v1.AIDocumentFieldTarget
-	36, // 42: api.manage.v1.AIDocumentDetachFileOperation.target:type_name -> api.manage.v1.AIDocumentFieldTarget
-	35, // 43: api.manage.v1.AIDocumentDeleteRelationItemOperation.item:type_name -> api.manage.v1.AIDocumentRelationItemReference
-	35, // 44: api.manage.v1.AIDocumentMoveRelationItemOperation.item:type_name -> api.manage.v1.AIDocumentRelationItemReference
-	40, // 45: api.manage.v1.AIDocumentOperation.set_field:type_name -> api.manage.v1.AIDocumentSetFieldOperation
-	41, // 46: api.manage.v1.AIDocumentOperation.unset_field:type_name -> api.manage.v1.AIDocumentUnsetFieldOperation
-	42, // 47: api.manage.v1.AIDocumentOperation.insert_block:type_name -> api.manage.v1.AIDocumentInsertBlockOperation
-	43, // 48: api.manage.v1.AIDocumentOperation.delete_block:type_name -> api.manage.v1.AIDocumentDeleteBlockOperation
-	44, // 49: api.manage.v1.AIDocumentOperation.move_block:type_name -> api.manage.v1.AIDocumentMoveBlockOperation
-	45, // 50: api.manage.v1.AIDocumentOperation.replace_block_kind:type_name -> api.manage.v1.AIDocumentReplaceBlockKindOperation
-	46, // 51: api.manage.v1.AIDocumentOperation.attach_file:type_name -> api.manage.v1.AIDocumentAttachFileOperation
-	47, // 52: api.manage.v1.AIDocumentOperation.detach_file:type_name -> api.manage.v1.AIDocumentDetachFileOperation
-	48, // 53: api.manage.v1.AIDocumentOperation.create_translation:type_name -> api.manage.v1.AIDocumentCreateTranslationOperation
-	49, // 54: api.manage.v1.AIDocumentOperation.delete_translation:type_name -> api.manage.v1.AIDocumentDeleteTranslationOperation
-	50, // 55: api.manage.v1.AIDocumentOperation.insert_relation_item:type_name -> api.manage.v1.AIDocumentInsertRelationItemOperation
-	51, // 56: api.manage.v1.AIDocumentOperation.delete_relation_item:type_name -> api.manage.v1.AIDocumentDeleteRelationItemOperation
-	52, // 57: api.manage.v1.AIDocumentOperation.move_relation_item:type_name -> api.manage.v1.AIDocumentMoveRelationItemOperation
-	22, // 58: api.manage.v1.AIDocumentMutation.document:type_name -> api.manage.v1.AIDocumentReference
-	23, // 59: api.manage.v1.AIDocumentMutation.locale:type_name -> api.manage.v1.AIDocumentLocale
-	53, // 60: api.manage.v1.AIDocumentMutation.operations:type_name -> api.manage.v1.AIDocumentOperation
-	6,  // 61: api.manage.v1.AIDocumentIssue.code:type_name -> api.manage.v1.AIDocumentIssueCode
-	7,  // 62: api.manage.v1.AIDocumentConflict.code:type_name -> api.manage.v1.AIDocumentConflictCode
-	53, // 63: api.manage.v1.AIDocumentValidation.normalized_operations:type_name -> api.manage.v1.AIDocumentOperation
-	55, // 64: api.manage.v1.AIDocumentValidation.issues:type_name -> api.manage.v1.AIDocumentIssue
-	56, // 65: api.manage.v1.AIDocumentValidation.conflict:type_name -> api.manage.v1.AIDocumentConflict
-	5,  // 66: api.manage.v1.AIDocumentAcceptedChange.kind:type_name -> api.manage.v1.AIDocumentOperationKind
-	58, // 67: api.manage.v1.AIDocumentAcceptedMutation.changes:type_name -> api.manage.v1.AIDocumentAcceptedChange
-	54, // 68: api.manage.v1.ApplyAIDocumentOperationsRequest.mutation:type_name -> api.manage.v1.AIDocumentMutation
-	59, // 69: api.manage.v1.ApplyAIDocumentOperationsResponse.accepted:type_name -> api.manage.v1.AIDocumentAcceptedMutation
-	57, // 70: api.manage.v1.ApplyAIDocumentOperationsResponse.rejected:type_name -> api.manage.v1.AIDocumentValidation
-	22, // 71: api.manage.v1.StartAIEditorTurnRequest.document:type_name -> api.manage.v1.AIDocumentReference
-	23, // 72: api.manage.v1.StartAIEditorTurnRequest.locale:type_name -> api.manage.v1.AIDocumentLocale
-	8,  // 73: api.manage.v1.AIEditorTurnPhaseUpdate.phase:type_name -> api.manage.v1.AIEditorTurnPhase
-	54, // 74: api.manage.v1.AIEditorDocumentToolApprovalRequired.mutation:type_name -> api.manage.v1.AIDocumentMutation
-	59, // 75: api.manage.v1.AIEditorDocumentToolResult.accepted:type_name -> api.manage.v1.AIDocumentAcceptedMutation
-	57, // 76: api.manage.v1.AIEditorDocumentToolResult.rejected:type_name -> api.manage.v1.AIDocumentValidation
-	10, // 77: api.manage.v1.AIEditorTurnTerminalOutcome.status:type_name -> api.manage.v1.AIEditorTurnTerminalStatus
-	11, // 78: api.manage.v1.AIEditorTurnTerminalOutcome.failure_code:type_name -> api.manage.v1.AIEditorTurnFailureCode
-	63, // 79: api.manage.v1.AIEditorTurnEvent.assistant_text:type_name -> api.manage.v1.AIEditorAssistantTextDelta
-	64, // 80: api.manage.v1.AIEditorTurnEvent.phase:type_name -> api.manage.v1.AIEditorTurnPhaseUpdate
-	65, // 81: api.manage.v1.AIEditorTurnEvent.approval_required:type_name -> api.manage.v1.AIEditorDocumentToolApprovalRequired
-	66, // 82: api.manage.v1.AIEditorTurnEvent.document_result:type_name -> api.manage.v1.AIEditorDocumentToolResult
-	67, // 83: api.manage.v1.AIEditorTurnEvent.terminal:type_name -> api.manage.v1.AIEditorTurnTerminalOutcome
-	9,  // 84: api.manage.v1.ResolveAIEditorToolCallRequest.decision:type_name -> api.manage.v1.AIEditorToolCallDecision
-	38, // 85: api.manage.v1.AIDocumentService.OpenAIDocument:input_type -> api.manage.v1.OpenAIDocumentRequest
-	60, // 86: api.manage.v1.AIDocumentService.ApplyAIDocumentOperations:input_type -> api.manage.v1.ApplyAIDocumentOperationsRequest
-	62, // 87: api.manage.v1.AIEditorOrchestrationService.StartAIEditorTurn:input_type -> api.manage.v1.StartAIEditorTurnRequest
-	69, // 88: api.manage.v1.AIEditorOrchestrationService.ResolveAIEditorToolCall:input_type -> api.manage.v1.ResolveAIEditorToolCallRequest
-	71, // 89: api.manage.v1.AIEditorOrchestrationService.CancelAIEditorTurn:input_type -> api.manage.v1.CancelAIEditorTurnRequest
-	16, // 90: api.manage.v1.AIService.StartMetadataGeneration:input_type -> api.manage.v1.StartMetadataGenerationRequest
-	18, // 91: api.manage.v1.AIService.GetMetadataGenerationJob:input_type -> api.manage.v1.GetMetadataGenerationJobRequest
-	20, // 92: api.manage.v1.AIService.ResolveMetadataGenerationJob:input_type -> api.manage.v1.ResolveMetadataGenerationJobRequest
-	39, // 93: api.manage.v1.AIDocumentService.OpenAIDocument:output_type -> api.manage.v1.OpenAIDocumentResponse
-	61, // 94: api.manage.v1.AIDocumentService.ApplyAIDocumentOperations:output_type -> api.manage.v1.ApplyAIDocumentOperationsResponse
-	68, // 95: api.manage.v1.AIEditorOrchestrationService.StartAIEditorTurn:output_type -> api.manage.v1.AIEditorTurnEvent
-	70, // 96: api.manage.v1.AIEditorOrchestrationService.ResolveAIEditorToolCall:output_type -> api.manage.v1.ResolveAIEditorToolCallResponse
-	72, // 97: api.manage.v1.AIEditorOrchestrationService.CancelAIEditorTurn:output_type -> api.manage.v1.CancelAIEditorTurnResponse
-	17, // 98: api.manage.v1.AIService.StartMetadataGeneration:output_type -> api.manage.v1.StartMetadataGenerationResponse
-	19, // 99: api.manage.v1.AIService.GetMetadataGenerationJob:output_type -> api.manage.v1.GetMetadataGenerationJobResponse
-	21, // 100: api.manage.v1.AIService.ResolveMetadataGenerationJob:output_type -> api.manage.v1.ResolveMetadataGenerationJobResponse
-	93, // [93:101] is the sub-list for method output_type
-	85, // [85:93] is the sub-list for method input_type
-	85, // [85:85] is the sub-list for extension type_name
-	85, // [85:85] is the sub-list for extension extendee
-	0,  // [0:85] is the sub-list for field type_name
+	0,  // 0: api.manage.v1.AIDocumentReference.domain:type_name -> api.manage.v1.AIDocumentDomain
+	5,  // 1: api.manage.v1.AIDocumentMetadata.document:type_name -> api.manage.v1.AIDocumentReference
+	6,  // 2: api.manage.v1.AIDocumentMetadata.source_locale:type_name -> api.manage.v1.AIDocumentLocale
+	6,  // 3: api.manage.v1.AIDocumentMetadata.requested_locale:type_name -> api.manage.v1.AIDocumentLocale
+	1,  // 4: api.manage.v1.AIDocumentMetadata.locale_role:type_name -> api.manage.v1.AIDocumentLocaleRole
+	12, // 5: api.manage.v1.AIDocumentInlineContent.items:type_name -> api.manage.v1.AIDocumentInlineItem
+	12, // 6: api.manage.v1.AIDocumentInlineMark.children:type_name -> api.manage.v1.AIDocumentInlineItem
+	13, // 7: api.manage.v1.AIDocumentInlineMark.parameter:type_name -> api.manage.v1.AIDocumentValue
+	12, // 8: api.manage.v1.AIDocumentInlineLink.children:type_name -> api.manage.v1.AIDocumentInlineItem
+	9,  // 9: api.manage.v1.AIDocumentInlineItem.mark:type_name -> api.manage.v1.AIDocumentInlineMark
+	10, // 10: api.manage.v1.AIDocumentInlineItem.link:type_name -> api.manage.v1.AIDocumentInlineLink
+	11, // 11: api.manage.v1.AIDocumentInlineItem.hard_break:type_name -> api.manage.v1.AIDocumentHardBreak
+	8,  // 12: api.manage.v1.AIDocumentValue.inline:type_name -> api.manage.v1.AIDocumentInlineContent
+	15, // 13: api.manage.v1.AIDocumentValue.list:type_name -> api.manage.v1.AIDocumentListValue
+	16, // 14: api.manage.v1.AIDocumentValue.object:type_name -> api.manage.v1.AIDocumentObjectValue
+	13, // 15: api.manage.v1.AIDocumentListItem.value:type_name -> api.manage.v1.AIDocumentValue
+	14, // 16: api.manage.v1.AIDocumentListValue.items:type_name -> api.manage.v1.AIDocumentListItem
+	17, // 17: api.manage.v1.AIDocumentObjectValue.fields:type_name -> api.manage.v1.AIDocumentFieldValue
+	13, // 18: api.manage.v1.AIDocumentFieldValue.value:type_name -> api.manage.v1.AIDocumentValue
+	18, // 19: api.manage.v1.AIDocumentFieldTarget.relation_item:type_name -> api.manage.v1.AIDocumentRelationItemReference
+	20, // 20: api.manage.v1.AIDocumentFieldTarget.path:type_name -> api.manage.v1.AIDocumentFieldPathSegment
+	5,  // 21: api.manage.v1.OpenAIDocumentRequest.document:type_name -> api.manage.v1.AIDocumentReference
+	6,  // 22: api.manage.v1.OpenAIDocumentRequest.locale:type_name -> api.manage.v1.AIDocumentLocale
+	7,  // 23: api.manage.v1.OpenAIDocumentResponse.metadata:type_name -> api.manage.v1.AIDocumentMetadata
+	19, // 24: api.manage.v1.AIDocumentSetFieldOperation.target:type_name -> api.manage.v1.AIDocumentFieldTarget
+	13, // 25: api.manage.v1.AIDocumentSetFieldOperation.value:type_name -> api.manage.v1.AIDocumentValue
+	19, // 26: api.manage.v1.AIDocumentUnsetFieldOperation.target:type_name -> api.manage.v1.AIDocumentFieldTarget
+	19, // 27: api.manage.v1.AIDocumentAttachFileOperation.target:type_name -> api.manage.v1.AIDocumentFieldTarget
+	19, // 28: api.manage.v1.AIDocumentDetachFileOperation.target:type_name -> api.manage.v1.AIDocumentFieldTarget
+	18, // 29: api.manage.v1.AIDocumentDeleteRelationItemOperation.item:type_name -> api.manage.v1.AIDocumentRelationItemReference
+	18, // 30: api.manage.v1.AIDocumentMoveRelationItemOperation.item:type_name -> api.manage.v1.AIDocumentRelationItemReference
+	23, // 31: api.manage.v1.AIDocumentOperation.set_field:type_name -> api.manage.v1.AIDocumentSetFieldOperation
+	24, // 32: api.manage.v1.AIDocumentOperation.unset_field:type_name -> api.manage.v1.AIDocumentUnsetFieldOperation
+	25, // 33: api.manage.v1.AIDocumentOperation.insert_block:type_name -> api.manage.v1.AIDocumentInsertBlockOperation
+	26, // 34: api.manage.v1.AIDocumentOperation.delete_block:type_name -> api.manage.v1.AIDocumentDeleteBlockOperation
+	27, // 35: api.manage.v1.AIDocumentOperation.move_block:type_name -> api.manage.v1.AIDocumentMoveBlockOperation
+	28, // 36: api.manage.v1.AIDocumentOperation.replace_block_kind:type_name -> api.manage.v1.AIDocumentReplaceBlockKindOperation
+	29, // 37: api.manage.v1.AIDocumentOperation.attach_file:type_name -> api.manage.v1.AIDocumentAttachFileOperation
+	30, // 38: api.manage.v1.AIDocumentOperation.detach_file:type_name -> api.manage.v1.AIDocumentDetachFileOperation
+	31, // 39: api.manage.v1.AIDocumentOperation.create_translation:type_name -> api.manage.v1.AIDocumentCreateTranslationOperation
+	32, // 40: api.manage.v1.AIDocumentOperation.delete_translation:type_name -> api.manage.v1.AIDocumentDeleteTranslationOperation
+	33, // 41: api.manage.v1.AIDocumentOperation.insert_relation_item:type_name -> api.manage.v1.AIDocumentInsertRelationItemOperation
+	34, // 42: api.manage.v1.AIDocumentOperation.delete_relation_item:type_name -> api.manage.v1.AIDocumentDeleteRelationItemOperation
+	35, // 43: api.manage.v1.AIDocumentOperation.move_relation_item:type_name -> api.manage.v1.AIDocumentMoveRelationItemOperation
+	5,  // 44: api.manage.v1.AIDocumentMutation.document:type_name -> api.manage.v1.AIDocumentReference
+	6,  // 45: api.manage.v1.AIDocumentMutation.locale:type_name -> api.manage.v1.AIDocumentLocale
+	36, // 46: api.manage.v1.AIDocumentMutation.operations:type_name -> api.manage.v1.AIDocumentOperation
+	3,  // 47: api.manage.v1.AIDocumentIssue.code:type_name -> api.manage.v1.AIDocumentIssueCode
+	4,  // 48: api.manage.v1.AIDocumentConflict.code:type_name -> api.manage.v1.AIDocumentConflictCode
+	36, // 49: api.manage.v1.AIDocumentValidation.normalized_operations:type_name -> api.manage.v1.AIDocumentOperation
+	38, // 50: api.manage.v1.AIDocumentValidation.issues:type_name -> api.manage.v1.AIDocumentIssue
+	39, // 51: api.manage.v1.AIDocumentValidation.conflict:type_name -> api.manage.v1.AIDocumentConflict
+	2,  // 52: api.manage.v1.AIDocumentAcceptedChange.kind:type_name -> api.manage.v1.AIDocumentOperationKind
+	41, // 53: api.manage.v1.AIDocumentAcceptedMutation.changes:type_name -> api.manage.v1.AIDocumentAcceptedChange
+	37, // 54: api.manage.v1.ApplyAIDocumentOperationsRequest.mutation:type_name -> api.manage.v1.AIDocumentMutation
+	42, // 55: api.manage.v1.ApplyAIDocumentOperationsResponse.accepted:type_name -> api.manage.v1.AIDocumentAcceptedMutation
+	40, // 56: api.manage.v1.ApplyAIDocumentOperationsResponse.rejected:type_name -> api.manage.v1.AIDocumentValidation
+	21, // 57: api.manage.v1.AIDocumentService.OpenAIDocument:input_type -> api.manage.v1.OpenAIDocumentRequest
+	43, // 58: api.manage.v1.AIDocumentService.ApplyAIDocumentOperations:input_type -> api.manage.v1.ApplyAIDocumentOperationsRequest
+	22, // 59: api.manage.v1.AIDocumentService.OpenAIDocument:output_type -> api.manage.v1.OpenAIDocumentResponse
+	44, // 60: api.manage.v1.AIDocumentService.ApplyAIDocumentOperations:output_type -> api.manage.v1.ApplyAIDocumentOperationsResponse
+	59, // [59:61] is the sub-list for method output_type
+	57, // [57:59] is the sub-list for method input_type
+	57, // [57:57] is the sub-list for extension type_name
+	57, // [57:57] is the sub-list for extension extendee
+	0,  // [0:57] is the sub-list for field type_name
 }
 
 func init() { file_api_manage_v1_ai_proto_init() }
@@ -5404,11 +3500,9 @@ func file_api_manage_v1_ai_proto_init() {
 	if File_api_manage_v1_ai_proto != nil {
 		return
 	}
-	file_api_manage_v1_ai_proto_msgTypes[1].OneofWrappers = []any{}
 	file_api_manage_v1_ai_proto_msgTypes[2].OneofWrappers = []any{}
-	file_api_manage_v1_ai_proto_msgTypes[12].OneofWrappers = []any{}
-	file_api_manage_v1_ai_proto_msgTypes[14].OneofWrappers = []any{}
-	file_api_manage_v1_ai_proto_msgTypes[17].OneofWrappers = []any{
+	file_api_manage_v1_ai_proto_msgTypes[4].OneofWrappers = []any{}
+	file_api_manage_v1_ai_proto_msgTypes[7].OneofWrappers = []any{
 		(*AIDocumentInlineItem_Text)(nil),
 		(*AIDocumentInlineItem_Mark)(nil),
 		(*AIDocumentInlineItem_Link)(nil),
@@ -5416,7 +3510,7 @@ func file_api_manage_v1_ai_proto_init() {
 		(*AIDocumentInlineItem_Math)(nil),
 		(*AIDocumentInlineItem_PlaceholderHandle)(nil),
 	}
-	file_api_manage_v1_ai_proto_msgTypes[18].OneofWrappers = []any{
+	file_api_manage_v1_ai_proto_msgTypes[8].OneofWrappers = []any{
 		(*AIDocumentValue_Text)(nil),
 		(*AIDocumentValue_Boolean)(nil),
 		(*AIDocumentValue_Number)(nil),
@@ -5424,19 +3518,19 @@ func file_api_manage_v1_ai_proto_init() {
 		(*AIDocumentValue_List)(nil),
 		(*AIDocumentValue_Object)(nil),
 	}
-	file_api_manage_v1_ai_proto_msgTypes[24].OneofWrappers = []any{
+	file_api_manage_v1_ai_proto_msgTypes[14].OneofWrappers = []any{
 		(*AIDocumentFieldTarget_BlockHandle)(nil),
 		(*AIDocumentFieldTarget_RelationItem)(nil),
 	}
-	file_api_manage_v1_ai_proto_msgTypes[25].OneofWrappers = []any{
+	file_api_manage_v1_ai_proto_msgTypes[15].OneofWrappers = []any{
 		(*AIDocumentFieldPathSegment_FieldHandle)(nil),
 		(*AIDocumentFieldPathSegment_ItemHandle)(nil),
 	}
+	file_api_manage_v1_ai_proto_msgTypes[20].OneofWrappers = []any{}
+	file_api_manage_v1_ai_proto_msgTypes[22].OneofWrappers = []any{}
+	file_api_manage_v1_ai_proto_msgTypes[28].OneofWrappers = []any{}
 	file_api_manage_v1_ai_proto_msgTypes[30].OneofWrappers = []any{}
-	file_api_manage_v1_ai_proto_msgTypes[32].OneofWrappers = []any{}
-	file_api_manage_v1_ai_proto_msgTypes[38].OneofWrappers = []any{}
-	file_api_manage_v1_ai_proto_msgTypes[40].OneofWrappers = []any{}
-	file_api_manage_v1_ai_proto_msgTypes[41].OneofWrappers = []any{
+	file_api_manage_v1_ai_proto_msgTypes[31].OneofWrappers = []any{
 		(*AIDocumentOperation_SetField)(nil),
 		(*AIDocumentOperation_UnsetField)(nil),
 		(*AIDocumentOperation_InsertBlock)(nil),
@@ -5451,38 +3545,24 @@ func file_api_manage_v1_ai_proto_init() {
 		(*AIDocumentOperation_DeleteRelationItem)(nil),
 		(*AIDocumentOperation_MoveRelationItem)(nil),
 	}
-	file_api_manage_v1_ai_proto_msgTypes[42].OneofWrappers = []any{}
-	file_api_manage_v1_ai_proto_msgTypes[43].OneofWrappers = []any{}
-	file_api_manage_v1_ai_proto_msgTypes[44].OneofWrappers = []any{}
-	file_api_manage_v1_ai_proto_msgTypes[45].OneofWrappers = []any{}
-	file_api_manage_v1_ai_proto_msgTypes[47].OneofWrappers = []any{}
-	file_api_manage_v1_ai_proto_msgTypes[49].OneofWrappers = []any{
+	file_api_manage_v1_ai_proto_msgTypes[32].OneofWrappers = []any{}
+	file_api_manage_v1_ai_proto_msgTypes[33].OneofWrappers = []any{}
+	file_api_manage_v1_ai_proto_msgTypes[34].OneofWrappers = []any{}
+	file_api_manage_v1_ai_proto_msgTypes[35].OneofWrappers = []any{}
+	file_api_manage_v1_ai_proto_msgTypes[37].OneofWrappers = []any{}
+	file_api_manage_v1_ai_proto_msgTypes[39].OneofWrappers = []any{
 		(*ApplyAIDocumentOperationsResponse_Accepted)(nil),
 		(*ApplyAIDocumentOperationsResponse_Rejected)(nil),
-	}
-	file_api_manage_v1_ai_proto_msgTypes[50].OneofWrappers = []any{}
-	file_api_manage_v1_ai_proto_msgTypes[53].OneofWrappers = []any{}
-	file_api_manage_v1_ai_proto_msgTypes[54].OneofWrappers = []any{
-		(*AIEditorDocumentToolResult_Accepted)(nil),
-		(*AIEditorDocumentToolResult_Rejected)(nil),
-	}
-	file_api_manage_v1_ai_proto_msgTypes[55].OneofWrappers = []any{}
-	file_api_manage_v1_ai_proto_msgTypes[56].OneofWrappers = []any{
-		(*AIEditorTurnEvent_AssistantText)(nil),
-		(*AIEditorTurnEvent_Phase)(nil),
-		(*AIEditorTurnEvent_ApprovalRequired)(nil),
-		(*AIEditorTurnEvent_DocumentResult)(nil),
-		(*AIEditorTurnEvent_Terminal)(nil),
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_api_manage_v1_ai_proto_rawDesc), len(file_api_manage_v1_ai_proto_rawDesc)),
-			NumEnums:      12,
-			NumMessages:   61,
+			NumEnums:      5,
+			NumMessages:   40,
 			NumExtensions: 0,
-			NumServices:   3,
+			NumServices:   1,
 		},
 		GoTypes:           file_api_manage_v1_ai_proto_goTypes,
 		DependencyIndexes: file_api_manage_v1_ai_proto_depIdxs,

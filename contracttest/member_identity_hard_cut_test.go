@@ -217,7 +217,6 @@ func TestUserIDAttributionUsesNewMemberFields(t *testing.T) {
 		memberName protoreflect.Name
 		memberNo   protoreflect.FieldNumber
 	}{
-		{(&managev1.MetadataGenerationJob{}).ProtoReflect().Descriptor(), "requester_member_id", 3},
 		{(&managev1.CommentWithAuthor{}).ProtoReflect().Descriptor(), "member_id", 8},
 		{(&managev1.CommentNode{}).ProtoReflect().Descriptor(), "member_id", 11},
 		{(&managev1.FormSubmission{}).ProtoReflect().Descriptor(), "member_id", 3},
@@ -366,18 +365,5 @@ func TestAdminMemberKeepsBoundedMemberAndAccountDetailOwnership(t *testing.T) {
 	requireMessageField(t, accountDetails, "email_candidates", 2, protoreflect.MessageKind, "api.manage.v1.AccountEmailCandidate")
 	if accountDetails.Fields().ByName("sessions") != nil || accountDetails.Fields().ByName("credentials") != nil {
 		t.Error("AccountAdminDetails must not expose sessions or credentials")
-	}
-}
-
-func TestTranslationAttributionUsesRequesterMemberOnly(t *testing.T) {
-	job := (&managev1.TranslationJob{}).ProtoReflect().Descriptor()
-	requester := requireMessageField(t, job, "requested_by_member_id", 12, protoreflect.StringKind, "")
-	if requester.HasPresence() {
-		t.Fatal("TranslationJob.requested_by_member_id is an in-flight invariant, not optional state")
-	}
-
-	entry := (&managev1.TranslationEntry{}).ProtoReflect().Descriptor()
-	if entry.Fields().ByName("edited_by_member_id") != nil {
-		t.Fatal("read-only machine projection must not expose manual editor attribution")
 	}
 }

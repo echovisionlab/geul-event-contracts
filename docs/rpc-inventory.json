@@ -173,7 +173,7 @@
               "file": "internal/adapters/aidocument/interactive_mutation_application.go",
               "symbol": "interactiveMutationApplication.RelayCommitted",
               "call": "POST /api.intra.v1.InternalCollaborationRelayService/RelayInteractiveAIDocumentMutation",
-              "entrypoint": "AI document MCP or AI editor mutation -> interactive relay client -> editor-collab room receiver"
+              "entrypoint": "AI document MCP mutation -> interactive relay client -> editor-collab room receiver"
             }
           ],
           "consumerTests": [],
@@ -1515,107 +1515,7 @@
               "file": "lib/ai/document-client.ts",
               "symbol": "createBrowserAIDocumentClient.open",
               "call": "client.openAIDocument(...)",
-              "entrypoint": "translation target lifecycle or AI editor turn startup"
-            }
-          ],
-          "consumerTests": [],
-          "providerTests": []
-        }
-      ]
-    },
-    {
-      "service": "api.manage.v1.AIEditorOrchestrationService",
-      "procedures": [
-        {
-          "name": "CancelAIEditorTurn",
-          "consumerStatus": "verified",
-          "consumers": [
-            {
-              "repository": "web",
-              "file": "lib/ai/editor-orchestration.ts",
-              "symbol": "createAIEditorAssistantClient.cancel",
-              "call": "orchestration.cancelAIEditorTurn(...)",
-              "entrypoint": "AIMenu or SummaryFieldCard stop, retry, or unmount"
-            }
-          ],
-          "consumerTests": [],
-          "providerTests": []
-        },
-        {
-          "name": "ResolveAIEditorToolCall",
-          "consumerStatus": "verified",
-          "consumers": [
-            {
-              "repository": "web",
-              "file": "lib/ai/editor-orchestration.ts",
-              "symbol": "createAIEditorAssistantClient.resolve",
-              "call": "orchestration.resolveAIEditorToolCall(...)",
-              "entrypoint": "AIMenu or SummaryFieldCard approve/deny control"
-            }
-          ],
-          "consumerTests": [],
-          "providerTests": []
-        },
-        {
-          "name": "StartAIEditorTurn",
-          "consumerStatus": "verified",
-          "consumers": [
-            {
-              "repository": "web",
-              "file": "lib/ai/editor-orchestration.ts",
-              "symbol": "createAIEditorAssistantClient.start",
-              "call": "orchestration.startAIEditorTurn(...)",
-              "entrypoint": "AIMenu or SummaryFieldCard generation start"
-            }
-          ],
-          "consumerTests": [],
-          "providerTests": []
-        }
-      ]
-    },
-    {
-      "service": "api.manage.v1.AIService",
-      "procedures": [
-        {
-          "name": "GetMetadataGenerationJob",
-          "consumerStatus": "verified",
-          "consumers": [
-            {
-              "repository": "web",
-              "file": "lib/ai/metadata-jobs.ts",
-              "symbol": "getMetadataSuggestionJob",
-              "call": "createAIClient().getMetadataGenerationJob({ jobId })",
-              "entrypoint": "SummaryFieldCard polls and restores metadata jobs in post/page/work/program-event editors"
-            }
-          ],
-          "consumerTests": [],
-          "providerTests": []
-        },
-        {
-          "name": "ResolveMetadataGenerationJob",
-          "consumerStatus": "verified",
-          "consumers": [
-            {
-              "repository": "web",
-              "file": "lib/ai/metadata-jobs.ts",
-              "symbol": "resolveMetadataSuggestionJob",
-              "call": "createAIClient().resolveMetadataGenerationJob({ jobId, resolution })",
-              "entrypoint": "SummaryFieldCard marks generated summaries applied or dismissed in post/page/work/program-event editors"
-            }
-          ],
-          "consumerTests": [],
-          "providerTests": []
-        },
-        {
-          "name": "StartMetadataGeneration",
-          "consumerStatus": "verified",
-          "consumers": [
-            {
-              "repository": "web",
-              "file": "lib/ai/metadata-jobs.ts",
-              "symbol": "startMetadataSuggestionJob",
-              "call": "createAIClient().startMetadataGeneration({ context, prompt, target })",
-              "entrypoint": "SummaryFieldCard starts summary generation in post/page/work/program-event editors"
+              "entrypoint": "translation target lifecycle"
             }
           ],
           "consumerTests": [],
@@ -7002,51 +6902,6 @@
       "service": "api.manage.v1.TranslationService",
       "procedures": [
         {
-          "name": "CancelTranslationJob",
-          "consumerStatus": "verified",
-          "consumers": [
-            {
-              "repository": "web",
-              "file": "app/admin/translations/jobs/page.tsx",
-              "symbol": "cancelJob mutation",
-              "call": "translationClient.cancelTranslationJob({ jobId })",
-              "entrypoint": "the translation jobs admin page cancels queued or running jobs"
-            }
-          ],
-          "consumerTests": [],
-          "providerTests": []
-        },
-        {
-          "name": "CreateTranslationProvider",
-          "consumerStatus": "verified",
-          "consumers": [
-            {
-              "repository": "web",
-              "file": "app/admin/translations/settings/page.tsx",
-              "symbol": "createProviderMutation",
-              "call": "translationClient.createTranslationProvider({ name, type, isActive, priority, config })",
-              "entrypoint": "the translation settings admin page creates a translation provider"
-            }
-          ],
-          "consumerTests": [],
-          "providerTests": []
-        },
-        {
-          "name": "DeleteTranslationProvider",
-          "consumerStatus": "verified",
-          "consumers": [
-            {
-              "repository": "web",
-              "file": "app/admin/translations/settings/page.tsx",
-              "symbol": "deleteProviderMutation",
-              "call": "translationClient.deleteTranslationProvider({ id })",
-              "entrypoint": "the translation settings admin page deletes a provider"
-            }
-          ],
-          "consumerTests": [],
-          "providerTests": []
-        },
-        {
           "name": "ExportEntityTranslationXLIFF",
           "consumerStatus": "verified",
           "consumers": [
@@ -7207,47 +7062,6 @@
           "providerTests": []
         },
         {
-          "name": "ListTranslationJobs",
-          "consumerStatus": "verified",
-          "consumers": [
-            {
-              "repository": "web",
-              "file": "app/admin/translations/jobs/page.tsx",
-              "symbol": "jobsQuery",
-              "call": "translationClient.listTranslationJobs({ pagination })",
-              "entrypoint": "the translation jobs admin page lists all jobs"
-            },
-            {
-              "repository": "web",
-              "file": "features/translation/EntityTranslationsPanel.tsx",
-              "symbol": "jobsQuery",
-              "call": "translationClient.listTranslationJobs({ pagination, filters })",
-              "entrypoint": "entity translation panels show jobs for the current entity"
-            },
-            {
-              "repository": "web",
-              "file": "features/translation/EmailEntityTranslationsPanel.tsx",
-              "symbol": "jobsQuery",
-              "call": "translationClient.listTranslationJobs({ pagination, filters })",
-              "entrypoint": "email translation panels show jobs for the current entity"
-            },
-            {
-              "repository": "web",
-              "file": "features/translation/MenuTranslationsPanel.tsx",
-              "symbol": "jobsQuery",
-              "call": "translationClient.listTranslationJobs({ pagination, filters })",
-              "entrypoint": "the menu translation panel shows jobs for the current menu"
-            }
-          ],
-          "consumerTests": [
-            "web/features/translation/EntityTranslationsPanel.test.tsx",
-            "web/lib/translation/lifecycle.test.ts"
-          ],
-          "providerTests": [
-            "api/internal/service/series_release_closure_integration_test.go"
-          ]
-        },
-        {
           "name": "ListTranslationLocales",
           "consumerStatus": "verified",
           "consumers": [
@@ -7291,57 +7105,6 @@
           "providerTests": []
         },
         {
-          "name": "ListTranslationProviders",
-          "consumerStatus": "verified",
-          "consumers": [
-            {
-              "repository": "web",
-              "file": "app/admin/translations/settings/page.tsx",
-              "symbol": "providersQuery",
-              "call": "translationClient.listTranslationProviders({})",
-              "entrypoint": "the translation settings admin page lists providers"
-            }
-          ],
-          "consumerTests": [],
-          "providerTests": []
-        },
-        {
-          "name": "RegenerateEntityTranslations",
-          "consumerStatus": "verified",
-          "consumers": [
-            {
-              "repository": "web",
-              "file": "app/admin/translations/jobs/page.tsx",
-              "symbol": "retryJob mutation fallback",
-              "call": "translationClient.regenerateEntityTranslations({ target, locales })",
-              "entrypoint": "the translation jobs page regenerates cancelled, superseded, or source-changed jobs"
-            },
-            {
-              "repository": "web",
-              "file": "features/translation/EntityTranslationsPanel.tsx",
-              "symbol": "regenerateTranslations mutation",
-              "call": "translationClient.regenerateEntityTranslations({ target, locales })",
-              "entrypoint": "generic entity translation panels queue machine translations"
-            },
-            {
-              "repository": "web",
-              "file": "features/translation/EmailEntityTranslationsPanel.tsx",
-              "symbol": "regenerateTranslations mutation",
-              "call": "translationClient.regenerateEntityTranslations({ target, locales })",
-              "entrypoint": "email translation panels queue machine translations"
-            },
-            {
-              "repository": "web",
-              "file": "features/translation/MenuTranslationsPanel.tsx",
-              "symbol": "regenerateTranslations mutation",
-              "call": "translationClient.regenerateEntityTranslations({ target, locales })",
-              "entrypoint": "the menu translation panel queues machine translations"
-            }
-          ],
-          "consumerTests": [],
-          "providerTests": []
-        },
-        {
           "name": "SetEntitySourceLocale",
           "consumerStatus": "verified",
           "consumers": [
@@ -7365,21 +7128,6 @@
               "symbol": "setSourceLocale mutation",
               "call": "translationClient.setEntitySourceLocale({ target, sourceLocale })",
               "entrypoint": "the menu translation panel changes the source locale"
-            }
-          ],
-          "consumerTests": [],
-          "providerTests": []
-        },
-        {
-          "name": "UpdateTranslationProvider",
-          "consumerStatus": "verified",
-          "consumers": [
-            {
-              "repository": "web",
-              "file": "app/admin/translations/settings/page.tsx",
-              "symbol": "updateProviderMutation and toggleProviderMutation",
-              "call": "translationClient.updateTranslationProvider({ id, changed provider fields })",
-              "entrypoint": "the translation settings admin page edits or enables a provider"
             }
           ],
           "consumerTests": [],
