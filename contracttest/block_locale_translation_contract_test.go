@@ -105,15 +105,12 @@ func assertExactFields(t *testing.T, message protoreflect.MessageDescriptor, exp
 	}
 }
 
-func TestTranslationServiceExposesReadGenerationAndJobControlOnly(t *testing.T) {
+func TestTranslationServiceExposesReadAndInterchangeOnly(t *testing.T) {
 	service := managev1.File_api_manage_v1_translation_proto.Services().ByName("TranslationService")
 	for _, name := range []protoreflect.Name{
 		"ListEntityTranslations",
 		"GetEntityTranslation",
 		"SetEntitySourceLocale",
-		"RegenerateEntityTranslations",
-		"ListTranslationJobs",
-		"CancelTranslationJob",
 		"ExportEntityTranslationXLIFF",
 		"ImportEntityTranslationXLIFF",
 	} {
@@ -127,6 +124,9 @@ func TestTranslationServiceExposesReadGenerationAndJobControlOnly(t *testing.T) 
 		"DeleteEntityTranslation",
 		"DeleteBlockDocumentLocale",
 		"RetryTranslationJob",
+		"RegenerateEntityTranslations",
+		"ListTranslationJobs",
+		"CancelTranslationJob",
 	} {
 		if service.Methods().ByName(name) != nil {
 			t.Fatalf("source-only TranslationService must not expose %s", name)

@@ -79,14 +79,6 @@ func TestPostSeriesTranslationGatewayDefersExactAuthorityToAPI(t *testing.T) {
 		"ListTranslationLocales",
 		"ListEntityTranslations",
 		"GetEntityTranslation",
-		"ListTranslationJobs",
-	} {
-		requireMethodTier(t, service, method, policyv1.AuthorizationRole_USER)
-	}
-
-	for _, method := range []protoreflect.Name{
-		"RegenerateEntityTranslations",
-		"CancelTranslationJob",
 	} {
 		requireMethodTier(t, service, method, policyv1.AuthorizationRole_USER)
 	}

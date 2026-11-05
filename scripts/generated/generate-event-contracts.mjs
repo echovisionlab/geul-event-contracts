@@ -107,7 +107,7 @@ export const ContentType = {
 const target = process.argv[2];
 if (target === "go") {
   fs.writeFileSync(new URL("go/event/constants.go", repoRoot), goConstants());
-  for (const name of ["pgmq", "translation_source"]) {
+  for (const name of ["pgmq"]) {
     fs.copyFileSync(
       new URL(`runtime/event-${name}.go.tmpl`, import.meta.url),
       new URL(`go/event/${name}.go`, repoRoot),

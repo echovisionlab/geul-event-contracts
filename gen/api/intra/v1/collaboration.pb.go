@@ -339,27 +339,23 @@ func (CollaborationMutationRejectionReason) EnumDescriptor() ([]byte, []int) {
 }
 
 // Closed interactive origins for the shared provider-neutral AIDocument facade.
-// Generic human collaboration applies and delayed TranslationJob delivery do
-// not use this relay.
+// Generic human collaboration applies do not use this relay.
 type InteractiveAIDocumentMutationOrigin int32
 
 const (
-	InteractiveAIDocumentMutationOrigin_INTERACTIVE_AI_DOCUMENT_MUTATION_ORIGIN_UNSPECIFIED  InteractiveAIDocumentMutationOrigin = 0
-	InteractiveAIDocumentMutationOrigin_INTERACTIVE_AI_DOCUMENT_MUTATION_ORIGIN_IN_EDITOR_AI InteractiveAIDocumentMutationOrigin = 1
-	InteractiveAIDocumentMutationOrigin_INTERACTIVE_AI_DOCUMENT_MUTATION_ORIGIN_MCP          InteractiveAIDocumentMutationOrigin = 2
+	InteractiveAIDocumentMutationOrigin_INTERACTIVE_AI_DOCUMENT_MUTATION_ORIGIN_UNSPECIFIED InteractiveAIDocumentMutationOrigin = 0
+	InteractiveAIDocumentMutationOrigin_INTERACTIVE_AI_DOCUMENT_MUTATION_ORIGIN_MCP         InteractiveAIDocumentMutationOrigin = 1
 )
 
 // Enum value maps for InteractiveAIDocumentMutationOrigin.
 var (
 	InteractiveAIDocumentMutationOrigin_name = map[int32]string{
 		0: "INTERACTIVE_AI_DOCUMENT_MUTATION_ORIGIN_UNSPECIFIED",
-		1: "INTERACTIVE_AI_DOCUMENT_MUTATION_ORIGIN_IN_EDITOR_AI",
-		2: "INTERACTIVE_AI_DOCUMENT_MUTATION_ORIGIN_MCP",
+		1: "INTERACTIVE_AI_DOCUMENT_MUTATION_ORIGIN_MCP",
 	}
 	InteractiveAIDocumentMutationOrigin_value = map[string]int32{
-		"INTERACTIVE_AI_DOCUMENT_MUTATION_ORIGIN_UNSPECIFIED":  0,
-		"INTERACTIVE_AI_DOCUMENT_MUTATION_ORIGIN_IN_EDITOR_AI": 1,
-		"INTERACTIVE_AI_DOCUMENT_MUTATION_ORIGIN_MCP":          2,
+		"INTERACTIVE_AI_DOCUMENT_MUTATION_ORIGIN_UNSPECIFIED": 0,
+		"INTERACTIVE_AI_DOCUMENT_MUTATION_ORIGIN_MCP":         1,
 	}
 )
 
@@ -861,7 +857,7 @@ func (x *AuthorizeCollaborationResponse) GetLocale() string {
 //
 // AIDocument is the shared provider-neutral facade, not an AI-provider
 // classification. The request contains neither durable history nor an inverse,
-// session, prompt, PAT, or TranslationJob identity.
+// session, prompt, or PAT identity.
 type RelayInteractiveAIDocumentMutationRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Server-generated one-shot identity for this accepted changed transaction.
@@ -1121,11 +1117,10 @@ const file_api_intra_v1_collaboration_proto_rawDesc = "" +
 	"<COLLABORATION_MUTATION_REJECTION_REASON_ROOM_LOCALE_MISMATCH\x10\x02\x12M\n" +
 	"ICOLLABORATION_MUTATION_REJECTION_REASON_NON_SOURCE_SHARED_FIELD_FORBIDDEN\x10\x03\x12N\n" +
 	"JCOLLABORATION_MUTATION_REJECTION_REASON_NON_SOURCE_FILE_RELATION_FORBIDDEN\x10\x04\x12R\n" +
-	"NCOLLABORATION_MUTATION_REJECTION_REASON_NON_SOURCE_DOCUMENT_METADATA_FORBIDDEN\x10\x05*\xc9\x01\n" +
+	"NCOLLABORATION_MUTATION_REJECTION_REASON_NON_SOURCE_DOCUMENT_METADATA_FORBIDDEN\x10\x05*\x8f\x01\n" +
 	"#InteractiveAIDocumentMutationOrigin\x127\n" +
-	"3INTERACTIVE_AI_DOCUMENT_MUTATION_ORIGIN_UNSPECIFIED\x10\x00\x128\n" +
-	"4INTERACTIVE_AI_DOCUMENT_MUTATION_ORIGIN_IN_EDITOR_AI\x10\x01\x12/\n" +
-	"+INTERACTIVE_AI_DOCUMENT_MUTATION_ORIGIN_MCP\x10\x022\xa0\x01\n" +
+	"3INTERACTIVE_AI_DOCUMENT_MUTATION_ORIGIN_UNSPECIFIED\x10\x00\x12/\n" +
+	"+INTERACTIVE_AI_DOCUMENT_MUTATION_ORIGIN_MCP\x10\x012\xa0\x01\n" +
 	")InternalCollaborationAuthorizationService\x12s\n" +
 	"\x16AuthorizeCollaboration\x12+.api.intra.v1.AuthorizeCollaborationRequest\x1a,.api.intra.v1.AuthorizeCollaborationResponse2\xbd\x01\n" +
 	"!InternalCollaborationRelayService\x12\x97\x01\n" +

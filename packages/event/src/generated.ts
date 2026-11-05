@@ -15,7 +15,6 @@ export const Signals = {
   mailAdapterChanged: "mail_adapter.changed",
   contentUpdated: "content.updated",
   fileIngest: "file.ingest",
-  translationLifecycle: "translation.lifecycle",
 } as const;
 
 /**
@@ -33,8 +32,6 @@ export const Queues = {
   emailCampaign: "email.campaign",
   userDeleteIdentity: "user.delete.identity",
   userDeleteAvatar: "user.delete.avatar",
-  aiMetadataGenerate: "ai.metadata.generate",
-  translationGenerate: "translation.generate",
   transcodeResult: "transcode.result",
   waveformResult: "waveform.result",
   meshOptimizationResult: "mesh.optimization.result",

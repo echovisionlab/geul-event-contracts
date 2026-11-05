@@ -27,7 +27,6 @@ export type {
   OgGenerationLifecycleEvent,
   OgGenerationTarget,
   TranscodeCompleteEvent,
-  TranslationLifecycleEvent,
   WaveformResultEvent,
 } from "@echovisionlab/geul-proto/secure/events_pb.ts";
 
@@ -50,7 +49,6 @@ export {
   OgGenerationTargetSchema,
   TranscodeCompleteEventSchema,
   TranscodeEntityType,
-  TranslationLifecycleEventSchema,
   WaveformResultEventSchema,
 } from "@echovisionlab/geul-proto/secure/events_pb.ts";
 

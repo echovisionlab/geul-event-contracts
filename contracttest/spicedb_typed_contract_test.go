@@ -15,7 +15,7 @@ import (
 )
 
 func TestSpiceDBDecisionDelegationCannotChangeEngineCheck(t *testing.T) {
-	const originalFingerprint = "3e90e115e02903ab802370cdfbdb7a093e22e16291fa91cdb26eda43a2d45e5f"
+	const originalFingerprint = "9ddeb327d355eed2ef9561d8835dc585c8e42d94637268b5a60e46e60c8aafde"
 	if policyv1.SpiceDBCatalogFingerprint != originalFingerprint {
 		t.Fatalf("assembled catalog fingerprint changed: %s", policyv1.SpiceDBCatalogFingerprint)
 	}
@@ -147,10 +147,6 @@ func TestSpiceDBGlobalDomainActionsKeepExactAdminBusinessKeys(t *testing.T) {
 		"email_layout.preview_content": policyv1.EmailLayout.PreviewContent,
 		"translation_settings.view":    policyv1.TranslationSettings.View,
 		"translation_settings.update":  policyv1.TranslationSettings.Update,
-		"translation_provider.list":    policyv1.TranslationProvider.List,
-		"translation_provider.create":  policyv1.TranslationProvider.Create,
-		"translation_provider.update":  policyv1.TranslationProvider.Update,
-		"translation_provider.delete":  policyv1.TranslationProvider.Delete,
 		"mail_adapter.list":            policyv1.MailAdapter.List,
 		"mail_adapter.create":          policyv1.MailAdapter.Create,
 		"mail_adapter.update":          policyv1.MailAdapter.Update,

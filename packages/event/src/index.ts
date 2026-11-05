@@ -57,11 +57,8 @@ export {
   OgGenerationTargetSchema,
   TranscodeCompleteEventSchema,
   TranscodeEntityType,
-  TranslationLifecycleEventSchema,
   WaveformResultEventSchema,
 } from "./proto-helpers.ts";
-
-export { assertTranslationJobRequestArtifact } from "./translation-source.ts";
 
 export type {
   AssetRef,
@@ -81,6 +78,5 @@ export type {
   OgGenerationLifecycleEvent,
   OgGenerationTarget,
   TranscodeCompleteEvent,
-  TranslationLifecycleEvent,
   WaveformResultEvent,
 } from "./proto-helpers.ts";

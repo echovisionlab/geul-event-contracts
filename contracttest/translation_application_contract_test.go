@@ -7,55 +7,6 @@ import (
 	"google.golang.org/protobuf/reflect/protoreflect"
 )
 
-func TestTranslationJobExposesOnlyInFlightStates(t *testing.T) {
-	status := managev1.TranslationJobStatus(0).Descriptor()
-	want := []struct {
-		name   protoreflect.Name
-		number protoreflect.EnumNumber
-	}{
-		{"TRANSLATION_JOB_STATUS_UNSPECIFIED", 0},
-		{"TRANSLATION_JOB_STATUS_QUEUED", 1},
-		{"TRANSLATION_JOB_STATUS_RUNNING", 2},
-	}
-	if status.Values().Len() != len(want) {
-		t.Fatalf("TranslationJobStatus values = %d, want %d", status.Values().Len(), len(want))
-	}
-	for index, expected := range want {
-		value := status.Values().Get(index)
-		if value.Name() != expected.name || value.Number() != expected.number {
-			t.Fatalf("TranslationJobStatus[%d] = %s/%d, want %s/%d", index, value.Name(), value.Number(), expected.name, expected.number)
-		}
-	}
-}
-
-func TestCancelTranslationJobReturnsNoDeletedJob(t *testing.T) {
-	response := (&managev1.CancelTranslationJobResponse{}).ProtoReflect().Descriptor()
-	if response.Fields().Len() != 0 {
-		t.Fatalf("CancelTranslationJobResponse fields = %d, want 0", response.Fields().Len())
-	}
-}
-
-func TestTranslationLifecycleReportsOnlyApplicationOutcome(t *testing.T) {
-	status := managev1.TranslationLifecycleStatus(0).Descriptor()
-	want := []struct {
-		name   protoreflect.Name
-		number protoreflect.EnumNumber
-	}{
-		{"TRANSLATION_LIFECYCLE_STATUS_UNSPECIFIED", 0},
-		{"TRANSLATION_LIFECYCLE_STATUS_APPLIED", 1},
-		{"TRANSLATION_LIFECYCLE_STATUS_FAILED", 2},
-	}
-	if status.Values().Len() != len(want) {
-		t.Fatalf("TranslationLifecycleStatus values = %d, want %d", status.Values().Len(), len(want))
-	}
-	for index, expected := range want {
-		value := status.Values().Get(index)
-		if value.Name() != expected.name || value.Number() != expected.number {
-			t.Fatalf("TranslationLifecycleStatus[%d] = %s/%d, want %s/%d", index, value.Name(), value.Number(), expected.name, expected.number)
-		}
-	}
-}
-
 func TestTranslationEntryIsExistenceAndContentOnly(t *testing.T) {
 	entry := (&managev1.TranslationEntry{}).ProtoReflect().Descriptor()
 	want := []struct {

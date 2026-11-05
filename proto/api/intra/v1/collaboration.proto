@@ -148,12 +148,10 @@ message AuthorizeCollaborationResponse {
 }
 
 // Closed interactive origins for the shared provider-neutral AIDocument facade.
-// Generic human collaboration applies and delayed TranslationJob delivery do
-// not use this relay.
+// Generic human collaboration applies do not use this relay.
 enum InteractiveAIDocumentMutationOrigin {
   INTERACTIVE_AI_DOCUMENT_MUTATION_ORIGIN_UNSPECIFIED = 0;
-  INTERACTIVE_AI_DOCUMENT_MUTATION_ORIGIN_IN_EDITOR_AI = 1;
-  INTERACTIVE_AI_DOCUMENT_MUTATION_ORIGIN_MCP = 2;
+  INTERACTIVE_AI_DOCUMENT_MUTATION_ORIGIN_MCP = 1;
 }
 
 // Relays one exact accepted interactive mutation into an already resident
@@ -164,7 +162,7 @@ enum InteractiveAIDocumentMutationOrigin {
 //
 // AIDocument is the shared provider-neutral facade, not an AI-provider
 // classification. The request contains neither durable history nor an inverse,
-// session, prompt, PAT, or TranslationJob identity.
+// session, prompt, or PAT identity.
 message RelayInteractiveAIDocumentMutationRequest {
   // Server-generated one-shot identity for this accepted changed transaction.
   string mutation_id = 1;

@@ -38,7 +38,6 @@ func TestValidateRelayInteractiveAIDocumentMutationRequest(t *testing.T) {
 	}
 
 	for _, origin := range []intrav1.InteractiveAIDocumentMutationOrigin{
-		intrav1.InteractiveAIDocumentMutationOrigin_INTERACTIVE_AI_DOCUMENT_MUTATION_ORIGIN_IN_EDITOR_AI,
 		intrav1.InteractiveAIDocumentMutationOrigin_INTERACTIVE_AI_DOCUMENT_MUTATION_ORIGIN_MCP,
 	} {
 		request := validRelayInteractiveAIDocumentMutationRequest()

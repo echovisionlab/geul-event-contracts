@@ -113,279 +113,6 @@ func (TranslationEntityType) EnumDescriptor() ([]byte, []int) {
 	return file_api_manage_v1_translation_proto_rawDescGZIP(), []int{0}
 }
 
-type TranslationJobStatus int32
-
-const (
-	TranslationJobStatus_TRANSLATION_JOB_STATUS_UNSPECIFIED TranslationJobStatus = 0
-	TranslationJobStatus_TRANSLATION_JOB_STATUS_QUEUED      TranslationJobStatus = 1
-	TranslationJobStatus_TRANSLATION_JOB_STATUS_RUNNING     TranslationJobStatus = 2
-)
-
-// Enum value maps for TranslationJobStatus.
-var (
-	TranslationJobStatus_name = map[int32]string{
-		0: "TRANSLATION_JOB_STATUS_UNSPECIFIED",
-		1: "TRANSLATION_JOB_STATUS_QUEUED",
-		2: "TRANSLATION_JOB_STATUS_RUNNING",
-	}
-	TranslationJobStatus_value = map[string]int32{
-		"TRANSLATION_JOB_STATUS_UNSPECIFIED": 0,
-		"TRANSLATION_JOB_STATUS_QUEUED":      1,
-		"TRANSLATION_JOB_STATUS_RUNNING":     2,
-	}
-)
-
-func (x TranslationJobStatus) Enum() *TranslationJobStatus {
-	p := new(TranslationJobStatus)
-	*p = x
-	return p
-}
-
-func (x TranslationJobStatus) String() string {
-	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
-}
-
-func (TranslationJobStatus) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_manage_v1_translation_proto_enumTypes[1].Descriptor()
-}
-
-func (TranslationJobStatus) Type() protoreflect.EnumType {
-	return &file_api_manage_v1_translation_proto_enumTypes[1]
-}
-
-func (x TranslationJobStatus) Number() protoreflect.EnumNumber {
-	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Use TranslationJobStatus.Descriptor instead.
-func (TranslationJobStatus) EnumDescriptor() ([]byte, []int) {
-	return file_api_manage_v1_translation_proto_rawDescGZIP(), []int{1}
-}
-
-type TranslationUnitIssueReason int32
-
-const (
-	TranslationUnitIssueReason_TRANSLATION_UNIT_ISSUE_REASON_UNSPECIFIED           TranslationUnitIssueReason = 0
-	TranslationUnitIssueReason_TRANSLATION_UNIT_ISSUE_REASON_EMPTY_TRANSLATION     TranslationUnitIssueReason = 1
-	TranslationUnitIssueReason_TRANSLATION_UNIT_ISSUE_REASON_UNCHANGED_FROM_SOURCE TranslationUnitIssueReason = 2
-	TranslationUnitIssueReason_TRANSLATION_UNIT_ISSUE_REASON_SOURCE_RESIDUE        TranslationUnitIssueReason = 3
-)
-
-// Enum value maps for TranslationUnitIssueReason.
-var (
-	TranslationUnitIssueReason_name = map[int32]string{
-		0: "TRANSLATION_UNIT_ISSUE_REASON_UNSPECIFIED",
-		1: "TRANSLATION_UNIT_ISSUE_REASON_EMPTY_TRANSLATION",
-		2: "TRANSLATION_UNIT_ISSUE_REASON_UNCHANGED_FROM_SOURCE",
-		3: "TRANSLATION_UNIT_ISSUE_REASON_SOURCE_RESIDUE",
-	}
-	TranslationUnitIssueReason_value = map[string]int32{
-		"TRANSLATION_UNIT_ISSUE_REASON_UNSPECIFIED":           0,
-		"TRANSLATION_UNIT_ISSUE_REASON_EMPTY_TRANSLATION":     1,
-		"TRANSLATION_UNIT_ISSUE_REASON_UNCHANGED_FROM_SOURCE": 2,
-		"TRANSLATION_UNIT_ISSUE_REASON_SOURCE_RESIDUE":        3,
-	}
-)
-
-func (x TranslationUnitIssueReason) Enum() *TranslationUnitIssueReason {
-	p := new(TranslationUnitIssueReason)
-	*p = x
-	return p
-}
-
-func (x TranslationUnitIssueReason) String() string {
-	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
-}
-
-func (TranslationUnitIssueReason) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_manage_v1_translation_proto_enumTypes[2].Descriptor()
-}
-
-func (TranslationUnitIssueReason) Type() protoreflect.EnumType {
-	return &file_api_manage_v1_translation_proto_enumTypes[2]
-}
-
-func (x TranslationUnitIssueReason) Number() protoreflect.EnumNumber {
-	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Use TranslationUnitIssueReason.Descriptor instead.
-func (TranslationUnitIssueReason) EnumDescriptor() ([]byte, []int) {
-	return file_api_manage_v1_translation_proto_rawDescGZIP(), []int{2}
-}
-
-// TranslationFailureReason is the bounded public failure classification.
-// Provider response bodies, request XLIFF, document keys, and source/target
-// text never cross this contract or canonical logs. Provider responses are
-// consumed without a persisted raw, validated, or normalized copy.
-type TranslationFailureReason int32
-
-const (
-	TranslationFailureReason_TRANSLATION_FAILURE_REASON_UNSPECIFIED               TranslationFailureReason = 0
-	TranslationFailureReason_TRANSLATION_FAILURE_REASON_PROVIDER_CONFIGURATION    TranslationFailureReason = 1
-	TranslationFailureReason_TRANSLATION_FAILURE_REASON_PROVIDER_AUTHENTICATION   TranslationFailureReason = 2
-	TranslationFailureReason_TRANSLATION_FAILURE_REASON_PROVIDER_RATE_LIMITED     TranslationFailureReason = 3
-	TranslationFailureReason_TRANSLATION_FAILURE_REASON_PROVIDER_UNAVAILABLE      TranslationFailureReason = 4
-	TranslationFailureReason_TRANSLATION_FAILURE_REASON_PROVIDER_REJECTED         TranslationFailureReason = 5
-	TranslationFailureReason_TRANSLATION_FAILURE_REASON_PROVIDER_RESPONSE_INVALID TranslationFailureReason = 6
-	TranslationFailureReason_TRANSLATION_FAILURE_REASON_TARGET_APPLY_FAILED       TranslationFailureReason = 7
-	TranslationFailureReason_TRANSLATION_FAILURE_REASON_OG_HANDOFF_FAILED         TranslationFailureReason = 8
-	TranslationFailureReason_TRANSLATION_FAILURE_REASON_INTERNAL                  TranslationFailureReason = 9
-)
-
-// Enum value maps for TranslationFailureReason.
-var (
-	TranslationFailureReason_name = map[int32]string{
-		0: "TRANSLATION_FAILURE_REASON_UNSPECIFIED",
-		1: "TRANSLATION_FAILURE_REASON_PROVIDER_CONFIGURATION",
-		2: "TRANSLATION_FAILURE_REASON_PROVIDER_AUTHENTICATION",
-		3: "TRANSLATION_FAILURE_REASON_PROVIDER_RATE_LIMITED",
-		4: "TRANSLATION_FAILURE_REASON_PROVIDER_UNAVAILABLE",
-		5: "TRANSLATION_FAILURE_REASON_PROVIDER_REJECTED",
-		6: "TRANSLATION_FAILURE_REASON_PROVIDER_RESPONSE_INVALID",
-		7: "TRANSLATION_FAILURE_REASON_TARGET_APPLY_FAILED",
-		8: "TRANSLATION_FAILURE_REASON_OG_HANDOFF_FAILED",
-		9: "TRANSLATION_FAILURE_REASON_INTERNAL",
-	}
-	TranslationFailureReason_value = map[string]int32{
-		"TRANSLATION_FAILURE_REASON_UNSPECIFIED":               0,
-		"TRANSLATION_FAILURE_REASON_PROVIDER_CONFIGURATION":    1,
-		"TRANSLATION_FAILURE_REASON_PROVIDER_AUTHENTICATION":   2,
-		"TRANSLATION_FAILURE_REASON_PROVIDER_RATE_LIMITED":     3,
-		"TRANSLATION_FAILURE_REASON_PROVIDER_UNAVAILABLE":      4,
-		"TRANSLATION_FAILURE_REASON_PROVIDER_REJECTED":         5,
-		"TRANSLATION_FAILURE_REASON_PROVIDER_RESPONSE_INVALID": 6,
-		"TRANSLATION_FAILURE_REASON_TARGET_APPLY_FAILED":       7,
-		"TRANSLATION_FAILURE_REASON_OG_HANDOFF_FAILED":         8,
-		"TRANSLATION_FAILURE_REASON_INTERNAL":                  9,
-	}
-)
-
-func (x TranslationFailureReason) Enum() *TranslationFailureReason {
-	p := new(TranslationFailureReason)
-	*p = x
-	return p
-}
-
-func (x TranslationFailureReason) String() string {
-	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
-}
-
-func (TranslationFailureReason) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_manage_v1_translation_proto_enumTypes[3].Descriptor()
-}
-
-func (TranslationFailureReason) Type() protoreflect.EnumType {
-	return &file_api_manage_v1_translation_proto_enumTypes[3]
-}
-
-func (x TranslationFailureReason) Number() protoreflect.EnumNumber {
-	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Use TranslationFailureReason.Descriptor instead.
-func (TranslationFailureReason) EnumDescriptor() ([]byte, []int) {
-	return file_api_manage_v1_translation_proto_rawDescGZIP(), []int{3}
-}
-
-type TranslationProviderType int32
-
-const (
-	TranslationProviderType_TRANSLATION_PROVIDER_TYPE_UNSPECIFIED TranslationProviderType = 0
-	TranslationProviderType_TRANSLATION_PROVIDER_TYPE_LLM         TranslationProviderType = 1
-	TranslationProviderType_TRANSLATION_PROVIDER_TYPE_DEEPL       TranslationProviderType = 2
-)
-
-// Enum value maps for TranslationProviderType.
-var (
-	TranslationProviderType_name = map[int32]string{
-		0: "TRANSLATION_PROVIDER_TYPE_UNSPECIFIED",
-		1: "TRANSLATION_PROVIDER_TYPE_LLM",
-		2: "TRANSLATION_PROVIDER_TYPE_DEEPL",
-	}
-	TranslationProviderType_value = map[string]int32{
-		"TRANSLATION_PROVIDER_TYPE_UNSPECIFIED": 0,
-		"TRANSLATION_PROVIDER_TYPE_LLM":         1,
-		"TRANSLATION_PROVIDER_TYPE_DEEPL":       2,
-	}
-)
-
-func (x TranslationProviderType) Enum() *TranslationProviderType {
-	p := new(TranslationProviderType)
-	*p = x
-	return p
-}
-
-func (x TranslationProviderType) String() string {
-	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
-}
-
-func (TranslationProviderType) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_manage_v1_translation_proto_enumTypes[4].Descriptor()
-}
-
-func (TranslationProviderType) Type() protoreflect.EnumType {
-	return &file_api_manage_v1_translation_proto_enumTypes[4]
-}
-
-func (x TranslationProviderType) Number() protoreflect.EnumNumber {
-	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Use TranslationProviderType.Descriptor instead.
-func (TranslationProviderType) EnumDescriptor() ([]byte, []int) {
-	return file_api_manage_v1_translation_proto_rawDescGZIP(), []int{4}
-}
-
-type TranslationLLMProviderPreset int32
-
-const (
-	TranslationLLMProviderPreset_TRANSLATION_LLM_PROVIDER_PRESET_UNSPECIFIED       TranslationLLMProviderPreset = 0
-	TranslationLLMProviderPreset_TRANSLATION_LLM_PROVIDER_PRESET_GEMINI            TranslationLLMProviderPreset = 1
-	TranslationLLMProviderPreset_TRANSLATION_LLM_PROVIDER_PRESET_OPENAI_COMPATIBLE TranslationLLMProviderPreset = 2
-)
-
-// Enum value maps for TranslationLLMProviderPreset.
-var (
-	TranslationLLMProviderPreset_name = map[int32]string{
-		0: "TRANSLATION_LLM_PROVIDER_PRESET_UNSPECIFIED",
-		1: "TRANSLATION_LLM_PROVIDER_PRESET_GEMINI",
-		2: "TRANSLATION_LLM_PROVIDER_PRESET_OPENAI_COMPATIBLE",
-	}
-	TranslationLLMProviderPreset_value = map[string]int32{
-		"TRANSLATION_LLM_PROVIDER_PRESET_UNSPECIFIED":       0,
-		"TRANSLATION_LLM_PROVIDER_PRESET_GEMINI":            1,
-		"TRANSLATION_LLM_PROVIDER_PRESET_OPENAI_COMPATIBLE": 2,
-	}
-)
-
-func (x TranslationLLMProviderPreset) Enum() *TranslationLLMProviderPreset {
-	p := new(TranslationLLMProviderPreset)
-	*p = x
-	return p
-}
-
-func (x TranslationLLMProviderPreset) String() string {
-	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
-}
-
-func (TranslationLLMProviderPreset) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_manage_v1_translation_proto_enumTypes[5].Descriptor()
-}
-
-func (TranslationLLMProviderPreset) Type() protoreflect.EnumType {
-	return &file_api_manage_v1_translation_proto_enumTypes[5]
-}
-
-func (x TranslationLLMProviderPreset) Number() protoreflect.EnumNumber {
-	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Use TranslationLLMProviderPreset.Descriptor instead.
-func (TranslationLLMProviderPreset) EnumDescriptor() ([]byte, []int) {
-	return file_api_manage_v1_translation_proto_rawDescGZIP(), []int{5}
-}
-
 type TranslationInterchangeMode int32
 
 const (
@@ -419,11 +146,11 @@ func (x TranslationInterchangeMode) String() string {
 }
 
 func (TranslationInterchangeMode) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_manage_v1_translation_proto_enumTypes[6].Descriptor()
+	return file_api_manage_v1_translation_proto_enumTypes[1].Descriptor()
 }
 
 func (TranslationInterchangeMode) Type() protoreflect.EnumType {
-	return &file_api_manage_v1_translation_proto_enumTypes[6]
+	return &file_api_manage_v1_translation_proto_enumTypes[1]
 }
 
 func (x TranslationInterchangeMode) Number() protoreflect.EnumNumber {
@@ -432,7 +159,7 @@ func (x TranslationInterchangeMode) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use TranslationInterchangeMode.Descriptor instead.
 func (TranslationInterchangeMode) EnumDescriptor() ([]byte, []int) {
-	return file_api_manage_v1_translation_proto_rawDescGZIP(), []int{6}
+	return file_api_manage_v1_translation_proto_rawDescGZIP(), []int{1}
 }
 
 type TranslationTarget struct {
@@ -488,17 +215,16 @@ func (x *TranslationTarget) GetEntityId() string {
 }
 
 type TranslationLocale struct {
-	state                     protoimpl.MessageState `protogen:"open.v1"`
-	Code                      string                 `protobuf:"bytes,1,opt,name=code,proto3" json:"code,omitempty"`
-	DisplayName               string                 `protobuf:"bytes,2,opt,name=display_name,json=displayName,proto3" json:"display_name,omitempty"`
-	Enabled                   bool                   `protobuf:"varint,3,opt,name=enabled,proto3" json:"enabled,omitempty"`
-	IsPublic                  bool                   `protobuf:"varint,4,opt,name=is_public,json=isPublic,proto3" json:"is_public,omitempty"`
-	Dir                       string                 `protobuf:"bytes,5,opt,name=dir,proto3" json:"dir,omitempty"`
-	MachineTranslationAllowed bool                   `protobuf:"varint,6,opt,name=machine_translation_allowed,json=machineTranslationAllowed,proto3" json:"machine_translation_allowed,omitempty"`
-	FontProfile               *string                `protobuf:"bytes,7,opt,name=font_profile,json=fontProfile,proto3,oneof" json:"font_profile,omitempty"`
-	SortOrder                 int32                  `protobuf:"varint,8,opt,name=sort_order,json=sortOrder,proto3" json:"sort_order,omitempty"`
-	unknownFields             protoimpl.UnknownFields
-	sizeCache                 protoimpl.SizeCache
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Code          string                 `protobuf:"bytes,1,opt,name=code,proto3" json:"code,omitempty"`
+	DisplayName   string                 `protobuf:"bytes,2,opt,name=display_name,json=displayName,proto3" json:"display_name,omitempty"`
+	Enabled       bool                   `protobuf:"varint,3,opt,name=enabled,proto3" json:"enabled,omitempty"`
+	IsPublic      bool                   `protobuf:"varint,4,opt,name=is_public,json=isPublic,proto3" json:"is_public,omitempty"`
+	Dir           string                 `protobuf:"bytes,5,opt,name=dir,proto3" json:"dir,omitempty"`
+	FontProfile   *string                `protobuf:"bytes,6,opt,name=font_profile,json=fontProfile,proto3,oneof" json:"font_profile,omitempty"`
+	SortOrder     int32                  `protobuf:"varint,7,opt,name=sort_order,json=sortOrder,proto3" json:"sort_order,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *TranslationLocale) Reset() {
@@ -566,13 +292,6 @@ func (x *TranslationLocale) GetDir() string {
 	return ""
 }
 
-func (x *TranslationLocale) GetMachineTranslationAllowed() bool {
-	if x != nil {
-		return x.MachineTranslationAllowed
-	}
-	return false
-}
-
 func (x *TranslationLocale) GetFontProfile() string {
 	if x != nil && x.FontProfile != nil {
 		return *x.FontProfile
@@ -585,141 +304,6 @@ func (x *TranslationLocale) GetSortOrder() int32 {
 		return x.SortOrder
 	}
 	return 0
-}
-
-type TranslationJob struct {
-	state        protoimpl.MessageState `protogen:"open.v1"`
-	Id           string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Target       *TranslationTarget     `protobuf:"bytes,2,opt,name=target,proto3" json:"target,omitempty"`
-	TargetLocale string                 `protobuf:"bytes,3,opt,name=target_locale,json=targetLocale,proto3" json:"target_locale,omitempty"`
-	SourceLocale string                 `protobuf:"bytes,4,opt,name=source_locale,json=sourceLocale,proto3" json:"source_locale,omitempty"`
-	// Canonical digest of the exact outbound XLIFF 2.2 bytes, stable-unit
-	// manifest, and provider profile. It identifies only this active request and
-	// never acts as source freshness, document CAS, or target lifecycle state.
-	RequestArtifactDigest string                 `protobuf:"bytes,5,opt,name=request_artifact_digest,json=requestArtifactDigest,proto3" json:"request_artifact_digest,omitempty"`
-	Status                TranslationJobStatus   `protobuf:"varint,6,opt,name=status,proto3,enum=api.manage.v1.TranslationJobStatus" json:"status,omitempty"`
-	OperationId           string                 `protobuf:"bytes,7,opt,name=operation_id,json=operationId,proto3" json:"operation_id,omitempty"`
-	Provider              *string                `protobuf:"bytes,8,opt,name=provider,proto3,oneof" json:"provider,omitempty"`
-	Model                 *string                `protobuf:"bytes,9,opt,name=model,proto3,oneof" json:"model,omitempty"`
-	RequestedAt           *timestamppb.Timestamp `protobuf:"bytes,10,opt,name=requested_at,json=requestedAt,proto3,oneof" json:"requested_at,omitempty"`
-	StartedAt             *timestamppb.Timestamp `protobuf:"bytes,11,opt,name=started_at,json=startedAt,proto3,oneof" json:"started_at,omitempty"`
-	RequestedByMemberId   string                 `protobuf:"bytes,12,opt,name=requested_by_member_id,json=requestedByMemberId,proto3" json:"requested_by_member_id,omitempty"`
-	unknownFields         protoimpl.UnknownFields
-	sizeCache             protoimpl.SizeCache
-}
-
-func (x *TranslationJob) Reset() {
-	*x = TranslationJob{}
-	mi := &file_api_manage_v1_translation_proto_msgTypes[2]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *TranslationJob) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*TranslationJob) ProtoMessage() {}
-
-func (x *TranslationJob) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_translation_proto_msgTypes[2]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use TranslationJob.ProtoReflect.Descriptor instead.
-func (*TranslationJob) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_translation_proto_rawDescGZIP(), []int{2}
-}
-
-func (x *TranslationJob) GetId() string {
-	if x != nil {
-		return x.Id
-	}
-	return ""
-}
-
-func (x *TranslationJob) GetTarget() *TranslationTarget {
-	if x != nil {
-		return x.Target
-	}
-	return nil
-}
-
-func (x *TranslationJob) GetTargetLocale() string {
-	if x != nil {
-		return x.TargetLocale
-	}
-	return ""
-}
-
-func (x *TranslationJob) GetSourceLocale() string {
-	if x != nil {
-		return x.SourceLocale
-	}
-	return ""
-}
-
-func (x *TranslationJob) GetRequestArtifactDigest() string {
-	if x != nil {
-		return x.RequestArtifactDigest
-	}
-	return ""
-}
-
-func (x *TranslationJob) GetStatus() TranslationJobStatus {
-	if x != nil {
-		return x.Status
-	}
-	return TranslationJobStatus_TRANSLATION_JOB_STATUS_UNSPECIFIED
-}
-
-func (x *TranslationJob) GetOperationId() string {
-	if x != nil {
-		return x.OperationId
-	}
-	return ""
-}
-
-func (x *TranslationJob) GetProvider() string {
-	if x != nil && x.Provider != nil {
-		return *x.Provider
-	}
-	return ""
-}
-
-func (x *TranslationJob) GetModel() string {
-	if x != nil && x.Model != nil {
-		return *x.Model
-	}
-	return ""
-}
-
-func (x *TranslationJob) GetRequestedAt() *timestamppb.Timestamp {
-	if x != nil {
-		return x.RequestedAt
-	}
-	return nil
-}
-
-func (x *TranslationJob) GetStartedAt() *timestamppb.Timestamp {
-	if x != nil {
-		return x.StartedAt
-	}
-	return nil
-}
-
-func (x *TranslationJob) GetRequestedByMemberId() string {
-	if x != nil {
-		return x.RequestedByMemberId
-	}
-	return ""
 }
 
 type TranslationEntry struct {
@@ -739,7 +323,7 @@ type TranslationEntry struct {
 
 func (x *TranslationEntry) Reset() {
 	*x = TranslationEntry{}
-	mi := &file_api_manage_v1_translation_proto_msgTypes[3]
+	mi := &file_api_manage_v1_translation_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -751,7 +335,7 @@ func (x *TranslationEntry) String() string {
 func (*TranslationEntry) ProtoMessage() {}
 
 func (x *TranslationEntry) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_translation_proto_msgTypes[3]
+	mi := &file_api_manage_v1_translation_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -764,7 +348,7 @@ func (x *TranslationEntry) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TranslationEntry.ProtoReflect.Descriptor instead.
 func (*TranslationEntry) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_translation_proto_rawDescGZIP(), []int{3}
+	return file_api_manage_v1_translation_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *TranslationEntry) GetTarget() *TranslationTarget {
@@ -836,15 +420,14 @@ type TranslationOverviewStats struct {
 	EnabledLocales  int32                  `protobuf:"varint,2,opt,name=enabled_locales,json=enabledLocales,proto3" json:"enabled_locales,omitempty"`
 	PublicLocales   int32                  `protobuf:"varint,3,opt,name=public_locales,json=publicLocales,proto3" json:"public_locales,omitempty"`
 	SourceEntities  int32                  `protobuf:"varint,4,opt,name=source_entities,json=sourceEntities,proto3" json:"source_entities,omitempty"`
-	ActiveJobs      int32                  `protobuf:"varint,5,opt,name=active_jobs,json=activeJobs,proto3" json:"active_jobs,omitempty"`
-	ExistingEntries int32                  `protobuf:"varint,6,opt,name=existing_entries,json=existingEntries,proto3" json:"existing_entries,omitempty"`
+	ExistingEntries int32                  `protobuf:"varint,5,opt,name=existing_entries,json=existingEntries,proto3" json:"existing_entries,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
 
 func (x *TranslationOverviewStats) Reset() {
 	*x = TranslationOverviewStats{}
-	mi := &file_api_manage_v1_translation_proto_msgTypes[4]
+	mi := &file_api_manage_v1_translation_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -856,7 +439,7 @@ func (x *TranslationOverviewStats) String() string {
 func (*TranslationOverviewStats) ProtoMessage() {}
 
 func (x *TranslationOverviewStats) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_translation_proto_msgTypes[4]
+	mi := &file_api_manage_v1_translation_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -869,7 +452,7 @@ func (x *TranslationOverviewStats) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TranslationOverviewStats.ProtoReflect.Descriptor instead.
 func (*TranslationOverviewStats) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_translation_proto_rawDescGZIP(), []int{4}
+	return file_api_manage_v1_translation_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *TranslationOverviewStats) GetTotalLocales() int32 {
@@ -900,13 +483,6 @@ func (x *TranslationOverviewStats) GetSourceEntities() int32 {
 	return 0
 }
 
-func (x *TranslationOverviewStats) GetActiveJobs() int32 {
-	if x != nil {
-		return x.ActiveJobs
-	}
-	return 0
-}
-
 func (x *TranslationOverviewStats) GetExistingEntries() int32 {
 	if x != nil {
 		return x.ExistingEntries
@@ -918,15 +494,14 @@ type TranslationLocaleHealth struct {
 	state              protoimpl.MessageState `protogen:"open.v1"`
 	Locale             *TranslationLocale     `protobuf:"bytes,1,opt,name=locale,proto3" json:"locale,omitempty"`
 	ExistingEntries    int32                  `protobuf:"varint,2,opt,name=existing_entries,json=existingEntries,proto3" json:"existing_entries,omitempty"`
-	ActiveJobs         int32                  `protobuf:"varint,3,opt,name=active_jobs,json=activeJobs,proto3" json:"active_jobs,omitempty"`
-	LastTargetUpdateAt *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=last_target_update_at,json=lastTargetUpdateAt,proto3,oneof" json:"last_target_update_at,omitempty"`
+	LastTargetUpdateAt *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=last_target_update_at,json=lastTargetUpdateAt,proto3,oneof" json:"last_target_update_at,omitempty"`
 	unknownFields      protoimpl.UnknownFields
 	sizeCache          protoimpl.SizeCache
 }
 
 func (x *TranslationLocaleHealth) Reset() {
 	*x = TranslationLocaleHealth{}
-	mi := &file_api_manage_v1_translation_proto_msgTypes[5]
+	mi := &file_api_manage_v1_translation_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -938,7 +513,7 @@ func (x *TranslationLocaleHealth) String() string {
 func (*TranslationLocaleHealth) ProtoMessage() {}
 
 func (x *TranslationLocaleHealth) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_translation_proto_msgTypes[5]
+	mi := &file_api_manage_v1_translation_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -951,7 +526,7 @@ func (x *TranslationLocaleHealth) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TranslationLocaleHealth.ProtoReflect.Descriptor instead.
 func (*TranslationLocaleHealth) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_translation_proto_rawDescGZIP(), []int{5}
+	return file_api_manage_v1_translation_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *TranslationLocaleHealth) GetLocale() *TranslationLocale {
@@ -968,13 +543,6 @@ func (x *TranslationLocaleHealth) GetExistingEntries() int32 {
 	return 0
 }
 
-func (x *TranslationLocaleHealth) GetActiveJobs() int32 {
-	if x != nil {
-		return x.ActiveJobs
-	}
-	return 0
-}
-
 func (x *TranslationLocaleHealth) GetLastTargetUpdateAt() *timestamppb.Timestamp {
 	if x != nil {
 		return x.LastTargetUpdateAt
@@ -987,15 +555,14 @@ type TranslationEntityHealth struct {
 	EntityType         TranslationEntityType  `protobuf:"varint,1,opt,name=entity_type,json=entityType,proto3,enum=api.manage.v1.TranslationEntityType" json:"entity_type,omitempty"`
 	SourceEntities     int32                  `protobuf:"varint,2,opt,name=source_entities,json=sourceEntities,proto3" json:"source_entities,omitempty"`
 	ExistingEntries    int32                  `protobuf:"varint,3,opt,name=existing_entries,json=existingEntries,proto3" json:"existing_entries,omitempty"`
-	ActiveJobs         int32                  `protobuf:"varint,4,opt,name=active_jobs,json=activeJobs,proto3" json:"active_jobs,omitempty"`
-	LastSourceUpdateAt *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=last_source_update_at,json=lastSourceUpdateAt,proto3,oneof" json:"last_source_update_at,omitempty"`
+	LastSourceUpdateAt *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=last_source_update_at,json=lastSourceUpdateAt,proto3,oneof" json:"last_source_update_at,omitempty"`
 	unknownFields      protoimpl.UnknownFields
 	sizeCache          protoimpl.SizeCache
 }
 
 func (x *TranslationEntityHealth) Reset() {
 	*x = TranslationEntityHealth{}
-	mi := &file_api_manage_v1_translation_proto_msgTypes[6]
+	mi := &file_api_manage_v1_translation_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1007,7 +574,7 @@ func (x *TranslationEntityHealth) String() string {
 func (*TranslationEntityHealth) ProtoMessage() {}
 
 func (x *TranslationEntityHealth) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_translation_proto_msgTypes[6]
+	mi := &file_api_manage_v1_translation_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1020,7 +587,7 @@ func (x *TranslationEntityHealth) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TranslationEntityHealth.ProtoReflect.Descriptor instead.
 func (*TranslationEntityHealth) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_translation_proto_rawDescGZIP(), []int{6}
+	return file_api_manage_v1_translation_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *TranslationEntityHealth) GetEntityType() TranslationEntityType {
@@ -1044,13 +611,6 @@ func (x *TranslationEntityHealth) GetExistingEntries() int32 {
 	return 0
 }
 
-func (x *TranslationEntityHealth) GetActiveJobs() int32 {
-	if x != nil {
-		return x.ActiveJobs
-	}
-	return 0
-}
-
 func (x *TranslationEntityHealth) GetLastSourceUpdateAt() *timestamppb.Timestamp {
 	if x != nil {
 		return x.LastSourceUpdateAt
@@ -1062,17 +622,13 @@ type TranslationSettings struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	DefaultLocale string                 `protobuf:"bytes,1,opt,name=default_locale,json=defaultLocale,proto3" json:"default_locale,omitempty"`
 	UpdatedAt     *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=updated_at,json=updatedAt,proto3,oneof" json:"updated_at,omitempty"`
-	// Exact case-sensitive spellings that every provider must preserve without
-	// translation. This is a minimal settings-owned exception list, not a
-	// source/target terminology glossary.
-	ProtectedTerms []string `protobuf:"bytes,3,rep,name=protected_terms,json=protectedTerms,proto3" json:"protected_terms,omitempty"`
-	unknownFields  protoimpl.UnknownFields
-	sizeCache      protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *TranslationSettings) Reset() {
 	*x = TranslationSettings{}
-	mi := &file_api_manage_v1_translation_proto_msgTypes[7]
+	mi := &file_api_manage_v1_translation_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1084,7 +640,7 @@ func (x *TranslationSettings) String() string {
 func (*TranslationSettings) ProtoMessage() {}
 
 func (x *TranslationSettings) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_translation_proto_msgTypes[7]
+	mi := &file_api_manage_v1_translation_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1097,7 +653,7 @@ func (x *TranslationSettings) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TranslationSettings.ProtoReflect.Descriptor instead.
 func (*TranslationSettings) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_translation_proto_rawDescGZIP(), []int{7}
+	return file_api_manage_v1_translation_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *TranslationSettings) GetDefaultLocale() string {
@@ -1114,319 +670,6 @@ func (x *TranslationSettings) GetUpdatedAt() *timestamppb.Timestamp {
 	return nil
 }
 
-func (x *TranslationSettings) GetProtectedTerms() []string {
-	if x != nil {
-		return x.ProtectedTerms
-	}
-	return nil
-}
-
-type LLMTranslationProviderConfig struct {
-	state                         protoimpl.MessageState       `protogen:"open.v1"`
-	ApiKey                        string                       `protobuf:"bytes,1,opt,name=api_key,json=apiKey,proto3" json:"api_key,omitempty"` // write-only, never returned by admin reads
-	Preset                        TranslationLLMProviderPreset `protobuf:"varint,2,opt,name=preset,proto3,enum=api.manage.v1.TranslationLLMProviderPreset" json:"preset,omitempty"`
-	ApiBaseUrl                    *string                      `protobuf:"bytes,3,opt,name=api_base_url,json=apiBaseUrl,proto3,oneof" json:"api_base_url,omitempty"`
-	Model                         string                       `protobuf:"bytes,4,opt,name=model,proto3" json:"model,omitempty"`
-	InputTokenPriceUsdPerMillion  *float64                     `protobuf:"fixed64,5,opt,name=input_token_price_usd_per_million,json=inputTokenPriceUsdPerMillion,proto3,oneof" json:"input_token_price_usd_per_million,omitempty"`
-	OutputTokenPriceUsdPerMillion *float64                     `protobuf:"fixed64,6,opt,name=output_token_price_usd_per_million,json=outputTokenPriceUsdPerMillion,proto3,oneof" json:"output_token_price_usd_per_million,omitempty"`
-	MaxContextTokens              *int32                       `protobuf:"varint,7,opt,name=max_context_tokens,json=maxContextTokens,proto3,oneof" json:"max_context_tokens,omitempty"`
-	MaxOutputTokens               *int32                       `protobuf:"varint,8,opt,name=max_output_tokens,json=maxOutputTokens,proto3,oneof" json:"max_output_tokens,omitempty"`
-	SupportsJsonMode              bool                         `protobuf:"varint,9,opt,name=supports_json_mode,json=supportsJsonMode,proto3" json:"supports_json_mode,omitempty"`
-	Temperature                   *float64                     `protobuf:"fixed64,10,opt,name=temperature,proto3,oneof" json:"temperature,omitempty"`
-	unknownFields                 protoimpl.UnknownFields
-	sizeCache                     protoimpl.SizeCache
-}
-
-func (x *LLMTranslationProviderConfig) Reset() {
-	*x = LLMTranslationProviderConfig{}
-	mi := &file_api_manage_v1_translation_proto_msgTypes[8]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *LLMTranslationProviderConfig) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*LLMTranslationProviderConfig) ProtoMessage() {}
-
-func (x *LLMTranslationProviderConfig) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_translation_proto_msgTypes[8]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use LLMTranslationProviderConfig.ProtoReflect.Descriptor instead.
-func (*LLMTranslationProviderConfig) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_translation_proto_rawDescGZIP(), []int{8}
-}
-
-func (x *LLMTranslationProviderConfig) GetApiKey() string {
-	if x != nil {
-		return x.ApiKey
-	}
-	return ""
-}
-
-func (x *LLMTranslationProviderConfig) GetPreset() TranslationLLMProviderPreset {
-	if x != nil {
-		return x.Preset
-	}
-	return TranslationLLMProviderPreset_TRANSLATION_LLM_PROVIDER_PRESET_UNSPECIFIED
-}
-
-func (x *LLMTranslationProviderConfig) GetApiBaseUrl() string {
-	if x != nil && x.ApiBaseUrl != nil {
-		return *x.ApiBaseUrl
-	}
-	return ""
-}
-
-func (x *LLMTranslationProviderConfig) GetModel() string {
-	if x != nil {
-		return x.Model
-	}
-	return ""
-}
-
-func (x *LLMTranslationProviderConfig) GetInputTokenPriceUsdPerMillion() float64 {
-	if x != nil && x.InputTokenPriceUsdPerMillion != nil {
-		return *x.InputTokenPriceUsdPerMillion
-	}
-	return 0
-}
-
-func (x *LLMTranslationProviderConfig) GetOutputTokenPriceUsdPerMillion() float64 {
-	if x != nil && x.OutputTokenPriceUsdPerMillion != nil {
-		return *x.OutputTokenPriceUsdPerMillion
-	}
-	return 0
-}
-
-func (x *LLMTranslationProviderConfig) GetMaxContextTokens() int32 {
-	if x != nil && x.MaxContextTokens != nil {
-		return *x.MaxContextTokens
-	}
-	return 0
-}
-
-func (x *LLMTranslationProviderConfig) GetMaxOutputTokens() int32 {
-	if x != nil && x.MaxOutputTokens != nil {
-		return *x.MaxOutputTokens
-	}
-	return 0
-}
-
-func (x *LLMTranslationProviderConfig) GetSupportsJsonMode() bool {
-	if x != nil {
-		return x.SupportsJsonMode
-	}
-	return false
-}
-
-func (x *LLMTranslationProviderConfig) GetTemperature() float64 {
-	if x != nil && x.Temperature != nil {
-		return *x.Temperature
-	}
-	return 0
-}
-
-type DeepLTranslationProviderConfig struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	ApiKey        string                 `protobuf:"bytes,1,opt,name=api_key,json=apiKey,proto3" json:"api_key,omitempty"` // write-only, never returned by admin reads
-	ApiBaseUrl    *string                `protobuf:"bytes,2,opt,name=api_base_url,json=apiBaseUrl,proto3,oneof" json:"api_base_url,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *DeepLTranslationProviderConfig) Reset() {
-	*x = DeepLTranslationProviderConfig{}
-	mi := &file_api_manage_v1_translation_proto_msgTypes[9]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *DeepLTranslationProviderConfig) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*DeepLTranslationProviderConfig) ProtoMessage() {}
-
-func (x *DeepLTranslationProviderConfig) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_translation_proto_msgTypes[9]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use DeepLTranslationProviderConfig.ProtoReflect.Descriptor instead.
-func (*DeepLTranslationProviderConfig) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_translation_proto_rawDescGZIP(), []int{9}
-}
-
-func (x *DeepLTranslationProviderConfig) GetApiKey() string {
-	if x != nil {
-		return x.ApiKey
-	}
-	return ""
-}
-
-func (x *DeepLTranslationProviderConfig) GetApiBaseUrl() string {
-	if x != nil && x.ApiBaseUrl != nil {
-		return *x.ApiBaseUrl
-	}
-	return ""
-}
-
-type TranslationProvider struct {
-	state    protoimpl.MessageState  `protogen:"open.v1"`
-	Id       string                  `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Name     string                  `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	Type     TranslationProviderType `protobuf:"varint,3,opt,name=type,proto3,enum=api.manage.v1.TranslationProviderType" json:"type,omitempty"`
-	IsActive bool                    `protobuf:"varint,4,opt,name=is_active,json=isActive,proto3" json:"is_active,omitempty"`
-	Priority int32                   `protobuf:"varint,5,opt,name=priority,proto3" json:"priority,omitempty"`
-	// Types that are valid to be assigned to Config:
-	//
-	//	*TranslationProvider_LlmConfig
-	//	*TranslationProvider_DeeplConfig
-	Config        isTranslationProvider_Config `protobuf_oneof:"config"`
-	CreatedAt     *timestamppb.Timestamp       `protobuf:"bytes,8,opt,name=created_at,json=createdAt,proto3,oneof" json:"created_at,omitempty"`
-	UpdatedAt     *timestamppb.Timestamp       `protobuf:"bytes,9,opt,name=updated_at,json=updatedAt,proto3,oneof" json:"updated_at,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *TranslationProvider) Reset() {
-	*x = TranslationProvider{}
-	mi := &file_api_manage_v1_translation_proto_msgTypes[10]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *TranslationProvider) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*TranslationProvider) ProtoMessage() {}
-
-func (x *TranslationProvider) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_translation_proto_msgTypes[10]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use TranslationProvider.ProtoReflect.Descriptor instead.
-func (*TranslationProvider) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_translation_proto_rawDescGZIP(), []int{10}
-}
-
-func (x *TranslationProvider) GetId() string {
-	if x != nil {
-		return x.Id
-	}
-	return ""
-}
-
-func (x *TranslationProvider) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
-}
-
-func (x *TranslationProvider) GetType() TranslationProviderType {
-	if x != nil {
-		return x.Type
-	}
-	return TranslationProviderType_TRANSLATION_PROVIDER_TYPE_UNSPECIFIED
-}
-
-func (x *TranslationProvider) GetIsActive() bool {
-	if x != nil {
-		return x.IsActive
-	}
-	return false
-}
-
-func (x *TranslationProvider) GetPriority() int32 {
-	if x != nil {
-		return x.Priority
-	}
-	return 0
-}
-
-func (x *TranslationProvider) GetConfig() isTranslationProvider_Config {
-	if x != nil {
-		return x.Config
-	}
-	return nil
-}
-
-func (x *TranslationProvider) GetLlmConfig() *LLMTranslationProviderConfig {
-	if x != nil {
-		if x, ok := x.Config.(*TranslationProvider_LlmConfig); ok {
-			return x.LlmConfig
-		}
-	}
-	return nil
-}
-
-func (x *TranslationProvider) GetDeeplConfig() *DeepLTranslationProviderConfig {
-	if x != nil {
-		if x, ok := x.Config.(*TranslationProvider_DeeplConfig); ok {
-			return x.DeeplConfig
-		}
-	}
-	return nil
-}
-
-func (x *TranslationProvider) GetCreatedAt() *timestamppb.Timestamp {
-	if x != nil {
-		return x.CreatedAt
-	}
-	return nil
-}
-
-func (x *TranslationProvider) GetUpdatedAt() *timestamppb.Timestamp {
-	if x != nil {
-		return x.UpdatedAt
-	}
-	return nil
-}
-
-type isTranslationProvider_Config interface {
-	isTranslationProvider_Config()
-}
-
-type TranslationProvider_LlmConfig struct {
-	LlmConfig *LLMTranslationProviderConfig `protobuf:"bytes,6,opt,name=llm_config,json=llmConfig,proto3,oneof"`
-}
-
-type TranslationProvider_DeeplConfig struct {
-	DeeplConfig *DeepLTranslationProviderConfig `protobuf:"bytes,7,opt,name=deepl_config,json=deeplConfig,proto3,oneof"`
-}
-
-func (*TranslationProvider_LlmConfig) isTranslationProvider_Config() {}
-
-func (*TranslationProvider_DeeplConfig) isTranslationProvider_Config() {}
-
 type ListTranslationLocalesRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields
@@ -1435,7 +678,7 @@ type ListTranslationLocalesRequest struct {
 
 func (x *ListTranslationLocalesRequest) Reset() {
 	*x = ListTranslationLocalesRequest{}
-	mi := &file_api_manage_v1_translation_proto_msgTypes[11]
+	mi := &file_api_manage_v1_translation_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1447,7 +690,7 @@ func (x *ListTranslationLocalesRequest) String() string {
 func (*ListTranslationLocalesRequest) ProtoMessage() {}
 
 func (x *ListTranslationLocalesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_translation_proto_msgTypes[11]
+	mi := &file_api_manage_v1_translation_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1460,7 +703,7 @@ func (x *ListTranslationLocalesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListTranslationLocalesRequest.ProtoReflect.Descriptor instead.
 func (*ListTranslationLocalesRequest) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_translation_proto_rawDescGZIP(), []int{11}
+	return file_api_manage_v1_translation_proto_rawDescGZIP(), []int{7}
 }
 
 type ListTranslationLocalesResponse struct {
@@ -1472,7 +715,7 @@ type ListTranslationLocalesResponse struct {
 
 func (x *ListTranslationLocalesResponse) Reset() {
 	*x = ListTranslationLocalesResponse{}
-	mi := &file_api_manage_v1_translation_proto_msgTypes[12]
+	mi := &file_api_manage_v1_translation_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1484,7 +727,7 @@ func (x *ListTranslationLocalesResponse) String() string {
 func (*ListTranslationLocalesResponse) ProtoMessage() {}
 
 func (x *ListTranslationLocalesResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_translation_proto_msgTypes[12]
+	mi := &file_api_manage_v1_translation_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1497,7 +740,7 @@ func (x *ListTranslationLocalesResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListTranslationLocalesResponse.ProtoReflect.Descriptor instead.
 func (*ListTranslationLocalesResponse) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_translation_proto_rawDescGZIP(), []int{12}
+	return file_api_manage_v1_translation_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *ListTranslationLocalesResponse) GetLocales() []*TranslationLocale {
@@ -1515,7 +758,7 @@ type GetTranslationOverviewRequest struct {
 
 func (x *GetTranslationOverviewRequest) Reset() {
 	*x = GetTranslationOverviewRequest{}
-	mi := &file_api_manage_v1_translation_proto_msgTypes[13]
+	mi := &file_api_manage_v1_translation_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1527,7 +770,7 @@ func (x *GetTranslationOverviewRequest) String() string {
 func (*GetTranslationOverviewRequest) ProtoMessage() {}
 
 func (x *GetTranslationOverviewRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_translation_proto_msgTypes[13]
+	mi := &file_api_manage_v1_translation_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1540,7 +783,7 @@ func (x *GetTranslationOverviewRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetTranslationOverviewRequest.ProtoReflect.Descriptor instead.
 func (*GetTranslationOverviewRequest) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_translation_proto_rawDescGZIP(), []int{13}
+	return file_api_manage_v1_translation_proto_rawDescGZIP(), []int{9}
 }
 
 type GetTranslationOverviewResponse struct {
@@ -1554,7 +797,7 @@ type GetTranslationOverviewResponse struct {
 
 func (x *GetTranslationOverviewResponse) Reset() {
 	*x = GetTranslationOverviewResponse{}
-	mi := &file_api_manage_v1_translation_proto_msgTypes[14]
+	mi := &file_api_manage_v1_translation_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1566,7 +809,7 @@ func (x *GetTranslationOverviewResponse) String() string {
 func (*GetTranslationOverviewResponse) ProtoMessage() {}
 
 func (x *GetTranslationOverviewResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_translation_proto_msgTypes[14]
+	mi := &file_api_manage_v1_translation_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1579,7 +822,7 @@ func (x *GetTranslationOverviewResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetTranslationOverviewResponse.ProtoReflect.Descriptor instead.
 func (*GetTranslationOverviewResponse) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_translation_proto_rawDescGZIP(), []int{14}
+	return file_api_manage_v1_translation_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *GetTranslationOverviewResponse) GetStats() *TranslationOverviewStats {
@@ -1611,7 +854,7 @@ type GetTranslationSettingsRequest struct {
 
 func (x *GetTranslationSettingsRequest) Reset() {
 	*x = GetTranslationSettingsRequest{}
-	mi := &file_api_manage_v1_translation_proto_msgTypes[15]
+	mi := &file_api_manage_v1_translation_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1623,7 +866,7 @@ func (x *GetTranslationSettingsRequest) String() string {
 func (*GetTranslationSettingsRequest) ProtoMessage() {}
 
 func (x *GetTranslationSettingsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_translation_proto_msgTypes[15]
+	mi := &file_api_manage_v1_translation_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1636,21 +879,19 @@ func (x *GetTranslationSettingsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetTranslationSettingsRequest.ProtoReflect.Descriptor instead.
 func (*GetTranslationSettingsRequest) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_translation_proto_rawDescGZIP(), []int{15}
+	return file_api_manage_v1_translation_proto_rawDescGZIP(), []int{11}
 }
 
 type GetTranslationSettingsResponse struct {
-	state                    protoimpl.MessageState `protogen:"open.v1"`
-	Settings                 *TranslationSettings   `protobuf:"bytes,1,opt,name=settings,proto3" json:"settings,omitempty"`
-	GenerationEnabled        bool                   `protobuf:"varint,2,opt,name=generation_enabled,json=generationEnabled,proto3" json:"generation_enabled,omitempty"`
-	GenerationDisabledReason *string                `protobuf:"bytes,3,opt,name=generation_disabled_reason,json=generationDisabledReason,proto3,oneof" json:"generation_disabled_reason,omitempty"`
-	unknownFields            protoimpl.UnknownFields
-	sizeCache                protoimpl.SizeCache
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Settings      *TranslationSettings   `protobuf:"bytes,1,opt,name=settings,proto3" json:"settings,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *GetTranslationSettingsResponse) Reset() {
 	*x = GetTranslationSettingsResponse{}
-	mi := &file_api_manage_v1_translation_proto_msgTypes[16]
+	mi := &file_api_manage_v1_translation_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1662,7 +903,7 @@ func (x *GetTranslationSettingsResponse) String() string {
 func (*GetTranslationSettingsResponse) ProtoMessage() {}
 
 func (x *GetTranslationSettingsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_translation_proto_msgTypes[16]
+	mi := &file_api_manage_v1_translation_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1675,7 +916,7 @@ func (x *GetTranslationSettingsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetTranslationSettingsResponse.ProtoReflect.Descriptor instead.
 func (*GetTranslationSettingsResponse) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_translation_proto_rawDescGZIP(), []int{16}
+	return file_api_manage_v1_translation_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *GetTranslationSettingsResponse) GetSettings() *TranslationSettings {
@@ -1685,35 +926,18 @@ func (x *GetTranslationSettingsResponse) GetSettings() *TranslationSettings {
 	return nil
 }
 
-func (x *GetTranslationSettingsResponse) GetGenerationEnabled() bool {
-	if x != nil {
-		return x.GenerationEnabled
-	}
-	return false
-}
-
-func (x *GetTranslationSettingsResponse) GetGenerationDisabledReason() string {
-	if x != nil && x.GenerationDisabledReason != nil {
-		return *x.GenerationDisabledReason
-	}
-	return ""
-}
-
 type UpdateTranslationSettingsRequest struct {
 	state    protoimpl.MessageState `protogen:"open.v1"`
 	Settings *TranslationSettings   `protobuf:"bytes,1,opt,name=settings,proto3" json:"settings,omitempty"`
 	// Required field mask selects only the settings fields to patch.
-	UpdateMask *fieldmaskpb.FieldMask `protobuf:"bytes,2,opt,name=update_mask,json=updateMask,proto3" json:"update_mask,omitempty"`
-	// Snapshot observed by the editor. Protected-term changes apply the
-	// membership delta between this snapshot and settings.protected_terms.
-	BaseSettings  *TranslationSettings `protobuf:"bytes,3,opt,name=base_settings,json=baseSettings,proto3" json:"base_settings,omitempty"`
+	UpdateMask    *fieldmaskpb.FieldMask `protobuf:"bytes,2,opt,name=update_mask,json=updateMask,proto3" json:"update_mask,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *UpdateTranslationSettingsRequest) Reset() {
 	*x = UpdateTranslationSettingsRequest{}
-	mi := &file_api_manage_v1_translation_proto_msgTypes[17]
+	mi := &file_api_manage_v1_translation_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1725,7 +949,7 @@ func (x *UpdateTranslationSettingsRequest) String() string {
 func (*UpdateTranslationSettingsRequest) ProtoMessage() {}
 
 func (x *UpdateTranslationSettingsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_translation_proto_msgTypes[17]
+	mi := &file_api_manage_v1_translation_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1738,7 +962,7 @@ func (x *UpdateTranslationSettingsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateTranslationSettingsRequest.ProtoReflect.Descriptor instead.
 func (*UpdateTranslationSettingsRequest) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_translation_proto_rawDescGZIP(), []int{17}
+	return file_api_manage_v1_translation_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *UpdateTranslationSettingsRequest) GetSettings() *TranslationSettings {
@@ -1755,13 +979,6 @@ func (x *UpdateTranslationSettingsRequest) GetUpdateMask() *fieldmaskpb.FieldMas
 	return nil
 }
 
-func (x *UpdateTranslationSettingsRequest) GetBaseSettings() *TranslationSettings {
-	if x != nil {
-		return x.BaseSettings
-	}
-	return nil
-}
-
 type UpdateTranslationSettingsResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Settings      *TranslationSettings   `protobuf:"bytes,1,opt,name=settings,proto3" json:"settings,omitempty"`
@@ -1771,7 +988,7 @@ type UpdateTranslationSettingsResponse struct {
 
 func (x *UpdateTranslationSettingsResponse) Reset() {
 	*x = UpdateTranslationSettingsResponse{}
-	mi := &file_api_manage_v1_translation_proto_msgTypes[18]
+	mi := &file_api_manage_v1_translation_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1783,7 +1000,7 @@ func (x *UpdateTranslationSettingsResponse) String() string {
 func (*UpdateTranslationSettingsResponse) ProtoMessage() {}
 
 func (x *UpdateTranslationSettingsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_translation_proto_msgTypes[18]
+	mi := &file_api_manage_v1_translation_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1796,7 +1013,7 @@ func (x *UpdateTranslationSettingsResponse) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use UpdateTranslationSettingsResponse.ProtoReflect.Descriptor instead.
 func (*UpdateTranslationSettingsResponse) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_translation_proto_rawDescGZIP(), []int{18}
+	return file_api_manage_v1_translation_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *UpdateTranslationSettingsResponse) GetSettings() *TranslationSettings {
@@ -1804,714 +1021,6 @@ func (x *UpdateTranslationSettingsResponse) GetSettings() *TranslationSettings {
 		return x.Settings
 	}
 	return nil
-}
-
-type ListTranslationProvidersRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Pagination    *v1.PaginationRequest  `protobuf:"bytes,1,opt,name=pagination,proto3" json:"pagination,omitempty"`
-	Filters       []*v1.FilterSpec       `protobuf:"bytes,2,rep,name=filters,proto3" json:"filters,omitempty"`
-	Sorts         []*v1.SortSpec         `protobuf:"bytes,3,rep,name=sorts,proto3" json:"sorts,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *ListTranslationProvidersRequest) Reset() {
-	*x = ListTranslationProvidersRequest{}
-	mi := &file_api_manage_v1_translation_proto_msgTypes[19]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *ListTranslationProvidersRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ListTranslationProvidersRequest) ProtoMessage() {}
-
-func (x *ListTranslationProvidersRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_translation_proto_msgTypes[19]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ListTranslationProvidersRequest.ProtoReflect.Descriptor instead.
-func (*ListTranslationProvidersRequest) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_translation_proto_rawDescGZIP(), []int{19}
-}
-
-func (x *ListTranslationProvidersRequest) GetPagination() *v1.PaginationRequest {
-	if x != nil {
-		return x.Pagination
-	}
-	return nil
-}
-
-func (x *ListTranslationProvidersRequest) GetFilters() []*v1.FilterSpec {
-	if x != nil {
-		return x.Filters
-	}
-	return nil
-}
-
-func (x *ListTranslationProvidersRequest) GetSorts() []*v1.SortSpec {
-	if x != nil {
-		return x.Sorts
-	}
-	return nil
-}
-
-type ListTranslationProvidersResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Providers     []*TranslationProvider `protobuf:"bytes,1,rep,name=providers,proto3" json:"providers,omitempty"`
-	Pagination    *v1.PaginationResponse `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *ListTranslationProvidersResponse) Reset() {
-	*x = ListTranslationProvidersResponse{}
-	mi := &file_api_manage_v1_translation_proto_msgTypes[20]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *ListTranslationProvidersResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ListTranslationProvidersResponse) ProtoMessage() {}
-
-func (x *ListTranslationProvidersResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_translation_proto_msgTypes[20]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ListTranslationProvidersResponse.ProtoReflect.Descriptor instead.
-func (*ListTranslationProvidersResponse) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_translation_proto_rawDescGZIP(), []int{20}
-}
-
-func (x *ListTranslationProvidersResponse) GetProviders() []*TranslationProvider {
-	if x != nil {
-		return x.Providers
-	}
-	return nil
-}
-
-func (x *ListTranslationProvidersResponse) GetPagination() *v1.PaginationResponse {
-	if x != nil {
-		return x.Pagination
-	}
-	return nil
-}
-
-type CreateTranslationProviderRequest struct {
-	state    protoimpl.MessageState  `protogen:"open.v1"`
-	Name     string                  `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	Type     TranslationProviderType `protobuf:"varint,2,opt,name=type,proto3,enum=api.manage.v1.TranslationProviderType" json:"type,omitempty"`
-	IsActive bool                    `protobuf:"varint,3,opt,name=is_active,json=isActive,proto3" json:"is_active,omitempty"`
-	Priority *int32                  `protobuf:"varint,4,opt,name=priority,proto3,oneof" json:"priority,omitempty"`
-	// Types that are valid to be assigned to Config:
-	//
-	//	*CreateTranslationProviderRequest_LlmConfig
-	//	*CreateTranslationProviderRequest_DeeplConfig
-	Config        isCreateTranslationProviderRequest_Config `protobuf_oneof:"config"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *CreateTranslationProviderRequest) Reset() {
-	*x = CreateTranslationProviderRequest{}
-	mi := &file_api_manage_v1_translation_proto_msgTypes[21]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *CreateTranslationProviderRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*CreateTranslationProviderRequest) ProtoMessage() {}
-
-func (x *CreateTranslationProviderRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_translation_proto_msgTypes[21]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use CreateTranslationProviderRequest.ProtoReflect.Descriptor instead.
-func (*CreateTranslationProviderRequest) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_translation_proto_rawDescGZIP(), []int{21}
-}
-
-func (x *CreateTranslationProviderRequest) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
-}
-
-func (x *CreateTranslationProviderRequest) GetType() TranslationProviderType {
-	if x != nil {
-		return x.Type
-	}
-	return TranslationProviderType_TRANSLATION_PROVIDER_TYPE_UNSPECIFIED
-}
-
-func (x *CreateTranslationProviderRequest) GetIsActive() bool {
-	if x != nil {
-		return x.IsActive
-	}
-	return false
-}
-
-func (x *CreateTranslationProviderRequest) GetPriority() int32 {
-	if x != nil && x.Priority != nil {
-		return *x.Priority
-	}
-	return 0
-}
-
-func (x *CreateTranslationProviderRequest) GetConfig() isCreateTranslationProviderRequest_Config {
-	if x != nil {
-		return x.Config
-	}
-	return nil
-}
-
-func (x *CreateTranslationProviderRequest) GetLlmConfig() *LLMTranslationProviderConfig {
-	if x != nil {
-		if x, ok := x.Config.(*CreateTranslationProviderRequest_LlmConfig); ok {
-			return x.LlmConfig
-		}
-	}
-	return nil
-}
-
-func (x *CreateTranslationProviderRequest) GetDeeplConfig() *DeepLTranslationProviderConfig {
-	if x != nil {
-		if x, ok := x.Config.(*CreateTranslationProviderRequest_DeeplConfig); ok {
-			return x.DeeplConfig
-		}
-	}
-	return nil
-}
-
-type isCreateTranslationProviderRequest_Config interface {
-	isCreateTranslationProviderRequest_Config()
-}
-
-type CreateTranslationProviderRequest_LlmConfig struct {
-	LlmConfig *LLMTranslationProviderConfig `protobuf:"bytes,5,opt,name=llm_config,json=llmConfig,proto3,oneof"`
-}
-
-type CreateTranslationProviderRequest_DeeplConfig struct {
-	DeeplConfig *DeepLTranslationProviderConfig `protobuf:"bytes,6,opt,name=deepl_config,json=deeplConfig,proto3,oneof"`
-}
-
-func (*CreateTranslationProviderRequest_LlmConfig) isCreateTranslationProviderRequest_Config() {}
-
-func (*CreateTranslationProviderRequest_DeeplConfig) isCreateTranslationProviderRequest_Config() {}
-
-type CreateTranslationProviderResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Provider      *TranslationProvider   `protobuf:"bytes,1,opt,name=provider,proto3" json:"provider,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *CreateTranslationProviderResponse) Reset() {
-	*x = CreateTranslationProviderResponse{}
-	mi := &file_api_manage_v1_translation_proto_msgTypes[22]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *CreateTranslationProviderResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*CreateTranslationProviderResponse) ProtoMessage() {}
-
-func (x *CreateTranslationProviderResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_translation_proto_msgTypes[22]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use CreateTranslationProviderResponse.ProtoReflect.Descriptor instead.
-func (*CreateTranslationProviderResponse) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_translation_proto_rawDescGZIP(), []int{22}
-}
-
-func (x *CreateTranslationProviderResponse) GetProvider() *TranslationProvider {
-	if x != nil {
-		return x.Provider
-	}
-	return nil
-}
-
-type UpdateTranslationProviderRequest struct {
-	state    protoimpl.MessageState   `protogen:"open.v1"`
-	Id       string                   `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Name     *string                  `protobuf:"bytes,2,opt,name=name,proto3,oneof" json:"name,omitempty"`
-	IsActive *bool                    `protobuf:"varint,3,opt,name=is_active,json=isActive,proto3,oneof" json:"is_active,omitempty"`
-	Priority *int32                   `protobuf:"varint,4,opt,name=priority,proto3,oneof" json:"priority,omitempty"`
-	Type     *TranslationProviderType `protobuf:"varint,5,opt,name=type,proto3,enum=api.manage.v1.TranslationProviderType,oneof" json:"type,omitempty"`
-	// Types that are valid to be assigned to Config:
-	//
-	//	*UpdateTranslationProviderRequest_LlmConfig
-	//	*UpdateTranslationProviderRequest_DeeplConfig
-	Config        isUpdateTranslationProviderRequest_Config `protobuf_oneof:"config"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *UpdateTranslationProviderRequest) Reset() {
-	*x = UpdateTranslationProviderRequest{}
-	mi := &file_api_manage_v1_translation_proto_msgTypes[23]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *UpdateTranslationProviderRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*UpdateTranslationProviderRequest) ProtoMessage() {}
-
-func (x *UpdateTranslationProviderRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_translation_proto_msgTypes[23]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use UpdateTranslationProviderRequest.ProtoReflect.Descriptor instead.
-func (*UpdateTranslationProviderRequest) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_translation_proto_rawDescGZIP(), []int{23}
-}
-
-func (x *UpdateTranslationProviderRequest) GetId() string {
-	if x != nil {
-		return x.Id
-	}
-	return ""
-}
-
-func (x *UpdateTranslationProviderRequest) GetName() string {
-	if x != nil && x.Name != nil {
-		return *x.Name
-	}
-	return ""
-}
-
-func (x *UpdateTranslationProviderRequest) GetIsActive() bool {
-	if x != nil && x.IsActive != nil {
-		return *x.IsActive
-	}
-	return false
-}
-
-func (x *UpdateTranslationProviderRequest) GetPriority() int32 {
-	if x != nil && x.Priority != nil {
-		return *x.Priority
-	}
-	return 0
-}
-
-func (x *UpdateTranslationProviderRequest) GetType() TranslationProviderType {
-	if x != nil && x.Type != nil {
-		return *x.Type
-	}
-	return TranslationProviderType_TRANSLATION_PROVIDER_TYPE_UNSPECIFIED
-}
-
-func (x *UpdateTranslationProviderRequest) GetConfig() isUpdateTranslationProviderRequest_Config {
-	if x != nil {
-		return x.Config
-	}
-	return nil
-}
-
-func (x *UpdateTranslationProviderRequest) GetLlmConfig() *LLMTranslationProviderConfig {
-	if x != nil {
-		if x, ok := x.Config.(*UpdateTranslationProviderRequest_LlmConfig); ok {
-			return x.LlmConfig
-		}
-	}
-	return nil
-}
-
-func (x *UpdateTranslationProviderRequest) GetDeeplConfig() *DeepLTranslationProviderConfig {
-	if x != nil {
-		if x, ok := x.Config.(*UpdateTranslationProviderRequest_DeeplConfig); ok {
-			return x.DeeplConfig
-		}
-	}
-	return nil
-}
-
-type isUpdateTranslationProviderRequest_Config interface {
-	isUpdateTranslationProviderRequest_Config()
-}
-
-type UpdateTranslationProviderRequest_LlmConfig struct {
-	LlmConfig *LLMTranslationProviderConfig `protobuf:"bytes,6,opt,name=llm_config,json=llmConfig,proto3,oneof"`
-}
-
-type UpdateTranslationProviderRequest_DeeplConfig struct {
-	DeeplConfig *DeepLTranslationProviderConfig `protobuf:"bytes,7,opt,name=deepl_config,json=deeplConfig,proto3,oneof"`
-}
-
-func (*UpdateTranslationProviderRequest_LlmConfig) isUpdateTranslationProviderRequest_Config() {}
-
-func (*UpdateTranslationProviderRequest_DeeplConfig) isUpdateTranslationProviderRequest_Config() {}
-
-type UpdateTranslationProviderResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Provider      *TranslationProvider   `protobuf:"bytes,1,opt,name=provider,proto3" json:"provider,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *UpdateTranslationProviderResponse) Reset() {
-	*x = UpdateTranslationProviderResponse{}
-	mi := &file_api_manage_v1_translation_proto_msgTypes[24]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *UpdateTranslationProviderResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*UpdateTranslationProviderResponse) ProtoMessage() {}
-
-func (x *UpdateTranslationProviderResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_translation_proto_msgTypes[24]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use UpdateTranslationProviderResponse.ProtoReflect.Descriptor instead.
-func (*UpdateTranslationProviderResponse) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_translation_proto_rawDescGZIP(), []int{24}
-}
-
-func (x *UpdateTranslationProviderResponse) GetProvider() *TranslationProvider {
-	if x != nil {
-		return x.Provider
-	}
-	return nil
-}
-
-type DeleteTranslationProviderRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *DeleteTranslationProviderRequest) Reset() {
-	*x = DeleteTranslationProviderRequest{}
-	mi := &file_api_manage_v1_translation_proto_msgTypes[25]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *DeleteTranslationProviderRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*DeleteTranslationProviderRequest) ProtoMessage() {}
-
-func (x *DeleteTranslationProviderRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_translation_proto_msgTypes[25]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use DeleteTranslationProviderRequest.ProtoReflect.Descriptor instead.
-func (*DeleteTranslationProviderRequest) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_translation_proto_rawDescGZIP(), []int{25}
-}
-
-func (x *DeleteTranslationProviderRequest) GetId() string {
-	if x != nil {
-		return x.Id
-	}
-	return ""
-}
-
-type DeleteTranslationProviderResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *DeleteTranslationProviderResponse) Reset() {
-	*x = DeleteTranslationProviderResponse{}
-	mi := &file_api_manage_v1_translation_proto_msgTypes[26]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *DeleteTranslationProviderResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*DeleteTranslationProviderResponse) ProtoMessage() {}
-
-func (x *DeleteTranslationProviderResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_translation_proto_msgTypes[26]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use DeleteTranslationProviderResponse.ProtoReflect.Descriptor instead.
-func (*DeleteTranslationProviderResponse) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_translation_proto_rawDescGZIP(), []int{26}
-}
-
-type ListTranslationJobsRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Pagination    *v1.PaginationRequest  `protobuf:"bytes,1,opt,name=pagination,proto3" json:"pagination,omitempty"`
-	Filters       []*v1.FilterSpec       `protobuf:"bytes,2,rep,name=filters,proto3" json:"filters,omitempty"`
-	Sorts         []*v1.SortSpec         `protobuf:"bytes,3,rep,name=sorts,proto3" json:"sorts,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *ListTranslationJobsRequest) Reset() {
-	*x = ListTranslationJobsRequest{}
-	mi := &file_api_manage_v1_translation_proto_msgTypes[27]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *ListTranslationJobsRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ListTranslationJobsRequest) ProtoMessage() {}
-
-func (x *ListTranslationJobsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_translation_proto_msgTypes[27]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ListTranslationJobsRequest.ProtoReflect.Descriptor instead.
-func (*ListTranslationJobsRequest) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_translation_proto_rawDescGZIP(), []int{27}
-}
-
-func (x *ListTranslationJobsRequest) GetPagination() *v1.PaginationRequest {
-	if x != nil {
-		return x.Pagination
-	}
-	return nil
-}
-
-func (x *ListTranslationJobsRequest) GetFilters() []*v1.FilterSpec {
-	if x != nil {
-		return x.Filters
-	}
-	return nil
-}
-
-func (x *ListTranslationJobsRequest) GetSorts() []*v1.SortSpec {
-	if x != nil {
-		return x.Sorts
-	}
-	return nil
-}
-
-type ListTranslationJobsResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Jobs          []*TranslationJob      `protobuf:"bytes,1,rep,name=jobs,proto3" json:"jobs,omitempty"`
-	Pagination    *v1.PaginationResponse `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *ListTranslationJobsResponse) Reset() {
-	*x = ListTranslationJobsResponse{}
-	mi := &file_api_manage_v1_translation_proto_msgTypes[28]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *ListTranslationJobsResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ListTranslationJobsResponse) ProtoMessage() {}
-
-func (x *ListTranslationJobsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_translation_proto_msgTypes[28]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ListTranslationJobsResponse.ProtoReflect.Descriptor instead.
-func (*ListTranslationJobsResponse) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_translation_proto_rawDescGZIP(), []int{28}
-}
-
-func (x *ListTranslationJobsResponse) GetJobs() []*TranslationJob {
-	if x != nil {
-		return x.Jobs
-	}
-	return nil
-}
-
-func (x *ListTranslationJobsResponse) GetPagination() *v1.PaginationResponse {
-	if x != nil {
-		return x.Pagination
-	}
-	return nil
-}
-
-type CancelTranslationJobRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	JobId         string                 `protobuf:"bytes,1,opt,name=job_id,json=jobId,proto3" json:"job_id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *CancelTranslationJobRequest) Reset() {
-	*x = CancelTranslationJobRequest{}
-	mi := &file_api_manage_v1_translation_proto_msgTypes[29]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *CancelTranslationJobRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*CancelTranslationJobRequest) ProtoMessage() {}
-
-func (x *CancelTranslationJobRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_translation_proto_msgTypes[29]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use CancelTranslationJobRequest.ProtoReflect.Descriptor instead.
-func (*CancelTranslationJobRequest) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_translation_proto_rawDescGZIP(), []int{29}
-}
-
-func (x *CancelTranslationJobRequest) GetJobId() string {
-	if x != nil {
-		return x.JobId
-	}
-	return ""
-}
-
-type CancelTranslationJobResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *CancelTranslationJobResponse) Reset() {
-	*x = CancelTranslationJobResponse{}
-	mi := &file_api_manage_v1_translation_proto_msgTypes[30]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *CancelTranslationJobResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*CancelTranslationJobResponse) ProtoMessage() {}
-
-func (x *CancelTranslationJobResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_translation_proto_msgTypes[30]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use CancelTranslationJobResponse.ProtoReflect.Descriptor instead.
-func (*CancelTranslationJobResponse) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_translation_proto_rawDescGZIP(), []int{30}
 }
 
 type ListEntityTranslationsRequest struct {
@@ -2523,7 +1032,7 @@ type ListEntityTranslationsRequest struct {
 
 func (x *ListEntityTranslationsRequest) Reset() {
 	*x = ListEntityTranslationsRequest{}
-	mi := &file_api_manage_v1_translation_proto_msgTypes[31]
+	mi := &file_api_manage_v1_translation_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2535,7 +1044,7 @@ func (x *ListEntityTranslationsRequest) String() string {
 func (*ListEntityTranslationsRequest) ProtoMessage() {}
 
 func (x *ListEntityTranslationsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_translation_proto_msgTypes[31]
+	mi := &file_api_manage_v1_translation_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2548,7 +1057,7 @@ func (x *ListEntityTranslationsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListEntityTranslationsRequest.ProtoReflect.Descriptor instead.
 func (*ListEntityTranslationsRequest) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_translation_proto_rawDescGZIP(), []int{31}
+	return file_api_manage_v1_translation_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *ListEntityTranslationsRequest) GetTarget() *TranslationTarget {
@@ -2568,7 +1077,7 @@ type ListEntityTranslationsResponse struct {
 
 func (x *ListEntityTranslationsResponse) Reset() {
 	*x = ListEntityTranslationsResponse{}
-	mi := &file_api_manage_v1_translation_proto_msgTypes[32]
+	mi := &file_api_manage_v1_translation_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2580,7 +1089,7 @@ func (x *ListEntityTranslationsResponse) String() string {
 func (*ListEntityTranslationsResponse) ProtoMessage() {}
 
 func (x *ListEntityTranslationsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_translation_proto_msgTypes[32]
+	mi := &file_api_manage_v1_translation_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2593,7 +1102,7 @@ func (x *ListEntityTranslationsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListEntityTranslationsResponse.ProtoReflect.Descriptor instead.
 func (*ListEntityTranslationsResponse) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_translation_proto_rawDescGZIP(), []int{32}
+	return file_api_manage_v1_translation_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *ListEntityTranslationsResponse) GetEntries() []*TranslationEntry {
@@ -2620,7 +1129,7 @@ type GetEntityTranslationRequest struct {
 
 func (x *GetEntityTranslationRequest) Reset() {
 	*x = GetEntityTranslationRequest{}
-	mi := &file_api_manage_v1_translation_proto_msgTypes[33]
+	mi := &file_api_manage_v1_translation_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2632,7 +1141,7 @@ func (x *GetEntityTranslationRequest) String() string {
 func (*GetEntityTranslationRequest) ProtoMessage() {}
 
 func (x *GetEntityTranslationRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_translation_proto_msgTypes[33]
+	mi := &file_api_manage_v1_translation_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2645,7 +1154,7 @@ func (x *GetEntityTranslationRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetEntityTranslationRequest.ProtoReflect.Descriptor instead.
 func (*GetEntityTranslationRequest) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_translation_proto_rawDescGZIP(), []int{33}
+	return file_api_manage_v1_translation_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *GetEntityTranslationRequest) GetTarget() *TranslationTarget {
@@ -2671,7 +1180,7 @@ type GetEntityTranslationResponse struct {
 
 func (x *GetEntityTranslationResponse) Reset() {
 	*x = GetEntityTranslationResponse{}
-	mi := &file_api_manage_v1_translation_proto_msgTypes[34]
+	mi := &file_api_manage_v1_translation_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2683,7 +1192,7 @@ func (x *GetEntityTranslationResponse) String() string {
 func (*GetEntityTranslationResponse) ProtoMessage() {}
 
 func (x *GetEntityTranslationResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_translation_proto_msgTypes[34]
+	mi := &file_api_manage_v1_translation_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2696,7 +1205,7 @@ func (x *GetEntityTranslationResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetEntityTranslationResponse.ProtoReflect.Descriptor instead.
 func (*GetEntityTranslationResponse) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_translation_proto_rawDescGZIP(), []int{34}
+	return file_api_manage_v1_translation_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *GetEntityTranslationResponse) GetEntry() *TranslationEntry {
@@ -2726,7 +1235,7 @@ type SetEntitySourceLocaleRequest struct {
 
 func (x *SetEntitySourceLocaleRequest) Reset() {
 	*x = SetEntitySourceLocaleRequest{}
-	mi := &file_api_manage_v1_translation_proto_msgTypes[35]
+	mi := &file_api_manage_v1_translation_proto_msgTypes[19]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2738,7 +1247,7 @@ func (x *SetEntitySourceLocaleRequest) String() string {
 func (*SetEntitySourceLocaleRequest) ProtoMessage() {}
 
 func (x *SetEntitySourceLocaleRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_translation_proto_msgTypes[35]
+	mi := &file_api_manage_v1_translation_proto_msgTypes[19]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2751,7 +1260,7 @@ func (x *SetEntitySourceLocaleRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetEntitySourceLocaleRequest.ProtoReflect.Descriptor instead.
 func (*SetEntitySourceLocaleRequest) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_translation_proto_rawDescGZIP(), []int{35}
+	return file_api_manage_v1_translation_proto_rawDescGZIP(), []int{19}
 }
 
 func (x *SetEntitySourceLocaleRequest) GetTarget() *TranslationTarget {
@@ -2787,7 +1296,7 @@ type SetEntitySourceLocaleResponse struct {
 
 func (x *SetEntitySourceLocaleResponse) Reset() {
 	*x = SetEntitySourceLocaleResponse{}
-	mi := &file_api_manage_v1_translation_proto_msgTypes[36]
+	mi := &file_api_manage_v1_translation_proto_msgTypes[20]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2799,7 +1308,7 @@ func (x *SetEntitySourceLocaleResponse) String() string {
 func (*SetEntitySourceLocaleResponse) ProtoMessage() {}
 
 func (x *SetEntitySourceLocaleResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_translation_proto_msgTypes[36]
+	mi := &file_api_manage_v1_translation_proto_msgTypes[20]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2812,7 +1321,7 @@ func (x *SetEntitySourceLocaleResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetEntitySourceLocaleResponse.ProtoReflect.Descriptor instead.
 func (*SetEntitySourceLocaleResponse) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_translation_proto_rawDescGZIP(), []int{36}
+	return file_api_manage_v1_translation_proto_rawDescGZIP(), []int{20}
 }
 
 func (x *SetEntitySourceLocaleResponse) GetDocumentRevision() string {
@@ -2843,103 +1352,6 @@ func (x *SetEntitySourceLocaleResponse) GetChangedLocales() []string {
 	return nil
 }
 
-type RegenerateEntityTranslationsRequest struct {
-	state  protoimpl.MessageState `protogen:"open.v1"`
-	Target *TranslationTarget     `protobuf:"bytes,1,opt,name=target,proto3" json:"target,omitempty"`
-	// Required non-empty explicit locale selection. Empty never means all.
-	Locales       []string `protobuf:"bytes,2,rep,name=locales,proto3" json:"locales,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *RegenerateEntityTranslationsRequest) Reset() {
-	*x = RegenerateEntityTranslationsRequest{}
-	mi := &file_api_manage_v1_translation_proto_msgTypes[37]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *RegenerateEntityTranslationsRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*RegenerateEntityTranslationsRequest) ProtoMessage() {}
-
-func (x *RegenerateEntityTranslationsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_translation_proto_msgTypes[37]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use RegenerateEntityTranslationsRequest.ProtoReflect.Descriptor instead.
-func (*RegenerateEntityTranslationsRequest) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_translation_proto_rawDescGZIP(), []int{37}
-}
-
-func (x *RegenerateEntityTranslationsRequest) GetTarget() *TranslationTarget {
-	if x != nil {
-		return x.Target
-	}
-	return nil
-}
-
-func (x *RegenerateEntityTranslationsRequest) GetLocales() []string {
-	if x != nil {
-		return x.Locales
-	}
-	return nil
-}
-
-type RegenerateEntityTranslationsResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Jobs          []*TranslationJob      `protobuf:"bytes,1,rep,name=jobs,proto3" json:"jobs,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *RegenerateEntityTranslationsResponse) Reset() {
-	*x = RegenerateEntityTranslationsResponse{}
-	mi := &file_api_manage_v1_translation_proto_msgTypes[38]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *RegenerateEntityTranslationsResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*RegenerateEntityTranslationsResponse) ProtoMessage() {}
-
-func (x *RegenerateEntityTranslationsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_translation_proto_msgTypes[38]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use RegenerateEntityTranslationsResponse.ProtoReflect.Descriptor instead.
-func (*RegenerateEntityTranslationsResponse) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_translation_proto_rawDescGZIP(), []int{38}
-}
-
-func (x *RegenerateEntityTranslationsResponse) GetJobs() []*TranslationJob {
-	if x != nil {
-		return x.Jobs
-	}
-	return nil
-}
-
 // Export creates a short-lived XLIFF 2.2 artifact. PATCH requires an explicit
 // non-empty stable-unit selection; REPLACE exports the complete current unit
 // manifest and requires unit_handles to be empty.
@@ -2955,7 +1367,7 @@ type ExportEntityTranslationXLIFFRequest struct {
 
 func (x *ExportEntityTranslationXLIFFRequest) Reset() {
 	*x = ExportEntityTranslationXLIFFRequest{}
-	mi := &file_api_manage_v1_translation_proto_msgTypes[39]
+	mi := &file_api_manage_v1_translation_proto_msgTypes[21]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2967,7 +1379,7 @@ func (x *ExportEntityTranslationXLIFFRequest) String() string {
 func (*ExportEntityTranslationXLIFFRequest) ProtoMessage() {}
 
 func (x *ExportEntityTranslationXLIFFRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_translation_proto_msgTypes[39]
+	mi := &file_api_manage_v1_translation_proto_msgTypes[21]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2980,7 +1392,7 @@ func (x *ExportEntityTranslationXLIFFRequest) ProtoReflect() protoreflect.Messag
 
 // Deprecated: Use ExportEntityTranslationXLIFFRequest.ProtoReflect.Descriptor instead.
 func (*ExportEntityTranslationXLIFFRequest) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_translation_proto_rawDescGZIP(), []int{39}
+	return file_api_manage_v1_translation_proto_rawDescGZIP(), []int{21}
 }
 
 func (x *ExportEntityTranslationXLIFFRequest) GetTarget() *TranslationTarget {
@@ -3024,7 +1436,7 @@ type ExportEntityTranslationXLIFFResponse struct {
 
 func (x *ExportEntityTranslationXLIFFResponse) Reset() {
 	*x = ExportEntityTranslationXLIFFResponse{}
-	mi := &file_api_manage_v1_translation_proto_msgTypes[40]
+	mi := &file_api_manage_v1_translation_proto_msgTypes[22]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3036,7 +1448,7 @@ func (x *ExportEntityTranslationXLIFFResponse) String() string {
 func (*ExportEntityTranslationXLIFFResponse) ProtoMessage() {}
 
 func (x *ExportEntityTranslationXLIFFResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_translation_proto_msgTypes[40]
+	mi := &file_api_manage_v1_translation_proto_msgTypes[22]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3049,7 +1461,7 @@ func (x *ExportEntityTranslationXLIFFResponse) ProtoReflect() protoreflect.Messa
 
 // Deprecated: Use ExportEntityTranslationXLIFFResponse.ProtoReflect.Descriptor instead.
 func (*ExportEntityTranslationXLIFFResponse) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_translation_proto_rawDescGZIP(), []int{40}
+	return file_api_manage_v1_translation_proto_rawDescGZIP(), []int{22}
 }
 
 func (x *ExportEntityTranslationXLIFFResponse) GetArtifact() *v1.ExpiringMediaRef {
@@ -3104,7 +1516,7 @@ type ImportEntityTranslationXLIFFRequest struct {
 
 func (x *ImportEntityTranslationXLIFFRequest) Reset() {
 	*x = ImportEntityTranslationXLIFFRequest{}
-	mi := &file_api_manage_v1_translation_proto_msgTypes[41]
+	mi := &file_api_manage_v1_translation_proto_msgTypes[23]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3116,7 +1528,7 @@ func (x *ImportEntityTranslationXLIFFRequest) String() string {
 func (*ImportEntityTranslationXLIFFRequest) ProtoMessage() {}
 
 func (x *ImportEntityTranslationXLIFFRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_translation_proto_msgTypes[41]
+	mi := &file_api_manage_v1_translation_proto_msgTypes[23]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3129,7 +1541,7 @@ func (x *ImportEntityTranslationXLIFFRequest) ProtoReflect() protoreflect.Messag
 
 // Deprecated: Use ImportEntityTranslationXLIFFRequest.ProtoReflect.Descriptor instead.
 func (*ImportEntityTranslationXLIFFRequest) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_translation_proto_rawDescGZIP(), []int{41}
+	return file_api_manage_v1_translation_proto_rawDescGZIP(), []int{23}
 }
 
 func (x *ImportEntityTranslationXLIFFRequest) GetTarget() *TranslationTarget {
@@ -3178,7 +1590,7 @@ type ImportEntityTranslationXLIFFResponse struct {
 
 func (x *ImportEntityTranslationXLIFFResponse) Reset() {
 	*x = ImportEntityTranslationXLIFFResponse{}
-	mi := &file_api_manage_v1_translation_proto_msgTypes[42]
+	mi := &file_api_manage_v1_translation_proto_msgTypes[24]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3190,7 +1602,7 @@ func (x *ImportEntityTranslationXLIFFResponse) String() string {
 func (*ImportEntityTranslationXLIFFResponse) ProtoMessage() {}
 
 func (x *ImportEntityTranslationXLIFFResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_translation_proto_msgTypes[42]
+	mi := &file_api_manage_v1_translation_proto_msgTypes[24]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3203,7 +1615,7 @@ func (x *ImportEntityTranslationXLIFFResponse) ProtoReflect() protoreflect.Messa
 
 // Deprecated: Use ImportEntityTranslationXLIFFResponse.ProtoReflect.Descriptor instead.
 func (*ImportEntityTranslationXLIFFResponse) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_translation_proto_rawDescGZIP(), []int{42}
+	return file_api_manage_v1_translation_proto_rawDescGZIP(), []int{24}
 }
 
 func (x *ImportEntityTranslationXLIFFResponse) GetTargetRevision() string {
@@ -3231,41 +1643,21 @@ var File_api_manage_v1_translation_proto protoreflect.FileDescriptor
 
 const file_api_manage_v1_translation_proto_rawDesc = "" +
 	"\n" +
-	"\x1fapi/manage/v1/translation.proto\x12\rapi.manage.v1\x1a\x1aapi/common/v1/common.proto\x1a\x19api/common/v1/media.proto\x1a\x1aapi/policy/v1/access.proto\x1a google/protobuf/field_mask.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"w\n" +
+	"\x1fapi/manage/v1/translation.proto\x12\rapi.manage.v1\x1a\x19api/common/v1/media.proto\x1a\x1aapi/policy/v1/access.proto\x1a google/protobuf/field_mask.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"w\n" +
 	"\x11TranslationTarget\x12E\n" +
 	"\ventity_type\x18\x01 \x01(\x0e2$.api.manage.v1.TranslationEntityTypeR\n" +
 	"entityType\x12\x1b\n" +
-	"\tentity_id\x18\x02 \x01(\tR\bentityId\"\xab\x02\n" +
+	"\tentity_id\x18\x02 \x01(\tR\bentityId\"\xeb\x01\n" +
 	"\x11TranslationLocale\x12\x12\n" +
 	"\x04code\x18\x01 \x01(\tR\x04code\x12!\n" +
 	"\fdisplay_name\x18\x02 \x01(\tR\vdisplayName\x12\x18\n" +
 	"\aenabled\x18\x03 \x01(\bR\aenabled\x12\x1b\n" +
 	"\tis_public\x18\x04 \x01(\bR\bisPublic\x12\x10\n" +
-	"\x03dir\x18\x05 \x01(\tR\x03dir\x12>\n" +
-	"\x1bmachine_translation_allowed\x18\x06 \x01(\bR\x19machineTranslationAllowed\x12&\n" +
-	"\ffont_profile\x18\a \x01(\tH\x00R\vfontProfile\x88\x01\x01\x12\x1d\n" +
+	"\x03dir\x18\x05 \x01(\tR\x03dir\x12&\n" +
+	"\ffont_profile\x18\x06 \x01(\tH\x00R\vfontProfile\x88\x01\x01\x12\x1d\n" +
 	"\n" +
-	"sort_order\x18\b \x01(\x05R\tsortOrderB\x0f\n" +
-	"\r_font_profile\"\xe8\x04\n" +
-	"\x0eTranslationJob\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\x128\n" +
-	"\x06target\x18\x02 \x01(\v2 .api.manage.v1.TranslationTargetR\x06target\x12#\n" +
-	"\rtarget_locale\x18\x03 \x01(\tR\ftargetLocale\x12#\n" +
-	"\rsource_locale\x18\x04 \x01(\tR\fsourceLocale\x126\n" +
-	"\x17request_artifact_digest\x18\x05 \x01(\tR\x15requestArtifactDigest\x12;\n" +
-	"\x06status\x18\x06 \x01(\x0e2#.api.manage.v1.TranslationJobStatusR\x06status\x12!\n" +
-	"\foperation_id\x18\a \x01(\tR\voperationId\x12\x1f\n" +
-	"\bprovider\x18\b \x01(\tH\x00R\bprovider\x88\x01\x01\x12\x19\n" +
-	"\x05model\x18\t \x01(\tH\x01R\x05model\x88\x01\x01\x12B\n" +
-	"\frequested_at\x18\n" +
-	" \x01(\v2\x1a.google.protobuf.TimestampH\x02R\vrequestedAt\x88\x01\x01\x12>\n" +
-	"\n" +
-	"started_at\x18\v \x01(\v2\x1a.google.protobuf.TimestampH\x03R\tstartedAt\x88\x01\x01\x123\n" +
-	"\x16requested_by_member_id\x18\f \x01(\tR\x13requestedByMemberIdB\v\n" +
-	"\t_providerB\b\n" +
-	"\x06_modelB\x0f\n" +
-	"\r_requested_atB\r\n" +
-	"\v_started_at\"\xe0\x03\n" +
+	"sort_order\x18\a \x01(\x05R\tsortOrderB\x0f\n" +
+	"\r_font_profile\"\xe0\x03\n" +
 	"\x10TranslationEntry\x128\n" +
 	"\x06target\x18\x01 \x01(\v2 .api.manage.v1.TranslationTargetR\x06target\x12\x16\n" +
 	"\x06locale\x18\x02 \x01(\tR\x06locale\x12\x19\n" +
@@ -3283,76 +1675,29 @@ const file_api_manage_v1_translation_proto_rawDesc = "" +
 	"\r_content_htmlB\x0f\n" +
 	"\r_content_textB\x0f\n" +
 	"\r_content_jsonB\v\n" +
-	"\t_og_asset\"\x84\x02\n" +
+	"\t_og_asset\"\xe3\x01\n" +
 	"\x18TranslationOverviewStats\x12#\n" +
 	"\rtotal_locales\x18\x01 \x01(\x05R\ftotalLocales\x12'\n" +
 	"\x0fenabled_locales\x18\x02 \x01(\x05R\x0eenabledLocales\x12%\n" +
 	"\x0epublic_locales\x18\x03 \x01(\x05R\rpublicLocales\x12'\n" +
-	"\x0fsource_entities\x18\x04 \x01(\x05R\x0esourceEntities\x12\x1f\n" +
-	"\vactive_jobs\x18\x05 \x01(\x05R\n" +
-	"activeJobs\x12)\n" +
-	"\x10existing_entries\x18\x06 \x01(\x05R\x0fexistingEntries\"\x8d\x02\n" +
+	"\x0fsource_entities\x18\x04 \x01(\x05R\x0esourceEntities\x12)\n" +
+	"\x10existing_entries\x18\x05 \x01(\x05R\x0fexistingEntries\"\xec\x01\n" +
 	"\x17TranslationLocaleHealth\x128\n" +
 	"\x06locale\x18\x01 \x01(\v2 .api.manage.v1.TranslationLocaleR\x06locale\x12)\n" +
-	"\x10existing_entries\x18\x02 \x01(\x05R\x0fexistingEntries\x12\x1f\n" +
-	"\vactive_jobs\x18\x03 \x01(\x05R\n" +
-	"activeJobs\x12R\n" +
-	"\x15last_target_update_at\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampH\x00R\x12lastTargetUpdateAt\x88\x01\x01B\x18\n" +
-	"\x16_last_target_update_at\"\xc3\x02\n" +
+	"\x10existing_entries\x18\x02 \x01(\x05R\x0fexistingEntries\x12R\n" +
+	"\x15last_target_update_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampH\x00R\x12lastTargetUpdateAt\x88\x01\x01B\x18\n" +
+	"\x16_last_target_update_at\"\xa2\x02\n" +
 	"\x17TranslationEntityHealth\x12E\n" +
 	"\ventity_type\x18\x01 \x01(\x0e2$.api.manage.v1.TranslationEntityTypeR\n" +
 	"entityType\x12'\n" +
 	"\x0fsource_entities\x18\x02 \x01(\x05R\x0esourceEntities\x12)\n" +
-	"\x10existing_entries\x18\x03 \x01(\x05R\x0fexistingEntries\x12\x1f\n" +
-	"\vactive_jobs\x18\x04 \x01(\x05R\n" +
-	"activeJobs\x12R\n" +
-	"\x15last_source_update_at\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampH\x00R\x12lastSourceUpdateAt\x88\x01\x01B\x18\n" +
-	"\x16_last_source_update_at\"\xb4\x01\n" +
+	"\x10existing_entries\x18\x03 \x01(\x05R\x0fexistingEntries\x12R\n" +
+	"\x15last_source_update_at\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampH\x00R\x12lastSourceUpdateAt\x88\x01\x01B\x18\n" +
+	"\x16_last_source_update_at\"\x8b\x01\n" +
 	"\x13TranslationSettings\x12%\n" +
 	"\x0edefault_locale\x18\x01 \x01(\tR\rdefaultLocale\x12>\n" +
 	"\n" +
-	"updated_at\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampH\x00R\tupdatedAt\x88\x01\x01\x12'\n" +
-	"\x0fprotected_terms\x18\x03 \x03(\tR\x0eprotectedTermsB\r\n" +
-	"\v_updated_at\"\xab\x05\n" +
-	"\x1cLLMTranslationProviderConfig\x12\x17\n" +
-	"\aapi_key\x18\x01 \x01(\tR\x06apiKey\x12C\n" +
-	"\x06preset\x18\x02 \x01(\x0e2+.api.manage.v1.TranslationLLMProviderPresetR\x06preset\x12%\n" +
-	"\fapi_base_url\x18\x03 \x01(\tH\x00R\n" +
-	"apiBaseUrl\x88\x01\x01\x12\x14\n" +
-	"\x05model\x18\x04 \x01(\tR\x05model\x12L\n" +
-	"!input_token_price_usd_per_million\x18\x05 \x01(\x01H\x01R\x1cinputTokenPriceUsdPerMillion\x88\x01\x01\x12N\n" +
-	"\"output_token_price_usd_per_million\x18\x06 \x01(\x01H\x02R\x1doutputTokenPriceUsdPerMillion\x88\x01\x01\x121\n" +
-	"\x12max_context_tokens\x18\a \x01(\x05H\x03R\x10maxContextTokens\x88\x01\x01\x12/\n" +
-	"\x11max_output_tokens\x18\b \x01(\x05H\x04R\x0fmaxOutputTokens\x88\x01\x01\x12,\n" +
-	"\x12supports_json_mode\x18\t \x01(\bR\x10supportsJsonMode\x12%\n" +
-	"\vtemperature\x18\n" +
-	" \x01(\x01H\x05R\vtemperature\x88\x01\x01B\x0f\n" +
-	"\r_api_base_urlB$\n" +
-	"\"_input_token_price_usd_per_millionB%\n" +
-	"#_output_token_price_usd_per_millionB\x15\n" +
-	"\x13_max_context_tokensB\x14\n" +
-	"\x12_max_output_tokensB\x0e\n" +
-	"\f_temperature\"q\n" +
-	"\x1eDeepLTranslationProviderConfig\x12\x17\n" +
-	"\aapi_key\x18\x01 \x01(\tR\x06apiKey\x12%\n" +
-	"\fapi_base_url\x18\x02 \x01(\tH\x00R\n" +
-	"apiBaseUrl\x88\x01\x01B\x0f\n" +
-	"\r_api_base_url\"\xf8\x03\n" +
-	"\x13TranslationProvider\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
-	"\x04name\x18\x02 \x01(\tR\x04name\x12:\n" +
-	"\x04type\x18\x03 \x01(\x0e2&.api.manage.v1.TranslationProviderTypeR\x04type\x12\x1b\n" +
-	"\tis_active\x18\x04 \x01(\bR\bisActive\x12\x1a\n" +
-	"\bpriority\x18\x05 \x01(\x05R\bpriority\x12L\n" +
-	"\n" +
-	"llm_config\x18\x06 \x01(\v2+.api.manage.v1.LLMTranslationProviderConfigH\x00R\tllmConfig\x12R\n" +
-	"\fdeepl_config\x18\a \x01(\v2-.api.manage.v1.DeepLTranslationProviderConfigH\x00R\vdeeplConfig\x12>\n" +
-	"\n" +
-	"created_at\x18\b \x01(\v2\x1a.google.protobuf.TimestampH\x01R\tcreatedAt\x88\x01\x01\x12>\n" +
-	"\n" +
-	"updated_at\x18\t \x01(\v2\x1a.google.protobuf.TimestampH\x02R\tupdatedAt\x88\x01\x01B\b\n" +
-	"\x06configB\r\n" +
-	"\v_created_atB\r\n" +
+	"updated_at\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampH\x00R\tupdatedAt\x88\x01\x01B\r\n" +
 	"\v_updated_at\"\x1f\n" +
 	"\x1dListTranslationLocalesRequest\"\\\n" +
 	"\x1eListTranslationLocalesResponse\x12:\n" +
@@ -3362,76 +1707,15 @@ const file_api_manage_v1_translation_proto_rawDesc = "" +
 	"\x05stats\x18\x01 \x01(\v2'.api.manage.v1.TranslationOverviewStatsR\x05stats\x12K\n" +
 	"\rlocale_health\x18\x02 \x03(\v2&.api.manage.v1.TranslationLocaleHealthR\flocaleHealth\x12K\n" +
 	"\rentity_health\x18\x03 \x03(\v2&.api.manage.v1.TranslationEntityHealthR\fentityHealth\"\x1f\n" +
-	"\x1dGetTranslationSettingsRequest\"\xf1\x01\n" +
+	"\x1dGetTranslationSettingsRequest\"`\n" +
 	"\x1eGetTranslationSettingsResponse\x12>\n" +
-	"\bsettings\x18\x01 \x01(\v2\".api.manage.v1.TranslationSettingsR\bsettings\x12-\n" +
-	"\x12generation_enabled\x18\x02 \x01(\bR\x11generationEnabled\x12A\n" +
-	"\x1ageneration_disabled_reason\x18\x03 \x01(\tH\x00R\x18generationDisabledReason\x88\x01\x01B\x1d\n" +
-	"\x1b_generation_disabled_reason\"\xe8\x01\n" +
+	"\bsettings\x18\x01 \x01(\v2\".api.manage.v1.TranslationSettingsR\bsettings\"\x9f\x01\n" +
 	" UpdateTranslationSettingsRequest\x12>\n" +
 	"\bsettings\x18\x01 \x01(\v2\".api.manage.v1.TranslationSettingsR\bsettings\x12;\n" +
 	"\vupdate_mask\x18\x02 \x01(\v2\x1a.google.protobuf.FieldMaskR\n" +
-	"updateMask\x12G\n" +
-	"\rbase_settings\x18\x03 \x01(\v2\".api.manage.v1.TranslationSettingsR\fbaseSettings\"c\n" +
+	"updateMask\"c\n" +
 	"!UpdateTranslationSettingsResponse\x12>\n" +
-	"\bsettings\x18\x01 \x01(\v2\".api.manage.v1.TranslationSettingsR\bsettings\"\xc7\x01\n" +
-	"\x1fListTranslationProvidersRequest\x12@\n" +
-	"\n" +
-	"pagination\x18\x01 \x01(\v2 .api.common.v1.PaginationRequestR\n" +
-	"pagination\x123\n" +
-	"\afilters\x18\x02 \x03(\v2\x19.api.common.v1.FilterSpecR\afilters\x12-\n" +
-	"\x05sorts\x18\x03 \x03(\v2\x17.api.common.v1.SortSpecR\x05sorts\"\xa7\x01\n" +
-	" ListTranslationProvidersResponse\x12@\n" +
-	"\tproviders\x18\x01 \x03(\v2\".api.manage.v1.TranslationProviderR\tproviders\x12A\n" +
-	"\n" +
-	"pagination\x18\x02 \x01(\v2!.api.common.v1.PaginationResponseR\n" +
-	"pagination\"\xe9\x02\n" +
-	" CreateTranslationProviderRequest\x12\x12\n" +
-	"\x04name\x18\x01 \x01(\tR\x04name\x12:\n" +
-	"\x04type\x18\x02 \x01(\x0e2&.api.manage.v1.TranslationProviderTypeR\x04type\x12\x1b\n" +
-	"\tis_active\x18\x03 \x01(\bR\bisActive\x12\x1f\n" +
-	"\bpriority\x18\x04 \x01(\x05H\x01R\bpriority\x88\x01\x01\x12L\n" +
-	"\n" +
-	"llm_config\x18\x05 \x01(\v2+.api.manage.v1.LLMTranslationProviderConfigH\x00R\tllmConfig\x12R\n" +
-	"\fdeepl_config\x18\x06 \x01(\v2-.api.manage.v1.DeepLTranslationProviderConfigH\x00R\vdeeplConfigB\b\n" +
-	"\x06configB\v\n" +
-	"\t_priority\"c\n" +
-	"!CreateTranslationProviderResponse\x12>\n" +
-	"\bprovider\x18\x01 \x01(\v2\".api.manage.v1.TranslationProviderR\bprovider\"\xa8\x03\n" +
-	" UpdateTranslationProviderRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\x12\x17\n" +
-	"\x04name\x18\x02 \x01(\tH\x01R\x04name\x88\x01\x01\x12 \n" +
-	"\tis_active\x18\x03 \x01(\bH\x02R\bisActive\x88\x01\x01\x12\x1f\n" +
-	"\bpriority\x18\x04 \x01(\x05H\x03R\bpriority\x88\x01\x01\x12?\n" +
-	"\x04type\x18\x05 \x01(\x0e2&.api.manage.v1.TranslationProviderTypeH\x04R\x04type\x88\x01\x01\x12L\n" +
-	"\n" +
-	"llm_config\x18\x06 \x01(\v2+.api.manage.v1.LLMTranslationProviderConfigH\x00R\tllmConfig\x12R\n" +
-	"\fdeepl_config\x18\a \x01(\v2-.api.manage.v1.DeepLTranslationProviderConfigH\x00R\vdeeplConfigB\b\n" +
-	"\x06configB\a\n" +
-	"\x05_nameB\f\n" +
-	"\n" +
-	"_is_activeB\v\n" +
-	"\t_priorityB\a\n" +
-	"\x05_type\"c\n" +
-	"!UpdateTranslationProviderResponse\x12>\n" +
-	"\bprovider\x18\x01 \x01(\v2\".api.manage.v1.TranslationProviderR\bprovider\"2\n" +
-	" DeleteTranslationProviderRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\"#\n" +
-	"!DeleteTranslationProviderResponse\"\xc2\x01\n" +
-	"\x1aListTranslationJobsRequest\x12@\n" +
-	"\n" +
-	"pagination\x18\x01 \x01(\v2 .api.common.v1.PaginationRequestR\n" +
-	"pagination\x123\n" +
-	"\afilters\x18\x02 \x03(\v2\x19.api.common.v1.FilterSpecR\afilters\x12-\n" +
-	"\x05sorts\x18\x03 \x03(\v2\x17.api.common.v1.SortSpecR\x05sorts\"\x93\x01\n" +
-	"\x1bListTranslationJobsResponse\x121\n" +
-	"\x04jobs\x18\x01 \x03(\v2\x1d.api.manage.v1.TranslationJobR\x04jobs\x12A\n" +
-	"\n" +
-	"pagination\x18\x02 \x01(\v2!.api.common.v1.PaginationResponseR\n" +
-	"pagination\"4\n" +
-	"\x1bCancelTranslationJobRequest\x12\x15\n" +
-	"\x06job_id\x18\x01 \x01(\tR\x05jobId\"\x1e\n" +
-	"\x1cCancelTranslationJobResponse\"Y\n" +
+	"\bsettings\x18\x01 \x01(\v2\".api.manage.v1.TranslationSettingsR\bsettings\"Y\n" +
 	"\x1dListEntityTranslationsRequest\x128\n" +
 	"\x06target\x18\x01 \x01(\v2 .api.manage.v1.TranslationTargetR\x06target\"\x80\x01\n" +
 	"\x1eListEntityTranslationsResponse\x129\n" +
@@ -3451,12 +1735,7 @@ const file_api_manage_v1_translation_proto_rawDesc = "" +
 	"\x11document_revision\x18\x01 \x01(\tR\x10documentRevision\x12\x18\n" +
 	"\achanged\x18\x02 \x01(\bR\achanged\x12%\n" +
 	"\x0esource_changed\x18\x03 \x01(\bR\rsourceChanged\x12'\n" +
-	"\x0fchanged_locales\x18\x04 \x03(\tR\x0echangedLocales\"y\n" +
-	"#RegenerateEntityTranslationsRequest\x128\n" +
-	"\x06target\x18\x01 \x01(\v2 .api.manage.v1.TranslationTargetR\x06target\x12\x18\n" +
-	"\alocales\x18\x02 \x03(\tR\alocales\"Y\n" +
-	"$RegenerateEntityTranslationsResponse\x121\n" +
-	"\x04jobs\x18\x01 \x03(\v2\x1d.api.manage.v1.TranslationJobR\x04jobs\"\xe6\x01\n" +
+	"\x0fchanged_locales\x18\x04 \x03(\tR\x0echangedLocales\"\xe6\x01\n" +
 	"#ExportEntityTranslationXLIFFRequest\x128\n" +
 	"\x06target\x18\x01 \x01(\v2 .api.manage.v1.TranslationTargetR\x06target\x12#\n" +
 	"\rtarget_locale\x18\x02 \x01(\tR\ftargetLocale\x12=\n" +
@@ -3497,54 +1776,19 @@ const file_api_manage_v1_translation_proto_rawDesc = "" +
 	" TRANSLATION_ENTITY_TYPE_CAMPAIGN\x10\f\x12 \n" +
 	"\x1cTRANSLATION_ENTITY_TYPE_FORM\x10\r\x12)\n" +
 	"%TRANSLATION_ENTITY_TYPE_PROGRAM_EVENT\x10\x0e\x12'\n" +
-	"#TRANSLATION_ENTITY_TYPE_POST_SERIES\x10\x0f*\x85\x01\n" +
-	"\x14TranslationJobStatus\x12&\n" +
-	"\"TRANSLATION_JOB_STATUS_UNSPECIFIED\x10\x00\x12!\n" +
-	"\x1dTRANSLATION_JOB_STATUS_QUEUED\x10\x01\x12\"\n" +
-	"\x1eTRANSLATION_JOB_STATUS_RUNNING\x10\x02*\xeb\x01\n" +
-	"\x1aTranslationUnitIssueReason\x12-\n" +
-	")TRANSLATION_UNIT_ISSUE_REASON_UNSPECIFIED\x10\x00\x123\n" +
-	"/TRANSLATION_UNIT_ISSUE_REASON_EMPTY_TRANSLATION\x10\x01\x127\n" +
-	"3TRANSLATION_UNIT_ISSUE_REASON_UNCHANGED_FROM_SOURCE\x10\x02\x120\n" +
-	",TRANSLATION_UNIT_ISSUE_REASON_SOURCE_RESIDUE\x10\x03*\x9b\x04\n" +
-	"\x18TranslationFailureReason\x12*\n" +
-	"&TRANSLATION_FAILURE_REASON_UNSPECIFIED\x10\x00\x125\n" +
-	"1TRANSLATION_FAILURE_REASON_PROVIDER_CONFIGURATION\x10\x01\x126\n" +
-	"2TRANSLATION_FAILURE_REASON_PROVIDER_AUTHENTICATION\x10\x02\x124\n" +
-	"0TRANSLATION_FAILURE_REASON_PROVIDER_RATE_LIMITED\x10\x03\x123\n" +
-	"/TRANSLATION_FAILURE_REASON_PROVIDER_UNAVAILABLE\x10\x04\x120\n" +
-	",TRANSLATION_FAILURE_REASON_PROVIDER_REJECTED\x10\x05\x128\n" +
-	"4TRANSLATION_FAILURE_REASON_PROVIDER_RESPONSE_INVALID\x10\x06\x122\n" +
-	".TRANSLATION_FAILURE_REASON_TARGET_APPLY_FAILED\x10\a\x120\n" +
-	",TRANSLATION_FAILURE_REASON_OG_HANDOFF_FAILED\x10\b\x12'\n" +
-	"#TRANSLATION_FAILURE_REASON_INTERNAL\x10\t*\x8c\x01\n" +
-	"\x17TranslationProviderType\x12)\n" +
-	"%TRANSLATION_PROVIDER_TYPE_UNSPECIFIED\x10\x00\x12!\n" +
-	"\x1dTRANSLATION_PROVIDER_TYPE_LLM\x10\x01\x12#\n" +
-	"\x1fTRANSLATION_PROVIDER_TYPE_DEEPL\x10\x02*\xb2\x01\n" +
-	"\x1cTranslationLLMProviderPreset\x12/\n" +
-	"+TRANSLATION_LLM_PROVIDER_PRESET_UNSPECIFIED\x10\x00\x12*\n" +
-	"&TRANSLATION_LLM_PROVIDER_PRESET_GEMINI\x10\x01\x125\n" +
-	"1TRANSLATION_LLM_PROVIDER_PRESET_OPENAI_COMPATIBLE\x10\x02*\x9c\x01\n" +
+	"#TRANSLATION_ENTITY_TYPE_POST_SERIES\x10\x0f*\x9c\x01\n" +
 	"\x1aTranslationInterchangeMode\x12,\n" +
 	"(TRANSLATION_INTERCHANGE_MODE_UNSPECIFIED\x10\x00\x12&\n" +
 	"\"TRANSLATION_INTERCHANGE_MODE_PATCH\x10\x01\x12(\n" +
-	"$TRANSLATION_INTERCHANGE_MODE_REPLACE\x10\x022\xd4\x10\n" +
+	"$TRANSLATION_INTERCHANGE_MODE_REPLACE\x10\x022\xb2\t\n" +
 	"\x12TranslationService\x12}\n" +
 	"\x16ListTranslationLocales\x12,.api.manage.v1.ListTranslationLocalesRequest\x1a-.api.manage.v1.ListTranslationLocalesResponse\"\x06\xca\xf3\x18\x02\b\x02\x12}\n" +
 	"\x16GetTranslationOverview\x12,.api.manage.v1.GetTranslationOverviewRequest\x1a-.api.manage.v1.GetTranslationOverviewResponse\"\x06\xca\xf3\x18\x02\b\x04\x12}\n" +
 	"\x16GetTranslationSettings\x12,.api.manage.v1.GetTranslationSettingsRequest\x1a-.api.manage.v1.GetTranslationSettingsResponse\"\x06\xca\xf3\x18\x02\b\x04\x12\x86\x01\n" +
-	"\x19UpdateTranslationSettings\x12/.api.manage.v1.UpdateTranslationSettingsRequest\x1a0.api.manage.v1.UpdateTranslationSettingsResponse\"\x06\xca\xf3\x18\x02\b\x04\x12\x83\x01\n" +
-	"\x18ListTranslationProviders\x12..api.manage.v1.ListTranslationProvidersRequest\x1a/.api.manage.v1.ListTranslationProvidersResponse\"\x06\xca\xf3\x18\x02\b\x04\x12\x86\x01\n" +
-	"\x19CreateTranslationProvider\x12/.api.manage.v1.CreateTranslationProviderRequest\x1a0.api.manage.v1.CreateTranslationProviderResponse\"\x06\xca\xf3\x18\x02\b\x04\x12\x86\x01\n" +
-	"\x19UpdateTranslationProvider\x12/.api.manage.v1.UpdateTranslationProviderRequest\x1a0.api.manage.v1.UpdateTranslationProviderResponse\"\x06\xca\xf3\x18\x02\b\x04\x12\x86\x01\n" +
-	"\x19DeleteTranslationProvider\x12/.api.manage.v1.DeleteTranslationProviderRequest\x1a0.api.manage.v1.DeleteTranslationProviderResponse\"\x06\xca\xf3\x18\x02\b\x04\x12t\n" +
-	"\x13ListTranslationJobs\x12).api.manage.v1.ListTranslationJobsRequest\x1a*.api.manage.v1.ListTranslationJobsResponse\"\x06\xca\xf3\x18\x02\b\x02\x12w\n" +
-	"\x14CancelTranslationJob\x12*.api.manage.v1.CancelTranslationJobRequest\x1a+.api.manage.v1.CancelTranslationJobResponse\"\x06\xca\xf3\x18\x02\b\x02\x12}\n" +
+	"\x19UpdateTranslationSettings\x12/.api.manage.v1.UpdateTranslationSettingsRequest\x1a0.api.manage.v1.UpdateTranslationSettingsResponse\"\x06\xca\xf3\x18\x02\b\x04\x12}\n" +
 	"\x16ListEntityTranslations\x12,.api.manage.v1.ListEntityTranslationsRequest\x1a-.api.manage.v1.ListEntityTranslationsResponse\"\x06\xca\xf3\x18\x02\b\x02\x12w\n" +
 	"\x14GetEntityTranslation\x12*.api.manage.v1.GetEntityTranslationRequest\x1a+.api.manage.v1.GetEntityTranslationResponse\"\x06\xca\xf3\x18\x02\b\x02\x12z\n" +
 	"\x15SetEntitySourceLocale\x12+.api.manage.v1.SetEntitySourceLocaleRequest\x1a,.api.manage.v1.SetEntitySourceLocaleResponse\"\x06\xca\xf3\x18\x02\b\x02\x12\x8f\x01\n" +
-	"\x1cRegenerateEntityTranslations\x122.api.manage.v1.RegenerateEntityTranslationsRequest\x1a3.api.manage.v1.RegenerateEntityTranslationsResponse\"\x06\xca\xf3\x18\x02\b\x02\x12\x8f\x01\n" +
 	"\x1cExportEntityTranslationXLIFF\x122.api.manage.v1.ExportEntityTranslationXLIFFRequest\x1a3.api.manage.v1.ExportEntityTranslationXLIFFResponse\"\x06\xca\xf3\x18\x02\b\x02\x12\x8f\x01\n" +
 	"\x1cImportEntityTranslationXLIFF\x122.api.manage.v1.ImportEntityTranslationXLIFFRequest\x1a3.api.manage.v1.ImportEntityTranslationXLIFFResponse\"\x06\xca\xf3\x18\x02\b\x02B\xc5\x01\n" +
 	"\x11com.api.manage.v1B\x10TranslationProtoP\x01ZHgithub.com/echovisionlab/geul-event-contracts/gen/api/manage/v1;managev1\xa2\x02\x03AMX\xaa\x02\rApi.Manage.V1\xca\x02\rApi\\Manage\\V1\xe2\x02\x19Api\\Manage\\V1\\GPBMetadata\xea\x02\x0fApi::Manage::V1b\x06proto3"
@@ -3561,165 +1805,93 @@ func file_api_manage_v1_translation_proto_rawDescGZIP() []byte {
 	return file_api_manage_v1_translation_proto_rawDescData
 }
 
-var file_api_manage_v1_translation_proto_enumTypes = make([]protoimpl.EnumInfo, 7)
-var file_api_manage_v1_translation_proto_msgTypes = make([]protoimpl.MessageInfo, 43)
+var file_api_manage_v1_translation_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
+var file_api_manage_v1_translation_proto_msgTypes = make([]protoimpl.MessageInfo, 25)
 var file_api_manage_v1_translation_proto_goTypes = []any{
 	(TranslationEntityType)(0),                   // 0: api.manage.v1.TranslationEntityType
-	(TranslationJobStatus)(0),                    // 1: api.manage.v1.TranslationJobStatus
-	(TranslationUnitIssueReason)(0),              // 2: api.manage.v1.TranslationUnitIssueReason
-	(TranslationFailureReason)(0),                // 3: api.manage.v1.TranslationFailureReason
-	(TranslationProviderType)(0),                 // 4: api.manage.v1.TranslationProviderType
-	(TranslationLLMProviderPreset)(0),            // 5: api.manage.v1.TranslationLLMProviderPreset
-	(TranslationInterchangeMode)(0),              // 6: api.manage.v1.TranslationInterchangeMode
-	(*TranslationTarget)(nil),                    // 7: api.manage.v1.TranslationTarget
-	(*TranslationLocale)(nil),                    // 8: api.manage.v1.TranslationLocale
-	(*TranslationJob)(nil),                       // 9: api.manage.v1.TranslationJob
-	(*TranslationEntry)(nil),                     // 10: api.manage.v1.TranslationEntry
-	(*TranslationOverviewStats)(nil),             // 11: api.manage.v1.TranslationOverviewStats
-	(*TranslationLocaleHealth)(nil),              // 12: api.manage.v1.TranslationLocaleHealth
-	(*TranslationEntityHealth)(nil),              // 13: api.manage.v1.TranslationEntityHealth
-	(*TranslationSettings)(nil),                  // 14: api.manage.v1.TranslationSettings
-	(*LLMTranslationProviderConfig)(nil),         // 15: api.manage.v1.LLMTranslationProviderConfig
-	(*DeepLTranslationProviderConfig)(nil),       // 16: api.manage.v1.DeepLTranslationProviderConfig
-	(*TranslationProvider)(nil),                  // 17: api.manage.v1.TranslationProvider
-	(*ListTranslationLocalesRequest)(nil),        // 18: api.manage.v1.ListTranslationLocalesRequest
-	(*ListTranslationLocalesResponse)(nil),       // 19: api.manage.v1.ListTranslationLocalesResponse
-	(*GetTranslationOverviewRequest)(nil),        // 20: api.manage.v1.GetTranslationOverviewRequest
-	(*GetTranslationOverviewResponse)(nil),       // 21: api.manage.v1.GetTranslationOverviewResponse
-	(*GetTranslationSettingsRequest)(nil),        // 22: api.manage.v1.GetTranslationSettingsRequest
-	(*GetTranslationSettingsResponse)(nil),       // 23: api.manage.v1.GetTranslationSettingsResponse
-	(*UpdateTranslationSettingsRequest)(nil),     // 24: api.manage.v1.UpdateTranslationSettingsRequest
-	(*UpdateTranslationSettingsResponse)(nil),    // 25: api.manage.v1.UpdateTranslationSettingsResponse
-	(*ListTranslationProvidersRequest)(nil),      // 26: api.manage.v1.ListTranslationProvidersRequest
-	(*ListTranslationProvidersResponse)(nil),     // 27: api.manage.v1.ListTranslationProvidersResponse
-	(*CreateTranslationProviderRequest)(nil),     // 28: api.manage.v1.CreateTranslationProviderRequest
-	(*CreateTranslationProviderResponse)(nil),    // 29: api.manage.v1.CreateTranslationProviderResponse
-	(*UpdateTranslationProviderRequest)(nil),     // 30: api.manage.v1.UpdateTranslationProviderRequest
-	(*UpdateTranslationProviderResponse)(nil),    // 31: api.manage.v1.UpdateTranslationProviderResponse
-	(*DeleteTranslationProviderRequest)(nil),     // 32: api.manage.v1.DeleteTranslationProviderRequest
-	(*DeleteTranslationProviderResponse)(nil),    // 33: api.manage.v1.DeleteTranslationProviderResponse
-	(*ListTranslationJobsRequest)(nil),           // 34: api.manage.v1.ListTranslationJobsRequest
-	(*ListTranslationJobsResponse)(nil),          // 35: api.manage.v1.ListTranslationJobsResponse
-	(*CancelTranslationJobRequest)(nil),          // 36: api.manage.v1.CancelTranslationJobRequest
-	(*CancelTranslationJobResponse)(nil),         // 37: api.manage.v1.CancelTranslationJobResponse
-	(*ListEntityTranslationsRequest)(nil),        // 38: api.manage.v1.ListEntityTranslationsRequest
-	(*ListEntityTranslationsResponse)(nil),       // 39: api.manage.v1.ListEntityTranslationsResponse
-	(*GetEntityTranslationRequest)(nil),          // 40: api.manage.v1.GetEntityTranslationRequest
-	(*GetEntityTranslationResponse)(nil),         // 41: api.manage.v1.GetEntityTranslationResponse
-	(*SetEntitySourceLocaleRequest)(nil),         // 42: api.manage.v1.SetEntitySourceLocaleRequest
-	(*SetEntitySourceLocaleResponse)(nil),        // 43: api.manage.v1.SetEntitySourceLocaleResponse
-	(*RegenerateEntityTranslationsRequest)(nil),  // 44: api.manage.v1.RegenerateEntityTranslationsRequest
-	(*RegenerateEntityTranslationsResponse)(nil), // 45: api.manage.v1.RegenerateEntityTranslationsResponse
-	(*ExportEntityTranslationXLIFFRequest)(nil),  // 46: api.manage.v1.ExportEntityTranslationXLIFFRequest
-	(*ExportEntityTranslationXLIFFResponse)(nil), // 47: api.manage.v1.ExportEntityTranslationXLIFFResponse
-	(*ImportEntityTranslationXLIFFRequest)(nil),  // 48: api.manage.v1.ImportEntityTranslationXLIFFRequest
-	(*ImportEntityTranslationXLIFFResponse)(nil), // 49: api.manage.v1.ImportEntityTranslationXLIFFResponse
-	(*timestamppb.Timestamp)(nil),                // 50: google.protobuf.Timestamp
-	(*v1.AssetRef)(nil),                          // 51: api.common.v1.AssetRef
-	(*fieldmaskpb.FieldMask)(nil),                // 52: google.protobuf.FieldMask
-	(*v1.PaginationRequest)(nil),                 // 53: api.common.v1.PaginationRequest
-	(*v1.FilterSpec)(nil),                        // 54: api.common.v1.FilterSpec
-	(*v1.SortSpec)(nil),                          // 55: api.common.v1.SortSpec
-	(*v1.PaginationResponse)(nil),                // 56: api.common.v1.PaginationResponse
-	(*v1.ExpiringMediaRef)(nil),                  // 57: api.common.v1.ExpiringMediaRef
+	(TranslationInterchangeMode)(0),              // 1: api.manage.v1.TranslationInterchangeMode
+	(*TranslationTarget)(nil),                    // 2: api.manage.v1.TranslationTarget
+	(*TranslationLocale)(nil),                    // 3: api.manage.v1.TranslationLocale
+	(*TranslationEntry)(nil),                     // 4: api.manage.v1.TranslationEntry
+	(*TranslationOverviewStats)(nil),             // 5: api.manage.v1.TranslationOverviewStats
+	(*TranslationLocaleHealth)(nil),              // 6: api.manage.v1.TranslationLocaleHealth
+	(*TranslationEntityHealth)(nil),              // 7: api.manage.v1.TranslationEntityHealth
+	(*TranslationSettings)(nil),                  // 8: api.manage.v1.TranslationSettings
+	(*ListTranslationLocalesRequest)(nil),        // 9: api.manage.v1.ListTranslationLocalesRequest
+	(*ListTranslationLocalesResponse)(nil),       // 10: api.manage.v1.ListTranslationLocalesResponse
+	(*GetTranslationOverviewRequest)(nil),        // 11: api.manage.v1.GetTranslationOverviewRequest
+	(*GetTranslationOverviewResponse)(nil),       // 12: api.manage.v1.GetTranslationOverviewResponse
+	(*GetTranslationSettingsRequest)(nil),        // 13: api.manage.v1.GetTranslationSettingsRequest
+	(*GetTranslationSettingsResponse)(nil),       // 14: api.manage.v1.GetTranslationSettingsResponse
+	(*UpdateTranslationSettingsRequest)(nil),     // 15: api.manage.v1.UpdateTranslationSettingsRequest
+	(*UpdateTranslationSettingsResponse)(nil),    // 16: api.manage.v1.UpdateTranslationSettingsResponse
+	(*ListEntityTranslationsRequest)(nil),        // 17: api.manage.v1.ListEntityTranslationsRequest
+	(*ListEntityTranslationsResponse)(nil),       // 18: api.manage.v1.ListEntityTranslationsResponse
+	(*GetEntityTranslationRequest)(nil),          // 19: api.manage.v1.GetEntityTranslationRequest
+	(*GetEntityTranslationResponse)(nil),         // 20: api.manage.v1.GetEntityTranslationResponse
+	(*SetEntitySourceLocaleRequest)(nil),         // 21: api.manage.v1.SetEntitySourceLocaleRequest
+	(*SetEntitySourceLocaleResponse)(nil),        // 22: api.manage.v1.SetEntitySourceLocaleResponse
+	(*ExportEntityTranslationXLIFFRequest)(nil),  // 23: api.manage.v1.ExportEntityTranslationXLIFFRequest
+	(*ExportEntityTranslationXLIFFResponse)(nil), // 24: api.manage.v1.ExportEntityTranslationXLIFFResponse
+	(*ImportEntityTranslationXLIFFRequest)(nil),  // 25: api.manage.v1.ImportEntityTranslationXLIFFRequest
+	(*ImportEntityTranslationXLIFFResponse)(nil), // 26: api.manage.v1.ImportEntityTranslationXLIFFResponse
+	(*timestamppb.Timestamp)(nil),                // 27: google.protobuf.Timestamp
+	(*v1.AssetRef)(nil),                          // 28: api.common.v1.AssetRef
+	(*fieldmaskpb.FieldMask)(nil),                // 29: google.protobuf.FieldMask
+	(*v1.ExpiringMediaRef)(nil),                  // 30: api.common.v1.ExpiringMediaRef
 }
 var file_api_manage_v1_translation_proto_depIdxs = []int32{
 	0,  // 0: api.manage.v1.TranslationTarget.entity_type:type_name -> api.manage.v1.TranslationEntityType
-	7,  // 1: api.manage.v1.TranslationJob.target:type_name -> api.manage.v1.TranslationTarget
-	1,  // 2: api.manage.v1.TranslationJob.status:type_name -> api.manage.v1.TranslationJobStatus
-	50, // 3: api.manage.v1.TranslationJob.requested_at:type_name -> google.protobuf.Timestamp
-	50, // 4: api.manage.v1.TranslationJob.started_at:type_name -> google.protobuf.Timestamp
-	7,  // 5: api.manage.v1.TranslationEntry.target:type_name -> api.manage.v1.TranslationTarget
-	50, // 6: api.manage.v1.TranslationEntry.updated_at:type_name -> google.protobuf.Timestamp
-	51, // 7: api.manage.v1.TranslationEntry.og_asset:type_name -> api.common.v1.AssetRef
-	8,  // 8: api.manage.v1.TranslationLocaleHealth.locale:type_name -> api.manage.v1.TranslationLocale
-	50, // 9: api.manage.v1.TranslationLocaleHealth.last_target_update_at:type_name -> google.protobuf.Timestamp
-	0,  // 10: api.manage.v1.TranslationEntityHealth.entity_type:type_name -> api.manage.v1.TranslationEntityType
-	50, // 11: api.manage.v1.TranslationEntityHealth.last_source_update_at:type_name -> google.protobuf.Timestamp
-	50, // 12: api.manage.v1.TranslationSettings.updated_at:type_name -> google.protobuf.Timestamp
-	5,  // 13: api.manage.v1.LLMTranslationProviderConfig.preset:type_name -> api.manage.v1.TranslationLLMProviderPreset
-	4,  // 14: api.manage.v1.TranslationProvider.type:type_name -> api.manage.v1.TranslationProviderType
-	15, // 15: api.manage.v1.TranslationProvider.llm_config:type_name -> api.manage.v1.LLMTranslationProviderConfig
-	16, // 16: api.manage.v1.TranslationProvider.deepl_config:type_name -> api.manage.v1.DeepLTranslationProviderConfig
-	50, // 17: api.manage.v1.TranslationProvider.created_at:type_name -> google.protobuf.Timestamp
-	50, // 18: api.manage.v1.TranslationProvider.updated_at:type_name -> google.protobuf.Timestamp
-	8,  // 19: api.manage.v1.ListTranslationLocalesResponse.locales:type_name -> api.manage.v1.TranslationLocale
-	11, // 20: api.manage.v1.GetTranslationOverviewResponse.stats:type_name -> api.manage.v1.TranslationOverviewStats
-	12, // 21: api.manage.v1.GetTranslationOverviewResponse.locale_health:type_name -> api.manage.v1.TranslationLocaleHealth
-	13, // 22: api.manage.v1.GetTranslationOverviewResponse.entity_health:type_name -> api.manage.v1.TranslationEntityHealth
-	14, // 23: api.manage.v1.GetTranslationSettingsResponse.settings:type_name -> api.manage.v1.TranslationSettings
-	14, // 24: api.manage.v1.UpdateTranslationSettingsRequest.settings:type_name -> api.manage.v1.TranslationSettings
-	52, // 25: api.manage.v1.UpdateTranslationSettingsRequest.update_mask:type_name -> google.protobuf.FieldMask
-	14, // 26: api.manage.v1.UpdateTranslationSettingsRequest.base_settings:type_name -> api.manage.v1.TranslationSettings
-	14, // 27: api.manage.v1.UpdateTranslationSettingsResponse.settings:type_name -> api.manage.v1.TranslationSettings
-	53, // 28: api.manage.v1.ListTranslationProvidersRequest.pagination:type_name -> api.common.v1.PaginationRequest
-	54, // 29: api.manage.v1.ListTranslationProvidersRequest.filters:type_name -> api.common.v1.FilterSpec
-	55, // 30: api.manage.v1.ListTranslationProvidersRequest.sorts:type_name -> api.common.v1.SortSpec
-	17, // 31: api.manage.v1.ListTranslationProvidersResponse.providers:type_name -> api.manage.v1.TranslationProvider
-	56, // 32: api.manage.v1.ListTranslationProvidersResponse.pagination:type_name -> api.common.v1.PaginationResponse
-	4,  // 33: api.manage.v1.CreateTranslationProviderRequest.type:type_name -> api.manage.v1.TranslationProviderType
-	15, // 34: api.manage.v1.CreateTranslationProviderRequest.llm_config:type_name -> api.manage.v1.LLMTranslationProviderConfig
-	16, // 35: api.manage.v1.CreateTranslationProviderRequest.deepl_config:type_name -> api.manage.v1.DeepLTranslationProviderConfig
-	17, // 36: api.manage.v1.CreateTranslationProviderResponse.provider:type_name -> api.manage.v1.TranslationProvider
-	4,  // 37: api.manage.v1.UpdateTranslationProviderRequest.type:type_name -> api.manage.v1.TranslationProviderType
-	15, // 38: api.manage.v1.UpdateTranslationProviderRequest.llm_config:type_name -> api.manage.v1.LLMTranslationProviderConfig
-	16, // 39: api.manage.v1.UpdateTranslationProviderRequest.deepl_config:type_name -> api.manage.v1.DeepLTranslationProviderConfig
-	17, // 40: api.manage.v1.UpdateTranslationProviderResponse.provider:type_name -> api.manage.v1.TranslationProvider
-	53, // 41: api.manage.v1.ListTranslationJobsRequest.pagination:type_name -> api.common.v1.PaginationRequest
-	54, // 42: api.manage.v1.ListTranslationJobsRequest.filters:type_name -> api.common.v1.FilterSpec
-	55, // 43: api.manage.v1.ListTranslationJobsRequest.sorts:type_name -> api.common.v1.SortSpec
-	9,  // 44: api.manage.v1.ListTranslationJobsResponse.jobs:type_name -> api.manage.v1.TranslationJob
-	56, // 45: api.manage.v1.ListTranslationJobsResponse.pagination:type_name -> api.common.v1.PaginationResponse
-	7,  // 46: api.manage.v1.ListEntityTranslationsRequest.target:type_name -> api.manage.v1.TranslationTarget
-	10, // 47: api.manage.v1.ListEntityTranslationsResponse.entries:type_name -> api.manage.v1.TranslationEntry
-	7,  // 48: api.manage.v1.GetEntityTranslationRequest.target:type_name -> api.manage.v1.TranslationTarget
-	10, // 49: api.manage.v1.GetEntityTranslationResponse.entry:type_name -> api.manage.v1.TranslationEntry
-	7,  // 50: api.manage.v1.SetEntitySourceLocaleRequest.target:type_name -> api.manage.v1.TranslationTarget
-	7,  // 51: api.manage.v1.RegenerateEntityTranslationsRequest.target:type_name -> api.manage.v1.TranslationTarget
-	9,  // 52: api.manage.v1.RegenerateEntityTranslationsResponse.jobs:type_name -> api.manage.v1.TranslationJob
-	7,  // 53: api.manage.v1.ExportEntityTranslationXLIFFRequest.target:type_name -> api.manage.v1.TranslationTarget
-	6,  // 54: api.manage.v1.ExportEntityTranslationXLIFFRequest.mode:type_name -> api.manage.v1.TranslationInterchangeMode
-	57, // 55: api.manage.v1.ExportEntityTranslationXLIFFResponse.artifact:type_name -> api.common.v1.ExpiringMediaRef
-	6,  // 56: api.manage.v1.ExportEntityTranslationXLIFFResponse.mode:type_name -> api.manage.v1.TranslationInterchangeMode
-	7,  // 57: api.manage.v1.ImportEntityTranslationXLIFFRequest.target:type_name -> api.manage.v1.TranslationTarget
-	6,  // 58: api.manage.v1.ImportEntityTranslationXLIFFRequest.mode:type_name -> api.manage.v1.TranslationInterchangeMode
-	18, // 59: api.manage.v1.TranslationService.ListTranslationLocales:input_type -> api.manage.v1.ListTranslationLocalesRequest
-	20, // 60: api.manage.v1.TranslationService.GetTranslationOverview:input_type -> api.manage.v1.GetTranslationOverviewRequest
-	22, // 61: api.manage.v1.TranslationService.GetTranslationSettings:input_type -> api.manage.v1.GetTranslationSettingsRequest
-	24, // 62: api.manage.v1.TranslationService.UpdateTranslationSettings:input_type -> api.manage.v1.UpdateTranslationSettingsRequest
-	26, // 63: api.manage.v1.TranslationService.ListTranslationProviders:input_type -> api.manage.v1.ListTranslationProvidersRequest
-	28, // 64: api.manage.v1.TranslationService.CreateTranslationProvider:input_type -> api.manage.v1.CreateTranslationProviderRequest
-	30, // 65: api.manage.v1.TranslationService.UpdateTranslationProvider:input_type -> api.manage.v1.UpdateTranslationProviderRequest
-	32, // 66: api.manage.v1.TranslationService.DeleteTranslationProvider:input_type -> api.manage.v1.DeleteTranslationProviderRequest
-	34, // 67: api.manage.v1.TranslationService.ListTranslationJobs:input_type -> api.manage.v1.ListTranslationJobsRequest
-	36, // 68: api.manage.v1.TranslationService.CancelTranslationJob:input_type -> api.manage.v1.CancelTranslationJobRequest
-	38, // 69: api.manage.v1.TranslationService.ListEntityTranslations:input_type -> api.manage.v1.ListEntityTranslationsRequest
-	40, // 70: api.manage.v1.TranslationService.GetEntityTranslation:input_type -> api.manage.v1.GetEntityTranslationRequest
-	42, // 71: api.manage.v1.TranslationService.SetEntitySourceLocale:input_type -> api.manage.v1.SetEntitySourceLocaleRequest
-	44, // 72: api.manage.v1.TranslationService.RegenerateEntityTranslations:input_type -> api.manage.v1.RegenerateEntityTranslationsRequest
-	46, // 73: api.manage.v1.TranslationService.ExportEntityTranslationXLIFF:input_type -> api.manage.v1.ExportEntityTranslationXLIFFRequest
-	48, // 74: api.manage.v1.TranslationService.ImportEntityTranslationXLIFF:input_type -> api.manage.v1.ImportEntityTranslationXLIFFRequest
-	19, // 75: api.manage.v1.TranslationService.ListTranslationLocales:output_type -> api.manage.v1.ListTranslationLocalesResponse
-	21, // 76: api.manage.v1.TranslationService.GetTranslationOverview:output_type -> api.manage.v1.GetTranslationOverviewResponse
-	23, // 77: api.manage.v1.TranslationService.GetTranslationSettings:output_type -> api.manage.v1.GetTranslationSettingsResponse
-	25, // 78: api.manage.v1.TranslationService.UpdateTranslationSettings:output_type -> api.manage.v1.UpdateTranslationSettingsResponse
-	27, // 79: api.manage.v1.TranslationService.ListTranslationProviders:output_type -> api.manage.v1.ListTranslationProvidersResponse
-	29, // 80: api.manage.v1.TranslationService.CreateTranslationProvider:output_type -> api.manage.v1.CreateTranslationProviderResponse
-	31, // 81: api.manage.v1.TranslationService.UpdateTranslationProvider:output_type -> api.manage.v1.UpdateTranslationProviderResponse
-	33, // 82: api.manage.v1.TranslationService.DeleteTranslationProvider:output_type -> api.manage.v1.DeleteTranslationProviderResponse
-	35, // 83: api.manage.v1.TranslationService.ListTranslationJobs:output_type -> api.manage.v1.ListTranslationJobsResponse
-	37, // 84: api.manage.v1.TranslationService.CancelTranslationJob:output_type -> api.manage.v1.CancelTranslationJobResponse
-	39, // 85: api.manage.v1.TranslationService.ListEntityTranslations:output_type -> api.manage.v1.ListEntityTranslationsResponse
-	41, // 86: api.manage.v1.TranslationService.GetEntityTranslation:output_type -> api.manage.v1.GetEntityTranslationResponse
-	43, // 87: api.manage.v1.TranslationService.SetEntitySourceLocale:output_type -> api.manage.v1.SetEntitySourceLocaleResponse
-	45, // 88: api.manage.v1.TranslationService.RegenerateEntityTranslations:output_type -> api.manage.v1.RegenerateEntityTranslationsResponse
-	47, // 89: api.manage.v1.TranslationService.ExportEntityTranslationXLIFF:output_type -> api.manage.v1.ExportEntityTranslationXLIFFResponse
-	49, // 90: api.manage.v1.TranslationService.ImportEntityTranslationXLIFF:output_type -> api.manage.v1.ImportEntityTranslationXLIFFResponse
-	75, // [75:91] is the sub-list for method output_type
-	59, // [59:75] is the sub-list for method input_type
-	59, // [59:59] is the sub-list for extension type_name
-	59, // [59:59] is the sub-list for extension extendee
-	0,  // [0:59] is the sub-list for field type_name
+	2,  // 1: api.manage.v1.TranslationEntry.target:type_name -> api.manage.v1.TranslationTarget
+	27, // 2: api.manage.v1.TranslationEntry.updated_at:type_name -> google.protobuf.Timestamp
+	28, // 3: api.manage.v1.TranslationEntry.og_asset:type_name -> api.common.v1.AssetRef
+	3,  // 4: api.manage.v1.TranslationLocaleHealth.locale:type_name -> api.manage.v1.TranslationLocale
+	27, // 5: api.manage.v1.TranslationLocaleHealth.last_target_update_at:type_name -> google.protobuf.Timestamp
+	0,  // 6: api.manage.v1.TranslationEntityHealth.entity_type:type_name -> api.manage.v1.TranslationEntityType
+	27, // 7: api.manage.v1.TranslationEntityHealth.last_source_update_at:type_name -> google.protobuf.Timestamp
+	27, // 8: api.manage.v1.TranslationSettings.updated_at:type_name -> google.protobuf.Timestamp
+	3,  // 9: api.manage.v1.ListTranslationLocalesResponse.locales:type_name -> api.manage.v1.TranslationLocale
+	5,  // 10: api.manage.v1.GetTranslationOverviewResponse.stats:type_name -> api.manage.v1.TranslationOverviewStats
+	6,  // 11: api.manage.v1.GetTranslationOverviewResponse.locale_health:type_name -> api.manage.v1.TranslationLocaleHealth
+	7,  // 12: api.manage.v1.GetTranslationOverviewResponse.entity_health:type_name -> api.manage.v1.TranslationEntityHealth
+	8,  // 13: api.manage.v1.GetTranslationSettingsResponse.settings:type_name -> api.manage.v1.TranslationSettings
+	8,  // 14: api.manage.v1.UpdateTranslationSettingsRequest.settings:type_name -> api.manage.v1.TranslationSettings
+	29, // 15: api.manage.v1.UpdateTranslationSettingsRequest.update_mask:type_name -> google.protobuf.FieldMask
+	8,  // 16: api.manage.v1.UpdateTranslationSettingsResponse.settings:type_name -> api.manage.v1.TranslationSettings
+	2,  // 17: api.manage.v1.ListEntityTranslationsRequest.target:type_name -> api.manage.v1.TranslationTarget
+	4,  // 18: api.manage.v1.ListEntityTranslationsResponse.entries:type_name -> api.manage.v1.TranslationEntry
+	2,  // 19: api.manage.v1.GetEntityTranslationRequest.target:type_name -> api.manage.v1.TranslationTarget
+	4,  // 20: api.manage.v1.GetEntityTranslationResponse.entry:type_name -> api.manage.v1.TranslationEntry
+	2,  // 21: api.manage.v1.SetEntitySourceLocaleRequest.target:type_name -> api.manage.v1.TranslationTarget
+	2,  // 22: api.manage.v1.ExportEntityTranslationXLIFFRequest.target:type_name -> api.manage.v1.TranslationTarget
+	1,  // 23: api.manage.v1.ExportEntityTranslationXLIFFRequest.mode:type_name -> api.manage.v1.TranslationInterchangeMode
+	30, // 24: api.manage.v1.ExportEntityTranslationXLIFFResponse.artifact:type_name -> api.common.v1.ExpiringMediaRef
+	1,  // 25: api.manage.v1.ExportEntityTranslationXLIFFResponse.mode:type_name -> api.manage.v1.TranslationInterchangeMode
+	2,  // 26: api.manage.v1.ImportEntityTranslationXLIFFRequest.target:type_name -> api.manage.v1.TranslationTarget
+	1,  // 27: api.manage.v1.ImportEntityTranslationXLIFFRequest.mode:type_name -> api.manage.v1.TranslationInterchangeMode
+	9,  // 28: api.manage.v1.TranslationService.ListTranslationLocales:input_type -> api.manage.v1.ListTranslationLocalesRequest
+	11, // 29: api.manage.v1.TranslationService.GetTranslationOverview:input_type -> api.manage.v1.GetTranslationOverviewRequest
+	13, // 30: api.manage.v1.TranslationService.GetTranslationSettings:input_type -> api.manage.v1.GetTranslationSettingsRequest
+	15, // 31: api.manage.v1.TranslationService.UpdateTranslationSettings:input_type -> api.manage.v1.UpdateTranslationSettingsRequest
+	17, // 32: api.manage.v1.TranslationService.ListEntityTranslations:input_type -> api.manage.v1.ListEntityTranslationsRequest
+	19, // 33: api.manage.v1.TranslationService.GetEntityTranslation:input_type -> api.manage.v1.GetEntityTranslationRequest
+	21, // 34: api.manage.v1.TranslationService.SetEntitySourceLocale:input_type -> api.manage.v1.SetEntitySourceLocaleRequest
+	23, // 35: api.manage.v1.TranslationService.ExportEntityTranslationXLIFF:input_type -> api.manage.v1.ExportEntityTranslationXLIFFRequest
+	25, // 36: api.manage.v1.TranslationService.ImportEntityTranslationXLIFF:input_type -> api.manage.v1.ImportEntityTranslationXLIFFRequest
+	10, // 37: api.manage.v1.TranslationService.ListTranslationLocales:output_type -> api.manage.v1.ListTranslationLocalesResponse
+	12, // 38: api.manage.v1.TranslationService.GetTranslationOverview:output_type -> api.manage.v1.GetTranslationOverviewResponse
+	14, // 39: api.manage.v1.TranslationService.GetTranslationSettings:output_type -> api.manage.v1.GetTranslationSettingsResponse
+	16, // 40: api.manage.v1.TranslationService.UpdateTranslationSettings:output_type -> api.manage.v1.UpdateTranslationSettingsResponse
+	18, // 41: api.manage.v1.TranslationService.ListEntityTranslations:output_type -> api.manage.v1.ListEntityTranslationsResponse
+	20, // 42: api.manage.v1.TranslationService.GetEntityTranslation:output_type -> api.manage.v1.GetEntityTranslationResponse
+	22, // 43: api.manage.v1.TranslationService.SetEntitySourceLocale:output_type -> api.manage.v1.SetEntitySourceLocaleResponse
+	24, // 44: api.manage.v1.TranslationService.ExportEntityTranslationXLIFF:output_type -> api.manage.v1.ExportEntityTranslationXLIFFResponse
+	26, // 45: api.manage.v1.TranslationService.ImportEntityTranslationXLIFF:output_type -> api.manage.v1.ImportEntityTranslationXLIFFResponse
+	37, // [37:46] is the sub-list for method output_type
+	28, // [28:37] is the sub-list for method input_type
+	28, // [28:28] is the sub-list for extension type_name
+	28, // [28:28] is the sub-list for extension extendee
+	0,  // [0:28] is the sub-list for field type_name
 }
 
 func init() { file_api_manage_v1_translation_proto_init() }
@@ -3729,35 +1901,19 @@ func file_api_manage_v1_translation_proto_init() {
 	}
 	file_api_manage_v1_translation_proto_msgTypes[1].OneofWrappers = []any{}
 	file_api_manage_v1_translation_proto_msgTypes[2].OneofWrappers = []any{}
-	file_api_manage_v1_translation_proto_msgTypes[3].OneofWrappers = []any{}
+	file_api_manage_v1_translation_proto_msgTypes[4].OneofWrappers = []any{}
 	file_api_manage_v1_translation_proto_msgTypes[5].OneofWrappers = []any{}
 	file_api_manage_v1_translation_proto_msgTypes[6].OneofWrappers = []any{}
-	file_api_manage_v1_translation_proto_msgTypes[7].OneofWrappers = []any{}
-	file_api_manage_v1_translation_proto_msgTypes[8].OneofWrappers = []any{}
-	file_api_manage_v1_translation_proto_msgTypes[9].OneofWrappers = []any{}
-	file_api_manage_v1_translation_proto_msgTypes[10].OneofWrappers = []any{
-		(*TranslationProvider_LlmConfig)(nil),
-		(*TranslationProvider_DeeplConfig)(nil),
-	}
-	file_api_manage_v1_translation_proto_msgTypes[16].OneofWrappers = []any{}
-	file_api_manage_v1_translation_proto_msgTypes[21].OneofWrappers = []any{
-		(*CreateTranslationProviderRequest_LlmConfig)(nil),
-		(*CreateTranslationProviderRequest_DeeplConfig)(nil),
-	}
-	file_api_manage_v1_translation_proto_msgTypes[23].OneofWrappers = []any{
-		(*UpdateTranslationProviderRequest_LlmConfig)(nil),
-		(*UpdateTranslationProviderRequest_DeeplConfig)(nil),
-	}
-	file_api_manage_v1_translation_proto_msgTypes[35].OneofWrappers = []any{}
-	file_api_manage_v1_translation_proto_msgTypes[40].OneofWrappers = []any{}
-	file_api_manage_v1_translation_proto_msgTypes[41].OneofWrappers = []any{}
+	file_api_manage_v1_translation_proto_msgTypes[19].OneofWrappers = []any{}
+	file_api_manage_v1_translation_proto_msgTypes[22].OneofWrappers = []any{}
+	file_api_manage_v1_translation_proto_msgTypes[23].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_api_manage_v1_translation_proto_rawDesc), len(file_api_manage_v1_translation_proto_rawDesc)),
-			NumEnums:      7,
-			NumMessages:   43,
+			NumEnums:      2,
+			NumMessages:   25,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
