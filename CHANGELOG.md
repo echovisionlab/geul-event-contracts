@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.20.0](https://github.com/echovisionlab/geul-event-contracts/compare/v0.19.0...v0.20.0) (2026-11-07)
+
+
+### Features
+
+* list the Labels a caller manages ([f30594f](https://github.com/echovisionlab/geul-event-contracts/commit/f30594fc4c692716baf3c86a7d9e3b6a5d024661))
+
 ## [0.19.0](https://github.com/echovisionlab/geul-event-contracts/compare/v0.18.0...v0.19.0) (2026-11-07)
 
 
