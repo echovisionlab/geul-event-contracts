@@ -198,6 +198,14 @@ message SetLabelParticipantRequest {
   LabelParticipantRole role = 3;
 }
 
+// SetLabelParentRequest moves the Label under parent_label_id, or to the top
+// when it is unset. The caller must manage the participants of every Label it
+// touches: the Label, its current parent and the new one.
+message SetLabelParentRequest {
+  string label_id = 1;
+  optional string parent_label_id = 2;
+}
+
 message RemoveLabelParticipantRequest {
   string label_id = 1;
   string member_id = 2;
@@ -259,6 +267,9 @@ service LabelService {
     option (api.policy.v1.access) = {role: USER};
   }
   rpc RemoveLabelParticipant(RemoveLabelParticipantRequest) returns (DeleteResponse) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+  rpc SetLabelParent(SetLabelParentRequest) returns (Label) {
     option (api.policy.v1.access) = {role: USER};
   }
 

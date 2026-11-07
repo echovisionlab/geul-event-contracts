@@ -147,6 +147,12 @@ func TestGeneratedSpiceDBTypedSurface(t *testing.T) {
 	assertRelationship(t, "Artist.DeleteParent", "artist", resourceID, "parent", "artist", "parent-subject-id", "", policyv1.RelationshipDelete, func() (policyv1.RelationshipMutation, error) {
 		return policyv1.Artist.DeleteParent(resourceID, "parent-subject-id")
 	})
+	assertRelationship(t, "Artist.TouchLabel", "artist", resourceID, "label", "label", "label-subject-id", "", policyv1.RelationshipTouch, func() (policyv1.RelationshipMutation, error) {
+		return policyv1.Artist.TouchLabel(resourceID, "label-subject-id")
+	})
+	assertRelationship(t, "Artist.DeleteLabel", "artist", resourceID, "label", "label", "label-subject-id", "", policyv1.RelationshipDelete, func() (policyv1.RelationshipMutation, error) {
+		return policyv1.Artist.DeleteLabel(resourceID, "label-subject-id")
+	})
 	assertResource(t, "Label.Resource", "label", resourceID, func() (policyv1.Resource, error) { return policyv1.Label.Resource(resourceID) })
 	assertResourceLookup(t, "Label.LookupView", "label", "view", policyv1.Label.LookupView())
 	assertCan(t, "Label.Edit", "label", resourceID, "edit", "edit", func() (policyv1.Can, error) { return policyv1.Label.Edit(resourceID) })

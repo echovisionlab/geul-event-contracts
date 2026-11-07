@@ -23,7 +23,6 @@ message LabelDocumentMetadata {
   optional string country_code = 2;
   optional string website = 3;
   map<string, string> social_links = 4;
-  optional string parent_label_id = 5;
 }
 
 message LabelSocialLinksValue {
@@ -35,7 +34,6 @@ message LabelDocumentMetadataUpdate {
   NullableStringMutation country_code = 2;
   NullableStringMutation website = 3;
   LabelSocialLinksValue social_links = 4;
-  NullableStringMutation parent_label_id = 5;
 }
 
 message LabelLocaleMetadata {

@@ -1,5 +1,6 @@
-# Artist owns direct Owner/Manager participation and inherited parent Artist
-# management.
+# Artist owns direct Owner/Manager participation, inherited parent Artist
+# management, and what its Labels may do. An Artist in several Labels gives a
+# Label's people that authority only when they hold it on every one of them.
 domain: artist
 description: Artist ownership, management, hierarchy, and share links
 actions:
@@ -27,6 +28,7 @@ definitions:
       owner: [account_identity]
       manager: [account_identity]
       parent: [artist]
+      label: [label]
     permissions:
       - platform_admin
       - owner_manage
@@ -42,11 +44,11 @@ permission_expressions:
   artist:
     platform_admin: policy->is_admin
     owner_manage: platform_admin + owner
-    manager_manage: owner_manage + manager + parent->manage
+    manager_manage: owner_manage + manager + parent->manage + label.all(manage)
     edit: manager_manage
     view: edit
     delete: owner_manage
-    publish: owner_manage
+    publish: owner_manage + label.all(publish)
     manage: manager_manage
     manage_participants: owner_manage
     manage_share_links: owner_manage

@@ -98,4 +98,18 @@ export const Artist = Object.freeze({
       resourceRelationshipSubject("artist", parentId, ""),
       RelationshipOperation.Delete,
     ),
+  TouchLabel: (id: string, labelId: string): RelationshipMutation =>
+    createRelationshipMutation(
+      createResource("artist", id),
+      "label",
+      resourceRelationshipSubject("label", labelId, ""),
+      RelationshipOperation.Touch,
+    ),
+  DeleteLabel: (id: string, labelId: string): RelationshipMutation =>
+    createRelationshipMutation(
+      createResource("artist", id),
+      "label",
+      resourceRelationshipSubject("label", labelId, ""),
+      RelationshipOperation.Delete,
+    ),
 });

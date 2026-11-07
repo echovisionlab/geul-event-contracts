@@ -24,16 +24,14 @@ const (
 )
 
 type ArtistDocumentMetadata struct {
-	state          protoimpl.MessageState `protogen:"open.v1"`
-	RealName       *string                `protobuf:"bytes,1,opt,name=real_name,json=realName,proto3,oneof" json:"real_name,omitempty"`
-	CountryCode    *string                `protobuf:"bytes,2,opt,name=country_code,json=countryCode,proto3,oneof" json:"country_code,omitempty"`
-	Website        *string                `protobuf:"bytes,3,opt,name=website,proto3,oneof" json:"website,omitempty"`
-	SocialLinks    map[string]string      `protobuf:"bytes,4,rep,name=social_links,json=socialLinks,proto3" json:"social_links,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
-	Slug           *string                `protobuf:"bytes,5,opt,name=slug,proto3,oneof" json:"slug,omitempty"`
-	LabelIds       []string               `protobuf:"bytes,6,rep,name=label_ids,json=labelIds,proto3" json:"label_ids,omitempty"`
-	ParentArtistId *string                `protobuf:"bytes,7,opt,name=parent_artist_id,json=parentArtistId,proto3,oneof" json:"parent_artist_id,omitempty"`
-	unknownFields  protoimpl.UnknownFields
-	sizeCache      protoimpl.SizeCache
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	RealName      *string                `protobuf:"bytes,1,opt,name=real_name,json=realName,proto3,oneof" json:"real_name,omitempty"`
+	CountryCode   *string                `protobuf:"bytes,2,opt,name=country_code,json=countryCode,proto3,oneof" json:"country_code,omitempty"`
+	Website       *string                `protobuf:"bytes,3,opt,name=website,proto3,oneof" json:"website,omitempty"`
+	SocialLinks   map[string]string      `protobuf:"bytes,4,rep,name=social_links,json=socialLinks,proto3" json:"social_links,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	Slug          *string                `protobuf:"bytes,5,opt,name=slug,proto3,oneof" json:"slug,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *ArtistDocumentMetadata) Reset() {
@@ -101,20 +99,6 @@ func (x *ArtistDocumentMetadata) GetSlug() string {
 	return ""
 }
 
-func (x *ArtistDocumentMetadata) GetLabelIds() []string {
-	if x != nil {
-		return x.LabelIds
-	}
-	return nil
-}
-
-func (x *ArtistDocumentMetadata) GetParentArtistId() string {
-	if x != nil && x.ParentArtistId != nil {
-		return *x.ParentArtistId
-	}
-	return ""
-}
-
 type ArtistSocialLinksValue struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Values        map[string]string      `protobuf:"bytes,1,rep,name=values,proto3" json:"values,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
@@ -159,66 +143,20 @@ func (x *ArtistSocialLinksValue) GetValues() map[string]string {
 	return nil
 }
 
-type ArtistLabelIdsValue struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Values        []string               `protobuf:"bytes,1,rep,name=values,proto3" json:"values,omitempty"`
+type ArtistDocumentMetadataUpdate struct {
+	state         protoimpl.MessageState  `protogen:"open.v1"`
+	RealName      *NullableStringMutation `protobuf:"bytes,1,opt,name=real_name,json=realName,proto3" json:"real_name,omitempty"`
+	CountryCode   *NullableStringMutation `protobuf:"bytes,2,opt,name=country_code,json=countryCode,proto3" json:"country_code,omitempty"`
+	Website       *NullableStringMutation `protobuf:"bytes,3,opt,name=website,proto3" json:"website,omitempty"`
+	SocialLinks   *ArtistSocialLinksValue `protobuf:"bytes,4,opt,name=social_links,json=socialLinks,proto3" json:"social_links,omitempty"`
+	Slug          *NullableStringMutation `protobuf:"bytes,5,opt,name=slug,proto3" json:"slug,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *ArtistLabelIdsValue) Reset() {
-	*x = ArtistLabelIdsValue{}
-	mi := &file_api_intra_v1_artist_proto_msgTypes[2]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *ArtistLabelIdsValue) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ArtistLabelIdsValue) ProtoMessage() {}
-
-func (x *ArtistLabelIdsValue) ProtoReflect() protoreflect.Message {
-	mi := &file_api_intra_v1_artist_proto_msgTypes[2]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ArtistLabelIdsValue.ProtoReflect.Descriptor instead.
-func (*ArtistLabelIdsValue) Descriptor() ([]byte, []int) {
-	return file_api_intra_v1_artist_proto_rawDescGZIP(), []int{2}
-}
-
-func (x *ArtistLabelIdsValue) GetValues() []string {
-	if x != nil {
-		return x.Values
-	}
-	return nil
-}
-
-type ArtistDocumentMetadataUpdate struct {
-	state          protoimpl.MessageState  `protogen:"open.v1"`
-	RealName       *NullableStringMutation `protobuf:"bytes,1,opt,name=real_name,json=realName,proto3" json:"real_name,omitempty"`
-	CountryCode    *NullableStringMutation `protobuf:"bytes,2,opt,name=country_code,json=countryCode,proto3" json:"country_code,omitempty"`
-	Website        *NullableStringMutation `protobuf:"bytes,3,opt,name=website,proto3" json:"website,omitempty"`
-	SocialLinks    *ArtistSocialLinksValue `protobuf:"bytes,4,opt,name=social_links,json=socialLinks,proto3" json:"social_links,omitempty"`
-	Slug           *NullableStringMutation `protobuf:"bytes,5,opt,name=slug,proto3" json:"slug,omitempty"`
-	LabelIds       *ArtistLabelIdsValue    `protobuf:"bytes,6,opt,name=label_ids,json=labelIds,proto3" json:"label_ids,omitempty"`
-	ParentArtistId *NullableStringMutation `protobuf:"bytes,7,opt,name=parent_artist_id,json=parentArtistId,proto3" json:"parent_artist_id,omitempty"`
-	unknownFields  protoimpl.UnknownFields
-	sizeCache      protoimpl.SizeCache
-}
-
 func (x *ArtistDocumentMetadataUpdate) Reset() {
 	*x = ArtistDocumentMetadataUpdate{}
-	mi := &file_api_intra_v1_artist_proto_msgTypes[3]
+	mi := &file_api_intra_v1_artist_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -230,7 +168,7 @@ func (x *ArtistDocumentMetadataUpdate) String() string {
 func (*ArtistDocumentMetadataUpdate) ProtoMessage() {}
 
 func (x *ArtistDocumentMetadataUpdate) ProtoReflect() protoreflect.Message {
-	mi := &file_api_intra_v1_artist_proto_msgTypes[3]
+	mi := &file_api_intra_v1_artist_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -243,7 +181,7 @@ func (x *ArtistDocumentMetadataUpdate) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ArtistDocumentMetadataUpdate.ProtoReflect.Descriptor instead.
 func (*ArtistDocumentMetadataUpdate) Descriptor() ([]byte, []int) {
-	return file_api_intra_v1_artist_proto_rawDescGZIP(), []int{3}
+	return file_api_intra_v1_artist_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *ArtistDocumentMetadataUpdate) GetRealName() *NullableStringMutation {
@@ -281,20 +219,6 @@ func (x *ArtistDocumentMetadataUpdate) GetSlug() *NullableStringMutation {
 	return nil
 }
 
-func (x *ArtistDocumentMetadataUpdate) GetLabelIds() *ArtistLabelIdsValue {
-	if x != nil {
-		return x.LabelIds
-	}
-	return nil
-}
-
-func (x *ArtistDocumentMetadataUpdate) GetParentArtistId() *NullableStringMutation {
-	if x != nil {
-		return x.ParentArtistId
-	}
-	return nil
-}
-
 type ArtistLocaleMetadata struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Locale        string                 `protobuf:"bytes,1,opt,name=locale,proto3" json:"locale,omitempty"`
@@ -305,7 +229,7 @@ type ArtistLocaleMetadata struct {
 
 func (x *ArtistLocaleMetadata) Reset() {
 	*x = ArtistLocaleMetadata{}
-	mi := &file_api_intra_v1_artist_proto_msgTypes[4]
+	mi := &file_api_intra_v1_artist_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -317,7 +241,7 @@ func (x *ArtistLocaleMetadata) String() string {
 func (*ArtistLocaleMetadata) ProtoMessage() {}
 
 func (x *ArtistLocaleMetadata) ProtoReflect() protoreflect.Message {
-	mi := &file_api_intra_v1_artist_proto_msgTypes[4]
+	mi := &file_api_intra_v1_artist_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -330,7 +254,7 @@ func (x *ArtistLocaleMetadata) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ArtistLocaleMetadata.ProtoReflect.Descriptor instead.
 func (*ArtistLocaleMetadata) Descriptor() ([]byte, []int) {
-	return file_api_intra_v1_artist_proto_rawDescGZIP(), []int{4}
+	return file_api_intra_v1_artist_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *ArtistLocaleMetadata) GetLocale() string {
@@ -358,7 +282,7 @@ type LoadArtistBlockDocumentRequest struct {
 
 func (x *LoadArtistBlockDocumentRequest) Reset() {
 	*x = LoadArtistBlockDocumentRequest{}
-	mi := &file_api_intra_v1_artist_proto_msgTypes[5]
+	mi := &file_api_intra_v1_artist_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -370,7 +294,7 @@ func (x *LoadArtistBlockDocumentRequest) String() string {
 func (*LoadArtistBlockDocumentRequest) ProtoMessage() {}
 
 func (x *LoadArtistBlockDocumentRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_intra_v1_artist_proto_msgTypes[5]
+	mi := &file_api_intra_v1_artist_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -383,7 +307,7 @@ func (x *LoadArtistBlockDocumentRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LoadArtistBlockDocumentRequest.ProtoReflect.Descriptor instead.
 func (*LoadArtistBlockDocumentRequest) Descriptor() ([]byte, []int) {
-	return file_api_intra_v1_artist_proto_rawDescGZIP(), []int{5}
+	return file_api_intra_v1_artist_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *LoadArtistBlockDocumentRequest) GetArtistId() string {
@@ -432,7 +356,7 @@ type LoadArtistBlockDocumentResponse struct {
 
 func (x *LoadArtistBlockDocumentResponse) Reset() {
 	*x = LoadArtistBlockDocumentResponse{}
-	mi := &file_api_intra_v1_artist_proto_msgTypes[6]
+	mi := &file_api_intra_v1_artist_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -444,7 +368,7 @@ func (x *LoadArtistBlockDocumentResponse) String() string {
 func (*LoadArtistBlockDocumentResponse) ProtoMessage() {}
 
 func (x *LoadArtistBlockDocumentResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_intra_v1_artist_proto_msgTypes[6]
+	mi := &file_api_intra_v1_artist_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -457,7 +381,7 @@ func (x *LoadArtistBlockDocumentResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LoadArtistBlockDocumentResponse.ProtoReflect.Descriptor instead.
 func (*LoadArtistBlockDocumentResponse) Descriptor() ([]byte, []int) {
-	return file_api_intra_v1_artist_proto_rawDescGZIP(), []int{6}
+	return file_api_intra_v1_artist_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *LoadArtistBlockDocumentResponse) GetDocument() *v1.LocalizedRichTextDocument {
@@ -543,7 +467,7 @@ type ApplyArtistBlockBatchRequest struct {
 
 func (x *ApplyArtistBlockBatchRequest) Reset() {
 	*x = ApplyArtistBlockBatchRequest{}
-	mi := &file_api_intra_v1_artist_proto_msgTypes[7]
+	mi := &file_api_intra_v1_artist_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -555,7 +479,7 @@ func (x *ApplyArtistBlockBatchRequest) String() string {
 func (*ApplyArtistBlockBatchRequest) ProtoMessage() {}
 
 func (x *ApplyArtistBlockBatchRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_intra_v1_artist_proto_msgTypes[7]
+	mi := &file_api_intra_v1_artist_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -568,7 +492,7 @@ func (x *ApplyArtistBlockBatchRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApplyArtistBlockBatchRequest.ProtoReflect.Descriptor instead.
 func (*ApplyArtistBlockBatchRequest) Descriptor() ([]byte, []int) {
-	return file_api_intra_v1_artist_proto_rawDescGZIP(), []int{7}
+	return file_api_intra_v1_artist_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *ApplyArtistBlockBatchRequest) GetArtistId() string {
@@ -620,7 +544,7 @@ type ApplyArtistBlockBatchResponse struct {
 
 func (x *ApplyArtistBlockBatchResponse) Reset() {
 	*x = ApplyArtistBlockBatchResponse{}
-	mi := &file_api_intra_v1_artist_proto_msgTypes[8]
+	mi := &file_api_intra_v1_artist_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -632,7 +556,7 @@ func (x *ApplyArtistBlockBatchResponse) String() string {
 func (*ApplyArtistBlockBatchResponse) ProtoMessage() {}
 
 func (x *ApplyArtistBlockBatchResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_intra_v1_artist_proto_msgTypes[8]
+	mi := &file_api_intra_v1_artist_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -645,7 +569,7 @@ func (x *ApplyArtistBlockBatchResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApplyArtistBlockBatchResponse.ProtoReflect.Descriptor instead.
 func (*ApplyArtistBlockBatchResponse) Descriptor() ([]byte, []int) {
-	return file_api_intra_v1_artist_proto_rawDescGZIP(), []int{8}
+	return file_api_intra_v1_artist_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *ApplyArtistBlockBatchResponse) GetDocumentRevision() string {
@@ -707,7 +631,7 @@ type UpdateArtistLocaleMetadataRequest struct {
 
 func (x *UpdateArtistLocaleMetadataRequest) Reset() {
 	*x = UpdateArtistLocaleMetadataRequest{}
-	mi := &file_api_intra_v1_artist_proto_msgTypes[9]
+	mi := &file_api_intra_v1_artist_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -719,7 +643,7 @@ func (x *UpdateArtistLocaleMetadataRequest) String() string {
 func (*UpdateArtistLocaleMetadataRequest) ProtoMessage() {}
 
 func (x *UpdateArtistLocaleMetadataRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_intra_v1_artist_proto_msgTypes[9]
+	mi := &file_api_intra_v1_artist_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -732,7 +656,7 @@ func (x *UpdateArtistLocaleMetadataRequest) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use UpdateArtistLocaleMetadataRequest.ProtoReflect.Descriptor instead.
 func (*UpdateArtistLocaleMetadataRequest) Descriptor() ([]byte, []int) {
-	return file_api_intra_v1_artist_proto_rawDescGZIP(), []int{9}
+	return file_api_intra_v1_artist_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *UpdateArtistLocaleMetadataRequest) GetArtistId() string {
@@ -791,7 +715,7 @@ type UpdateArtistLocaleMetadataResponse struct {
 
 func (x *UpdateArtistLocaleMetadataResponse) Reset() {
 	*x = UpdateArtistLocaleMetadataResponse{}
-	mi := &file_api_intra_v1_artist_proto_msgTypes[10]
+	mi := &file_api_intra_v1_artist_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -803,7 +727,7 @@ func (x *UpdateArtistLocaleMetadataResponse) String() string {
 func (*UpdateArtistLocaleMetadataResponse) ProtoMessage() {}
 
 func (x *UpdateArtistLocaleMetadataResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_intra_v1_artist_proto_msgTypes[10]
+	mi := &file_api_intra_v1_artist_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -816,7 +740,7 @@ func (x *UpdateArtistLocaleMetadataResponse) ProtoReflect() protoreflect.Message
 
 // Deprecated: Use UpdateArtistLocaleMetadataResponse.ProtoReflect.Descriptor instead.
 func (*UpdateArtistLocaleMetadataResponse) Descriptor() ([]byte, []int) {
-	return file_api_intra_v1_artist_proto_rawDescGZIP(), []int{10}
+	return file_api_intra_v1_artist_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *UpdateArtistLocaleMetadataResponse) GetDocumentRevision() string {
@@ -874,7 +798,7 @@ type UpdateArtistDocumentMetadataRequest struct {
 
 func (x *UpdateArtistDocumentMetadataRequest) Reset() {
 	*x = UpdateArtistDocumentMetadataRequest{}
-	mi := &file_api_intra_v1_artist_proto_msgTypes[11]
+	mi := &file_api_intra_v1_artist_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -886,7 +810,7 @@ func (x *UpdateArtistDocumentMetadataRequest) String() string {
 func (*UpdateArtistDocumentMetadataRequest) ProtoMessage() {}
 
 func (x *UpdateArtistDocumentMetadataRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_intra_v1_artist_proto_msgTypes[11]
+	mi := &file_api_intra_v1_artist_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -899,7 +823,7 @@ func (x *UpdateArtistDocumentMetadataRequest) ProtoReflect() protoreflect.Messag
 
 // Deprecated: Use UpdateArtistDocumentMetadataRequest.ProtoReflect.Descriptor instead.
 func (*UpdateArtistDocumentMetadataRequest) Descriptor() ([]byte, []int) {
-	return file_api_intra_v1_artist_proto_rawDescGZIP(), []int{11}
+	return file_api_intra_v1_artist_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *UpdateArtistDocumentMetadataRequest) GetArtistId() string {
@@ -949,7 +873,7 @@ type UpdateArtistDocumentMetadataResponse struct {
 
 func (x *UpdateArtistDocumentMetadataResponse) Reset() {
 	*x = UpdateArtistDocumentMetadataResponse{}
-	mi := &file_api_intra_v1_artist_proto_msgTypes[12]
+	mi := &file_api_intra_v1_artist_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -961,7 +885,7 @@ func (x *UpdateArtistDocumentMetadataResponse) String() string {
 func (*UpdateArtistDocumentMetadataResponse) ProtoMessage() {}
 
 func (x *UpdateArtistDocumentMetadataResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_intra_v1_artist_proto_msgTypes[12]
+	mi := &file_api_intra_v1_artist_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -974,7 +898,7 @@ func (x *UpdateArtistDocumentMetadataResponse) ProtoReflect() protoreflect.Messa
 
 // Deprecated: Use UpdateArtistDocumentMetadataResponse.ProtoReflect.Descriptor instead.
 func (*UpdateArtistDocumentMetadataResponse) Descriptor() ([]byte, []int) {
-	return file_api_intra_v1_artist_proto_rawDescGZIP(), []int{12}
+	return file_api_intra_v1_artist_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *UpdateArtistDocumentMetadataResponse) GetDocumentRevision() string {
@@ -1009,15 +933,13 @@ var File_api_intra_v1_artist_proto protoreflect.FileDescriptor
 
 const file_api_intra_v1_artist_proto_rawDesc = "" +
 	"\n" +
-	"\x19api/intra/v1/artist.proto\x12\fapi.intra.v1\x1a\"api/content/v1/block_content.proto\x1a api/intra/v1/collaboration.proto\x1a\x16api/manage/v1/ai.proto\"\xc9\x03\n" +
+	"\x19api/intra/v1/artist.proto\x12\fapi.intra.v1\x1a\"api/content/v1/block_content.proto\x1a api/intra/v1/collaboration.proto\x1a\x16api/manage/v1/ai.proto\"\xe8\x02\n" +
 	"\x16ArtistDocumentMetadata\x12 \n" +
 	"\treal_name\x18\x01 \x01(\tH\x00R\brealName\x88\x01\x01\x12&\n" +
 	"\fcountry_code\x18\x02 \x01(\tH\x01R\vcountryCode\x88\x01\x01\x12\x1d\n" +
 	"\awebsite\x18\x03 \x01(\tH\x02R\awebsite\x88\x01\x01\x12X\n" +
 	"\fsocial_links\x18\x04 \x03(\v25.api.intra.v1.ArtistDocumentMetadata.SocialLinksEntryR\vsocialLinks\x12\x17\n" +
-	"\x04slug\x18\x05 \x01(\tH\x03R\x04slug\x88\x01\x01\x12\x1b\n" +
-	"\tlabel_ids\x18\x06 \x03(\tR\blabelIds\x12-\n" +
-	"\x10parent_artist_id\x18\a \x01(\tH\x04R\x0eparentArtistId\x88\x01\x01\x1a>\n" +
+	"\x04slug\x18\x05 \x01(\tH\x03R\x04slug\x88\x01\x01\x1a>\n" +
 	"\x10SocialLinksEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
 	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01B\f\n" +
@@ -1026,23 +948,18 @@ const file_api_intra_v1_artist_proto_rawDesc = "" +
 	"\r_country_codeB\n" +
 	"\n" +
 	"\b_websiteB\a\n" +
-	"\x05_slugB\x13\n" +
-	"\x11_parent_artist_id\"\x9d\x01\n" +
+	"\x05_slug\"\x9d\x01\n" +
 	"\x16ArtistSocialLinksValue\x12H\n" +
 	"\x06values\x18\x01 \x03(\v20.api.intra.v1.ArtistSocialLinksValue.ValuesEntryR\x06values\x1a9\n" +
 	"\vValuesEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"-\n" +
-	"\x13ArtistLabelIdsValue\x12\x16\n" +
-	"\x06values\x18\x01 \x03(\tR\x06values\"\xfd\x03\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"\xed\x02\n" +
 	"\x1cArtistDocumentMetadataUpdate\x12A\n" +
 	"\treal_name\x18\x01 \x01(\v2$.api.intra.v1.NullableStringMutationR\brealName\x12G\n" +
 	"\fcountry_code\x18\x02 \x01(\v2$.api.intra.v1.NullableStringMutationR\vcountryCode\x12>\n" +
 	"\awebsite\x18\x03 \x01(\v2$.api.intra.v1.NullableStringMutationR\awebsite\x12G\n" +
 	"\fsocial_links\x18\x04 \x01(\v2$.api.intra.v1.ArtistSocialLinksValueR\vsocialLinks\x128\n" +
-	"\x04slug\x18\x05 \x01(\v2$.api.intra.v1.NullableStringMutationR\x04slug\x12>\n" +
-	"\tlabel_ids\x18\x06 \x01(\v2!.api.intra.v1.ArtistLabelIdsValueR\blabelIds\x12N\n" +
-	"\x10parent_artist_id\x18\a \x01(\v2$.api.intra.v1.NullableStringMutationR\x0eparentArtistId\"S\n" +
+	"\x04slug\x18\x05 \x01(\v2$.api.intra.v1.NullableStringMutationR\x04slug\"S\n" +
 	"\x14ArtistLocaleMetadata\x12\x16\n" +
 	"\x06locale\x18\x01 \x01(\tR\x06locale\x12\x19\n" +
 	"\x05title\x18\x02 \x01(\tH\x00R\x05title\x88\x01\x01B\b\n" +
@@ -1126,61 +1043,58 @@ func file_api_intra_v1_artist_proto_rawDescGZIP() []byte {
 	return file_api_intra_v1_artist_proto_rawDescData
 }
 
-var file_api_intra_v1_artist_proto_msgTypes = make([]protoimpl.MessageInfo, 15)
+var file_api_intra_v1_artist_proto_msgTypes = make([]protoimpl.MessageInfo, 14)
 var file_api_intra_v1_artist_proto_goTypes = []any{
 	(*ArtistDocumentMetadata)(nil),               // 0: api.intra.v1.ArtistDocumentMetadata
 	(*ArtistSocialLinksValue)(nil),               // 1: api.intra.v1.ArtistSocialLinksValue
-	(*ArtistLabelIdsValue)(nil),                  // 2: api.intra.v1.ArtistLabelIdsValue
-	(*ArtistDocumentMetadataUpdate)(nil),         // 3: api.intra.v1.ArtistDocumentMetadataUpdate
-	(*ArtistLocaleMetadata)(nil),                 // 4: api.intra.v1.ArtistLocaleMetadata
-	(*LoadArtistBlockDocumentRequest)(nil),       // 5: api.intra.v1.LoadArtistBlockDocumentRequest
-	(*LoadArtistBlockDocumentResponse)(nil),      // 6: api.intra.v1.LoadArtistBlockDocumentResponse
-	(*ApplyArtistBlockBatchRequest)(nil),         // 7: api.intra.v1.ApplyArtistBlockBatchRequest
-	(*ApplyArtistBlockBatchResponse)(nil),        // 8: api.intra.v1.ApplyArtistBlockBatchResponse
-	(*UpdateArtistLocaleMetadataRequest)(nil),    // 9: api.intra.v1.UpdateArtistLocaleMetadataRequest
-	(*UpdateArtistLocaleMetadataResponse)(nil),   // 10: api.intra.v1.UpdateArtistLocaleMetadataResponse
-	(*UpdateArtistDocumentMetadataRequest)(nil),  // 11: api.intra.v1.UpdateArtistDocumentMetadataRequest
-	(*UpdateArtistDocumentMetadataResponse)(nil), // 12: api.intra.v1.UpdateArtistDocumentMetadataResponse
-	nil,                                   // 13: api.intra.v1.ArtistDocumentMetadata.SocialLinksEntry
-	nil,                                   // 14: api.intra.v1.ArtistSocialLinksValue.ValuesEntry
-	(*NullableStringMutation)(nil),        // 15: api.intra.v1.NullableStringMutation
-	(*CollaborationPrincipal)(nil),        // 16: api.intra.v1.CollaborationPrincipal
-	(*v1.LocalizedRichTextDocument)(nil),  // 17: api.content.v1.LocalizedRichTextDocument
-	(*v11.AIDocumentFieldTarget)(nil),     // 18: api.manage.v1.AIDocumentFieldTarget
-	(*v1.RichTextBlockMutationBatch)(nil), // 19: api.content.v1.RichTextBlockMutationBatch
+	(*ArtistDocumentMetadataUpdate)(nil),         // 2: api.intra.v1.ArtistDocumentMetadataUpdate
+	(*ArtistLocaleMetadata)(nil),                 // 3: api.intra.v1.ArtistLocaleMetadata
+	(*LoadArtistBlockDocumentRequest)(nil),       // 4: api.intra.v1.LoadArtistBlockDocumentRequest
+	(*LoadArtistBlockDocumentResponse)(nil),      // 5: api.intra.v1.LoadArtistBlockDocumentResponse
+	(*ApplyArtistBlockBatchRequest)(nil),         // 6: api.intra.v1.ApplyArtistBlockBatchRequest
+	(*ApplyArtistBlockBatchResponse)(nil),        // 7: api.intra.v1.ApplyArtistBlockBatchResponse
+	(*UpdateArtistLocaleMetadataRequest)(nil),    // 8: api.intra.v1.UpdateArtistLocaleMetadataRequest
+	(*UpdateArtistLocaleMetadataResponse)(nil),   // 9: api.intra.v1.UpdateArtistLocaleMetadataResponse
+	(*UpdateArtistDocumentMetadataRequest)(nil),  // 10: api.intra.v1.UpdateArtistDocumentMetadataRequest
+	(*UpdateArtistDocumentMetadataResponse)(nil), // 11: api.intra.v1.UpdateArtistDocumentMetadataResponse
+	nil,                                   // 12: api.intra.v1.ArtistDocumentMetadata.SocialLinksEntry
+	nil,                                   // 13: api.intra.v1.ArtistSocialLinksValue.ValuesEntry
+	(*NullableStringMutation)(nil),        // 14: api.intra.v1.NullableStringMutation
+	(*CollaborationPrincipal)(nil),        // 15: api.intra.v1.CollaborationPrincipal
+	(*v1.LocalizedRichTextDocument)(nil),  // 16: api.content.v1.LocalizedRichTextDocument
+	(*v11.AIDocumentFieldTarget)(nil),     // 17: api.manage.v1.AIDocumentFieldTarget
+	(*v1.RichTextBlockMutationBatch)(nil), // 18: api.content.v1.RichTextBlockMutationBatch
 }
 var file_api_intra_v1_artist_proto_depIdxs = []int32{
-	13, // 0: api.intra.v1.ArtistDocumentMetadata.social_links:type_name -> api.intra.v1.ArtistDocumentMetadata.SocialLinksEntry
-	14, // 1: api.intra.v1.ArtistSocialLinksValue.values:type_name -> api.intra.v1.ArtistSocialLinksValue.ValuesEntry
-	15, // 2: api.intra.v1.ArtistDocumentMetadataUpdate.real_name:type_name -> api.intra.v1.NullableStringMutation
-	15, // 3: api.intra.v1.ArtistDocumentMetadataUpdate.country_code:type_name -> api.intra.v1.NullableStringMutation
-	15, // 4: api.intra.v1.ArtistDocumentMetadataUpdate.website:type_name -> api.intra.v1.NullableStringMutation
+	12, // 0: api.intra.v1.ArtistDocumentMetadata.social_links:type_name -> api.intra.v1.ArtistDocumentMetadata.SocialLinksEntry
+	13, // 1: api.intra.v1.ArtistSocialLinksValue.values:type_name -> api.intra.v1.ArtistSocialLinksValue.ValuesEntry
+	14, // 2: api.intra.v1.ArtistDocumentMetadataUpdate.real_name:type_name -> api.intra.v1.NullableStringMutation
+	14, // 3: api.intra.v1.ArtistDocumentMetadataUpdate.country_code:type_name -> api.intra.v1.NullableStringMutation
+	14, // 4: api.intra.v1.ArtistDocumentMetadataUpdate.website:type_name -> api.intra.v1.NullableStringMutation
 	1,  // 5: api.intra.v1.ArtistDocumentMetadataUpdate.social_links:type_name -> api.intra.v1.ArtistSocialLinksValue
-	15, // 6: api.intra.v1.ArtistDocumentMetadataUpdate.slug:type_name -> api.intra.v1.NullableStringMutation
-	2,  // 7: api.intra.v1.ArtistDocumentMetadataUpdate.label_ids:type_name -> api.intra.v1.ArtistLabelIdsValue
-	15, // 8: api.intra.v1.ArtistDocumentMetadataUpdate.parent_artist_id:type_name -> api.intra.v1.NullableStringMutation
-	16, // 9: api.intra.v1.LoadArtistBlockDocumentRequest.principal:type_name -> api.intra.v1.CollaborationPrincipal
-	17, // 10: api.intra.v1.LoadArtistBlockDocumentResponse.document:type_name -> api.content.v1.LocalizedRichTextDocument
-	0,  // 11: api.intra.v1.LoadArtistBlockDocumentResponse.metadata:type_name -> api.intra.v1.ArtistDocumentMetadata
-	4,  // 12: api.intra.v1.LoadArtistBlockDocumentResponse.source_metadata:type_name -> api.intra.v1.ArtistLocaleMetadata
-	4,  // 13: api.intra.v1.LoadArtistBlockDocumentResponse.locale_metadata:type_name -> api.intra.v1.ArtistLocaleMetadata
-	18, // 14: api.intra.v1.LoadArtistBlockDocumentResponse.present_locale_values:type_name -> api.manage.v1.AIDocumentFieldTarget
-	19, // 15: api.intra.v1.ApplyArtistBlockBatchRequest.batch:type_name -> api.content.v1.RichTextBlockMutationBatch
-	18, // 16: api.intra.v1.ApplyArtistBlockBatchRequest.affected_locale_values:type_name -> api.manage.v1.AIDocumentFieldTarget
-	3,  // 17: api.intra.v1.UpdateArtistDocumentMetadataRequest.update:type_name -> api.intra.v1.ArtistDocumentMetadataUpdate
-	5,  // 18: api.intra.v1.InternalArtistService.LoadArtistBlockDocument:input_type -> api.intra.v1.LoadArtistBlockDocumentRequest
-	7,  // 19: api.intra.v1.InternalArtistService.ApplyArtistBlockBatch:input_type -> api.intra.v1.ApplyArtistBlockBatchRequest
-	9,  // 20: api.intra.v1.InternalArtistService.UpdateArtistLocaleMetadata:input_type -> api.intra.v1.UpdateArtistLocaleMetadataRequest
-	11, // 21: api.intra.v1.InternalArtistService.UpdateArtistDocumentMetadata:input_type -> api.intra.v1.UpdateArtistDocumentMetadataRequest
-	6,  // 22: api.intra.v1.InternalArtistService.LoadArtistBlockDocument:output_type -> api.intra.v1.LoadArtistBlockDocumentResponse
-	8,  // 23: api.intra.v1.InternalArtistService.ApplyArtistBlockBatch:output_type -> api.intra.v1.ApplyArtistBlockBatchResponse
-	10, // 24: api.intra.v1.InternalArtistService.UpdateArtistLocaleMetadata:output_type -> api.intra.v1.UpdateArtistLocaleMetadataResponse
-	12, // 25: api.intra.v1.InternalArtistService.UpdateArtistDocumentMetadata:output_type -> api.intra.v1.UpdateArtistDocumentMetadataResponse
-	22, // [22:26] is the sub-list for method output_type
-	18, // [18:22] is the sub-list for method input_type
-	18, // [18:18] is the sub-list for extension type_name
-	18, // [18:18] is the sub-list for extension extendee
-	0,  // [0:18] is the sub-list for field type_name
+	14, // 6: api.intra.v1.ArtistDocumentMetadataUpdate.slug:type_name -> api.intra.v1.NullableStringMutation
+	15, // 7: api.intra.v1.LoadArtistBlockDocumentRequest.principal:type_name -> api.intra.v1.CollaborationPrincipal
+	16, // 8: api.intra.v1.LoadArtistBlockDocumentResponse.document:type_name -> api.content.v1.LocalizedRichTextDocument
+	0,  // 9: api.intra.v1.LoadArtistBlockDocumentResponse.metadata:type_name -> api.intra.v1.ArtistDocumentMetadata
+	3,  // 10: api.intra.v1.LoadArtistBlockDocumentResponse.source_metadata:type_name -> api.intra.v1.ArtistLocaleMetadata
+	3,  // 11: api.intra.v1.LoadArtistBlockDocumentResponse.locale_metadata:type_name -> api.intra.v1.ArtistLocaleMetadata
+	17, // 12: api.intra.v1.LoadArtistBlockDocumentResponse.present_locale_values:type_name -> api.manage.v1.AIDocumentFieldTarget
+	18, // 13: api.intra.v1.ApplyArtistBlockBatchRequest.batch:type_name -> api.content.v1.RichTextBlockMutationBatch
+	17, // 14: api.intra.v1.ApplyArtistBlockBatchRequest.affected_locale_values:type_name -> api.manage.v1.AIDocumentFieldTarget
+	2,  // 15: api.intra.v1.UpdateArtistDocumentMetadataRequest.update:type_name -> api.intra.v1.ArtistDocumentMetadataUpdate
+	4,  // 16: api.intra.v1.InternalArtistService.LoadArtistBlockDocument:input_type -> api.intra.v1.LoadArtistBlockDocumentRequest
+	6,  // 17: api.intra.v1.InternalArtistService.ApplyArtistBlockBatch:input_type -> api.intra.v1.ApplyArtistBlockBatchRequest
+	8,  // 18: api.intra.v1.InternalArtistService.UpdateArtistLocaleMetadata:input_type -> api.intra.v1.UpdateArtistLocaleMetadataRequest
+	10, // 19: api.intra.v1.InternalArtistService.UpdateArtistDocumentMetadata:input_type -> api.intra.v1.UpdateArtistDocumentMetadataRequest
+	5,  // 20: api.intra.v1.InternalArtistService.LoadArtistBlockDocument:output_type -> api.intra.v1.LoadArtistBlockDocumentResponse
+	7,  // 21: api.intra.v1.InternalArtistService.ApplyArtistBlockBatch:output_type -> api.intra.v1.ApplyArtistBlockBatchResponse
+	9,  // 22: api.intra.v1.InternalArtistService.UpdateArtistLocaleMetadata:output_type -> api.intra.v1.UpdateArtistLocaleMetadataResponse
+	11, // 23: api.intra.v1.InternalArtistService.UpdateArtistDocumentMetadata:output_type -> api.intra.v1.UpdateArtistDocumentMetadataResponse
+	20, // [20:24] is the sub-list for method output_type
+	16, // [16:20] is the sub-list for method input_type
+	16, // [16:16] is the sub-list for extension type_name
+	16, // [16:16] is the sub-list for extension extendee
+	0,  // [0:16] is the sub-list for field type_name
 }
 
 func init() { file_api_intra_v1_artist_proto_init() }
@@ -1190,19 +1104,19 @@ func file_api_intra_v1_artist_proto_init() {
 	}
 	file_api_intra_v1_collaboration_proto_init()
 	file_api_intra_v1_artist_proto_msgTypes[0].OneofWrappers = []any{}
-	file_api_intra_v1_artist_proto_msgTypes[4].OneofWrappers = []any{}
+	file_api_intra_v1_artist_proto_msgTypes[3].OneofWrappers = []any{}
+	file_api_intra_v1_artist_proto_msgTypes[5].OneofWrappers = []any{}
 	file_api_intra_v1_artist_proto_msgTypes[6].OneofWrappers = []any{}
 	file_api_intra_v1_artist_proto_msgTypes[7].OneofWrappers = []any{}
 	file_api_intra_v1_artist_proto_msgTypes[8].OneofWrappers = []any{}
 	file_api_intra_v1_artist_proto_msgTypes[9].OneofWrappers = []any{}
-	file_api_intra_v1_artist_proto_msgTypes[10].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_api_intra_v1_artist_proto_rawDesc), len(file_api_intra_v1_artist_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   15,
+			NumMessages:   14,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

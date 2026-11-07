@@ -3,7 +3,6 @@ package contracttest_test
 import (
 	"testing"
 
-	intrav1 "github.com/echovisionlab/geul-event-contracts/gen/api/intra/v1"
 	managev1 "github.com/echovisionlab/geul-event-contracts/gen/api/manage/v1"
 	openv1 "github.com/echovisionlab/geul-event-contracts/gen/api/open/v1"
 	policyv1 "github.com/echovisionlab/geul-event-contracts/gen/api/policy/v1"
@@ -40,8 +39,10 @@ func TestArtistContractOwnsGalleryParticipantsAndDeletePreview(t *testing.T) {
 	requireMessageField(t, setImages, "expected_revision", 3, protoreflect.StringKind, "")
 	deleteRequest := (&managev1.DeleteArtistRequest{}).ProtoReflect().Descriptor()
 	requireMessageField(t, deleteRequest, "expected_revision", 2, protoreflect.StringKind, "")
-	artistMetadata := (&intrav1.ArtistDocumentMetadataUpdate{}).ProtoReflect().Descriptor()
-	requireMessageField(t, artistMetadata, "parent_artist_id", 7, protoreflect.MessageKind, "api.intra.v1.NullableStringMutation")
+	setParent := (&managev1.SetArtistParentRequest{}).ProtoReflect().Descriptor()
+	requireMessageField(t, setParent, "parent_artist_id", 2, protoreflect.StringKind, "")
+	setLabels := (&managev1.SetArtistLabelsRequest{}).ProtoReflect().Descriptor()
+	requireMessageField(t, setLabels, "label_ids", 2, protoreflect.StringKind, "")
 
 	publicArtist := (&openv1.Artist{}).ProtoReflect().Descriptor()
 	requireMessageField(t, publicArtist, "images", 20, protoreflect.MessageKind, "api.open.v1.ArtistImage")
