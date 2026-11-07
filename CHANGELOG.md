@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.18.0](https://github.com/echovisionlab/geul-event-contracts/compare/v0.17.0...v0.18.0) (2026-11-07)
+
+
+### Features
+
+* **policy:** look up the Labels a caller may view ([#63](https://github.com/echovisionlab/geul-event-contracts/issues/63)) ([b60d3d4](https://github.com/echovisionlab/geul-event-contracts/commit/b60d3d45211598f3bfaadf34fa0919b7a7d92052))
+
 ## [0.17.0](https://github.com/echovisionlab/geul-event-contracts/compare/v0.16.0...v0.17.0) (2026-11-05)
 
 
