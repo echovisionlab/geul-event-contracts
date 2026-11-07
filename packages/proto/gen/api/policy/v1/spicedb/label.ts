@@ -9,6 +9,7 @@ import {
   createRelationshipMutation,
   createRelationshipSnapshotPlan,
   createResource,
+  createResourceLookup,
   platformRelationshipSubject,
   RelationshipOperation,
   resourceRelationshipSubject,
@@ -19,10 +20,12 @@ import type {
   RelationshipMutation,
   RelationshipSnapshotPlan,
   Resource,
+  ResourceLookup,
 } from "./internal.ts";
 
 export const Label = Object.freeze({
   Resource: (id: string): Resource => createResource("label", id),
+  LookupView: (): ResourceLookup => createResourceLookup("label", "view"),
   Edit: (id: string): Can => createCan("label", id, "edit", "edit"),
   View: (id: string): Can => createCan("label", id, "view", "view"),
   Delete: (id: string): Can => createCan("label", id, "delete", "delete"),
