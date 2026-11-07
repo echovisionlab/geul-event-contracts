@@ -15,6 +15,11 @@ func (labelDomain) Resource(id string) (Resource, error) {
 	return newResource("label", id)
 }
 
+// LookupView describes an object-ID-less label.view LookupResources query.
+func (labelDomain) LookupView() ResourceLookup {
+	return newResourceLookup("label", "view")
+}
+
 // Edit describes the edit business action on one label.
 func (labelDomain) Edit(id string) (Can, error) {
 	return newCan("label", id, "edit", "edit")

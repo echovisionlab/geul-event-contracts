@@ -14,6 +14,8 @@ actions:
 action_aliases:
   label:
     remove_owner: platform_admin
+lookup_permissions:
+  label: [view]
 platform_actions:
   label:
     create: is_admin

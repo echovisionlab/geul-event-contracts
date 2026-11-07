@@ -148,6 +148,7 @@ func TestGeneratedSpiceDBTypedSurface(t *testing.T) {
 		return policyv1.Artist.DeleteParent(resourceID, "parent-subject-id")
 	})
 	assertResource(t, "Label.Resource", "label", resourceID, func() (policyv1.Resource, error) { return policyv1.Label.Resource(resourceID) })
+	assertResourceLookup(t, "Label.LookupView", "label", "view", policyv1.Label.LookupView())
 	assertCan(t, "Label.Edit", "label", resourceID, "edit", "edit", func() (policyv1.Can, error) { return policyv1.Label.Edit(resourceID) })
 	assertCan(t, "Label.View", "label", resourceID, "view", "view", func() (policyv1.Can, error) { return policyv1.Label.View(resourceID) })
 	assertCan(t, "Label.Delete", "label", resourceID, "delete", "delete", func() (policyv1.Can, error) { return policyv1.Label.Delete(resourceID) })
