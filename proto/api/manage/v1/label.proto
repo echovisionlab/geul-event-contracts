@@ -83,6 +83,17 @@ message ListLabelsResponse {
   api.common.v1.PaginationResponse pagination = 2;
 }
 
+message ListMyLabelsRequest {
+  api.common.v1.PaginationRequest pagination = 1;
+  repeated api.common.v1.FilterSpec filters = 2;
+  repeated api.common.v1.SortSpec sorts = 3;
+}
+
+message ListMyLabelsResponse {
+  repeated Label labels = 1;
+  api.common.v1.PaginationResponse pagination = 2;
+}
+
 message ListLabelsAdminRequest {
   api.common.v1.PaginationRequest pagination = 1;
   repeated api.common.v1.FilterSpec filters = 2;
@@ -229,6 +240,11 @@ service LabelService {
     option (api.policy.v1.access) = {role: USER};
   }
   rpc ListLabels(ListLabelsRequest) returns (ListLabelsResponse) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+
+  // Labels the caller may manage, drafts included
+  rpc ListMyLabels(ListMyLabelsRequest) returns (ListMyLabelsResponse) {
     option (api.policy.v1.access) = {role: USER};
   }
 

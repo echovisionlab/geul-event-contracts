@@ -18,6 +18,7 @@ enum MySection {
   MY_SECTION_WORKS = 6;
   MY_SECTION_ARTISTS = 7;
   MY_SECTION_FORMS = 8;
+  MY_SECTION_LABELS = 9;
 }
 
 // Canonical authenticated profile-detail projection. GetMyProfile exposes it

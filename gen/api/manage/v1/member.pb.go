@@ -36,6 +36,7 @@ const (
 	MySection_MY_SECTION_WORKS       MySection = 6
 	MySection_MY_SECTION_ARTISTS     MySection = 7
 	MySection_MY_SECTION_FORMS       MySection = 8
+	MySection_MY_SECTION_LABELS      MySection = 9
 )
 
 // Enum value maps for MySection.
@@ -50,6 +51,7 @@ var (
 		6: "MY_SECTION_WORKS",
 		7: "MY_SECTION_ARTISTS",
 		8: "MY_SECTION_FORMS",
+		9: "MY_SECTION_LABELS",
 	}
 	MySection_value = map[string]int32{
 		"MY_SECTION_UNSPECIFIED": 0,
@@ -61,6 +63,7 @@ var (
 		"MY_SECTION_WORKS":       6,
 		"MY_SECTION_ARTISTS":     7,
 		"MY_SECTION_FORMS":       8,
+		"MY_SECTION_LABELS":      9,
 	}
 )
 
@@ -2383,7 +2386,7 @@ const file_api_manage_v1_member_proto_rawDesc = "" +
 	"\x02id\x18\x01 \x01(\tR\x02id\"L\n" +
 	"\x14SetMemberTagsRequest\x12\x1b\n" +
 	"\tmember_id\x18\x01 \x01(\tR\bmemberId\x12\x17\n" +
-	"\atag_ids\x18\x02 \x03(\tR\x06tagIds*\xe2\x01\n" +
+	"\atag_ids\x18\x02 \x03(\tR\x06tagIds*\xf9\x01\n" +
 	"\tMySection\x12\x1a\n" +
 	"\x16MY_SECTION_UNSPECIFIED\x10\x00\x12\x16\n" +
 	"\x12MY_SECTION_PROFILE\x10\x01\x12\x17\n" +
@@ -2393,7 +2396,8 @@ const file_api_manage_v1_member_proto_rawDesc = "" +
 	"\x11MY_SECTION_SERIES\x10\x05\x12\x14\n" +
 	"\x10MY_SECTION_WORKS\x10\x06\x12\x16\n" +
 	"\x12MY_SECTION_ARTISTS\x10\a\x12\x14\n" +
-	"\x10MY_SECTION_FORMS\x10\b2\xdc\x10\n" +
+	"\x10MY_SECTION_FORMS\x10\b\x12\x15\n" +
+	"\x11MY_SECTION_LABELS\x10\t2\xdc\x10\n" +
 	"\rMemberService\x12n\n" +
 	"\x11GetCurrentSession\x12'.api.manage.v1.GetCurrentSessionRequest\x1a(.api.manage.v1.GetCurrentSessionResponse\"\x06\xca\xf3\x18\x02\b\x02\x12_\n" +
 	"\fGetMyProfile\x12\".api.manage.v1.GetMyProfileRequest\x1a#.api.manage.v1.GetMyProfileResponse\"\x06\xca\xf3\x18\x02\b\x02\x12b\n" +
