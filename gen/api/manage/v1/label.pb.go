@@ -1693,6 +1693,61 @@ func (x *SetLabelParticipantRequest) GetRole() LabelParticipantRole {
 	return LabelParticipantRole_LABEL_PARTICIPANT_ROLE_UNSPECIFIED
 }
 
+// SetLabelParentRequest moves the Label under parent_label_id, or to the top
+// when it is unset. The caller must manage the participants of every Label it
+// touches: the Label, its current parent and the new one.
+type SetLabelParentRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	LabelId       string                 `protobuf:"bytes,1,opt,name=label_id,json=labelId,proto3" json:"label_id,omitempty"`
+	ParentLabelId *string                `protobuf:"bytes,2,opt,name=parent_label_id,json=parentLabelId,proto3,oneof" json:"parent_label_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SetLabelParentRequest) Reset() {
+	*x = SetLabelParentRequest{}
+	mi := &file_api_manage_v1_label_proto_msgTypes[23]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SetLabelParentRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SetLabelParentRequest) ProtoMessage() {}
+
+func (x *SetLabelParentRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_api_manage_v1_label_proto_msgTypes[23]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SetLabelParentRequest.ProtoReflect.Descriptor instead.
+func (*SetLabelParentRequest) Descriptor() ([]byte, []int) {
+	return file_api_manage_v1_label_proto_rawDescGZIP(), []int{23}
+}
+
+func (x *SetLabelParentRequest) GetLabelId() string {
+	if x != nil {
+		return x.LabelId
+	}
+	return ""
+}
+
+func (x *SetLabelParentRequest) GetParentLabelId() string {
+	if x != nil && x.ParentLabelId != nil {
+		return *x.ParentLabelId
+	}
+	return ""
+}
+
 type RemoveLabelParticipantRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	LabelId       string                 `protobuf:"bytes,1,opt,name=label_id,json=labelId,proto3" json:"label_id,omitempty"`
@@ -1703,7 +1758,7 @@ type RemoveLabelParticipantRequest struct {
 
 func (x *RemoveLabelParticipantRequest) Reset() {
 	*x = RemoveLabelParticipantRequest{}
-	mi := &file_api_manage_v1_label_proto_msgTypes[23]
+	mi := &file_api_manage_v1_label_proto_msgTypes[24]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1715,7 +1770,7 @@ func (x *RemoveLabelParticipantRequest) String() string {
 func (*RemoveLabelParticipantRequest) ProtoMessage() {}
 
 func (x *RemoveLabelParticipantRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_label_proto_msgTypes[23]
+	mi := &file_api_manage_v1_label_proto_msgTypes[24]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1728,7 +1783,7 @@ func (x *RemoveLabelParticipantRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RemoveLabelParticipantRequest.ProtoReflect.Descriptor instead.
 func (*RemoveLabelParticipantRequest) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_label_proto_rawDescGZIP(), []int{23}
+	return file_api_manage_v1_label_proto_rawDescGZIP(), []int{24}
 }
 
 func (x *RemoveLabelParticipantRequest) GetLabelId() string {
@@ -1755,7 +1810,7 @@ type CheckLabelSlugAvailableRequest struct {
 
 func (x *CheckLabelSlugAvailableRequest) Reset() {
 	*x = CheckLabelSlugAvailableRequest{}
-	mi := &file_api_manage_v1_label_proto_msgTypes[24]
+	mi := &file_api_manage_v1_label_proto_msgTypes[25]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1767,7 +1822,7 @@ func (x *CheckLabelSlugAvailableRequest) String() string {
 func (*CheckLabelSlugAvailableRequest) ProtoMessage() {}
 
 func (x *CheckLabelSlugAvailableRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_label_proto_msgTypes[24]
+	mi := &file_api_manage_v1_label_proto_msgTypes[25]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1780,7 +1835,7 @@ func (x *CheckLabelSlugAvailableRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CheckLabelSlugAvailableRequest.ProtoReflect.Descriptor instead.
 func (*CheckLabelSlugAvailableRequest) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_label_proto_rawDescGZIP(), []int{24}
+	return file_api_manage_v1_label_proto_rawDescGZIP(), []int{25}
 }
 
 func (x *CheckLabelSlugAvailableRequest) GetSlug() string {
@@ -1806,7 +1861,7 @@ type CheckLabelSlugAvailableResponse struct {
 
 func (x *CheckLabelSlugAvailableResponse) Reset() {
 	*x = CheckLabelSlugAvailableResponse{}
-	mi := &file_api_manage_v1_label_proto_msgTypes[25]
+	mi := &file_api_manage_v1_label_proto_msgTypes[26]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1818,7 +1873,7 @@ func (x *CheckLabelSlugAvailableResponse) String() string {
 func (*CheckLabelSlugAvailableResponse) ProtoMessage() {}
 
 func (x *CheckLabelSlugAvailableResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_label_proto_msgTypes[25]
+	mi := &file_api_manage_v1_label_proto_msgTypes[26]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1831,7 +1886,7 @@ func (x *CheckLabelSlugAvailableResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CheckLabelSlugAvailableResponse.ProtoReflect.Descriptor instead.
 func (*CheckLabelSlugAvailableResponse) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_label_proto_rawDescGZIP(), []int{25}
+	return file_api_manage_v1_label_proto_rawDescGZIP(), []int{26}
 }
 
 func (x *CheckLabelSlugAvailableResponse) GetAvailable() bool {
@@ -1981,7 +2036,11 @@ const file_api_manage_v1_label_proto_rawDesc = "" +
 	"\x1aSetLabelParticipantRequest\x12\x19\n" +
 	"\blabel_id\x18\x01 \x01(\tR\alabelId\x12\x1b\n" +
 	"\tmember_id\x18\x02 \x01(\tR\bmemberId\x127\n" +
-	"\x04role\x18\x03 \x01(\x0e2#.api.manage.v1.LabelParticipantRoleR\x04role\"W\n" +
+	"\x04role\x18\x03 \x01(\x0e2#.api.manage.v1.LabelParticipantRoleR\x04role\"s\n" +
+	"\x15SetLabelParentRequest\x12\x19\n" +
+	"\blabel_id\x18\x01 \x01(\tR\alabelId\x12+\n" +
+	"\x0fparent_label_id\x18\x02 \x01(\tH\x00R\rparentLabelId\x88\x01\x01B\x12\n" +
+	"\x10_parent_label_id\"W\n" +
 	"\x1dRemoveLabelParticipantRequest\x12\x19\n" +
 	"\blabel_id\x18\x01 \x01(\tR\alabelId\x12\x1b\n" +
 	"\tmember_id\x18\x02 \x01(\tR\bmemberId\"x\n" +
@@ -2013,7 +2072,7 @@ const file_api_manage_v1_label_proto_rawDesc = "" +
 	"&LABEL_DELETION_IMPACT_KIND_CHILD_LABEL\x10\x01\x12%\n" +
 	"!LABEL_DELETION_IMPACT_KIND_ARTIST\x10\x02\x12,\n" +
 	"(LABEL_DELETION_IMPACT_KIND_PROGRAM_EVENT\x10\x03\x12&\n" +
-	"\"LABEL_DELETION_IMPACT_KIND_RELEASE\x10\x042\xe3\v\n" +
+	"\"LABEL_DELETION_IMPACT_KIND_RELEASE\x10\x042\xb9\f\n" +
 	"\fLabelService\x12q\n" +
 	"\x12GetLabelEditorData\x12(.api.manage.v1.GetLabelEditorDataRequest\x1a).api.manage.v1.GetLabelEditorDataResponse\"\x06\xca\xf3\x18\x02\b\x02\x12Y\n" +
 	"\n" +
@@ -2028,7 +2087,8 @@ const file_api_manage_v1_label_proto_rawDesc = "" +
 	"\x10DeleteLabelImage\x12&.api.manage.v1.DeleteLabelImageRequest\x1a$.api.manage.v1.OgAssetDeleteResponse\"\x06\xca\xf3\x18\x02\b\x02\x12z\n" +
 	"\x15ListLabelParticipants\x12+.api.manage.v1.ListLabelParticipantsRequest\x1a,.api.manage.v1.ListLabelParticipantsResponse\"\x06\xca\xf3\x18\x02\b\x02\x12i\n" +
 	"\x13SetLabelParticipant\x12).api.manage.v1.SetLabelParticipantRequest\x1a\x1f.api.manage.v1.LabelParticipant\"\x06\xca\xf3\x18\x02\b\x02\x12m\n" +
-	"\x16RemoveLabelParticipant\x12,.api.manage.v1.RemoveLabelParticipantRequest\x1a\x1d.api.manage.v1.DeleteResponse\"\x06\xca\xf3\x18\x02\b\x02\x12\x80\x01\n" +
+	"\x16RemoveLabelParticipant\x12,.api.manage.v1.RemoveLabelParticipantRequest\x1a\x1d.api.manage.v1.DeleteResponse\"\x06\xca\xf3\x18\x02\b\x02\x12T\n" +
+	"\x0eSetLabelParent\x12$.api.manage.v1.SetLabelParentRequest\x1a\x14.api.manage.v1.Label\"\x06\xca\xf3\x18\x02\b\x02\x12\x80\x01\n" +
 	"\x17CheckLabelSlugAvailable\x12-.api.manage.v1.CheckLabelSlugAvailableRequest\x1a..api.manage.v1.CheckLabelSlugAvailableResponse\"\x06\xca\xf3\x18\x02\b\x02B\xbf\x01\n" +
 	"\x11com.api.manage.v1B\n" +
 	"LabelProtoP\x01ZHgithub.com/echovisionlab/geul-event-contracts/gen/api/manage/v1;managev1\xa2\x02\x03AMX\xaa\x02\rApi.Manage.V1\xca\x02\rApi\\Manage\\V1\xe2\x02\x19Api\\Manage\\V1\\GPBMetadata\xea\x02\x0fApi::Manage::V1b\x06proto3"
@@ -2046,7 +2106,7 @@ func file_api_manage_v1_label_proto_rawDescGZIP() []byte {
 }
 
 var file_api_manage_v1_label_proto_enumTypes = make([]protoimpl.EnumInfo, 4)
-var file_api_manage_v1_label_proto_msgTypes = make([]protoimpl.MessageInfo, 28)
+var file_api_manage_v1_label_proto_msgTypes = make([]protoimpl.MessageInfo, 29)
 var file_api_manage_v1_label_proto_goTypes = []any{
 	(LabelStatus)(0),                        // 0: api.manage.v1.LabelStatus
 	(LabelParticipantRole)(0),               // 1: api.manage.v1.LabelParticipantRole
@@ -2075,59 +2135,60 @@ var file_api_manage_v1_label_proto_goTypes = []any{
 	(*ListLabelParticipantsRequest)(nil),    // 24: api.manage.v1.ListLabelParticipantsRequest
 	(*ListLabelParticipantsResponse)(nil),   // 25: api.manage.v1.ListLabelParticipantsResponse
 	(*SetLabelParticipantRequest)(nil),      // 26: api.manage.v1.SetLabelParticipantRequest
-	(*RemoveLabelParticipantRequest)(nil),   // 27: api.manage.v1.RemoveLabelParticipantRequest
-	(*CheckLabelSlugAvailableRequest)(nil),  // 28: api.manage.v1.CheckLabelSlugAvailableRequest
-	(*CheckLabelSlugAvailableResponse)(nil), // 29: api.manage.v1.CheckLabelSlugAvailableResponse
-	nil,                                     // 30: api.manage.v1.Label.SocialLinksEntry
-	nil,                                     // 31: api.manage.v1.CreateLabelRequest.SocialLinksEntry
-	(*v1.RichTextDocument)(nil),             // 32: api.content.v1.RichTextDocument
-	(*timestamppb.Timestamp)(nil),           // 33: google.protobuf.Timestamp
-	(*v11.AssetRef)(nil),                    // 34: api.common.v1.AssetRef
-	(*v11.PaginationRequest)(nil),           // 35: api.common.v1.PaginationRequest
-	(*v11.FilterSpec)(nil),                  // 36: api.common.v1.FilterSpec
-	(*v11.SortSpec)(nil),                    // 37: api.common.v1.SortSpec
-	(*v11.PaginationResponse)(nil),          // 38: api.common.v1.PaginationResponse
-	(ThemeAssetVariant)(0),                  // 39: api.manage.v1.ThemeAssetVariant
-	(*v11.MemberSummary)(nil),               // 40: api.common.v1.MemberSummary
-	(*DeleteResponse)(nil),                  // 41: api.manage.v1.DeleteResponse
-	(*OgAssetDeleteResponse)(nil),           // 42: api.manage.v1.OgAssetDeleteResponse
+	(*SetLabelParentRequest)(nil),           // 27: api.manage.v1.SetLabelParentRequest
+	(*RemoveLabelParticipantRequest)(nil),   // 28: api.manage.v1.RemoveLabelParticipantRequest
+	(*CheckLabelSlugAvailableRequest)(nil),  // 29: api.manage.v1.CheckLabelSlugAvailableRequest
+	(*CheckLabelSlugAvailableResponse)(nil), // 30: api.manage.v1.CheckLabelSlugAvailableResponse
+	nil,                                     // 31: api.manage.v1.Label.SocialLinksEntry
+	nil,                                     // 32: api.manage.v1.CreateLabelRequest.SocialLinksEntry
+	(*v1.RichTextDocument)(nil),             // 33: api.content.v1.RichTextDocument
+	(*timestamppb.Timestamp)(nil),           // 34: google.protobuf.Timestamp
+	(*v11.AssetRef)(nil),                    // 35: api.common.v1.AssetRef
+	(*v11.PaginationRequest)(nil),           // 36: api.common.v1.PaginationRequest
+	(*v11.FilterSpec)(nil),                  // 37: api.common.v1.FilterSpec
+	(*v11.SortSpec)(nil),                    // 38: api.common.v1.SortSpec
+	(*v11.PaginationResponse)(nil),          // 39: api.common.v1.PaginationResponse
+	(ThemeAssetVariant)(0),                  // 40: api.manage.v1.ThemeAssetVariant
+	(*v11.MemberSummary)(nil),               // 41: api.common.v1.MemberSummary
+	(*DeleteResponse)(nil),                  // 42: api.manage.v1.DeleteResponse
+	(*OgAssetDeleteResponse)(nil),           // 43: api.manage.v1.OgAssetDeleteResponse
 }
 var file_api_manage_v1_label_proto_depIdxs = []int32{
-	32, // 0: api.manage.v1.Label.document:type_name -> api.content.v1.RichTextDocument
-	30, // 1: api.manage.v1.Label.social_links:type_name -> api.manage.v1.Label.SocialLinksEntry
-	33, // 2: api.manage.v1.Label.published_at:type_name -> google.protobuf.Timestamp
-	33, // 3: api.manage.v1.Label.created_at:type_name -> google.protobuf.Timestamp
-	33, // 4: api.manage.v1.Label.updated_at:type_name -> google.protobuf.Timestamp
-	34, // 5: api.manage.v1.Label.og_asset:type_name -> api.common.v1.AssetRef
-	34, // 6: api.manage.v1.Label.image_light_asset:type_name -> api.common.v1.AssetRef
-	34, // 7: api.manage.v1.Label.image_dark_asset:type_name -> api.common.v1.AssetRef
+	33, // 0: api.manage.v1.Label.document:type_name -> api.content.v1.RichTextDocument
+	31, // 1: api.manage.v1.Label.social_links:type_name -> api.manage.v1.Label.SocialLinksEntry
+	34, // 2: api.manage.v1.Label.published_at:type_name -> google.protobuf.Timestamp
+	34, // 3: api.manage.v1.Label.created_at:type_name -> google.protobuf.Timestamp
+	34, // 4: api.manage.v1.Label.updated_at:type_name -> google.protobuf.Timestamp
+	35, // 5: api.manage.v1.Label.og_asset:type_name -> api.common.v1.AssetRef
+	35, // 6: api.manage.v1.Label.image_light_asset:type_name -> api.common.v1.AssetRef
+	35, // 7: api.manage.v1.Label.image_dark_asset:type_name -> api.common.v1.AssetRef
 	4,  // 8: api.manage.v1.LabelWithStats.label:type_name -> api.manage.v1.Label
 	4,  // 9: api.manage.v1.GetLabelEditorDataResponse.label:type_name -> api.manage.v1.Label
 	2,  // 10: api.manage.v1.GetLabelEditorDataResponse.allowed_actions:type_name -> api.manage.v1.LabelAction
-	35, // 11: api.manage.v1.ListLabelsRequest.pagination:type_name -> api.common.v1.PaginationRequest
-	36, // 12: api.manage.v1.ListLabelsRequest.filters:type_name -> api.common.v1.FilterSpec
-	37, // 13: api.manage.v1.ListLabelsRequest.sorts:type_name -> api.common.v1.SortSpec
+	36, // 11: api.manage.v1.ListLabelsRequest.pagination:type_name -> api.common.v1.PaginationRequest
+	37, // 12: api.manage.v1.ListLabelsRequest.filters:type_name -> api.common.v1.FilterSpec
+	38, // 13: api.manage.v1.ListLabelsRequest.sorts:type_name -> api.common.v1.SortSpec
 	4,  // 14: api.manage.v1.ListLabelsResponse.labels:type_name -> api.manage.v1.Label
-	38, // 15: api.manage.v1.ListLabelsResponse.pagination:type_name -> api.common.v1.PaginationResponse
-	35, // 16: api.manage.v1.ListLabelsAdminRequest.pagination:type_name -> api.common.v1.PaginationRequest
-	36, // 17: api.manage.v1.ListLabelsAdminRequest.filters:type_name -> api.common.v1.FilterSpec
-	37, // 18: api.manage.v1.ListLabelsAdminRequest.sorts:type_name -> api.common.v1.SortSpec
+	39, // 15: api.manage.v1.ListLabelsResponse.pagination:type_name -> api.common.v1.PaginationResponse
+	36, // 16: api.manage.v1.ListLabelsAdminRequest.pagination:type_name -> api.common.v1.PaginationRequest
+	37, // 17: api.manage.v1.ListLabelsAdminRequest.filters:type_name -> api.common.v1.FilterSpec
+	38, // 18: api.manage.v1.ListLabelsAdminRequest.sorts:type_name -> api.common.v1.SortSpec
 	5,  // 19: api.manage.v1.ListLabelsAdminResponse.labels:type_name -> api.manage.v1.LabelWithStats
-	38, // 20: api.manage.v1.ListLabelsAdminResponse.pagination:type_name -> api.common.v1.PaginationResponse
-	32, // 21: api.manage.v1.CreateLabelRequest.document:type_name -> api.content.v1.RichTextDocument
-	31, // 22: api.manage.v1.CreateLabelRequest.social_links:type_name -> api.manage.v1.CreateLabelRequest.SocialLinksEntry
+	39, // 20: api.manage.v1.ListLabelsAdminResponse.pagination:type_name -> api.common.v1.PaginationResponse
+	33, // 21: api.manage.v1.CreateLabelRequest.document:type_name -> api.content.v1.RichTextDocument
+	32, // 22: api.manage.v1.CreateLabelRequest.social_links:type_name -> api.manage.v1.CreateLabelRequest.SocialLinksEntry
 	3,  // 23: api.manage.v1.LabelDeletionImpact.kind:type_name -> api.manage.v1.LabelDeletionImpactKind
 	14, // 24: api.manage.v1.PreviewDeleteLabelResponse.impacts:type_name -> api.manage.v1.LabelDeletionImpact
 	0,  // 25: api.manage.v1.LabelLifecycleMutationResponse.status:type_name -> api.manage.v1.LabelStatus
-	33, // 26: api.manage.v1.LabelLifecycleMutationResponse.published_at:type_name -> google.protobuf.Timestamp
-	33, // 27: api.manage.v1.LabelLifecycleMutationResponse.updated_at:type_name -> google.protobuf.Timestamp
-	39, // 28: api.manage.v1.SetLabelImageRequest.variant:type_name -> api.manage.v1.ThemeAssetVariant
-	34, // 29: api.manage.v1.SetLabelImageResponse.image_light_asset:type_name -> api.common.v1.AssetRef
-	34, // 30: api.manage.v1.SetLabelImageResponse.image_dark_asset:type_name -> api.common.v1.AssetRef
-	39, // 31: api.manage.v1.DeleteLabelImageRequest.variant:type_name -> api.manage.v1.ThemeAssetVariant
-	40, // 32: api.manage.v1.LabelParticipant.member:type_name -> api.common.v1.MemberSummary
+	34, // 26: api.manage.v1.LabelLifecycleMutationResponse.published_at:type_name -> google.protobuf.Timestamp
+	34, // 27: api.manage.v1.LabelLifecycleMutationResponse.updated_at:type_name -> google.protobuf.Timestamp
+	40, // 28: api.manage.v1.SetLabelImageRequest.variant:type_name -> api.manage.v1.ThemeAssetVariant
+	35, // 29: api.manage.v1.SetLabelImageResponse.image_light_asset:type_name -> api.common.v1.AssetRef
+	35, // 30: api.manage.v1.SetLabelImageResponse.image_dark_asset:type_name -> api.common.v1.AssetRef
+	40, // 31: api.manage.v1.DeleteLabelImageRequest.variant:type_name -> api.manage.v1.ThemeAssetVariant
+	41, // 32: api.manage.v1.LabelParticipant.member:type_name -> api.common.v1.MemberSummary
 	1,  // 33: api.manage.v1.LabelParticipant.role:type_name -> api.manage.v1.LabelParticipantRole
-	33, // 34: api.manage.v1.LabelParticipant.created_at:type_name -> google.protobuf.Timestamp
+	34, // 34: api.manage.v1.LabelParticipant.created_at:type_name -> google.protobuf.Timestamp
 	23, // 35: api.manage.v1.ListLabelParticipantsResponse.participants:type_name -> api.manage.v1.LabelParticipant
 	1,  // 36: api.manage.v1.SetLabelParticipantRequest.role:type_name -> api.manage.v1.LabelParticipantRole
 	6,  // 37: api.manage.v1.LabelService.GetLabelEditorData:input_type -> api.manage.v1.GetLabelEditorDataRequest
@@ -2142,24 +2203,26 @@ var file_api_manage_v1_label_proto_depIdxs = []int32{
 	22, // 46: api.manage.v1.LabelService.DeleteLabelImage:input_type -> api.manage.v1.DeleteLabelImageRequest
 	24, // 47: api.manage.v1.LabelService.ListLabelParticipants:input_type -> api.manage.v1.ListLabelParticipantsRequest
 	26, // 48: api.manage.v1.LabelService.SetLabelParticipant:input_type -> api.manage.v1.SetLabelParticipantRequest
-	27, // 49: api.manage.v1.LabelService.RemoveLabelParticipant:input_type -> api.manage.v1.RemoveLabelParticipantRequest
-	28, // 50: api.manage.v1.LabelService.CheckLabelSlugAvailable:input_type -> api.manage.v1.CheckLabelSlugAvailableRequest
-	7,  // 51: api.manage.v1.LabelService.GetLabelEditorData:output_type -> api.manage.v1.GetLabelEditorDataResponse
-	9,  // 52: api.manage.v1.LabelService.ListLabels:output_type -> api.manage.v1.ListLabelsResponse
-	11, // 53: api.manage.v1.LabelService.ListLabelsAdmin:output_type -> api.manage.v1.ListLabelsAdminResponse
-	4,  // 54: api.manage.v1.LabelService.CreateLabel:output_type -> api.manage.v1.Label
-	41, // 55: api.manage.v1.LabelService.DeleteLabel:output_type -> api.manage.v1.DeleteResponse
-	16, // 56: api.manage.v1.LabelService.PreviewDeleteLabel:output_type -> api.manage.v1.PreviewDeleteLabelResponse
-	19, // 57: api.manage.v1.LabelService.PublishLabel:output_type -> api.manage.v1.LabelLifecycleMutationResponse
-	19, // 58: api.manage.v1.LabelService.UnpublishLabel:output_type -> api.manage.v1.LabelLifecycleMutationResponse
-	21, // 59: api.manage.v1.LabelService.SetLabelImage:output_type -> api.manage.v1.SetLabelImageResponse
-	42, // 60: api.manage.v1.LabelService.DeleteLabelImage:output_type -> api.manage.v1.OgAssetDeleteResponse
-	25, // 61: api.manage.v1.LabelService.ListLabelParticipants:output_type -> api.manage.v1.ListLabelParticipantsResponse
-	23, // 62: api.manage.v1.LabelService.SetLabelParticipant:output_type -> api.manage.v1.LabelParticipant
-	41, // 63: api.manage.v1.LabelService.RemoveLabelParticipant:output_type -> api.manage.v1.DeleteResponse
-	29, // 64: api.manage.v1.LabelService.CheckLabelSlugAvailable:output_type -> api.manage.v1.CheckLabelSlugAvailableResponse
-	51, // [51:65] is the sub-list for method output_type
-	37, // [37:51] is the sub-list for method input_type
+	28, // 49: api.manage.v1.LabelService.RemoveLabelParticipant:input_type -> api.manage.v1.RemoveLabelParticipantRequest
+	27, // 50: api.manage.v1.LabelService.SetLabelParent:input_type -> api.manage.v1.SetLabelParentRequest
+	29, // 51: api.manage.v1.LabelService.CheckLabelSlugAvailable:input_type -> api.manage.v1.CheckLabelSlugAvailableRequest
+	7,  // 52: api.manage.v1.LabelService.GetLabelEditorData:output_type -> api.manage.v1.GetLabelEditorDataResponse
+	9,  // 53: api.manage.v1.LabelService.ListLabels:output_type -> api.manage.v1.ListLabelsResponse
+	11, // 54: api.manage.v1.LabelService.ListLabelsAdmin:output_type -> api.manage.v1.ListLabelsAdminResponse
+	4,  // 55: api.manage.v1.LabelService.CreateLabel:output_type -> api.manage.v1.Label
+	42, // 56: api.manage.v1.LabelService.DeleteLabel:output_type -> api.manage.v1.DeleteResponse
+	16, // 57: api.manage.v1.LabelService.PreviewDeleteLabel:output_type -> api.manage.v1.PreviewDeleteLabelResponse
+	19, // 58: api.manage.v1.LabelService.PublishLabel:output_type -> api.manage.v1.LabelLifecycleMutationResponse
+	19, // 59: api.manage.v1.LabelService.UnpublishLabel:output_type -> api.manage.v1.LabelLifecycleMutationResponse
+	21, // 60: api.manage.v1.LabelService.SetLabelImage:output_type -> api.manage.v1.SetLabelImageResponse
+	43, // 61: api.manage.v1.LabelService.DeleteLabelImage:output_type -> api.manage.v1.OgAssetDeleteResponse
+	25, // 62: api.manage.v1.LabelService.ListLabelParticipants:output_type -> api.manage.v1.ListLabelParticipantsResponse
+	23, // 63: api.manage.v1.LabelService.SetLabelParticipant:output_type -> api.manage.v1.LabelParticipant
+	42, // 64: api.manage.v1.LabelService.RemoveLabelParticipant:output_type -> api.manage.v1.DeleteResponse
+	4,  // 65: api.manage.v1.LabelService.SetLabelParent:output_type -> api.manage.v1.Label
+	30, // 66: api.manage.v1.LabelService.CheckLabelSlugAvailable:output_type -> api.manage.v1.CheckLabelSlugAvailableResponse
+	52, // [52:67] is the sub-list for method output_type
+	37, // [37:52] is the sub-list for method input_type
 	37, // [37:37] is the sub-list for extension type_name
 	37, // [37:37] is the sub-list for extension extendee
 	0,  // [0:37] is the sub-list for field type_name
@@ -2175,14 +2238,15 @@ func file_api_manage_v1_label_proto_init() {
 	file_api_manage_v1_label_proto_msgTypes[8].OneofWrappers = []any{}
 	file_api_manage_v1_label_proto_msgTypes[15].OneofWrappers = []any{}
 	file_api_manage_v1_label_proto_msgTypes[17].OneofWrappers = []any{}
-	file_api_manage_v1_label_proto_msgTypes[24].OneofWrappers = []any{}
+	file_api_manage_v1_label_proto_msgTypes[23].OneofWrappers = []any{}
+	file_api_manage_v1_label_proto_msgTypes[25].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_api_manage_v1_label_proto_rawDesc), len(file_api_manage_v1_label_proto_rawDesc)),
 			NumEnums:      4,
-			NumMessages:   28,
+			NumMessages:   29,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

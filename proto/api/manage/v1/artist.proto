@@ -211,6 +211,27 @@ message ListArtistParticipantsResponse {
   repeated ArtistParticipant participants = 1;
 }
 
+// SetArtistParentRequest moves the Artist under parent_artist_id, or to the top
+// when it is unset. The caller must manage the participants of every Artist it
+// touches: the Artist, its current parent and the new one.
+message SetArtistParentRequest {
+  string artist_id = 1;
+  optional string parent_artist_id = 2;
+}
+
+// SetArtistLabelsRequest replaces the Labels the Artist belongs to.
+// A Label's people may edit and publish an Artist that belongs to it, so the
+// caller must manage the participants of the Artist and of every Label joined
+// or left.
+message SetArtistLabelsRequest {
+  string artist_id = 1;
+  repeated string label_ids = 2;
+}
+
+message SetArtistLabelsResponse {
+  repeated string label_ids = 1;
+}
+
 message SetArtistParticipantRequest {
   string artist_id = 1;
   string member_id = 2;
@@ -295,6 +316,12 @@ service ArtistService {
     option (api.policy.v1.access) = {role: USER};
   }
   rpc RemoveArtistParticipant(RemoveArtistParticipantRequest) returns (DeleteResponse) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+  rpc SetArtistParent(SetArtistParentRequest) returns (Artist) {
+    option (api.policy.v1.access) = {role: USER};
+  }
+  rpc SetArtistLabels(SetArtistLabelsRequest) returns (SetArtistLabelsResponse) {
     option (api.policy.v1.access) = {role: USER};
   }
 

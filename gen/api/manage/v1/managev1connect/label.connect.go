@@ -71,6 +71,9 @@ const (
 	// LabelServiceRemoveLabelParticipantProcedure is the fully-qualified name of the LabelService's
 	// RemoveLabelParticipant RPC.
 	LabelServiceRemoveLabelParticipantProcedure = "/api.manage.v1.LabelService/RemoveLabelParticipant"
+	// LabelServiceSetLabelParentProcedure is the fully-qualified name of the LabelService's
+	// SetLabelParent RPC.
+	LabelServiceSetLabelParentProcedure = "/api.manage.v1.LabelService/SetLabelParent"
 	// LabelServiceCheckLabelSlugAvailableProcedure is the fully-qualified name of the LabelService's
 	// CheckLabelSlugAvailable RPC.
 	LabelServiceCheckLabelSlugAvailableProcedure = "/api.manage.v1.LabelService/CheckLabelSlugAvailable"
@@ -94,6 +97,7 @@ type LabelServiceClient interface {
 	ListLabelParticipants(context.Context, *connect.Request[v1.ListLabelParticipantsRequest]) (*connect.Response[v1.ListLabelParticipantsResponse], error)
 	SetLabelParticipant(context.Context, *connect.Request[v1.SetLabelParticipantRequest]) (*connect.Response[v1.LabelParticipant], error)
 	RemoveLabelParticipant(context.Context, *connect.Request[v1.RemoveLabelParticipantRequest]) (*connect.Response[v1.DeleteResponse], error)
+	SetLabelParent(context.Context, *connect.Request[v1.SetLabelParentRequest]) (*connect.Response[v1.Label], error)
 	// Utility
 	CheckLabelSlugAvailable(context.Context, *connect.Request[v1.CheckLabelSlugAvailableRequest]) (*connect.Response[v1.CheckLabelSlugAvailableResponse], error)
 }
@@ -187,6 +191,12 @@ func NewLabelServiceClient(httpClient connect.HTTPClient, baseURL string, opts .
 			connect.WithSchema(labelServiceMethods.ByName("RemoveLabelParticipant")),
 			connect.WithClientOptions(opts...),
 		),
+		setLabelParent: connect.NewClient[v1.SetLabelParentRequest, v1.Label](
+			httpClient,
+			baseURL+LabelServiceSetLabelParentProcedure,
+			connect.WithSchema(labelServiceMethods.ByName("SetLabelParent")),
+			connect.WithClientOptions(opts...),
+		),
 		checkLabelSlugAvailable: connect.NewClient[v1.CheckLabelSlugAvailableRequest, v1.CheckLabelSlugAvailableResponse](
 			httpClient,
 			baseURL+LabelServiceCheckLabelSlugAvailableProcedure,
@@ -211,6 +221,7 @@ type labelServiceClient struct {
 	listLabelParticipants   *connect.Client[v1.ListLabelParticipantsRequest, v1.ListLabelParticipantsResponse]
 	setLabelParticipant     *connect.Client[v1.SetLabelParticipantRequest, v1.LabelParticipant]
 	removeLabelParticipant  *connect.Client[v1.RemoveLabelParticipantRequest, v1.DeleteResponse]
+	setLabelParent          *connect.Client[v1.SetLabelParentRequest, v1.Label]
 	checkLabelSlugAvailable *connect.Client[v1.CheckLabelSlugAvailableRequest, v1.CheckLabelSlugAvailableResponse]
 }
 
@@ -279,6 +290,11 @@ func (c *labelServiceClient) RemoveLabelParticipant(ctx context.Context, req *co
 	return c.removeLabelParticipant.CallUnary(ctx, req)
 }
 
+// SetLabelParent calls api.manage.v1.LabelService.SetLabelParent.
+func (c *labelServiceClient) SetLabelParent(ctx context.Context, req *connect.Request[v1.SetLabelParentRequest]) (*connect.Response[v1.Label], error) {
+	return c.setLabelParent.CallUnary(ctx, req)
+}
+
 // CheckLabelSlugAvailable calls api.manage.v1.LabelService.CheckLabelSlugAvailable.
 func (c *labelServiceClient) CheckLabelSlugAvailable(ctx context.Context, req *connect.Request[v1.CheckLabelSlugAvailableRequest]) (*connect.Response[v1.CheckLabelSlugAvailableResponse], error) {
 	return c.checkLabelSlugAvailable.CallUnary(ctx, req)
@@ -302,6 +318,7 @@ type LabelServiceHandler interface {
 	ListLabelParticipants(context.Context, *connect.Request[v1.ListLabelParticipantsRequest]) (*connect.Response[v1.ListLabelParticipantsResponse], error)
 	SetLabelParticipant(context.Context, *connect.Request[v1.SetLabelParticipantRequest]) (*connect.Response[v1.LabelParticipant], error)
 	RemoveLabelParticipant(context.Context, *connect.Request[v1.RemoveLabelParticipantRequest]) (*connect.Response[v1.DeleteResponse], error)
+	SetLabelParent(context.Context, *connect.Request[v1.SetLabelParentRequest]) (*connect.Response[v1.Label], error)
 	// Utility
 	CheckLabelSlugAvailable(context.Context, *connect.Request[v1.CheckLabelSlugAvailableRequest]) (*connect.Response[v1.CheckLabelSlugAvailableResponse], error)
 }
@@ -391,6 +408,12 @@ func NewLabelServiceHandler(svc LabelServiceHandler, opts ...connect.HandlerOpti
 		connect.WithSchema(labelServiceMethods.ByName("RemoveLabelParticipant")),
 		connect.WithHandlerOptions(opts...),
 	)
+	labelServiceSetLabelParentHandler := connect.NewUnaryHandler(
+		LabelServiceSetLabelParentProcedure,
+		svc.SetLabelParent,
+		connect.WithSchema(labelServiceMethods.ByName("SetLabelParent")),
+		connect.WithHandlerOptions(opts...),
+	)
 	labelServiceCheckLabelSlugAvailableHandler := connect.NewUnaryHandler(
 		LabelServiceCheckLabelSlugAvailableProcedure,
 		svc.CheckLabelSlugAvailable,
@@ -425,6 +448,8 @@ func NewLabelServiceHandler(svc LabelServiceHandler, opts ...connect.HandlerOpti
 			labelServiceSetLabelParticipantHandler.ServeHTTP(w, r)
 		case LabelServiceRemoveLabelParticipantProcedure:
 			labelServiceRemoveLabelParticipantHandler.ServeHTTP(w, r)
+		case LabelServiceSetLabelParentProcedure:
+			labelServiceSetLabelParentHandler.ServeHTTP(w, r)
 		case LabelServiceCheckLabelSlugAvailableProcedure:
 			labelServiceCheckLabelSlugAvailableHandler.ServeHTTP(w, r)
 		default:
@@ -486,6 +511,10 @@ func (UnimplementedLabelServiceHandler) SetLabelParticipant(context.Context, *co
 
 func (UnimplementedLabelServiceHandler) RemoveLabelParticipant(context.Context, *connect.Request[v1.RemoveLabelParticipantRequest]) (*connect.Response[v1.DeleteResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("api.manage.v1.LabelService.RemoveLabelParticipant is not implemented"))
+}
+
+func (UnimplementedLabelServiceHandler) SetLabelParent(context.Context, *connect.Request[v1.SetLabelParentRequest]) (*connect.Response[v1.Label], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("api.manage.v1.LabelService.SetLabelParent is not implemented"))
 }
 
 func (UnimplementedLabelServiceHandler) CheckLabelSlugAvailable(context.Context, *connect.Request[v1.CheckLabelSlugAvailableRequest]) (*connect.Response[v1.CheckLabelSlugAvailableResponse], error) {

@@ -29,7 +29,6 @@ type LabelDocumentMetadata struct {
 	CountryCode   *string                `protobuf:"bytes,2,opt,name=country_code,json=countryCode,proto3,oneof" json:"country_code,omitempty"`
 	Website       *string                `protobuf:"bytes,3,opt,name=website,proto3,oneof" json:"website,omitempty"`
 	SocialLinks   map[string]string      `protobuf:"bytes,4,rep,name=social_links,json=socialLinks,proto3" json:"social_links,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
-	ParentLabelId *string                `protobuf:"bytes,5,opt,name=parent_label_id,json=parentLabelId,proto3,oneof" json:"parent_label_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -92,13 +91,6 @@ func (x *LabelDocumentMetadata) GetSocialLinks() map[string]string {
 	return nil
 }
 
-func (x *LabelDocumentMetadata) GetParentLabelId() string {
-	if x != nil && x.ParentLabelId != nil {
-		return *x.ParentLabelId
-	}
-	return ""
-}
-
 type LabelSocialLinksValue struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Values        map[string]string      `protobuf:"bytes,1,rep,name=values,proto3" json:"values,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
@@ -149,7 +141,6 @@ type LabelDocumentMetadataUpdate struct {
 	CountryCode   *NullableStringMutation `protobuf:"bytes,2,opt,name=country_code,json=countryCode,proto3" json:"country_code,omitempty"`
 	Website       *NullableStringMutation `protobuf:"bytes,3,opt,name=website,proto3" json:"website,omitempty"`
 	SocialLinks   *LabelSocialLinksValue  `protobuf:"bytes,4,opt,name=social_links,json=socialLinks,proto3" json:"social_links,omitempty"`
-	ParentLabelId *NullableStringMutation `protobuf:"bytes,5,opt,name=parent_label_id,json=parentLabelId,proto3" json:"parent_label_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -208,13 +199,6 @@ func (x *LabelDocumentMetadataUpdate) GetWebsite() *NullableStringMutation {
 func (x *LabelDocumentMetadataUpdate) GetSocialLinks() *LabelSocialLinksValue {
 	if x != nil {
 		return x.SocialLinks
-	}
-	return nil
-}
-
-func (x *LabelDocumentMetadataUpdate) GetParentLabelId() *NullableStringMutation {
-	if x != nil {
-		return x.ParentLabelId
 	}
 	return nil
 }
@@ -933,32 +917,29 @@ var File_api_intra_v1_label_proto protoreflect.FileDescriptor
 
 const file_api_intra_v1_label_proto_rawDesc = "" +
 	"\n" +
-	"\x18api/intra/v1/label.proto\x12\fapi.intra.v1\x1a\"api/content/v1/block_content.proto\x1a api/intra/v1/collaboration.proto\x1a\x16api/manage/v1/ai.proto\"\xf7\x02\n" +
+	"\x18api/intra/v1/label.proto\x12\fapi.intra.v1\x1a\"api/content/v1/block_content.proto\x1a api/intra/v1/collaboration.proto\x1a\x16api/manage/v1/ai.proto\"\xb6\x02\n" +
 	"\x15LabelDocumentMetadata\x12\x17\n" +
 	"\x04slug\x18\x01 \x01(\tH\x00R\x04slug\x88\x01\x01\x12&\n" +
 	"\fcountry_code\x18\x02 \x01(\tH\x01R\vcountryCode\x88\x01\x01\x12\x1d\n" +
 	"\awebsite\x18\x03 \x01(\tH\x02R\awebsite\x88\x01\x01\x12W\n" +
-	"\fsocial_links\x18\x04 \x03(\v24.api.intra.v1.LabelDocumentMetadata.SocialLinksEntryR\vsocialLinks\x12+\n" +
-	"\x0fparent_label_id\x18\x05 \x01(\tH\x03R\rparentLabelId\x88\x01\x01\x1a>\n" +
+	"\fsocial_links\x18\x04 \x03(\v24.api.intra.v1.LabelDocumentMetadata.SocialLinksEntryR\vsocialLinks\x1a>\n" +
 	"\x10SocialLinksEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
 	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01B\a\n" +
 	"\x05_slugB\x0f\n" +
 	"\r_country_codeB\n" +
 	"\n" +
-	"\b_websiteB\x12\n" +
-	"\x10_parent_label_id\"\x9b\x01\n" +
+	"\b_website\"\x9b\x01\n" +
 	"\x15LabelSocialLinksValue\x12G\n" +
 	"\x06values\x18\x01 \x03(\v2/.api.intra.v1.LabelSocialLinksValue.ValuesEntryR\x06values\x1a9\n" +
 	"\vValuesEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"\xf6\x02\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"\xa8\x02\n" +
 	"\x1bLabelDocumentMetadataUpdate\x128\n" +
 	"\x04slug\x18\x01 \x01(\v2$.api.intra.v1.NullableStringMutationR\x04slug\x12G\n" +
 	"\fcountry_code\x18\x02 \x01(\v2$.api.intra.v1.NullableStringMutationR\vcountryCode\x12>\n" +
 	"\awebsite\x18\x03 \x01(\v2$.api.intra.v1.NullableStringMutationR\awebsite\x12F\n" +
-	"\fsocial_links\x18\x04 \x01(\v2#.api.intra.v1.LabelSocialLinksValueR\vsocialLinks\x12L\n" +
-	"\x0fparent_label_id\x18\x05 \x01(\v2$.api.intra.v1.NullableStringMutationR\rparentLabelId\"R\n" +
+	"\fsocial_links\x18\x04 \x01(\v2#.api.intra.v1.LabelSocialLinksValueR\vsocialLinks\"R\n" +
 	"\x13LabelLocaleMetadata\x12\x16\n" +
 	"\x06locale\x18\x01 \x01(\tR\x06locale\x12\x19\n" +
 	"\x05title\x18\x02 \x01(\tH\x00R\x05title\x88\x01\x01B\b\n" +
@@ -1072,29 +1053,28 @@ var file_api_intra_v1_label_proto_depIdxs = []int32{
 	14, // 3: api.intra.v1.LabelDocumentMetadataUpdate.country_code:type_name -> api.intra.v1.NullableStringMutation
 	14, // 4: api.intra.v1.LabelDocumentMetadataUpdate.website:type_name -> api.intra.v1.NullableStringMutation
 	1,  // 5: api.intra.v1.LabelDocumentMetadataUpdate.social_links:type_name -> api.intra.v1.LabelSocialLinksValue
-	14, // 6: api.intra.v1.LabelDocumentMetadataUpdate.parent_label_id:type_name -> api.intra.v1.NullableStringMutation
-	15, // 7: api.intra.v1.LoadLabelBlockDocumentRequest.principal:type_name -> api.intra.v1.CollaborationPrincipal
-	16, // 8: api.intra.v1.LoadLabelBlockDocumentResponse.document:type_name -> api.content.v1.LocalizedRichTextDocument
-	0,  // 9: api.intra.v1.LoadLabelBlockDocumentResponse.metadata:type_name -> api.intra.v1.LabelDocumentMetadata
-	3,  // 10: api.intra.v1.LoadLabelBlockDocumentResponse.source_metadata:type_name -> api.intra.v1.LabelLocaleMetadata
-	3,  // 11: api.intra.v1.LoadLabelBlockDocumentResponse.locale_metadata:type_name -> api.intra.v1.LabelLocaleMetadata
-	17, // 12: api.intra.v1.LoadLabelBlockDocumentResponse.present_locale_values:type_name -> api.manage.v1.AIDocumentFieldTarget
-	18, // 13: api.intra.v1.ApplyLabelBlockBatchRequest.batch:type_name -> api.content.v1.RichTextBlockMutationBatch
-	17, // 14: api.intra.v1.ApplyLabelBlockBatchRequest.affected_locale_values:type_name -> api.manage.v1.AIDocumentFieldTarget
-	2,  // 15: api.intra.v1.UpdateLabelDocumentMetadataRequest.update:type_name -> api.intra.v1.LabelDocumentMetadataUpdate
-	4,  // 16: api.intra.v1.InternalLabelService.LoadLabelBlockDocument:input_type -> api.intra.v1.LoadLabelBlockDocumentRequest
-	6,  // 17: api.intra.v1.InternalLabelService.ApplyLabelBlockBatch:input_type -> api.intra.v1.ApplyLabelBlockBatchRequest
-	8,  // 18: api.intra.v1.InternalLabelService.UpdateLabelLocaleMetadata:input_type -> api.intra.v1.UpdateLabelLocaleMetadataRequest
-	10, // 19: api.intra.v1.InternalLabelService.UpdateLabelDocumentMetadata:input_type -> api.intra.v1.UpdateLabelDocumentMetadataRequest
-	5,  // 20: api.intra.v1.InternalLabelService.LoadLabelBlockDocument:output_type -> api.intra.v1.LoadLabelBlockDocumentResponse
-	7,  // 21: api.intra.v1.InternalLabelService.ApplyLabelBlockBatch:output_type -> api.intra.v1.ApplyLabelBlockBatchResponse
-	9,  // 22: api.intra.v1.InternalLabelService.UpdateLabelLocaleMetadata:output_type -> api.intra.v1.UpdateLabelLocaleMetadataResponse
-	11, // 23: api.intra.v1.InternalLabelService.UpdateLabelDocumentMetadata:output_type -> api.intra.v1.UpdateLabelDocumentMetadataResponse
-	20, // [20:24] is the sub-list for method output_type
-	16, // [16:20] is the sub-list for method input_type
-	16, // [16:16] is the sub-list for extension type_name
-	16, // [16:16] is the sub-list for extension extendee
-	0,  // [0:16] is the sub-list for field type_name
+	15, // 6: api.intra.v1.LoadLabelBlockDocumentRequest.principal:type_name -> api.intra.v1.CollaborationPrincipal
+	16, // 7: api.intra.v1.LoadLabelBlockDocumentResponse.document:type_name -> api.content.v1.LocalizedRichTextDocument
+	0,  // 8: api.intra.v1.LoadLabelBlockDocumentResponse.metadata:type_name -> api.intra.v1.LabelDocumentMetadata
+	3,  // 9: api.intra.v1.LoadLabelBlockDocumentResponse.source_metadata:type_name -> api.intra.v1.LabelLocaleMetadata
+	3,  // 10: api.intra.v1.LoadLabelBlockDocumentResponse.locale_metadata:type_name -> api.intra.v1.LabelLocaleMetadata
+	17, // 11: api.intra.v1.LoadLabelBlockDocumentResponse.present_locale_values:type_name -> api.manage.v1.AIDocumentFieldTarget
+	18, // 12: api.intra.v1.ApplyLabelBlockBatchRequest.batch:type_name -> api.content.v1.RichTextBlockMutationBatch
+	17, // 13: api.intra.v1.ApplyLabelBlockBatchRequest.affected_locale_values:type_name -> api.manage.v1.AIDocumentFieldTarget
+	2,  // 14: api.intra.v1.UpdateLabelDocumentMetadataRequest.update:type_name -> api.intra.v1.LabelDocumentMetadataUpdate
+	4,  // 15: api.intra.v1.InternalLabelService.LoadLabelBlockDocument:input_type -> api.intra.v1.LoadLabelBlockDocumentRequest
+	6,  // 16: api.intra.v1.InternalLabelService.ApplyLabelBlockBatch:input_type -> api.intra.v1.ApplyLabelBlockBatchRequest
+	8,  // 17: api.intra.v1.InternalLabelService.UpdateLabelLocaleMetadata:input_type -> api.intra.v1.UpdateLabelLocaleMetadataRequest
+	10, // 18: api.intra.v1.InternalLabelService.UpdateLabelDocumentMetadata:input_type -> api.intra.v1.UpdateLabelDocumentMetadataRequest
+	5,  // 19: api.intra.v1.InternalLabelService.LoadLabelBlockDocument:output_type -> api.intra.v1.LoadLabelBlockDocumentResponse
+	7,  // 20: api.intra.v1.InternalLabelService.ApplyLabelBlockBatch:output_type -> api.intra.v1.ApplyLabelBlockBatchResponse
+	9,  // 21: api.intra.v1.InternalLabelService.UpdateLabelLocaleMetadata:output_type -> api.intra.v1.UpdateLabelLocaleMetadataResponse
+	11, // 22: api.intra.v1.InternalLabelService.UpdateLabelDocumentMetadata:output_type -> api.intra.v1.UpdateLabelDocumentMetadataResponse
+	19, // [19:23] is the sub-list for method output_type
+	15, // [15:19] is the sub-list for method input_type
+	15, // [15:15] is the sub-list for extension type_name
+	15, // [15:15] is the sub-list for extension extendee
+	0,  // [0:15] is the sub-list for field type_name
 }
 
 func init() { file_api_intra_v1_label_proto_init() }

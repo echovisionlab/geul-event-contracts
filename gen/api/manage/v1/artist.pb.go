@@ -1811,6 +1811,161 @@ func (x *ListArtistParticipantsResponse) GetParticipants() []*ArtistParticipant 
 	return nil
 }
 
+// SetArtistParentRequest moves the Artist under parent_artist_id, or to the top
+// when it is unset. The caller must manage the participants of every Artist it
+// touches: the Artist, its current parent and the new one.
+type SetArtistParentRequest struct {
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	ArtistId       string                 `protobuf:"bytes,1,opt,name=artist_id,json=artistId,proto3" json:"artist_id,omitempty"`
+	ParentArtistId *string                `protobuf:"bytes,2,opt,name=parent_artist_id,json=parentArtistId,proto3,oneof" json:"parent_artist_id,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
+}
+
+func (x *SetArtistParentRequest) Reset() {
+	*x = SetArtistParentRequest{}
+	mi := &file_api_manage_v1_artist_proto_msgTypes[25]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SetArtistParentRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SetArtistParentRequest) ProtoMessage() {}
+
+func (x *SetArtistParentRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_api_manage_v1_artist_proto_msgTypes[25]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SetArtistParentRequest.ProtoReflect.Descriptor instead.
+func (*SetArtistParentRequest) Descriptor() ([]byte, []int) {
+	return file_api_manage_v1_artist_proto_rawDescGZIP(), []int{25}
+}
+
+func (x *SetArtistParentRequest) GetArtistId() string {
+	if x != nil {
+		return x.ArtistId
+	}
+	return ""
+}
+
+func (x *SetArtistParentRequest) GetParentArtistId() string {
+	if x != nil && x.ParentArtistId != nil {
+		return *x.ParentArtistId
+	}
+	return ""
+}
+
+// SetArtistLabelsRequest replaces the Labels the Artist belongs to.
+// A Label's people may edit and publish an Artist that belongs to it, so the
+// caller must manage the participants of the Artist and of every Label joined
+// or left.
+type SetArtistLabelsRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	ArtistId      string                 `protobuf:"bytes,1,opt,name=artist_id,json=artistId,proto3" json:"artist_id,omitempty"`
+	LabelIds      []string               `protobuf:"bytes,2,rep,name=label_ids,json=labelIds,proto3" json:"label_ids,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SetArtistLabelsRequest) Reset() {
+	*x = SetArtistLabelsRequest{}
+	mi := &file_api_manage_v1_artist_proto_msgTypes[26]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SetArtistLabelsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SetArtistLabelsRequest) ProtoMessage() {}
+
+func (x *SetArtistLabelsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_api_manage_v1_artist_proto_msgTypes[26]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SetArtistLabelsRequest.ProtoReflect.Descriptor instead.
+func (*SetArtistLabelsRequest) Descriptor() ([]byte, []int) {
+	return file_api_manage_v1_artist_proto_rawDescGZIP(), []int{26}
+}
+
+func (x *SetArtistLabelsRequest) GetArtistId() string {
+	if x != nil {
+		return x.ArtistId
+	}
+	return ""
+}
+
+func (x *SetArtistLabelsRequest) GetLabelIds() []string {
+	if x != nil {
+		return x.LabelIds
+	}
+	return nil
+}
+
+type SetArtistLabelsResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	LabelIds      []string               `protobuf:"bytes,1,rep,name=label_ids,json=labelIds,proto3" json:"label_ids,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SetArtistLabelsResponse) Reset() {
+	*x = SetArtistLabelsResponse{}
+	mi := &file_api_manage_v1_artist_proto_msgTypes[27]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SetArtistLabelsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SetArtistLabelsResponse) ProtoMessage() {}
+
+func (x *SetArtistLabelsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_api_manage_v1_artist_proto_msgTypes[27]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SetArtistLabelsResponse.ProtoReflect.Descriptor instead.
+func (*SetArtistLabelsResponse) Descriptor() ([]byte, []int) {
+	return file_api_manage_v1_artist_proto_rawDescGZIP(), []int{27}
+}
+
+func (x *SetArtistLabelsResponse) GetLabelIds() []string {
+	if x != nil {
+		return x.LabelIds
+	}
+	return nil
+}
+
 type SetArtistParticipantRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	ArtistId      string                 `protobuf:"bytes,1,opt,name=artist_id,json=artistId,proto3" json:"artist_id,omitempty"`
@@ -1822,7 +1977,7 @@ type SetArtistParticipantRequest struct {
 
 func (x *SetArtistParticipantRequest) Reset() {
 	*x = SetArtistParticipantRequest{}
-	mi := &file_api_manage_v1_artist_proto_msgTypes[25]
+	mi := &file_api_manage_v1_artist_proto_msgTypes[28]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1834,7 +1989,7 @@ func (x *SetArtistParticipantRequest) String() string {
 func (*SetArtistParticipantRequest) ProtoMessage() {}
 
 func (x *SetArtistParticipantRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_artist_proto_msgTypes[25]
+	mi := &file_api_manage_v1_artist_proto_msgTypes[28]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1847,7 +2002,7 @@ func (x *SetArtistParticipantRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetArtistParticipantRequest.ProtoReflect.Descriptor instead.
 func (*SetArtistParticipantRequest) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_artist_proto_rawDescGZIP(), []int{25}
+	return file_api_manage_v1_artist_proto_rawDescGZIP(), []int{28}
 }
 
 func (x *SetArtistParticipantRequest) GetArtistId() string {
@@ -1881,7 +2036,7 @@ type RemoveArtistParticipantRequest struct {
 
 func (x *RemoveArtistParticipantRequest) Reset() {
 	*x = RemoveArtistParticipantRequest{}
-	mi := &file_api_manage_v1_artist_proto_msgTypes[26]
+	mi := &file_api_manage_v1_artist_proto_msgTypes[29]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1893,7 +2048,7 @@ func (x *RemoveArtistParticipantRequest) String() string {
 func (*RemoveArtistParticipantRequest) ProtoMessage() {}
 
 func (x *RemoveArtistParticipantRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_artist_proto_msgTypes[26]
+	mi := &file_api_manage_v1_artist_proto_msgTypes[29]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1906,7 +2061,7 @@ func (x *RemoveArtistParticipantRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RemoveArtistParticipantRequest.ProtoReflect.Descriptor instead.
 func (*RemoveArtistParticipantRequest) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_artist_proto_rawDescGZIP(), []int{26}
+	return file_api_manage_v1_artist_proto_rawDescGZIP(), []int{29}
 }
 
 func (x *RemoveArtistParticipantRequest) GetArtistId() string {
@@ -1934,7 +2089,7 @@ type ListMyArtistsRequest struct {
 
 func (x *ListMyArtistsRequest) Reset() {
 	*x = ListMyArtistsRequest{}
-	mi := &file_api_manage_v1_artist_proto_msgTypes[27]
+	mi := &file_api_manage_v1_artist_proto_msgTypes[30]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1946,7 +2101,7 @@ func (x *ListMyArtistsRequest) String() string {
 func (*ListMyArtistsRequest) ProtoMessage() {}
 
 func (x *ListMyArtistsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_artist_proto_msgTypes[27]
+	mi := &file_api_manage_v1_artist_proto_msgTypes[30]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1959,7 +2114,7 @@ func (x *ListMyArtistsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListMyArtistsRequest.ProtoReflect.Descriptor instead.
 func (*ListMyArtistsRequest) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_artist_proto_rawDescGZIP(), []int{27}
+	return file_api_manage_v1_artist_proto_rawDescGZIP(), []int{30}
 }
 
 func (x *ListMyArtistsRequest) GetPagination() *v1.PaginationRequest {
@@ -1993,7 +2148,7 @@ type ListMyArtistsResponse struct {
 
 func (x *ListMyArtistsResponse) Reset() {
 	*x = ListMyArtistsResponse{}
-	mi := &file_api_manage_v1_artist_proto_msgTypes[28]
+	mi := &file_api_manage_v1_artist_proto_msgTypes[31]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2005,7 +2160,7 @@ func (x *ListMyArtistsResponse) String() string {
 func (*ListMyArtistsResponse) ProtoMessage() {}
 
 func (x *ListMyArtistsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_artist_proto_msgTypes[28]
+	mi := &file_api_manage_v1_artist_proto_msgTypes[31]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2018,7 +2173,7 @@ func (x *ListMyArtistsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListMyArtistsResponse.ProtoReflect.Descriptor instead.
 func (*ListMyArtistsResponse) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_artist_proto_rawDescGZIP(), []int{28}
+	return file_api_manage_v1_artist_proto_rawDescGZIP(), []int{31}
 }
 
 func (x *ListMyArtistsResponse) GetArtists() []*Artist {
@@ -2045,7 +2200,7 @@ type CheckArtistSlugAvailableRequest struct {
 
 func (x *CheckArtistSlugAvailableRequest) Reset() {
 	*x = CheckArtistSlugAvailableRequest{}
-	mi := &file_api_manage_v1_artist_proto_msgTypes[29]
+	mi := &file_api_manage_v1_artist_proto_msgTypes[32]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2057,7 +2212,7 @@ func (x *CheckArtistSlugAvailableRequest) String() string {
 func (*CheckArtistSlugAvailableRequest) ProtoMessage() {}
 
 func (x *CheckArtistSlugAvailableRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_artist_proto_msgTypes[29]
+	mi := &file_api_manage_v1_artist_proto_msgTypes[32]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2070,7 +2225,7 @@ func (x *CheckArtistSlugAvailableRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CheckArtistSlugAvailableRequest.ProtoReflect.Descriptor instead.
 func (*CheckArtistSlugAvailableRequest) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_artist_proto_rawDescGZIP(), []int{29}
+	return file_api_manage_v1_artist_proto_rawDescGZIP(), []int{32}
 }
 
 func (x *CheckArtistSlugAvailableRequest) GetSlug() string {
@@ -2096,7 +2251,7 @@ type CheckArtistSlugAvailableResponse struct {
 
 func (x *CheckArtistSlugAvailableResponse) Reset() {
 	*x = CheckArtistSlugAvailableResponse{}
-	mi := &file_api_manage_v1_artist_proto_msgTypes[30]
+	mi := &file_api_manage_v1_artist_proto_msgTypes[33]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2108,7 +2263,7 @@ func (x *CheckArtistSlugAvailableResponse) String() string {
 func (*CheckArtistSlugAvailableResponse) ProtoMessage() {}
 
 func (x *CheckArtistSlugAvailableResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_v1_artist_proto_msgTypes[30]
+	mi := &file_api_manage_v1_artist_proto_msgTypes[33]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2121,7 +2276,7 @@ func (x *CheckArtistSlugAvailableResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CheckArtistSlugAvailableResponse.ProtoReflect.Descriptor instead.
 func (*CheckArtistSlugAvailableResponse) Descriptor() ([]byte, []int) {
-	return file_api_manage_v1_artist_proto_rawDescGZIP(), []int{30}
+	return file_api_manage_v1_artist_proto_rawDescGZIP(), []int{33}
 }
 
 func (x *CheckArtistSlugAvailableResponse) GetAvailable() bool {
@@ -2283,7 +2438,16 @@ const file_api_manage_v1_artist_proto_rawDesc = "" +
 	"\x1dListArtistParticipantsRequest\x12\x1b\n" +
 	"\tartist_id\x18\x01 \x01(\tR\bartistId\"f\n" +
 	"\x1eListArtistParticipantsResponse\x12D\n" +
-	"\fparticipants\x18\x01 \x03(\v2 .api.manage.v1.ArtistParticipantR\fparticipants\"\x91\x01\n" +
+	"\fparticipants\x18\x01 \x03(\v2 .api.manage.v1.ArtistParticipantR\fparticipants\"y\n" +
+	"\x16SetArtistParentRequest\x12\x1b\n" +
+	"\tartist_id\x18\x01 \x01(\tR\bartistId\x12-\n" +
+	"\x10parent_artist_id\x18\x02 \x01(\tH\x00R\x0eparentArtistId\x88\x01\x01B\x13\n" +
+	"\x11_parent_artist_id\"R\n" +
+	"\x16SetArtistLabelsRequest\x12\x1b\n" +
+	"\tartist_id\x18\x01 \x01(\tR\bartistId\x12\x1b\n" +
+	"\tlabel_ids\x18\x02 \x03(\tR\blabelIds\"6\n" +
+	"\x17SetArtistLabelsResponse\x12\x1b\n" +
+	"\tlabel_ids\x18\x01 \x03(\tR\blabelIds\"\x91\x01\n" +
 	"\x1bSetArtistParticipantRequest\x12\x1b\n" +
 	"\tartist_id\x18\x01 \x01(\tR\bartistId\x12\x1b\n" +
 	"\tmember_id\x18\x02 \x01(\tR\bmemberId\x128\n" +
@@ -2332,7 +2496,7 @@ const file_api_manage_v1_artist_proto_rawDesc = "" +
 	"$ARTIST_RELATION_DOMAIN_PROGRAM_EVENT\x10\x03\x12\"\n" +
 	"\x1eARTIST_RELATION_DOMAIN_RELEASE\x10\x04\x12 \n" +
 	"\x1cARTIST_RELATION_DOMAIN_TRACK\x10\x05\x12\x1f\n" +
-	"\x1bARTIST_RELATION_DOMAIN_WORK\x10\x062\xd9\r\n" +
+	"\x1bARTIST_RELATION_DOMAIN_WORK\x10\x062\x9c\x0f\n" +
 	"\rArtistService\x12t\n" +
 	"\x13GetArtistEditorData\x12).api.manage.v1.GetArtistEditorDataRequest\x1a*.api.manage.v1.GetArtistEditorDataResponse\"\x06\xca\xf3\x18\x02\b\x02\x12\\\n" +
 	"\vListArtists\x12!.api.manage.v1.ListArtistsRequest\x1a\".api.manage.v1.ListArtistsResponse\"\x06\xca\xf3\x18\x02\b\x02\x12k\n" +
@@ -2347,7 +2511,9 @@ const file_api_manage_v1_artist_proto_rawDesc = "" +
 	"\x0fSetArtistImages\x12%.api.manage.v1.SetArtistImagesRequest\x1a&.api.manage.v1.SetArtistImagesResponse\"\x06\xca\xf3\x18\x02\b\x02\x12}\n" +
 	"\x16ListArtistParticipants\x12,.api.manage.v1.ListArtistParticipantsRequest\x1a-.api.manage.v1.ListArtistParticipantsResponse\"\x06\xca\xf3\x18\x02\b\x02\x12l\n" +
 	"\x14SetArtistParticipant\x12*.api.manage.v1.SetArtistParticipantRequest\x1a .api.manage.v1.ArtistParticipant\"\x06\xca\xf3\x18\x02\b\x02\x12o\n" +
-	"\x17RemoveArtistParticipant\x12-.api.manage.v1.RemoveArtistParticipantRequest\x1a\x1d.api.manage.v1.DeleteResponse\"\x06\xca\xf3\x18\x02\b\x02\x12b\n" +
+	"\x17RemoveArtistParticipant\x12-.api.manage.v1.RemoveArtistParticipantRequest\x1a\x1d.api.manage.v1.DeleteResponse\"\x06\xca\xf3\x18\x02\b\x02\x12W\n" +
+	"\x0fSetArtistParent\x12%.api.manage.v1.SetArtistParentRequest\x1a\x15.api.manage.v1.Artist\"\x06\xca\xf3\x18\x02\b\x02\x12h\n" +
+	"\x0fSetArtistLabels\x12%.api.manage.v1.SetArtistLabelsRequest\x1a&.api.manage.v1.SetArtistLabelsResponse\"\x06\xca\xf3\x18\x02\b\x02\x12b\n" +
 	"\rListMyArtists\x12#.api.manage.v1.ListMyArtistsRequest\x1a$.api.manage.v1.ListMyArtistsResponse\"\x06\xca\xf3\x18\x02\b\x02\x12\x83\x01\n" +
 	"\x18CheckArtistSlugAvailable\x12..api.manage.v1.CheckArtistSlugAvailableRequest\x1a/.api.manage.v1.CheckArtistSlugAvailableResponse\"\x06\xca\xf3\x18\x02\b\x02B\xc0\x01\n" +
 	"\x11com.api.manage.v1B\vArtistProtoP\x01ZHgithub.com/echovisionlab/geul-event-contracts/gen/api/manage/v1;managev1\xa2\x02\x03AMX\xaa\x02\rApi.Manage.V1\xca\x02\rApi\\Manage\\V1\xe2\x02\x19Api\\Manage\\V1\\GPBMetadata\xea\x02\x0fApi::Manage::V1b\x06proto3"
@@ -2365,7 +2531,7 @@ func file_api_manage_v1_artist_proto_rawDescGZIP() []byte {
 }
 
 var file_api_manage_v1_artist_proto_enumTypes = make([]protoimpl.EnumInfo, 4)
-var file_api_manage_v1_artist_proto_msgTypes = make([]protoimpl.MessageInfo, 33)
+var file_api_manage_v1_artist_proto_msgTypes = make([]protoimpl.MessageInfo, 36)
 var file_api_manage_v1_artist_proto_goTypes = []any{
 	(ArtistStatus)(0),                        // 0: api.manage.v1.ArtistStatus
 	(ArtistParticipantRole)(0),               // 1: api.manage.v1.ArtistParticipantRole
@@ -2396,67 +2562,70 @@ var file_api_manage_v1_artist_proto_goTypes = []any{
 	(*ArtistParticipant)(nil),                // 26: api.manage.v1.ArtistParticipant
 	(*ListArtistParticipantsRequest)(nil),    // 27: api.manage.v1.ListArtistParticipantsRequest
 	(*ListArtistParticipantsResponse)(nil),   // 28: api.manage.v1.ListArtistParticipantsResponse
-	(*SetArtistParticipantRequest)(nil),      // 29: api.manage.v1.SetArtistParticipantRequest
-	(*RemoveArtistParticipantRequest)(nil),   // 30: api.manage.v1.RemoveArtistParticipantRequest
-	(*ListMyArtistsRequest)(nil),             // 31: api.manage.v1.ListMyArtistsRequest
-	(*ListMyArtistsResponse)(nil),            // 32: api.manage.v1.ListMyArtistsResponse
-	(*CheckArtistSlugAvailableRequest)(nil),  // 33: api.manage.v1.CheckArtistSlugAvailableRequest
-	(*CheckArtistSlugAvailableResponse)(nil), // 34: api.manage.v1.CheckArtistSlugAvailableResponse
-	nil,                                      // 35: api.manage.v1.Artist.SocialLinksEntry
-	nil,                                      // 36: api.manage.v1.CreateArtistRequest.SocialLinksEntry
-	(*v1.AssetRef)(nil),                      // 37: api.common.v1.AssetRef
-	(*v11.RichTextDocument)(nil),             // 38: api.content.v1.RichTextDocument
-	(*timestamppb.Timestamp)(nil),            // 39: google.protobuf.Timestamp
-	(*v1.PaginationRequest)(nil),             // 40: api.common.v1.PaginationRequest
-	(*v1.FilterSpec)(nil),                    // 41: api.common.v1.FilterSpec
-	(*v1.SortSpec)(nil),                      // 42: api.common.v1.SortSpec
-	(*v1.PaginationResponse)(nil),            // 43: api.common.v1.PaginationResponse
-	(*v1.MemberSummary)(nil),                 // 44: api.common.v1.MemberSummary
-	(*DeleteResponse)(nil),                   // 45: api.manage.v1.DeleteResponse
-	(*OgAssetDeleteResponse)(nil),            // 46: api.manage.v1.OgAssetDeleteResponse
+	(*SetArtistParentRequest)(nil),           // 29: api.manage.v1.SetArtistParentRequest
+	(*SetArtistLabelsRequest)(nil),           // 30: api.manage.v1.SetArtistLabelsRequest
+	(*SetArtistLabelsResponse)(nil),          // 31: api.manage.v1.SetArtistLabelsResponse
+	(*SetArtistParticipantRequest)(nil),      // 32: api.manage.v1.SetArtistParticipantRequest
+	(*RemoveArtistParticipantRequest)(nil),   // 33: api.manage.v1.RemoveArtistParticipantRequest
+	(*ListMyArtistsRequest)(nil),             // 34: api.manage.v1.ListMyArtistsRequest
+	(*ListMyArtistsResponse)(nil),            // 35: api.manage.v1.ListMyArtistsResponse
+	(*CheckArtistSlugAvailableRequest)(nil),  // 36: api.manage.v1.CheckArtistSlugAvailableRequest
+	(*CheckArtistSlugAvailableResponse)(nil), // 37: api.manage.v1.CheckArtistSlugAvailableResponse
+	nil,                                      // 38: api.manage.v1.Artist.SocialLinksEntry
+	nil,                                      // 39: api.manage.v1.CreateArtistRequest.SocialLinksEntry
+	(*v1.AssetRef)(nil),                      // 40: api.common.v1.AssetRef
+	(*v11.RichTextDocument)(nil),             // 41: api.content.v1.RichTextDocument
+	(*timestamppb.Timestamp)(nil),            // 42: google.protobuf.Timestamp
+	(*v1.PaginationRequest)(nil),             // 43: api.common.v1.PaginationRequest
+	(*v1.FilterSpec)(nil),                    // 44: api.common.v1.FilterSpec
+	(*v1.SortSpec)(nil),                      // 45: api.common.v1.SortSpec
+	(*v1.PaginationResponse)(nil),            // 46: api.common.v1.PaginationResponse
+	(*v1.MemberSummary)(nil),                 // 47: api.common.v1.MemberSummary
+	(*DeleteResponse)(nil),                   // 48: api.manage.v1.DeleteResponse
+	(*OgAssetDeleteResponse)(nil),            // 49: api.manage.v1.OgAssetDeleteResponse
 }
 var file_api_manage_v1_artist_proto_depIdxs = []int32{
-	37, // 0: api.manage.v1.ArtistImage.asset:type_name -> api.common.v1.AssetRef
-	38, // 1: api.manage.v1.Artist.document:type_name -> api.content.v1.RichTextDocument
-	35, // 2: api.manage.v1.Artist.social_links:type_name -> api.manage.v1.Artist.SocialLinksEntry
-	39, // 3: api.manage.v1.Artist.published_at:type_name -> google.protobuf.Timestamp
-	39, // 4: api.manage.v1.Artist.created_at:type_name -> google.protobuf.Timestamp
-	39, // 5: api.manage.v1.Artist.updated_at:type_name -> google.protobuf.Timestamp
-	37, // 6: api.manage.v1.Artist.og_asset:type_name -> api.common.v1.AssetRef
-	37, // 7: api.manage.v1.Artist.image_asset:type_name -> api.common.v1.AssetRef
+	40, // 0: api.manage.v1.ArtistImage.asset:type_name -> api.common.v1.AssetRef
+	41, // 1: api.manage.v1.Artist.document:type_name -> api.content.v1.RichTextDocument
+	38, // 2: api.manage.v1.Artist.social_links:type_name -> api.manage.v1.Artist.SocialLinksEntry
+	42, // 3: api.manage.v1.Artist.published_at:type_name -> google.protobuf.Timestamp
+	42, // 4: api.manage.v1.Artist.created_at:type_name -> google.protobuf.Timestamp
+	42, // 5: api.manage.v1.Artist.updated_at:type_name -> google.protobuf.Timestamp
+	40, // 6: api.manage.v1.Artist.og_asset:type_name -> api.common.v1.AssetRef
+	40, // 7: api.manage.v1.Artist.image_asset:type_name -> api.common.v1.AssetRef
 	4,  // 8: api.manage.v1.Artist.images:type_name -> api.manage.v1.ArtistImage
 	5,  // 9: api.manage.v1.ArtistWithStats.artist:type_name -> api.manage.v1.Artist
 	5,  // 10: api.manage.v1.GetArtistEditorDataResponse.artist:type_name -> api.manage.v1.Artist
 	2,  // 11: api.manage.v1.GetArtistEditorDataResponse.allowed_actions:type_name -> api.manage.v1.ArtistAction
-	40, // 12: api.manage.v1.ListArtistsRequest.pagination:type_name -> api.common.v1.PaginationRequest
-	41, // 13: api.manage.v1.ListArtistsRequest.filters:type_name -> api.common.v1.FilterSpec
-	42, // 14: api.manage.v1.ListArtistsRequest.sorts:type_name -> api.common.v1.SortSpec
+	43, // 12: api.manage.v1.ListArtistsRequest.pagination:type_name -> api.common.v1.PaginationRequest
+	44, // 13: api.manage.v1.ListArtistsRequest.filters:type_name -> api.common.v1.FilterSpec
+	45, // 14: api.manage.v1.ListArtistsRequest.sorts:type_name -> api.common.v1.SortSpec
 	5,  // 15: api.manage.v1.ListArtistsResponse.artists:type_name -> api.manage.v1.Artist
-	43, // 16: api.manage.v1.ListArtistsResponse.pagination:type_name -> api.common.v1.PaginationResponse
-	40, // 17: api.manage.v1.ListArtistsAdminRequest.pagination:type_name -> api.common.v1.PaginationRequest
-	41, // 18: api.manage.v1.ListArtistsAdminRequest.filters:type_name -> api.common.v1.FilterSpec
-	42, // 19: api.manage.v1.ListArtistsAdminRequest.sorts:type_name -> api.common.v1.SortSpec
+	46, // 16: api.manage.v1.ListArtistsResponse.pagination:type_name -> api.common.v1.PaginationResponse
+	43, // 17: api.manage.v1.ListArtistsAdminRequest.pagination:type_name -> api.common.v1.PaginationRequest
+	44, // 18: api.manage.v1.ListArtistsAdminRequest.filters:type_name -> api.common.v1.FilterSpec
+	45, // 19: api.manage.v1.ListArtistsAdminRequest.sorts:type_name -> api.common.v1.SortSpec
 	6,  // 20: api.manage.v1.ListArtistsAdminResponse.artists:type_name -> api.manage.v1.ArtistWithStats
-	43, // 21: api.manage.v1.ListArtistsAdminResponse.pagination:type_name -> api.common.v1.PaginationResponse
-	38, // 22: api.manage.v1.CreateArtistRequest.document:type_name -> api.content.v1.RichTextDocument
-	36, // 23: api.manage.v1.CreateArtistRequest.social_links:type_name -> api.manage.v1.CreateArtistRequest.SocialLinksEntry
+	46, // 21: api.manage.v1.ListArtistsAdminResponse.pagination:type_name -> api.common.v1.PaginationResponse
+	41, // 22: api.manage.v1.CreateArtistRequest.document:type_name -> api.content.v1.RichTextDocument
+	39, // 23: api.manage.v1.CreateArtistRequest.social_links:type_name -> api.manage.v1.CreateArtistRequest.SocialLinksEntry
 	3,  // 24: api.manage.v1.ArtistDeletionImpact.domain:type_name -> api.manage.v1.ArtistRelationDomain
 	16, // 25: api.manage.v1.PreviewDeleteArtistResponse.impacts:type_name -> api.manage.v1.ArtistDeletionImpact
 	0,  // 26: api.manage.v1.ArtistLifecycleMutationResponse.status:type_name -> api.manage.v1.ArtistStatus
-	39, // 27: api.manage.v1.ArtistLifecycleMutationResponse.published_at:type_name -> google.protobuf.Timestamp
-	39, // 28: api.manage.v1.ArtistLifecycleMutationResponse.updated_at:type_name -> google.protobuf.Timestamp
-	37, // 29: api.manage.v1.SetArtistImageResponse.image_asset:type_name -> api.common.v1.AssetRef
+	42, // 27: api.manage.v1.ArtistLifecycleMutationResponse.published_at:type_name -> google.protobuf.Timestamp
+	42, // 28: api.manage.v1.ArtistLifecycleMutationResponse.updated_at:type_name -> google.protobuf.Timestamp
+	40, // 29: api.manage.v1.SetArtistImageResponse.image_asset:type_name -> api.common.v1.AssetRef
 	4,  // 30: api.manage.v1.SetArtistImagesResponse.images:type_name -> api.manage.v1.ArtistImage
-	44, // 31: api.manage.v1.ArtistParticipant.member:type_name -> api.common.v1.MemberSummary
+	47, // 31: api.manage.v1.ArtistParticipant.member:type_name -> api.common.v1.MemberSummary
 	1,  // 32: api.manage.v1.ArtistParticipant.role:type_name -> api.manage.v1.ArtistParticipantRole
-	39, // 33: api.manage.v1.ArtistParticipant.created_at:type_name -> google.protobuf.Timestamp
+	42, // 33: api.manage.v1.ArtistParticipant.created_at:type_name -> google.protobuf.Timestamp
 	26, // 34: api.manage.v1.ListArtistParticipantsResponse.participants:type_name -> api.manage.v1.ArtistParticipant
 	1,  // 35: api.manage.v1.SetArtistParticipantRequest.role:type_name -> api.manage.v1.ArtistParticipantRole
-	40, // 36: api.manage.v1.ListMyArtistsRequest.pagination:type_name -> api.common.v1.PaginationRequest
-	41, // 37: api.manage.v1.ListMyArtistsRequest.filters:type_name -> api.common.v1.FilterSpec
-	42, // 38: api.manage.v1.ListMyArtistsRequest.sorts:type_name -> api.common.v1.SortSpec
+	43, // 36: api.manage.v1.ListMyArtistsRequest.pagination:type_name -> api.common.v1.PaginationRequest
+	44, // 37: api.manage.v1.ListMyArtistsRequest.filters:type_name -> api.common.v1.FilterSpec
+	45, // 38: api.manage.v1.ListMyArtistsRequest.sorts:type_name -> api.common.v1.SortSpec
 	5,  // 39: api.manage.v1.ListMyArtistsResponse.artists:type_name -> api.manage.v1.Artist
-	43, // 40: api.manage.v1.ListMyArtistsResponse.pagination:type_name -> api.common.v1.PaginationResponse
+	46, // 40: api.manage.v1.ListMyArtistsResponse.pagination:type_name -> api.common.v1.PaginationResponse
 	7,  // 41: api.manage.v1.ArtistService.GetArtistEditorData:input_type -> api.manage.v1.GetArtistEditorDataRequest
 	9,  // 42: api.manage.v1.ArtistService.ListArtists:input_type -> api.manage.v1.ListArtistsRequest
 	11, // 43: api.manage.v1.ArtistService.ListArtistsAdmin:input_type -> api.manage.v1.ListArtistsAdminRequest
@@ -2469,28 +2638,32 @@ var file_api_manage_v1_artist_proto_depIdxs = []int32{
 	23, // 50: api.manage.v1.ArtistService.DeleteArtistImage:input_type -> api.manage.v1.DeleteArtistImageRequest
 	24, // 51: api.manage.v1.ArtistService.SetArtistImages:input_type -> api.manage.v1.SetArtistImagesRequest
 	27, // 52: api.manage.v1.ArtistService.ListArtistParticipants:input_type -> api.manage.v1.ListArtistParticipantsRequest
-	29, // 53: api.manage.v1.ArtistService.SetArtistParticipant:input_type -> api.manage.v1.SetArtistParticipantRequest
-	30, // 54: api.manage.v1.ArtistService.RemoveArtistParticipant:input_type -> api.manage.v1.RemoveArtistParticipantRequest
-	31, // 55: api.manage.v1.ArtistService.ListMyArtists:input_type -> api.manage.v1.ListMyArtistsRequest
-	33, // 56: api.manage.v1.ArtistService.CheckArtistSlugAvailable:input_type -> api.manage.v1.CheckArtistSlugAvailableRequest
-	8,  // 57: api.manage.v1.ArtistService.GetArtistEditorData:output_type -> api.manage.v1.GetArtistEditorDataResponse
-	10, // 58: api.manage.v1.ArtistService.ListArtists:output_type -> api.manage.v1.ListArtistsResponse
-	12, // 59: api.manage.v1.ArtistService.ListArtistsAdmin:output_type -> api.manage.v1.ListArtistsAdminResponse
-	5,  // 60: api.manage.v1.ArtistService.CreateArtist:output_type -> api.manage.v1.Artist
-	45, // 61: api.manage.v1.ArtistService.DeleteArtist:output_type -> api.manage.v1.DeleteResponse
-	17, // 62: api.manage.v1.ArtistService.PreviewDeleteArtist:output_type -> api.manage.v1.PreviewDeleteArtistResponse
-	20, // 63: api.manage.v1.ArtistService.PublishArtist:output_type -> api.manage.v1.ArtistLifecycleMutationResponse
-	20, // 64: api.manage.v1.ArtistService.UnpublishArtist:output_type -> api.manage.v1.ArtistLifecycleMutationResponse
-	22, // 65: api.manage.v1.ArtistService.SetArtistImage:output_type -> api.manage.v1.SetArtistImageResponse
-	46, // 66: api.manage.v1.ArtistService.DeleteArtistImage:output_type -> api.manage.v1.OgAssetDeleteResponse
-	25, // 67: api.manage.v1.ArtistService.SetArtistImages:output_type -> api.manage.v1.SetArtistImagesResponse
-	28, // 68: api.manage.v1.ArtistService.ListArtistParticipants:output_type -> api.manage.v1.ListArtistParticipantsResponse
-	26, // 69: api.manage.v1.ArtistService.SetArtistParticipant:output_type -> api.manage.v1.ArtistParticipant
-	45, // 70: api.manage.v1.ArtistService.RemoveArtistParticipant:output_type -> api.manage.v1.DeleteResponse
-	32, // 71: api.manage.v1.ArtistService.ListMyArtists:output_type -> api.manage.v1.ListMyArtistsResponse
-	34, // 72: api.manage.v1.ArtistService.CheckArtistSlugAvailable:output_type -> api.manage.v1.CheckArtistSlugAvailableResponse
-	57, // [57:73] is the sub-list for method output_type
-	41, // [41:57] is the sub-list for method input_type
+	32, // 53: api.manage.v1.ArtistService.SetArtistParticipant:input_type -> api.manage.v1.SetArtistParticipantRequest
+	33, // 54: api.manage.v1.ArtistService.RemoveArtistParticipant:input_type -> api.manage.v1.RemoveArtistParticipantRequest
+	29, // 55: api.manage.v1.ArtistService.SetArtistParent:input_type -> api.manage.v1.SetArtistParentRequest
+	30, // 56: api.manage.v1.ArtistService.SetArtistLabels:input_type -> api.manage.v1.SetArtistLabelsRequest
+	34, // 57: api.manage.v1.ArtistService.ListMyArtists:input_type -> api.manage.v1.ListMyArtistsRequest
+	36, // 58: api.manage.v1.ArtistService.CheckArtistSlugAvailable:input_type -> api.manage.v1.CheckArtistSlugAvailableRequest
+	8,  // 59: api.manage.v1.ArtistService.GetArtistEditorData:output_type -> api.manage.v1.GetArtistEditorDataResponse
+	10, // 60: api.manage.v1.ArtistService.ListArtists:output_type -> api.manage.v1.ListArtistsResponse
+	12, // 61: api.manage.v1.ArtistService.ListArtistsAdmin:output_type -> api.manage.v1.ListArtistsAdminResponse
+	5,  // 62: api.manage.v1.ArtistService.CreateArtist:output_type -> api.manage.v1.Artist
+	48, // 63: api.manage.v1.ArtistService.DeleteArtist:output_type -> api.manage.v1.DeleteResponse
+	17, // 64: api.manage.v1.ArtistService.PreviewDeleteArtist:output_type -> api.manage.v1.PreviewDeleteArtistResponse
+	20, // 65: api.manage.v1.ArtistService.PublishArtist:output_type -> api.manage.v1.ArtistLifecycleMutationResponse
+	20, // 66: api.manage.v1.ArtistService.UnpublishArtist:output_type -> api.manage.v1.ArtistLifecycleMutationResponse
+	22, // 67: api.manage.v1.ArtistService.SetArtistImage:output_type -> api.manage.v1.SetArtistImageResponse
+	49, // 68: api.manage.v1.ArtistService.DeleteArtistImage:output_type -> api.manage.v1.OgAssetDeleteResponse
+	25, // 69: api.manage.v1.ArtistService.SetArtistImages:output_type -> api.manage.v1.SetArtistImagesResponse
+	28, // 70: api.manage.v1.ArtistService.ListArtistParticipants:output_type -> api.manage.v1.ListArtistParticipantsResponse
+	26, // 71: api.manage.v1.ArtistService.SetArtistParticipant:output_type -> api.manage.v1.ArtistParticipant
+	48, // 72: api.manage.v1.ArtistService.RemoveArtistParticipant:output_type -> api.manage.v1.DeleteResponse
+	5,  // 73: api.manage.v1.ArtistService.SetArtistParent:output_type -> api.manage.v1.Artist
+	31, // 74: api.manage.v1.ArtistService.SetArtistLabels:output_type -> api.manage.v1.SetArtistLabelsResponse
+	35, // 75: api.manage.v1.ArtistService.ListMyArtists:output_type -> api.manage.v1.ListMyArtistsResponse
+	37, // 76: api.manage.v1.ArtistService.CheckArtistSlugAvailable:output_type -> api.manage.v1.CheckArtistSlugAvailableResponse
+	59, // [59:77] is the sub-list for method output_type
+	41, // [41:59] is the sub-list for method input_type
 	41, // [41:41] is the sub-list for extension type_name
 	41, // [41:41] is the sub-list for extension extendee
 	0,  // [0:41] is the sub-list for field type_name
@@ -2507,14 +2680,15 @@ func file_api_manage_v1_artist_proto_init() {
 	file_api_manage_v1_artist_proto_msgTypes[16].OneofWrappers = []any{}
 	file_api_manage_v1_artist_proto_msgTypes[18].OneofWrappers = []any{}
 	file_api_manage_v1_artist_proto_msgTypes[21].OneofWrappers = []any{}
-	file_api_manage_v1_artist_proto_msgTypes[29].OneofWrappers = []any{}
+	file_api_manage_v1_artist_proto_msgTypes[25].OneofWrappers = []any{}
+	file_api_manage_v1_artist_proto_msgTypes[32].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_api_manage_v1_artist_proto_rawDesc), len(file_api_manage_v1_artist_proto_rawDesc)),
 			NumEnums:      4,
-			NumMessages:   33,
+			NumMessages:   36,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

@@ -172,3 +172,29 @@ func (artistDomain) DeleteParent(id string, parentID string) (RelationshipMutati
 	}
 	return newRelationshipMutation(resource, "parent", subject, RelationshipDelete)
 }
+
+// TouchLabel creates a closed touch descriptor for artist.label.
+func (artistDomain) TouchLabel(id string, labelID string) (RelationshipMutation, error) {
+	resource, err := newResource("artist", id)
+	if err != nil {
+		return RelationshipMutation{}, err
+	}
+	subject, err := resourceRelationshipSubject("label", labelID, "")
+	if err != nil {
+		return RelationshipMutation{}, err
+	}
+	return newRelationshipMutation(resource, "label", subject, RelationshipTouch)
+}
+
+// DeleteLabel creates a closed delete descriptor for artist.label.
+func (artistDomain) DeleteLabel(id string, labelID string) (RelationshipMutation, error) {
+	resource, err := newResource("artist", id)
+	if err != nil {
+		return RelationshipMutation{}, err
+	}
+	subject, err := resourceRelationshipSubject("label", labelID, "")
+	if err != nil {
+		return RelationshipMutation{}, err
+	}
+	return newRelationshipMutation(resource, "label", subject, RelationshipDelete)
+}

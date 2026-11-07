@@ -2,7 +2,7 @@
 // DO NOT EDIT.
 //
 // Canonical source: config/spicedb/catalog/{core.yaml,manifest.yaml,domains/*.yaml}
-// Catalog fingerprint: 9ddeb327d355eed2ef9561d8835dc585c8e42d94637268b5a60e46e60c8aafde
+// Catalog fingerprint: cbf8c0fba0c5362a3037c10109a3cf18c63d8d81c25bb5ad13f376388ac131a0
 // Role inheritance tuples:
 // role:admin#member@account_identity:<id>
 // role:author#member@role:admin#member
@@ -50,13 +50,14 @@ definition artist {
   relation owner: account_identity
   relation manager: account_identity
   relation parent: artist
+  relation label: label
   permission platform_admin = policy->is_admin
   permission owner_manage = platform_admin + owner
-  permission manager_manage = owner_manage + manager + parent->manage
+  permission manager_manage = owner_manage + manager + parent->manage + label.all(manage)
   permission edit = manager_manage
   permission view = edit
   permission delete = owner_manage
-  permission publish = owner_manage
+  permission publish = owner_manage + label.all(publish)
   permission manage = manager_manage
   permission manage_participants = owner_manage
   permission manage_share_links = owner_manage

@@ -75,6 +75,12 @@ const (
 	// ArtistServiceRemoveArtistParticipantProcedure is the fully-qualified name of the ArtistService's
 	// RemoveArtistParticipant RPC.
 	ArtistServiceRemoveArtistParticipantProcedure = "/api.manage.v1.ArtistService/RemoveArtistParticipant"
+	// ArtistServiceSetArtistParentProcedure is the fully-qualified name of the ArtistService's
+	// SetArtistParent RPC.
+	ArtistServiceSetArtistParentProcedure = "/api.manage.v1.ArtistService/SetArtistParent"
+	// ArtistServiceSetArtistLabelsProcedure is the fully-qualified name of the ArtistService's
+	// SetArtistLabels RPC.
+	ArtistServiceSetArtistLabelsProcedure = "/api.manage.v1.ArtistService/SetArtistLabels"
 	// ArtistServiceListMyArtistsProcedure is the fully-qualified name of the ArtistService's
 	// ListMyArtists RPC.
 	ArtistServiceListMyArtistsProcedure = "/api.manage.v1.ArtistService/ListMyArtists"
@@ -103,6 +109,8 @@ type ArtistServiceClient interface {
 	ListArtistParticipants(context.Context, *connect.Request[v1.ListArtistParticipantsRequest]) (*connect.Response[v1.ListArtistParticipantsResponse], error)
 	SetArtistParticipant(context.Context, *connect.Request[v1.SetArtistParticipantRequest]) (*connect.Response[v1.ArtistParticipant], error)
 	RemoveArtistParticipant(context.Context, *connect.Request[v1.RemoveArtistParticipantRequest]) (*connect.Response[v1.DeleteResponse], error)
+	SetArtistParent(context.Context, *connect.Request[v1.SetArtistParentRequest]) (*connect.Response[v1.Artist], error)
+	SetArtistLabels(context.Context, *connect.Request[v1.SetArtistLabelsRequest]) (*connect.Response[v1.SetArtistLabelsResponse], error)
 	// My artists (current user's manageable artists)
 	ListMyArtists(context.Context, *connect.Request[v1.ListMyArtistsRequest]) (*connect.Response[v1.ListMyArtistsResponse], error)
 	// Utility
@@ -204,6 +212,18 @@ func NewArtistServiceClient(httpClient connect.HTTPClient, baseURL string, opts 
 			connect.WithSchema(artistServiceMethods.ByName("RemoveArtistParticipant")),
 			connect.WithClientOptions(opts...),
 		),
+		setArtistParent: connect.NewClient[v1.SetArtistParentRequest, v1.Artist](
+			httpClient,
+			baseURL+ArtistServiceSetArtistParentProcedure,
+			connect.WithSchema(artistServiceMethods.ByName("SetArtistParent")),
+			connect.WithClientOptions(opts...),
+		),
+		setArtistLabels: connect.NewClient[v1.SetArtistLabelsRequest, v1.SetArtistLabelsResponse](
+			httpClient,
+			baseURL+ArtistServiceSetArtistLabelsProcedure,
+			connect.WithSchema(artistServiceMethods.ByName("SetArtistLabels")),
+			connect.WithClientOptions(opts...),
+		),
 		listMyArtists: connect.NewClient[v1.ListMyArtistsRequest, v1.ListMyArtistsResponse](
 			httpClient,
 			baseURL+ArtistServiceListMyArtistsProcedure,
@@ -235,6 +255,8 @@ type artistServiceClient struct {
 	listArtistParticipants   *connect.Client[v1.ListArtistParticipantsRequest, v1.ListArtistParticipantsResponse]
 	setArtistParticipant     *connect.Client[v1.SetArtistParticipantRequest, v1.ArtistParticipant]
 	removeArtistParticipant  *connect.Client[v1.RemoveArtistParticipantRequest, v1.DeleteResponse]
+	setArtistParent          *connect.Client[v1.SetArtistParentRequest, v1.Artist]
+	setArtistLabels          *connect.Client[v1.SetArtistLabelsRequest, v1.SetArtistLabelsResponse]
 	listMyArtists            *connect.Client[v1.ListMyArtistsRequest, v1.ListMyArtistsResponse]
 	checkArtistSlugAvailable *connect.Client[v1.CheckArtistSlugAvailableRequest, v1.CheckArtistSlugAvailableResponse]
 }
@@ -309,6 +331,16 @@ func (c *artistServiceClient) RemoveArtistParticipant(ctx context.Context, req *
 	return c.removeArtistParticipant.CallUnary(ctx, req)
 }
 
+// SetArtistParent calls api.manage.v1.ArtistService.SetArtistParent.
+func (c *artistServiceClient) SetArtistParent(ctx context.Context, req *connect.Request[v1.SetArtistParentRequest]) (*connect.Response[v1.Artist], error) {
+	return c.setArtistParent.CallUnary(ctx, req)
+}
+
+// SetArtistLabels calls api.manage.v1.ArtistService.SetArtistLabels.
+func (c *artistServiceClient) SetArtistLabels(ctx context.Context, req *connect.Request[v1.SetArtistLabelsRequest]) (*connect.Response[v1.SetArtistLabelsResponse], error) {
+	return c.setArtistLabels.CallUnary(ctx, req)
+}
+
 // ListMyArtists calls api.manage.v1.ArtistService.ListMyArtists.
 func (c *artistServiceClient) ListMyArtists(ctx context.Context, req *connect.Request[v1.ListMyArtistsRequest]) (*connect.Response[v1.ListMyArtistsResponse], error) {
 	return c.listMyArtists.CallUnary(ctx, req)
@@ -339,6 +371,8 @@ type ArtistServiceHandler interface {
 	ListArtistParticipants(context.Context, *connect.Request[v1.ListArtistParticipantsRequest]) (*connect.Response[v1.ListArtistParticipantsResponse], error)
 	SetArtistParticipant(context.Context, *connect.Request[v1.SetArtistParticipantRequest]) (*connect.Response[v1.ArtistParticipant], error)
 	RemoveArtistParticipant(context.Context, *connect.Request[v1.RemoveArtistParticipantRequest]) (*connect.Response[v1.DeleteResponse], error)
+	SetArtistParent(context.Context, *connect.Request[v1.SetArtistParentRequest]) (*connect.Response[v1.Artist], error)
+	SetArtistLabels(context.Context, *connect.Request[v1.SetArtistLabelsRequest]) (*connect.Response[v1.SetArtistLabelsResponse], error)
 	// My artists (current user's manageable artists)
 	ListMyArtists(context.Context, *connect.Request[v1.ListMyArtistsRequest]) (*connect.Response[v1.ListMyArtistsResponse], error)
 	// Utility
@@ -436,6 +470,18 @@ func NewArtistServiceHandler(svc ArtistServiceHandler, opts ...connect.HandlerOp
 		connect.WithSchema(artistServiceMethods.ByName("RemoveArtistParticipant")),
 		connect.WithHandlerOptions(opts...),
 	)
+	artistServiceSetArtistParentHandler := connect.NewUnaryHandler(
+		ArtistServiceSetArtistParentProcedure,
+		svc.SetArtistParent,
+		connect.WithSchema(artistServiceMethods.ByName("SetArtistParent")),
+		connect.WithHandlerOptions(opts...),
+	)
+	artistServiceSetArtistLabelsHandler := connect.NewUnaryHandler(
+		ArtistServiceSetArtistLabelsProcedure,
+		svc.SetArtistLabels,
+		connect.WithSchema(artistServiceMethods.ByName("SetArtistLabels")),
+		connect.WithHandlerOptions(opts...),
+	)
 	artistServiceListMyArtistsHandler := connect.NewUnaryHandler(
 		ArtistServiceListMyArtistsProcedure,
 		svc.ListMyArtists,
@@ -478,6 +524,10 @@ func NewArtistServiceHandler(svc ArtistServiceHandler, opts ...connect.HandlerOp
 			artistServiceSetArtistParticipantHandler.ServeHTTP(w, r)
 		case ArtistServiceRemoveArtistParticipantProcedure:
 			artistServiceRemoveArtistParticipantHandler.ServeHTTP(w, r)
+		case ArtistServiceSetArtistParentProcedure:
+			artistServiceSetArtistParentHandler.ServeHTTP(w, r)
+		case ArtistServiceSetArtistLabelsProcedure:
+			artistServiceSetArtistLabelsHandler.ServeHTTP(w, r)
 		case ArtistServiceListMyArtistsProcedure:
 			artistServiceListMyArtistsHandler.ServeHTTP(w, r)
 		case ArtistServiceCheckArtistSlugAvailableProcedure:
@@ -545,6 +595,14 @@ func (UnimplementedArtistServiceHandler) SetArtistParticipant(context.Context, *
 
 func (UnimplementedArtistServiceHandler) RemoveArtistParticipant(context.Context, *connect.Request[v1.RemoveArtistParticipantRequest]) (*connect.Response[v1.DeleteResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("api.manage.v1.ArtistService.RemoveArtistParticipant is not implemented"))
+}
+
+func (UnimplementedArtistServiceHandler) SetArtistParent(context.Context, *connect.Request[v1.SetArtistParentRequest]) (*connect.Response[v1.Artist], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("api.manage.v1.ArtistService.SetArtistParent is not implemented"))
+}
+
+func (UnimplementedArtistServiceHandler) SetArtistLabels(context.Context, *connect.Request[v1.SetArtistLabelsRequest]) (*connect.Response[v1.SetArtistLabelsResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("api.manage.v1.ArtistService.SetArtistLabels is not implemented"))
 }
 
 func (UnimplementedArtistServiceHandler) ListMyArtists(context.Context, *connect.Request[v1.ListMyArtistsRequest]) (*connect.Response[v1.ListMyArtistsResponse], error) {

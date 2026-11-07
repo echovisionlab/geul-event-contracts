@@ -1751,6 +1751,40 @@
           "providerTests": []
         },
         {
+          "name": "SetArtistLabels",
+          "consumerStatus": "verified",
+          "consumers": [
+            {
+              "repository": "web",
+              "file": "lib/actions/artist.ts",
+              "symbol": "setArtistLabelsAction",
+              "call": "client.setArtistLabels({ artistId, labelIds })",
+              "entrypoint": "ArtistDetailEditor changes the Labels the Artist belongs to"
+            }
+          ],
+          "consumerTests": [],
+          "providerTests": [
+            "api/internal/artist/owner_manager_integration_test.go"
+          ]
+        },
+        {
+          "name": "SetArtistParent",
+          "consumerStatus": "verified",
+          "consumers": [
+            {
+              "repository": "web",
+              "file": "lib/actions/artist.ts",
+              "symbol": "setArtistParentAction",
+              "call": "client.setArtistParent({ artistId, parentArtistId })",
+              "entrypoint": "ArtistDetailEditor moves the Artist under another Artist"
+            }
+          ],
+          "consumerTests": [],
+          "providerTests": [
+            "api/internal/artist/owner_manager_integration_test.go"
+          ]
+        },
+        {
           "name": "SetArtistParticipant",
           "consumerStatus": "verified",
           "consumers": [
@@ -3561,6 +3595,23 @@
           ],
           "consumerTests": [],
           "providerTests": []
+        },
+        {
+          "name": "SetLabelParent",
+          "consumerStatus": "verified",
+          "consumers": [
+            {
+              "repository": "web",
+              "file": "lib/actions/label.ts",
+              "symbol": "setLabelParentAction",
+              "call": "client.setLabelParent({ labelId, parentLabelId })",
+              "entrypoint": "AdminLabelDetailClient moves the Label under another Label"
+            }
+          ],
+          "consumerTests": [],
+          "providerTests": [
+            "api/internal/label/owner_manager_integration_test.go"
+          ]
         },
         {
           "name": "SetLabelParticipant",

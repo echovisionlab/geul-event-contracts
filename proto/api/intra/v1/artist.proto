@@ -24,16 +24,10 @@ message ArtistDocumentMetadata {
   optional string website = 3;
   map<string, string> social_links = 4;
   optional string slug = 5;
-  repeated string label_ids = 6;
-  optional string parent_artist_id = 7;
 }
 
 message ArtistSocialLinksValue {
   map<string, string> values = 1;
-}
-
-message ArtistLabelIdsValue {
-  repeated string values = 1;
 }
 
 message ArtistDocumentMetadataUpdate {
@@ -42,8 +36,6 @@ message ArtistDocumentMetadataUpdate {
   NullableStringMutation website = 3;
   ArtistSocialLinksValue social_links = 4;
   NullableStringMutation slug = 5;
-  ArtistLabelIdsValue label_ids = 6;
-  NullableStringMutation parent_artist_id = 7;
 }
 
 message ArtistLocaleMetadata {
