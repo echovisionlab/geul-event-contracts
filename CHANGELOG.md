@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.19.0](https://github.com/echovisionlab/geul-event-contracts/compare/v0.18.0...v0.19.0) (2026-11-07)
+
+
+### ⚠ BREAKING CHANGES
+
+* **policy:** give a Label authority over the Artists that belong to it ([#65](https://github.com/echovisionlab/geul-event-contracts/issues/65))
+
+### Features
+
+* **policy:** give a Label authority over the Artists that belong to it ([#65](https://github.com/echovisionlab/geul-event-contracts/issues/65)) ([a4d7e39](https://github.com/echovisionlab/geul-event-contracts/commit/a4d7e39bf075f74c03aec639e62f5aec3bacb02a))
+
 ## [0.18.0](https://github.com/echovisionlab/geul-event-contracts/compare/v0.17.0...v0.18.0) (2026-11-07)
 
 
