@@ -38,6 +38,9 @@ const (
 	LabelServiceGetLabelEditorDataProcedure = "/api.manage.v1.LabelService/GetLabelEditorData"
 	// LabelServiceListLabelsProcedure is the fully-qualified name of the LabelService's ListLabels RPC.
 	LabelServiceListLabelsProcedure = "/api.manage.v1.LabelService/ListLabels"
+	// LabelServiceListMyLabelsProcedure is the fully-qualified name of the LabelService's ListMyLabels
+	// RPC.
+	LabelServiceListMyLabelsProcedure = "/api.manage.v1.LabelService/ListMyLabels"
 	// LabelServiceListLabelsAdminProcedure is the fully-qualified name of the LabelService's
 	// ListLabelsAdmin RPC.
 	LabelServiceListLabelsAdminProcedure = "/api.manage.v1.LabelService/ListLabelsAdmin"
@@ -84,6 +87,8 @@ type LabelServiceClient interface {
 	// Public (only published labels)
 	GetLabelEditorData(context.Context, *connect.Request[v1.GetLabelEditorDataRequest]) (*connect.Response[v1.GetLabelEditorDataResponse], error)
 	ListLabels(context.Context, *connect.Request[v1.ListLabelsRequest]) (*connect.Response[v1.ListLabelsResponse], error)
+	// Labels the caller may manage, drafts included
+	ListMyLabels(context.Context, *connect.Request[v1.ListMyLabelsRequest]) (*connect.Response[v1.ListMyLabelsResponse], error)
 	// Admin
 	ListLabelsAdmin(context.Context, *connect.Request[v1.ListLabelsAdminRequest]) (*connect.Response[v1.ListLabelsAdminResponse], error)
 	CreateLabel(context.Context, *connect.Request[v1.CreateLabelRequest]) (*connect.Response[v1.Label], error)
@@ -123,6 +128,12 @@ func NewLabelServiceClient(httpClient connect.HTTPClient, baseURL string, opts .
 			httpClient,
 			baseURL+LabelServiceListLabelsProcedure,
 			connect.WithSchema(labelServiceMethods.ByName("ListLabels")),
+			connect.WithClientOptions(opts...),
+		),
+		listMyLabels: connect.NewClient[v1.ListMyLabelsRequest, v1.ListMyLabelsResponse](
+			httpClient,
+			baseURL+LabelServiceListMyLabelsProcedure,
+			connect.WithSchema(labelServiceMethods.ByName("ListMyLabels")),
 			connect.WithClientOptions(opts...),
 		),
 		listLabelsAdmin: connect.NewClient[v1.ListLabelsAdminRequest, v1.ListLabelsAdminResponse](
@@ -210,6 +221,7 @@ func NewLabelServiceClient(httpClient connect.HTTPClient, baseURL string, opts .
 type labelServiceClient struct {
 	getLabelEditorData      *connect.Client[v1.GetLabelEditorDataRequest, v1.GetLabelEditorDataResponse]
 	listLabels              *connect.Client[v1.ListLabelsRequest, v1.ListLabelsResponse]
+	listMyLabels            *connect.Client[v1.ListMyLabelsRequest, v1.ListMyLabelsResponse]
 	listLabelsAdmin         *connect.Client[v1.ListLabelsAdminRequest, v1.ListLabelsAdminResponse]
 	createLabel             *connect.Client[v1.CreateLabelRequest, v1.Label]
 	deleteLabel             *connect.Client[v1.DeleteLabelRequest, v1.DeleteResponse]
@@ -233,6 +245,11 @@ func (c *labelServiceClient) GetLabelEditorData(ctx context.Context, req *connec
 // ListLabels calls api.manage.v1.LabelService.ListLabels.
 func (c *labelServiceClient) ListLabels(ctx context.Context, req *connect.Request[v1.ListLabelsRequest]) (*connect.Response[v1.ListLabelsResponse], error) {
 	return c.listLabels.CallUnary(ctx, req)
+}
+
+// ListMyLabels calls api.manage.v1.LabelService.ListMyLabels.
+func (c *labelServiceClient) ListMyLabels(ctx context.Context, req *connect.Request[v1.ListMyLabelsRequest]) (*connect.Response[v1.ListMyLabelsResponse], error) {
+	return c.listMyLabels.CallUnary(ctx, req)
 }
 
 // ListLabelsAdmin calls api.manage.v1.LabelService.ListLabelsAdmin.
@@ -305,6 +322,8 @@ type LabelServiceHandler interface {
 	// Public (only published labels)
 	GetLabelEditorData(context.Context, *connect.Request[v1.GetLabelEditorDataRequest]) (*connect.Response[v1.GetLabelEditorDataResponse], error)
 	ListLabels(context.Context, *connect.Request[v1.ListLabelsRequest]) (*connect.Response[v1.ListLabelsResponse], error)
+	// Labels the caller may manage, drafts included
+	ListMyLabels(context.Context, *connect.Request[v1.ListMyLabelsRequest]) (*connect.Response[v1.ListMyLabelsResponse], error)
 	// Admin
 	ListLabelsAdmin(context.Context, *connect.Request[v1.ListLabelsAdminRequest]) (*connect.Response[v1.ListLabelsAdminResponse], error)
 	CreateLabel(context.Context, *connect.Request[v1.CreateLabelRequest]) (*connect.Response[v1.Label], error)
@@ -340,6 +359,12 @@ func NewLabelServiceHandler(svc LabelServiceHandler, opts ...connect.HandlerOpti
 		LabelServiceListLabelsProcedure,
 		svc.ListLabels,
 		connect.WithSchema(labelServiceMethods.ByName("ListLabels")),
+		connect.WithHandlerOptions(opts...),
+	)
+	labelServiceListMyLabelsHandler := connect.NewUnaryHandler(
+		LabelServiceListMyLabelsProcedure,
+		svc.ListMyLabels,
+		connect.WithSchema(labelServiceMethods.ByName("ListMyLabels")),
 		connect.WithHandlerOptions(opts...),
 	)
 	labelServiceListLabelsAdminHandler := connect.NewUnaryHandler(
@@ -426,6 +451,8 @@ func NewLabelServiceHandler(svc LabelServiceHandler, opts ...connect.HandlerOpti
 			labelServiceGetLabelEditorDataHandler.ServeHTTP(w, r)
 		case LabelServiceListLabelsProcedure:
 			labelServiceListLabelsHandler.ServeHTTP(w, r)
+		case LabelServiceListMyLabelsProcedure:
+			labelServiceListMyLabelsHandler.ServeHTTP(w, r)
 		case LabelServiceListLabelsAdminProcedure:
 			labelServiceListLabelsAdminHandler.ServeHTTP(w, r)
 		case LabelServiceCreateLabelProcedure:
@@ -467,6 +494,10 @@ func (UnimplementedLabelServiceHandler) GetLabelEditorData(context.Context, *con
 
 func (UnimplementedLabelServiceHandler) ListLabels(context.Context, *connect.Request[v1.ListLabelsRequest]) (*connect.Response[v1.ListLabelsResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("api.manage.v1.LabelService.ListLabels is not implemented"))
+}
+
+func (UnimplementedLabelServiceHandler) ListMyLabels(context.Context, *connect.Request[v1.ListMyLabelsRequest]) (*connect.Response[v1.ListMyLabelsResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("api.manage.v1.LabelService.ListMyLabels is not implemented"))
 }
 
 func (UnimplementedLabelServiceHandler) ListLabelsAdmin(context.Context, *connect.Request[v1.ListLabelsAdminRequest]) (*connect.Response[v1.ListLabelsAdminResponse], error) {

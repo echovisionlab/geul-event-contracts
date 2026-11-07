@@ -3532,6 +3532,21 @@
           "providerTests": []
         },
         {
+          "name": "ListMyLabels",
+          "consumerStatus": "verified",
+          "consumers": [
+            {
+              "repository": "web",
+              "file": "lib/actions/label.ts",
+              "symbol": "listMyLabelsAction",
+              "call": "createLabelClient().listMyLabels({ pagination, filters, sorts })",
+              "entrypoint": "app/(general)/my/labels/page.tsx and MyLabelsTable.tsx list labels manageable by the current user"
+            }
+          ],
+          "consumerTests": [],
+          "providerTests": []
+        },
+        {
           "name": "PreviewDeleteLabel",
           "consumerStatus": "verified",
           "consumers": [
